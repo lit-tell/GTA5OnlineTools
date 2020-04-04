@@ -4,9 +4,9 @@
 
 ## 截图
 
-![image](https://pic.downk.cc/item/5e3bc4dc2fb38b8c3ce442a1.png)
+![image](https://pic.downk.cc/item/5e889f5b504f4bcb0418f5b5.png)
 
-![image](https://pic.downk.cc/item/5e3bc4ee2fb38b8c3ce44475.png)
+![image](https://pic.downk.cc/item/5e889f6f504f4bcb04191093.png)
 
 ## 下载地址
 
