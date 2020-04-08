@@ -10,4 +10,4 @@
 
 ## 下载地址
 
-[点我下载](http://disk.crazyzhang.cn/dir/16907746-34952623-757b8b)  
+[点我下载](https://www.lanzous.com/s/crazyzhang)  
