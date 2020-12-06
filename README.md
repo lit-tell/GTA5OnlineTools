@@ -4,4 +4,4 @@
 
 ## 下载地址
 
-[点我下载](https://crazyzhang.lanzous.com/s/crazyzhang/)  
+[点我下载](https://crazyzhang.lanzoux.com/s/crazyzhang)  
