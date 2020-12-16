@@ -6,6 +6,7 @@ https://www.yuque.com/crazyzhang666/docs
 2020/12/16 20:00 公告内容更新
 ----------------
 【辅助风险提示】
+0.Kiddion与SubVersion目前无法使用
 1.由于GTA5更新了新的DLC，小助手辅助大部分已经失效，请耐心等待更新（需要几天时间）
 2.Kiddion打开提示“Unable to find required GTA5 offsets (23)”，说明需要更新，大家都是一样，请耐心等待
 
