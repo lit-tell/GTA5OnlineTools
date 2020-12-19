@@ -3,16 +3,15 @@
 GTA5线上小助手 详细使用教程（强烈建议查看）
 https://www.yuque.com/crazyzhang666/docs
 
-2020/12/17 20:00 公告内容更新
+2020/12/18 20:00 公告内容更新
 ----------------
 【辅助风险提示】
-0.Kiddion与SubVersion目前无法使用
-1.由于GTA5更新了新的DLC，小助手辅助大部分已经失效，请耐心等待更新（需要几天时间）
-2.可以先使用小助手自带的外置菜单，有一些常用功能
-3.Kiddion打开提示“Unable to find required GTA5 offsets (23)”，说明需要更新，大家都是一样，请耐心等待
+0.Kiddion尚未更新目前无法使用，请耐心等待更新（大概一个星期左右）
+1.Kiddion打开提示“Unable to find required GTA5 offsets (23)”，说明需要更新，大家都是一样，请耐心等待
 
 ----------------
 【辅助可用状态】
+[✔]SubVersion
 [✔]GTAHax及其代码生成器
 [✔]BincoHax
 [✔]NPC刷钱
