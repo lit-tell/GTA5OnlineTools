@@ -3,7 +3,12 @@
 GTA5线上小助手 详细使用教程（强烈建议查看）
 https://www.yuque.com/crazyzhang666/docs
 
-2020/12/28 09:00 公告内容更新
+2020/12/28 21:00 公告内容更新
+----------------
+【win7玩家打开最新版本小助手停止运行的解决办法】
+下载安装.NET Framework 4.7.2运行库
+https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net472-web-installer
+
 ----------------
 【关于小助手更换UI界面的说明】
 1.以前小助手会在高分辨率显示器下UI会出现问题（WinForm通病）
