@@ -13,7 +13,7 @@ https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net48-web-insta
 【关于小助手更换UI界面的说明】
 1.以前小助手会在高分辨率显示器下UI会出现问题（WinForm通病）
 2.现在小助手设计理念为辅助启动器，具体功能模块化
-3.WPF设计的UI界面难道不好看吗😂
+3.WPF设计的UI界面好看一些
 4.如果有好的意见或建议，欢迎前往Discord反馈
 
 ----------------
