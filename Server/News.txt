@@ -25,6 +25,7 @@ https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net48-web-insta
 
 【万能解决方案】
 ----------------
-1.关闭杀毒软件或者添加到白名单（重点）
-2.小助手移动到桌面，右键管理员运行
+1.关闭杀毒软件，安装必备运行库
+2.使用微软原版win10操作系统
 3.GTA5游戏无边框或者窗口化
+4.查看使用说明
