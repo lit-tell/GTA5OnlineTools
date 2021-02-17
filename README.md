@@ -1,7 +1,7 @@
 # GTA5线上小助手 文件存储
 
-整合了来自“UnKnoWnCheaTs论坛”的GTA5辅助，拥有外置辅助，刷钱，刷级等常用功能。本软件完全免费，请勿倒卖！
+一个完全免费的GTA5线上模式辅助工具
 
 ## 下载地址
 
-[点我下载](https://crazyzhang.lanzoux.com/s/crazyzhang)  
+[点我下载](https://raw.githubusercontent.com/CrazyZhang666/GTA5onlineTools/master/Server/GTA5onlineTools.exe)  
