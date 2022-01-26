@@ -19,7 +19,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Window_HeistCut_Loaded(object sender, RoutedEventArgs e)
         {
-            Task t = new Task(() =>
+            Task.Run(() =>
             {
                 Memory.Initialize(CoreUtil.TargetAppName);
 
@@ -31,7 +31,6 @@ namespace GTA5OnlineTools.Modules.Windows
                     ReadHeistCutData();
                 }));
             });
-            t.Start();
         }
 
         private void Window_HeistCut_Closing(object sender, System.ComponentModel.CancelEventArgs e)

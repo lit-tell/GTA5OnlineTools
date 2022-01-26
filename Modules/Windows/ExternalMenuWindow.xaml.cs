@@ -74,7 +74,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
             /////////////////////////////////////////////
 
-            Task t = new Task(() =>
+            Task.Run(() =>
             {
                 Memory.Initialize(CoreUtil.TargetAppName);
 
@@ -108,7 +108,6 @@ namespace GTA5OnlineTools.Modules.Windows
                 Globals.FrameFlagsZeroWriteCallOffset = Memory.FindPattern(Offsets.Mask.FrameFlagsZeroWriteCall) + 0x07;
                 FrameFlagsZeroWriteCallNoper = new NopHandle(Globals.FrameFlagsZeroWriteCallOffset, 5);
             });
-            t.Start();
 
             /////////////////////////////////////////////
 

@@ -25,7 +25,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Window_GTAOverlay_Loaded(object sender, RoutedEventArgs e)
         {
-            Task t = new Task(() =>
+            Task.Run(() =>
             {
                 Memory.Initialize(CoreUtil.TargetAppName);
 
@@ -56,17 +56,11 @@ namespace GTA5OnlineTools.Modules.Windows
                 Settings.Overlay.VSync = true;
                 Settings.Overlay.FPS = 300;
             });
-            t.Start();
         }
 
         private void Window_GTAOverlay_Closing(object sender, CancelEventArgs e)
         {
-            if (overlay != null)
-            {
-                overlay.Dispose();
-            }
-
-            //UC2ModulesViewModel.GTAOverlayWindow = null;
+            overlay?.Dispose();
         }
 
         private void Button_Overaly_Run_Click(object sender, RoutedEventArgs e)

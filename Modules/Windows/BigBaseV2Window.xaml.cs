@@ -108,7 +108,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Window_BigBaseV2_Loaded(object sender, RoutedEventArgs e)
         {
-            Task t = new Task(() =>
+            Task.Run(() =>
             {
                 InjectInfo = new InjectInfo();
 
@@ -119,7 +119,6 @@ namespace GTA5OnlineTools.Modules.Windows
                 InjectInfo.PName = process.ProcessName;
                 InjectInfo.MWindowHandle = process.MainWindowHandle;
             });
-            t.Start();
 
             AppendTextBox("等待用户操作...");
         }

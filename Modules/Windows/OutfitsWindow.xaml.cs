@@ -28,7 +28,7 @@ namespace GTA5OnlineTools.Modules.Windows
         {
             ComboBox_OutfitIndex.SelectedIndex = 0;
 
-            Task t = new Task(() =>
+            Task.Run(() =>
             {
                 Memory.Initialize(CoreUtil.TargetAppName);
 
@@ -40,7 +40,6 @@ namespace GTA5OnlineTools.Modules.Windows
                     ReadOutfitsData();
                 }));
             });
-            t.Start();
         }
 
         private void Window_Outfits_Closing(object sender, CancelEventArgs e)

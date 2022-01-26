@@ -29,11 +29,10 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Window_SendText_Loaded(object sender, RoutedEventArgs e)
         {
-            Task t = new Task(() =>
+            Task.Run(() =>
             {
                 Memory.Initialize(CoreUtil.TargetAppName);
             });
-            t.Start();
 
             TextBox_InputMessage.Text = "请把游戏中输入法调成英文,否则会漏掉文字.Hello1234,漏掉文字了吗?";
         }

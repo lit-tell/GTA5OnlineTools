@@ -23,7 +23,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Window_NameChange_Loaded(object sender, RoutedEventArgs e)
         {
-            Task t = new Task(() =>
+            Task.Run(() =>
             {
                 Memory.Initialize(CoreUtil.TargetAppName);
 
@@ -38,7 +38,6 @@ namespace GTA5OnlineTools.Modules.Windows
                     ReadPlayerName();
                 }));
             });
-            t.Start();
         }
 
         private void Window_NameChange_Closing(object sender, CancelEventArgs e)

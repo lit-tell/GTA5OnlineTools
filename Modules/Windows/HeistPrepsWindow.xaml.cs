@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Windows;
-using System.ComponentModel;
 using System.Numerics;
-using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
+using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Collections.Generic;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Common.Utils;
@@ -24,7 +24,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Window_HeistPreps_Loaded(object sender, RoutedEventArgs e)
         {
-            Task t = new Task(() =>
+            Task.Run(() =>
             {
                 Memory.Initialize(CoreUtil.TargetAppName);
 
@@ -45,7 +45,6 @@ namespace GTA5OnlineTools.Modules.Windows
 
                 }));
             });
-            t.Start();
         }
 
         private void AppendTextBox(string str)
