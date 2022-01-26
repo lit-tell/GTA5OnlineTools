@@ -6,7 +6,7 @@ namespace GTA5OnlineTools.Common.Utils
     public class MsgBoxUtil
     {
         /// <summary>
-        /// 通用信息弹窗
+        /// 通用信息弹窗，Information
         /// </summary>
         public static void InformationMsgBox(string msg)
         {
@@ -14,7 +14,7 @@ namespace GTA5OnlineTools.Common.Utils
         }
 
         /// <summary>
-        /// 通用警告弹窗
+        /// 通用警告弹窗，Warning
         /// </summary>
         public static void WarningMsgBox(string msg)
         {
@@ -22,7 +22,15 @@ namespace GTA5OnlineTools.Common.Utils
         }
 
         /// <summary>
-        /// 通用异常弹窗
+        /// 通用错误弹窗，Error
+        /// </summary>
+        public static void ErrorMsgBox(string msg)
+        {
+            MessageBox.Show(msg, "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        /// <summary>
+        /// 通用异常弹窗，Exception
         /// </summary>
         public static void ExceptionMsgBox(Exception ex)
         {

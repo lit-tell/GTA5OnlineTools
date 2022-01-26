@@ -10,12 +10,11 @@ namespace GTA5OnlineTools.Common.Utils
     {
         public const string Default_Path = @"C:\ProgramData\GTA5OnlineTools\";
         public const string Config_Path = Default_Path + @"Config\";
-        public const string WebCache_Path = Default_Path + @"Cache\";
-        public const string Temp_Path = Default_Path + @"Temp\";
+        public const string Cache_Path = Default_Path + @"Cache\";
         public const string Kiddion_Path = Default_Path + @"Kiddion\";
         public const string KiddionScripts_Path = Kiddion_Path + @"scripts\";
-        public const string GTAHaxStat_Path = Temp_Path + @"stat.txt";
-        public static string CustomTeleportList_Path = Config_Path + "CustomTPList.json";
+        public const string GTAHaxStat_Path = Cache_Path + @"stat.txt";
+        public static string CustomTPList_Path = Config_Path + "CustomTPList.json";
 
         public const string Resource_Path = "GTA5OnlineTools.Features.Files.";
 

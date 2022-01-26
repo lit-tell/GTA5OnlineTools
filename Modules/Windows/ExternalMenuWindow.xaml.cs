@@ -997,9 +997,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_EmptySession_Click(object sender, RoutedEventArgs e)
         {
-            ProcessMgr.SuspendProcess(Memory.GetProcessID());
-            Thread.Sleep(10000);
-            ProcessMgr.ResumeProcess(Memory.GetProcessID());
+            Online.EmptySession();
         }
 
         private void CheckBox_ImpactType_Click(object sender, RoutedEventArgs e)

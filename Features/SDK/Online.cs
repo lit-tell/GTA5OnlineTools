@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
 using GTA5OnlineTools.Features.Core;
 
 namespace GTA5OnlineTools.Features.SDK
@@ -22,22 +23,38 @@ namespace GTA5OnlineTools.Features.SDK
         /// <param name="sessionID">战局ID</param>
         public static void LoadSession(int sessionID)
         {
-            Memory.SetForegroundWindow();
+            Task.Run(() =>
+            {
+                Memory.SetForegroundWindow();
 
-            if (sessionID == -1)
+                if (sessionID == -1)
+                {
+                    Hacks.WriteGA<int>(1574587 + 2, -1);
+                    Hacks.WriteGA<int>(1574587, 1);
+                    Task.Delay(200).Wait();
+                    Hacks.WriteGA<int>(1574587, 0);
+                }
+                else
+                {
+                    Hacks.WriteGA<int>(1575004, sessionID);
+                    Hacks.WriteGA<int>(1574587, 1);
+                    Task.Delay(200).Wait();
+                    Hacks.WriteGA<int>(1574587, 0);
+                }
+            });
+        }
+
+        /// <summary>
+        /// 空战局，暂停GTA5进程10秒钟
+        /// </summary>
+        public static void EmptySession()
+        {
+            Task.Run(() =>
             {
-                Hacks.WriteGA<int>(1574587 + 2, -1);
-                Hacks.WriteGA<int>(1574587, 1);
-                Thread.Sleep(200);
-                Hacks.WriteGA<int>(1574587, 0);
-            }
-            else
-            {
-                Hacks.WriteGA<int>(1575004, sessionID);
-                Hacks.WriteGA<int>(1574587, 1);
-                Thread.Sleep(200);
-                Hacks.WriteGA<int>(1574587, 0);
-            }
+                ProcessMgr.SuspendProcess(Memory.GetProcessID());
+                Task.Delay(10000).Wait();
+                ProcessMgr.ResumeProcess(Memory.GetProcessID());
+            });
         }
 
         /// <summary>

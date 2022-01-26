@@ -28,7 +28,7 @@ namespace GTA5OnlineTools.Modules.Windows
         private void Window_CustomTP_Loaded(object sender, RoutedEventArgs e)
         {
 
-            Task t = new Task(() =>
+            Task.Run(() =>
             {
                 Memory.Initialize(CoreUtil.TargetAppName);
 
@@ -43,7 +43,7 @@ namespace GTA5OnlineTools.Modules.Windows
                     // 读取自定义传送坐标文件
                     try
                     {
-                        using (StreamReader streamReader = new StreamReader(FileUtil.CustomTeleportList_Path))
+                        using (StreamReader streamReader = new StreamReader(FileUtil.CustomTPList_Path))
                         {
                             List<TeleportData.TeleportPreview> teleportPreviews = JsonUtil.JsonDese<List<TeleportData.TeleportPreview>>(streamReader.ReadToEnd());
 
@@ -54,7 +54,7 @@ namespace GTA5OnlineTools.Modules.Windows
                                 TeleportData.CustomTeleport.Add(item);
                             }
 
-                            TextBox_Result.Text = $"读取自定义传送坐标文件成功 {FileUtil.CustomTeleportList_Path}";
+                            TextBox_Result.Text = $"读取自定义传送坐标文件成功 {FileUtil.CustomTPList_Path}";
                         }
                     }
                     catch (Exception ex)
@@ -68,20 +68,15 @@ namespace GTA5OnlineTools.Modules.Windows
                     ListBox_TeleportInfo.SelectedIndex = 0;
                 }));
             });
-            t.Start();
         }
 
         private void Window_CustomTP_Closing(object sender, CancelEventArgs e)
         {
             try
             {
-                string path = FileUtil.Config_Path;
-                Directory.CreateDirectory(path);
-                path += "CustomTPList.json";
+                File.WriteAllText(FileUtil.CustomTPList_Path, JsonUtil.JsonSeri(TeleportData.CustomTeleport));
 
-                File.WriteAllText(path, JsonSerializer.Serialize(TeleportData.CustomTeleport));
-
-                TextBox_Result.Text = $"保存到自定义传送坐标文件成功 {path}";
+                TextBox_Result.Text = $"保存到自定义传送坐标文件成功 {FileUtil.CustomTPList_Path}";
             }
             catch (Exception ex)
             {
@@ -253,13 +248,9 @@ namespace GTA5OnlineTools.Modules.Windows
         {
             try
             {
-                string path = FileUtil.Config_Path;
-                Directory.CreateDirectory(path);
-                path += "CustomTPList.json";
+                File.WriteAllText(FileUtil.CustomTPList_Path, JsonUtil.JsonSeri(TeleportData.CustomTeleport));
 
-                File.WriteAllText(path, JsonSerializer.Serialize(TeleportData.CustomTeleport));
-
-                TextBox_Result.Text = $"保存到自定义传送坐标文件成功 {path}";
+                TextBox_Result.Text = $"保存到自定义传送坐标文件成功 {FileUtil.CustomTPList_Path}";
             }
             catch (Exception ex)
             {

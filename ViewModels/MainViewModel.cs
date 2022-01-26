@@ -93,12 +93,11 @@ namespace GTA5OnlineTools.ViewModels
         {
             try
             {
-                Directory.CreateDirectory(FileUtil.Temp_Path);
-                FileUtil.DelectDir(FileUtil.Temp_Path);
+                Directory.CreateDirectory(FileUtil.Cache_Path);
+                FileUtil.DelectDir(FileUtil.Cache_Path);
 
                 // 创建指定文件夹，用于释放必要文件和更新软件（如果已存在则不会创建）
                 Directory.CreateDirectory(FileUtil.Config_Path);
-                Directory.CreateDirectory(FileUtil.WebCache_Path);
                 Directory.CreateDirectory(FileUtil.Kiddion_Path);
                 Directory.CreateDirectory(FileUtil.KiddionScripts_Path);
 
@@ -122,17 +121,17 @@ namespace GTA5OnlineTools.ViewModels
 
                 /*****************************************************************************************************/
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "GTAHax.exe", FileUtil.Temp_Path + "GTAHax.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "stat.txt", FileUtil.Temp_Path + "stat.txt");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "BincoHax.exe", FileUtil.Temp_Path + "BincoHax.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "LSCHax.exe", FileUtil.Temp_Path + "LSCHax.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "GTAHax.exe", FileUtil.Cache_Path + "GTAHax.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "stat.txt", FileUtil.Cache_Path + "stat.txt");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "BincoHax.exe", FileUtil.Cache_Path + "BincoHax.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "LSCHax.exe", FileUtil.Cache_Path + "LSCHax.exe");
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "Bread.dll", FileUtil.Temp_Path + "Bread.dll");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "Bread_Chs.dll", FileUtil.Temp_Path + "Bread_Chs.dll");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "PackedStatEditor.dll", FileUtil.Temp_Path + "PackedStatEditor.dll");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "Bread.dll", FileUtil.Cache_Path + "Bread.dll");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "Bread_Chs.dll", FileUtil.Cache_Path + "Bread_Chs.dll");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "PackedStatEditor.dll", FileUtil.Cache_Path + "PackedStatEditor.dll");
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.exe", FileUtil.Temp_Path + "DefenderControl.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.ini", FileUtil.Temp_Path + "DefenderControl.ini");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.exe", FileUtil.Cache_Path + "DefenderControl.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.ini", FileUtil.Cache_Path + "DefenderControl.ini");
             }
             catch (Exception ex)
             {

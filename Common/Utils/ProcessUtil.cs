@@ -37,7 +37,7 @@ namespace GTA5OnlineTools.Common.Utils
         }
 
         /// <summary>
-        /// 打开指定程序，不需要后缀.exe
+        /// 以管理员权限打开指定程序，不需要后缀.exe
         /// </summary>
         /// <param name="processName">程序名字，要带后缀名</param>
         /// <param name="isKiddion">是否在Kiddion目录下</param>
@@ -58,17 +58,14 @@ namespace GTA5OnlineTools.Common.Utils
                     }
                     else
                     {
-                        path = FileUtil.Temp_Path;
+                        path = FileUtil.Cache_Path;
                     }
 
-                    Directory.SetCurrentDirectory(path);
-
-                    Process process = new Process();
-                    process.StartInfo.UseShellExecute = true;
-                    // 设置启动动作,确保以管理员身份运行
-                    process.StartInfo.Verb = "runas";
-                    process.StartInfo.FileName = Path.Combine(path, processName + ".exe");
-                    process.Start();
+                    Process.Start(new ProcessStartInfo(Path.Combine(path, processName + ".exe"))
+                    {
+                        UseShellExecute = true,
+                        Verb = "runas"
+                    });
                 }
             }
             catch (Exception ex)
@@ -78,7 +75,7 @@ namespace GTA5OnlineTools.Common.Utils
         }
 
         /// <summary>
-        /// 是否置顶窗口
+        /// 是否置顶指定窗口
         /// </summary>
         public static void TopMostProcess(string processName, bool isTopMost)
         {
@@ -107,18 +104,16 @@ namespace GTA5OnlineTools.Common.Utils
         }
 
         /// <summary>
-        /// 关闭指定程序
+        /// 根据名字关闭指定程序
         /// </summary>
-        /// <param name="processName">程序名字</param>
+        /// <param name="processName">程序名字，不需要加.exe</param>
         public static void CloseProcess(string processName)
         {
-            Process[] allProgresse = Process.GetProcesses();
-            foreach (Process closeProgress in allProgresse)
+            Process[] appProcess = Process.GetProcesses();
+            foreach (Process targetPro in appProcess)
             {
-                if (closeProgress.ProcessName.Equals(processName))
-                {
-                    closeProgress.Kill();
-                }
+                if (targetPro.ProcessName.Equals(processName))
+                    targetPro.Kill();
             }
         }
 

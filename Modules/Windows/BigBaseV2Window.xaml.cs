@@ -112,7 +112,7 @@ namespace GTA5OnlineTools.Modules.Windows
             {
                 InjectInfo = new InjectInfo();
 
-                InjectInfo.DLLPath = FileUtil.Temp_Path + "Bread.dll";
+                InjectInfo.DLLPath = FileUtil.Cache_Path + "Bread.dll";
 
                 Process process = Process.GetProcessesByName("GTA5")[0];
                 InjectInfo.PID = process.Id;
@@ -139,15 +139,15 @@ namespace GTA5OnlineTools.Modules.Windows
         {
             if (RadioButton_InjectDLL_Bread.IsChecked == true)
             {
-                InjectInfo.DLLPath = FileUtil.Temp_Path + "Bread.dll";
+                InjectInfo.DLLPath = FileUtil.Cache_Path + "Bread.dll";
             }
             else if (RadioButton_InjectDLL_Bread_Chs.IsChecked == true)
             {
-                InjectInfo.DLLPath = FileUtil.Temp_Path + "Bread_Chs.dll";
+                InjectInfo.DLLPath = FileUtil.Cache_Path + "Bread_Chs.dll";
             }
             else if (RadioButton_InjectDLL_PackedStatEditor.IsChecked == true)
             {
-                InjectInfo.DLLPath = FileUtil.Temp_Path + "PackedStatEditor.dll";
+                InjectInfo.DLLPath = FileUtil.Cache_Path + "PackedStatEditor.dll";
             }
         }
 

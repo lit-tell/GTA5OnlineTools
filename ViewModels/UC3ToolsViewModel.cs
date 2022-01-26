@@ -266,27 +266,27 @@ namespace GTA5OnlineTools.ViewModels
         private void SubVersionKey87Click()
         {
             ProcessUtil.CloseProcess("SubVersion");
-            FileUtil.ExtractResFile("GTA5OnlineTools.Files.Key87.settings.ini", FileUtil.Kiddion_Path + @"settings.ini");
+            FileUtil.ExtractResFile(FileUtil.Resource_Path + "Key87.settings.ini", FileUtil.Kiddion_Path + @"settings.ini");
         }
 
         private void SubVersionKey104Click()
         {
             ProcessUtil.CloseProcess("SubVersion");
-            FileUtil.ExtractResFile("GTA5OnlineTools.Files.settings.ini", FileUtil.Kiddion_Path + @"settings.ini");
+            FileUtil.ExtractResFile(FileUtil.Resource_Path + "settings.ini", FileUtil.Kiddion_Path + @"settings.ini");
         }
 
         private void KiddionKey87Click()
         {
             ProcessUtil.CloseProcess("Kiddion");
             ProcessUtil.CloseProcess("Kiddion_Chs");
-            FileUtil.ExtractResFile("GTA5OnlineTools.Files.Key87.config.json", FileUtil.Kiddion_Path + @"config.json");
+            FileUtil.ExtractResFile(FileUtil.Resource_Path + "Key87.config.json", FileUtil.Kiddion_Path + @"config.json");
         }
 
         private void KiddionKey104Click()
         {
             ProcessUtil.CloseProcess("Kiddion");
             ProcessUtil.CloseProcess("Kiddion_Chs");
-            FileUtil.ExtractResFile("GTA5OnlineTools.Files.config.json", FileUtil.Kiddion_Path + @"config.json");
+            FileUtil.ExtractResFile(FileUtil.Resource_Path + "config.json", FileUtil.Kiddion_Path + @"config.json");
         }
 
         private void KiddionChsOFFClick()
@@ -321,9 +321,10 @@ namespace GTA5OnlineTools.ViewModels
             {
                 if (MessageBox.Show("你确定要初始化配置文件吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
+                    ProcessUtil.CloseTheseProcess();
+
                     FileUtil.DelectDir(FileUtil.Default_Path);
 
-                    ProcessUtil.CloseTheseProcess();
                     App.AppMainMutex.Dispose();
                     ProcessUtil.OpenLink(FileUtil.Current_Path);
                     Application.Current.Shutdown();
