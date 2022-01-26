@@ -79,6 +79,11 @@ namespace GTA5OnlineTools.Features.Core
             WinAPI.SetForegroundWindow(windowHandle);
         }
 
+        public static bool IsValid(long Address)
+        {
+            return Address >= 0x10000 && Address < 0x000F000000000000;
+        }
+
         // 寻找特征码
         //public static long FindPattern(byte[] pattern, string mask)
         //{

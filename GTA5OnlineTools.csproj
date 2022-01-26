@@ -9,8 +9,8 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\Images\Favicon.ico</ApplicationIcon>
     <StartupObject>GTA5OnlineTools.App</StartupObject>
-    <AssemblyVersion>3.0.1.6</AssemblyVersion>
-    <FileVersion>3.0.1.6</FileVersion>
+    <AssemblyVersion>3.0.1.7</AssemblyVersion>
+    <FileVersion>3.0.1.7</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -79,6 +79,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Chinese" Version="0.4.6" />
     <PackageReference Include="Downloader" Version="2.3.2" />
     <PackageReference Include="GameOverlay.Net" Version="4.3.1" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
@@ -105,6 +106,21 @@
     <Resource Include="Assets\Images\Tips\PericoHeist01.png" />
     <Resource Include="Assets\Images\Tips\PericoHeist02.png" />
     <Resource Include="Assets\Images\Tips\PlayerName.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

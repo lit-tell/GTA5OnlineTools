@@ -377,11 +377,15 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_ExitApp_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Close();
         }
 
         private void Button_Sessions_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             var str = (e.OriginalSource as Button).Content.ToString();
 
             int index = MiscData.Sessions.FindIndex(t => t.Name == str);
@@ -393,6 +397,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Disconnect_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Online.Disconnect();
         }
 
@@ -450,7 +456,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_SpawnVehicle_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             string str = (e.OriginalSource as Button).Content.ToString();
 
@@ -547,35 +553,43 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_GetInOnlinePV_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             Online.GetInOnlinePV();
         }
 
         private void Button_FillVehicleHealth_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             Vehicle.FillHealth();
         }
 
         private void CheckBox_OffRadar_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Online.OffRadar(CheckBox_OffRadar.IsChecked == true);
         }
 
         private void CheckBox_GhostOrganization_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Online.GhostOrganization(CheckBox_GhostOrganization.IsChecked == true);
         }
 
         private void CheckBox_BribeOrBlindCops_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Online.BribeOrBlindCops(CheckBox_BribeOrBlindCops.IsChecked == true);
         }
 
         private void CheckBox_BribeAuthorities_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Online.BribeAuthorities(CheckBox_BribeAuthorities.IsChecked == true);
         }
 
@@ -586,6 +600,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Blips_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             var str = (e.OriginalSource as Button).Content.ToString();
 
             int index = MiscData.Blips.FindIndex(t => t.Name == str);
@@ -612,28 +628,28 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_ToWaypoint_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             Teleport.ToWaypoint();
         }
 
         private void Button_ToObjective_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             Teleport.ToObjective();
         }
 
         private void Button_FillHealthArmor_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             Player.FillHealthArmor();
         }
 
         private void Button_ClearWanted_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             Player.WantedLevel(0x00);
         }
@@ -652,7 +668,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Suicide_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             Player.Suicide();
         }
@@ -679,41 +695,41 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_KillAllPeds_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             World.KillNPC(false);
         }
         private void Button_KillAllHostilityPeds_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             World.KillNPC(true);
         }
 
         private void Button_DestroyAllVehicles_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             World.DestroyAllVehicles();
         }
 
         private void Button_DestroyAllNPCVehicles_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             World.DestroyNPCVehicles(false);
         }
 
         private void Button_DestroyAllHostilityNPCVehicles_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             World.DestroyNPCVehicles(true);
         }
 
         private void Button_RefreshPlayerList_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             playerData.Clear();
             ListBox_PlayerList.Items.Clear();
@@ -721,28 +737,20 @@ namespace GTA5OnlineTools.Modules.Windows
             for (int i = 0; i < 32; i++)
             {
                 long pCNetGamePlayer = Memory.Read<long>(Globals.PlayerListPTR, new int[] { 0x180 + (i * 8) });
-                if (pCNetGamePlayer == 0)
-                {
+                if (!Memory.IsValid(pCNetGamePlayer))
                     continue;
-                }
 
                 long pCPlayerInfo = Memory.Read<long>(pCNetGamePlayer + 0xA0);
-                if (pCPlayerInfo == 0)
-                {
+                if (!Memory.IsValid(pCPlayerInfo))
                     continue;
-                }
 
                 long pCPed = Memory.Read<long>(pCPlayerInfo + 0x01E8);
-                if (pCPed == 0)
-                {
+                if (!Memory.IsValid(pCPed))
                     continue;
-                }
 
                 long pCNavigation = Memory.Read<long>(pCPed + 0x30, null);
-                if (pCNavigation == 0)
-                {
+                if (!Memory.IsValid(pCNavigation))
                     continue;
-                }
 
                 ////////////////////////////////////////////
 
@@ -753,7 +761,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
                     PlayerInfo = new PlayerInfo()
                     {
-                        Host = Hacks.ReadGA<int>(1630317 + 1 + (i * 595) + 10) == 1 ? true : false,
+                        Host = Hacks.ReadGA<int>(1893548 + 1 + (i * 600) + 10) == 1 ? true : false,
                         Health = Memory.Read<float>(pCPed + 0x280),
                         MaxHealth = Memory.Read<float>(pCPed + 0x2A0),
                         GodMode = Memory.Read<byte>(pCPed + 0x189) == 0x01 ? true : false,
@@ -815,7 +823,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_TeleportSelectedPlayer_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             if (ListBox_PlayerList.SelectedItem != null)
             {
@@ -840,21 +848,21 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_FillCurrentAmmo_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             Weapon.FillCurrentAmmo();
         }
 
         private void Button_TPAllNPCToMe_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             World.TeleportNPCToMe(false);
         }
 
         private void Button_TPFriendNPCToMe_Click(object sender, RoutedEventArgs e)
         {
-
+            AudioUtil.ClickSound();
 
             World.TeleportNPCToMe(true);
         }
@@ -894,16 +902,22 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_SpawnWeapon_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Hacks.CreateAmbientPickup(TempData.WPickup);
         }
 
         private void Button_RepairVehicle_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Vehicle.Fix1stfoundBST();
         }
 
         private void Button_TurnOffBST_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Online.InstantBullShark(false);
         }
 
@@ -964,6 +978,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_NoRecoil_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Weapon.NoRecoil();
         }
 
@@ -974,6 +990,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_MerryweatherServices_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             var str = (e.OriginalSource as Button).Content.ToString();
 
             int index = MiscData.MerryweatherServices.FindIndex(t => t.Name == str);
@@ -985,6 +1003,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_LocalWeather_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             var str = (e.OriginalSource as Button).Content.ToString();
 
             int index = MiscData.LocalWeathers.FindIndex(t => t.Name == str);
@@ -996,6 +1016,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_EmptySession_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Online.EmptySession();
         }
 

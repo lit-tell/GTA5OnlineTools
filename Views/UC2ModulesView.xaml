@@ -212,10 +212,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button
-                    Command="{Binding SendTextClickCommand}"
-                    Style="{StaticResource ButtonFunctionSelfStyle}"
-                    Visibility="Collapsed">
+                <Button Command="{Binding SendTextClickCommand}" Style="{StaticResource ButtonFunctionSelfStyle}">
                     <Button.Content>
                         <StackPanel Orientation="Vertical">
                             <StackPanel.Resources>

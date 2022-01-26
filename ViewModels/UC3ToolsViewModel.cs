@@ -23,6 +23,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void ToolsButtonClick(string obj)
         {
+            AudioUtil.ClickSound();
+
             switch (obj)
             {
                 case "RestartApp":

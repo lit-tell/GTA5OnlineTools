@@ -59,6 +59,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_TriggerBunkerResearch_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             int supplycount = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(5) + 2);
             int progress = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(5) + 12);
 
@@ -79,6 +81,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_TriggerBunkerProduction_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             int supplycount = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(5) + 2);
             int progress = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(5) + 1);
 
@@ -386,6 +390,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_RPxN_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             var str = (e.OriginalSource as Button).Content.ToString();
 
             int index = MiscData.RPxNs.FindIndex(t => t.Name == str);
@@ -399,6 +405,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_REPxN_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             var str = (e.OriginalSource as Button).Content.ToString();
 
             int index = MiscData.REPxNs.FindIndex(t => t.Name == str);
@@ -412,6 +420,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Blips_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             var str = (e.OriginalSource as Button).Content.ToString();
 
             int index = MiscData.Blips.FindIndex(t => t.Name == str);
@@ -423,6 +433,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Sessions_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             var str = (e.OriginalSource as Button).Content.ToString();
 
             int index = MiscData.Sessions.FindIndex(t => t.Name == str);
@@ -434,6 +446,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_CEOCargos_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             var str = (e.OriginalSource as Button).Content.ToString();
 
             int index = MiscData.CEOCargos.FindIndex(t => t.Name == str);

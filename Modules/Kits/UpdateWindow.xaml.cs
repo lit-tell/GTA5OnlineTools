@@ -1,18 +1,13 @@
 ﻿using System;
 using System.IO;
-using System.Net;
-using System.Net.Http;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows.Navigation;
 using System.Windows.Shell;
+using Downloader;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Data;
-using Downloader;
 
 namespace GTA5OnlineTools.Modules.Kits
 {
@@ -21,7 +16,7 @@ namespace GTA5OnlineTools.Modules.Kits
     /// </summary>
     public partial class UpdateWindow : Window
     {
-        private static DownloadService downloader = new DownloadService();
+        private DownloadService downloader;
 
         public UpdateWindow()
         {
@@ -32,6 +27,11 @@ namespace GTA5OnlineTools.Modules.Kits
         {
             try
             {
+                if (CoreUtil.ServerVersionInfo != CoreUtil.ClientVersionInfo)
+                    AudioUtil.SP_GTA5_Job.Play();
+
+                downloader = new DownloadService();
+
                 if (GlobalData.ServerData != null)
                 {
                     foreach (var item in GlobalData.ServerData.Download)
@@ -42,7 +42,6 @@ namespace GTA5OnlineTools.Modules.Kits
                 }
 
                 File.Delete(FileUtil.GetCurrFullPath("未下载完的更新.exe"));
-                File.Delete(FileUtil.GetCurrFullPath(CoreUtil.FinalAppName()));
             }
             catch (Exception ex)
             {
@@ -118,7 +117,7 @@ namespace GTA5OnlineTools.Modules.Kits
 
                 TextBlock_Info.Text = $"下载开始 文件大小 {e.TotalBytesToReceive / 1024.0f / 1024:0.0}MB";
 
-                TextBlock_Percentage.Text = $"{longToString(e.ReceivedBytesSize)}/{longToString(e.TotalBytesToReceive)}";
+                TextBlock_Percentage.Text = $"{LongToString(e.ReceivedBytesSize)}/{LongToString(e.TotalBytesToReceive)}";
 
                 TaskbarItemInfo.ProgressValue = ProgressBar_Update.Value / ProgressBar_Update.Maximum;
             }));
@@ -143,6 +142,8 @@ namespace GTA5OnlineTools.Modules.Kits
                 {
                     try
                     {
+                        AudioUtil.SP_DownloadOK.Play();
+
                         // 下载临时文件完整路径
                         string OldPath = FileUtil.GetCurrFullPath(CoreUtil.HalfwayAppName);
                         // 下载完成后文件真正路径
@@ -172,7 +173,7 @@ namespace GTA5OnlineTools.Modules.Kits
             }));
         }
 
-        private string longToString(long num)
+        private string LongToString(long num)
         {
             float kb = num / 1024.0f;
 

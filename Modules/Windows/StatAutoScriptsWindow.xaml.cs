@@ -38,6 +38,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_LoadSession_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Online.LoadSession(11);
         }
 
@@ -81,6 +83,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_ExecuteAutoScript_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             AutoScript((e.OriginalSource as Button).Content.ToString());
         }
     }

@@ -6,6 +6,7 @@ namespace GTA5OnlineTools.Common.Data
     {
         public string Icon { get; set; }
         public string Title { get; set; }
+        public string ColorHex { get; set; }
         public string NameSpace { get; set; }
     }
 }

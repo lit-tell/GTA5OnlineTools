@@ -131,9 +131,10 @@
                             <DataTemplate DataType="{x:Type ListBoxItem}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock
-                                        Margin="15,0,0,0"
+                                        Margin="20,0,0,0"
                                         VerticalAlignment="Center"
-                                        FontSize="15"
+                                        FontSize="18"
+                                        Foreground="{Binding ColorHex}"
                                         Style="{StaticResource IconFontBaseStyle}"
                                         Text="{Binding Icon}" />
                                     <TextBlock

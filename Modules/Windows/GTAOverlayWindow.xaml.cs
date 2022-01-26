@@ -65,6 +65,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Overaly_Run_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             if (overlay == null)
             {
                 Task t = new Task(() =>
@@ -95,6 +97,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Overaly_Exit_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             CloseESP();
         }
 

@@ -40,11 +40,15 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Read_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             ReadHeistCutData();
         }
 
         private void Button_Write_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             try
             {
                 if (TextBox_Cayo_Player1.Text != "" &&

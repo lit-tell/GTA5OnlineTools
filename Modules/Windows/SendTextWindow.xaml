@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:GTA5OnlineTools.Modules.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="Window_SendText"
     Title="GTA5线上小助手 战局快捷聊天"
@@ -50,11 +49,15 @@
                             Style="{StaticResource ButtonNormalStyle}" />
                         <Button
                             Click="Button_Translate_Click"
+                            Content="简转繁"
+                            Style="{StaticResource ButtonNormalStyle}" />
+                        <Button
+                            Click="Button_Translate_Click"
                             Content="繁转简"
                             Style="{StaticResource ButtonNormalStyle}" />
                         <Button
                             Click="Button_Translate_Click"
-                            Content="简转繁"
+                            Content="转拼音"
                             Style="{StaticResource ButtonNormalStyle}" />
                     </WrapPanel>
 

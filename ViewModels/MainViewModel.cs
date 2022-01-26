@@ -64,12 +64,12 @@ namespace GTA5OnlineTools.ViewModels
 
         private void CreateMenuBar()
         {
-            MenuBars.Add(new MenuBar() { Icon = "\xe734", Title = "软件公告", NameSpace = "UC0IndexView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe630", Title = "第三方辅助", NameSpace = "UC1HacksView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe609", Title = "小助手辅助", NameSpace = "UC2ModulesView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe606", Title = "工具设置", NameSpace = "UC3ToolsView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe652", Title = "更新日志", NameSpace = "UC4UpdateView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe684", Title = "关于作者", NameSpace = "UC5AboutView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe734", Title = "软件公告", ColorHex = "#F45221", NameSpace = "UC0IndexView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe630", Title = "第三方辅助", ColorHex = "#00B2F2", NameSpace = "UC1HacksView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe609", Title = "小助手辅助", ColorHex = "#88C600", NameSpace = "UC2ModulesView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe606", Title = "工具设置", ColorHex = "#673AB7", NameSpace = "UC3ToolsView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe652", Title = "更新日志", ColorHex = "#FFC501", NameSpace = "UC4UpdateView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe684", Title = "关于作者", ColorHex = "#66CCCC", NameSpace = "UC5AboutView" });
         }
 
         private void Navigate(MenuBar obj)
@@ -168,18 +168,23 @@ namespace GTA5OnlineTools.ViewModels
 
             if (CoreUtil.ServerVersionInfo > CoreUtil.ClientVersionInfo)
             {
+                AudioUtil.SP_GTA5_Email.Play();
                 OpenUpateWindow();
             }
         }
 
         private static void OpenUpateWindow()
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            if (MessageBox.Show($"检测到新版本已发布，是否立即前往更新？\n\n{GlobalData.ServerData.Latest.Date}\n{GlobalData.ServerData.Latest.Change}\n\n强烈建议大家使用最新版本呢！",
+                "发现新版本", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
             {
-                var UpdateWindow = new UpdateWindow();
-                UpdateWindow.Owner = MainView.MainWindow;
-                UpdateWindow.ShowDialog();
-            });
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    var UpdateWindow = new UpdateWindow();
+                    UpdateWindow.Owner = MainView.MainWindow;
+                    UpdateWindow.ShowDialog();
+                });
+            }
         }
     }
 }

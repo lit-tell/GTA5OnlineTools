@@ -152,6 +152,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_BigBaseV2_Inject_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             if (InjectInfo.PID == 0)
             {
                 AppendTextBox("未找到GTA5进程");
@@ -210,6 +212,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Located_Stats_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             try
             {
                 ProcessUtil.OpenLink(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/BigBaseV2/");
@@ -250,6 +254,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Calculate_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             try
             {
                 if (RadioButton_ToMS.IsChecked == true)

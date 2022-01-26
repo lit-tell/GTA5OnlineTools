@@ -154,6 +154,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Teleport_AddCustom_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Vector3 vector3 = Memory.Read<Vector3>(Globals.WorldPTR, Offsets.PlayerPositionX);
 
             TeleportData.CustomTeleport.Add(new TeleportData.TeleportPreview()
@@ -172,6 +174,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Teleport_EditCustom_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             int index1 = ListBox_TeleportList.SelectedIndex;
             int index2 = ListBox_TeleportInfo.SelectedIndex;
 
@@ -201,6 +205,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Teleport_DeleteCustom_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             int index1 = ListBox_TeleportList.SelectedIndex;
             int index2 = ListBox_TeleportInfo.SelectedIndex;
 
@@ -223,11 +229,15 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_ToWaypoint_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Teleport.ToWaypoint();
         }
 
         private void Button_ToObjective_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Teleport.ToObjective();
         }
 
@@ -238,6 +248,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Teleport_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Teleport.SetTeleportV3Pos(TempData.TCode);
 
             TextBox_Result.Text = $"传送到自定义坐标成功";
@@ -245,6 +257,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Teleport_SaveCustom_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             try
             {
                 File.WriteAllText(FileUtil.CustomTPList_Path, JsonUtil.JsonSeri(TeleportData.CustomTeleport));

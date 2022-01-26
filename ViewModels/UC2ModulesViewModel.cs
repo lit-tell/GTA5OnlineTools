@@ -51,6 +51,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void ExternalMenuClick()
         {
+            AudioUtil.ClickSound();
+
             if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -85,6 +87,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void HeistPrepsClick()
         {
+            AudioUtil.ClickSound();
+
             if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -119,6 +123,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void SendTextClick()
         {
+            AudioUtil.ClickSound();
+
             if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -153,6 +159,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void CustomTPClick()
         {
+            AudioUtil.ClickSound();
+
             if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -187,6 +195,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void StatAutoScriptsClick()
         {
+            AudioUtil.ClickSound();
+
             if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -221,6 +231,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void MoneyRPClick()
         {
+            AudioUtil.ClickSound();
+
             if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -255,6 +267,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void NameChangeClick()
         {
+            AudioUtil.ClickSound();
+
             if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -289,6 +303,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void HeistCutClick()
         {
+            AudioUtil.ClickSound();
+
             if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -323,6 +339,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void OutfitsClick()
         {
+            AudioUtil.ClickSound();
+
             if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -357,6 +375,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void GTAHaxClick()
         {
+            AudioUtil.ClickSound();
+
             Application.Current.Dispatcher.Invoke(() =>
             {
                 if (GTAHaxWindow == null)
@@ -384,6 +404,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void GTAOverlayClick()
         {
+            AudioUtil.ClickSound();
+
             if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -418,6 +440,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void BigBaseV2Click()
         {
+            AudioUtil.ClickSound();
+
             Application.Current.Dispatcher.Invoke(() =>
             {
                 if (BigBaseV2Window == null)

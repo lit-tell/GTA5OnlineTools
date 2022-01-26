@@ -61,6 +61,7 @@ namespace GTA5OnlineTools.Common.Utils
                         path = FileUtil.Cache_Path;
                     }
 
+                    Directory.SetCurrentDirectory(path);
                     Process.Start(new ProcessStartInfo(Path.Combine(path, processName + ".exe"))
                     {
                         UseShellExecute = true,

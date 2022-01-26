@@ -53,11 +53,15 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_ReadPlayerName_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             ReadPlayerName();
         }
 
         private void Button_WritePlayerName_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             if (TextBox_OnlineList.Text != "" &&
                 TextBox_ChatName.Text != "" &&
                 TextBox_ExternalDisplay.Text != "")
