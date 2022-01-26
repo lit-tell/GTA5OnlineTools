@@ -1,0 +1,370 @@
+﻿<Window
+    x:Class="GTA5OnlineTools.Modules.Windows.MoneyRPWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:GTA5OnlineTools.Modules.Windows"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="Window_MoneyRP"
+    Title="GTA5线上小助手 金钱和经验"
+    Width="1280"
+    Height="720"
+    Background="White"
+    Closing="Window_MoneyRP_Closing"
+    Loaded="Window_MoneyRP_Loaded"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+
+        <Style BasedOn="{StaticResource ButtonNormalStyle}" TargetType="Button" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="5">
+                    <TextBlock Text="CEO" />
+                    <StackPanel>
+                        <UniformGrid Columns="1">
+                            <Button Click="Button_CEOCargos_Click" Content="医疗用品 (无特殊物品)" />
+                            <Button Click="Button_CEOCargos_Click" Content="烟酒 (无特殊物品)" />
+                            <Button Click="Button_CEOCargos_Click" Content="古董艺术品 (华丽彩蛋)" />
+                            <Button Click="Button_CEOCargos_Click" Content="电子产品 (无特殊物品)" />
+                            <Button Click="Button_CEOCargos_Click" Content="武器弹药 (黄金火神机枪)" />
+                            <Button Click="Button_CEOCargos_Click" Content="迷幻药 (无特殊物品)" />
+                            <Button Click="Button_CEOCargos_Click" Content="宝石 (一大颗钻石)" />
+                            <Button Click="Button_CEOCargos_Click" Content="动物材料 (稀有皮草)" />
+                            <Button Click="Button_CEOCargos_Click" Content="仿制品 (电影胶卷)" />
+                            <Button Click="Button_CEOCargos_Click" Content="珠宝 (稀有怀表)" />
+                            <Button Click="Button_CEOCargos_Click" Content="银块 (无特殊物品)" />
+
+                        </UniformGrid>
+
+                        <CheckBox
+                            x:Name="CheckBox_CooldownForBuyingCrates"
+                            Click="CheckBox_RemoveBuyingCratesCooldown_Click"
+                            Content="移除购买板条箱冷却" />
+                        <CheckBox
+                            x:Name="CheckBox_CooldownForSellingCrates"
+                            Click="CheckBox_RemoveSellingCratesCooldown_Click"
+                            Content="移除出售板条箱冷却" />
+                        <CheckBox
+                            x:Name="CheckBox_PricePerCrateAtXCrates"
+                            Click="CheckBox_PricePerCrateAtXCrates_Click"
+                            Content="⚠️ 设置每箱出售单价为2W"
+                            Foreground="Red"
+                            Visibility="Collapsed" />
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            FontSize="12"
+                            FontWeight="Normal"
+                            Foreground="Green"
+                            Text="提示：需要退出CEOD电脑重新进入生效" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Margin="5">
+                    <TextBlock Text="地堡" />
+                    <CheckBox
+                        x:Name="CheckBox_RemoveBunkerSupplyDelay"
+                        Click="CheckBox_RemoveBunkerSupplyDelay_Click"
+                        Content="移除地堡进货延迟" />
+                    <CheckBox
+                        x:Name="CheckBox_SetBunkerResupplyCosts"
+                        Click="CheckBox_SetBunkerResupplyCosts_Click"
+                        Content="最低地堡补给价格" />
+                    <CheckBox
+                        x:Name="CheckBox_SetBunkerProduceResearchTime"
+                        Click="CheckBox_SetBunkerProduceResearchTime_Click"
+                        Content="最低地堡生产和研究时间" />
+                    <CheckBox
+                        x:Name="CheckBox_SetBunkerSuppliesPerUnitProduced"
+                        Click="CheckBox_SetBunkerSuppliesPerUnitProduced_Click"
+                        Content="最低地堡原材料消耗量" />
+                    <CheckBox
+                        x:Name="CheckBox_SetBunkerSaleMultipliers"
+                        Click="CheckBox_SetBunkerSaleMultipliers_Click"
+                        Content="⚠️ 地堡出货双倍利润"
+                        Foreground="Red"
+                        Visibility="Collapsed" />
+                    <CheckBox
+                        x:Name="CheckBox_UnlockBunkerResearch"
+                        Click="CheckBox_UnlockBunkerResearch_Click"
+                        Content="解锁地堡所有研究 (临时)" />
+                    <WrapPanel>
+                        <Button
+                            x:Name="Button_TriggerBunkerProduction"
+                            Click="Button_TriggerBunkerProduction_Click"
+                            Content="触发地堡生产" />
+                        <Button
+                            x:Name="Button_TriggerBunkerResearch"
+                            Click="Button_TriggerBunkerResearch_Click"
+                            Content="触发地堡研究" />
+                    </WrapPanel>
+
+                    <TextBlock Text="摩托帮" />
+                    <CheckBox
+                        x:Name="CheckBox_RemoveMCSupplyDelay"
+                        Click="CheckBox_RemoveMCSupplyDelay_Click"
+                        Content="移除摩托帮进货延迟" />
+                    <CheckBox
+                        x:Name="CheckBox_SetMCResupplyCosts"
+                        Click="CheckBox_SetMCResupplyCosts_Click"
+                        Content="最低摩托帮补给价格" />
+                    <CheckBox
+                        x:Name="CheckBox_SetMCProduceTime"
+                        Click="CheckBox_SetMCProduceTime_Click"
+                        Content="最低摩托帮生产时间" />
+                    <CheckBox
+                        x:Name="CheckBox_SetMCSuppliesPerUnitProduced"
+                        Click="CheckBox_SetMCSuppliesPerUnitProduced_Click"
+                        Content="最低地堡原材料消耗量" />
+                    <CheckBox
+                        x:Name="CheckBox_SetMCSaleMultipliers"
+                        Click="CheckBox_SetMCSaleMultipliers_Click"
+                        Content="⚠️ 摩托帮出货双倍利润"
+                        Foreground="Red"
+                        Visibility="Collapsed" />
+                    <WrapPanel>
+                        <Button
+                            x:Name="CheckBox_TriggerMethProduction"
+                            Click="CheckBox_TriggerMethProduction_Click"
+                            Content="触发冰毒实验室生产" />
+                        <Button
+                            x:Name="CheckBox_TriggerWeedProduction"
+                            Click="CheckBox_TriggerWeedProduction_Click"
+                            Content="触发大麻种植场生产" />
+                        <Button
+                            x:Name="CheckBox_TriggerCocaineProduction"
+                            Click="CheckBox_TriggerCocaineProduction_Click"
+                            Content="触发可卡因工厂生产" />
+                        <Button
+                            x:Name="CheckBox_TriggerCashProduction"
+                            Click="CheckBox_TriggerCashProduction_Click"
+                            Content="触发假钞工厂生产" />
+                        <Button
+                            x:Name="CheckBox_TriggerDocumentsProduction"
+                            Click="CheckBox_TriggerDocumentsProduction_Click"
+                            Content="触发伪证件办公室生产" />
+                    </WrapPanel>
+
+                    <TextBlock Text="夜总会" />
+                    <CheckBox
+                        x:Name="CheckBox_RemoveNightclubOutDelay"
+                        Click="CheckBox_RemoveNightclubOutDelay_Click"
+                        Content="移除夜总会出货延迟" />
+                    <CheckBox
+                        x:Name="CheckBox_SetNightclubProduceTime"
+                        Click="CheckBox_SetNightclubProduceTime_Click"
+                        Content="最低夜总会生产时间" />
+                    <CheckBox
+                        x:Name="CheckBox_NightclubNoTonyLaunderingMoney"
+                        Click="CheckBox_NightclubNoTonyLaunderingMoney_Click"
+                        Content="最低托尼洗钱费用" />
+                    <WrapPanel />
+
+                    <TextBlock Text="进出口大亨" />
+                    <CheckBox
+                        x:Name="CheckBox_RemoveExportVehicleDelay"
+                        Click="CheckBox_RemoveExportVehicleDelay_Click"
+                        Content="移除进出口大亨出货延迟" />
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        Text="走私大暴走" />
+                    <CheckBox
+                        x:Name="CheckBox_RemoveSmugglerRunInDelay"
+                        Click="CheckBox_RemoveSmugglerRunInDelay_Click"
+                        Content="移除机库进货延迟" />
+                    <CheckBox
+                        x:Name="CheckBox_RemoveSmugglerRunOutDelay"
+                        Click="CheckBox_RemoveSmugglerRunOutDelay_Click"
+                        Content="移除机库出货延迟" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Margin="5">
+                    <TextBlock Text="高级" />
+                    <StackPanel>
+                        <CheckBox
+                            x:Name="CheckBox_AllowSellOnNonPublic"
+                            Click="CheckBox_AllowSellOnNonPublic_Click"
+                            Content="非公开战局运货" />
+                        <CheckBox
+                            x:Name="CheckBox_OnlineSnow"
+                            Click="CheckBox_OnlineSnow_Click"
+                            Content="战局雪天（自己可见）" />
+                    </StackPanel>
+
+                    <TextBlock Text="线上资产传送" />
+                    <WrapPanel>
+                        <Button Click="Button_Blips_Click" Content="游艇" />
+                        <Button Click="Button_Blips_Click" Content="CEO办公室" />
+                        <Button Click="Button_Blips_Click" Content="摩托帮会所" />
+                        <Button Click="Button_Blips_Click" Content="大麻种植场" />
+                        <Button Click="Button_Blips_Click" Content="可卡因工厂" />
+                        <Button Click="Button_Blips_Click" Content="伪证件办公室" />
+                        <Button Click="Button_Blips_Click" Content="冰毒实验室" />
+                        <Button Click="Button_Blips_Click" Content="假钞工厂" />
+                        <Button Click="Button_Blips_Click" Content="地堡" />
+                        <Button Click="Button_Blips_Click" Content="机库" />
+                        <Button Click="Button_Blips_Click" Content="设施" />
+                        <Button Click="Button_Blips_Click" Content="夜总会" />
+                        <Button Click="Button_Blips_Click" Content="游戏厅" />
+                        <Button Click="Button_Blips_Click" Content="虎鲸" />
+                        <Button Click="Button_Blips_Click" Content="车友会" />
+
+                    </WrapPanel>
+
+                    <TextBlock Text="战局切换" />
+                    <WrapPanel>
+                        <Button Click="Button_Sessions_Click" Content="公共战局" />
+                        <Button Click="Button_Sessions_Click" Content="仅限邀请战局" />
+                        <Button Click="Button_Sessions_Click" Content="帮会战局" />
+                        <Button Click="Button_Sessions_Click" Content="私人帮会战局" />
+                        <Button Click="Button_Sessions_Click" Content="私人好友战局" />
+                        <Button Click="Button_Sessions_Click" Content="单人战局" />
+                        <Button Click="Button_Sessions_Click" Content="加入好友" />
+                        <Button Click="Button_Sessions_Click" Content="加入帮会伙伴" />
+                        <Button Click="Button_Sessions_Click" Content="创建公共战局" />
+                        <Button Click="Button_Sessions_Click" Content="离开线上模式" />
+
+                    </WrapPanel>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="3" Margin="5">
+                    <TextBlock Text="角色等级RP倍数" />
+                    <WrapPanel>
+                        <Button Click="Button_RPxN_Click" Content="RPx1" />
+                        <Button Click="Button_RPxN_Click" Content="RPx2" />
+                        <Button Click="Button_RPxN_Click" Content="RPx5" />
+                        <Button Click="Button_RPxN_Click" Content="RPx10" />
+                        <Button Click="Button_RPxN_Click" Content="RPx20" />
+                        <Button Click="Button_RPxN_Click" Content="RPx50" />
+                        <Button Click="Button_RPxN_Click" Content="RPx100" />
+                        <Button Click="Button_RPxN_Click" Content="RPx500" />
+                        <Button Click="Button_RPxN_Click" Content="RPx1000" />
+
+                    </WrapPanel>
+
+                    <TextBlock Text="车友会等级RP倍数" />
+                    <WrapPanel>
+                        <Button Click="Button_REPxN_Click" Content="REPx1" />
+                        <Button Click="Button_REPxN_Click" Content="REPx2" />
+                        <Button Click="Button_REPxN_Click" Content="REPx5" />
+                        <Button Click="Button_REPxN_Click" Content="REPx10" />
+                        <Button Click="Button_REPxN_Click" Content="REPx20" />
+                        <Button Click="Button_REPxN_Click" Content="REPx50" />
+                        <Button Click="Button_REPxN_Click" Content="REPx100" />
+                        <Button Click="Button_REPxN_Click" Content="REPx500" />
+                        <Button Click="Button_REPxN_Click" Content="REPx1000" />
+
+                    </WrapPanel>
+
+                    <!--<TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        Text="地堡出货数量修改" />
+                    <TextBlock
+                        Margin="5,0,5,0"
+                        HorizontalAlignment="Center"
+                        Foreground="Red"
+                        Text="提示：可能会有风险，请慎重使用" />
+                    <UniformGrid Columns="2">
+                        <TextBlock Text="地堡出货价值" />
+                        <TextBox x:Name="TextBox_BunkerValue" MaxLength="10" />
+                        <TextBlock VerticalAlignment="Center" Text="地堡出货数量" />
+                        <TextBox x:Name="TextBox_BunkerCargo" MaxLength="3" />
+                        <TextBlock
+                            Foreground="Gray"
+                            IsEnabled="False"
+                            Text="实际已交付的货物数量" />
+                        <TextBlock
+                            x:Name="TextBlock_BunkerDeliveryCount"
+                            HorizontalAlignment="Left"
+                            Foreground="Gray"
+                            IsEnabled="False"
+                            Text="0" />
+                        <TextBlock Text="选择最终获取金额" />
+                        <ComboBox
+                            x:Name="ComboBox_BunkerMoney"
+                            VerticalContentAlignment="Center"
+                            SelectedIndex="0">
+                            <ComboBox.Resources>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                    <Setter Property="Padding" Value="5" />
+                                </Style>
+                            </ComboBox.Resources>
+                            <ComboBoxItem Content="210W" />
+                            <ComboBoxItem Content="170W" />
+                            <ComboBoxItem Content="140W" />
+                            <ComboBoxItem Content="105W" />
+                            <ComboBoxItem Content="70W" />
+                        </ComboBox>
+                    </UniformGrid>
+                    <WrapPanel>
+                        <Button
+                            x:Name="Button_ReadBunkerData"
+                            Click="Button_ReadBunkerData_Click"
+                            Content="读取地堡数据" />
+                        <Button
+                            x:Name="Button_WriteBunkerData"
+                            Click="Button_WriteBunkerData_Click"
+                            Content="写入地堡数据" />
+                        <Button
+                            x:Name="Button_DeliverBunker"
+                            Click="Button_DeliverBunker_Click"
+                            Content="直接交付货物"
+                            IsEnabled="False" />
+
+                    </WrapPanel>-->
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <Grid Grid.Row="1" Margin="5">
+            <Border Style="{StaticResource BorderEffectStyle}" />
+            <TextBox
+                x:Name="TextBox_Result"
+                Height="50"
+                Margin="5"
+                BorderThickness="0"
+                Text="操作信息提示"
+                TextWrapping="WrapWithOverflow" />
+        </Grid>
+    </Grid>
+</Window>

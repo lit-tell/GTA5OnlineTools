@@ -1,0 +1,109 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+    <Platforms>x64</Platforms>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\Images\Favicon.ico</ApplicationIcon>
+    <StartupObject>GTA5OnlineTools.App</StartupObject>
+    <AssemblyVersion>3.0.1.5</AssemblyVersion>
+    <FileVersion>3.0.1.5</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Fonts\iconfont.ttf" />
+    <None Remove="Assets\Images\Donate.png" />
+    <None Remove="Assets\Images\Favicon.ico" />
+    <None Remove="Assets\Images\Hacks\BincoHax.png" />
+    <None Remove="Assets\Images\Hacks\GTAHax.png" />
+    <None Remove="Assets\Images\Hacks\Kiddion.png" />
+    <None Remove="Assets\Images\Hacks\LSCHax.png" />
+    <None Remove="Assets\Images\Hacks\SubVersion.png" />
+    <None Remove="Assets\Images\HomeBg.jpg" />
+    <None Remove="Assets\Images\TheContract.jpg" />
+    <None Remove="Assets\Images\Tips\Bread.png" />
+    <None Remove="Assets\Images\Tips\Bread_Chs.png" />
+    <None Remove="Assets\Images\Tips\Cayo01.png" />
+    <None Remove="Assets\Images\Tips\Cayo02.png" />
+    <None Remove="Assets\Images\Tips\InputENG.png" />
+    <None Remove="Assets\Images\Tips\PackedStatEditor.png" />
+    <None Remove="Assets\Images\Tips\PericoHeist01.png" />
+    <None Remove="Assets\Images\Tips\PericoHeist02.png" />
+    <None Remove="Assets\Images\Tips\PlayerName.png" />
+    <None Remove="Features\Files\BincoHax.exe" />
+    <None Remove="Features\Files\Bread.dll" />
+    <None Remove="Features\Files\Bread_Chs.dll" />
+    <None Remove="Features\Files\config.json" />
+    <None Remove="Features\Files\DefenderControl.exe" />
+    <None Remove="Features\Files\DefenderControl.ini" />
+    <None Remove="Features\Files\GTAHax.exe" />
+    <None Remove="Features\Files\Key87\config.json" />
+    <None Remove="Features\Files\Key87\settings.ini" />
+    <None Remove="Features\Files\Kiddion.exe" />
+    <None Remove="Features\Files\Kiddion_Chs.exe" />
+    <None Remove="Features\Files\LSCHax.exe" />
+    <None Remove="Features\Files\PackedStatEditor.dll" />
+    <None Remove="Features\Files\scripts\Readme.api" />
+    <None Remove="Features\Files\scripts\sirius.lua.example" />
+    <None Remove="Features\Files\settings.ini" />
+    <None Remove="Features\Files\stat.txt" />
+    <None Remove="Features\Files\SubVersion.exe" />
+    <None Remove="Features\Files\teleports.json" />
+    <None Remove="Features\Files\vehicles.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Features\Files\BincoHax.exe" />
+    <EmbeddedResource Include="Features\Files\Bread.dll" />
+    <EmbeddedResource Include="Features\Files\Bread_Chs.dll" />
+    <EmbeddedResource Include="Features\Files\config.json" />
+    <EmbeddedResource Include="Features\Files\DefenderControl.exe" />
+    <EmbeddedResource Include="Features\Files\DefenderControl.ini" />
+    <EmbeddedResource Include="Features\Files\GTAHax.exe" />
+    <EmbeddedResource Include="Features\Files\Key87\config.json" />
+    <EmbeddedResource Include="Features\Files\Key87\settings.ini" />
+    <EmbeddedResource Include="Features\Files\Kiddion.exe" />
+    <EmbeddedResource Include="Features\Files\Kiddion_Chs.exe" />
+    <EmbeddedResource Include="Features\Files\LSCHax.exe" />
+    <EmbeddedResource Include="Features\Files\PackedStatEditor.dll" />
+    <EmbeddedResource Include="Features\Files\scripts\Readme.api" />
+    <EmbeddedResource Include="Features\Files\scripts\sirius.lua.example" />
+    <EmbeddedResource Include="Features\Files\settings.ini" />
+    <EmbeddedResource Include="Features\Files\stat.txt" />
+    <EmbeddedResource Include="Features\Files\SubVersion.exe" />
+    <EmbeddedResource Include="Features\Files\teleports.json" />
+    <EmbeddedResource Include="Features\Files\vehicles.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GameOverlay.Net" Version="4.3.1" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
+    <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\iconfont.ttf" />
+    <Resource Include="Assets\Images\Donate.png" />
+    <Resource Include="Assets\Images\Favicon.ico" />
+    <Resource Include="Assets\Images\Hacks\BincoHax.png" />
+    <Resource Include="Assets\Images\Hacks\GTAHax.png" />
+    <Resource Include="Assets\Images\Hacks\Kiddion.png" />
+    <Resource Include="Assets\Images\Hacks\LSCHax.png" />
+    <Resource Include="Assets\Images\Hacks\SubVersion.png" />
+    <Resource Include="Assets\Images\HomeBg.jpg" />
+    <Resource Include="Assets\Images\TheContract.jpg" />
+    <Resource Include="Assets\Images\Tips\Bread.png" />
+    <Resource Include="Assets\Images\Tips\Bread_Chs.png" />
+    <Resource Include="Assets\Images\Tips\Cayo01.png" />
+    <Resource Include="Assets\Images\Tips\Cayo02.png" />
+    <Resource Include="Assets\Images\Tips\InputENG.png" />
+    <Resource Include="Assets\Images\Tips\PackedStatEditor.png" />
+    <Resource Include="Assets\Images\Tips\PericoHeist01.png" />
+    <Resource Include="Assets\Images\Tips\PericoHeist02.png" />
+    <Resource Include="Assets\Images\Tips\PlayerName.png" />
+  </ItemGroup>
+
+</Project>
