@@ -13,10 +13,12 @@ namespace GTA5OnlineTools.ViewModels
         private InjectorWindow InjectorWindow = null;
 
         public DelegateCommand<string> ToolsButtonClickCommand { get; private set; }
+        public DelegateCommand<string> HyperlinkClickCommand { get; private set; }
 
         public UC3ToolsViewModel()
         {
             ToolsButtonClickCommand = new DelegateCommand<string>(ToolsButtonClick);
+            HyperlinkClickCommand = new DelegateCommand<string>(HyperlinkClick);
         }
 
         private void ToolsButtonClick(string obj)
@@ -96,6 +98,11 @@ namespace GTA5OnlineTools.ViewModels
                     BaseInjectorClick();
                     break;
             }
+        }
+
+        private void HyperlinkClick(string url)
+        {
+            ProcessUtil.OpenLink(url);
         }
 
         private void BaseInjectorClick()

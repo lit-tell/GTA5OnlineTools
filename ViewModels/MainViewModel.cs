@@ -176,18 +176,9 @@ namespace GTA5OnlineTools.ViewModels
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                if (GlobalData.UpdateWindow == null)
-                {
-                    GlobalData.UpdateWindow = new UpdateWindow();
-                    GlobalData.UpdateWindow.Owner = MainView.MainWindow;
-                    GlobalData.UpdateWindow.ShowDialog();
-                }
-                else
-                {
-                    GlobalData.UpdateWindow.Topmost = true;
-                    GlobalData.UpdateWindow.Topmost = false;
-                    GlobalData.UpdateWindow.WindowState = WindowState.Normal;
-                }
+                var UpdateWindow = new UpdateWindow();
+                UpdateWindow.Owner = MainView.MainWindow;
+                UpdateWindow.ShowDialog();
             });
         }
     }
