@@ -14,7 +14,8 @@ namespace GTA5OnlineTools.Views
     public partial class MainView : Window
     {
         // 任务栏图标
-        public static TaskbarIcon TaskbarIcon_Main = null;
+        private static TaskbarIcon TaskbarIcon_Main = null;
+
         public static Window MainWindow = null;
 
         public MainView()
@@ -74,6 +75,11 @@ namespace GTA5OnlineTools.Views
             Topmost = false;
             ShowInTaskbar = true;
             WindowState = WindowState.Normal;
+        }
+
+        public static void ShowNoticeInfo(string msg)
+        {
+            TaskbarIcon_Main?.ShowBalloonTip("提示", msg, BalloonIcon.Info);
         }
     }
 }

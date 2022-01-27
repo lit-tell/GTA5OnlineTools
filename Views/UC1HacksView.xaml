@@ -230,7 +230,7 @@
                     <Button
                         Padding="10,5,10,5"
                         Command="{Binding FrameHideClickCommand}"
-                        Content="&#xed3e;"
+                        Content="&#xeaf2;"
                         DockPanel.Dock="Right"
                         Style="{StaticResource FrameButtonStyle}"
                         ToolTip="点击关闭使用说明" />

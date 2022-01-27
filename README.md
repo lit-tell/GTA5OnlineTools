@@ -18,6 +18,7 @@
 ### 框架
 
 * Prism
+* WPF
 
 ### Github加速器（推荐）
 
@@ -35,4 +36,4 @@ https://github.com/dotnetcore/FastGithub/releases
 
 ### 预览
 
-![Snipaste_2022-01-22_23-24-45.png](https://s2.loli.net/2022/01/26/YzSXPtojC4qcFuI.png)
+![](https://s3.bmp.ovh/imgs/2022/01/ffe9219d3af8805f.png)

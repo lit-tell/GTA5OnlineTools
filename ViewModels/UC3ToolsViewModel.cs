@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using Prism.Commands;
+using GTA5OnlineTools.Views;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Modules.Kits;
 
@@ -184,6 +185,7 @@ namespace GTA5OnlineTools.ViewModels
         private void RefreshDNSCacheClick()
         {
             CoreUtil.CMD_Code("ipconfig /flushdns");
+            MainView.ShowNoticeInfo("成功刷新DNS解析程序缓存");
         }
 
         private void ReNameAppENClick()
@@ -197,13 +199,14 @@ namespace GTA5OnlineTools.ViewModels
                     FileUtil.FileReName(FileUtil.Current_Path, "GTA5OnlineTools.exe");
 
                     ProcessUtil.CloseTheseProcess();
+                    App.AppMainMutex.Dispose();
                     ProcessUtil.OpenLink(FileUtil.GetCurrFullPath("GTA5OnlineTools.exe"));
                     Application.Current.Shutdown();
 
                 }
                 else
                 {
-                    MessageBox.Show("程序文件名已经符合英文标准，无需继续重命名", " 提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MsgBoxUtil.InformationMsgBox("程序文件名已经符合英文命名标准，无需继续重命名");
                 }
             }
             catch (Exception ex)
@@ -223,12 +226,13 @@ namespace GTA5OnlineTools.ViewModels
                     FileUtil.FileReName(FileUtil.Current_Path, FileUtil.GetCurrFullPath(CoreUtil.MainAppWindowName + CoreUtil.ClientVersionInfo + ".exe"));
 
                     ProcessUtil.CloseTheseProcess();
+                    App.AppMainMutex.Dispose();
                     ProcessUtil.OpenLink(FileUtil.GetCurrFullPath(CoreUtil.MainAppWindowName + CoreUtil.ClientVersionInfo + ".exe"));
                     Application.Current.Shutdown();
                 }
                 else
                 {
-                    MessageBox.Show("程序文件名已经符合中文标准，无需继续重命名", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MsgBoxUtil.InformationMsgBox("程序文件名已经符合中文命名标准，无需继续重命名");
                 }
             }
             catch (Exception ex)

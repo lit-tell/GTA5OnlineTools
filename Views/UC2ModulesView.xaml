@@ -271,7 +271,7 @@
                                 FontSize="42"
                                 Foreground="#37aefe"
                                 Style="{StaticResource HomeIcoTextBlock}"
-                                Text="&#xe612;" />
+                                Text="&#xe63b;" />
                             <TextBlock Text="BigBaseV2" />
                             <TextBlock Text="状态编辑器/基本解锁" />
                         </StackPanel>

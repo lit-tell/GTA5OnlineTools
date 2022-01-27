@@ -39,13 +39,13 @@
                     提示
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
-                    ● 87/104按键切换功能位置：小助手-菜单栏-扩展
+                    ● 87/104按键切换功能位置：小助手-工具设置
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
                     ● 游戏需窗口化/无边框才可以正常显示辅助菜单
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
-                    ● 如果快捷键功能失效，请前往小助手菜单栏-设置-恢复配置-恢复默认配置
+                    ● 如果快捷键功能失效，请前往小助手菜单栏-工具设置-初始化配置文件夹
                 </Paragraph>
                 <Paragraph
                     FontWeight="Bold"

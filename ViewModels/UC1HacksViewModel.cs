@@ -82,6 +82,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void KiddionClick()
         {
+            AudioUtil.ClickSound();
+
             Task.Run(() =>
             {
                 if (UC1HacksModel.KiddionIsRun)
@@ -142,6 +144,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void SubVersionClick()
         {
+            AudioUtil.ClickSound();
+
             if (UC1HacksModel.SubVersionIsRun)
             {
                 if (!ProcessUtil.IsAppRun("SubVersion"))
@@ -155,6 +159,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void GTAHaxClick()
         {
+            AudioUtil.ClickSound();
+
             if (UC1HacksModel.GTAHaxIsRun)
             {
                 if (!ProcessUtil.IsAppRun("GTAHax"))
@@ -168,6 +174,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void BincoHaxClick()
         {
+            AudioUtil.ClickSound();
+
             if (UC1HacksModel.BincoHaxIsRun)
             {
                 if (!ProcessUtil.IsAppRun("BincoHax"))
@@ -181,6 +189,8 @@ namespace GTA5OnlineTools.ViewModels
 
         private void LSCHaxClick()
         {
+            AudioUtil.ClickSound();
+
             if (UC1HacksModel.LSCHaxIsRun)
             {
                 if (!ProcessUtil.IsAppRun("LSCHax"))

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using Prism.Commands;
-using GTA5OnlineTools.Modules.Windows;
 using GTA5OnlineTools.Common.Utils;
+using GTA5OnlineTools.Modules.Windows;
 
 namespace GTA5OnlineTools.ViewModels
 {

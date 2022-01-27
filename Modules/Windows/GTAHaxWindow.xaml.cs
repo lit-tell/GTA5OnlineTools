@@ -39,6 +39,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Read_Stat_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             FileUtil.ReadTextToTextBox(TextBox_GTAHaxCodePreview, FileUtil.GTAHaxStat_Path);
 
             //MessageBox.Show("读取stat.txt文件成功", " 提示", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -46,6 +48,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Write_Stat_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             try
             {
                 File.WriteAllText(FileUtil.GTAHaxStat_Path, string.Empty);
@@ -69,6 +73,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Import_Stat_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             if (!ProcessUtil.IsAppRun("GTAHax"))
                 ProcessUtil.OpenProcess("GTAHax", false);
 
@@ -131,6 +137,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_ToMPx_TextBox_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             TextBox_GTAHaxCodePreview.Text = TextBox_GTAHaxCodePreview.Text.Replace("$MP0", "$MPx");
             TextBox_GTAHaxCodePreview.Text = TextBox_GTAHaxCodePreview.Text.Replace("$MP1", "$MPx");
 
@@ -663,6 +671,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Button_Create_HaxCode_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             if (RadioButton_MPx.IsChecked == true)
             {
                 GTAHax_MP = "$MPx";

@@ -38,10 +38,10 @@
                     FontWeight="Bold"
                     Foreground="#FF32A046"
                     Style="{StaticResource ContentParagraphStyle}">
-                    ● Kiddion汉化功能位置：小助手-菜单栏-扩展-启用Kiddion汉化
+                    ● Kiddion汉化功能位置：小助手-工具设置-启用Kiddion汉化
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
-                    ● 87/104按键切换功能位置：小助手-菜单栏-扩展
+                    ● 87/104按键切换功能位置：小助手-工具设置
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
                     ● 先启动外置辅助，等待辅助菜单加载出来后再启用汉化，否则汉化会无法显示

@@ -67,7 +67,7 @@ namespace GTA5OnlineTools.ViewModels
             MenuBars.Add(new MenuBar() { Icon = "\xe734", Title = "软件公告", ColorHex = "#F45221", NameSpace = "UC0IndexView" });
             MenuBars.Add(new MenuBar() { Icon = "\xe630", Title = "第三方辅助", ColorHex = "#00B2F2", NameSpace = "UC1HacksView" });
             MenuBars.Add(new MenuBar() { Icon = "\xe609", Title = "小助手辅助", ColorHex = "#88C600", NameSpace = "UC2ModulesView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe606", Title = "工具设置", ColorHex = "#673AB7", NameSpace = "UC3ToolsView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe644", Title = "工具设置", ColorHex = "#673AB7", NameSpace = "UC3ToolsView" });
             MenuBars.Add(new MenuBar() { Icon = "\xe652", Title = "更新日志", ColorHex = "#FFC501", NameSpace = "UC4UpdateView" });
             MenuBars.Add(new MenuBar() { Icon = "\xe684", Title = "关于作者", ColorHex = "#66CCCC", NameSpace = "UC5AboutView" });
         }

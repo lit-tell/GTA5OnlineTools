@@ -162,7 +162,7 @@
                             <Setter TargetName="ellipse" Property="StrokeThickness" Value="1" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="ellipse" Property="Fill" Value="Gray" />
+                            <Setter TargetName="ellipse" Property="Fill" Value="Red" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
