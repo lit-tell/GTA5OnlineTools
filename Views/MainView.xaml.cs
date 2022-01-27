@@ -1,8 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.ComponentModel;
 using Hardcodet.Wpf.TaskbarNotification;
 using GTA5OnlineTools.Common.Utils;
 
@@ -29,9 +29,8 @@ namespace GTA5OnlineTools.Views
 
             TaskbarIcon_Main = new TaskbarIcon();
             TaskbarIcon_Main.IconSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/Favicon.ico", UriKind.RelativeOrAbsolute));
-            TaskbarIcon_Main.MenuActivation = PopupActivationMode.LeftOrRightClick;
-            TaskbarIcon_Main.PopupActivation = PopupActivationMode.DoubleClick;
-            TaskbarIcon_Main.ToolTip = "GTA5线上小助手";
+            TaskbarIcon_Main.MenuActivation = PopupActivationMode.RightClick;
+            TaskbarIcon_Main.ToolTipText = "GTA5线上小助手";
             TaskbarIcon_Main.Visibility = Visibility.Visible;
 
             ContextMenu contextMenu = new ContextMenu();
@@ -44,15 +43,16 @@ namespace GTA5OnlineTools.Views
             contextMenu.Items.Add(MenuItem_Show);
             contextMenu.Items.Add(MenuItem_Exit);
             TaskbarIcon_Main.ContextMenu = contextMenu;
+
             TaskbarIcon_Main.TrayMouseDoubleClick += TaskbarIcon_Main_TrayMouseDoubleClick;
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            TaskbarIcon_Main.Icon.Dispose();
-            TaskbarIcon_Main.ContextMenu.DataContext = null;
-            TaskbarIcon_Main.Dispose();
             ProcessUtil.CloseTheseProcess();
+            TaskbarIcon_Main.IconSource = null;
+            TaskbarIcon_Main.ContextMenu = null;
+            TaskbarIcon_Main.Dispose();
             Application.Current.Shutdown();
         }
 

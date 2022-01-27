@@ -6,11 +6,12 @@
     <Nullable>disable</Nullable>
     <UseWPF>true</UseWPF>
     <Platforms>x64</Platforms>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-    <ApplicationIcon>Assets\Images\Favicon.ico</ApplicationIcon>
     <StartupObject>GTA5OnlineTools.App</StartupObject>
-    <AssemblyVersion>3.0.1.7</AssemblyVersion>
-    <FileVersion>3.0.1.7</FileVersion>
+    <AssemblyVersion>3.0.1.8</AssemblyVersion>
+    <FileVersion>3.0.1.8</FileVersion>
+    <ApplicationIcon>Assets\Images\Favicon.ico</ApplicationIcon>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+    <DebugType>full</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -53,6 +54,10 @@
     <None Remove="Features\Files\SubVersion.exe" />
     <None Remove="Features\Files\teleports.json" />
     <None Remove="Features\Files\vehicles.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Images\Favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>

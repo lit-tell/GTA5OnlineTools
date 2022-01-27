@@ -15,14 +15,14 @@ namespace GTA5OnlineTools.Common.Utils
         public static SoundPlayer SP_DownloadOK = new SoundPlayer(Properties.Resources.DownloadOK);
 
         // 按钮提示音
-        public static int Button_ClickSound = 4;
+        public static int ClickSoundIndex = 4;
 
         /// <summary>
         /// 按钮点击音效
         /// </summary>
         public static void ClickSound()
         {
-            switch (Button_ClickSound)
+            switch (ClickSoundIndex)
             {
                 case 0:
                     break;

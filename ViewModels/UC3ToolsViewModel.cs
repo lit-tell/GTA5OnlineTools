@@ -16,10 +16,24 @@ namespace GTA5OnlineTools.ViewModels
         public DelegateCommand<string> ToolsButtonClickCommand { get; private set; }
         public DelegateCommand<string> HyperlinkClickCommand { get; private set; }
 
+        public DelegateCommand SwitchButtonAudioCommand { get; private set; }
+
         public UC3ToolsViewModel()
         {
             ToolsButtonClickCommand = new DelegateCommand<string>(ToolsButtonClick);
             HyperlinkClickCommand = new DelegateCommand<string>(HyperlinkClick);
+
+            SwitchButtonAudioCommand = new DelegateCommand(SwitchButtonAudio);
+        }
+
+        private void SwitchButtonAudio()
+        {
+            if (AudioUtil.ClickSoundIndex < 5)
+                AudioUtil.ClickSoundIndex++;
+            else
+                AudioUtil.ClickSoundIndex = 0;
+
+            AudioUtil.ClickSound();
         }
 
         private void ToolsButtonClick(string obj)
@@ -99,6 +113,9 @@ namespace GTA5OnlineTools.ViewModels
                     break;
                 case "BaseInjector":
                     BaseInjectorClick();
+                    break;
+                case "MinimizeToTray":
+                    MinimizeToTrayClick();
                     break;
             }
         }
@@ -347,6 +364,13 @@ namespace GTA5OnlineTools.ViewModels
             {
                 MsgBoxUtil.ExceptionMsgBox(ex);
             }
+        }
+
+        private void MinimizeToTrayClick()
+        {
+            MainView.MainWindow.WindowState = WindowState.Minimized;
+            MainView.MainWindow.ShowInTaskbar = false;
+            MainView.ShowNoticeInfo("程序已最小化到托盘");
         }
     }
 }
