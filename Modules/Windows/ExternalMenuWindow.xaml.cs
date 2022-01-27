@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
-using GTA5OnlineTools.ViewModels;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;

@@ -57,10 +57,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Images\Favicon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Features\Files\BincoHax.exe" />
     <EmbeddedResource Include="Features\Files\Bread.dll" />
     <EmbeddedResource Include="Features\Files\Bread_Chs.dll" />
