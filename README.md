@@ -24,11 +24,11 @@
 
 > 再也不用担心无法访问Github了😊
 
-#### Steam++
-https://steampp.net/
+* Steam++
+> https://steampp.net/
 
-#### FastGithub
-https://github.com/dotnetcore/FastGithub/releases
+* FastGithub
+> https://github.com/dotnetcore/FastGithub/releases
 
 ### 最新版本
 
