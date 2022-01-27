@@ -7,11 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="Window_HeistCut"
     Title="GTA5线上小助手 抢劫任务分红编辑器"
-    Width="1280"
-    Height="720"
-    Background="White"
     Closing="Window_HeistCut_Closing"
     Loaded="Window_HeistCut_Loaded"
+    Style="{StaticResource WindowNormalStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

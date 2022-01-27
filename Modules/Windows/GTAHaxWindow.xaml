@@ -7,11 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="Window_GTAHax"
     Title="GTAHax代码导入编辑器"
-    Width="1280"
-    Height="720"
-    Background="White"
     Closing="Window_GTAHax_Closing"
     Loaded="Window_GTAHax_Loaded"
+    Style="{StaticResource WindowNormalStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

@@ -7,13 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://prismlibrary.com/"
     Title="{Binding MainModel.WindowTitle}"
-    Width="1280"
-    Height="720"
     MinWidth="1000"
     MinHeight="600"
     prism:ViewModelLocator.AutoWireViewModel="True"
     Closing="Window_Closing"
     Loaded="Window_Loaded"
+    Style="{StaticResource WindowNormalStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

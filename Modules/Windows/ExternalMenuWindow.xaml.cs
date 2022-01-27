@@ -53,14 +53,14 @@ namespace GTA5OnlineTools.Modules.Windows
             // 载具列表
             for (int i = 0; i < VehicleData.VehicleDataClass.Count; i++)
             {
-                ListBox_VehicleList.Items.Add(VehicleData.VehicleDataClass[i].VName);
+                ListBox_VehicleList.Items.Add(VehicleData.VehicleDataClass[i].ClassName);
             }
             ListBox_VehicleList.SelectedIndex = 0;
 
             // 武器列表
             for (int i = 0; i < WeaponData.WeaponDataClass.Count; i++)
             {
-                ListBox_WeaponList.Items.Add(WeaponData.WeaponDataClass[i].WType);
+                ListBox_WeaponList.Items.Add(WeaponData.WeaponDataClass[i].ClassName);
             }
             ListBox_WeaponList.SelectedIndex = 0;
 
@@ -432,9 +432,9 @@ namespace GTA5OnlineTools.Modules.Windows
             {
                 ListBox_VehicleInfo.Items.Clear();
 
-                for (int i = 0; i < VehicleData.VehicleDataClass[index].VCode.Count; i++)
+                for (int i = 0; i < VehicleData.VehicleDataClass[index].VehicleInfo.Count; i++)
                 {
-                    ListBox_VehicleInfo.Items.Add(VehicleData.VehicleDataClass[index].VCode[i].VName);
+                    ListBox_VehicleInfo.Items.Add(VehicleData.VehicleDataClass[index].VehicleInfo[i].DisplayName);
                 }
 
                 ListBox_VehicleInfo.SelectedIndex = 0;
@@ -448,8 +448,8 @@ namespace GTA5OnlineTools.Modules.Windows
 
             if (index1 != -1 && index2 != -1)
             {
-                TempData.VCode = VehicleData.VehicleDataClass[index1].VCode[index2].VCode;
-                TempData.VMod = VehicleData.VehicleDataClass[index1].VCode[index2].VMod;
+                TempData.VCode = VehicleData.VehicleDataClass[index1].VehicleInfo[index2].Name;
+                TempData.VMod = VehicleData.VehicleDataClass[index1].VehicleInfo[index2].Mod;
             }
         }
 
@@ -879,9 +879,9 @@ namespace GTA5OnlineTools.Modules.Windows
             {
                 ListBox_WeaponInfo.Items.Clear();
 
-                for (int i = 0; i < WeaponData.WeaponDataClass[index].WPreview.Count; i++)
+                for (int i = 0; i < WeaponData.WeaponDataClass[index].WeaponInfo.Count; i++)
                 {
-                    ListBox_WeaponInfo.Items.Add(WeaponData.WeaponDataClass[index].WPreview[i].Name);
+                    ListBox_WeaponInfo.Items.Add(WeaponData.WeaponDataClass[index].WeaponInfo[i].Name);
                 }
 
                 ListBox_WeaponInfo.SelectedIndex = 0;
@@ -895,7 +895,7 @@ namespace GTA5OnlineTools.Modules.Windows
 
             if (index1 != -1 && index2 != -1)
             {
-                TempData.WPickup = WeaponData.WeaponDataClass[index1].WPreview[index2].Pickup;
+                TempData.WPickup = WeaponData.WeaponDataClass[index1].WeaponInfo[index2].Pickup;
             }
         }
 

@@ -7,11 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="Window_Outfits"
     Title="GTA5线上小助手 角色服装编辑器"
-    Width="1280"
-    Height="720"
-    Background="White"
     Closing="Window_Outfits_Closing"
     Loaded="Window_Outfits_Loaded"
+    Style="{StaticResource WindowNormalStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

@@ -7,11 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="Window_MoneyRP"
     Title="GTA5线上小助手 金钱和经验"
-    Width="1280"
-    Height="720"
-    Background="White"
     Closing="Window_MoneyRP_Closing"
     Loaded="Window_MoneyRP_Loaded"
+    Style="{StaticResource WindowNormalStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

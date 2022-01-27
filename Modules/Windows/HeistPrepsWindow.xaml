@@ -7,11 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="Window_HeistPreps"
     Title="GTA5线上小助手 抢劫前置任务编辑器"
-    Width="1280"
-    Height="720"
-    Background="White"
     Closing="Window_HeistPreps_Closing"
     Loaded="Window_HeistPreps_Loaded"
+    Style="{StaticResource WindowNormalStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

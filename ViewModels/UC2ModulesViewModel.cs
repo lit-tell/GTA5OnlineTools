@@ -8,6 +8,7 @@ namespace GTA5OnlineTools.ViewModels
     public class UC2ModulesViewModel
     {
         private ExternalMenuWindow ExternalMenuWindow = null;
+        private SpawnVehicleWindow SpawnVehicleWindow = null;
         private GTAHaxWindow GTAHaxWindow = null;
         private OutfitsWindow OutfitsWindow = null;
         private HeistCutWindow HeistCutWindow = null;
@@ -21,6 +22,7 @@ namespace GTA5OnlineTools.ViewModels
         private BigBaseV2Window BigBaseV2Window = null;
 
         public DelegateCommand ExternalMenuClickCommand { get; private set; }
+        public DelegateCommand SpawnVehicleClickCommand { get; private set; }
         public DelegateCommand GTAHaxClickCommand { get; private set; }
         public DelegateCommand OutfitsClickCommand { get; private set; }
         public DelegateCommand HeistCutClickCommand { get; private set; }
@@ -36,6 +38,7 @@ namespace GTA5OnlineTools.ViewModels
         public UC2ModulesViewModel()
         {
             ExternalMenuClickCommand = new DelegateCommand(ExternalMenuClick);
+            SpawnVehicleClickCommand = new DelegateCommand(SpawnVehicleClick);
             GTAHaxClickCommand = new DelegateCommand(GTAHaxClick);
             OutfitsClickCommand = new DelegateCommand(OutfitsClick);
             HeistCutClickCommand = new DelegateCommand(HeistCutClick);
@@ -75,6 +78,42 @@ namespace GTA5OnlineTools.ViewModels
                             ExternalMenuWindow = null;
                             ExternalMenuWindow = new ExternalMenuWindow();
                             ExternalMenuWindow.Show();
+                        }
+                    }
+                });
+            }
+            else
+            {
+                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SpawnVehicleClick()
+        {
+            AudioUtil.ClickSound();
+
+            if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    if (SpawnVehicleWindow == null)
+                    {
+                        SpawnVehicleWindow = new SpawnVehicleWindow();
+                        SpawnVehicleWindow.Show();
+                    }
+                    else
+                    {
+                        if (SpawnVehicleWindow.IsVisible)
+                        {
+                            SpawnVehicleWindow.Topmost = true;
+                            SpawnVehicleWindow.Topmost = false;
+                            SpawnVehicleWindow.WindowState = WindowState.Normal;
+                        }
+                        else
+                        {
+                            SpawnVehicleWindow = null;
+                            SpawnVehicleWindow = new SpawnVehicleWindow();
+                            SpawnVehicleWindow.Show();
                         }
                     }
                 });

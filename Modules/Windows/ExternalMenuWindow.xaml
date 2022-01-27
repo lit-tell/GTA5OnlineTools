@@ -6,11 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="Window_ExternalMenu"
     Title="GTA5线上小助手 外置菜单"
-    Width="600"
-    Height="700"
-    Background="White"
     Closing="Window_ExternalMenu_Closing"
     Loaded="Window_ExternalMenu_Loaded"
+    Style="{StaticResource WindowNormalStyle}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

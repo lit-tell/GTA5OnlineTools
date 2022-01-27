@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="Assets/Styles/TabControlStyle.xaml" />
                 <ResourceDictionary Source="Assets/Styles/TextBoxStyle.xaml" />
                 <ResourceDictionary Source="Assets/Styles/UserControlStyle.xaml" />
+                <ResourceDictionary Source="Assets/Styles/WindowStyle.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

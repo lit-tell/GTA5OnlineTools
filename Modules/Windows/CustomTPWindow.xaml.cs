@@ -26,7 +26,6 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void Window_CustomTP_Loaded(object sender, RoutedEventArgs e)
         {
-
             Task.Run(() =>
             {
                 Memory.Initialize(CoreUtil.TargetAppName);

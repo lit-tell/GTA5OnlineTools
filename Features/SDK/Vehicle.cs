@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using GTA5OnlineTools.Features.Core;
 using static GTA5OnlineTools.Features.SDK.Hacks;
@@ -74,7 +73,7 @@ namespace GTA5OnlineTools.Features.SDK
         }
 
         /// <summary>
-        /// 无敌模式
+        /// 载具无敌模式
         /// </summary>
         public static void GodMode(bool isEnable)
         {
