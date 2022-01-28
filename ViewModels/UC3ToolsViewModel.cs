@@ -117,12 +117,21 @@ namespace GTA5OnlineTools.ViewModels
                 case "MinimizeToTray":
                     MinimizeToTrayClick();
                     break;
+                case "ManualGC":
+                    ManualGCClick();
+                    break;
             }
         }
 
         private void HyperlinkClick(string url)
         {
             ProcessUtil.OpenLink(url);
+        }
+
+        private void ManualGCClick()
+        {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         private void BaseInjectorClick()

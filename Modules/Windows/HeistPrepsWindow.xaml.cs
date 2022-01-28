@@ -40,10 +40,10 @@ namespace GTA5OnlineTools.Modules.Windows
                 Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.ReplayInterfacePTR);
                 Globals.ReplayInterfacePTR = Memory.Rip_37(Offsets.Mask.TempPTR);
 
-                Dispatcher.BeginInvoke(new Action(delegate
+                Application.Current.Dispatcher.Invoke(() =>
                 {
 
-                }));
+                });
             });
         }
 

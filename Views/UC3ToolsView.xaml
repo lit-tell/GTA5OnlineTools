@@ -162,6 +162,12 @@
                     Style="{StaticResource ToolsButtonStyle}" />
                 <TextBlock />
                 <Button
+                    Command="{Binding ToolsButtonClickCommand}"
+                    CommandParameter="ManualGC"
+                    Content="GC垃圾回收"
+                    Style="{StaticResource ToolsButtonStyle}" />
+                <TextBlock />
+                <Button
                     Command="{Binding SwitchButtonAudioCommand}"
                     Content="切换按键音效"
                     Style="{StaticResource ToolsButtonStyle}" />

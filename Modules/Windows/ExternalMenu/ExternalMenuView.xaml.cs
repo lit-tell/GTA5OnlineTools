@@ -1,6 +1,7 @@
 ﻿using System.Windows;
-using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Collections.Generic;
 using Prism.Regions;
 using Prism.Commands;
@@ -8,6 +9,7 @@ using GTA5OnlineTools.Common.Data;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
+using System;
 
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
@@ -78,6 +80,10 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             });
 
             this.DataContext = this;
+
+            var thread = new Thread(InitThread);
+            thread.IsBackground = true;
+            thread.Start();
         }
 
         private void Window_ExternalMenuView_Closing(object sender, CancelEventArgs e)
@@ -106,6 +112,23 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                 return;
 
             _ScopedRegion.RequestNavigate("ExternalMenuViewRegion", obj.NameSpace);
+        }
+
+        private void InitThread()
+        {
+            while (true)
+            {
+                if (!ProcessUtil.IsAppRun("GTA5"))
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        this.Close();
+                    });
+                    return;
+                }
+
+                Thread.Sleep(2000);
+            }
         }
     }
 }
