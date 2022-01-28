@@ -1,77 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GTA5OnlineTools.Features.Core;
-using static GTA5OnlineTools.Features.SDK.Hacks;
 
 namespace GTA5OnlineTools.Features.SDK
 {
     public class Vehicle
     {
-        /// <summary>
-        /// 刷出线上载具
-        /// </summary>
-        public static void SpawnVehicle(string hash, int dist, float z255, int[] mod)
-        {
-            uint Hash = Joaat(hash);
-
-            //WriteGA<bool>(4269479, true);
-
-            float x = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
-            float y = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
-            float z = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
-            float sin = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerSin);
-            float cos = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerCos);
-
-            x += cos * dist;
-            y += sin * dist;
-
-            WriteGA<long>(2725260 + 27 + 66, Convert.ToInt64(Hash));
-            WriteGA<int>(2725260 + 27 + 94, 2);    // personal car ownerflag
-            WriteGA<int>(2725260 + 27 + 95, 14);   // ownerflag
-            WriteGA<int>(2725260 + 27 + 5, -1);    // primary -1 auto 159
-            WriteGA<int>(2725260 + 27 + 6, -1);    // secondary -1 auto 159
-            WriteGA<float>(2725260 + 7 + 0, x);
-            WriteGA<float>(2725260 + 7 + 1, y);
-
-            if (z255 == -255.0f)
-            {
-                WriteGA<float>(2725260 + 7 + 2, -255.0f);   // z -255.0f
-            }
-            else
-            {
-                WriteGA<float>(2725260 + 7 + 2, z + z255);   // z -255.0f
-            }
-
-            for (int i = 0; i < 42; i++)
-            {
-                if (i < 17)
-                {
-                    WriteGA<int>(2725260 + 27 + 10 + i, mod[i]);
-                }
-                else if (mod[42] > 0 && i == 42)
-                {
-                    WriteGA<int>(2725260 + 27 + 10 + 6 + i, new Random().Next() % mod[i] + 1);
-                }
-                else if (i > 22)
-                {
-                    WriteGA<int>(2725260 + 27 + 10 + 6 + i, mod[i]);
-                }
-                else
-                {
-                    continue;
-                }
-            }
-
-            WriteGA<int>(2725260 + 27 + 28, 1);           // weaponised ownerflag
-            WriteGA<int>(2725260 + 27 + 30, 1);
-            WriteGA<int>(2725260 + 27 + 32, 1);
-            WriteGA<int>(2725260 + 27 + 65, 1);
-            WriteGA<long>(2725260 + 27 + 77, 0xF04000A1); // vehstate
-
-            WriteGA<int>(2725260 + 5, 1);      // can spawn flag must be odd
-            WriteGA<int>(2725260 + 2, 1);      // spawn toggle gets reset to 0 on car spawn
-        }
-
         /// <summary>
         /// 载具无敌模式
         /// </summary>

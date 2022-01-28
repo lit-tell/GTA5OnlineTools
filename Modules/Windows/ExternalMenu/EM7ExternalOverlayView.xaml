@@ -88,143 +88,141 @@
                     </StackPanel>
                 </GroupBox>
 
-                <DockPanel Grid.Column="1" LastChildFill="False">
-                    <StackPanel DockPanel.Dock="Top">
-                        <GroupBox
-                            Margin="5"
-                            Header="AimBot位置"
-                            Style="{StaticResource GroupBoxWebStyle}">
-                            <WrapPanel Orientation="Horizontal">
-                                <RadioButton
-                                    x:Name="RadioButton_AimBot_BoneIndex_0"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimBot_BoneIndex_0_Click"
-                                    Content="头部"
-                                    IsChecked="True" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimBot_BoneIndex_7"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimBot_BoneIndex_0_Click"
-                                    Content="颈部" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimBot_BoneIndex_8"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimBot_BoneIndex_0_Click"
-                                    Content="腹部" />
-                            </WrapPanel>
-                        </GroupBox>
+                <StackPanel Grid.Column="1">
+                    <GroupBox
+                        Margin="5"
+                        Header="AimBot位置"
+                        Style="{StaticResource GroupBoxWebStyle}">
+                        <WrapPanel Orientation="Horizontal">
+                            <RadioButton
+                                x:Name="RadioButton_AimBot_BoneIndex_0"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimBot_BoneIndex_0_Click"
+                                Content="头部"
+                                IsChecked="True" />
+                            <RadioButton
+                                x:Name="RadioButton_AimBot_BoneIndex_7"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimBot_BoneIndex_0_Click"
+                                Content="颈部" />
+                            <RadioButton
+                                x:Name="RadioButton_AimBot_BoneIndex_8"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimBot_BoneIndex_0_Click"
+                                Content="腹部" />
+                        </WrapPanel>
+                    </GroupBox>
 
-                        <GroupBox
-                            Margin="5"
-                            Header="Aimbot按键"
-                            Style="{StaticResource GroupBoxWebStyle}">
-                            <WrapPanel Orientation="Horizontal">
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotKey_CONTROL"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotKey_CONTROL_Click"
-                                    Content="左Ctrl键"
-                                    IsChecked="True" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotKey_SHIFT"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotKey_CONTROL_Click"
-                                    Content="左Shift键" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotKey_LBUTTON"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotKey_CONTROL_Click"
-                                    Content="鼠标左键" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotKey_RBUTTON"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotKey_CONTROL_Click"
-                                    Content="鼠标右键" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotKey_XBUTTON1"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotKey_CONTROL_Click"
-                                    Content="鼠标侧键1" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotKey_XBUTTON2"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotKey_CONTROL_Click"
-                                    Content="鼠标侧键2" />
-                            </WrapPanel>
-                        </GroupBox>
+                    <GroupBox
+                        Margin="5"
+                        Header="Aimbot按键"
+                        Style="{StaticResource GroupBoxWebStyle}">
+                        <WrapPanel Orientation="Horizontal">
+                            <RadioButton
+                                x:Name="RadioButton_AimbotKey_CONTROL"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotKey_CONTROL_Click"
+                                Content="左Ctrl键"
+                                IsChecked="True" />
+                            <RadioButton
+                                x:Name="RadioButton_AimbotKey_SHIFT"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotKey_CONTROL_Click"
+                                Content="左Shift键" />
+                            <RadioButton
+                                x:Name="RadioButton_AimbotKey_LBUTTON"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotKey_CONTROL_Click"
+                                Content="鼠标左键" />
+                            <RadioButton
+                                x:Name="RadioButton_AimbotKey_RBUTTON"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotKey_CONTROL_Click"
+                                Content="鼠标右键" />
+                            <RadioButton
+                                x:Name="RadioButton_AimbotKey_XBUTTON1"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotKey_CONTROL_Click"
+                                Content="鼠标侧键1" />
+                            <RadioButton
+                                x:Name="RadioButton_AimbotKey_XBUTTON2"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotKey_CONTROL_Click"
+                                Content="鼠标侧键2" />
+                        </WrapPanel>
+                    </GroupBox>
 
-                        <GroupBox
-                            Margin="5"
-                            Header="Aimbot范围"
-                            Style="{StaticResource GroupBoxWebStyle}">
-                            <WrapPanel Orientation="Horizontal">
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotFov_14Height"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotFov_Height_Click"
-                                    Content="1/4屏幕高度"
-                                    IsChecked="True" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotFov_12Height"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotFov_Height_Click"
-                                    Content="1/2屏幕高度" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotFov_Height"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotFov_Height_Click"
-                                    Content="屏幕高度" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotFov_Width"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotFov_Height_Click"
-                                    Content="屏幕宽度" />
-                                <RadioButton
-                                    x:Name="RadioButton_AimbotFov_All"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_AimbotFov_Height_Click"
-                                    Content="全部范围" />
-                            </WrapPanel>
-                        </GroupBox>
+                    <GroupBox
+                        Margin="5"
+                        Header="Aimbot范围"
+                        Style="{StaticResource GroupBoxWebStyle}">
+                        <WrapPanel Orientation="Horizontal">
+                            <RadioButton
+                                x:Name="RadioButton_AimbotFov_14Height"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotFov_Height_Click"
+                                Content="1/4屏幕高度"
+                                IsChecked="True" />
+                            <RadioButton
+                                x:Name="RadioButton_AimbotFov_12Height"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotFov_Height_Click"
+                                Content="1/2屏幕高度" />
+                            <RadioButton
+                                x:Name="RadioButton_AimbotFov_Height"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotFov_Height_Click"
+                                Content="屏幕高度" />
+                            <RadioButton
+                                x:Name="RadioButton_AimbotFov_Width"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotFov_Height_Click"
+                                Content="屏幕宽度" />
+                            <RadioButton
+                                x:Name="RadioButton_AimbotFov_All"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_AimbotFov_Height_Click"
+                                Content="全部范围" />
+                        </WrapPanel>
+                    </GroupBox>
 
-                        <GroupBox
-                            Margin="5"
-                            Header="ESP工作模式"
-                            Style="{StaticResource GroupBoxWebStyle}">
-                            <WrapPanel Orientation="Horizontal">
-                                <RadioButton
-                                    x:Name="RadioButton_Overlay_RunMode0"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_Overlay_RunMode0_Click"
-                                    Content="垂直同步"
-                                    IsChecked="True" />
-                                <RadioButton
-                                    x:Name="RadioButton_Overlay_RunMode1"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_Overlay_RunMode0_Click"
-                                    Content="300帧" />
-                                <RadioButton
-                                    x:Name="RadioButton_Overlay_RunMode2"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_Overlay_RunMode0_Click"
-                                    Content="144帧" />
-                                <RadioButton
-                                    x:Name="RadioButton_Overlay_RunMode3"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_Overlay_RunMode0_Click"
-                                    Content="90帧" />
-                                <RadioButton
-                                    x:Name="RadioButton_Overlay_RunMode4"
-                                    Margin="5,5,10,5"
-                                    Click="RadioButton_Overlay_RunMode0_Click"
-                                    Content="60帧" />
-                            </WrapPanel>
-                        </GroupBox>
-                    </StackPanel>
+                    <GroupBox
+                        Margin="5"
+                        Header="ESP工作模式"
+                        Style="{StaticResource GroupBoxWebStyle}">
+                        <WrapPanel Orientation="Horizontal">
+                            <RadioButton
+                                x:Name="RadioButton_Overlay_RunMode0"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_Overlay_RunMode0_Click"
+                                Content="垂直同步"
+                                IsChecked="True" />
+                            <RadioButton
+                                x:Name="RadioButton_Overlay_RunMode1"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_Overlay_RunMode0_Click"
+                                Content="300帧" />
+                            <RadioButton
+                                x:Name="RadioButton_Overlay_RunMode2"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_Overlay_RunMode0_Click"
+                                Content="144帧" />
+                            <RadioButton
+                                x:Name="RadioButton_Overlay_RunMode3"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_Overlay_RunMode0_Click"
+                                Content="90帧" />
+                            <RadioButton
+                                x:Name="RadioButton_Overlay_RunMode4"
+                                Margin="5,5,10,5"
+                                Click="RadioButton_Overlay_RunMode0_Click"
+                                Content="60帧" />
+                        </WrapPanel>
+                    </GroupBox>
 
                     <StackPanel
+                        Margin="5"
                         HorizontalAlignment="Right"
-                        DockPanel.Dock="Bottom"
                         Orientation="Horizontal">
                         <Button
                             x:Name="Button_Overaly_Run"
@@ -237,7 +235,9 @@
                             Content="关闭ESP"
                             Style="{StaticResource ButtonWebStyle}" />
                     </StackPanel>
-                </DockPanel>
+
+                </StackPanel>
+
             </Grid>
         </ScrollViewer>
     </Grid>

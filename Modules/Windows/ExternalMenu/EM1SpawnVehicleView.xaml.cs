@@ -22,9 +22,9 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             InitializeComponent();
 
             // 载具列表
-            for (int i = 0; i < VehicleData2.VehicleClassData.Count; i++)
+            for (int i = 0; i < VehicleData.VehicleClassData.Count; i++)
             {
-                ListBox_VehicleClass.Items.Add(VehicleData2.VehicleClassData[i].ClassName);
+                ListBox_VehicleClass.Items.Add(VehicleData.VehicleClassData[i].ClassName);
             }
             ListBox_VehicleClass.SelectedIndex = 0;
 
@@ -44,9 +44,9 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             {
                 ListBox_VehicleInfo.Items.Clear();
 
-                for (int i = 0; i < VehicleData2.VehicleClassData[index].VehicleInfo.Count; i++)
+                for (int i = 0; i < VehicleData.VehicleClassData[index].VehicleInfo.Count; i++)
                 {
-                    ListBox_VehicleInfo.Items.Add(VehicleData2.VehicleClassData[index].VehicleInfo[i].DisplayName);
+                    ListBox_VehicleInfo.Items.Add(VehicleData.VehicleClassData[index].VehicleInfo[i].DisplayName);
                 }
 
                 ListBox_VehicleInfo.SelectedIndex = 0;
@@ -62,7 +62,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             if (index1 != -1 && index2 != -1)
             {
-                SpawnVehicleHash = VehicleData2.VehicleClassData[index1].VehicleInfo[index2].Hash;
+                SpawnVehicleHash = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Hash;
             }
         }
 
