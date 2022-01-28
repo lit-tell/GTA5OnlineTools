@@ -8,6 +8,7 @@ using Prism.Ioc;
 using Prism.DryIoc;
 using GTA5OnlineTools.Views;
 using GTA5OnlineTools.Common.Utils;
+using GTA5OnlineTools.Modules.Windows.ExternalMenu;
 
 namespace GTA5OnlineTools
 {
@@ -49,6 +50,17 @@ namespace GTA5OnlineTools
             containerRegistry.RegisterForNavigation<UC3ToolsView>();
             containerRegistry.RegisterForNavigation<UC4UpdateView>();
             containerRegistry.RegisterForNavigation<UC5AboutView>();
+
+            containerRegistry.RegisterForNavigation<EM0PlayerStateView>();
+            containerRegistry.RegisterForNavigation<EM1SpawnVehicleView>();
+            containerRegistry.RegisterForNavigation<EM2SpawnWeaponView>();
+            containerRegistry.RegisterForNavigation<EM3WorldFunctionView>();
+            containerRegistry.RegisterForNavigation<EM4OnlineOptionView>();
+            containerRegistry.RegisterForNavigation<EM5PlayerListView>();
+            containerRegistry.RegisterForNavigation<EM6CustomTPView>();
+            containerRegistry.RegisterForNavigation<EM7ExternalOverlayView>();
+            containerRegistry.RegisterForNavigation<EM8SessionChatView>();
+
         }
 
         private void RegisterEvents()
@@ -56,7 +68,7 @@ namespace GTA5OnlineTools
             // UI线程未捕获异常处理事件（UI主线程）
             DispatcherUnhandledException += App_DispatcherUnhandledException;
 
-            // 非UI线程未捕获异常处理事件(例如自己创建的一个子线程)
+            // 非UI线程未捕获异常处理事件（例如自己创建的一个子线程）
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             // Task线程内未捕获异常处理事件

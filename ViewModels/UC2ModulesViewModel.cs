@@ -1,13 +1,16 @@
 ﻿using System.Windows;
+using Prism.Regions;
 using Prism.Commands;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Modules.Windows;
+using GTA5OnlineTools.Modules.Windows.ExternalMenu;
 
 namespace GTA5OnlineTools.ViewModels
 {
     public class UC2ModulesViewModel
     {
-        private ExternalMenuWindow ExternalMenuWindow = null;
+        private ExternalMenuView ExternalMenuView = null;
+
         private SpawnVehicleWindow SpawnVehicleWindow = null;
         private GTAHaxWindow GTAHaxWindow = null;
         private OutfitsWindow OutfitsWindow = null;
@@ -35,9 +38,14 @@ namespace GTA5OnlineTools.ViewModels
         public DelegateCommand HeistPrepsClickCommand { get; private set; }
         public DelegateCommand BigBaseV2ClickCommand { get; private set; }
 
-        public UC2ModulesViewModel()
+        private IRegionManager _RegionManager;
+
+        public UC2ModulesViewModel(IRegionManager regionManager)
         {
+            _RegionManager = regionManager;
+
             ExternalMenuClickCommand = new DelegateCommand(ExternalMenuClick);
+
             SpawnVehicleClickCommand = new DelegateCommand(SpawnVehicleClick);
             GTAHaxClickCommand = new DelegateCommand(GTAHaxClick);
             OutfitsClickCommand = new DelegateCommand(OutfitsClick);
@@ -60,24 +68,24 @@ namespace GTA5OnlineTools.ViewModels
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    if (ExternalMenuWindow == null)
+                    if (ExternalMenuView == null)
                     {
-                        ExternalMenuWindow = new ExternalMenuWindow();
-                        ExternalMenuWindow.Show();
+                        ExternalMenuView = new ExternalMenuView(_RegionManager);
+                        ExternalMenuView.Show();
                     }
                     else
                     {
-                        if (ExternalMenuWindow.IsVisible)
+                        if (ExternalMenuView.IsVisible)
                         {
-                            ExternalMenuWindow.Topmost = true;
-                            ExternalMenuWindow.Topmost = false;
-                            ExternalMenuWindow.WindowState = WindowState.Normal;
+                            ExternalMenuView.Topmost = true;
+                            ExternalMenuView.Topmost = false;
+                            ExternalMenuView.WindowState = WindowState.Normal;
                         }
                         else
                         {
-                            ExternalMenuWindow = null;
-                            ExternalMenuWindow = new ExternalMenuWindow();
-                            ExternalMenuWindow.Show();
+                            ExternalMenuView = null;
+                            ExternalMenuView = new ExternalMenuView(_RegionManager);
+                            ExternalMenuView.Show();
                         }
                     }
                 });

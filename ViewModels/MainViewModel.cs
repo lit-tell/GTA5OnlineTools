@@ -21,10 +21,11 @@ namespace GTA5OnlineTools.ViewModels
     {
         public MainModel MainModel { get; set; }
         public List<MenuBar> MenuBars { get; set; }
-        public IRegionManager RegionManager { get; private set; }
-        public IEventAggregator EventAggregator { get; private set; }
 
         public DelegateCommand<MenuBar> NavigateCommand { get; private set; }
+
+        private IRegionManager _RegionManager;
+        private IEventAggregator _EventAggregator;
 
         // 声明一个变量，用于存储软件开始运行的时间
         private DateTime Origin_DateTime;
@@ -34,12 +35,12 @@ namespace GTA5OnlineTools.ViewModels
             MainModel = new MainModel();
             MenuBars = new List<MenuBar>();
             CreateMenuBar();
-            RegionManager = regionManager;
-            EventAggregator = eventAggregator;
+            _RegionManager = regionManager;
+            _EventAggregator = eventAggregator;
             NavigateCommand = new DelegateCommand<MenuBar>(Navigate);
 
-            regionManager.RegisterViewWithRegion("MainViewRegion", "UC0IndexView");
-            regionManager.RegisterViewWithRegion("MainViewRegion", "UC4UpdateView");
+            _RegionManager.RegisterViewWithRegion("MainViewRegion", "UC0IndexView");
+            _RegionManager.RegisterViewWithRegion("MainViewRegion", "UC4UpdateView");
 
             //////////////////////////////////////////////////////////////////////////////
 
@@ -77,7 +78,7 @@ namespace GTA5OnlineTools.ViewModels
             if (obj == null || string.IsNullOrEmpty(obj.NameSpace))
                 return;
 
-            RegionManager.Regions["MainViewRegion"].RequestNavigate(obj.NameSpace);
+            _RegionManager.Regions["MainViewRegion"].RequestNavigate(obj.NameSpace);
         }
 
         private void Timer_Tick(object sender, ElapsedEventArgs e)
@@ -153,12 +154,12 @@ namespace GTA5OnlineTools.ViewModels
 
                 await HttpHelper.HttpClientGET(CoreUtil.NoticeAddress).ContinueWith((t) =>
                 {
-                    this.EventAggregator.GetEvent<NoticeMsgEvent>().Publish(t.Result);
+                    this._EventAggregator.GetEvent<NoticeMsgEvent>().Publish(t.Result);
                 });
 
                 await HttpHelper.HttpClientGET(CoreUtil.ChangeAddress).ContinueWith((t) =>
                 {
-                    this.EventAggregator.GetEvent<ChangeMsgEvent>().Publish(t.Result);
+                    this._EventAggregator.GetEvent<ChangeMsgEvent>().Publish(t.Result);
                 });
             }
             catch (Exception ex)

@@ -1,0 +1,375 @@
+﻿<UserControl
+    x:Class="GTA5OnlineTools.Modules.Windows.ExternalMenu.EM0PlayerStateView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="720"
+    d:DesignWidth="1280"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+
+        <Style BasedOn="{StaticResource ButtonNormalStyle}" TargetType="Button" />
+    </UserControl.Resources>
+
+    <Grid>
+        <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="属性调节" />
+                    </Border>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="5,5,0,5"
+                            VerticalAlignment="Center"
+                            Text="生命值" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            Text="{Binding ElementName=Slider_Health, Path=Value, StringFormat=: {0:0000}}" />
+                        <Slider
+                            Name="Slider_Health"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True"
+                            Maximum="1000"
+                            Minimum="0"
+                            TickFrequency="1"
+                            ValueChanged="Slider_Health_ValueChanged" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="5,5,0,5"
+                            VerticalAlignment="Center"
+                            Text="最大生命值" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            Text="{Binding ElementName=Slider_MaxHealth, Path=Value, StringFormat=: {0:0000}}" />
+                        <Slider
+                            Name="Slider_MaxHealth"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True"
+                            Maximum="1000"
+                            Minimum="0"
+                            TickFrequency="1"
+                            ValueChanged="Slider_MaxHealth_ValueChanged" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="5,5,0,5"
+                            VerticalAlignment="Center"
+                            Text="护甲值" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            Text="{Binding ElementName=Slider_Armor, Path=Value, StringFormat=: {0:0000}}" />
+                        <Slider
+                            Name="Slider_Armor"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True"
+                            Maximum="1000"
+                            Minimum="0"
+                            TickFrequency="1"
+                            ValueChanged="Slider_Armor_ValueChanged" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="5,5,0,5"
+                            VerticalAlignment="Center"
+                            Text="通缉等级" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            Text="{Binding ElementName=Slider_Wanted, Path=Value, StringFormat=: {0}}" />
+                        <Slider
+                            Name="Slider_Wanted"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True"
+                            Maximum="5"
+                            Minimum="0"
+                            TickFrequency="1"
+                            ValueChanged="Slider_Wanted_ValueChanged" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="5,5,0,5"
+                            VerticalAlignment="Center"
+                            Text="奔跑速度" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            Text="{Binding ElementName=Slider_RunSpeed, Path=Value, StringFormat=: {0:00.0}}" />
+                        <Slider
+                            Name="Slider_RunSpeed"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True"
+                            Maximum="10"
+                            Minimum="0"
+                            TickFrequency="0.1"
+                            ValueChanged="Slider_RunSpeed_ValueChanged" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="5,5,0,5"
+                            VerticalAlignment="Center"
+                            Text="游泳速度" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            Text="{Binding ElementName=Slider_SwimSpeed, Path=Value, StringFormat=: {0:00.0}}" />
+                        <Slider
+                            Name="Slider_SwimSpeed"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True"
+                            Maximum="10"
+                            Minimum="0"
+                            TickFrequency="0.1"
+                            ValueChanged="Slider_SwimSpeed_ValueChanged" />
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Grid.Column="0"
+                            Margin="5,5,0,5"
+                            VerticalAlignment="Center"
+                            Text="潜行速度" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            Text="{Binding ElementName=Slider_StealthSpeed, Path=Value, StringFormat=: {0:00.0}}" />
+                        <Slider
+                            Name="Slider_StealthSpeed"
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True"
+                            Maximum="10"
+                            Minimum="0"
+                            TickFrequency="0.1"
+                            ValueChanged="Slider_StealthSpeed_ValueChanged" />
+                    </Grid>
+
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="一般选项" />
+                    </Border>
+                    <CheckBox
+                        x:Name="CheckBox_PlayerGodMode"
+                        Click="CheckBox_PlayerGodMode_Click"
+                        Content="玩家无敌" />
+                    <CheckBox
+                        x:Name="CheckBox_AntiAFK"
+                        Click="CheckBox_AntiAFK_Click"
+                        Content="挂机防踢" />
+                    <CheckBox
+                        x:Name="CheckBox_WaterProof"
+                        Click="CheckBox_WaterProof_Click"
+                        Content="水下行走" />
+                    <CheckBox
+                        x:Name="CheckBox_Invisibility"
+                        Click="CheckBox_Invisibility_Click"
+                        Content="玩家隐身" />
+
+                    <TextBlock />
+
+                    <CheckBox
+                        x:Name="CheckBox_UndeadOffRadar"
+                        Click="CheckBox_UndeadOffRadar_Click"
+                        Content="雷达影踪（假死）" />
+                    <CheckBox
+                        x:Name="CheckBox_NoRagdoll"
+                        Click="CheckBox_NoRagdoll_Click"
+                        Content="无布娃娃" />
+                    <CheckBox
+                        x:Name="CheckBox_NPCIgnore"
+                        Click="CheckBox_NPCIgnore_Click"
+                        Content="NPC无视" />
+                    <CheckBox
+                        x:Name="CheckBox_PoliceIgnore"
+                        Click="CheckBox_NPCIgnore_Click"
+                        Content="警察无视" />
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="特殊" />
+                    </Border>
+                    <!--<CheckBox
+                                x:Name="CheckBox_ExpandedRadar"
+                                Click="CheckBox_ExpandedRadar_Click"
+                                Content="展开地图"
+                                ToolTip="需要按一下Esc键生效" />-->
+                    <CheckBox
+                        x:Name="CheckBox_AutoClearWanted"
+                        Click="CheckBox_AutoClearWanted_Click"
+                        Content="自动消星" />
+                    <CheckBox
+                        x:Name="CheckBox_SuperJump"
+                        Click="CheckBox_SuperJump_Click"
+                        Content="超级跳跃" />
+                    <CheckBox
+                        x:Name="CheckBox_FireAmmo"
+                        Click="CheckBox_FireAmmo_Click"
+                        Content="燃烧子弹" />
+                    <CheckBox
+                        x:Name="CheckBox_ExplosiveAmmo"
+                        Click="CheckBox_ExplosiveAmmo_Click"
+                        Content="爆炸子弹" />
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="快捷键" />
+                    </Border>
+                    <CheckBox
+                        x:Name="CheckBox_ToWaypoint"
+                        Content="[F5] 传送到导航点"
+                        IsChecked="True" />
+                    <CheckBox
+                        x:Name="CheckBox_ToObjective"
+                        Content="[F6] 传送到目标点"
+                        IsChecked="True" />
+                    <CheckBox
+                        x:Name="CheckBox_FillHealthArmor"
+                        Content="[F7] 补满血量和护甲"
+                        IsChecked="True" />
+                    <CheckBox
+                        x:Name="CheckBox_ClearWanted"
+                        Content="[F8] 消除警星"
+                        IsChecked="True" />
+                    <TextBlock />
+                    <CheckBox
+                        x:Name="CheckBox_FillCurrentAmmo"
+                        Content="[F3] 补满当前武器弹药"
+                        IsChecked="True" />
+                    <CheckBox
+                        x:Name="CheckBox_MovingFoward"
+                        Content="[F4] 坐标向前微调"
+                        IsChecked="True" />
+                    <CheckBox
+                        x:Name="CheckBox_NoCollision"
+                        Click="CheckBox_NoCollision_Click"
+                        Content="[BACKSPACE] 玩家无碰撞体积">
+                        <CheckBox.ToolTip>
+                            勾选功能后，按【F9键】切换穿墙功能开关
+                        </CheckBox.ToolTip>
+                    </CheckBox>
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="快捷功能" />
+                    </Border>
+                    <WrapPanel Orientation="Horizontal">
+                        <Button
+                            x:Name="Button_ToWaypoint"
+                            Click="Button_ToWaypoint_Click"
+                            Content="传送到导航点" />
+                        <Button
+                            x:Name="Button_ToObjective"
+                            Click="Button_ToObjective_Click"
+                            Content="传送到目标点" />
+                        <Button
+                            x:Name="Button_FillHealthArmor"
+                            Click="Button_FillHealthArmor_Click"
+                            Content="补满血量和护甲" />
+                        <Button
+                            x:Name="Button_ClearWanted"
+                            Click="Button_ClearWanted_Click"
+                            Content="消除警星" />
+                        <Button
+                            x:Name="Button_Suicide"
+                            Click="Button_Suicide_Click"
+                            Content="玩家自杀" />
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,53 +1,37 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.ComponentModel;
-using System.Threading.Tasks;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
 using static GTA5OnlineTools.Features.SDK.Hacks;
 
-namespace GTA5OnlineTools.Modules.Windows
+namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// SpawnVehicleWindow.xaml 的交互逻辑
+    /// EM1SpawnVehicleView.xaml 的交互逻辑
     /// </summary>
-    public partial class SpawnVehicleWindow : Window
+    public partial class EM1SpawnVehicleView : UserControl
     {
         private static long SpawnVehicleHash = 0;
 
-        public SpawnVehicleWindow()
+        public EM1SpawnVehicleView()
         {
             InitializeComponent();
-        }
 
-        private void Window_SpawnVehicle_Loaded(object sender, RoutedEventArgs e)
-        {
-            Task.Run(() =>
+            // 载具列表
+            for (int i = 0; i < VehicleData2.VehicleClassData.Count; i++)
             {
-                Memory.Initialize(CoreUtil.TargetAppName);
+                ListBox_VehicleClass.Items.Add(VehicleData2.VehicleClassData[i].ClassName);
+            }
+            ListBox_VehicleClass.SelectedIndex = 0;
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.WorldPTR);
-                Globals.WorldPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
-
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.GlobalPTR);
-                Globals.GlobalPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
-
-                Dispatcher.BeginInvoke(new Action(delegate
-                {
-                    // 载具列表
-                    for (int i = 0; i < VehicleData2.VehicleClassData.Count; i++)
-                    {
-                        ListBox_VehicleClass.Items.Add(VehicleData2.VehicleClassData[i].ClassName);
-                    }
-                    ListBox_VehicleClass.SelectedIndex = 0;
-                }));
-            });
+            ExternalMenuView.ClosingDisposeEvent += ExternalMenuView_ClosingDisposeEvent;
         }
 
-        private void Window_SpawnVehicle_Closing(object sender, CancelEventArgs e)
+        private void ExternalMenuView_ClosingDisposeEvent()
         {
 
         }
