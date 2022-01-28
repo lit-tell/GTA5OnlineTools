@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using System.Collections.Generic;
 using Chinese;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Http;
@@ -241,5 +242,19 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             TextBox_ChatName.Text = TextBox_OnlineList.Text;
             TextBox_ExternalDisplay.Text = TextBox_OnlineList.Text;
         }
+    }
+
+    public class TranslateResultItemItem
+    {
+        public string src { get; set; }
+        public string tgt { get; set; }
+    }
+
+    public class ReceiveObj
+    {
+        public string type { get; set; }
+        public int errorCode { get; set; }
+        public int elapsedTime { get; set; }
+        public List<List<TranslateResultItemItem>> translateResult { get; set; }
     }
 }

@@ -11,16 +11,11 @@ namespace GTA5OnlineTools.ViewModels
     {
         private ExternalMenuView ExternalMenuView = null;
 
-        private SpawnVehicleWindow SpawnVehicleWindow = null;
         private GTAHaxWindow GTAHaxWindow = null;
         private OutfitsWindow OutfitsWindow = null;
         private HeistCutWindow HeistCutWindow = null;
-        private NameChangeWindow NameChangeWindow = null;
-        private GTAOverlayWindow GTAOverlayWindow = null;
         private MoneyRPWindow MoneyRPWindow = null;
         private StatAutoScriptsWindow StatAutoScriptsWindow = null;
-        private CustomTPWindow CustomTPWindow = null;
-        private SendTextWindow SendTextWindow = null;
         private HeistPrepsWindow HeistPrepsWindow = null;
         private BigBaseV2Window BigBaseV2Window = null;
 
@@ -46,16 +41,11 @@ namespace GTA5OnlineTools.ViewModels
 
             ExternalMenuClickCommand = new DelegateCommand(ExternalMenuClick);
 
-            SpawnVehicleClickCommand = new DelegateCommand(SpawnVehicleClick);
             GTAHaxClickCommand = new DelegateCommand(GTAHaxClick);
             OutfitsClickCommand = new DelegateCommand(OutfitsClick);
             HeistCutClickCommand = new DelegateCommand(HeistCutClick);
-            NameChangeClickCommand = new DelegateCommand(NameChangeClick);
-            GTAOverlayClickCommand = new DelegateCommand(GTAOverlayClick);
             MoneyRPClickCommand = new DelegateCommand(MoneyRPClick);
             StatAutoScriptsClickCommand = new DelegateCommand(StatAutoScriptsClick);
-            CustomTPClickCommand = new DelegateCommand(CustomTPClick);
-            SendTextClickCommand = new DelegateCommand(SendTextClick);
             HeistPrepsClickCommand = new DelegateCommand(HeistPrepsClick);
             BigBaseV2ClickCommand = new DelegateCommand(BigBaseV2Click);
         }
@@ -96,42 +86,6 @@ namespace GTA5OnlineTools.ViewModels
             }
         }
 
-        private void SpawnVehicleClick()
-        {
-            AudioUtil.ClickSound();
-
-            if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    if (SpawnVehicleWindow == null)
-                    {
-                        SpawnVehicleWindow = new SpawnVehicleWindow();
-                        SpawnVehicleWindow.Show();
-                    }
-                    else
-                    {
-                        if (SpawnVehicleWindow.IsVisible)
-                        {
-                            SpawnVehicleWindow.Topmost = true;
-                            SpawnVehicleWindow.Topmost = false;
-                            SpawnVehicleWindow.WindowState = WindowState.Normal;
-                        }
-                        else
-                        {
-                            SpawnVehicleWindow = null;
-                            SpawnVehicleWindow = new SpawnVehicleWindow();
-                            SpawnVehicleWindow.Show();
-                        }
-                    }
-                });
-            }
-            else
-            {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
         private void HeistPrepsClick()
         {
             AudioUtil.ClickSound();
@@ -158,78 +112,6 @@ namespace GTA5OnlineTools.ViewModels
                             HeistPrepsWindow = null;
                             HeistPrepsWindow = new HeistPrepsWindow();
                             HeistPrepsWindow.Show();
-                        }
-                    }
-                });
-            }
-            else
-            {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void SendTextClick()
-        {
-            AudioUtil.ClickSound();
-
-            if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    if (SendTextWindow == null)
-                    {
-                        SendTextWindow = new SendTextWindow();
-                        SendTextWindow.Show();
-                    }
-                    else
-                    {
-                        if (SendTextWindow.IsVisible)
-                        {
-                            SendTextWindow.Topmost = true;
-                            SendTextWindow.Topmost = false;
-                            SendTextWindow.WindowState = WindowState.Normal;
-                        }
-                        else
-                        {
-                            SendTextWindow = null;
-                            SendTextWindow = new SendTextWindow();
-                            SendTextWindow.Show();
-                        }
-                    }
-                });
-            }
-            else
-            {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void CustomTPClick()
-        {
-            AudioUtil.ClickSound();
-
-            if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    if (CustomTPWindow == null)
-                    {
-                        CustomTPWindow = new CustomTPWindow();
-                        CustomTPWindow.Show();
-                    }
-                    else
-                    {
-                        if (CustomTPWindow.IsVisible)
-                        {
-                            CustomTPWindow.Topmost = true;
-                            CustomTPWindow.Topmost = false;
-                            CustomTPWindow.WindowState = WindowState.Normal;
-                        }
-                        else
-                        {
-                            CustomTPWindow = null;
-                            CustomTPWindow = new CustomTPWindow();
-                            CustomTPWindow.Show();
                         }
                     }
                 });
@@ -302,42 +184,6 @@ namespace GTA5OnlineTools.ViewModels
                             MoneyRPWindow = null;
                             MoneyRPWindow = new MoneyRPWindow();
                             MoneyRPWindow.Show();
-                        }
-                    }
-                });
-            }
-            else
-            {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void NameChangeClick()
-        {
-            AudioUtil.ClickSound();
-
-            if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    if (NameChangeWindow == null)
-                    {
-                        NameChangeWindow = new NameChangeWindow();
-                        NameChangeWindow.Show();
-                    }
-                    else
-                    {
-                        if (NameChangeWindow.IsVisible)
-                        {
-                            NameChangeWindow.Topmost = true;
-                            NameChangeWindow.Topmost = false;
-                            NameChangeWindow.WindowState = WindowState.Normal;
-                        }
-                        else
-                        {
-                            NameChangeWindow = null;
-                            NameChangeWindow = new NameChangeWindow();
-                            NameChangeWindow.Show();
                         }
                     }
                 });
@@ -447,42 +293,6 @@ namespace GTA5OnlineTools.ViewModels
                     }
                 }
             });
-        }
-
-        private void GTAOverlayClick()
-        {
-            AudioUtil.ClickSound();
-
-            if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    if (GTAOverlayWindow == null)
-                    {
-                        GTAOverlayWindow = new GTAOverlayWindow();
-                        GTAOverlayWindow.Show();
-                    }
-                    else
-                    {
-                        if (GTAOverlayWindow.IsVisible)
-                        {
-                            GTAOverlayWindow.Topmost = true;
-                            GTAOverlayWindow.Topmost = false;
-                            GTAOverlayWindow.WindowState = WindowState.Normal;
-                        }
-                        else
-                        {
-                            GTAOverlayWindow = null;
-                            GTAOverlayWindow = new GTAOverlayWindow();
-                            GTAOverlayWindow.Show();
-                        }
-                    }
-                });
-            }
-            else
-            {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
 
         private void BigBaseV2Click()
