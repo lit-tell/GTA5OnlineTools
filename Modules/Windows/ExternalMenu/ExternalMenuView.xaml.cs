@@ -91,11 +91,12 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "世界功能", ColorHex = "#333333", NameSpace = "EM3WorldFunctionView" });
             MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "线上选项", ColorHex = "#333333", NameSpace = "EM4OnlineOptionView" });
             MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "玩家列表", ColorHex = "#333333", NameSpace = "EM5PlayerListView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "刷载具", ColorHex = "#333333", NameSpace = "EM1SpawnVehicleView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "刷武器", ColorHex = "#333333", NameSpace = "EM2SpawnWeaponView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "刷出线上载具", ColorHex = "#333333", NameSpace = "EM1SpawnVehicleView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "刷出线上武器", ColorHex = "#333333", NameSpace = "EM2SpawnWeaponView" });
             MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "自定义传送", ColorHex = "#333333", NameSpace = "EM6CustomTPView" });
             MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "外部ESP", ColorHex = "#333333", NameSpace = "EM7ExternalOverlayView" });
             MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "战局聊天", ColorHex = "#333333", NameSpace = "EM8SessionChatView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe6ff", Title = "任务小帮手", ColorHex = "#333333", NameSpace = "EM9JobHelperView" });
 
         }
 

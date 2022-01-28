@@ -4,11 +4,133 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="720"
+    d:DesignWidth="1280"
     mc:Ignorable="d">
 
-    <Grid>
-        <TextBlock Text="EM3WorldFunctionView" />
+    <UserControl.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+
+        <Style BasedOn="{StaticResource ButtonNormalStyle}" TargetType="Button" />
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="战局切换" />
+                    </Border>
+                    <WrapPanel>
+                        <Button Click="Button_Sessions_Click" Content="公共战局" />
+                        <Button Click="Button_Sessions_Click" Content="仅限邀请战局" />
+                        <Button Click="Button_Sessions_Click" Content="帮会战局" />
+                        <Button Click="Button_Sessions_Click" Content="私人帮会战局" />
+                        <Button Click="Button_Sessions_Click" Content="私人好友战局" />
+                        <Button Click="Button_Sessions_Click" Content="单人战局" />
+                        <Button Click="Button_Sessions_Click" Content="加入好友" />
+                        <Button Click="Button_Sessions_Click" Content="加入帮会伙伴" />
+                        <Button Click="Button_Sessions_Click" Content="创建公共战局" />
+                        <Button Click="Button_Sessions_Click" Content="离开线上模式" />
+
+                    </WrapPanel>
+
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="特殊功能" />
+                    </Border>
+                    <WrapPanel>
+                        <Button
+                            x:Name="Button_Disconnect"
+                            Click="Button_Disconnect_Click"
+                            Content="断开战局链接" />
+                        <Button
+                            x:Name="Button_EmptySession"
+                            Click="Button_EmptySession_Click"
+                            Content="空战局" />
+                    </WrapPanel>
+
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="本地天气" />
+                    </Border>
+                    <WrapPanel>
+                        <Button Click="Button_LocalWeather_Click" Content="默认" />
+                        <Button Click="Button_LocalWeather_Click" Content="格外晴朗" />
+                        <Button Click="Button_LocalWeather_Click" Content="晴朗" />
+                        <Button Click="Button_LocalWeather_Click" Content="多云" />
+                        <Button Click="Button_LocalWeather_Click" Content="阴霾" />
+                        <Button Click="Button_LocalWeather_Click" Content="大雾" />
+                        <Button Click="Button_LocalWeather_Click" Content="阴天" />
+                        <Button Click="Button_LocalWeather_Click" Content="下雨" />
+                        <Button Click="Button_LocalWeather_Click" Content="雷雨" />
+                        <Button Click="Button_LocalWeather_Click" Content="雨转晴" />
+                        <Button Click="Button_LocalWeather_Click" Content="阴雨" />
+                        <Button Click="Button_LocalWeather_Click" Content="下雪" />
+                        <Button Click="Button_LocalWeather_Click" Content="暴雪" />
+                        <Button Click="Button_LocalWeather_Click" Content="小雪" />
+                        <Button Click="Button_LocalWeather_Click" Content="圣诞" />
+                        <Button Click="Button_LocalWeather_Click" Content="万圣节" />
+
+                    </WrapPanel>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="NPC控制" />
+                    </Border>
+                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Button
+                            x:Name="Button_KillAllPeds"
+                            Click="Button_KillAllPeds_Click"
+                            Content="杀死全部NPC" />
+                        <Button
+                            x:Name="Button_KillAllHostilityPeds"
+                            Click="Button_KillAllHostilityPeds_Click"
+                            Content="杀死全部敌对NPC" />
+                        <Button
+                            x:Name="Button_DestroyAllVehicles"
+                            Click="Button_DestroyAllVehicles_Click"
+                            Content="摧毁全部载具" />
+                        <Button
+                            x:Name="Button_DestroyAllNPCVehicles"
+                            Click="Button_DestroyAllNPCVehicles_Click"
+                            Content="摧毁全部NPC载具" />
+                        <Button
+                            x:Name="Button_DestroyAllHostilityNPCVehicles"
+                            Click="Button_DestroyAllHostilityNPCVehicles_Click"
+                            Content="摧毁全部敌对NPC载具" />
+                        <Button
+                            x:Name="Button_TPAllNPCToMe"
+                            Click="Button_TPAllNPCToMe_Click"
+                            Content="传送所有NPC到我" />
+                        <Button
+                            x:Name="Button_TPFriendNPCToMe"
+                            Click="Button_TPFriendNPCToMe_Click"
+                            Content="传送所有敌对NPC到我" />
+                    </WrapPanel>
+
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>

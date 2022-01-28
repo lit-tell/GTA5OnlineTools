@@ -5,51 +5,126 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:GTA5OnlineTools.Modules.Windows.ExternalMenu"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="720"
+    d:DesignWidth="1280"
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Style TargetType="TextBlock">
+        <Style TargetType="CheckBox">
             <Setter Property="Margin" Value="5" />
         </Style>
 
-        <Style TargetType="TextBox">
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="Padding" Value="5" />
-        </Style>
+        <Style BasedOn="{StaticResource ButtonNormalStyle}" TargetType="Button" />
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-        <Grid Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="300" />
-                <ColumnDefinition Width="400" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+        <ListBox
+            x:Name="ListBox_VehicleClass"
+            Grid.Column="0"
+            SelectionChanged="ListBox_VehicleClass_SelectionChanged"
+            Style="{StaticResource ListBoxStyle}" />
 
-            <ListBox
-                x:Name="ListBox_VehicleClass"
-                Grid.Column="0"
-                Margin="0,0,3,0"
-                SelectionChanged="ListBox_VehicleClass_SelectionChanged"
-                Style="{StaticResource ListBoxStyle}" />
+        <ListBox
+            x:Name="ListBox_VehicleInfo"
+            Grid.Column="1"
+            Margin="5,0,5,0"
+            SelectionChanged="ListBox_VehicleInfo_SelectionChanged"
+            Style="{StaticResource ListBoxStyle}" />
 
-            <ListBox
-                x:Name="ListBox_VehicleInfo"
-                Grid.Column="1"
-                Margin="3,0,0,0"
-                SelectionChanged="ListBox_VehicleInfo_SelectionChanged"
-                Style="{StaticResource ListBoxStyle}" />
+        <DockPanel Grid.Column="2">
+            <StackPanel DockPanel.Dock="Top">
+                <Border Style="{StaticResource BorderTitleStyle}">
+                    <TextBlock
+                        Padding="3,0,0,0"
+                        Foreground="White"
+                        Text="一般选项" />
+                </Border>
+                <CheckBox
+                    x:Name="CheckBox_VehicleGodMode"
+                    Click="CheckBox_VehicleGodMode_Click"
+                    Content="载具无敌" />
+                <CheckBox
+                    x:Name="CheckBox_VehicleSeatbelt"
+                    Click="CheckBox_VehicleSeatbelt_Click"
+                    Content="载具安全带" />
+                <CheckBox
+                    x:Name="CheckBox_VehicleParachute"
+                    Click="CheckBox_VehicleParachute_Click"
+                    Content="载具降落伞" />
+                <CheckBox
+                    x:Name="CheckBox_VehicleInvisibility"
+                    Click="CheckBox_VehicleInvisibility_Click"
+                    Content="载具隐身" />
+                <WrapPanel>
+                    <Button
+                        x:Name="Button_FillVehicleHealth"
+                        Click="Button_FillVehicleHealth_Click"
+                        Content="补满载具血量" />
+                </WrapPanel>
+                <Border Style="{StaticResource BorderTitleStyle}">
+                    <TextBlock
+                        Padding="3,0,0,0"
+                        Foreground="White"
+                        Text="载具附加功能（提示）">
+                        <TextBlock.ToolTip>
+                            提示：E键-载具跳跃，X键-载具加速
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                </Border>
+                <WrapPanel>
+                    <RadioButton
+                        x:Name="RadioButton_VehicleExtras_None"
+                        Margin="5"
+                        Click="RadioButton_VehicleExtras_None_Click"
+                        Content="默认"
+                        IsChecked="True" />
+                    <RadioButton
+                        x:Name="RadioButton_VehicleExtras_Jump"
+                        Margin="5"
+                        Click="RadioButton_VehicleExtras_None_Click"
+                        Content="跳跃" />
+                    <RadioButton
+                        x:Name="RadioButton_VehicleExtras_Boost"
+                        Margin="5"
+                        Click="RadioButton_VehicleExtras_None_Click"
+                        Content="加速" />
+                    <RadioButton
+                        x:Name="RadioButton_VehicleExtras_Both"
+                        Margin="5"
+                        Click="RadioButton_VehicleExtras_None_Click"
+                        Content="跳跃和加速" />
+                </WrapPanel>
 
-            <StackPanel Grid.Column="2" Margin="5">
+                <Border Style="{StaticResource BorderTitleStyle}">
+                    <TextBlock
+                        Padding="3,0,0,0"
+                        Foreground="White"
+                        Text="高级" />
+                </Border>
+                <WrapPanel>
+                    <Button
+                        x:Name="Button_RepairVehicle"
+                        Click="Button_RepairVehicle_Click"
+                        Content="修复载具外观"
+                        ToolTip="如果没效果可以多点几下" />
+                    <Button
+                        x:Name="Button_TurnOffBST"
+                        Click="Button_TurnOffBST_Click"
+                        Content="移除牛鲨睾酮效果" />
+                    <Button
+                        x:Name="Button_GetInOnlinePV"
+                        Click="Button_GetInOnlinePV_Click"
+                        Content="坐进个人载具" />
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel Margin="0,20,0,0" DockPanel.Dock="Bottom">
                 <TextBlock
                     Margin="5"
                     HorizontalAlignment="Center"
@@ -57,46 +132,15 @@
                     FontWeight="Bold"
                     Text="载具自定义" />
 
-                <TextBlock Text="功能开发中..." />
-                <TextBlock Text="主色调" />
-                <ComboBox />
-                <TextBlock Text="副色调" />
-                <ComboBox />
-                <TextBlock Text="车轮类型" />
-                <ComboBox />
-                <TextBlock Text="车轮选择" />
-                <ComboBox />
-            </StackPanel>
-
-            <StackPanel Grid.Column="3" Margin="5">
-                <TextBlock
-                    Margin="5"
-                    HorizontalAlignment="Center"
-                    FontSize="24"
-                    FontWeight="Bold"
-                    Text="刷出载具" />
-
-                <StackPanel>
-                    <TextBlock Text="功能开发中..." />
-                </StackPanel>
+                <TextBlock Margin="5" Text="功能开发中..." />
 
                 <Button
                     x:Name="Button_SpawnonlineVehicle"
                     Click="Button_SpawnonlineVehicle_Click"
-                    Content="刷出线上载具"
-                    Style="{StaticResource ButtonWebStyle}" />
+                    Content="刷出线上载具" />
             </StackPanel>
-        </Grid>
 
-        <Grid Grid.Row="2" Margin="5">
-            <Border Style="{StaticResource BorderEffectStyle}" />
-            <TextBox
-                x:Name="TextBox_ResultInfo"
-                Height="50"
-                Margin="5"
-                BorderThickness="0"
-                Text="操作信息提示"
-                TextWrapping="WrapWithOverflow" />
-        </Grid>
+        </DockPanel>
     </Grid>
+
 </UserControl>

@@ -4,9 +4,160 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="720"
+    d:DesignWidth="1280"
     mc:Ignorable="d">
 
-    <Grid />
+    <UserControl.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+
+        <Style BasedOn="{StaticResource ButtonNormalStyle}" TargetType="Button" />
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ListBox
+            x:Name="ListBox_WeaponList"
+            Grid.Column="0"
+            SelectedIndex="0"
+            SelectionChanged="ListBox_WeaponList_SelectionChanged"
+            Style="{StaticResource ListBoxStyle}" />
+
+        <ListBox
+            x:Name="ListBox_WeaponInfo"
+            Grid.Column="1"
+            Margin="5,0,5,0"
+            SelectedIndex="0"
+            SelectionChanged="ListBox_WeaponInfo_SelectionChanged"
+            Style="{StaticResource ListBoxStyle}" />
+
+        <StackPanel Grid.Column="2">
+            <Border Style="{StaticResource BorderTitleStyle}">
+                <TextBlock
+                    Padding="3,0,0,0"
+                    Foreground="White"
+                    Text="弹药编辑" />
+            </Border>
+            <WrapPanel>
+                <RadioButton
+                    x:Name="RadioButton_AmmoModifier_None"
+                    Margin="5"
+                    Click="RadioButton_AmmoModifier_None_Click"
+                    Content="默认"
+                    IsChecked="True" />
+                <RadioButton
+                    x:Name="RadioButton_AmmoModifier_AMMO"
+                    Margin="5"
+                    Click="RadioButton_AmmoModifier_None_Click"
+                    Content="无限弹药" />
+                <RadioButton
+                    x:Name="RadioButton_AmmoModifier_CLIP"
+                    Margin="5"
+                    Click="RadioButton_AmmoModifier_None_Click"
+                    Content="无限弹夹" />
+                <RadioButton
+                    x:Name="RadioButton_AmmoModifier_Both"
+                    Margin="5"
+                    Click="RadioButton_AmmoModifier_None_Click"
+                    Content="无限弹药和弹夹" />
+            </WrapPanel>
+
+            <Border Style="{StaticResource BorderTitleStyle}">
+                <TextBlock
+                    Padding="3,0,0,0"
+                    Foreground="White"
+                    Text="弹药编辑 (经典)" />
+            </Border>
+            <CheckBox
+                x:Name="CheckBox_InfiniteAmmo"
+                Click="CheckBox_InfiniteAmmo_Click"
+                Content="无限弹药" />
+            <CheckBox
+                x:Name="CheckBox_NoReload"
+                Click="CheckBox_NoReload_Click"
+                Content="无需换弹" />
+            <CheckBox
+                x:Name="CheckBox_ReloadMult"
+                Click="CheckBox_ReloadMult_Click"
+                Content="快速换弹" />
+            <WrapPanel>
+                <Button
+                    x:Name="Button_NoRecoil"
+                    Click="Button_NoRecoil_Click"
+                    Content="无后坐力" />
+                <Button
+                    x:Name="CheckBox_NoSpread"
+                    Click="CheckBox_NoSpread_Click"
+                    Content="无子弹扩散" />
+                <Button
+                    x:Name="CheckBox_Range"
+                    Click="CheckBox_Range_Click"
+                    Content="提升射程" />
+            </WrapPanel>
+
+            <Border Style="{StaticResource BorderTitleStyle}">
+                <TextBlock
+                    Padding="3,0,0,0"
+                    Foreground="White"
+                    Text="子弹类型" />
+            </Border>
+            <CheckBox
+                x:Name="CheckBox_ImpactType"
+                Click="CheckBox_ImpactType_Click"
+                Content="启用子弹类型" />
+            <ComboBox
+                x:Name="ComboBox_ImpactExplosion"
+                Margin="5"
+                Padding="7"
+                VerticalContentAlignment="Center"
+                SelectedIndex="0"
+                SelectionChanged="ComboBox_ImpactExplosion_SelectionChanged">
+                <ComboBox.Resources>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Padding" Value="5" />
+                    </Style>
+                </ComboBox.Resources>
+            </ComboBox>
+
+            <Border Style="{StaticResource BorderTitleStyle}">
+                <TextBlock
+                    Padding="3,0,0,0"
+                    Foreground="White"
+                    Text="快捷功能" />
+            </Border>
+            <WrapPanel>
+                <Button
+                    x:Name="Button_FillCurrentAmmo"
+                    Click="Button_FillCurrentAmmo_Click"
+                    Content="补满当前武器弹药" />
+            </WrapPanel>
+
+            <StackPanel Margin="0,20,0,0" DockPanel.Dock="Bottom">
+                <TextBlock
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    FontSize="24"
+                    FontWeight="Bold"
+                    Text="武器自定义" />
+
+                <TextBlock Margin="5" Text="功能开发中..." />
+
+                <Button
+                    x:Name="Button_SpawnWeapon"
+                    Margin="5,2,5,5"
+                    Click="Button_SpawnWeapon_Click"
+                    Content="刷出线上武器"
+                    DockPanel.Dock="Bottom" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
 </UserControl>

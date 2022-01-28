@@ -1,48 +1,25 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using GTA5OnlineTools.Common.Utils;
-using GTA5OnlineTools.Features.Core;
-using GTA5OnlineTools.Features.Data;
 using GTA5OnlineTools.Features.SDK;
+using GTA5OnlineTools.Features.Data;
 
-namespace GTA5OnlineTools.Modules.Windows
+namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// MoneyRPWindow.xaml 的交互逻辑
+    /// EM9JobHelperView.xaml 的交互逻辑
     /// </summary>
-    public partial class MoneyRPWindow : Window
+    public partial class EM9JobHelperView : UserControl
     {
-        public MoneyRPWindow()
+        public EM9JobHelperView()
         {
             InitializeComponent();
+
+            ExternalMenuView.ClosingDisposeEvent += ExternalMenuView_ClosingDisposeEvent;
         }
 
-        private void Window_MoneyRP_Loaded(object sender, RoutedEventArgs e)
-        {
-            Task.Run(() =>
-            {
-                Memory.Initialize(CoreUtil.TargetAppName);
-
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.WorldPTR);
-                Globals.WorldPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
-
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.BlipPTR);
-                Globals.BlipPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
-
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.GlobalPTR);
-                Globals.GlobalPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
-
-                Dispatcher.BeginInvoke(new Action(delegate
-                {
-
-                }));
-            });
-        }
-
-        private void Window_MoneyRP_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void ExternalMenuView_ClosingDisposeEvent()
         {
             
         }
@@ -197,16 +174,6 @@ namespace GTA5OnlineTools.Modules.Windows
         private void CheckBox_PricePerCrateAtXCrates_Click(object sender, RoutedEventArgs e)
         {
             Online.CEOPricePerCrateAtXCrates(CheckBox_PricePerCrateAtXCrates.IsChecked == true);
-        }
-
-        private void CheckBox_OnlineSnow_Click(object sender, RoutedEventArgs e)
-        {
-            Online.SessionSnow(CheckBox_OnlineSnow.IsChecked == true);
-        }
-
-        private void CheckBox_AllowSellOnNonPublic_Click(object sender, RoutedEventArgs e)
-        {
-            Online.AllowSellOnNonPublic(CheckBox_AllowSellOnNonPublic.IsChecked == true);
         }
 
         private int CheckBusinessID(int index)
@@ -415,32 +382,6 @@ namespace GTA5OnlineTools.Modules.Windows
                 Online.REPMultiplier(MiscData.REPxNs[index].ID);
 
                 TextBox_Result.Text = $"REP倍数 x{MiscData.REPxNs[index].ID} 写入成功";
-            }
-        }
-
-        private void Button_Blips_Click(object sender, RoutedEventArgs e)
-        {
-            AudioUtil.ClickSound();
-
-            var str = (e.OriginalSource as Button).Content.ToString();
-
-            int index = MiscData.Blips.FindIndex(t => t.Name == str);
-            if (index != -1)
-            {
-                Teleport.ToBlips(MiscData.Blips[index].ID);
-            }
-        }
-
-        private void Button_Sessions_Click(object sender, RoutedEventArgs e)
-        {
-            AudioUtil.ClickSound();
-
-            var str = (e.OriginalSource as Button).Content.ToString();
-
-            int index = MiscData.Sessions.FindIndex(t => t.Name == str);
-            if (index != -1)
-            {
-                Online.LoadSession(MiscData.Sessions[index].ID);
             }
         }
 

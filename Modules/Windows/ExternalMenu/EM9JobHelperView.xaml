@@ -1,19 +1,15 @@
-﻿<Window
-    x:Class="GTA5OnlineTools.Modules.Windows.MoneyRPWindow"
+﻿<UserControl
+    x:Class="GTA5OnlineTools.Modules.Windows.ExternalMenu.EM9JobHelperView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:GTA5OnlineTools.Modules.Windows"
+    xmlns:local="clr-namespace:GTA5OnlineTools.Modules.Windows.ExternalMenu"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Name="Window_MoneyRP"
-    Title="GTA5线上小助手 金钱和经验"
-    Closing="Window_MoneyRP_Closing"
-    Loaded="Window_MoneyRP_Loaded"
-    Style="{StaticResource WindowNormalStyle}"
-    WindowStartupLocation="CenterScreen"
+    d:DesignHeight="720"
+    d:DesignWidth="1280"
     mc:Ignorable="d">
 
-    <Window.Resources>
+    <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="5" />
             <Setter Property="FontSize" Value="24" />
@@ -33,7 +29,7 @@
         </Style>
 
         <Style BasedOn="{StaticResource ButtonNormalStyle}" TargetType="Button" />
-    </Window.Resources>
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -41,10 +37,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
-            <Grid Margin="5">
+        <ScrollViewer Margin="5" Style="{StaticResource ScrollViewerVAHDStyle}">
+            <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -191,6 +186,9 @@
                         Content="最低托尼洗钱费用" />
                     <WrapPanel />
 
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Margin="5">
                     <TextBlock Text="进出口大亨" />
                     <CheckBox
                         x:Name="CheckBox_RemoveExportVehicleDelay"
@@ -210,59 +208,7 @@
                         x:Name="CheckBox_RemoveSmugglerRunOutDelay"
                         Click="CheckBox_RemoveSmugglerRunOutDelay_Click"
                         Content="移除机库出货延迟" />
-                </StackPanel>
 
-                <StackPanel Grid.Column="2" Margin="5">
-                    <TextBlock Text="高级" />
-                    <StackPanel>
-                        <CheckBox
-                            x:Name="CheckBox_AllowSellOnNonPublic"
-                            Click="CheckBox_AllowSellOnNonPublic_Click"
-                            Content="非公开战局运货" />
-                        <CheckBox
-                            x:Name="CheckBox_OnlineSnow"
-                            Click="CheckBox_OnlineSnow_Click"
-                            Content="战局雪天（自己可见）" />
-                    </StackPanel>
-
-                    <TextBlock Text="线上资产传送" />
-                    <WrapPanel>
-                        <Button Click="Button_Blips_Click" Content="游艇" />
-                        <Button Click="Button_Blips_Click" Content="CEO办公室" />
-                        <Button Click="Button_Blips_Click" Content="摩托帮会所" />
-                        <Button Click="Button_Blips_Click" Content="大麻种植场" />
-                        <Button Click="Button_Blips_Click" Content="可卡因工厂" />
-                        <Button Click="Button_Blips_Click" Content="伪证件办公室" />
-                        <Button Click="Button_Blips_Click" Content="冰毒实验室" />
-                        <Button Click="Button_Blips_Click" Content="假钞工厂" />
-                        <Button Click="Button_Blips_Click" Content="地堡" />
-                        <Button Click="Button_Blips_Click" Content="机库" />
-                        <Button Click="Button_Blips_Click" Content="设施" />
-                        <Button Click="Button_Blips_Click" Content="夜总会" />
-                        <Button Click="Button_Blips_Click" Content="游戏厅" />
-                        <Button Click="Button_Blips_Click" Content="虎鲸" />
-                        <Button Click="Button_Blips_Click" Content="车友会" />
-
-                    </WrapPanel>
-
-                    <TextBlock Text="战局切换" />
-                    <WrapPanel>
-                        <Button Click="Button_Sessions_Click" Content="公共战局" />
-                        <Button Click="Button_Sessions_Click" Content="仅限邀请战局" />
-                        <Button Click="Button_Sessions_Click" Content="帮会战局" />
-                        <Button Click="Button_Sessions_Click" Content="私人帮会战局" />
-                        <Button Click="Button_Sessions_Click" Content="私人好友战局" />
-                        <Button Click="Button_Sessions_Click" Content="单人战局" />
-                        <Button Click="Button_Sessions_Click" Content="加入好友" />
-                        <Button Click="Button_Sessions_Click" Content="加入帮会伙伴" />
-                        <Button Click="Button_Sessions_Click" Content="创建公共战局" />
-                        <Button Click="Button_Sessions_Click" Content="离开线上模式" />
-
-                    </WrapPanel>
-
-                </StackPanel>
-
-                <StackPanel Grid.Column="3" Margin="5">
                     <TextBlock Text="角色等级RP倍数" />
                     <WrapPanel>
                         <Button Click="Button_RPxN_Click" Content="RPx1" />
@@ -365,4 +311,4 @@
                 TextWrapping="WrapWithOverflow" />
         </Grid>
     </Grid>
-</Window>
+</UserControl>

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Numerics;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Interop;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;

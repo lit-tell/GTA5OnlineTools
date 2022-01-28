@@ -14,26 +14,22 @@ namespace GTA5OnlineTools.ViewModels
         private GTAHaxWindow GTAHaxWindow = null;
         private OutfitsWindow OutfitsWindow = null;
         private HeistCutWindow HeistCutWindow = null;
-        private MoneyRPWindow MoneyRPWindow = null;
         private StatAutoScriptsWindow StatAutoScriptsWindow = null;
         private HeistPrepsWindow HeistPrepsWindow = null;
         private BigBaseV2Window BigBaseV2Window = null;
 
         public DelegateCommand ExternalMenuClickCommand { get; private set; }
-        public DelegateCommand SpawnVehicleClickCommand { get; private set; }
+
         public DelegateCommand GTAHaxClickCommand { get; private set; }
         public DelegateCommand OutfitsClickCommand { get; private set; }
         public DelegateCommand HeistCutClickCommand { get; private set; }
-        public DelegateCommand NameChangeClickCommand { get; private set; }
-        public DelegateCommand GTAOverlayClickCommand { get; private set; }
-        public DelegateCommand MoneyRPClickCommand { get; private set; }
         public DelegateCommand StatAutoScriptsClickCommand { get; private set; }
-        public DelegateCommand CustomTPClickCommand { get; private set; }
-        public DelegateCommand SendTextClickCommand { get; private set; }
         public DelegateCommand HeistPrepsClickCommand { get; private set; }
         public DelegateCommand BigBaseV2ClickCommand { get; private set; }
 
         private IRegionManager _RegionManager;
+
+        private const string HintMsg = "未发现GTA5进程，请先运行GTA5游戏";
 
         public UC2ModulesViewModel(IRegionManager regionManager)
         {
@@ -44,7 +40,6 @@ namespace GTA5OnlineTools.ViewModels
             GTAHaxClickCommand = new DelegateCommand(GTAHaxClick);
             OutfitsClickCommand = new DelegateCommand(OutfitsClick);
             HeistCutClickCommand = new DelegateCommand(HeistCutClick);
-            MoneyRPClickCommand = new DelegateCommand(MoneyRPClick);
             StatAutoScriptsClickCommand = new DelegateCommand(StatAutoScriptsClick);
             HeistPrepsClickCommand = new DelegateCommand(HeistPrepsClick);
             BigBaseV2ClickCommand = new DelegateCommand(BigBaseV2Click);
@@ -82,7 +77,7 @@ namespace GTA5OnlineTools.ViewModels
             }
             else
             {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                MsgBoxUtil.ErrorMsgBox(HintMsg);
             }
         }
 
@@ -118,7 +113,7 @@ namespace GTA5OnlineTools.ViewModels
             }
             else
             {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                MsgBoxUtil.ErrorMsgBox(HintMsg);
             }
         }
 
@@ -154,43 +149,7 @@ namespace GTA5OnlineTools.ViewModels
             }
             else
             {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private void MoneyRPClick()
-        {
-            AudioUtil.ClickSound();
-
-            if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    if (MoneyRPWindow == null)
-                    {
-                        MoneyRPWindow = new MoneyRPWindow();
-                        MoneyRPWindow.Show();
-                    }
-                    else
-                    {
-                        if (MoneyRPWindow.IsVisible)
-                        {
-                            MoneyRPWindow.Topmost = true;
-                            MoneyRPWindow.Topmost = false;
-                            MoneyRPWindow.WindowState = WindowState.Normal;
-                        }
-                        else
-                        {
-                            MoneyRPWindow = null;
-                            MoneyRPWindow = new MoneyRPWindow();
-                            MoneyRPWindow.Show();
-                        }
-                    }
-                });
-            }
-            else
-            {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                MsgBoxUtil.ErrorMsgBox(HintMsg);
             }
         }
 
@@ -226,7 +185,7 @@ namespace GTA5OnlineTools.ViewModels
             }
             else
             {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                MsgBoxUtil.ErrorMsgBox(HintMsg);
             }
         }
 
@@ -262,7 +221,7 @@ namespace GTA5OnlineTools.ViewModels
             }
             else
             {
-                MessageBox.Show("未发现GTA5进程", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                MsgBoxUtil.ErrorMsgBox(HintMsg);
             }
         }
 

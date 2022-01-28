@@ -15,13 +15,8 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <ScrollViewer Grid.Row="0" Style="{StaticResource ScrollViewerVAHDStyle}">
+    <Grid Margin="5">
+        <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -245,7 +240,5 @@
                 </DockPanel>
             </Grid>
         </ScrollViewer>
-
-
     </Grid>
 </UserControl>

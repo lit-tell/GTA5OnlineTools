@@ -60,6 +60,7 @@ namespace GTA5OnlineTools
             containerRegistry.RegisterForNavigation<EM6CustomTPView>();
             containerRegistry.RegisterForNavigation<EM7ExternalOverlayView>();
             containerRegistry.RegisterForNavigation<EM8SessionChatView>();
+            containerRegistry.RegisterForNavigation<EM9JobHelperView>();
 
         }
 

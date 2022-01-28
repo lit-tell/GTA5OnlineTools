@@ -20,13 +20,13 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Margin="5">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -36,20 +36,20 @@
             <ListBox
                 x:Name="ListBox_TeleportList"
                 Grid.Column="0"
-                Margin="0,0,3,0"
+                Margin="0"
                 SelectionChanged="ListBox_TeleportList_SelectionChanged"
                 Style="{StaticResource ListBoxStyle}" />
 
             <ListBox
                 x:Name="ListBox_TeleportInfo"
                 Grid.Column="1"
-                Margin="3,0,0,0"
+                Margin="5,0,5,0"
                 MouseDoubleClick="ListBox_TeleportInfo_MouseDoubleClick"
                 SelectionChanged="ListBox_TeleportInfo_SelectionChanged"
                 Style="{StaticResource ListBoxStyle}"
                 ToolTip="双击选中项即可快捷传送" />
 
-            <StackPanel Grid.Column="2" Margin="5">
+            <StackPanel Grid.Column="2">
                 <TextBlock
                     Margin="5"
                     HorizontalAlignment="Center"
@@ -124,7 +124,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Row="2" Margin="5">
+        <Grid Grid.Row="2" Margin="0,5,0,0">
             <Border Style="{StaticResource BorderEffectStyle}" />
             <TextBox
                 x:Name="TextBox_Result"

@@ -4,8 +4,51 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="720"
+    d:DesignWidth="1280"
     mc:Ignorable="d">
-    <Grid />
+
+    <UserControl.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+
+        <Style BasedOn="{StaticResource ButtonNormalStyle}" TargetType="Button" />
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <ListBox
+            x:Name="ListBox_PlayerList"
+            Grid.Column="0"
+            Margin="0,0,5,0"
+            SelectedIndex="0"
+            SelectionChanged="ListBox_PlayerList_SelectionChanged"
+            Style="{StaticResource ListBoxStyle}" />
+
+        <TextBox
+            x:Name="TextBox_PlayerInfo"
+            Grid.Column="1"
+            Padding="5"
+            Style="{StaticResource TextBoxStyle}" />
+
+        <StackPanel Grid.Column="2">
+            <Button
+                x:Name="Button_RefreshPlayerList"
+                Margin="5"
+                Click="Button_RefreshPlayerList_Click"
+                Content="刷新玩家列表" />
+            <Button
+                x:Name="Button_TeleportSelectedPlayer"
+                Margin="5"
+                Click="Button_TeleportSelectedPlayer_Click"
+                Content="传送到选中玩家" />
+        </StackPanel>
+    </Grid>
+
 </UserControl>

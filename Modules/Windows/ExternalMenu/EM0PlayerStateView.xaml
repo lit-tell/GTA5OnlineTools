@@ -16,7 +16,7 @@
         <Style BasedOn="{StaticResource ButtonNormalStyle}" TargetType="Button" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="5">
         <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
