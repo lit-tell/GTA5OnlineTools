@@ -250,7 +250,7 @@
                     <CheckBox
                         x:Name="CheckBox_Invisibility"
                         Click="CheckBox_Invisibility_Click"
-                        Content="玩家隐身" />
+                        Content="玩家隐身（虚假）" />
                     <TextBlock />
                     <CheckBox
                         x:Name="CheckBox_UndeadOffRadar"

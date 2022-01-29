@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using GTA5OnlineTools.Features.Core;
+﻿using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
 
 namespace GTA5OnlineTools.Features.SDK

@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using GTA5OnlineTools.Features.Core;
+﻿using GTA5OnlineTools.Features.Core;
 
 namespace GTA5OnlineTools.Features.SDK
 {

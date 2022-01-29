@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using GTA5OnlineTools.Features.Core;
+﻿using GTA5OnlineTools.Features.Core;
 
 namespace GTA5OnlineTools.Features.SDK
 {
@@ -36,91 +35,85 @@ namespace GTA5OnlineTools.Features.SDK
         }
 
         /// <summary>
-        /// 杀死NPC
+        /// 杀死NPC，仅敌对？
         /// </summary>
         public static void KillNPC(bool isOnlyHostility)
         {
             // Ped实体
-            long pReplayInterfacePTR = Memory.Read<long>(Globals.ReplayInterfacePTR);
-            long my_offset_0x18 = Memory.Read<long>(pReplayInterfacePTR + 0x18);
+            long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+            long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+            int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
-            for (int i = 0; i < 128; i++)
+            for (int i = 0; i < m_max_peds; i++)
             {
-                long ped_offset_0 = Memory.Read<long>(my_offset_0x18 + 0x100);
-                ped_offset_0 = Memory.Read<long>(ped_offset_0 + i * 0x10);
-                if (ped_offset_0 == 0)
-                {
+                long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+                m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+                if (!Memory.IsValid(m_ped_list))
                     continue;
-                }
 
-                long ped_offset_1 = Memory.Read<long>(ped_offset_0 + 0x10C8);
-                long pedRID = Memory.Read<long>(ped_offset_1 + 0x90);
-                if (pedRID != 0)
-                {
+                // 跳过玩家
+                long m_player_info = Memory.Read<long>(m_ped_list + 0x10C8);
+                if (Memory.IsValid(m_player_info))
                     continue;
-                }
 
                 if (isOnlyHostility)
                 {
-                    byte oHostility = Memory.Read<byte>(ped_offset_0 + 0x18C);
+                    byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
 
                     if (oHostility > 0x01)
                     {
-                        Memory.Write<float>(ped_offset_0 + 0x280, 0.0f);
+                        Memory.Write<float>(m_ped_list + 0x280, 0.0f);
                     }
                 }
                 else
                 {
-                    Memory.Write<float>(ped_offset_0 + 0x280, 0.0f);
+                    Memory.Write<float>(m_ped_list + 0x280, 0.0f);
                 }
             }
         }
 
         /// <summary>
-        /// 摧毁NPC载具
+        /// 摧毁NPC载具，仅敌对？
         /// </summary>
         public static void DestroyNPCVehicles(bool isOnlyHostility)
         {
             // Ped实体
-            long pReplayInterfacePTR = Memory.Read<long>(Globals.ReplayInterfacePTR);
-            long my_offset_0x18 = Memory.Read<long>(pReplayInterfacePTR + 0x18);
+            long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+            long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+            int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
-            for (int i = 0; i < 128; i++)
+            for (int i = 0; i < m_max_peds; i++)
             {
-                long ped_offset_0 = Memory.Read<long>(my_offset_0x18 + 0x100);
-                ped_offset_0 = Memory.Read<long>(ped_offset_0 + i * 0x10);
-                if (ped_offset_0 == 0)
-                {
+                long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+                m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+                if (!Memory.IsValid(m_ped_list))
                     continue;
-                }
 
-                long ped_offset_1 = Memory.Read<long>(ped_offset_0 + 0x10C8);
-                long pedRID = Memory.Read<long>(ped_offset_1 + 0x90);
-                if (pedRID != 0)
-                {
+                // 跳过玩家
+                long m_player_info = Memory.Read<long>(m_ped_list + 0x10C8);
+                if (Memory.IsValid(m_player_info))
                     continue;
-                }
 
-                long ped_offset_2 = Memory.Read<long>(ped_offset_0 + 0xD30);
+                long m_vehicle = Memory.Read<long>(m_ped_list + 0xD30);
 
                 if (isOnlyHostility)
                 {
-                    byte oHostility = Memory.Read<byte>(ped_offset_0 + 0x18C);
+                    byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
 
                     if (oHostility > 0x01)
                     {
-                        Memory.Write<float>(ped_offset_2 + 0x280, -1.0f);
-                        Memory.Write<float>(ped_offset_2 + 0x840, -1.0f);
-                        Memory.Write<float>(ped_offset_2 + 0x844, -1.0f);
-                        Memory.Write<float>(ped_offset_2 + 0x908, -1.0f);
+                        Memory.Write<float>(m_vehicle + 0x280, -1.0f);
+                        Memory.Write<float>(m_vehicle + 0x840, -1.0f);
+                        Memory.Write<float>(m_vehicle + 0x844, -1.0f);
+                        Memory.Write<float>(m_vehicle + 0x908, -1.0f);
                     }
                 }
                 else
                 {
-                    Memory.Write<float>(ped_offset_2 + 0x280, -1.0f);
-                    Memory.Write<float>(ped_offset_2 + 0x840, -1.0f);
-                    Memory.Write<float>(ped_offset_2 + 0x844, -1.0f);
-                    Memory.Write<float>(ped_offset_2 + 0x908, -1.0f);
+                    Memory.Write<float>(m_vehicle + 0x280, -1.0f);
+                    Memory.Write<float>(m_vehicle + 0x840, -1.0f);
+                    Memory.Write<float>(m_vehicle + 0x844, -1.0f);
+                    Memory.Write<float>(m_vehicle + 0x908, -1.0f);
                 }
             }
         }
@@ -131,22 +124,22 @@ namespace GTA5OnlineTools.Features.SDK
         public static void DestroyAllVehicles()
         {
             // Ped实体
-            long pReplayInterfacePTR = Memory.Read<long>(Globals.ReplayInterfacePTR);
-            long my_offset_0x10 = Memory.Read<long>(pReplayInterfacePTR + 0x10);
+            long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+            long m_vehicle_interface = Memory.Read<long>(m_replay + 0x10);
+            long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+            int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
-            for (int i = 0; i < 128; i++)
+            for (int i = 0; i < m_max_peds; i++)
             {
-                long ped_offset_0 = Memory.Read<long>(my_offset_0x10 + 0x180);
-                ped_offset_0 = Memory.Read<long>(ped_offset_0 + i * 0x10);
-                if (ped_offset_0 == 0)
-                {
+                long m_vehicle_list = Memory.Read<long>(m_vehicle_interface + 0x180);
+                m_vehicle_list = Memory.Read<long>(m_vehicle_list + i * 0x10);
+                if (!Memory.IsValid(m_vehicle_list))
                     continue;
-                }
 
-                Memory.Write<float>(ped_offset_0 + 0x280, -1.0f);
-                Memory.Write<float>(ped_offset_0 + 0x840, -1.0f);
-                Memory.Write<float>(ped_offset_0 + 0x844, -1.0f);
-                Memory.Write<float>(ped_offset_0 + 0x908, -1.0f);
+                Memory.Write<float>(m_vehicle_list + 0x280, -1.0f);     // m_health
+                Memory.Write<float>(m_vehicle_list + 0x840, -1.0f);     // m_body_health
+                Memory.Write<float>(m_vehicle_list + 0x844, -1.0f);     // m_petrol_tank_health
+                Memory.Write<float>(m_vehicle_list + 0x908, -1.0f);     // m_engine_health
             }
         }
 
@@ -158,41 +151,40 @@ namespace GTA5OnlineTools.Features.SDK
             Vector3 v3MyPos = Memory.Read<Vector3>(Globals.WorldPTR, Offsets.PlayerPositionX);
 
             // Ped实体
-            long pReplayInterfacePTR = Memory.Read<long>(Globals.ReplayInterfacePTR);
-            long my_offset_0x18 = Memory.Read<long>(pReplayInterfacePTR + 0x18);
+            long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+            long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+            int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
-            for (int i = 0; i < 128; i++)
+            for (int i = 0; i < m_max_peds; i++)
             {
-                long ped_offset_0 = Memory.Read<long>(my_offset_0x18 + 0x100);
-                ped_offset_0 = Memory.Read<long>(ped_offset_0 + i * 0x10);
-                if (ped_offset_0 == 0)
-                {
+                long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+                m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+                if (!Memory.IsValid(m_ped_list))
                     continue;
-                }
 
-                long ped_offset_1 = Memory.Read<long>(ped_offset_0 + 0x10C8);
-                long pedRID = Memory.Read<long>(ped_offset_1 + 0x90);
-                if (pedRID != 0)
-                {
+                // 跳过玩家
+                long m_player_info = Memory.Read<long>(m_ped_list + 0x10C8);
+                if (Memory.IsValid(m_player_info))
                     continue;
-                }
 
-                long ped_offset_2 = Memory.Read<long>(ped_offset_0 + 0x30);
+                long m_navigation = Memory.Read<long>(m_ped_list + 0x30);
+                if (!Memory.IsValid(m_navigation))
+                    continue;
 
                 if (isOnlyFriendly)
                 {
-                    byte oHostility = Memory.Read<byte>(ped_offset_0 + 0x18C);
+                    byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
 
                     if (oHostility > 0x01)
                     {
-                        Memory.Write<Vector3>(ped_offset_2 + 0x50, v3MyPos);
-                        Memory.Write<Vector3>(ped_offset_0 + 0x90, v3MyPos);
+                        Memory.Write<Vector3>(m_navigation + 0x50, v3MyPos);
+                        Memory.Write<Vector3>(m_ped_list + 0x90, v3MyPos);
                     }
                 }
                 else
                 {
-                    Memory.Write<Vector3>(ped_offset_2 + 0x50, v3MyPos);
-                    Memory.Write<Vector3>(ped_offset_0 + 0x90, v3MyPos);
+                    Memory.Write<Vector3>(m_navigation + 0x50, v3MyPos);
+                    Memory.Write<Vector3>(m_ped_list + 0x90, v3MyPos);
                 }
             }
         }

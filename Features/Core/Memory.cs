@@ -1,10 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-
-namespace GTA5OnlineTools.Features.Core
+﻿namespace GTA5OnlineTools.Features.Core
 {
     public class Memory
     {
@@ -74,6 +68,11 @@ namespace GTA5OnlineTools.Features.Core
             return 0;
         }
 
+        public static bool IsTopMostWindow()
+        {
+            return windowHandle == WinAPI.GetForegroundWindow();
+        }
+
         public static void SetForegroundWindow()
         {
             WinAPI.SetForegroundWindow(windowHandle);
@@ -83,34 +82,6 @@ namespace GTA5OnlineTools.Features.Core
         {
             return Address >= 0x10000 && Address < 0x000F000000000000;
         }
-
-        // 寻找特征码
-        //public static long FindPattern(byte[] pattern, string mask)
-        //{
-        //    // 模块占用内存大小（字节为单位）
-        //    int moduleSize = process.MainModule.ModuleMemorySize;
-        //    if (moduleSize == 0) throw new Exception($"模块 {process.MainModule.ModuleName} 大小无效");
-
-        //    byte[] moduleBytes = new byte[moduleSize];
-        //    WinAPI.ReadProcessMemory(processHandle, baseAddress, moduleBytes, moduleSize, out _);
-
-        //    for (long i = 0; i < moduleSize; i++)
-        //    {
-        //        for (int l = 0; l < mask.Length; l++)
-        //        {
-        //            if (!(mask[l] == '?' || moduleBytes[l + i] == pattern[l]))
-        //            {
-        //                goto SKIP;
-        //            }
-        //        }
-
-        //        return i + baseAddress;
-
-        //    SKIP:;
-        //    }
-
-        //    return 0;
-        //}
 
         public static long FindPattern(string pattern)
         {
@@ -161,83 +132,6 @@ namespace GTA5OnlineTools.Features.Core
 
             return address;
         }
-
-        //public static long FindPattern(string pattern)
-        //{
-        //    int moduleSize = process.MainModule.ModuleMemorySize;
-        //    if (moduleSize == 0)
-        //        throw new Exception($"Size of module {process.MainModule.ModuleName} is INVALID.");
-
-        //    pattern = pattern.Trim('?', ' ');
-        //    string[] stringByteArray = pattern.Split(' ');
-
-        //    byte[] patternBytes = new byte[stringByteArray.Length];
-        //    byte[] mask = new byte[stringByteArray.Length];
-
-        //    for (var i = 0; i < stringByteArray.Length; i++)
-        //    {
-        //        string ba = stringByteArray[i];
-
-        //        if (ba == "?" || ba == "??")
-        //        {
-        //            mask[i] = 0x00;
-        //            stringByteArray[i] = "0x00";
-        //        }
-        //        else
-        //            mask[i] = 0xFF;
-        //    }
-
-        //    for (int i = 0; i < stringByteArray.Length; i++)
-        //        patternBytes[i] = (byte)(Convert.ToByte(stringByteArray[i], 16) & mask[i]);
-
-        //    byte[] moduleBytes = new byte[moduleSize];
-        //    WinAPI.ReadProcessMemory(processHandle, baseAddress, moduleBytes, moduleSize, out _);
-
-        //    int[] shift = new int[byte.MaxValue + 1];
-        //    int wildcard = 0, patternLength = patternBytes.Length;
-        //    for (int i = 0; i < patternLength; i++)
-        //    {
-        //        if (mask[i] == 0x00)
-        //            wildcard = patternLength - i;
-        //        else
-        //            shift[patternBytes[i]] = patternLength - i;
-        //    }
-
-        //    for (int i = 0; i <= moduleSize - patternLength;)
-        //    {
-        //        bool found = true;
-        //        int step = wildcard;
-        //        for (int j = 0; j < patternLength; j++)
-        //        {
-        //            if (mask[j] == 0x00)
-        //            {
-        //                step = patternLength - j;
-        //            }
-        //            else if (moduleBytes[i + j] != patternBytes[j])
-        //            {
-        //                found = false;
-        //                break;
-        //            }
-        //        }
-
-        //        if (found)
-        //            return baseAddress + i;
-
-        //        int offset = shift[moduleBytes[i + patternLength]];
-        //        if (offset > 0)
-        //        {
-        //            step = offset;
-        //        }
-
-        //        if (step > 0)
-        //            i += step;
-        //        else
-        //            i += patternLength + 1;
-        //    }
-
-        //    return 0;
-        //    //throw new Exception($"Pattern: {pattern} was not found in {m_Process.MainModule.ModuleName}.");
-        //}
 
         public static long Rip_37(long address)
         {

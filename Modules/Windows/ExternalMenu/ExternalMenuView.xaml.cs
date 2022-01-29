@@ -70,6 +70,15 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                 Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.PickupData);
                 Globals.PickupDataPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
 
+                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.ViewPortPTR);
+                Globals.ViewPortPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+
+                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.AimingPedPTR);
+                Globals.AimingPedPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+
+                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.CCameraPTR);
+                Globals.CCameraPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+
                 Globals.FrameFlagsZeroWriteCallOffset = Memory.FindPattern(Offsets.Mask.FrameFlagsZeroWriteCall) + 0x07;
             });
 

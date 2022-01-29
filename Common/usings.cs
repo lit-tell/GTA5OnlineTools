@@ -12,3 +12,5 @@ global using System.Windows.Input;
 global using System.Windows.Controls;
 global using System.Windows.Navigation;
 global using System.Collections.Generic;
+global using System.Runtime.InteropServices;
+

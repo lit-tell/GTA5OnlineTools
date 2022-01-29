@@ -13,6 +13,15 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
     {
         private static long SpawnVehicleHash = 0;
 
+        private struct PVInfo
+        {
+            public string Name;
+            public long hash;
+            public string plate;
+        }
+
+        private List<PVInfo> pVInfos = new List<PVInfo>();
+
         public EM1SpawnVehicleView()
         {
             InitializeComponent();
@@ -23,6 +32,35 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                 ListBox_VehicleClass.Items.Add(VehicleData.VehicleClassData[i].ClassName);
             }
             ListBox_VehicleClass.SelectedIndex = 0;
+
+
+            Task.Run(() =>
+            {
+                int max_slots = ReadGA<int>(1585844);
+                for (int i = 0; i < max_slots; i++)
+                {
+                    long hash = ReadGA<long>(1585844 + 1 + (i * 142) + 66);
+                    if (hash == 0)
+                        continue;
+
+                    string plate = ReadGAString(1585844 + 1 + (i * 142) + 1);
+
+                    pVInfos.Add(new PVInfo()
+                    {
+                        Name = "",
+                        hash = hash,
+                        plate = plate
+                    });
+                }
+
+                foreach (var item in pVInfos)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        ListBox_PersonalVehicle.Items.Add($"[{item.plate}] {FindVehicleDisplayName(item.hash, true)}");
+                    });
+                }
+            });
 
             ExternalMenuView.ClosingDisposeEvent += ExternalMenuView_ClosingDisposeEvent;
         }
@@ -119,9 +157,9 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     WriteGA<int>(oVMCreate + 27 + 7, -1);       // pearlescent
                     WriteGA<int>(oVMCreate + 27 + 8, -1);       // wheel color
 
-                    WriteGA<int>(oVMCreate + 27 + 15, FixVehicleWeapon(SpawnVehicleHash));       // primary weapon  主武器
+                    WriteGA<int>(oVMCreate + 27 + 15, 2);       // primary weapon  主武器
                     WriteGA<int>(oVMCreate + 27 + 19, -1);
-                    WriteGA<int>(oVMCreate + 27 + 20, 1);       // secondary weapon  副武器
+                    WriteGA<int>(oVMCreate + 27 + 20, 2);       // secondary weapon  副武器
 
                     WriteGA<int>(oVMCreate + 27 + 21, 3);       // engine (0-3)  引擎
                     WriteGA<int>(oVMCreate + 27 + 22, 6);       // brakes (0-6)  刹车
@@ -160,20 +198,21 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
         private int FixVehicleWeapon(long hash)
         {
-            switch (hash)
+            string name = FindVehicleDisplayName(hash, false);
+            switch (name)
             {
-                case 2069146067:
-                    return 1;
-                case 562680400:
-                case 1483171323:
+                case "oppressor2":
+                    return 2;
+                case "apc":
+                case "deluxo":
                     return -1;
-                case 4262088844:
+                case "bombushka":
                     return 1;
-                case 3084515313:
-                case 2370534026:
-                case 4262731174:
+                case "tampa3":
+                case "insurgent3":
+                case "halftrack":
                     return 3;
-                case 4081974053:
+                case "barrage":
                     return 30;
                 default:
                     return -1;
@@ -250,6 +289,41 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             AudioUtil.ClickSound();
 
             Online.GetInOnlinePV();
+        }
+
+        private void Button_SpawnPersonalVehicle_Click(object sender, RoutedEventArgs e)
+        {
+            int index = ListBox_PersonalVehicle.SelectedIndex;
+
+            if (index != -1)
+            {
+                Task.Run(() =>
+                {
+                    WriteGA<int>(2810287 + 965, index);
+                    WriteGA<int>(2810287 + 962, 1);
+                    Task.Delay(500).Wait();
+                    WriteGA<int>(2671444 + 8, 1);
+                });
+            }
+        }
+
+        private string FindVehicleDisplayName(long hash, bool isDisplay)
+        {
+            foreach (var item in VehicleData.VehicleClassData)
+            {
+                foreach (var item0 in item.VehicleInfo)
+                {
+                    if (item0.Hash == hash)
+                    {
+                        if (isDisplay)
+                            return item0.DisplayName;
+                        else
+                            return item0.Name;
+                    }
+                }
+            }
+
+            return "";
         }
     }
 }

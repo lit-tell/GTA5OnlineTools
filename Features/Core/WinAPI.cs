@@ -1,8 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Runtime.InteropServices;
-
-namespace GTA5OnlineTools.Features.Core
+﻿namespace GTA5OnlineTools.Features.Core
 {
     public class WinAPI
     {
@@ -34,6 +30,9 @@ namespace GTA5OnlineTools.Features.Core
 
         [DllImport("user32.dll")]
         public static extern bool GetClientRect(IntPtr hWnd, out W32RECT lpRect);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
         public static extern int SetForegroundWindow(IntPtr hwnd);

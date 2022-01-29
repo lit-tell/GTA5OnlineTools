@@ -2,38 +2,38 @@
 {
     public class EnumData
     {
-        public enum PedType : int
+        public enum PedTypes : int
         {
-            PEDTYPE_PLAYER_0,               // michael
-            PEDTYPE_PLAYER_1,               // franklin
-            PEDTYPE_NETWORK_PLAYER,         // mp character
-            PEDTYPE_PLAYER_2,               // trevor
-            PEDTYPE_CIVMALE,
-            PEDTYPE_CIVFEMALE,
-            PEDTYPE_COP,
-            PEDTYPE_GANG_ALBANIAN,
-            PEDTYPE_GANG_BIKER_1,
-            PEDTYPE_GANG_BIKER_2,
-            PEDTYPE_GANG_ITALIAN,
-            PEDTYPE_GANG_RUSSIAN,
-            PEDTYPE_GANG_RUSSIAN_2,
-            PEDTYPE_GANG_IRISH,
-            PEDTYPE_GANG_JAMAICAN,
-            PEDTYPE_GANG_AFRICAN_AMERICAN,
-            PEDTYPE_GANG_KOREAN,
-            PEDTYPE_GANG_CHINESE_JAPANESE,
-            PEDTYPE_GANG_PUERTO_RICAN,
-            PEDTYPE_DEALER,
-            PEDTYPE_MEDIC,
-            PEDTYPE_FIREMAN,
-            PEDTYPE_CRIMINAL,
-            PEDTYPE_BUM,
-            PEDTYPE_PROSTITUTE,
-            PEDTYPE_SPECIAL,
-            PEDTYPE_MISSION,
-            PEDTYPE_SWAT,
-            PEDTYPE_ANIMAL,
-            PEDTYPE_ARMY
+            PLAYER_0,                   //  0 麦克
+            PLAYER_1,                   //  1 富兰克林
+            NETWORK_PLAYER,             //  2 线上角色
+            PLAYER_2,                   //  3 崔佛
+            CIVMALE,                    //  4 文明的男性
+            CIVFEMALE,                  //  5 文明的女性
+            COP,                        //  6 警察
+            GANG_ALBANIAN,              //  7 帮派...
+            GANG_BIKER_1,               //
+            GANG_BIKER_2,               //
+            GANG_ITALIAN,               //
+            GANG_RUSSIAN,               //
+            GANG_RUSSIAN_2,             //
+            GANG_IRISH,                 //
+            GANG_JAMAICAN,              //
+            GANG_AFRICAN_AMERICAN,      // 
+            GANG_KOREAN,                // 
+            GANG_CHINESE_JAPANESE,      // 
+            GANG_PUERTO_RICAN,          //
+            DEALER,                     // 19 商人
+            MEDIC,                      // 20 医生
+            FIREMAN,                    // 21 消防员
+            CRIMINAL,                   // 22 罪犯
+            BUM,                        // 23 流浪汉
+            PROSTITUTE,                 // 24 妓女
+            SPECIAL,                    // 25 特殊
+            MISSION,                    // 26 任务
+            SWAT,                       // 27 特警
+            ANIMAL,                     // 28 动物
+            ARMY                        // 29 军队
         };
 
         public enum FrameFlags
