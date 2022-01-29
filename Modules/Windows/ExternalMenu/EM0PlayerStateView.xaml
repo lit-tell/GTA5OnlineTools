@@ -251,9 +251,7 @@
                         x:Name="CheckBox_Invisibility"
                         Click="CheckBox_Invisibility_Click"
                         Content="玩家隐身" />
-
                     <TextBlock />
-
                     <CheckBox
                         x:Name="CheckBox_UndeadOffRadar"
                         Click="CheckBox_UndeadOffRadar_Click"
@@ -280,15 +278,11 @@
                             Foreground="White"
                             Text="特殊" />
                     </Border>
-                    <!--<CheckBox
-                                x:Name="CheckBox_ExpandedRadar"
-                                Click="CheckBox_ExpandedRadar_Click"
-                                Content="展开地图"
-                                ToolTip="需要按一下Esc键生效" />-->
                     <CheckBox
                         x:Name="CheckBox_AutoClearWanted"
                         Click="CheckBox_AutoClearWanted_Click"
                         Content="自动消星" />
+                    <TextBlock />
                     <CheckBox
                         x:Name="CheckBox_SuperJump"
                         Click="CheckBox_SuperJump_Click"

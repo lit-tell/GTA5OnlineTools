@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Numerics;
-using System.Threading;
-using GameOverlay.Drawing;
+﻿using GameOverlay.Drawing;
 using GameOverlay.Windows;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
@@ -15,7 +11,6 @@ namespace GTA5OnlineTools.Features.SDK
 
         private readonly Dictionary<string, SolidBrush> _brushes;
         private readonly Dictionary<string, Font> _fonts;
-        private readonly Dictionary<string, Image> _images;
 
         private Memory.WindowData windowData;
 
@@ -43,7 +38,6 @@ namespace GTA5OnlineTools.Features.SDK
 
             _brushes = new Dictionary<string, SolidBrush>();
             _fonts = new Dictionary<string, Font>();
-            _images = new Dictionary<string, Image>();
 
             var gfx = new Graphics()
             {
@@ -76,7 +70,6 @@ namespace GTA5OnlineTools.Features.SDK
             if (e.RecreateResources)
             {
                 foreach (var pair in _brushes) pair.Value.Dispose();
-                foreach (var pair in _images) pair.Value.Dispose();
             }
 
             _brushes["black"] = gfx.CreateSolidBrush(0, 0, 0);
@@ -101,7 +94,6 @@ namespace GTA5OnlineTools.Features.SDK
         {
             foreach (var pair in _brushes) pair.Value.Dispose();
             foreach (var pair in _fonts) pair.Value.Dispose();
-            foreach (var pair in _images) pair.Value.Dispose();
         }
 
         private void _window_DrawGraphics(object sender, DrawGraphicsEventArgs e)

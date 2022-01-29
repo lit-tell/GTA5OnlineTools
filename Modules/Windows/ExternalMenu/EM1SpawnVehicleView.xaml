@@ -134,10 +134,16 @@
 
                 <TextBlock Margin="5" Text="功能开发中..." />
 
-                <Button
-                    x:Name="Button_SpawnonlineVehicle"
-                    Click="Button_SpawnonlineVehicle_Click"
-                    Content="刷出线上载具" />
+                <UniformGrid Columns="2">
+                    <Button
+                        x:Name="Button_SpawnOnlineVehicleA"
+                        Click="Button_SpawnOnlineVehicle_Click"
+                        Content="刷出线上载具（空地）" />
+                    <Button
+                        x:Name="Button_SpawnOnlineVehicleB"
+                        Click="Button_SpawnOnlineVehicle_Click"
+                        Content="刷出线上载具（室内）" />
+                </UniformGrid>
             </StackPanel>
 
         </DockPanel>

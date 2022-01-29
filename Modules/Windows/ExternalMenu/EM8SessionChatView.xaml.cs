@@ -1,12 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Threading;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using System.Collections.Generic;
-using Chinese;
+﻿using Chinese;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Http;
 using GTA5OnlineTools.Features.SDK;

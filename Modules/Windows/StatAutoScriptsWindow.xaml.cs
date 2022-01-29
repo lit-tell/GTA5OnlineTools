@@ -1,9 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using GTA5OnlineTools.Common.Utils;
+﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.SDK;
 using static GTA5OnlineTools.Features.Data.StatData;

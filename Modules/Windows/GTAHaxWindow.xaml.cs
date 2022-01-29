@@ -1,14 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Diagnostics;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using System.Threading.Tasks;
-using GTA5OnlineTools.Common.Utils;
+﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.Core;
 
 namespace GTA5OnlineTools.Modules.Windows

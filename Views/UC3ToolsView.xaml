@@ -179,20 +179,52 @@
                     FontSize="20"
                     FontWeight="Black"
                     Text="有用的链接" />
+                <TextBlock
+                    Margin="5"
+                    FontWeight="Black"
+                    Text="Discord加速" />
                 <TextBlock Margin="5">
                     <Hyperlink
                         Command="{Binding HyperlinkClickCommand}"
-                        CommandParameter="https://steampp.net/"
+                        CommandParameter="https://steampp.net"
                         ToolTip="https://steampp.net">
                         Steam++
                     </Hyperlink>
                 </TextBlock>
+                <TextBlock
+                    Margin="5"
+                    FontWeight="Black"
+                    Text="GitHub加速" />
                 <TextBlock Margin="5">
                     <Hyperlink
                         Command="{Binding HyperlinkClickCommand}"
                         CommandParameter="https://github.com/dotnetcore/FastGithub/releases"
                         ToolTip="https://github.com/dotnetcore/FastGithub/releases">
                         FastGithub
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock
+                    Margin="5"
+                    FontWeight="Black"
+                    Text="Snipaste截图工具" />
+                <TextBlock Margin="5">
+                    <Hyperlink
+                        Command="{Binding HyperlinkClickCommand}"
+                        CommandParameter="https://zh.snipaste.com"
+                        ToolTip="https://zh.snipaste.com">
+                        Snipaste
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock
+                    Margin="5"
+                    FontWeight="Black"
+                    Text="免费游戏加速器" />
+                <TextBlock Margin="5">
+                    <Hyperlink
+                        Command="{Binding HyperlinkClickCommand}"
+                        CommandParameter="https://www.nn.com"
+                        ToolTip="https://www.nn.com">
+                        NN加速器
                     </Hyperlink>
                 </TextBlock>
             </StackPanel>

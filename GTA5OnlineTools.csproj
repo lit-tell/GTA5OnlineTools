@@ -23,8 +23,6 @@
     <None Remove="Assets\Images\Hacks\Kiddion.png" />
     <None Remove="Assets\Images\Hacks\LSCHax.png" />
     <None Remove="Assets\Images\Hacks\SubVersion.png" />
-    <None Remove="Assets\Images\HomeBg.jpg" />
-    <None Remove="Assets\Images\TheContract.jpg" />
     <None Remove="Assets\Images\Tips\Bread.png" />
     <None Remove="Assets\Images\Tips\Bread_Chs.png" />
     <None Remove="Assets\Images\Tips\Cayo01.png" />
@@ -96,8 +94,6 @@
     <Resource Include="Assets\Images\Hacks\Kiddion.png" />
     <Resource Include="Assets\Images\Hacks\LSCHax.png" />
     <Resource Include="Assets\Images\Hacks\SubVersion.png" />
-    <Resource Include="Assets\Images\HomeBg.jpg" />
-    <Resource Include="Assets\Images\TheContract.jpg" />
     <Resource Include="Assets\Images\Tips\Bread.png" />
     <Resource Include="Assets\Images\Tips\Bread_Chs.png" />
     <Resource Include="Assets\Images\Tips\Cayo01.png" />

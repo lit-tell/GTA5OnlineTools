@@ -1,15 +1,9 @@
-﻿using System.Windows;
-using System.Threading;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Collections.Generic;
-using Prism.Regions;
+﻿using Prism.Regions;
 using Prism.Commands;
 using GTA5OnlineTools.Common.Data;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
-using System;
 
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {

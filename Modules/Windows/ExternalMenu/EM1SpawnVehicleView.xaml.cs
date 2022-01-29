@@ -1,8 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Threading.Tasks;
-using GTA5OnlineTools.Common.Utils;
+﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
@@ -66,16 +62,29 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             }
         }
 
-        private void Button_SpawnonlineVehicle_Click(object sender, RoutedEventArgs e)
+        private void Button_SpawnOnlineVehicle_Click(object sender, RoutedEventArgs e)
         {
             AudioUtil.ClickSound();
 
+            string str = (e.OriginalSource as Button).Content.ToString();
+
+            if (str == "刷出线上载具（空地）")
+            {
+                SpawnVehicle(-255.0f);
+            }
+            else
+            {
+                SpawnVehicle(0.0f);
+            }
+        }
+
+        private void SpawnVehicle(float z255)
+        {
             Task.Run(() =>
             {
                 if (SpawnVehicleHash != 0)
                 {
                     int dist = 5;
-                    float z255 = -255.0f;
 
                     const int oVMCreate = 2725260;
                     const int pegasus = 0;
@@ -110,7 +119,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     WriteGA<int>(oVMCreate + 27 + 7, -1);       // pearlescent
                     WriteGA<int>(oVMCreate + 27 + 8, -1);       // wheel color
 
-                    WriteGA<int>(oVMCreate + 27 + 15, 2);       // primary weapon  主武器
+                    WriteGA<int>(oVMCreate + 27 + 15, FixVehicleWeapon(SpawnVehicleHash));       // primary weapon  主武器
                     WriteGA<int>(oVMCreate + 27 + 19, -1);
                     WriteGA<int>(oVMCreate + 27 + 20, 1);       // secondary weapon  副武器
 
@@ -147,6 +156,28 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     WriteGA<int>(oVMCreate + 27 + 94, 2);       // personal car ownerflag  个人载具拥有者标志
                 }
             });
+        }
+
+        private int FixVehicleWeapon(long hash)
+        {
+            switch (hash)
+            {
+                case 2069146067:
+                    return 1;
+                case 562680400:
+                case 1483171323:
+                    return -1;
+                case 4262088844:
+                    return 1;
+                case 3084515313:
+                case 2370534026:
+                case 4262731174:
+                    return 3;
+                case 4081974053:
+                    return 30;
+                default:
+                    return -1;
+            }
         }
 
         /////////////////////////////////////////////////////////////////////////////////

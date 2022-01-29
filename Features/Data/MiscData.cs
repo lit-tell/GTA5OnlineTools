@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace GTA5OnlineTools.Features.Data
+﻿namespace GTA5OnlineTools.Features.Data
 {
     public class MiscData
     {
