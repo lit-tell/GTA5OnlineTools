@@ -1,4 +1,5 @@
 ﻿using GTA5OnlineTools.Features.Core;
+using GTA5OnlineTools.Features.Data;
 
 namespace GTA5OnlineTools.Features.SDK
 {
@@ -35,9 +36,9 @@ namespace GTA5OnlineTools.Features.SDK
         }
 
         /// <summary>
-        /// 杀死NPC，仅敌对？
+        /// 杀死全部NPC，仅敌对？
         /// </summary>
-        public static void KillNPC(bool isOnlyHostility)
+        public static void KillAllNPC(bool isOnlyHostility)
         {
             // Ped实体
             long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
@@ -66,6 +67,40 @@ namespace GTA5OnlineTools.Features.SDK
                     }
                 }
                 else
+                {
+                    Memory.Write<float>(m_ped_list + 0x280, 0.0f);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 杀死全部警察
+        /// </summary>
+        public static void KillAllPolice()
+        {
+            // Ped实体
+            long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+            long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+            int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
+
+            for (int i = 0; i < m_max_peds; i++)
+            {
+                long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+                m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+                if (!Memory.IsValid(m_ped_list))
+                    continue;
+
+                // 跳过玩家
+                long m_player_info = Memory.Read<long>(m_ped_list + 0x10C8);
+                if (Memory.IsValid(m_player_info))
+                    continue;
+
+                int ped_type = Memory.Read<int>(m_ped_list + 0x10B8);
+                ped_type = ped_type << 11 >> 25;
+
+                if (ped_type == (int)EnumData.PedTypes.COP || 
+                    ped_type == (int)EnumData.PedTypes.SWAT || 
+                    ped_type == (int)EnumData.PedTypes.ARMY)
                 {
                     Memory.Write<float>(m_ped_list + 0x280, 0.0f);
                 }

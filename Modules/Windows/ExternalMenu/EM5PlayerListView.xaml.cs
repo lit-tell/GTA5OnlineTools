@@ -1,8 +1,4 @@
-﻿using System.Numerics;
-using System.Windows;
-using System.Windows.Controls;
-using System.Collections.Generic;
-using GTA5OnlineTools.Common.Utils;
+﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
@@ -33,30 +29,27 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         {
             TextBox_PlayerInfo.Clear();
 
-            if (ListBox_PlayerList.SelectedItem != null)
+            int index = ListBox_PlayerList.SelectedIndex;
+
+            if (index != -1)
             {
-                int index = ListBox_PlayerList.SelectedIndex;
+                TextBox_PlayerInfo.AppendText($"战局房主 : {playerData[index].PlayerInfo.Host}\r\n\r\n");
 
-                if (index != -1)
-                {
-                    TextBox_PlayerInfo.AppendText($"战局房主 : {playerData[index].PlayerInfo.Host}\r\n\r\n");
+                TextBox_PlayerInfo.AppendText($"玩家RID : {playerData[index].RID}\r\n");
+                TextBox_PlayerInfo.AppendText($"玩家昵称 : {playerData[index].Name}\r\n\r\n");
 
-                    TextBox_PlayerInfo.AppendText($"玩家RID : {playerData[index].RID}\r\n");
-                    TextBox_PlayerInfo.AppendText($"玩家昵称 : {playerData[index].Name}\r\n\r\n");
+                TextBox_PlayerInfo.AppendText($"当前生命值 : {playerData[index].PlayerInfo.Health:0.0}\r\n");
+                TextBox_PlayerInfo.AppendText($"最大生命值 : {playerData[index].PlayerInfo.MaxHealth:0.0}\r\n\r\n");
 
-                    TextBox_PlayerInfo.AppendText($"当前生命值 : {playerData[index].PlayerInfo.Health:0.0}\r\n");
-                    TextBox_PlayerInfo.AppendText($"最大生命值 : {playerData[index].PlayerInfo.MaxHealth:0.0}\r\n\r\n");
+                TextBox_PlayerInfo.AppendText($"无敌状态 : {playerData[index].PlayerInfo.GodMode}\r\n");
+                TextBox_PlayerInfo.AppendText($"无布娃娃 : {playerData[index].PlayerInfo.NoRagdoll}\r\n\r\n");
 
-                    TextBox_PlayerInfo.AppendText($"无敌状态 : {playerData[index].PlayerInfo.GodMode}\r\n");
-                    TextBox_PlayerInfo.AppendText($"无布娃娃 : {playerData[index].PlayerInfo.NoRagdoll}\r\n\r\n");
+                TextBox_PlayerInfo.AppendText($"通缉等级 : {playerData[index].PlayerInfo.WantedLevel}\r\n");
+                TextBox_PlayerInfo.AppendText($"奔跑速度 : {playerData[index].PlayerInfo.RunSpeed:0.0}\r\n\r\n");
 
-                    TextBox_PlayerInfo.AppendText($"通缉等级 : {playerData[index].PlayerInfo.WantedLevel}\r\n");
-                    TextBox_PlayerInfo.AppendText($"奔跑速度 : {playerData[index].PlayerInfo.RunSpeed:0.0}\r\n\r\n");
-
-                    TextBox_PlayerInfo.AppendText($"X : {playerData[index].PlayerInfo.V3Pos.X:0.0000}\r\n");
-                    TextBox_PlayerInfo.AppendText($"Y : {playerData[index].PlayerInfo.V3Pos.Y:0.0000}\r\n");
-                    TextBox_PlayerInfo.AppendText($"Z : {playerData[index].PlayerInfo.V3Pos.Z:0.0000}\r\n");
-                }
+                TextBox_PlayerInfo.AppendText($"X : {playerData[index].PlayerInfo.V3Pos.X:0.0000}\r\n");
+                TextBox_PlayerInfo.AppendText($"Y : {playerData[index].PlayerInfo.V3Pos.Y:0.0000}\r\n");
+                TextBox_PlayerInfo.AppendText($"Z : {playerData[index].PlayerInfo.V3Pos.Z:0.0000}\r\n");
             }
         }
 
@@ -69,7 +62,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             for (int i = 0; i < 32; i++)
             {
-                long pCNetGamePlayer = Memory.Read<long>(Globals.PlayerListPTR, new int[] { 0x180 + (i * 8) });
+                long pCNetGamePlayer = Memory.Read<long>(Globals.NetworkPlayerManagerPTR, new int[] { 0x180 + (i * 8) });
                 if (!Memory.IsValid(pCNetGamePlayer))
                     continue;
 

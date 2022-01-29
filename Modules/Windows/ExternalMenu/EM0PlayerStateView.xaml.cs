@@ -11,20 +11,19 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
     public partial class EM0PlayerStateView : UserControl
     {
         // 特殊功能
-        private NopHandle FrameFlagsZeroWriteCallNoper;
-        private int FrameFlag;
+        private int FrameFlag = 0;
 
         public EM0PlayerStateView()
         {
             InitializeComponent();
 
-            var MainThread = new Thread(MainThreadFunc);
-            MainThread.IsBackground = true;
-            MainThread.Start();
+            var thread0 = new Thread(MainThread);
+            thread0.IsBackground = true;
+            thread0.Start();
 
-            var SpecialThread = new Thread(SpecialThreadFunc);
-            SpecialThread.IsBackground = true;
-            SpecialThread.Start();
+            var thread1 = new Thread(SpecialThread);
+            thread1.IsBackground = true;
+            thread1.Start();
 
             var MainKeysManager = new KeysManager();
             MainKeysManager.AddKey(WinVK.F3);
@@ -36,14 +35,12 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             MainKeysManager.AddKey(WinVK.BACK);
             MainKeysManager.KeyDownEvent += new KeysManager.KeyHandler(MyKeyDownEvent);
 
-            FrameFlagsZeroWriteCallNoper = new NopHandle(Globals.FrameFlagsZeroWriteCallOffset, 5);
-
             ExternalMenuView.ClosingDisposeEvent += ExternalMenuView_ClosingDisposeEvent;
         }
 
         private void ExternalMenuView_ClosingDisposeEvent()
         {
-            FrameFlagsZeroWriteCallNoper?.ReStore();
+
         }
 
         private void MyKeyDownEvent(int keyId, string keyName)
@@ -98,7 +95,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             }));
         }
 
-        private void MainThreadFunc()
+        private void MainThread()
         {
             while (true)
             {
@@ -190,7 +187,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             }
         }
 
-        private void SpecialThreadFunc()
+        private void SpecialThread()
         {
             while (true)
             {
@@ -199,26 +196,20 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     Player.WantedLevel(0x00);
                 }
 
-                Thread.Sleep(1);
-            }
-        }
-
-        private void SetFrameFlag(int value)
-        {
-            FrameFlag += value;
-
-            if (FrameFlag == 0 && FrameFlagsZeroWriteCallNoper.IsNoped)
-            {
-                FrameFlagsZeroWriteCallNoper.ReStore();
-            }
-            else
-            {
-                if (!FrameFlagsZeroWriteCallNoper.IsNoped)
+                if (FrameFlag == 1)
                 {
-                    FrameFlagsZeroWriteCallNoper.Nop();
+                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.SuperJump);
+                }
+                else if (FrameFlag == 2)
+                {
+                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.FireAmmo);
+                }
+                else if (FrameFlag == 3)
+                {
+                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.ExplosiveAmmo);
                 }
 
-                Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, FrameFlag);
+                Thread.Sleep(1);
             }
         }
 
@@ -316,39 +307,23 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             Settings.Special.AutoClearWanted = CheckBox_AutoClearWanted.IsChecked == true;
         }
 
-        private void CheckBox_SuperJump_Click(object sender, RoutedEventArgs e)
+        private void RadioButton_FrameFlags_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckBox_SuperJump.IsChecked == true)
+            if (RadioButton_FrameFlags_Default.IsChecked == true)
             {
-                SetFrameFlag((int)EnumData.FrameFlags.SuperJump);
+                FrameFlag = 0;
             }
-            else
+            else if (RadioButton_FrameFlags_SuperJump.IsChecked == true)
             {
-                SetFrameFlag(-(int)EnumData.FrameFlags.SuperJump);
+                FrameFlag = 1;
             }
-        }
-
-        private void CheckBox_FireAmmo_Click(object sender, RoutedEventArgs e)
-        {
-            if (CheckBox_FireAmmo.IsChecked == true)
+            else if (RadioButton_FrameFlags_FireAmmo.IsChecked == true)
             {
-                SetFrameFlag((int)EnumData.FrameFlags.FireAmmo);
+                FrameFlag = 2;
             }
-            else
+            else if (RadioButton_FrameFlags_ExplosiveAmmo.IsChecked == true)
             {
-                SetFrameFlag(-(int)EnumData.FrameFlags.FireAmmo);
-            }
-        }
-
-        private void CheckBox_ExplosiveAmmo_Click(object sender, RoutedEventArgs e)
-        {
-            if (CheckBox_ExplosiveAmmo.IsChecked == true)
-            {
-                SetFrameFlag((int)EnumData.FrameFlags.ExplosiveAmmo);
-            }
-            else
-            {
-                SetFrameFlag(-(int)EnumData.FrameFlags.ExplosiveAmmo);
+                FrameFlag = 3;
             }
         }
 
@@ -392,6 +367,5 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             Player.Suicide();
         }
-
     }
 }

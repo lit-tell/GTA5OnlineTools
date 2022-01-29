@@ -21,12 +21,12 @@ namespace GTA5OnlineTools.Modules.Windows
             {
                 Memory.Initialize(CoreUtil.TargetAppName);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.GlobalPTR);
-                Globals.GlobalPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.GlobalMask);
+                Globals.GlobalPTR = Memory.Rip_37(Globals.TempPTR);
             });
         }
 
-        private void Window_StatAutoScripts_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_StatAutoScripts_Closing(object sender, CancelEventArgs e)
         {
 
         }

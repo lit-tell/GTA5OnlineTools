@@ -283,18 +283,29 @@
                         Click="CheckBox_AutoClearWanted_Click"
                         Content="自动消星" />
                     <TextBlock />
-                    <CheckBox
-                        x:Name="CheckBox_SuperJump"
-                        Click="CheckBox_SuperJump_Click"
-                        Content="超级跳跃" />
-                    <CheckBox
-                        x:Name="CheckBox_FireAmmo"
-                        Click="CheckBox_FireAmmo_Click"
-                        Content="燃烧子弹" />
-                    <CheckBox
-                        x:Name="CheckBox_ExplosiveAmmo"
-                        Click="CheckBox_ExplosiveAmmo_Click"
-                        Content="爆炸子弹" />
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton
+                            x:Name="RadioButton_FrameFlags_Default"
+                            Margin="5"
+                            Click="RadioButton_FrameFlags_Click"
+                            Content="默认"
+                            IsChecked="True" />
+                        <RadioButton
+                            x:Name="RadioButton_FrameFlags_SuperJump"
+                            Margin="5"
+                            Click="RadioButton_FrameFlags_Click"
+                            Content="超级跳跃" />
+                        <RadioButton
+                            x:Name="RadioButton_FrameFlags_FireAmmo"
+                            Margin="5"
+                            Click="RadioButton_FrameFlags_Click"
+                            Content="燃烧子弹" />
+                        <RadioButton
+                            x:Name="RadioButton_FrameFlags_ExplosiveAmmo"
+                            Margin="5"
+                            Click="RadioButton_FrameFlags_Click"
+                            Content="爆炸子弹" />
+                    </StackPanel>
                     <Border Style="{StaticResource BorderTitleStyle}">
                         <TextBlock
                             Padding="3,0,0,0"

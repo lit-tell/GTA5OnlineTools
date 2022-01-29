@@ -98,7 +98,7 @@
                             Foreground="White"
                             Text="NPC控制" />
                     </Border>
-                    <WrapPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                    <WrapPanel Orientation="Horizontal">
                         <Button
                             x:Name="Button_KillAllPeds"
                             Click="Button_KillAllPeds_Click"
@@ -107,6 +107,10 @@
                             x:Name="Button_KillAllHostilityPeds"
                             Click="Button_KillAllHostilityPeds_Click"
                             Content="杀死全部敌对NPC" />
+                        <Button
+                            x:Name="Button_KillAllPolice"
+                            Click="Button_KillAllPolice_Click"
+                            Content="杀死全部警察" />
                         <Button
                             x:Name="Button_DestroyAllVehicles"
                             Click="Button_DestroyAllVehicles_Click"
@@ -128,7 +132,6 @@
                             Click="Button_TPFriendNPCToMe_Click"
                             Content="传送所有敌对NPC到我" />
                     </WrapPanel>
-
                 </StackPanel>
             </Grid>
         </ScrollViewer>

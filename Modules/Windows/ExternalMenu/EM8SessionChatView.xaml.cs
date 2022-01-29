@@ -193,7 +193,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                 TextBox_ExternalDisplay.Text != "")
             {
                 Memory.WriteString(Globals.WorldPTR, Offsets.OnlineListPlayerName, TextBox_OnlineList.Text + "\0");
-                Memory.WriteString(Globals.PlayerNameChatterPTR + 0x84, null, TextBox_ChatName.Text + "\0");
+                Memory.WriteString(Globals.PlayerChatterNamePTR + 0x84, null, TextBox_ChatName.Text + "\0");
 
                 if (RadioButton_PlayerName_Epic.IsChecked == true)
                 {
@@ -217,7 +217,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         private void ReadPlayerName()
         {
             TextBox_OnlineList.Text = Memory.ReadString(Globals.WorldPTR, Offsets.OnlineListPlayerName, 20);
-            TextBox_ChatName.Text = Memory.ReadString(Globals.PlayerNameChatterPTR + 0x84, null, 20);
+            TextBox_ChatName.Text = Memory.ReadString(Globals.PlayerChatterNamePTR + 0x84, null, 20);
 
             if (RadioButton_PlayerName_Epic.IsChecked == true)
             {

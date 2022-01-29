@@ -43,43 +43,41 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             {
                 Memory.Initialize(CoreUtil.TargetAppName);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.WorldPTR);
-                Globals.WorldPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.WorldMask);
+                Globals.WorldPTR = Memory.Rip_37(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.BlipPTR);
-                Globals.BlipPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.BlipMask);
+                Globals.BlipPTR = Memory.Rip_37(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.GlobalPTR);
-                Globals.GlobalPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.GlobalMask);
+                Globals.GlobalPTR = Memory.Rip_37(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.PlayerNameChatPTR);
-                Globals.PlayerNameChatterPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.PlayerchatterNameMask);
+                Globals.PlayerChatterNamePTR = Memory.Rip_37(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.PlayerListPTR);
-                Globals.PlayerListPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.NetworkPlayerManagerMask);
+                Globals.NetworkPlayerManagerPTR = Memory.Rip_37(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.ReplayInterfacePTR);
-                Globals.ReplayInterfacePTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.ReplayInterfaceMask);
+                Globals.ReplayInterfacePTR = Memory.Rip_37(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.WeatherPTR);
-                Globals.WeatherPTR = Memory.Rip_6A(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.WeatherMask);
+                Globals.WeatherPTR = Memory.Rip_6A(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.UnkModel);
-                Globals.UnkModelPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.UnkModelMask);
+                Globals.UnkModelPTR = Memory.Rip_37(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.PickupData);
-                Globals.PickupDataPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.PickupDataMask);
+                Globals.PickupDataPTR = Memory.Rip_37(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.ViewPortPTR);
-                Globals.ViewPortPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.ViewPortMask);
+                Globals.ViewPortPTR = Memory.Rip_37(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.AimingPedPTR);
-                Globals.AimingPedPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.AimingPedMask);
+                Globals.AimingPedPTR = Memory.Rip_37(Globals.TempPTR);
 
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.CCameraPTR);
-                Globals.CCameraPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
-
-                Globals.FrameFlagsZeroWriteCallOffset = Memory.FindPattern(Offsets.Mask.FrameFlagsZeroWriteCall) + 0x07;
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.CCameraMask);
+                Globals.CCameraPTR = Memory.Rip_37(Globals.TempPTR);
             });
 
             this.DataContext = this;

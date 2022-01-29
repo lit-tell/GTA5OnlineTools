@@ -14,46 +14,32 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         {
             InitializeComponent();
 
-            Task.Run(() =>
+            // 读取自定义传送坐标文件
+            try
             {
-                Memory.Initialize(CoreUtil.TargetAppName);
-
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.WorldPTR);
-                Globals.WorldPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
-
-                Offsets.Mask.TempPTR = Memory.FindPattern(Offsets.Mask.BlipPTR);
-                Globals.BlipPTR = Memory.Rip_37(Offsets.Mask.TempPTR);
-
-                Dispatcher.BeginInvoke(new Action(delegate
+                using (StreamReader streamReader = new StreamReader(FileUtil.CustomTPList_Path))
                 {
-                    // 读取自定义传送坐标文件
-                    try
+                    List<TeleportData.TeleportPreview> teleportPreviews = JsonUtil.JsonDese<List<TeleportData.TeleportPreview>>(streamReader.ReadToEnd());
+
+                    TeleportData.CustomTeleport.Clear();
+
+                    foreach (var item in teleportPreviews)
                     {
-                        using (StreamReader streamReader = new StreamReader(FileUtil.CustomTPList_Path))
-                        {
-                            List<TeleportData.TeleportPreview> teleportPreviews = JsonUtil.JsonDese<List<TeleportData.TeleportPreview>>(streamReader.ReadToEnd());
-
-                            TeleportData.CustomTeleport.Clear();
-
-                            foreach (var item in teleportPreviews)
-                            {
-                                TeleportData.CustomTeleport.Add(item);
-                            }
-
-                            TextBox_Result.Text = $"读取自定义传送坐标文件成功 {FileUtil.CustomTPList_Path}";
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        TextBox_Result.Text = $"读取自定义传送坐标文件失败 {ex.Message}";
+                        TeleportData.CustomTeleport.Add(item);
                     }
 
-                    UpdateTpList();
+                    TextBox_Result.Text = $"读取自定义传送坐标文件成功 {FileUtil.CustomTPList_Path}";
+                }
+            }
+            catch (Exception ex)
+            {
+                TextBox_Result.Text = $"读取自定义传送坐标文件失败 {ex.Message}";
+            }
 
-                    ListBox_TeleportList.SelectedIndex = 2;
-                    ListBox_TeleportInfo.SelectedIndex = 0;
-                }));
-            });
+            UpdateTpList();
+
+            ListBox_TeleportList.SelectedIndex = 2;
+            ListBox_TeleportInfo.SelectedIndex = 0;
         }
 
         private void UpdateTpList()

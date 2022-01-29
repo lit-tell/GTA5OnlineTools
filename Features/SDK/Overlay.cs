@@ -131,7 +131,7 @@ namespace GTA5OnlineTools.Features.SDK
                 /////////////////////////////////////////////////////////////////////
 
                 // 玩家列表
-                long pPlayerListPTR = Memory.Read<long>(Globals.PlayerListPTR);
+                long pPlayerListPTR = Memory.Read<long>(Globals.NetworkPlayerManagerPTR);
                 int playerCount = Memory.Read<int>(pPlayerListPTR + 0x178);
 
                 // Ped数量
