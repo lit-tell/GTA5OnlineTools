@@ -6,15 +6,15 @@ using GTA5OnlineTools.Features.Core;
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// EM7ExternalOverlayView.xaml 的交互逻辑
+    /// EM08ExternalOverlayView.xaml 的交互逻辑
     /// </summary>
-    public partial class EM7ExternalOverlayView : UserControl
+    public partial class EM08ExternalOverlayView : UserControl
     {
         private Overlay overlay;
 
         private Memory.WindowData windowData;
 
-        public EM7ExternalOverlayView()
+        public EM08ExternalOverlayView()
         {
             InitializeComponent();
 

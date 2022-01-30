@@ -5,11 +5,11 @@ using GTA5OnlineTools.Features.Data;
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// EM3WorldFunctionView.xaml 的交互逻辑
+    /// EM02WorldFunctionView.xaml 的交互逻辑
     /// </summary>
-    public partial class EM3WorldFunctionView : UserControl
+    public partial class EM02WorldFunctionView : UserControl
     {
-        public EM3WorldFunctionView()
+        public EM02WorldFunctionView()
         {
             InitializeComponent();
 

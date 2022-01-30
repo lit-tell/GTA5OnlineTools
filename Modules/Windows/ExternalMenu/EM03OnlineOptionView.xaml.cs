@@ -5,11 +5,11 @@ using GTA5OnlineTools.Features.Data;
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// EM4OnlineOptionView.xaml 的交互逻辑
+    /// EM03OnlineOptionView.xaml 的交互逻辑
     /// </summary>
-    public partial class EM4OnlineOptionView : UserControl
+    public partial class EM03OnlineOptionView : UserControl
     {
-        public EM4OnlineOptionView()
+        public EM03OnlineOptionView()
         {
             InitializeComponent();
 

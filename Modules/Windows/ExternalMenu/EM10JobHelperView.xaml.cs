@@ -5,11 +5,11 @@ using GTA5OnlineTools.Features.Data;
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// EM9JobHelperView.xaml 的交互逻辑
+    /// EM10JobHelperView.xaml 的交互逻辑
     /// </summary>
-    public partial class EM9JobHelperView : UserControl
+    public partial class EM10JobHelperView : UserControl
     {
-        public EM9JobHelperView()
+        public EM10JobHelperView()
         {
             InitializeComponent();
 

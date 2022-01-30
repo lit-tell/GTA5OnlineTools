@@ -1,12 +1,12 @@
 ﻿<UserControl
-    x:Class="GTA5OnlineTools.Modules.Windows.ExternalMenu.EM8SessionChatView"
+    x:Class="GTA5OnlineTools.Modules.Windows.ExternalMenu.EM09SessionChatView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:GTA5OnlineTools.Modules.Windows.ExternalMenu"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="600"
-    d:DesignWidth="750"
+    d:DesignWidth="900"
     mc:Ignorable="d">
 
     <Grid>

@@ -8,13 +8,13 @@ using Forms = System.Windows.Forms;
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// EM8SessionChatView.xaml 的交互逻辑
+    /// EM09SessionChatView.xaml 的交互逻辑
     /// </summary>
-    public partial class EM8SessionChatView : UserControl
+    public partial class EM09SessionChatView : UserControl
     {
         private readonly string youdaoAPI = "http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=";
 
-        public EM8SessionChatView()
+        public EM09SessionChatView()
         {
             InitializeComponent();
 

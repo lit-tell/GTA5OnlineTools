@@ -5,11 +5,11 @@ using GTA5OnlineTools.Features.Data;
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// EM2SpawnWeaponView.xaml 的交互逻辑
+    /// EM06SpawnWeaponView.xaml 的交互逻辑
     /// </summary>
-    public partial class EM2SpawnWeaponView : UserControl
+    public partial class EM06SpawnWeaponView : UserControl
     {
-        public EM2SpawnWeaponView()
+        public EM06SpawnWeaponView()
         {
             InitializeComponent();
 

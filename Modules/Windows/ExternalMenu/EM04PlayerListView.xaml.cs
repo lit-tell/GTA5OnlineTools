@@ -6,14 +6,14 @@ using GTA5OnlineTools.Features.Data;
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// EM5PlayerListView.xaml 的交互逻辑
+    /// EM04PlayerListView.xaml 的交互逻辑
     /// </summary>
-    public partial class EM5PlayerListView : UserControl
+    public partial class EM04PlayerListView : UserControl
     {
         // 显示玩家列表
         private List<PlayerData> playerData = new List<PlayerData>();
 
-        public EM5PlayerListView()
+        public EM04PlayerListView()
         {
             InitializeComponent();
 

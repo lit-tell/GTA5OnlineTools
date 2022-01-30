@@ -6,14 +6,14 @@ using GTA5OnlineTools.Features.SDK;
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// EM0PlayerStateView.xaml 的交互逻辑
+    /// EM01PlayerStateView.xaml 的交互逻辑
     /// </summary>
-    public partial class EM0PlayerStateView : UserControl
+    public partial class EM01PlayerStateView : UserControl
     {
         // 特殊功能
         private int FrameFlag = 0;
 
-        public EM0PlayerStateView()
+        public EM01PlayerStateView()
         {
             InitializeComponent();
 

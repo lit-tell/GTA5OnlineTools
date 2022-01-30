@@ -7,9 +7,9 @@ using static GTA5OnlineTools.Features.SDK.Hacks;
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// EM1SpawnVehicleView.xaml 的交互逻辑
+    /// EM05SpawnVehicleView.xaml 的交互逻辑
     /// </summary>
-    public partial class EM1SpawnVehicleView : UserControl
+    public partial class EM05SpawnVehicleView : UserControl
     {
         private static long SpawnVehicleHash = 0;
 
@@ -22,7 +22,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
         private List<PVInfo> pVInfos = new List<PVInfo>();
 
-        public EM1SpawnVehicleView()
+        public EM05SpawnVehicleView()
         {
             InitializeComponent();
 

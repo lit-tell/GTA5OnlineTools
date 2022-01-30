@@ -1,10 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Windows;
-using System.Windows.Threading;
-using System.Threading;
-using System.Threading.Tasks;
-using Prism.Ioc;
+﻿using Prism.Ioc;
 using Prism.DryIoc;
 using GTA5OnlineTools.Views;
 using GTA5OnlineTools.Common.Utils;
@@ -51,17 +45,17 @@ namespace GTA5OnlineTools
             containerRegistry.RegisterForNavigation<UC4UpdateView>();
             containerRegistry.RegisterForNavigation<UC5AboutView>();
 
-            containerRegistry.RegisterForNavigation<EM0PlayerStateView>();
-            containerRegistry.RegisterForNavigation<EM1SpawnVehicleView>();
-            containerRegistry.RegisterForNavigation<EM2SpawnWeaponView>();
-            containerRegistry.RegisterForNavigation<EM3WorldFunctionView>();
-            containerRegistry.RegisterForNavigation<EM4OnlineOptionView>();
-            containerRegistry.RegisterForNavigation<EM5PlayerListView>();
-            containerRegistry.RegisterForNavigation<EM6CustomTPView>();
-            containerRegistry.RegisterForNavigation<EM7ExternalOverlayView>();
-            containerRegistry.RegisterForNavigation<EM8SessionChatView>();
-            containerRegistry.RegisterForNavigation<EM9JobHelperView>();
-
+            containerRegistry.RegisterForNavigation<EM00ReadMeView>();
+            containerRegistry.RegisterForNavigation<EM01PlayerStateView>();
+            containerRegistry.RegisterForNavigation<EM02WorldFunctionView>();
+            containerRegistry.RegisterForNavigation<EM03OnlineOptionView>();
+            containerRegistry.RegisterForNavigation<EM04PlayerListView>();
+            containerRegistry.RegisterForNavigation<EM05SpawnVehicleView>();
+            containerRegistry.RegisterForNavigation<EM06SpawnWeaponView>();
+            containerRegistry.RegisterForNavigation<EM07CustomTPView>();
+            containerRegistry.RegisterForNavigation<EM08ExternalOverlayView>();
+            containerRegistry.RegisterForNavigation<EM09SessionChatView>();
+            containerRegistry.RegisterForNavigation<EM10JobHelperView>();
         }
 
         private void RegisterEvents()

@@ -6,11 +6,11 @@ using GTA5OnlineTools.Features.Data;
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
     /// <summary>
-    /// EM6CustomTPView.xaml 的交互逻辑
+    /// EM07CustomTPView.xaml 的交互逻辑
     /// </summary>
-    public partial class EM6CustomTPView : UserControl
+    public partial class EM07CustomTPView : UserControl
     {
-        public EM6CustomTPView()
+        public EM07CustomTPView()
         {
             InitializeComponent();
 
