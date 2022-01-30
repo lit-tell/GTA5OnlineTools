@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="720"
-    d:DesignWidth="1280"
+    d:DesignHeight="600"
+    d:DesignWidth="750"
     mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -16,7 +16,7 @@
         <Style BasedOn="{StaticResource ButtonNormalStyle}" TargetType="Button" />
     </UserControl.Resources>
 
-    <Grid Margin="5">
+    <Grid>
         <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -283,7 +283,7 @@
                         Click="CheckBox_AutoClearWanted_Click"
                         Content="自动消星" />
                     <TextBlock />
-                    <StackPanel Orientation="Horizontal">
+                    <WrapPanel Orientation="Horizontal">
                         <RadioButton
                             x:Name="RadioButton_FrameFlags_Default"
                             Margin="5"
@@ -305,7 +305,7 @@
                             Margin="5"
                             Click="RadioButton_FrameFlags_Click"
                             Content="爆炸子弹" />
-                    </StackPanel>
+                    </WrapPanel>
                     <Border Style="{StaticResource BorderTitleStyle}">
                         <TextBlock
                             Padding="3,0,0,0"

@@ -5,8 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:GTA5OnlineTools.Modules.Windows.ExternalMenu"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="720"
-    d:DesignWidth="1280"
+    d:DesignHeight="600"
+    d:DesignWidth="750"
     mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -37,7 +37,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ScrollViewer Margin="5" Style="{StaticResource ScrollViewerVAHDStyle}">
+        <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

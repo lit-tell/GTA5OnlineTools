@@ -4,6 +4,7 @@ using GTA5OnlineTools.Common.Data;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
+using GTA5OnlineTools.Features.Data;
 
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
@@ -21,6 +22,13 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         private IRegionManager _RegionManager;
         private IRegionManager _ScopedRegion;
 
+        // 程序自身的窗口句柄
+        private IntPtr EMHandle;
+        private POINT EMPOINT;
+
+        public delegate void IsShowWindow();
+        public static IsShowWindow IsShowWindowDelegate;
+
         public ExternalMenuView(IRegionManager regionManager)
         {
             InitializeComponent();
@@ -29,6 +37,8 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             _ScopedRegion = _RegionManager.CreateRegionManager();
             RegionManager.SetRegionManager(this, _ScopedRegion);
+
+            Button_TitleClose.Click += (s, e) => { this.Close(); };
         }
 
         private void Window_ExternalMenuView_Loaded(object sender, RoutedEventArgs e)
@@ -38,6 +48,12 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             NavigateCommand = new DelegateCommand<MenuBar>(Navigate);
 
             _ScopedRegion.RequestNavigate("ExternalMenuViewRegion", "EM0PlayerStateView");
+
+            // 获取自身窗口句柄
+            EMHandle = new WindowInteropHelper(this).Handle;
+            WinAPI.GetCursorPos(out EMPOINT);
+
+            IsShowWindowDelegate = ShowWindow;
 
             Task.Run(() =>
             {
@@ -94,16 +110,16 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
         private void CreateMenuBar()
         {
-            MenuBars.Add(new MenuBar() { Icon = "\xe738", Title = "玩家属性", ColorHex = "#333333", NameSpace = "EM0PlayerStateView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe738", Title = "世界功能", ColorHex = "#333333", NameSpace = "EM3WorldFunctionView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe738", Title = "线上选项", ColorHex = "#333333", NameSpace = "EM4OnlineOptionView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe738", Title = "玩家列表", ColorHex = "#333333", NameSpace = "EM5PlayerListView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe738", Title = "刷出线上载具", ColorHex = "#333333", NameSpace = "EM1SpawnVehicleView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe738", Title = "刷出线上武器", ColorHex = "#333333", NameSpace = "EM2SpawnWeaponView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe738", Title = "自定义传送", ColorHex = "#333333", NameSpace = "EM6CustomTPView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe738", Title = "外部ESP", ColorHex = "#333333", NameSpace = "EM7ExternalOverlayView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe738", Title = "战局聊天", ColorHex = "#333333", NameSpace = "EM8SessionChatView" });
-            MenuBars.Add(new MenuBar() { Icon = "\xe738", Title = "任务小帮手", ColorHex = "#333333", NameSpace = "EM9JobHelperView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe882", Title = "玩家属性", ColorHex = "#333333", NameSpace = "EM0PlayerStateView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe64b", Title = "世界功能", ColorHex = "#333333", NameSpace = "EM3WorldFunctionView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xed18", Title = "线上选项", ColorHex = "#333333", NameSpace = "EM4OnlineOptionView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe882", Title = "玩家列表", ColorHex = "#333333", NameSpace = "EM5PlayerListView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe64b", Title = "线上载具", ColorHex = "#333333", NameSpace = "EM1SpawnVehicleView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xed18", Title = "线上武器", ColorHex = "#333333", NameSpace = "EM2SpawnWeaponView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe882", Title = "自定传送", ColorHex = "#333333", NameSpace = "EM6CustomTPView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe64b", Title = "外部ESP", ColorHex = "#333333", NameSpace = "EM7ExternalOverlayView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xed18", Title = "战局聊天", ColorHex = "#333333", NameSpace = "EM8SessionChatView" });
+            MenuBars.Add(new MenuBar() { Icon = "\xe882", Title = "任务帮手", ColorHex = "#333333", NameSpace = "EM9JobHelperView" });
 
         }
 
@@ -129,6 +145,27 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                 }
 
                 Thread.Sleep(2000);
+            }
+        }
+
+        private void ShowWindow()
+        {
+            Settings.ShowWindow = !Settings.ShowWindow;
+            if (Settings.ShowWindow)
+            {
+                Show();
+
+                WinAPI.SetCursorPos(EMPOINT.X, EMPOINT.Y);
+
+                WindowState = WindowState.Normal;
+                WinAPI.SetForegroundWindow(EMHandle);
+            }
+            else
+            {
+                WinAPI.GetCursorPos(out EMPOINT);
+
+                Hide();
+                Memory.SetForegroundWindow();
             }
         }
     }

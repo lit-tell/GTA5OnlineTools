@@ -318,5 +318,10 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                 Settings.Overlay.AimBot_Fov = 8848.0f;
             }
         }
+
+        private void CheckBox_NoTOPMostHide_Click(object sender, RoutedEventArgs e)
+        {
+            Settings.Overlay.IsNoTOPMostHide = CheckBox_NoTOPMostHide.IsChecked == true;
+        }
     }
 }

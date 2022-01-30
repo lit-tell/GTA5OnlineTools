@@ -25,9 +25,9 @@ namespace GTA5OnlineTools.Features.Data
 
         public struct Special
         {
-            //public static bool FireAmmo = false;
-            //public static bool ExplosiveAmmo = false;
-            //public static bool SuperJump = false;
+            public static bool FireAmmo = false;
+            public static bool ExplosiveAmmo = false;
+            public static bool SuperJump = false;
 
             public static bool AutoClearWanted = false;
         }
@@ -52,6 +52,8 @@ namespace GTA5OnlineTools.Features.Data
             public static int AimBot_BoneIndex = 0;
             public static float AimBot_Fov = 8848.0f;
             public static WinVK AimBot_Key = WinVK.CONTROL;
+
+            public static bool IsNoTOPMostHide = false;
         }
     }
 }

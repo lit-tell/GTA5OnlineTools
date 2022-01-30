@@ -293,6 +293,8 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
         private void Button_SpawnPersonalVehicle_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             int index = ListBox_PersonalVehicle.SelectedIndex;
 
             if (index != -1)

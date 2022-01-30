@@ -5,8 +5,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:GTA5OnlineTools.Modules.Windows.ExternalMenu"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="720"
-    d:DesignWidth="1280"
+    d:DesignHeight="600"
+    d:DesignWidth="750"
     mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -15,7 +15,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Margin="5">
+    <Grid>
         <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -84,6 +84,12 @@
                             x:Name="CheckBox_AimBot_Enabled"
                             Click="CheckBox_AimBot_Enabled_Click"
                             Content="开启Aimbot"
+                            IsChecked="False" />
+                        <TextBlock />
+                        <CheckBox
+                            x:Name="CheckBox_NoTOPMostHide"
+                            Click="CheckBox_NoTOPMostHide_Click"
+                            Content="非游戏状态隐藏"
                             IsChecked="False" />
                     </StackPanel>
                 </GroupBox>
@@ -228,12 +234,12 @@
                             x:Name="Button_Overaly_Run"
                             Click="Button_Overaly_Run_Click"
                             Content="启动ESP"
-                            Style="{StaticResource ButtonWebStyle}" />
+                            Style="{StaticResource ButtonNormalStyle}" />
                         <Button
                             x:Name="Button_Overaly_Exit"
                             Click="Button_Overaly_Exit_Click"
                             Content="关闭ESP"
-                            Style="{StaticResource ButtonWebStyle}" />
+                            Style="{StaticResource ButtonNormalStyle}" />
                     </StackPanel>
 
                 </StackPanel>

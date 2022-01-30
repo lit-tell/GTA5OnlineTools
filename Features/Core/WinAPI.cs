@@ -63,6 +63,23 @@
 
         [DllImport("user32.dll")]
         public static extern uint MapVirtualKey(WinVK uCode, uint uMapType);
+
+        [DllImport("User32")]
+        public extern static void SetCursorPos(int x, int y);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern bool GetCursorPos(out POINT pt);
+    }
+
+    public struct POINT
+    {
+        public int X;
+        public int Y;
+        public POINT(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
     }
 
     [StructLayout(LayoutKind.Sequential)]

@@ -26,6 +26,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             thread1.Start();
 
             var MainKeysManager = new KeysManager();
+            MainKeysManager.AddKey(WinVK.F9);
             MainKeysManager.AddKey(WinVK.F3);
             MainKeysManager.AddKey(WinVK.F4);
             MainKeysManager.AddKey(WinVK.F5);
@@ -49,6 +50,9 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             {
                 switch (keyId)
                 {
+                    case (int)WinVK.F9:
+                        ExternalMenuView.IsShowWindowDelegate();
+                        break;
                     case (int)WinVK.F3:
                         if (CheckBox_FillCurrentAmmo.IsChecked == true)
                         {
