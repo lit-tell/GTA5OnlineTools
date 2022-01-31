@@ -7,8 +7,8 @@
     <UseWPF>true</UseWPF>
     <Platforms>x64</Platforms>
     <StartupObject>GTA5OnlineTools.App</StartupObject>
-    <AssemblyVersion>3.0.1.9</AssemblyVersion>
-    <FileVersion>3.0.1.9</FileVersion>
+    <AssemblyVersion>3.0.2.0</AssemblyVersion>
+    <FileVersion>3.0.2.0</FileVersion>
     <ApplicationIcon>Assets\Images\Favicon.ico</ApplicationIcon>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <DebugType>full</DebugType>
@@ -44,6 +44,7 @@
     <None Remove="Features\Files\Kiddion.exe" />
     <None Remove="Features\Files\Kiddion_Chs.exe" />
     <None Remove="Features\Files\LSCHax.exe" />
+    <None Remove="Features\Files\MyInjectMenu.dll" />
     <None Remove="Features\Files\PackedStatEditor.dll" />
     <None Remove="Features\Files\scripts\Readme.api" />
     <None Remove="Features\Files\scripts\sirius.lua.example" />
@@ -61,6 +62,7 @@
     <EmbeddedResource Include="Features\Files\config.json" />
     <EmbeddedResource Include="Features\Files\DefenderControl.exe" />
     <EmbeddedResource Include="Features\Files\DefenderControl.ini" />
+    <EmbeddedResource Include="Features\Files\MyInjectMenu.dll" />
     <EmbeddedResource Include="Features\Files\GTAHax.exe" />
     <EmbeddedResource Include="Features\Files\Key87\config.json" />
     <EmbeddedResource Include="Features\Files\Key87\settings.ini" />

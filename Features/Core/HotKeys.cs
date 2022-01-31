@@ -1,16 +1,11 @@
-﻿using System;
-using System.Threading;
-using System.Collections.Generic;
-
-namespace GTA5OnlineTools.Features.Core
+﻿namespace GTA5OnlineTools.Features.Core
 {
-    public class KeysManager
+    public class HotKeys
     {
         // Keys holder 按键持有者
-        private Dictionary<int, MyKey> keys;
+        private Dictionary<int, MyKeys> keys;
 
         // Update thread 更新线程
-        public Thread thread = null;
         private int interval = 20; // 20 ms
 
         // Keys events 按键事件
@@ -18,13 +13,22 @@ namespace GTA5OnlineTools.Features.Core
         public event KeyHandler KeyUpEvent;
         public event KeyHandler KeyDownEvent;
 
+        private bool isRun = true;
+
         // Init 初始化
-        public KeysManager()
+        public HotKeys()
         {
-            keys = new Dictionary<int, MyKey>();
-            thread = new Thread(new ParameterizedThreadStart(Update));
+            isRun = true;
+
+            keys = new Dictionary<int, MyKeys>();
+            var thread = new Thread(new ParameterizedThreadStart(Update));
             thread.IsBackground = true;
             thread.Start();
+        }
+
+        public void Dispose()
+        {
+            isRun = false;
         }
 
         // Key Up 键弹起
@@ -50,7 +54,7 @@ namespace GTA5OnlineTools.Features.Core
         {
             if (!keys.ContainsKey(keyId))
             {
-                keys.Add(keyId, new MyKey(keyId, keyName));
+                keys.Add(keyId, new MyKeys(keyId, keyName));
             }
         }
 
@@ -60,14 +64,14 @@ namespace GTA5OnlineTools.Features.Core
             int keyId = (int)key;
             if (!keys.ContainsKey(keyId))
             {
-                keys.Add(keyId, new MyKey(keyId, key.ToString()));
+                keys.Add(keyId, new MyKeys(keyId, key.ToString()));
             }
         }
 
         // Is Key Down 键是否按下
         public bool IsKeyDown(int keyId)
         {
-            MyKey value;
+            MyKeys value;
             if (keys.TryGetValue(keyId, out value))
             {
                 return value.IsKeyDown;
@@ -78,14 +82,14 @@ namespace GTA5OnlineTools.Features.Core
         // Update Thread 更新线程
         private void Update(object sender)
         {
-            while (true)
+            while (isRun)
             {
                 if (keys.Count > 0)
                 {
-                    List<MyKey> keysData = new List<MyKey>(keys.Values);
+                    List<MyKeys> keysData = new List<MyKeys>(keys.Values);
                     if (keysData != null && keysData.Count > 0)
                     {
-                        foreach (MyKey key in keysData)
+                        foreach (MyKeys key in keysData)
                         {
                             if (Convert.ToBoolean(WinAPI.GetKeyState(key.Id) & WinAPI.KEY_PRESSED))
                             {
@@ -112,13 +116,13 @@ namespace GTA5OnlineTools.Features.Core
         }
     }
 
-    public class MyKey
+    public class MyKeys
     {
         private string keyName;
         private int keyId;
         private bool keyDown;
 
-        public MyKey(int keyId, string keyName)
+        public MyKeys(int keyId, string keyName)
         {
             this.keyId = keyId;
             this.keyName = keyName;

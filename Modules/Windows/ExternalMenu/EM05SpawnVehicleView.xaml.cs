@@ -33,35 +33,6 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             }
             ListBox_VehicleClass.SelectedIndex = 0;
 
-
-            Task.Run(() =>
-            {
-                int max_slots = ReadGA<int>(1585844);
-                for (int i = 0; i < max_slots; i++)
-                {
-                    long hash = ReadGA<long>(1585844 + 1 + (i * 142) + 66);
-                    if (hash == 0)
-                        continue;
-
-                    string plate = ReadGAString(1585844 + 1 + (i * 142) + 1);
-
-                    pVInfos.Add(new PVInfo()
-                    {
-                        Name = "",
-                        hash = hash,
-                        plate = plate
-                    });
-                }
-
-                foreach (var item in pVInfos)
-                {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        ListBox_PersonalVehicle.Items.Add($"[{item.plate}] {FindVehicleDisplayName(item.hash, true)}");
-                    });
-                }
-            });
-
             ExternalMenuView.ClosingDisposeEvent += ExternalMenuView_ClosingDisposeEvent;
         }
 
@@ -289,6 +260,37 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             AudioUtil.ClickSound();
 
             Online.GetInOnlinePV();
+        }
+
+        private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
+        {
+            Task.Run(() =>
+            {
+                int max_slots = ReadGA<int>(1585844);
+                for (int i = 0; i < max_slots; i++)
+                {
+                    long hash = ReadGA<long>(1585844 + 1 + (i * 142) + 66);
+                    if (hash == 0)
+                        continue;
+
+                    string plate = ReadGAString(1585844 + 1 + (i * 142) + 1);
+
+                    pVInfos.Add(new PVInfo()
+                    {
+                        Name = "",
+                        hash = hash,
+                        plate = plate
+                    });
+                }
+
+                foreach (var item in pVInfos)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        ListBox_PersonalVehicle.Items.Add($"[{item.plate}] {FindVehicleDisplayName(item.hash, true)}");
+                    });
+                }
+            });
         }
 
         private void Button_SpawnPersonalVehicle_Click(object sender, RoutedEventArgs e)

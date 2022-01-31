@@ -38,6 +38,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             _ScopedRegion = _RegionManager.CreateRegionManager();
             RegionManager.SetRegionManager(this, _ScopedRegion);
 
+            Button_TitleMin.Click += (s, e) => { this.WindowState = WindowState.Minimized; };
             Button_TitleClose.Click += (s, e) => { this.Close(); };
         }
 
@@ -55,6 +56,10 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             WinAPI.GetCursorPos(out EMPOINT);
 
             IsShowWindowDelegate = ShowWindow;
+
+            Settings.ShowWindow = true;
+
+            Topmost = false;
 
             Task.Run(() =>
             {
@@ -154,20 +159,37 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             Settings.ShowWindow = !Settings.ShowWindow;
             if (Settings.ShowWindow)
             {
-                Show();
+                //Show();
+                WindowState = WindowState.Normal;
+                Focus();
+
+                if (CheckBox_IsTopMost.IsChecked == false)
+                {
+                    Topmost = true;
+                    Topmost = false;
+                }
 
                 WinAPI.SetCursorPos(EMPOINT.X, EMPOINT.Y);
 
-                WindowState = WindowState.Normal;
                 WinAPI.SetForegroundWindow(EMHandle);
             }
             else
             {
+                //Hide();
+                WindowState = WindowState.Minimized;
+
                 WinAPI.GetCursorPos(out EMPOINT);
 
-                Hide();
                 Memory.SetForegroundWindow();
             }
+        }
+
+        private void CheckBox_IsTopMost_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheckBox_IsTopMost.IsChecked == true)
+                Topmost = true;
+            else
+                Topmost = false;
         }
     }
 }

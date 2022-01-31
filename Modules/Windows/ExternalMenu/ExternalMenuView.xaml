@@ -10,11 +10,11 @@
     Title="GTA5线上小助手 外置菜单"
     Width="1000"
     Height="600"
+    Background="White"
     Closing="Window_ExternalMenuView_Closing"
     Loaded="Window_ExternalMenuView_Loaded"
     ResizeMode="NoResize"
-    ShowInTaskbar="False"
-    Topmost="True"
+    ShowInTaskbar="True"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
@@ -133,6 +133,16 @@
                         VerticalAlignment="Center"
                         Foreground="White"
                         Text="F9键 显示/隐藏" />
+                    <CheckBox
+                        x:Name="CheckBox_IsTopMost"
+                        Margin="10,0,0,0"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Click="CheckBox_IsTopMost_Click"
+                        Content="窗口置顶"
+                        Foreground="White"
+                        IsChecked="False"
+                        WindowChrome.IsHitTestVisibleInChrome="True" />
                 </StackPanel>
 
                 <StackPanel
@@ -157,9 +167,16 @@
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
                     <Button
+                        x:Name="Button_TitleMin"
+                        Content="&#xe67a;"
+                        Style="{StaticResource ExternalMenuMinButtonStyle}"
+                        ToolTip="最小化"
+                        WindowChrome.IsHitTestVisibleInChrome="True" />
+                    <Button
                         x:Name="Button_TitleClose"
                         Content="&#xeaf2;"
-                        Style="{StaticResource ExternalMenuButtonStyle}"
+                        Style="{StaticResource ExternalMenuCloseButtonStyle}"
+                        ToolTip="关闭窗口"
                         WindowChrome.IsHitTestVisibleInChrome="True" />
                 </StackPanel>
             </Grid>

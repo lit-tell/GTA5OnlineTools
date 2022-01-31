@@ -62,8 +62,12 @@ namespace GTA5OnlineTools.ViewModels
                     {
                         if (ExternalMenuView.IsVisible)
                         {
-                            ExternalMenuView.Topmost = true;
-                            ExternalMenuView.Topmost = false;
+                            if (!ExternalMenuView.Topmost)
+                            {
+                                ExternalMenuView.Topmost = true;
+                                ExternalMenuView.Topmost = false;
+                            }
+
                             ExternalMenuView.WindowState = WindowState.Normal;
                         }
                         else

@@ -17,6 +17,7 @@
             <Setter Property="IsDocumentEnabled" Value="True" />
             <Setter Property="Cursor" Value="Arrow" />
             <Setter Property="Padding" Value="5" />
+            <Setter Property="BorderBrush" Value="Gray" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
             <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
@@ -47,6 +48,7 @@
 
         <RichTextBox
             Grid.Column="0"
+            BorderBrush="Gray"
             BorderThickness="0,0,1,0"
             Style="{StaticResource Main}">
             <FlowDocument>
@@ -64,7 +66,7 @@
                     而目标点可以获取到xyz坐标，可以达到精准传送
                 </Paragraph>
                 <Paragraph>
-                    ● 传送为啥会在地下？因为如果传送点没有z坐标，程序会把z设置为-255，GTA5系统会自动把模型z坐标处于-255的自动传送到附件适合的地面上
+                    ● 传送为啥会在地下？因为如果传送点没有z坐标，程序会把z设置为-255，GTA5系统会自动把模型z坐标处于-255的自动传送到附近适合的地面上
                 </Paragraph>
                 <Paragraph>
                     ● 如何近距离精确传送？我们打开大地图，然后在附件你需要传送的地方点击导航点（不能太远），

@@ -10,6 +10,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
     /// </summary>
     public partial class EM01PlayerStateView : UserControl
     {
+        private HotKeys MainHotKeys;
         // 特殊功能
         private int FrameFlag = 0;
 
@@ -25,23 +26,23 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             thread1.IsBackground = true;
             thread1.Start();
 
-            var MainKeysManager = new KeysManager();
-            MainKeysManager.AddKey(WinVK.F9);
-            MainKeysManager.AddKey(WinVK.F3);
-            MainKeysManager.AddKey(WinVK.F4);
-            MainKeysManager.AddKey(WinVK.F5);
-            MainKeysManager.AddKey(WinVK.F6);
-            MainKeysManager.AddKey(WinVK.F7);
-            MainKeysManager.AddKey(WinVK.F8);
-            MainKeysManager.AddKey(WinVK.BACK);
-            MainKeysManager.KeyDownEvent += new KeysManager.KeyHandler(MyKeyDownEvent);
+            MainHotKeys = new HotKeys();
+            MainHotKeys.AddKey(WinVK.F9);
+            MainHotKeys.AddKey(WinVK.F3);
+            MainHotKeys.AddKey(WinVK.F4);
+            MainHotKeys.AddKey(WinVK.F5);
+            MainHotKeys.AddKey(WinVK.F6);
+            MainHotKeys.AddKey(WinVK.F7);
+            MainHotKeys.AddKey(WinVK.F8);
+            MainHotKeys.AddKey(WinVK.BACK);
+            MainHotKeys.KeyDownEvent += new HotKeys.KeyHandler(MyKeyDownEvent);
 
             ExternalMenuView.ClosingDisposeEvent += ExternalMenuView_ClosingDisposeEvent;
         }
 
         private void ExternalMenuView_ClosingDisposeEvent()
         {
-
+            MainHotKeys.Dispose();
         }
 
         private void MyKeyDownEvent(int keyId, string keyName)

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Controls;
-using System.Diagnostics;
-using Microsoft.Win32;
-using GTA5OnlineTools.Features.Core;
+﻿using GTA5OnlineTools.Features.Core;
 
 namespace GTA5OnlineTools.Modules.Kits
 {

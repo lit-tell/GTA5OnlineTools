@@ -1,10 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Timers;
-using System.Windows;
-using System.Threading;
-using System.Collections.Generic;
-using Prism.Events;
+﻿using Prism.Events;
 using Prism.Regions;
 using Prism.Commands;
 using GTA5OnlineTools.Views;
@@ -133,6 +127,8 @@ namespace GTA5OnlineTools.ViewModels
 
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.exe", FileUtil.Cache_Path + "DefenderControl.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.ini", FileUtil.Cache_Path + "DefenderControl.ini");
+
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "MyInjectMenu.dll", FileUtil.Cache_Path + "MyInjectMenu.dll");
             }
             catch (Exception ex)
             {

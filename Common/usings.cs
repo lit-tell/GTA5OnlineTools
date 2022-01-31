@@ -2,6 +2,7 @@
 global using System.IO;
 global using System.Linq;
 global using System.Text;
+global using System.Timers;
 global using System.Numerics;
 global using System.Diagnostics;
 global using System.ComponentModel;
@@ -15,3 +16,4 @@ global using System.Windows.Threading;
 global using System.Windows.Navigation;
 global using System.Collections.Generic;
 global using System.Runtime.InteropServices;
+global using Microsoft.Win32;

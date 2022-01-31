@@ -248,9 +248,9 @@ namespace GTA5OnlineTools.Features.SDK
 
                     if (!IsNullVector2(pedPosV2))
                     {
-                        int ped_type = Memory.Read<int>(m_ped_list + 0x10B8);
-                        ped_type = ped_type << 11 >> 25;
-                        Draw2DNameText(gfx, _brushes["white"], pedPosV2, pedBoxV2, ped_type.ToString(), myToPedDistance);
+                        //int ped_type = Memory.Read<int>(m_ped_list + 0x10B8);
+                        //ped_type = ped_type << 11 >> 25;
+                        //Draw2DNameText(gfx, _brushes["white"], pedPosV2, pedBoxV2, ped_type.ToString(), myToPedDistance);
 
                         if (pedName != "")
                         {
