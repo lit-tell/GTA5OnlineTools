@@ -33,201 +33,159 @@
                             Text="属性调节" />
                     </Border>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
+                    <DockPanel Margin="0" LastChildFill="True">
                         <TextBlock
-                            Grid.Column="0"
                             Margin="5,5,0,5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="生命值" />
                         <TextBlock
-                            Grid.Column="1"
                             Margin="5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="{Binding ElementName=Slider_Health, Path=Value, StringFormat=: {0:0000}}" />
                         <Slider
                             Name="Slider_Health"
-                            Grid.Column="2"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
                             IsSnapToTickEnabled="True"
                             Maximum="1000"
                             Minimum="0"
                             TickFrequency="1"
                             ValueChanged="Slider_Health_ValueChanged" />
-                    </Grid>
+                    </DockPanel>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
+                    <DockPanel Margin="0" LastChildFill="True">
                         <TextBlock
-                            Grid.Column="0"
                             Margin="5,5,0,5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="最大生命值" />
                         <TextBlock
-                            Grid.Column="1"
                             Margin="5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="{Binding ElementName=Slider_MaxHealth, Path=Value, StringFormat=: {0:0000}}" />
                         <Slider
                             Name="Slider_MaxHealth"
-                            Grid.Column="2"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
                             IsSnapToTickEnabled="True"
                             Maximum="1000"
                             Minimum="0"
                             TickFrequency="1"
                             ValueChanged="Slider_MaxHealth_ValueChanged" />
-                    </Grid>
+                    </DockPanel>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
+                    <DockPanel Margin="0" LastChildFill="True">
                         <TextBlock
-                            Grid.Column="0"
                             Margin="5,5,0,5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="护甲值" />
                         <TextBlock
-                            Grid.Column="1"
                             Margin="5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="{Binding ElementName=Slider_Armor, Path=Value, StringFormat=: {0:0000}}" />
                         <Slider
                             Name="Slider_Armor"
-                            Grid.Column="2"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
                             IsSnapToTickEnabled="True"
                             Maximum="1000"
                             Minimum="0"
                             TickFrequency="1"
                             ValueChanged="Slider_Armor_ValueChanged" />
-                    </Grid>
+                    </DockPanel>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
+                    <DockPanel Margin="0" LastChildFill="True">
                         <TextBlock
-                            Grid.Column="0"
                             Margin="5,5,0,5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="通缉等级" />
                         <TextBlock
-                            Grid.Column="1"
                             Margin="5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="{Binding ElementName=Slider_Wanted, Path=Value, StringFormat=: {0}}" />
                         <Slider
                             Name="Slider_Wanted"
-                            Grid.Column="2"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
                             IsSnapToTickEnabled="True"
                             Maximum="5"
                             Minimum="0"
                             TickFrequency="1"
                             ValueChanged="Slider_Wanted_ValueChanged" />
-                    </Grid>
+                    </DockPanel>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
+                    <DockPanel Margin="0" LastChildFill="True">
                         <TextBlock
-                            Grid.Column="0"
                             Margin="5,5,0,5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="奔跑速度" />
                         <TextBlock
-                            Grid.Column="1"
                             Margin="5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="{Binding ElementName=Slider_RunSpeed, Path=Value, StringFormat=: {0:00.0}}" />
                         <Slider
                             Name="Slider_RunSpeed"
-                            Grid.Column="2"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
                             IsSnapToTickEnabled="True"
                             Maximum="10"
                             Minimum="0"
                             TickFrequency="0.1"
                             ValueChanged="Slider_RunSpeed_ValueChanged" />
-                    </Grid>
+                    </DockPanel>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
+                    <DockPanel Margin="0" LastChildFill="True">
                         <TextBlock
-                            Grid.Column="0"
                             Margin="5,5,0,5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="游泳速度" />
                         <TextBlock
-                            Grid.Column="1"
                             Margin="5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="{Binding ElementName=Slider_SwimSpeed, Path=Value, StringFormat=: {0:00.0}}" />
                         <Slider
                             Name="Slider_SwimSpeed"
-                            Grid.Column="2"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
                             IsSnapToTickEnabled="True"
                             Maximum="10"
                             Minimum="0"
                             TickFrequency="0.1"
                             ValueChanged="Slider_SwimSpeed_ValueChanged" />
-                    </Grid>
+                    </DockPanel>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
+                    <DockPanel Margin="0" LastChildFill="True">
                         <TextBlock
-                            Grid.Column="0"
                             Margin="5,5,0,5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="潜行速度" />
                         <TextBlock
-                            Grid.Column="1"
                             Margin="5"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Left"
                             Text="{Binding ElementName=Slider_StealthSpeed, Path=Value, StringFormat=: {0:00.0}}" />
                         <Slider
                             Name="Slider_StealthSpeed"
-                            Grid.Column="2"
                             VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
                             IsSnapToTickEnabled="True"
                             Maximum="10"
                             Minimum="0"
                             TickFrequency="0.1"
                             ValueChanged="Slider_StealthSpeed_ValueChanged" />
-                    </Grid>
+                    </DockPanel>
 
                     <Border Style="{StaticResource BorderTitleStyle}">
                         <TextBlock

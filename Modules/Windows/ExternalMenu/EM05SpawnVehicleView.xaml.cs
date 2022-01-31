@@ -15,6 +15,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
         private struct PVInfo
         {
+            public int Index;
             public string Name;
             public long hash;
             public string plate;
@@ -264,6 +265,8 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
         private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             ListBox_PersonalVehicle.Items.Clear();
             pVInfos.Clear();
 
@@ -280,7 +283,8 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
                     pVInfos.Add(new PVInfo()
                     {
-                        Name = "",
+                        Index = i,
+                        Name = FindVehicleDisplayName(hash, true),
                         hash = hash,
                         plate = plate
                     });
@@ -288,9 +292,12 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
                 foreach (var item in pVInfos)
                 {
+                    if (item.hash == 0)
+                        continue;
+
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        ListBox_PersonalVehicle.Items.Add($"[{item.plate}] {FindVehicleDisplayName(item.hash, true)}");
+                        ListBox_PersonalVehicle.Items.Add($"{item.Name} [{item.plate}]");
                     });
                 }
             });
@@ -304,9 +311,14 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             if (index != -1)
             {
+                string str = ListBox_PersonalVehicle.SelectedItem.ToString();
+                str = str.Substring(0, str.IndexOf('[')).Trim();
+
+                int idx = pVInfos.FindIndex(val => val.Name == str);
+
                 Task.Run(() =>
                 {
-                    WriteGA<int>(2810287 + 965, index);
+                    WriteGA<int>(2810287 + 965, idx);
                     WriteGA<int>(2810287 + 962, 1);
                     Task.Delay(500).Wait();
                     WriteGA<int>(2671444 + 8, 1);
