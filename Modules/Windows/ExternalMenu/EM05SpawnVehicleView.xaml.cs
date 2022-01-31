@@ -264,6 +264,9 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
         private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
         {
+            ListBox_PersonalVehicle.Items.Clear();
+            pVInfos.Clear();
+
             Task.Run(() =>
             {
                 int max_slots = ReadGA<int>(1585844);
