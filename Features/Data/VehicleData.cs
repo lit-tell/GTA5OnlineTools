@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace GTA5OnlineTools.Features.Data
+﻿namespace GTA5OnlineTools.Features.Data
 {
     public class VehicleData
     {
@@ -15,6 +13,53 @@ namespace GTA5OnlineTools.Features.Data
             public string Name;
             public string DisplayName;
             public long Hash;
+        }
+
+        public struct VehicleMod
+        {
+            public int Spoiler;
+            public int Frontbumper;
+            public int Rearbumper;
+            public int SideSkirts;
+            public int Exhaust;
+            public int Chassis;
+            public int Grille;
+            public int Hood;
+            public int Fender;
+            public int Rightfender;
+            public int Roof;
+            public int Engine;
+            public int Brakes;
+            public int Transmission;
+            public int Horns;
+            public int Suspension;
+            public int Armor;
+            public int Frontwheels;
+            public int Backwheels;
+            public int Plateholder;
+            public int VanityPlates;
+            public int TrimDesign;
+            public int Ornaments;
+            public int Dashboard;
+            public int Dial;
+            public int DoorSpeaker;
+            public int Seats;
+            public int Steeringwheel;
+            public int ShifterLeavers;
+            public int Plaques;
+            public int Speakers;
+            public int Trunk;
+            public int Hydrulics;
+            public int EngineBlock;
+            public int AirFilter;
+            public int Struts;
+            public int ArchCover;
+            public int Aerials;
+            public int Trim;
+            public int Tank;
+            public int Windows;
+            public int Doors;
+            public int Livery;
         }
 
         public static List<VehicleInfo> CommonVehicle = new List<VehicleInfo>()

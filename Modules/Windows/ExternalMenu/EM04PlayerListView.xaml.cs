@@ -62,7 +62,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             for (int i = 0; i < 32; i++)
             {
-                long pCNetGamePlayer = Memory.Read<long>(Globals.NetworkPlayerManagerPTR, new int[] { 0x180 + (i * 8) });
+                long pCNetGamePlayer = Memory.Read<long>(Globals.NetworkPlayerMgrPTR, new int[] { 0x180 + (i * 8) });
                 if (!Memory.IsValid(pCNetGamePlayer))
                     continue;
 

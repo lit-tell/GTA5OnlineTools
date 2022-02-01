@@ -77,8 +77,8 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                 Globals.TempPTR = Memory.FindPattern(Offsets.Mask.PlayerchatterNameMask);
                 Globals.PlayerChatterNamePTR = Memory.Rip_37(Globals.TempPTR);
 
-                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.NetworkPlayerManagerMask);
-                Globals.NetworkPlayerManagerPTR = Memory.Rip_37(Globals.TempPTR);
+                Globals.TempPTR = Memory.FindPattern(Offsets.Mask.NetworkPlayerMgrMask);
+                Globals.NetworkPlayerMgrPTR = Memory.Rip_37(Globals.TempPTR);
 
                 Globals.TempPTR = Memory.FindPattern(Offsets.Mask.ReplayInterfaceMask);
                 Globals.ReplayInterfacePTR = Memory.Rip_37(Globals.TempPTR);

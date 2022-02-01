@@ -27,7 +27,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             thread1.Start();
 
             MainHotKeys = new HotKeys();
-            MainHotKeys.AddKey(WinVK.F9);
+            MainHotKeys.AddKey(WinVK.INSERT);
             MainHotKeys.AddKey(WinVK.F3);
             MainHotKeys.AddKey(WinVK.F4);
             MainHotKeys.AddKey(WinVK.F5);
@@ -51,7 +51,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             {
                 switch (keyId)
                 {
-                    case (int)WinVK.F9:
+                    case (int)WinVK.INSERT:
                         ExternalMenuView.IsShowWindowDelegate();
                         break;
                     case (int)WinVK.F3:

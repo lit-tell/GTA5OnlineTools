@@ -8,8 +8,9 @@
         public static long BlipPTR;
         public static long GlobalPTR;
 
-        public static long NetworkPlayerManagerPTR;
         public static long ReplayInterfacePTR;
+        public static long NetworkPlayerMgrPTR;
+
         public static long ViewPortPTR;
         public static long AimingPedPTR;
         public static long CCameraPTR;

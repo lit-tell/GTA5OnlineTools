@@ -132,7 +132,7 @@
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         Foreground="White"
-                        Text="F9键 显示/隐藏" />
+                        Text="Insert键 显示/隐藏" />
                     <CheckBox
                         x:Name="CheckBox_IsTopMost"
                         Margin="10,0,0,0"

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-
-namespace GTA5OnlineTools.Features.Core
+﻿namespace GTA5OnlineTools.Features.Core
 {
     public static class ProcessMgr
     {

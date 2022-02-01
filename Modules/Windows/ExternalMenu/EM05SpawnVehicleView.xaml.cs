@@ -117,7 +117,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     WriteGA<float>(oVMCreate + 7 + 1, y);                   // 载具坐标y
                     WriteGA<float>(oVMCreate + 7 + 2, z);                   // 载具坐标z
 
-                    WriteGA<long>(oVMCreate + 27 + 66, SpawnVehicleHash);   // 载具哈希
+                    WriteGA<long>(oVMCreate + 27 + 66, SpawnVehicleHash);   // 载具哈希值
                     WriteGA<int>(oVMCreate + 3, pegasus);                   // 帕格萨斯
 
                     WriteGA<int>(oVMCreate + 5, 1);                         // can spawn flag must be odd
@@ -129,7 +129,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     WriteGA<int>(oVMCreate + 27 + 7, -1);       // pearlescent
                     WriteGA<int>(oVMCreate + 27 + 8, -1);       // wheel color
 
-                    WriteGA<int>(oVMCreate + 27 + 15, 2);       // primary weapon  主武器
+                    WriteGA<int>(oVMCreate + 27 + 15, 1);       // primary weapon  主武器
                     WriteGA<int>(oVMCreate + 27 + 19, -1);
                     WriteGA<int>(oVMCreate + 27 + 20, 2);       // secondary weapon  副武器
 
