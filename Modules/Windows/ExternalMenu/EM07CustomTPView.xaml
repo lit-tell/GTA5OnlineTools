@@ -29,15 +29,15 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <ListBox
-                x:Name="ListBox_TeleportList"
+                x:Name="ListBox_TeleportClass"
                 Grid.Column="0"
                 Margin="0"
-                SelectionChanged="ListBox_TeleportList_SelectionChanged"
+                SelectionChanged="ListBox_TeleportClass_SelectionChanged"
                 Style="{StaticResource ListBoxStyle}" />
 
             <ListBox

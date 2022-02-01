@@ -50,7 +50,9 @@
                     ● 如果外置辅助按键不受控制，按Shift+对应按键（出问题的按键）解决。如果是点num-显示菜单就自动隐藏，你就按Shift+num-，如果是菜单一直向下滑动，你就按Shift+num2，其他的依次类推（要多按几次）
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
-                    ● 多人乘坐载具传送时，按F5传送后载具会卡在地下，这时开车玩家按W键载具会翻滚，乘坐载具玩家按F键下车，然后载具就会出现在地面，传送完毕
+                    ● 多人传送前，请进入同一辆载具，然后在司机（开车玩家）地图上点击导航点，按F5传送，这时载具会卡在地下，
+                    司机按一下W键载具会开始翻滚，司机这时按F键下车，然后立刻离开当前位置（因为载具会落在你头顶）
+                    载具不一会就会从头顶掉落在地面上，传送完毕（乘坐载具玩家不用做任何动作）
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
                     ● 详细使用教程请查看小助手帮助<LineBreak />

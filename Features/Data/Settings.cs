@@ -6,7 +6,7 @@ namespace GTA5OnlineTools.Features.Data
     {
         public static bool ShowWindow = true;
 
-        public static float Forward = 0.5f;
+        public static float Forward = 1.5f;
 
         public struct Player
         {
@@ -28,8 +28,13 @@ namespace GTA5OnlineTools.Features.Data
             public static bool FireAmmo = false;
             public static bool ExplosiveAmmo = false;
             public static bool SuperJump = false;
+        }
 
+        public struct Common
+        {
             public static bool AutoClearWanted = false;
+            public static bool AutoKillNPC = false;
+            public static bool AutoKillPolice = false;
         }
 
         public struct Overlay

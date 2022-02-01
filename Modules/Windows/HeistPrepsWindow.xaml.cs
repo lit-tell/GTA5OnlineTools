@@ -484,10 +484,10 @@ namespace GTA5OnlineTools.Modules.Windows
         {
             var str = (e.OriginalSource as Button).Content.ToString();
 
-            int index = HeistPrepsConfig.FastTeleport.FindIndex(t => t.TName == str);
+            int index = HeistPrepsConfig.FastTeleport.FindIndex(t => t.Name == str);
             if (index != -1)
             {
-                Teleport.SetTeleportV3Pos(HeistPrepsConfig.FastTeleport[index].TCode);
+                Teleport.SetTeleportV3Pos(HeistPrepsConfig.FastTeleport[index].Position);
             }
 
             AppendTextBox($"传送到 {str} 成功");
@@ -595,12 +595,12 @@ namespace GTA5OnlineTools.Modules.Windows
 
     public class HeistPrepsConfig
     {
-        public static List<TeleportPreview> FastTeleport = new List<TeleportPreview>()
+        public static List<TeleportInfo> FastTeleport = new List<TeleportInfo>()
         {
-            new TeleportPreview(){ TName = "赌场门口", TCode = new Vector3 { X=911.072f, Y=53.321f, Z=80.893f } },
-            new TeleportPreview(){ TName = "监控和安保人员", TCode = new Vector3 { X=1089.614f, Y=215.696f, Z=-49.200f } },
-            new TeleportPreview(){ TName = "门禁系统", TCode = new Vector3 { X=1117.732f, Y=214.123f, Z=-49.440f } },
-            new TeleportPreview(){ TName = "赌场后门", TCode = new Vector3 { X=993.162f, Y=86.234f, Z=80.990f } },
+            new TeleportInfo(){ Name = "赌场门口", Position = new Vector3 { X=911.072f, Y=53.321f, Z=80.893f } },
+            new TeleportInfo(){ Name = "监控和安保人员", Position = new Vector3 { X=1089.614f, Y=215.696f, Z=-49.200f } },
+            new TeleportInfo(){ Name = "门禁系统", Position = new Vector3 { X=1117.732f, Y=214.123f, Z=-49.440f } },
+            new TeleportInfo(){ Name = "赌场后门", Position = new Vector3 { X=993.162f, Y=86.234f, Z=80.990f } },
         };
     }
 }

@@ -146,7 +146,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     WriteGA<int>(oVMCreate + 27 + 32, new Random().Next(0, 15));        // colored light (0-14)
                     WriteGA<int>(oVMCreate + 27 + 33, -1);                              // Wheel Selection
 
-                    WriteGA<long>(oVMCreate + 27 + 60, 4030726305);  // landinggear/vehstate 起落架/载具状态
+                    WriteGA<long>(oVMCreate + 27 + 60, 1);  // landinggear/vehstate 起落架/载具状态
 
                     WriteGA<int>(oVMCreate + 27 + 62, new Random().Next(0, 256));       // Tire smoke color R
                     WriteGA<int>(oVMCreate + 27 + 63, new Random().Next(0, 256));       // Green Neon Amount 1-255 100%-0%
@@ -159,7 +159,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     WriteGA<int>(oVMCreate + 27 + 75, new Random().Next(0, 256));       // G
                     WriteGA<int>(oVMCreate + 27 + 76, new Random().Next(0, 256));       // B
 
-                    //WriteGA<long>(oVMCreate + 27 + 77, 4030726305);                     // vehstate  载具状态
+                    WriteGA<long>(oVMCreate + 27 + 77, 4030726305);                     // vehstate  载具状态 没有这个载具起落架是收起状态
                     Memory.Write<byte>(ReadGA<long>(oVMCreate + 27 + 77) + 1, 0x02);    // 2:bulletproof 0:false  防弹的
 
                     WriteGA<int>(oVMCreate + 27 + 95, 14);      // ownerflag  拥有者标志

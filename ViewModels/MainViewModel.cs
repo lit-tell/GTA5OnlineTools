@@ -127,8 +127,6 @@ namespace GTA5OnlineTools.ViewModels
 
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.exe", FileUtil.Cache_Path + "DefenderControl.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.ini", FileUtil.Cache_Path + "DefenderControl.ini");
-
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "MyInjectMenu.dll", FileUtil.Cache_Path + "MyInjectMenu.dll");
             }
             catch (Exception ex)
             {

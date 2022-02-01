@@ -35,6 +35,7 @@
             x:Name="TextBox_PlayerInfo"
             Grid.Column="1"
             Padding="5"
+            Cursor="Arrow"
             Style="{StaticResource TextBoxStyle}" />
 
         <StackPanel Grid.Column="2">

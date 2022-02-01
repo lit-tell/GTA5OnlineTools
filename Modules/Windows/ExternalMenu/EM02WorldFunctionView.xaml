@@ -32,7 +32,7 @@
                             Foreground="White"
                             Text="战局切换" />
                     </Border>
-                    <WrapPanel>
+                    <WrapPanel Margin="3,0,3,0">
                         <Button Click="Button_Sessions_Click" Content="公共战局" />
                         <Button Click="Button_Sessions_Click" Content="仅限邀请战局" />
                         <Button Click="Button_Sessions_Click" Content="帮会战局" />
@@ -52,7 +52,7 @@
                             Foreground="White"
                             Text="特殊功能" />
                     </Border>
-                    <WrapPanel>
+                    <WrapPanel Margin="3,0,3,0">
                         <Button
                             x:Name="Button_Disconnect"
                             Click="Button_Disconnect_Click"
@@ -69,7 +69,7 @@
                             Foreground="White"
                             Text="本地天气" />
                     </Border>
-                    <WrapPanel>
+                    <WrapPanel Margin="3,0,3,0">
                         <Button Click="Button_LocalWeather_Click" Content="默认" />
                         <Button Click="Button_LocalWeather_Click" Content="格外晴朗" />
                         <Button Click="Button_LocalWeather_Click" Content="晴朗" />
@@ -98,7 +98,7 @@
                             Foreground="White"
                             Text="NPC控制" />
                     </Border>
-                    <WrapPanel Orientation="Horizontal">
+                    <WrapPanel Margin="3,0,3,0">
                         <Button
                             x:Name="Button_KillAllPeds"
                             Click="Button_KillAllPeds_Click"

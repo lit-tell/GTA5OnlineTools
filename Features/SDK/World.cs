@@ -36,9 +36,9 @@ namespace GTA5OnlineTools.Features.SDK
         }
 
         /// <summary>
-        /// 杀死全部NPC，仅敌对？
+        /// 杀死NPC，仅敌对？
         /// </summary>
-        public static void KillAllNPC(bool isOnlyHostility)
+        public static void KillNPC(bool isOnlyHostility)
         {
             // Ped实体
             long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
@@ -74,9 +74,9 @@ namespace GTA5OnlineTools.Features.SDK
         }
 
         /// <summary>
-        /// 杀死全部警察
+        /// 杀死警察
         /// </summary>
-        public static void KillAllPolice()
+        public static void KillPolice()
         {
             // Ped实体
             long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
@@ -154,7 +154,7 @@ namespace GTA5OnlineTools.Features.SDK
         }
 
         /// <summary>
-        /// 摧毁全部载具
+        /// 摧毁全部载具，玩家自己的载具也会摧毁
         /// </summary>
         public static void DestroyAllVehicles()
         {

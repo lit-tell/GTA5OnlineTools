@@ -65,20 +65,20 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         {
             AudioUtil.ClickSound();
 
-            World.KillAllNPC(false);
+            World.KillNPC(false);
         }
         private void Button_KillAllHostilityPeds_Click(object sender, RoutedEventArgs e)
         {
             AudioUtil.ClickSound();
 
-            World.KillAllNPC(true);
+            World.KillNPC(true);
         }
 
         private void Button_KillAllPolice_Click(object sender, RoutedEventArgs e)
         {
             AudioUtil.ClickSound();
 
-            World.KillAllPolice();
+            World.KillPolice();
         }
 
         private void Button_DestroyAllVehicles_Click(object sender, RoutedEventArgs e)

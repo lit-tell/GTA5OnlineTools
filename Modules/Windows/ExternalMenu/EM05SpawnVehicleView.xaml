@@ -64,28 +64,31 @@
                         Foreground="White"
                         Text="一般选项" />
                 </Border>
-                <CheckBox
-                    x:Name="CheckBox_VehicleGodMode"
-                    Click="CheckBox_VehicleGodMode_Click"
-                    Content="载具无敌" />
-                <CheckBox
-                    x:Name="CheckBox_VehicleSeatbelt"
-                    Click="CheckBox_VehicleSeatbelt_Click"
-                    Content="载具安全带" />
-                <CheckBox
-                    x:Name="CheckBox_VehicleParachute"
-                    Click="CheckBox_VehicleParachute_Click"
-                    Content="载具降落伞" />
-                <CheckBox
-                    x:Name="CheckBox_VehicleInvisibility"
-                    Click="CheckBox_VehicleInvisibility_Click"
-                    Content="载具隐身（虚假）" />
-                <WrapPanel>
+                <StackPanel Margin="3,0,3,0">
+                    <CheckBox
+                        x:Name="CheckBox_VehicleGodMode"
+                        Click="CheckBox_VehicleGodMode_Click"
+                        Content="载具无敌" />
+                    <CheckBox
+                        x:Name="CheckBox_VehicleSeatbelt"
+                        Click="CheckBox_VehicleSeatbelt_Click"
+                        Content="载具安全带" />
+                    <CheckBox
+                        x:Name="CheckBox_VehicleParachute"
+                        Click="CheckBox_VehicleParachute_Click"
+                        Content="载具降落伞" />
+                    <CheckBox
+                        x:Name="CheckBox_VehicleInvisibility"
+                        Click="CheckBox_VehicleInvisibility_Click"
+                        Content="载具隐身（虚假）" />
+                </StackPanel>
+                <WrapPanel Margin="3,0,3,0">
                     <Button
                         x:Name="Button_FillVehicleHealth"
                         Click="Button_FillVehicleHealth_Click"
                         Content="补满载具血量" />
                 </WrapPanel>
+
                 <Border Style="{StaticResource BorderTitleStyle}">
                     <TextBlock
                         Padding="3,0,0,0"
@@ -96,7 +99,7 @@
                         </TextBlock.ToolTip>
                     </TextBlock>
                 </Border>
-                <WrapPanel>
+                <WrapPanel Margin="3,0,3,0">
                     <RadioButton
                         x:Name="RadioButton_VehicleExtras_None"
                         Margin="5"
@@ -126,7 +129,7 @@
                         Foreground="White"
                         Text="高级" />
                 </Border>
-                <WrapPanel>
+                <WrapPanel Margin="3,0,3,0">
                     <Button
                         x:Name="Button_RepairVehicle"
                         Click="Button_RepairVehicle_Click"

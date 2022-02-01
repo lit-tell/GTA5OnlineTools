@@ -18,7 +18,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         {
             InitializeComponent();
 
-            TextBox_InputMessage.Text = "请把游戏中输入法调成英文,否则会漏掉文字.Hello1234,漏掉文字了吗?";
+            TextBox_InputMessage.Text = "测试文本: 请把游戏中聊天输入法调成英文,否则会漏掉文字.Hello1234,漏掉文字了吗?";
 
             ReadPlayerName();
 

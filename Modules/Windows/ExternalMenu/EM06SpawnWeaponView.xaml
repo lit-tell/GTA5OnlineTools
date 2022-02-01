@@ -45,7 +45,7 @@
                     Foreground="White"
                     Text="弹药编辑" />
             </Border>
-            <WrapPanel>
+            <WrapPanel Margin="3,0,3,0">
                 <RadioButton
                     x:Name="RadioButton_AmmoModifier_None"
                     Margin="5"
@@ -75,19 +75,21 @@
                     Foreground="White"
                     Text="弹药编辑 (经典)" />
             </Border>
-            <CheckBox
-                x:Name="CheckBox_InfiniteAmmo"
-                Click="CheckBox_InfiniteAmmo_Click"
-                Content="无限弹药" />
-            <CheckBox
-                x:Name="CheckBox_NoReload"
-                Click="CheckBox_NoReload_Click"
-                Content="无需换弹" />
-            <CheckBox
-                x:Name="CheckBox_ReloadMult"
-                Click="CheckBox_ReloadMult_Click"
-                Content="快速换弹" />
-            <WrapPanel>
+            <StackPanel Margin="3,0,3,0">
+                <CheckBox
+                    x:Name="CheckBox_InfiniteAmmo"
+                    Click="CheckBox_InfiniteAmmo_Click"
+                    Content="无限弹药" />
+                <CheckBox
+                    x:Name="CheckBox_NoReload"
+                    Click="CheckBox_NoReload_Click"
+                    Content="无需换弹" />
+                <CheckBox
+                    x:Name="CheckBox_ReloadMult"
+                    Click="CheckBox_ReloadMult_Click"
+                    Content="快速换弹" />
+            </StackPanel>
+            <WrapPanel Margin="3,0,3,0">
                 <Button
                     x:Name="Button_NoRecoil"
                     Click="Button_NoRecoil_Click"
@@ -108,24 +110,26 @@
                     Foreground="White"
                     Text="子弹类型" />
             </Border>
-            <CheckBox
-                x:Name="CheckBox_ImpactType"
-                Click="CheckBox_ImpactType_Click"
-                Content="启用子弹类型" />
-            <ComboBox
-                x:Name="ComboBox_ImpactExplosion"
-                Margin="5"
-                Padding="7"
-                VerticalContentAlignment="Center"
-                SelectedIndex="0"
-                SelectionChanged="ComboBox_ImpactExplosion_SelectionChanged">
-                <ComboBox.Resources>
-                    <Style TargetType="ComboBoxItem">
-                        <Setter Property="VerticalAlignment" Value="Center" />
-                        <Setter Property="Padding" Value="5" />
-                    </Style>
-                </ComboBox.Resources>
-            </ComboBox>
+            <StackPanel Margin="3,0,3,0">
+                <CheckBox
+                    x:Name="CheckBox_ImpactType"
+                    Click="CheckBox_ImpactType_Click"
+                    Content="启用子弹类型" />
+                <ComboBox
+                    x:Name="ComboBox_ImpactExplosion"
+                    Margin="5"
+                    Padding="7"
+                    VerticalContentAlignment="Center"
+                    SelectedIndex="0"
+                    SelectionChanged="ComboBox_ImpactExplosion_SelectionChanged">
+                    <ComboBox.Resources>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="Padding" Value="5" />
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+            </StackPanel>
 
             <Border Style="{StaticResource BorderTitleStyle}">
                 <TextBlock
@@ -133,7 +137,7 @@
                     Foreground="White"
                     Text="快捷功能" />
             </Border>
-            <WrapPanel>
+            <WrapPanel Margin="3,0,3,0">
                 <Button
                     x:Name="Button_FillCurrentAmmo"
                     Click="Button_FillCurrentAmmo_Click"

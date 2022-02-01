@@ -19,7 +19,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             {
                 using (StreamReader streamReader = new StreamReader(FileUtil.CustomTPList_Path))
                 {
-                    List<TeleportData.TeleportPreview> teleportPreviews = JsonUtil.JsonDese<List<TeleportData.TeleportPreview>>(streamReader.ReadToEnd());
+                    List<TeleportData.TeleportInfo> teleportPreviews = JsonUtil.JsonDese<List<TeleportData.TeleportInfo>>(streamReader.ReadToEnd());
 
                     TeleportData.CustomTeleport.Clear();
 
@@ -38,35 +38,35 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             UpdateTpList();
 
-            ListBox_TeleportList.SelectedIndex = 2;
+            ListBox_TeleportClass.SelectedIndex = 0;
             ListBox_TeleportInfo.SelectedIndex = 0;
         }
 
         private void UpdateTpList()
         {
-            ListBox_TeleportList.Items.Clear();
+            ListBox_TeleportClass.Items.Clear();
 
             // 传送列表
             foreach (var item in TeleportData.TeleportDataClass)
             {
-                ListBox_TeleportList.Items.Add(item.TClass);
+                ListBox_TeleportClass.Items.Add(item.ClassName);
             }
 
-            ListBox_TeleportList.Items.Refresh();
+            ListBox_TeleportClass.Items.Refresh();
             ListBox_TeleportInfo.Items.Refresh();
         }
 
-        private void ListBox_TeleportList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListBox_TeleportClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int index = ListBox_TeleportList.SelectedIndex;
+            int index = ListBox_TeleportClass.SelectedIndex;
 
             if (index != -1)
             {
                 ListBox_TeleportInfo.Items.Clear();
 
-                foreach (var item in TeleportData.TeleportDataClass[index].TInfo)
+                foreach (var item in TeleportData.TeleportDataClass[index].TeleportInfo)
                 {
-                    ListBox_TeleportInfo.Items.Add(item.TName);
+                    ListBox_TeleportInfo.Items.Add(item.Name);
                 }
 
                 ListBox_TeleportInfo.SelectedIndex = 0;
@@ -75,14 +75,14 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
         private void ListBox_TeleportInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int index1 = ListBox_TeleportList.SelectedIndex;
+            int index1 = ListBox_TeleportClass.SelectedIndex;
             int index2 = ListBox_TeleportInfo.SelectedIndex;
 
             if (index1 != -1 && index2 != -1)
             {
-                TempData.TCode = TeleportData.TeleportDataClass[index1].TInfo[index2].TCode;
+                TempData.TCode = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position;
 
-                if (index1 == 2)
+                if (index1 == 0)
                 {
                     TextBox_Position_X.IsEnabled = true;
                     TextBox_Position_Y.IsEnabled = true;
@@ -90,10 +90,10 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
                     TextBox_Position_Name.IsEnabled = true;
 
-                    TextBox_Position_Name.Text = TeleportData.TeleportDataClass[index1].TInfo[index2].TName;
-                    TextBox_Position_X.Text = TeleportData.TeleportDataClass[index1].TInfo[index2].TCode.X.ToString();
-                    TextBox_Position_Y.Text = TeleportData.TeleportDataClass[index1].TInfo[index2].TCode.Y.ToString();
-                    TextBox_Position_Z.Text = TeleportData.TeleportDataClass[index1].TInfo[index2].TCode.Z.ToString();
+                    TextBox_Position_Name.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Name;
+                    TextBox_Position_X.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.X.ToString();
+                    TextBox_Position_Y.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.Y.ToString();
+                    TextBox_Position_Z.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.Z.ToString();
                 }
                 else
                 {
@@ -103,10 +103,10 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
                     TextBox_Position_Name.IsEnabled = false;
 
-                    TextBox_Position_Name.Text = TeleportData.TeleportDataClass[index1].TInfo[index2].TName;
-                    TextBox_Position_X.Text = TeleportData.TeleportDataClass[index1].TInfo[index2].TCode.X.ToString();
-                    TextBox_Position_Y.Text = TeleportData.TeleportDataClass[index1].TInfo[index2].TCode.Y.ToString();
-                    TextBox_Position_Z.Text = TeleportData.TeleportDataClass[index1].TInfo[index2].TCode.Z.ToString();
+                    TextBox_Position_Name.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Name;
+                    TextBox_Position_X.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.X.ToString();
+                    TextBox_Position_Y.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.Y.ToString();
+                    TextBox_Position_Z.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.Z.ToString();
                 }
             }
         }
@@ -117,15 +117,15 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             Vector3 vector3 = Memory.Read<Vector3>(Globals.WorldPTR, Offsets.PlayerPositionX);
 
-            TeleportData.CustomTeleport.Add(new TeleportData.TeleportPreview()
+            TeleportData.CustomTeleport.Add(new TeleportData.TeleportInfo()
             {
-                TName = $"保存点 : {DateTime.Now:yyyyMMdd_HH-mm-ss_ffff}",
-                TCode = vector3
+                Name = $"保存点 : {DateTime.Now:yyyyMMdd_HH-mm-ss_ffff}",
+                Position = vector3
             });
 
             UpdateTpList();
 
-            ListBox_TeleportList.SelectedIndex = 2;
+            ListBox_TeleportClass.SelectedIndex = 0;
             ListBox_TeleportInfo.SelectedIndex = ListBox_TeleportInfo.Items.Count - 1;
 
             TextBox_Result.Text = $"增加自定义传送坐标成功";
@@ -135,23 +135,23 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         {
             AudioUtil.ClickSound();
 
-            int index1 = ListBox_TeleportList.SelectedIndex;
+            int index1 = ListBox_TeleportClass.SelectedIndex;
             int index2 = ListBox_TeleportInfo.SelectedIndex;
 
-            if (index1 == 2 && index2 != -1)
+            if (index1 == 0 && index2 != -1)
             {
-                TeleportData.TeleportDataClass[index1].TInfo[index2].TCode = new Vector3()
+                TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position = new Vector3()
                 {
                     X = Convert.ToSingle(TextBox_Position_X.Text),
                     Y = Convert.ToSingle(TextBox_Position_Y.Text),
                     Z = Convert.ToSingle(TextBox_Position_Z.Text)
                 };
 
-                TeleportData.TeleportDataClass[index1].TInfo[index2].TName = TextBox_Position_Name.Text;
+                TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Name = TextBox_Position_Name.Text;
 
                 UpdateTpList();
 
-                ListBox_TeleportList.SelectedIndex = 2;
+                ListBox_TeleportClass.SelectedIndex = 0;
                 ListBox_TeleportInfo.SelectedIndex = index2; ;
 
                 TextBox_Result.Text = $"修改自定义传送坐标成功";
@@ -166,16 +166,16 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         {
             AudioUtil.ClickSound();
 
-            int index1 = ListBox_TeleportList.SelectedIndex;
+            int index1 = ListBox_TeleportClass.SelectedIndex;
             int index2 = ListBox_TeleportInfo.SelectedIndex;
 
-            if (index1 == 2 && index2 != -1)
+            if (index1 == 0 && index2 != -1)
             {
-                TeleportData.TeleportDataClass[index1].TInfo.Remove(TeleportData.TeleportDataClass[index1].TInfo[index2]);
+                TeleportData.TeleportDataClass[index1].TeleportInfo.Remove(TeleportData.TeleportDataClass[index1].TeleportInfo[index2]);
 
                 UpdateTpList();
 
-                ListBox_TeleportList.SelectedIndex = 2;
+                ListBox_TeleportClass.SelectedIndex = 0;
                 ListBox_TeleportInfo.SelectedIndex = ListBox_TeleportInfo.Items.Count - 1;
 
                 TextBox_Result.Text = $"删除自定义传送坐标成功";

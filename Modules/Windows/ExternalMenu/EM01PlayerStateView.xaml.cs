@@ -1,7 +1,7 @@
 ﻿using GTA5OnlineTools.Common.Utils;
+using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
-using GTA5OnlineTools.Features.SDK;
 
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
@@ -10,6 +10,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
     /// </summary>
     public partial class EM01PlayerStateView : UserControl
     {
+        // 快捷键
         private HotKeys MainHotKeys;
         // 特殊功能
         private int FrameFlag = 0;
@@ -25,6 +26,10 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             var thread1 = new Thread(SpecialThread);
             thread1.IsBackground = true;
             thread1.Start();
+
+            var thread2 = new Thread(CommonThread);
+            thread2.IsBackground = true;
+            thread2.Start();
 
             MainHotKeys = new HotKeys();
             MainHotKeys.AddKey(WinVK.INSERT);
@@ -119,73 +124,47 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                 ////////////////////////////////
 
                 if (Settings.Player.GodMode)
-                {
                     Player.GodMode(true);
-                }
 
                 if (Settings.Player.AntiAFK)
-                {
                     Player.AntiAFK(true);
-                }
 
                 if (Settings.Player.NoRagdoll)
-                {
                     Player.NoRagdoll(true);
-                }
 
                 if (Settings.Player.NoCollision)
-                {
                     Memory.Write(Globals.WorldPTR, Offsets.Player.NoCollision, -1.0f);
-                }
 
                 if (Settings.Vehicle.VehicleGodMode)
-                {
                     Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
-                }
 
                 if (Settings.Vehicle.VehicleSeatbelt)
-                {
                     Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.Seatbelt, 0xC9);
-                }
 
                 ////////////////////////////////
 
                 Dispatcher.BeginInvoke(new Action(delegate
                 {
                     if (Slider_Health.Value != oHealth)
-                    {
                         Slider_Health.Value = oHealth;
-                    }
 
                     if (Slider_MaxHealth.Value != oMaxHealth)
-                    {
                         Slider_MaxHealth.Value = oMaxHealth;
-                    }
 
                     if (Slider_Armor.Value != oArmor)
-                    {
                         Slider_Armor.Value = oArmor;
-                    }
 
                     if (Slider_Wanted.Value != oWanted)
-                    {
                         Slider_Wanted.Value = oWanted;
-                    }
 
                     if (Slider_RunSpeed.Value != oRunSpeed)
-                    {
                         Slider_RunSpeed.Value = oRunSpeed;
-                    }
 
                     if (Slider_SwimSpeed.Value != oSwimSpeed)
-                    {
                         Slider_SwimSpeed.Value = oSwimSpeed;
-                    }
 
                     if (Slider_StealthSpeed.Value != oStealthSpeed)
-                    {
                         Slider_StealthSpeed.Value = oStealthSpeed;
-                    }
                 }));
 
                 Thread.Sleep(1000);
@@ -196,25 +175,37 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         {
             while (true)
             {
-                if (Settings.Special.AutoClearWanted)
+                switch (FrameFlag)
                 {
-                    Player.WantedLevel(0x00);
-                }
-
-                if (FrameFlag == 1)
-                {
-                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.SuperJump);
-                }
-                else if (FrameFlag == 2)
-                {
-                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.FireAmmo);
-                }
-                else if (FrameFlag == 3)
-                {
-                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.ExplosiveAmmo);
+                    case 1:
+                        Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.SuperJump);
+                        break;
+                    case 2:
+                        Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.FireAmmo);
+                        break;
+                    case 3:
+                        Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.ExplosiveAmmo);
+                        break;
                 }
 
                 Thread.Sleep(1);
+            }
+        }
+
+        private void CommonThread()
+        {
+            while (true)
+            {
+                if (Settings.Common.AutoClearWanted)
+                    Player.WantedLevel(0x00);
+
+                if (Settings.Common.AutoKillNPC)
+                    World.KillNPC(false);
+
+                if (Settings.Common.AutoKillPolice)
+                    World.KillPolice();
+
+                Thread.Sleep(200);
             }
         }
 
@@ -309,7 +300,19 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         private void CheckBox_AutoClearWanted_Click(object sender, RoutedEventArgs e)
         {
             Player.WantedLevel(0x00);
-            Settings.Special.AutoClearWanted = CheckBox_AutoClearWanted.IsChecked == true;
+            Settings.Common.AutoClearWanted = CheckBox_AutoClearWanted.IsChecked == true;
+        }
+
+        private void CheckBox_AutoKillNPC_Click(object sender, RoutedEventArgs e)
+        {
+            World.KillNPC(false);
+            Settings.Common.AutoKillNPC = CheckBox_AutoKillNPC.IsChecked == true;
+        }
+
+        private void CheckBox_AutoKillPolice_Click(object sender, RoutedEventArgs e)
+        {
+            World.KillPolice();
+            Settings.Common.AutoKillPolice = CheckBox_AutoKillPolice.IsChecked == true;
         }
 
         private void RadioButton_FrameFlags_Click(object sender, RoutedEventArgs e)
@@ -371,6 +374,11 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             AudioUtil.ClickSound();
 
             Player.Suicide();
+        }
+
+        private void Slider_MovingFoward_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Settings.Forward = (float)Slider_MovingFoward.Value;
         }
     }
 }

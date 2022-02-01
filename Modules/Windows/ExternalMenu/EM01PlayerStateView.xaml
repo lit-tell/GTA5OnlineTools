@@ -32,160 +32,161 @@
                             Foreground="White"
                             Text="属性调节" />
                     </Border>
+                    <StackPanel Margin="3,0,3,0">
+                        <DockPanel LastChildFill="True">
+                            <TextBlock
+                                Margin="5,5,0,5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="生命值" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{Binding ElementName=Slider_Health, Path=Value, StringFormat=: {0:0000}}" />
+                            <Slider
+                                Name="Slider_Health"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                IsSnapToTickEnabled="True"
+                                Maximum="1000"
+                                Minimum="0"
+                                TickFrequency="1"
+                                ValueChanged="Slider_Health_ValueChanged" />
+                        </DockPanel>
 
-                    <DockPanel Margin="0" LastChildFill="True">
-                        <TextBlock
-                            Margin="5,5,0,5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="生命值" />
-                        <TextBlock
-                            Margin="5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{Binding ElementName=Slider_Health, Path=Value, StringFormat=: {0:0000}}" />
-                        <Slider
-                            Name="Slider_Health"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Right"
-                            IsSnapToTickEnabled="True"
-                            Maximum="1000"
-                            Minimum="0"
-                            TickFrequency="1"
-                            ValueChanged="Slider_Health_ValueChanged" />
-                    </DockPanel>
+                        <DockPanel LastChildFill="True">
+                            <TextBlock
+                                Margin="5,5,0,5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="最大生命值" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{Binding ElementName=Slider_MaxHealth, Path=Value, StringFormat=: {0:0000}}" />
+                            <Slider
+                                Name="Slider_MaxHealth"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                IsSnapToTickEnabled="True"
+                                Maximum="1000"
+                                Minimum="0"
+                                TickFrequency="1"
+                                ValueChanged="Slider_MaxHealth_ValueChanged" />
+                        </DockPanel>
 
-                    <DockPanel Margin="0" LastChildFill="True">
-                        <TextBlock
-                            Margin="5,5,0,5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="最大生命值" />
-                        <TextBlock
-                            Margin="5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{Binding ElementName=Slider_MaxHealth, Path=Value, StringFormat=: {0:0000}}" />
-                        <Slider
-                            Name="Slider_MaxHealth"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Right"
-                            IsSnapToTickEnabled="True"
-                            Maximum="1000"
-                            Minimum="0"
-                            TickFrequency="1"
-                            ValueChanged="Slider_MaxHealth_ValueChanged" />
-                    </DockPanel>
+                        <DockPanel LastChildFill="True">
+                            <TextBlock
+                                Margin="5,5,0,5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="护甲值" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{Binding ElementName=Slider_Armor, Path=Value, StringFormat=: {0:0000}}" />
+                            <Slider
+                                Name="Slider_Armor"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                IsSnapToTickEnabled="True"
+                                Maximum="1000"
+                                Minimum="0"
+                                TickFrequency="1"
+                                ValueChanged="Slider_Armor_ValueChanged" />
+                        </DockPanel>
 
-                    <DockPanel Margin="0" LastChildFill="True">
-                        <TextBlock
-                            Margin="5,5,0,5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="护甲值" />
-                        <TextBlock
-                            Margin="5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{Binding ElementName=Slider_Armor, Path=Value, StringFormat=: {0:0000}}" />
-                        <Slider
-                            Name="Slider_Armor"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Right"
-                            IsSnapToTickEnabled="True"
-                            Maximum="1000"
-                            Minimum="0"
-                            TickFrequency="1"
-                            ValueChanged="Slider_Armor_ValueChanged" />
-                    </DockPanel>
+                        <DockPanel LastChildFill="True">
+                            <TextBlock
+                                Margin="5,5,0,5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="通缉等级" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{Binding ElementName=Slider_Wanted, Path=Value, StringFormat=: {0}}" />
+                            <Slider
+                                Name="Slider_Wanted"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                IsSnapToTickEnabled="True"
+                                Maximum="5"
+                                Minimum="0"
+                                TickFrequency="1"
+                                ValueChanged="Slider_Wanted_ValueChanged" />
+                        </DockPanel>
 
-                    <DockPanel Margin="0" LastChildFill="True">
-                        <TextBlock
-                            Margin="5,5,0,5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="通缉等级" />
-                        <TextBlock
-                            Margin="5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{Binding ElementName=Slider_Wanted, Path=Value, StringFormat=: {0}}" />
-                        <Slider
-                            Name="Slider_Wanted"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Right"
-                            IsSnapToTickEnabled="True"
-                            Maximum="5"
-                            Minimum="0"
-                            TickFrequency="1"
-                            ValueChanged="Slider_Wanted_ValueChanged" />
-                    </DockPanel>
+                        <DockPanel LastChildFill="True">
+                            <TextBlock
+                                Margin="5,5,0,5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="奔跑速度" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{Binding ElementName=Slider_RunSpeed, Path=Value, StringFormat=: {0:00.0}}" />
+                            <Slider
+                                Name="Slider_RunSpeed"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                IsSnapToTickEnabled="True"
+                                Maximum="10"
+                                Minimum="0"
+                                TickFrequency="0.1"
+                                ValueChanged="Slider_RunSpeed_ValueChanged" />
+                        </DockPanel>
 
-                    <DockPanel Margin="0" LastChildFill="True">
-                        <TextBlock
-                            Margin="5,5,0,5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="奔跑速度" />
-                        <TextBlock
-                            Margin="5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{Binding ElementName=Slider_RunSpeed, Path=Value, StringFormat=: {0:00.0}}" />
-                        <Slider
-                            Name="Slider_RunSpeed"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Right"
-                            IsSnapToTickEnabled="True"
-                            Maximum="10"
-                            Minimum="0"
-                            TickFrequency="0.1"
-                            ValueChanged="Slider_RunSpeed_ValueChanged" />
-                    </DockPanel>
+                        <DockPanel LastChildFill="True">
+                            <TextBlock
+                                Margin="5,5,0,5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="游泳速度" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{Binding ElementName=Slider_SwimSpeed, Path=Value, StringFormat=: {0:00.0}}" />
+                            <Slider
+                                Name="Slider_SwimSpeed"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                IsSnapToTickEnabled="True"
+                                Maximum="10"
+                                Minimum="0"
+                                TickFrequency="0.1"
+                                ValueChanged="Slider_SwimSpeed_ValueChanged" />
+                        </DockPanel>
 
-                    <DockPanel Margin="0" LastChildFill="True">
-                        <TextBlock
-                            Margin="5,5,0,5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="游泳速度" />
-                        <TextBlock
-                            Margin="5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{Binding ElementName=Slider_SwimSpeed, Path=Value, StringFormat=: {0:00.0}}" />
-                        <Slider
-                            Name="Slider_SwimSpeed"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Right"
-                            IsSnapToTickEnabled="True"
-                            Maximum="10"
-                            Minimum="0"
-                            TickFrequency="0.1"
-                            ValueChanged="Slider_SwimSpeed_ValueChanged" />
-                    </DockPanel>
-
-                    <DockPanel Margin="0" LastChildFill="True">
-                        <TextBlock
-                            Margin="5,5,0,5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="潜行速度" />
-                        <TextBlock
-                            Margin="5"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Left"
-                            Text="{Binding ElementName=Slider_StealthSpeed, Path=Value, StringFormat=: {0:00.0}}" />
-                        <Slider
-                            Name="Slider_StealthSpeed"
-                            VerticalAlignment="Center"
-                            DockPanel.Dock="Right"
-                            IsSnapToTickEnabled="True"
-                            Maximum="10"
-                            Minimum="0"
-                            TickFrequency="0.1"
-                            ValueChanged="Slider_StealthSpeed_ValueChanged" />
-                    </DockPanel>
+                        <DockPanel LastChildFill="True">
+                            <TextBlock
+                                Margin="5,5,0,5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="潜行速度" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{Binding ElementName=Slider_StealthSpeed, Path=Value, StringFormat=: {0:00.0}}" />
+                            <Slider
+                                Name="Slider_StealthSpeed"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                IsSnapToTickEnabled="True"
+                                Maximum="10"
+                                Minimum="0"
+                                TickFrequency="0.1"
+                                ValueChanged="Slider_StealthSpeed_ValueChanged" />
+                        </DockPanel>
+                    </StackPanel>
 
                     <Border Style="{StaticResource BorderTitleStyle}">
                         <TextBlock
@@ -193,39 +194,41 @@
                             Foreground="White"
                             Text="一般选项" />
                     </Border>
-                    <CheckBox
-                        x:Name="CheckBox_PlayerGodMode"
-                        Click="CheckBox_PlayerGodMode_Click"
-                        Content="玩家无敌" />
-                    <CheckBox
-                        x:Name="CheckBox_AntiAFK"
-                        Click="CheckBox_AntiAFK_Click"
-                        Content="挂机防踢" />
-                    <CheckBox
-                        x:Name="CheckBox_WaterProof"
-                        Click="CheckBox_WaterProof_Click"
-                        Content="水下行走" />
-                    <CheckBox
-                        x:Name="CheckBox_Invisibility"
-                        Click="CheckBox_Invisibility_Click"
-                        Content="玩家隐身（虚假）" />
-                    <TextBlock />
-                    <CheckBox
-                        x:Name="CheckBox_UndeadOffRadar"
-                        Click="CheckBox_UndeadOffRadar_Click"
-                        Content="雷达影踪（假死）" />
-                    <CheckBox
-                        x:Name="CheckBox_NoRagdoll"
-                        Click="CheckBox_NoRagdoll_Click"
-                        Content="无布娃娃" />
-                    <CheckBox
-                        x:Name="CheckBox_NPCIgnore"
-                        Click="CheckBox_NPCIgnore_Click"
-                        Content="NPC无视" />
-                    <CheckBox
-                        x:Name="CheckBox_PoliceIgnore"
-                        Click="CheckBox_NPCIgnore_Click"
-                        Content="警察无视" />
+                    <StackPanel Margin="3,0,3,0">
+                        <CheckBox
+                            x:Name="CheckBox_PlayerGodMode"
+                            Click="CheckBox_PlayerGodMode_Click"
+                            Content="玩家无敌" />
+                        <CheckBox
+                            x:Name="CheckBox_AntiAFK"
+                            Click="CheckBox_AntiAFK_Click"
+                            Content="挂机防踢" />
+                        <CheckBox
+                            x:Name="CheckBox_WaterProof"
+                            Click="CheckBox_WaterProof_Click"
+                            Content="水下行走" />
+                        <CheckBox
+                            x:Name="CheckBox_Invisibility"
+                            Click="CheckBox_Invisibility_Click"
+                            Content="玩家隐身（虚假）" />
+                        <TextBlock />
+                        <CheckBox
+                            x:Name="CheckBox_UndeadOffRadar"
+                            Click="CheckBox_UndeadOffRadar_Click"
+                            Content="雷达影踪（假死）" />
+                        <CheckBox
+                            x:Name="CheckBox_NoRagdoll"
+                            Click="CheckBox_NoRagdoll_Click"
+                            Content="无布娃娃" />
+                        <CheckBox
+                            x:Name="CheckBox_NPCIgnore"
+                            Click="CheckBox_NPCIgnore_Click"
+                            Content="NPC无视" />
+                        <CheckBox
+                            x:Name="CheckBox_PoliceIgnore"
+                            Click="CheckBox_NPCIgnore_Click"
+                            Content="警察无视" />
+                    </StackPanel>
 
                 </StackPanel>
 
@@ -234,14 +237,9 @@
                         <TextBlock
                             Padding="3,0,0,0"
                             Foreground="White"
-                            Text="特殊" />
+                            Text="特殊功能" />
                     </Border>
-                    <CheckBox
-                        x:Name="CheckBox_AutoClearWanted"
-                        Click="CheckBox_AutoClearWanted_Click"
-                        Content="自动消星" />
-                    <TextBlock />
-                    <WrapPanel Orientation="Horizontal">
+                    <WrapPanel Margin="3,0,3,0">
                         <RadioButton
                             x:Name="RadioButton_FrameFlags_Default"
                             Margin="5"
@@ -264,52 +262,78 @@
                             Click="RadioButton_FrameFlags_Click"
                             Content="爆炸子弹" />
                     </WrapPanel>
+
                     <Border Style="{StaticResource BorderTitleStyle}">
                         <TextBlock
                             Padding="3,0,0,0"
                             Foreground="White"
                             Text="快捷键" />
                     </Border>
-                    <CheckBox
-                        x:Name="CheckBox_ToWaypoint"
-                        Content="[F5] 传送到导航点"
-                        IsChecked="True" />
-                    <CheckBox
-                        x:Name="CheckBox_ToObjective"
-                        Content="[F6] 传送到目标点"
-                        IsChecked="True" />
-                    <CheckBox
-                        x:Name="CheckBox_FillHealthArmor"
-                        Content="[F7] 补满血量和护甲"
-                        IsChecked="True" />
-                    <CheckBox
-                        x:Name="CheckBox_ClearWanted"
-                        Content="[F8] 消除警星"
-                        IsChecked="True" />
-                    <TextBlock />
-                    <CheckBox
-                        x:Name="CheckBox_FillCurrentAmmo"
-                        Content="[F3] 补满当前武器弹药"
-                        IsChecked="True" />
-                    <CheckBox
-                        x:Name="CheckBox_MovingFoward"
-                        Content="[F4] 坐标向前微调"
-                        IsChecked="True" />
-                    <CheckBox
-                        x:Name="CheckBox_NoCollision"
-                        Click="CheckBox_NoCollision_Click"
-                        Content="[BACKSPACE] 玩家无碰撞体积">
-                        <CheckBox.ToolTip>
-                            勾选功能后，按【F9键】切换穿墙功能开关
-                        </CheckBox.ToolTip>
-                    </CheckBox>
+                    <StackPanel Margin="3,0,3,0">
+                        <CheckBox
+                            x:Name="CheckBox_ToWaypoint"
+                            Content="[F5] 传送到导航点"
+                            IsChecked="True" />
+                        <CheckBox
+                            x:Name="CheckBox_ToObjective"
+                            Content="[F6] 传送到目标点"
+                            IsChecked="True" />
+                        <CheckBox
+                            x:Name="CheckBox_FillHealthArmor"
+                            Content="[F7] 补满血量和护甲"
+                            IsChecked="True" />
+                        <CheckBox
+                            x:Name="CheckBox_ClearWanted"
+                            Content="[F8] 消除警星"
+                            IsChecked="True" />
+                        <TextBlock />
+                        <CheckBox
+                            x:Name="CheckBox_FillCurrentAmmo"
+                            Content="[F3] 补满当前武器弹药"
+                            IsChecked="True" />
+                        <CheckBox
+                            x:Name="CheckBox_MovingFoward"
+                            Content="[F4] 坐标向前微调"
+                            IsChecked="True" />
+                        <CheckBox
+                            x:Name="CheckBox_NoCollision"
+                            Click="CheckBox_NoCollision_Click"
+                            Content="[BACKSPACE] 玩家无碰撞体积">
+                            <CheckBox.ToolTip>
+                                勾选功能后，按【F9键】切换穿墙功能开关
+                            </CheckBox.ToolTip>
+                        </CheckBox>
+                        <DockPanel Margin="0" LastChildFill="True">
+                            <TextBlock
+                                Margin="5,5,0,5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="坐标微调距离" />
+                            <TextBlock
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{Binding ElementName=Slider_MovingFoward, Path=Value, StringFormat=: {0:0.0}}" />
+                            <Slider
+                                Name="Slider_MovingFoward"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                IsSnapToTickEnabled="True"
+                                Maximum="5.0"
+                                Minimum="0.5"
+                                TickFrequency="0.5"
+                                ValueChanged="Slider_MovingFoward_ValueChanged"
+                                Value="1.5" />
+                        </DockPanel>
+                    </StackPanel>
+
                     <Border Style="{StaticResource BorderTitleStyle}">
                         <TextBlock
                             Padding="3,0,0,0"
                             Foreground="White"
                             Text="快捷功能" />
                     </Border>
-                    <WrapPanel Orientation="Horizontal">
+                    <WrapPanel Margin="3,0,3,0">
                         <Button
                             x:Name="Button_ToWaypoint"
                             Click="Button_ToWaypoint_Click"
@@ -331,6 +355,32 @@
                             Click="Button_Suicide_Click"
                             Content="玩家自杀" />
                     </WrapPanel>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="实用功能" />
+                    </Border>
+                    <StackPanel Margin="3,0,3,0">
+                        <CheckBox
+                            x:Name="CheckBox_AutoClearWanted"
+                            Click="CheckBox_AutoClearWanted_Click"
+                            Content="自动消星" />
+                        <CheckBox
+                            x:Name="CheckBox_AutoKillNPC"
+                            Margin="5"
+                            Click="CheckBox_AutoKillNPC_Click"
+                            Content="自动击杀NPC" />
+                        <CheckBox
+                            x:Name="CheckBox_AutoKillPolice"
+                            Margin="5"
+                            Click="CheckBox_AutoKillPolice_Click"
+                            Content="自动击杀警察" />
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
