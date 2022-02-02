@@ -58,6 +58,8 @@ namespace GTA5OnlineTools.Modules.Kits
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Button_Update.IsEnabled = false;
             Button_CancelUpdate.IsEnabled = true;
 
@@ -85,6 +87,8 @@ namespace GTA5OnlineTools.Modules.Kits
 
         private void Button_CancelUpdate_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             downloader.CancelAsync();
             downloader.Clear();
 
@@ -145,7 +149,7 @@ namespace GTA5OnlineTools.Modules.Kits
                         // 下载完成后新文件重命名
                         FileUtil.FileReName(OldPath, NewPath);
 
-                        Thread.Sleep(50);
+                        Thread.Sleep(100);
 
                         // 下载完成后旧文件重命名
                         string oldFileName = $"[旧版本小助手请手动删除] {Guid.NewGuid()}.exe";
@@ -154,8 +158,8 @@ namespace GTA5OnlineTools.Modules.Kits
 
                         TextBlock_Info.Text = "更新下载完成，程序将在3秒内重新启动";
 
-                        Thread.Sleep(1000);
                         App.AppMainMutex.Dispose();
+                        Thread.Sleep(1000);
                         ProcessUtil.OpenLink(NewPath);
                         Application.Current.Shutdown();
                     }

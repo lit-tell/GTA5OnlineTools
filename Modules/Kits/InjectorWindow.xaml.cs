@@ -1,4 +1,5 @@
-﻿using GTA5OnlineTools.Features.Core;
+﻿using GTA5OnlineTools.Common.Utils;
+using GTA5OnlineTools.Features.Core;
 
 namespace GTA5OnlineTools.Modules.Kits
 {
@@ -31,6 +32,8 @@ namespace GTA5OnlineTools.Modules.Kits
 
         private void Button_Inject_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             if (InjectInfo.PID == 0)
             {
                 TextBlock_Status.Text = "请选择目标进程";

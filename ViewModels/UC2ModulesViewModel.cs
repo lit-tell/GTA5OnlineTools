@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using Prism.Regions;
+﻿using Prism.Regions;
 using Prism.Commands;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Modules.Windows;

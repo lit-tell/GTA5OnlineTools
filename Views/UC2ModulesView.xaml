@@ -163,7 +163,7 @@
                                 Style="{StaticResource HomeIcoTextBlock}"
                                 Text="&#xe63b;" />
                             <TextBlock Text="BigBaseV2" />
-                            <TextBlock Text="状态编辑器/基本解锁" />
+                            <TextBlock Text="STAT编辑/解锁" />
                         </StackPanel>
                     </Button.Content>
                 </Button>
