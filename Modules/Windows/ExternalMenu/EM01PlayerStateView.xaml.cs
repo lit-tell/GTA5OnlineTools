@@ -202,6 +202,9 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                 if (Settings.Common.AutoKillNPC)
                     World.KillNPC(false);
 
+                if (Settings.Common.AutoKillHostilityNPC)
+                    World.KillNPC(true);
+
                 if (Settings.Common.AutoKillPolice)
                     World.KillPolice();
 
@@ -307,6 +310,12 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         {
             World.KillNPC(false);
             Settings.Common.AutoKillNPC = CheckBox_AutoKillNPC.IsChecked == true;
+        }
+
+        private void CheckBox_AutoKillHostilityNPC_Click(object sender, RoutedEventArgs e)
+        {
+            World.KillNPC(true);
+            Settings.Common.AutoKillHostilityNPC = CheckBox_AutoKillHostilityNPC.IsChecked == true;
         }
 
         private void CheckBox_AutoKillPolice_Click(object sender, RoutedEventArgs e)

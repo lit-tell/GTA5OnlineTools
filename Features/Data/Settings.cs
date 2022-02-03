@@ -34,6 +34,7 @@ namespace GTA5OnlineTools.Features.Data
         {
             public static bool AutoClearWanted = false;
             public static bool AutoKillNPC = false;
+            public static bool AutoKillHostilityNPC = false;
             public static bool AutoKillPolice = false;
         }
 

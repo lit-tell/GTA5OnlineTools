@@ -376,6 +376,11 @@
                             Click="CheckBox_AutoKillNPC_Click"
                             Content="自动击杀NPC" />
                         <CheckBox
+                            x:Name="CheckBox_AutoKillHostilityNPC"
+                            Margin="5"
+                            Click="CheckBox_AutoKillHostilityNPC_Click"
+                            Content="自动击杀敌对NPC" />
+                        <CheckBox
                             x:Name="CheckBox_AutoKillPolice"
                             Margin="5"
                             Click="CheckBox_AutoKillPolice_Click"

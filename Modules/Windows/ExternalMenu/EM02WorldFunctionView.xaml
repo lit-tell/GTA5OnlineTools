@@ -100,12 +100,12 @@
                     </Border>
                     <WrapPanel Margin="3,0,3,0">
                         <Button
-                            x:Name="Button_KillAllPeds"
-                            Click="Button_KillAllPeds_Click"
+                            x:Name="Button_KillAllNPC"
+                            Click="Button_KillNPC_Click"
                             Content="杀死全部NPC" />
                         <Button
-                            x:Name="Button_KillAllHostilityPeds"
-                            Click="Button_KillAllHostilityPeds_Click"
+                            x:Name="Button_KillAllHostilityNPC"
+                            Click="Button_KillAllHostilityNPC_Click"
                             Content="杀死全部敌对NPC" />
                         <Button
                             x:Name="Button_KillAllPolice"
@@ -126,11 +126,11 @@
                         <Button
                             x:Name="Button_TPAllNPCToMe"
                             Click="Button_TPAllNPCToMe_Click"
-                            Content="传送所有NPC到我" />
+                            Content="传送全部NPC到我" />
                         <Button
-                            x:Name="Button_TPFriendNPCToMe"
-                            Click="Button_TPFriendNPCToMe_Click"
-                            Content="传送所有敌对NPC到我" />
+                            x:Name="Button_TPHostilityNPCToMe"
+                            Click="Button_TPHostilityNPCToMe_Click"
+                            Content="传送全部敌对NPC到我" />
                     </WrapPanel>
                 </StackPanel>
             </Grid>

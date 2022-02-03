@@ -89,60 +89,39 @@ namespace GTA5OnlineTools.Features.SDK
         /// </summary>
         public static void CreateAmbientPickup(string pickup)
         {
-            uint modelHash = Joaat("prop_cash_pile_01");
+            //uint modelHash = Joaat("prop_cash_pile_01");
             uint pickupHash = Joaat(pickup);
 
             float x = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
             float y = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
             float z = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
 
-            WriteGA<int>(2783329 + 1, 0);    // 9999
             WriteGA<float>(2783329 + 3, x);
             WriteGA<float>(2783329 + 4, y);
-            WriteGA<float>(2783329 + 5, z + 2.0f);
+            WriteGA<float>(2783329 + 5, z + 3.0f);
+            WriteGA<int>(2783329 + 1, 9999);    // 9999
 
             WriteGA<int>(4528329 + 1 + (ReadGA<int>(2783329) * 85) + 66 + 2, 2);
             WriteGA<int>(2783335, 1);
-
-            long m_dwpUnkModelBase = Memory.Read<long>(Globals.UnkModelPTR, null);
-            long m_dwpUnkModelStruct = Memory.Read<long>(m_dwpUnkModelBase + 0x00, null);
-            uint m_dwModelHash = Memory.Read<uint>(m_dwpUnkModelStruct + 0x2640, null);
-            if (m_dwModelHash != modelHash)
-            {
-                Memory.Write<uint>(m_dwpUnkModelStruct + 0x2640, null, modelHash);
-            }
-
-            //var ptr_prop_cash_pile_01 = Memory.Read<int>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x00, 0x490 }) + 0xE80;
-            //Memory.Write<uint>(ptr_prop_cash_pile_01, null, modelHash);
 
             Thread.Sleep(150);
 
             var m_dwpPickUpInterface = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x20 });
 
-            var m_dwpPedList = Memory.Read<long>(m_dwpPickUpInterface + 0x100, null);
             var dw_curPickUpNum = Memory.Read<long>(m_dwpPickUpInterface + 0x110, null);
+            var m_dwpPedList = Memory.Read<long>(m_dwpPickUpInterface + 0x100, null);
 
             for (long i = 0; i < dw_curPickUpNum; i++)
             {
-                long dwpPickup, dwpPickupCur;
-                uint dwPickupHash, dwModelHash;
+                long dwpPickup = Memory.Read<long>(m_dwpPedList + i * 0x10, null);
+                uint dwPickupHash = Memory.Read<uint>(dwpPickup + 0x488, null);
 
-                dwpPickup = Memory.Read<long>(m_dwpPedList + i * 0x10, null);
-
-                dwpPickupCur = Memory.Read<long>(dwpPickup + 0x20, null);
-                dwModelHash = Memory.Read<uint>(dwpPickupCur + 0x18, null);
-                dwPickupHash = Memory.Read<uint>(dwpPickup + 0x488, null);
-
-                if (dwPickupHash != pickupHash && dwModelHash == modelHash)
+                if (dwPickupHash == 4263048111)
                 {
                     Memory.Write<uint>(dwpPickup + 0x488, pickupHash);
                     break;
                 }
             }
-
-            Memory.Write<uint>(m_dwpUnkModelStruct + 0x2640, null, modelHash);
-
-            //Memory.Write<uint>(ptr_prop_cash_pile_01, null, modelHash);
         }
     }
 }

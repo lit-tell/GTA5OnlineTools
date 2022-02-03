@@ -45,7 +45,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
                 for (int i = 0; i < WeaponData.WeaponDataClass[index].WeaponInfo.Count; i++)
                 {
-                    ListBox_WeaponInfo.Items.Add(WeaponData.WeaponDataClass[index].WeaponInfo[i].Name);
+                    ListBox_WeaponInfo.Items.Add(WeaponData.WeaponDataClass[index].WeaponInfo[i].DisplayName);
                 }
 
                 ListBox_WeaponInfo.SelectedIndex = 0;
@@ -59,7 +59,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             if (index1 != -1 && index2 != -1)
             {
-                TempData.WPickup = WeaponData.WeaponDataClass[index1].WeaponInfo[index2].Pickup;
+                TempData.WPickup = "pickup_" + WeaponData.WeaponDataClass[index1].WeaponInfo[index2].Name;
             }
         }
 

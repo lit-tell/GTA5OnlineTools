@@ -124,6 +124,8 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     WriteGA<float>(oVMCreate + 7 + 1, y);       // 载具坐标y
                     WriteGA<float>(oVMCreate + 7 + 2, z);       // 载具坐标z
 
+                    WriteGAString(oVMCreate + 27 + 1, Guid.NewGuid().ToString()[..8]);    // License plate  车牌
+
                     for (int i = 0; i < 43; i++)
                     {
                         if (i < 17)
@@ -140,16 +142,20 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                         }
                     }
 
-                    WriteGA<long>(oVMCreate + 27 + 28, 1);
-                    WriteGA<long>(oVMCreate + 27 + 30, 1);
-                    WriteGA<long>(oVMCreate + 27 + 32, 1);
-                    WriteGA<long>(oVMCreate + 27 + 65, 1);
+                    WriteGA<int>(oVMCreate + 27 + 7, -1);       // pearlescent
+                    WriteGA<int>(oVMCreate + 27 + 8, -1);       // wheel color
+                    WriteGA<int>(oVMCreate + 27 + 33, -1);      // wheel selection
+                    WriteGA<int>(oVMCreate + 27 + 69, -1);      // Wheel type
+
+                    WriteGA<int>(oVMCreate + 27 + 28, 1);
+                    WriteGA<int>(oVMCreate + 27 + 30, 1);
+                    WriteGA<int>(oVMCreate + 27 + 32, 1);
+                    WriteGA<int>(oVMCreate + 27 + 65, 1);
 
                     WriteGA<long>(oVMCreate + 27 + 77, 0xF0400200);         // vehstate  载具状态 没有这个载具起落架是收起状态
 
                     WriteGA<int>(oVMCreate + 5, 1);                         // can spawn flag must be odd
                     WriteGA<int>(oVMCreate + 2, 1);                         // spawn toggle gets reset to 0 on car spawn
-
                 }
             });
         }
@@ -335,9 +341,6 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
                 foreach (var item in pVInfos)
                 {
-                    if (item.hash == 0)
-                        continue;
-
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         ListBox_PersonalVehicle.Items.Add($"{item.Name} [{item.plate}]");
@@ -354,14 +357,9 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             if (index != -1)
             {
-                string str = ListBox_PersonalVehicle.SelectedItem.ToString();
-                str = str.Substring(0, str.IndexOf('[')).Trim();
-
-                int idx = pVInfos.FindIndex(val => val.Name == str);
-
                 Task.Run(() =>
                 {
-                    WriteGA<int>(2810287 + 965, idx);
+                    WriteGA<int>(2810287 + 965, pVInfos[index].Index);
                     WriteGA<int>(2810287 + 962, 1);
                     Task.Delay(500).Wait();
                     WriteGA<int>(2671444 + 8, 1);

@@ -20,6 +20,8 @@ namespace GTA5OnlineTools.Features.SDK
 
         private bool isDraw = true;
 
+        private bool isRun =true;
+
         public Overlay()
         {
             windowData = Memory.GetGameWindowData();
@@ -60,7 +62,7 @@ namespace GTA5OnlineTools.Features.SDK
 
         private void IsDrawGameOverlay()
         {
-            while (true)
+            while (isRun)
             {
                 if (Settings.Overlay.IsNoTOPMostHide)
                     isDraw = Memory.IsTopMostWindow();
@@ -420,7 +422,7 @@ namespace GTA5OnlineTools.Features.SDK
 
         private void AimbotThread()
         {
-            while (true)
+            while (isRun)
             {
                 if (Settings.Overlay.AimBot_Enabled)
                 {
@@ -866,6 +868,8 @@ namespace GTA5OnlineTools.Features.SDK
 
                 disposedValue = true;
             }
+
+            isRun = false;
         }
 
         public void Dispose()

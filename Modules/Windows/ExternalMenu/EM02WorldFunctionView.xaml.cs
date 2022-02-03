@@ -61,13 +61,13 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             }
         }
 
-        private void Button_KillAllPeds_Click(object sender, RoutedEventArgs e)
+        private void Button_KillNPC_Click(object sender, RoutedEventArgs e)
         {
             AudioUtil.ClickSound();
 
             World.KillNPC(false);
         }
-        private void Button_KillAllHostilityPeds_Click(object sender, RoutedEventArgs e)
+        private void Button_KillAllHostilityNPC_Click(object sender, RoutedEventArgs e)
         {
             AudioUtil.ClickSound();
 
@@ -109,7 +109,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             World.TeleportNPCToMe(false);
         }
 
-        private void Button_TPFriendNPCToMe_Click(object sender, RoutedEventArgs e)
+        private void Button_TPHostilityNPCToMe_Click(object sender, RoutedEventArgs e)
         {
             AudioUtil.ClickSound();
 

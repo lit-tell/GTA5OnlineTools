@@ -179,9 +179,9 @@ namespace GTA5OnlineTools.Features.SDK
         }
 
         /// <summary>
-        /// 传送NPC到我这里
+        /// 传送NPC到我这里，仅敌对？
         /// </summary>
-        public static void TeleportNPCToMe(bool isOnlyFriendly)
+        public static void TeleportNPCToMe(bool isOnlyHostility)
         {
             Vector3 v3MyPos = Memory.Read<Vector3>(Globals.WorldPTR, Offsets.PlayerPositionX);
 
@@ -206,7 +206,7 @@ namespace GTA5OnlineTools.Features.SDK
                 if (!Memory.IsValid(m_navigation))
                     continue;
 
-                if (isOnlyFriendly)
+                if (isOnlyHostility)
                 {
                     byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
 
