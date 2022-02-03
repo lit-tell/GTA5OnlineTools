@@ -11,7 +11,8 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
     /// </summary>
     public partial class EM05SpawnVehicleView : UserControl
     {
-        private static long SpawnVehicleHash = 0;
+        private long SpawnVehicleHash = 0;
+        private int[] SpawnVehicleMod;
 
         private struct PVInfo
         {
@@ -69,6 +70,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             if (index1 != -1 && index2 != -1)
             {
                 SpawnVehicleHash = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Hash;
+                SpawnVehicleMod = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Mod;
             }
         }
 
@@ -80,12 +82,76 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             if (str == "刷出线上载具（空地）")
             {
-                SpawnVehicle(-255.0f);
+                SpawnVehicle(SpawnVehicleHash, -255.0f, 5, SpawnVehicleMod);
             }
             else
             {
-                SpawnVehicle(0.0f);
+                SpawnVehicle(SpawnVehicleHash, 0.0f, 5, SpawnVehicleMod);
             }
+        }
+
+        private void SpawnVehicle(long hash, float z255, int dist, int[] mod)
+        {
+            Task.Run(() =>
+            {
+                if (hash != 0)
+                {
+                    const int oVMCreate = 2725260;
+
+                    float x = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
+                    float y = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
+                    float z = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
+                    float sin = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerSin);
+                    float cos = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerCos);
+
+                    x += cos * dist;
+                    y += sin * dist;
+
+                    if (z255 == -255.0f)
+                        z = z255;
+                    else
+                        z += z255;
+
+                    WriteGA<long>(oVMCreate + 27 + 66, hash);   // 载具哈希值
+
+                    WriteGA<int>(oVMCreate + 27 + 94, 2);       // personal car ownerflag  个人载具拥有者标志
+                    WriteGA<int>(oVMCreate + 27 + 95, 14);      // ownerflag  拥有者标志
+
+                    WriteGA<int>(oVMCreate + 27 + 5, -1);       // primary -1 auto 159  主色调
+                    WriteGA<int>(oVMCreate + 27 + 6, -1);       // secondary -1 auto 159  副色调
+
+                    WriteGA<float>(oVMCreate + 7 + 0, x);       // 载具坐标x
+                    WriteGA<float>(oVMCreate + 7 + 1, y);       // 载具坐标y
+                    WriteGA<float>(oVMCreate + 7 + 2, z);       // 载具坐标z
+
+                    for (int i = 0; i < 43; i++)
+                    {
+                        if (i < 17)
+                        {
+                            WriteGA<int>(oVMCreate + 27 + 10 + i, mod[i]);
+                        }
+                        else if (i >= 17 && i != 42)
+                        {
+                            WriteGA<int>(oVMCreate + 27 + 10 + 6 + i, mod[i]);
+                        }
+                        else if (mod[42] > 0 && i == 42)
+                        {
+                            WriteGA<int>(oVMCreate + 27 + 10 + 6 + 42, new Random().Next(1, mod[42] + 1));
+                        }
+                    }
+
+                    WriteGA<long>(oVMCreate + 27 + 28, 1);
+                    WriteGA<long>(oVMCreate + 27 + 30, 1);
+                    WriteGA<long>(oVMCreate + 27 + 32, 1);
+                    WriteGA<long>(oVMCreate + 27 + 65, 1);
+
+                    WriteGA<long>(oVMCreate + 27 + 77, 0xF0400200);         // vehstate  载具状态 没有这个载具起落架是收起状态
+
+                    WriteGA<int>(oVMCreate + 5, 1);                         // can spawn flag must be odd
+                    WriteGA<int>(oVMCreate + 2, 1);                         // spawn toggle gets reset to 0 on car spawn
+
+                }
+            });
         }
 
         private void SpawnVehicle(float z255)
@@ -166,29 +232,6 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     WriteGA<int>(oVMCreate + 27 + 94, 2);       // personal car ownerflag  个人载具拥有者标志
                 }
             });
-        }
-
-        private int FixVehicleWeapon(long hash)
-        {
-            string name = FindVehicleDisplayName(hash, false);
-            switch (name)
-            {
-                case "oppressor2":
-                    return 2;
-                case "apc":
-                case "deluxo":
-                    return -1;
-                case "bombushka":
-                    return 1;
-                case "tampa3":
-                case "insurgent3":
-                case "halftrack":
-                    return 3;
-                case "barrage":
-                    return 30;
-                default:
-                    return -1;
-            }
         }
 
         /////////////////////////////////////////////////////////////////////////////////

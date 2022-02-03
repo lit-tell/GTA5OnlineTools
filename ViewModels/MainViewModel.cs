@@ -52,9 +52,9 @@ namespace GTA5OnlineTools.ViewModels
             timer.AutoReset = true;
             timer.Start();
 
-            var thread = new Thread(InitThread);
-            thread.IsBackground = true;
-            thread.Start();
+            var thread0 = new Thread(InitThread);
+            thread0.IsBackground = true;
+            thread0.Start();
         }
 
         private void CreateMenuBar()
