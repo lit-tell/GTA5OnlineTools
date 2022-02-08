@@ -8,6 +8,8 @@ namespace GTA5OnlineTools.Features.Data
 
         public static float Forward = 1.5f;
 
+        public static int ProduceTime = 5;
+
         public struct Player
         {
             public static bool GodMode = false;

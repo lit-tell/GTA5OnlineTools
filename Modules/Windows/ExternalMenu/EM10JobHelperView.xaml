@@ -10,13 +10,7 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="FontSize" Value="24" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="HorizontalAlignment" Value="Center" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
+
 
         <Style TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -46,7 +40,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Margin="5">
-                    <TextBlock Text="CEO" />
+                    <TextBlock Style="{StaticResource TextBlockTitle000}" Text="CEO" />
                     <StackPanel>
                         <UniformGrid Columns="1">
                             <Button Click="Button_CEOCargos_Click" Content="医疗用品 (无特殊物品)" />
@@ -78,16 +72,14 @@
                             Foreground="Red"
                             Visibility="Collapsed" />
                         <TextBlock
-                            HorizontalAlignment="Left"
-                            FontSize="12"
-                            FontWeight="Normal"
+                            Margin="5"
                             Foreground="Green"
                             Text="提示：需要退出CEOD电脑重新进入生效" />
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="5">
-                    <TextBlock Text="地堡" />
+                    <TextBlock Style="{StaticResource TextBlockTitle000}" Text="地堡" />
                     <CheckBox
                         x:Name="CheckBox_RemoveBunkerSupplyDelay"
                         Click="CheckBox_RemoveBunkerSupplyDelay_Click"
@@ -125,7 +117,7 @@
                             Content="触发地堡研究" />
                     </WrapPanel>
 
-                    <TextBlock Text="摩托帮" />
+                    <TextBlock Style="{StaticResource TextBlockTitle000}" Text="摩托帮" />
                     <CheckBox
                         x:Name="CheckBox_RemoveMCSupplyDelay"
                         Click="CheckBox_RemoveMCSupplyDelay_Click"
@@ -141,7 +133,7 @@
                     <CheckBox
                         x:Name="CheckBox_SetMCSuppliesPerUnitProduced"
                         Click="CheckBox_SetMCSuppliesPerUnitProduced_Click"
-                        Content="最低地堡原材料消耗量" />
+                        Content="最低摩托帮原材料消耗量" />
                     <CheckBox
                         x:Name="CheckBox_SetMCSaleMultipliers"
                         Click="CheckBox_SetMCSaleMultipliers_Click"
@@ -171,7 +163,10 @@
                             Content="触发伪证件办公室生产" />
                     </WrapPanel>
 
-                    <TextBlock Text="夜总会" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Margin="5">
+                    <TextBlock Style="{StaticResource TextBlockTitle000}" Text="夜总会" />
                     <CheckBox
                         x:Name="CheckBox_RemoveNightclubOutDelay"
                         Click="CheckBox_RemoveNightclubOutDelay_Click"
@@ -184,22 +179,14 @@
                         x:Name="CheckBox_NightclubNoTonyLaunderingMoney"
                         Click="CheckBox_NightclubNoTonyLaunderingMoney_Click"
                         Content="最低托尼洗钱费用" />
-                    <WrapPanel />
 
-                </StackPanel>
-
-                <StackPanel Grid.Column="2" Margin="5">
-                    <TextBlock Text="进出口大亨" />
+                    <TextBlock Style="{StaticResource TextBlockTitle000}" Text="进出口大亨" />
                     <CheckBox
                         x:Name="CheckBox_RemoveExportVehicleDelay"
                         Click="CheckBox_RemoveExportVehicleDelay_Click"
                         Content="移除进出口大亨出货延迟" />
 
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        FontSize="24"
-                        FontWeight="Bold"
-                        Text="走私大暴走" />
+                    <TextBlock Style="{StaticResource TextBlockTitle000}" Text="走私大暴走" />
                     <CheckBox
                         x:Name="CheckBox_RemoveSmugglerRunInDelay"
                         Click="CheckBox_RemoveSmugglerRunInDelay_Click"
@@ -209,33 +196,31 @@
                         Click="CheckBox_RemoveSmugglerRunOutDelay_Click"
                         Content="移除机库出货延迟" />
 
-                    <TextBlock Text="角色等级RP倍数" />
-                    <WrapPanel>
-                        <Button Click="Button_RPxN_Click" Content="RPx1" />
-                        <Button Click="Button_RPxN_Click" Content="RPx2" />
-                        <Button Click="Button_RPxN_Click" Content="RPx5" />
-                        <Button Click="Button_RPxN_Click" Content="RPx10" />
-                        <Button Click="Button_RPxN_Click" Content="RPx20" />
-                        <Button Click="Button_RPxN_Click" Content="RPx50" />
-                        <Button Click="Button_RPxN_Click" Content="RPx100" />
-                        <Button Click="Button_RPxN_Click" Content="RPx500" />
-                        <Button Click="Button_RPxN_Click" Content="RPx1000" />
-
-                    </WrapPanel>
-
-                    <TextBlock Text="车友会等级RP倍数" />
-                    <WrapPanel>
-                        <Button Click="Button_REPxN_Click" Content="REPx1" />
-                        <Button Click="Button_REPxN_Click" Content="REPx2" />
-                        <Button Click="Button_REPxN_Click" Content="REPx5" />
-                        <Button Click="Button_REPxN_Click" Content="REPx10" />
-                        <Button Click="Button_REPxN_Click" Content="REPx20" />
-                        <Button Click="Button_REPxN_Click" Content="REPx50" />
-                        <Button Click="Button_REPxN_Click" Content="REPx100" />
-                        <Button Click="Button_REPxN_Click" Content="REPx500" />
-                        <Button Click="Button_REPxN_Click" Content="REPx1000" />
-
-                    </WrapPanel>
+                    <TextBlock Style="{StaticResource TextBlockTitle000}" Text="高级" />
+                    <DockPanel LastChildFill="True">
+                        <TextBlock
+                            Margin="5,5,0,5"
+                            DockPanel.Dock="Left"
+                            Text="最低生产时间调整" />
+                        <TextBlock
+                            Margin="5"
+                            DockPanel.Dock="Left"
+                            Text="{Binding ElementName=Slider_ProduceTime, Path=Value, StringFormat=: {0:0.0 秒}}" />
+                        <Slider
+                            Name="Slider_ProduceTime"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Right"
+                            IsSnapToTickEnabled="True"
+                            Maximum="10"
+                            Minimum="1"
+                            TickFrequency="1"
+                            ValueChanged="Slider_ProduceTime_ValueChanged"
+                            Value="5" />
+                    </DockPanel>
+                    <TextBlock
+                        Margin="5"
+                        Foreground="Green"
+                        Text="提示：调整后需要重新勾选最低生产时间" />
 
                     <!--<TextBlock
                         HorizontalAlignment="Center"

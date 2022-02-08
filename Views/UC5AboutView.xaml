@@ -80,18 +80,18 @@
                             Margin="10"
                             FontSize="36"
                             Style="{StaticResource IconFontHVStyle}">
-                            <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://github.com/CrazyZhang666">
+                            <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://github.com/CrazyZhang666/GTA5OnlineTools">
                                 &#xe686;
                             </Hyperlink>
                             <TextBlock.ToolTip>
-                                <TextBlock Text="作者GitHub" />
+                                <TextBlock Text="项目地址" />
                             </TextBlock.ToolTip>
                         </TextBlock>
                         <TextBlock
                             Margin="10"
                             FontSize="36"
                             Style="{StaticResource IconFontHVStyle}">
-                            <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://discord.gg/2pJWvWu">
+                            <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://discord.gg/7GuNzajfhD">
                                 &#xe71d;
                             </Hyperlink>
                             <TextBlock.ToolTip>

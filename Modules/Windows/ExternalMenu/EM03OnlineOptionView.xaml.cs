@@ -1,6 +1,7 @@
 ﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Data;
+using static GTA5OnlineTools.Features.SDK.Hacks;
 
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 {
@@ -9,6 +10,16 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
     /// </summary>
     public partial class EM03OnlineOptionView : UserControl
     {
+        private struct PVInfo
+        {
+            public int Index;
+            public string Name;
+            public long hash;
+            public string plate;
+        }
+
+        private List<PVInfo> pVInfos = new List<PVInfo>();
+
         public EM03OnlineOptionView()
         {
             InitializeComponent();
@@ -110,6 +121,80 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         private void CheckBox_Airstrike_Click(object sender, RoutedEventArgs e)
         {
             Online.Airstrike(CheckBox_Airstrike.IsChecked == true);
+        }
+
+        private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
+        {
+            AudioUtil.ClickSound();
+
+            ListBox_PersonalVehicle.Items.Clear();
+            pVInfos.Clear();
+
+            Task.Run(() =>
+            {
+                int max_slots = ReadGA<int>(1585844);
+                for (int i = 0; i < max_slots; i++)
+                {
+                    long hash = ReadGA<long>(1585844 + 1 + (i * 142) + 66);
+                    if (hash == 0)
+                        continue;
+
+                    string plate = ReadGAString(1585844 + 1 + (i * 142) + 1);
+
+                    pVInfos.Add(new PVInfo()
+                    {
+                        Index = i,
+                        Name = FindVehicleDisplayName(hash, true),
+                        hash = hash,
+                        plate = plate
+                    });
+                }
+
+                foreach (var item in pVInfos)
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        ListBox_PersonalVehicle.Items.Add($"{item.Name} [{item.plate}]");
+                    });
+                }
+            });
+        }
+
+        private void Button_SpawnPersonalVehicle_Click(object sender, RoutedEventArgs e)
+        {
+            AudioUtil.ClickSound();
+
+            int index = ListBox_PersonalVehicle.SelectedIndex;
+
+            if (index != -1)
+            {
+                Task.Run(() =>
+                {
+                    WriteGA<int>(2810287 + 965, pVInfos[index].Index);
+                    WriteGA<int>(2810287 + 962, 1);
+                    Task.Delay(500).Wait();
+                    WriteGA<int>(2671444 + 8, 1);
+                });
+            }
+        }
+
+        private string FindVehicleDisplayName(long hash, bool isDisplay)
+        {
+            foreach (var item in VehicleData.VehicleClassData)
+            {
+                foreach (var item0 in item.VehicleInfo)
+                {
+                    if (item0.Hash == hash)
+                    {
+                        if (isDisplay)
+                            return item0.DisplayName;
+                        else
+                            return item0.Name;
+                    }
+                }
+            }
+
+            return "";
         }
     }
 }

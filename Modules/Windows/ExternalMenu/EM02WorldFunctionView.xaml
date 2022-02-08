@@ -91,7 +91,7 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Vertical">
+                <StackPanel Grid.Column="1">
                     <Border Style="{StaticResource BorderTitleStyle}">
                         <TextBlock
                             Padding="3,0,0,0"
@@ -132,6 +132,51 @@
                             Click="Button_TPHostilityNPCToMe_Click"
                             Content="传送全部敌对NPC到我" />
                     </WrapPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="角色等级RP倍数" />
+                    </Border>
+                    <WrapPanel Margin="3,0,3,0">
+                        <Button Click="Button_RPxN_Click" Content="RPx1" />
+                        <Button Click="Button_RPxN_Click" Content="RPx2" />
+                        <Button Click="Button_RPxN_Click" Content="RPx5" />
+                        <Button Click="Button_RPxN_Click" Content="RPx10" />
+                        <Button Click="Button_RPxN_Click" Content="RPx20" />
+                        <Button Click="Button_RPxN_Click" Content="RPx50" />
+                        <Button Click="Button_RPxN_Click" Content="RPx100" />
+                        <Button Click="Button_RPxN_Click" Content="RPx500" />
+                        <Button Click="Button_RPxN_Click" Content="RPx1000" />
+
+                    </WrapPanel>
+
+                    <Border Style="{StaticResource BorderTitleStyle}">
+                        <TextBlock
+                            Padding="3,0,0,0"
+                            Foreground="White"
+                            Text="车友会等级RP倍数" />
+                    </Border>
+                    <WrapPanel Margin="3,0,3,0">
+                        <Button Click="Button_REPxN_Click" Content="REPx1" />
+                        <Button Click="Button_REPxN_Click" Content="REPx2" />
+                        <Button Click="Button_REPxN_Click" Content="REPx5" />
+                        <Button Click="Button_REPxN_Click" Content="REPx10" />
+                        <Button Click="Button_REPxN_Click" Content="REPx20" />
+                        <Button Click="Button_REPxN_Click" Content="REPx50" />
+                        <Button Click="Button_REPxN_Click" Content="REPx100" />
+                        <Button Click="Button_REPxN_Click" Content="REPx500" />
+                        <Button Click="Button_REPxN_Click" Content="REPx1000" />
+
+                    </WrapPanel>
+                    <TextBlock
+                        Margin="5"
+                        Foreground="Green"
+                        Text="提示：穿车友会衣服时经验倍数可能无效"
+                        TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>
         </ScrollViewer>

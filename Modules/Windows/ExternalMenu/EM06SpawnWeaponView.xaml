@@ -145,21 +145,17 @@
             </WrapPanel>
 
             <StackPanel Margin="0,20,0,0" DockPanel.Dock="Bottom">
-                <TextBlock
-                    Margin="5"
-                    HorizontalAlignment="Center"
-                    FontSize="24"
-                    FontWeight="Bold"
-                    Text="武器自定义" />
-
-                <TextBlock Margin="5" Text="功能开发中..." />
-
+                <TextBlock Style="{StaticResource TextBlockTitle000}" Text="武器自定义" />
                 <Button
                     x:Name="Button_SpawnWeapon"
                     Margin="5,2,5,5"
                     Click="Button_SpawnWeapon_Click"
                     Content="刷出线上武器"
                     DockPanel.Dock="Bottom" />
+                <TextBlock
+                    Margin="5"
+                    Foreground="Green"
+                    Text="提示：部分武器刷不出来是正常现象" />
             </StackPanel>
         </StackPanel>
     </Grid>

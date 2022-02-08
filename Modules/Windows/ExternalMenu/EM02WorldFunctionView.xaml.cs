@@ -115,5 +115,31 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             World.TeleportNPCToMe(true);
         }
+
+        private void Button_RPxN_Click(object sender, RoutedEventArgs e)
+        {
+            AudioUtil.ClickSound();
+
+            var str = (e.OriginalSource as Button).Content.ToString();
+
+            int index = MiscData.RPxNs.FindIndex(t => t.Name == str);
+            if (index != -1)
+            {
+                Online.RPMultiplier(MiscData.RPxNs[index].ID);
+            }
+        }
+
+        private void Button_REPxN_Click(object sender, RoutedEventArgs e)
+        {
+            AudioUtil.ClickSound();
+
+            var str = (e.OriginalSource as Button).Content.ToString();
+
+            int index = MiscData.REPxNs.FindIndex(t => t.Name == str);
+            if (index != -1)
+            {
+                Online.REPMultiplier(MiscData.REPxNs[index].ID);
+            }
+        }
     }
 }

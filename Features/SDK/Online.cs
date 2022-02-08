@@ -1,4 +1,5 @@
 ﻿using GTA5OnlineTools.Features.Core;
+using GTA5OnlineTools.Features.Data;
 
 namespace GTA5OnlineTools.Features.SDK
 {
@@ -430,21 +431,21 @@ namespace GTA5OnlineTools.Features.SDK
         }
 
         /// <summary>
-        /// 设置地堡生产和研究时间为1秒
+        /// 设置地堡生产和研究时间为指定时间，单位秒
         /// </summary>
         public static void SetBunkerProduceResearchTime(bool isEnable)
         {
             if (isEnable)
             {
                 // Base Time to Produce
-                Hacks.WriteGA<int>(262145 + 21323, 1);  // Product                  215868155 
-                Hacks.WriteGA<int>(262145 + 21339, 1);  // Research                 -676414773
+                Hacks.WriteGA<int>(262145 + 21323, Settings.ProduceTime);  // Product                  215868155 
+                Hacks.WriteGA<int>(262145 + 21339, Settings.ProduceTime);  // Research                 -676414773
 
                 // Time to Produce Reductions
-                Hacks.WriteGA<int>(262145 + 21324, 1);  // Production Equipment     631477612
-                Hacks.WriteGA<int>(262145 + 21325, 1);  // Production Staff         818645907
-                Hacks.WriteGA<int>(262145 + 21340, 1);  // Research Equipment       -1148432846
-                Hacks.WriteGA<int>(262145 + 21341, 1);  // Research Staff           510883248
+                Hacks.WriteGA<int>(262145 + 21324, Settings.ProduceTime);  // Production Equipment     631477612
+                Hacks.WriteGA<int>(262145 + 21325, Settings.ProduceTime);  // Production Staff         818645907
+                Hacks.WriteGA<int>(262145 + 21340, Settings.ProduceTime);  // Research Equipment       -1148432846
+                Hacks.WriteGA<int>(262145 + 21341, Settings.ProduceTime);  // Research Staff           510883248
             }
             else
             {
@@ -591,20 +592,20 @@ namespace GTA5OnlineTools.Features.SDK
         }
 
         /// <summary>
-        /// 设置夜总会生产时间为1秒
+        /// 设置夜总会生产时间为指定时间，单位秒
         /// </summary>
         public static void SetNightclubProduceTime(bool isEnable)
         {
             if (isEnable)
             {
                 // Time to Produce
-                Hacks.WriteGA<int>(262145 + 24134, 1);  // Sporting Goods               -147565853
-                Hacks.WriteGA<int>(262145 + 24135, 1);  // South American Imports
-                Hacks.WriteGA<int>(262145 + 24136, 1);  // Pharmaceutical Research
-                Hacks.WriteGA<int>(262145 + 24137, 1);  // Organic Produce
-                Hacks.WriteGA<int>(262145 + 24138, 1);  // Printing and Copying
-                Hacks.WriteGA<int>(262145 + 24139, 1);  // Cash Creation
-                Hacks.WriteGA<int>(262145 + 24140, 1);  // Cargo and Shipments
+                Hacks.WriteGA<int>(262145 + 24134, Settings.ProduceTime);  // Sporting Goods               -147565853
+                Hacks.WriteGA<int>(262145 + 24135, Settings.ProduceTime);  // South American Imports
+                Hacks.WriteGA<int>(262145 + 24136, Settings.ProduceTime);  // Pharmaceutical Research
+                Hacks.WriteGA<int>(262145 + 24137, Settings.ProduceTime);  // Organic Produce
+                Hacks.WriteGA<int>(262145 + 24138, Settings.ProduceTime);  // Printing and Copying
+                Hacks.WriteGA<int>(262145 + 24139, Settings.ProduceTime);  // Cash Creation
+                Hacks.WriteGA<int>(262145 + 24140, Settings.ProduceTime);  // Cargo and Shipments
             }
             else
             {
@@ -620,18 +621,18 @@ namespace GTA5OnlineTools.Features.SDK
         }
 
         /// <summary>
-        /// 设置摩托帮生产时间为1秒
+        /// 设置摩托帮生产时间为指定时间，单位秒
         /// </summary>
         public static void SetMCProduceTime(bool isEnable)
         {
             if (isEnable)
             {
                 // Base Time to Produce
-                Hacks.WriteGA<int>(262145 + 17197, 1);  // Weed         -635596193
-                Hacks.WriteGA<int>(262145 + 17198, 1);  // Meth
-                Hacks.WriteGA<int>(262145 + 17199, 1);  // Cocaine
-                Hacks.WriteGA<int>(262145 + 17200, 1);  // Documents
-                Hacks.WriteGA<int>(262145 + 17201, 1);  // Cash
+                Hacks.WriteGA<int>(262145 + 17197, Settings.ProduceTime);  // Weed         -635596193
+                Hacks.WriteGA<int>(262145 + 17198, Settings.ProduceTime);  // Meth
+                Hacks.WriteGA<int>(262145 + 17199, Settings.ProduceTime);  // Cocaine
+                Hacks.WriteGA<int>(262145 + 17200, Settings.ProduceTime);  // Documents
+                Hacks.WriteGA<int>(262145 + 17201, Settings.ProduceTime);  // Cash
 
                 // Time to Produce Reductions
                 Hacks.WriteGA<int>(262145 + 17202, 1);  // Documents Equipment

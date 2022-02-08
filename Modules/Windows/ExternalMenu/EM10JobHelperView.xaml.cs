@@ -352,36 +352,6 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             Online.RemoveMCSupplyDelay(CheckBox_RemoveMCSupplyDelay.IsChecked == true);
         }
 
-        private void Button_RPxN_Click(object sender, RoutedEventArgs e)
-        {
-            AudioUtil.ClickSound();
-
-            var str = (e.OriginalSource as Button).Content.ToString();
-
-            int index = MiscData.RPxNs.FindIndex(t => t.Name == str);
-            if (index != -1)
-            {
-                Online.RPMultiplier(MiscData.RPxNs[index].ID);
-
-                TextBox_Result.Text = $"RP倍数 x{MiscData.RPxNs[index].ID} 写入成功";
-            }
-        }
-
-        private void Button_REPxN_Click(object sender, RoutedEventArgs e)
-        {
-            AudioUtil.ClickSound();
-
-            var str = (e.OriginalSource as Button).Content.ToString();
-
-            int index = MiscData.REPxNs.FindIndex(t => t.Name == str);
-            if (index != -1)
-            {
-                Online.REPMultiplier(MiscData.REPxNs[index].ID);
-
-                TextBox_Result.Text = $"REP倍数 x{MiscData.REPxNs[index].ID} 写入成功";
-            }
-        }
-
         private void Button_CEOCargos_Click(object sender, RoutedEventArgs e)
         {
             AudioUtil.ClickSound();
@@ -465,6 +435,11 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
         private void CheckBox_NightclubNoTonyLaunderingMoney_Click(object sender, RoutedEventArgs e)
         {
             Online.NightclubNoTonyLaunderingMoney(CheckBox_NightclubNoTonyLaunderingMoney.IsChecked == true);
+        }
+
+        private void Slider_ProduceTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Settings.ProduceTime = (int)Slider_ProduceTime.Value;
         }
     }
 }
