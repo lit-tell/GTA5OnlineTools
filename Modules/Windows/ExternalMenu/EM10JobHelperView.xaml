@@ -91,7 +91,7 @@
                     <CheckBox
                         x:Name="CheckBox_SetBunkerProduceResearchTime"
                         Click="CheckBox_SetBunkerProduceResearchTime_Click"
-                        Content="最低地堡生产和研究时间" />
+                        Content="最低地堡生产和研究时间 ★" />
                     <CheckBox
                         x:Name="CheckBox_SetBunkerSuppliesPerUnitProduced"
                         Click="CheckBox_SetBunkerSuppliesPerUnitProduced_Click"
@@ -129,7 +129,7 @@
                     <CheckBox
                         x:Name="CheckBox_SetMCProduceTime"
                         Click="CheckBox_SetMCProduceTime_Click"
-                        Content="最低摩托帮生产时间" />
+                        Content="最低摩托帮生产时间 ★" />
                     <CheckBox
                         x:Name="CheckBox_SetMCSuppliesPerUnitProduced"
                         Click="CheckBox_SetMCSuppliesPerUnitProduced_Click"
@@ -174,7 +174,7 @@
                     <CheckBox
                         x:Name="CheckBox_SetNightclubProduceTime"
                         Click="CheckBox_SetNightclubProduceTime_Click"
-                        Content="最低夜总会生产时间" />
+                        Content="最低夜总会生产时间 ★" />
                     <CheckBox
                         x:Name="CheckBox_NightclubNoTonyLaunderingMoney"
                         Click="CheckBox_NightclubNoTonyLaunderingMoney_Click"
@@ -196,7 +196,7 @@
                         Click="CheckBox_RemoveSmugglerRunOutDelay_Click"
                         Content="移除机库出货延迟" />
 
-                    <TextBlock Style="{StaticResource TextBlockTitle000}" Text="高级" />
+                    <TextBlock Style="{StaticResource TextBlockTitle000}" Text="高级 ★" />
                     <DockPanel LastChildFill="True">
                         <TextBlock
                             Margin="5,5,0,5"
