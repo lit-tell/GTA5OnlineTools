@@ -784,16 +784,6 @@
                                                 </TextBlock>
                                             </TextBlock.ToolTip>
                                         </TextBlock>
-                                        <TextBlock Margin="5" VerticalAlignment="Center">
-                                            <Hyperlink NavigateUri="https://crazyzhang.cn/perico/index.html" RequestNavigate="Hyperlink_RequestNavigate">
-                                                代码自定义（汉化）
-                                            </Hyperlink>
-                                            <TextBlock.ToolTip>
-                                                <TextBlock>
-                                                    网站基于GitHub，如果你无法访问GitHub请自行百度解决办法
-                                                </TextBlock>
-                                            </TextBlock.ToolTip>
-                                        </TextBlock>
                                     </StackPanel>
                                 </ScrollViewer>
                             </GroupBox>

@@ -23,7 +23,19 @@ namespace GTA5OnlineTools.Modules.Windows
 
                 Globals.TempPTR = Memory.FindPattern(Offsets.Mask.GlobalMask);
                 Globals.GlobalPTR = Memory.Rip_37(Globals.TempPTR);
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+
+                });
             });
+
+            // STAT列表
+            foreach (var item in StatDataClass)
+            {
+                ListBox_STATList.Items.Add(item.ClassName);
+            }
+            ListBox_STATList.SelectedIndex = 0;
         }
 
         private void Window_StatAutoScripts_Closing(object sender, CancelEventArgs e)
@@ -40,14 +52,14 @@ namespace GTA5OnlineTools.Modules.Windows
 
         private void AppendTextBox(string str)
         {
-            Dispatcher.BeginInvoke(new Action(delegate
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 TextBox_Result.AppendText($"[{DateTime.Now:T}] {str}\r\n");
                 TextBox_Result.ScrollToEnd();
-            }));
+            });
         }
 
-        private void AutoScript(string comName)
+        private void AutoScript(string statClassName)
         {
             TextBox_Result.Clear();
 
@@ -55,23 +67,25 @@ namespace GTA5OnlineTools.Modules.Windows
             {
                 try
                 {
-                    int index = StatDataClass.FindIndex(t => t.SName == comName);
-
-                    AppendTextBox($"正在执行 {StatDataClass[index].SName} 脚本代码");
-
-                    for (int i = 0; i < StatDataClass[index].SCode.Count; i++)
+                    int index = StatDataClass.FindIndex(t => t.ClassName == statClassName);
+                    if (index != -1)
                     {
-                        AppendTextBox($"正在执行 第 {i + 1}/{StatDataClass[index].SCode.Count} 条代码");
+                        AppendTextBox($"正在执行 {StatDataClass[index].ClassName} 脚本代码");
 
-                        Hacks.WriteStat(StatDataClass[index].SCode[i].SHash, StatDataClass[index].SCode[i].SValue);
-                        Task.Delay(500).Wait();
+                        for (int i = 0; i < StatDataClass[index].StatInfo.Count; i++)
+                        {
+                            AppendTextBox($"正在执行 第 {i + 1}/{StatDataClass[index].StatInfo.Count} 条代码");
+
+                            Hacks.WriteStat(StatDataClass[index].StatInfo[i].Hash, StatDataClass[index].StatInfo[i].Value);
+                            Task.Delay(500).Wait();
+                        }
+
+                        AppendTextBox($"{StatDataClass[index].ClassName} 脚本代码执行完毕");
                     }
-
-                    AppendTextBox($"{StatDataClass[index].SName} 脚本代码执行完毕，请切换战局生效");
                 }
                 catch (Exception ex)
                 {
-                    AppendTextBox($"发生了未知的错误 {ex.Message}");
+                    AppendTextBox($"错误：{ex.Message}");
                 }
             });
         }
@@ -80,7 +94,11 @@ namespace GTA5OnlineTools.Modules.Windows
         {
             AudioUtil.ClickSound();
 
-            AutoScript((e.OriginalSource as Button).Content.ToString());
+            int index = ListBox_STATList.SelectedIndex;
+            if (index != -1)
+            {
+                AutoScript(ListBox_STATList.SelectedItem.ToString());
+            }
         }
     }
 }

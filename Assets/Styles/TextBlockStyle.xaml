@@ -6,8 +6,10 @@
     </Style>
 
     <!--  关于作者页面字体图标样式  -->
-    <Style x:Key="IconFontHVStyle" TargetType="{x:Type TextBlock}">
-        <Setter Property="FontFamily" Value="/Assets/Fonts/#iconfont" />
+    <Style
+        x:Key="IconFontHVStyle"
+        BasedOn="{StaticResource IconFontBaseStyle}"
+        TargetType="{x:Type TextBlock}">
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
@@ -18,11 +20,13 @@
     </Style>
 
     <!--  HomeIcoTextBlock样式  -->
-    <Style x:Key="HomeIcoTextBlock" TargetType="TextBlock">
+    <Style
+        x:Key="HomeIcoTextBlock"
+        BasedOn="{StaticResource IconFontBaseStyle}"
+        TargetType="TextBlock">
         <Setter Property="FontSize" Value="24" />
         <Setter Property="Margin" Value="3,3,3,0" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="FontFamily" Value="/Assets/Fonts/#iconfont" />
     </Style>
 
     <!--  TabItem字体图标样式  -->
@@ -34,6 +38,18 @@
         <Setter Property="Margin" Value="0,0,5,0" />
         <Setter Property="FontSize" Value="24" />
     </Style>
+
+    <!--  信息提示字体图标样式  -->
+    <Style
+        x:Key="IconFontInfoTextBlockStyle"
+        BasedOn="{StaticResource IconFontBaseStyle}"
+        TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="18" />
+    </Style>
+
+    <!--  ##########################################################  -->
 
     <Style x:Key="TextBlockTitle000" TargetType="{x:Type TextBlock}">
         <Setter Property="Margin" Value="5" />
