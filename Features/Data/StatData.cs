@@ -14,6 +14,7 @@
             public int Value;
         }
 
+        #region 玩家
         /// <summary>
         /// 玩家护甲全满
         /// </summary>
@@ -68,6 +69,14 @@
         };
 
         /// <summary>
+        /// 玩家性别修改（去重新捏脸）
+        /// </summary>
+        public static List<StatInfo> _GENDER_CHANGE = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_ALLOW_GENDER_CHANGE", Value=52 },
+        };
+
+        /// <summary>
         /// 设置玩家等级为1
         /// </summary>
         public static List<StatInfo> _CHAR_SET_RP1 = new List<StatInfo>()
@@ -106,7 +115,49 @@
         {
             new StatInfo(){ Hash="_CHAR_SET_RP_GIFT_ADMIN", Value=2165850 },
         };
+        #endregion
 
+        #region 资产
+        /// <summary>
+        /// 补满夜总会人气
+        /// </summary>
+        public static List<StatInfo> _CLUB_POPULARITY = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_CLUB_POPULARITY", Value=1000 },
+        };
+
+        /// <summary>
+        /// 地堡、摩托帮自动进货
+        /// </summary>
+        public static List<StatInfo> _PAYRESUPPLYTIMER0 = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_PAYRESUPPLYTIMER0", Value=1 },
+            new StatInfo(){ Hash="_PAYRESUPPLYTIMER1", Value=1 },
+            new StatInfo(){ Hash="_PAYRESUPPLYTIMER2", Value=1 },
+            new StatInfo(){ Hash="_PAYRESUPPLYTIMER3", Value=1 },
+            new StatInfo(){ Hash="_PAYRESUPPLYTIMER4", Value=1 },
+            new StatInfo(){ Hash="_PAYRESUPPLYTIMER5", Value=1 },
+        };
+
+        /// <summary>
+        /// 跳过过场动画 (地堡、摩托帮、办公室等)
+        /// </summary>
+        public static List<StatInfo> _FM_CUT_DONE = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_FM_CUT_DONE", Value=-1 },
+            new StatInfo(){ Hash="_FM_CUT_DONE_2", Value=-1 },
+        };
+
+        /// <summary>
+        /// 设置车友会等级为1
+        /// </summary>
+        public static List<StatInfo> _CAR_CLUB_REP = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_CAR_CLUB_REP", Value=5 },
+        };
+        #endregion
+
+        #region 抢劫任务
         /// <summary>
         /// 赌场抢劫面板重置
         /// </summary>
@@ -133,68 +184,54 @@
         };
 
         /// <summary>
-        /// 玩家性别修改（去重新捏脸）
+        /// 跳过公寓抢劫准备任务
         /// </summary>
-        public static List<StatInfo> _GENDER_CHANGE = new List<StatInfo>()
+        public static List<StatInfo> _HEIST_PLANNING_STAGE = new List<StatInfo>()
         {
-            new StatInfo(){ Hash="_ALLOW_GENDER_CHANGE", Value=52 },
+            new StatInfo(){ Hash="_HEIST_PLANNING_STAGE", Value=-1 },
         };
 
         /// <summary>
-        /// 补满夜总会人气
+        /// 取消抢劫并重新开始
         /// </summary>
-        public static List<StatInfo> _CLUB_POPULARITY = new List<StatInfo>()
+        public static List<StatInfo> _CAS_HEIST_NOTS = new List<StatInfo>()
         {
-            new StatInfo(){ Hash="_CLUB_POPULARITY", Value=1000 },
+            new StatInfo(){ Hash="_CAS_HEIST_NOTS", Value=-1 },
+            new StatInfo(){ Hash="_CAS_HEIST_FLOW", Value=-1 },
         };
 
         /// <summary>
-        /// 重置地堡总营收
+        /// 末日抢劫-1数据泄露（M键-设施管理-关闭/开启策划大屏）
         /// </summary>
-        public static List<StatInfo> _LIFETIME_BKR_SELL = new List<StatInfo>()
+        public static List<StatInfo> _GANGOPS_FLOW_MISSION_PROG1 = new List<StatInfo>()
         {
-            new StatInfo(){ Hash="_LIFETIME_BKR_SELL_EARNINGS5", Value=0 },
+            new StatInfo(){ Hash="_GANGOPS_FLOW_MISSION_PROG", Value=503 },
+            new StatInfo(){ Hash="_GANGOPS_HEIST_STATUS", Value=229383 },
+            new StatInfo(){ Hash="_GANGOPS_FLOW_NOTIFICATIONS", Value=1557 },
         };
 
         /// <summary>
-        /// 设置车友会等级为1
+        /// 末日抢劫-2波格丹危机（M键-设施管理-关闭/开启策划大屏）
         /// </summary>
-        public static List<StatInfo> _CAR_CLUB_REP = new List<StatInfo>()
+        public static List<StatInfo> _GANGOPS_FLOW_MISSION_PROG2 = new List<StatInfo>()
         {
-            new StatInfo(){ Hash="_CAR_CLUB_REP", Value=5 },
+            new StatInfo(){ Hash="_GANGOPS_FLOW_MISSION_PROG", Value=240 },
+            new StatInfo(){ Hash="_GANGOPS_HEIST_STATUS", Value=229378 },
+            new StatInfo(){ Hash="_GANGOPS_FLOW_NOTIFICATIONS", Value=1557 },
         };
 
         /// <summary>
-        /// 跳过过场动画 (地堡、摩托帮、办公室等)
+        /// 末日抢劫-3末日将至（M键-设施管理-关闭/开启策划大屏）
         /// </summary>
-        public static List<StatInfo> _FM_CUT_DONE = new List<StatInfo>()
+        public static List<StatInfo> _GANGOPS_FLOW_MISSION_PROG3 = new List<StatInfo>()
         {
-            new StatInfo(){ Hash="_FM_CUT_DONE", Value=-1 },
-            new StatInfo(){ Hash="_FM_CUT_DONE_2", Value=-1 },
+            new StatInfo(){ Hash="_GANGOPS_FLOW_MISSION_PROG", Value=16368 },
+            new StatInfo(){ Hash="_GANGOPS_HEIST_STATUS", Value=229380 },
+            new StatInfo(){ Hash="_GANGOPS_FLOW_NOTIFICATIONS", Value=1557 },
         };
+        #endregion
 
-        /// <summary>
-        /// 地堡、摩托帮自动进货
-        /// </summary>
-        public static List<StatInfo> _PAYRESUPPLYTIMER0 = new List<StatInfo>()
-        {
-            new StatInfo(){ Hash="_PAYRESUPPLYTIMER0", Value=1 },
-            new StatInfo(){ Hash="_PAYRESUPPLYTIMER1", Value=1 },
-            new StatInfo(){ Hash="_PAYRESUPPLYTIMER2", Value=1 },
-            new StatInfo(){ Hash="_PAYRESUPPLYTIMER3", Value=1 },
-            new StatInfo(){ Hash="_PAYRESUPPLYTIMER4", Value=1 },
-            new StatInfo(){ Hash="_PAYRESUPPLYTIMER5", Value=1 },
-        };
-
-        /// <summary>
-        /// 重置载具销售计时
-        /// </summary>
-        public static List<StatInfo> MPPLY_VEHICLE = new List<StatInfo>()
-        {
-            new StatInfo(){ Hash="MPPLY_VEHICLE_SELL_TIME", Value=0 },
-            new StatInfo(){ Hash="MPPLY_NUM_CARS_SOLD_TODAY", Value=0 },
-        };
-
+        #region 解锁
         /// <summary>
         /// CEO办公室满地钱+小金人
         /// </summary>
@@ -204,7 +241,7 @@
             new StatInfo(){ Hash="_LIFETIME_BUY_COMPLETE", Value=1000 },
             new StatInfo(){ Hash="_LIFETIME_SELL_UNDERTAKEN", Value=10 },
             new StatInfo(){ Hash="_LIFETIME_SELL_COMPLETE", Value=10 },
-            new StatInfo(){ Hash="_LIFETIME_CONTRA_EARNINGS", Value=18000000 },
+            new StatInfo(){ Hash="_LIFETIME_CONTRA_EARNINGS", Value=28000000 },
         };
 
         /// <summary>
@@ -226,16 +263,9 @@
             new StatInfo(){ Hash="_FM_CUT_DONE_2", Value=-1 },
         };
 
-        /// <summary>
-        /// 公寓抢劫直接分红
-        /// </summary>
-        public static List<StatInfo> _HEIST_PLANNING_STAGE = new List<StatInfo>()
-        {
-            new StatInfo(){ Hash="_HEIST_PLANNING_STAGE", Value=-1 },
-        };
 
         /// <summary>
-        /// 载具节日涂装
+        /// 限定载具节日涂装
         /// </summary>
         public static List<StatInfo> MPPLY_XMASLIVERIES0 = new List<StatInfo>()
         {
@@ -263,6 +293,140 @@
         };
 
         /// <summary>
+        /// 解锁-外星人纹身
+        /// </summary>
+        public static List<StatInfo> _TATTOO_FM_CURRENT_32 = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_TATTOO_FM_CURRENT_32", Value=-1 },
+        };
+
+        /// <summary>
+        /// 解锁-全部游艇任务
+        /// </summary>
+        public static List<StatInfo> _YACHT_MISSION_PROG = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_YACHT_MISSION_PROG", Value=0 },
+            new StatInfo(){ Hash="_YACHT_MISSION_FLOW", Value=21845 },
+            new StatInfo(){ Hash="_CASINO_DECORATION_GIFT_1", Value=-1 },
+        };
+
+        /// <summary>
+        /// 解锁-载具金属质感喷漆与铬合金轮毂
+        /// </summary>
+        public static List<StatInfo> _CHAR_FM_CARMOD_1_UNLCK = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_CHAR_FM_CARMOD_1_UNLCK", Value=-1 },
+            new StatInfo(){ Hash="_CHAR_FM_CARMOD_2_UNLCK", Value=-1 },
+            new StatInfo(){ Hash="_CHAR_FM_CARMOD_3_UNLCK", Value=-1 },
+            new StatInfo(){ Hash="_CHAR_FM_CARMOD_4_UNLCK", Value=-1 },
+            new StatInfo(){ Hash="_CHAR_FM_CARMOD_5_UNLCK", Value=-1 },
+            new StatInfo(){ Hash="_CHAR_FM_CARMOD_6_UNLCK", Value=-1 },
+            new StatInfo(){ Hash="_CHAR_FM_CARMOD_7_UNLCK", Value=-1 },
+            new StatInfo(){ Hash="_NUMBER_TURBO_STARTS_IN_RACE", Value=50 },
+            new StatInfo(){ Hash="_USJS_COMPLETED", Value=50 },
+            new StatInfo(){ Hash="_AWD_FM_RACES_FASTEST_LAP", Value=50 },
+            new StatInfo(){ Hash="_NUMBER_SLIPSTREAMS_IN_RACE", Value=100 },
+            new StatInfo(){ Hash="_AWD_WIN_CAPTURES", Value=50 },
+            new StatInfo(){ Hash="_AWD_DROPOFF_CAP_PACKAGES", Value=1 },
+            new StatInfo(){ Hash="_AWD_KILL_CARRIER_CAPTURE", Value=1 },
+            new StatInfo(){ Hash="_AWD_FINISH_HEISTS", Value=50 },
+            new StatInfo(){ Hash="_AWD_FINISH_HEIST_SETUP_JOB", Value=50 },
+            new StatInfo(){ Hash="_AWD_NIGHTVISION_KILLS", Value=1 },
+            new StatInfo(){ Hash="_AWD_WIN_LAST_TEAM_STANDINGS", Value=50 },
+            new StatInfo(){ Hash="_AWD_ONLY_PLAYER_ALIVE_LTS", Value=50 },
+            new StatInfo(){ Hash="_AWD_FMRALLYWONDRIVE", Value=1 },
+            new StatInfo(){ Hash="_AWD_FMRALLYWONNAV", Value=1 },
+            new StatInfo(){ Hash="_AWD_FMWINSEARACE", Value=1 },
+            new StatInfo(){ Hash="_AWD_FMWINAIRRACE", Value=1 },
+            new StatInfo(){ Hash="_AWD_RACES_WON", Value=50 },
+            new StatInfo(){ Hash="_RACES_WON", Value=50 },
+            new StatInfo(){ Hash="MPPLY_TOTAL_RACES_WON", Value=50 },
+        };
+
+        /// <summary>
+        /// 解锁-竞技场-25级解锁出租车
+        /// </summary>
+        public static List<StatInfo> _ARENAWARS_AP_TIER25 = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_ARENAWARS_AP_TIER", Value=24 },
+            new StatInfo(){ Hash="_ARENAWARS_AP", Value=280 },
+        };
+
+        /// <summary>
+        /// 解锁-竞技场-50级解锁推土机
+        /// </summary>
+        public static List<StatInfo> _ARENAWARS_AP_TIER50 = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_ARENAWARS_AP_TIER", Value=49 },
+            new StatInfo(){ Hash="_ARENAWARS_AP", Value=530 },
+        };
+
+        /// <summary>
+        /// 解锁-竞技场-75级解锁小丑花车
+        /// </summary>
+        public static List<StatInfo> _ARENAWARS_AP_TIER75 = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_ARENAWARS_AP_TIER", Value=74 },
+            new StatInfo(){ Hash="_ARENAWARS_AP", Value=780 },
+        };
+
+        /// <summary>
+        /// 解锁-竞技场-100级解锁垃圾大王
+        /// </summary>
+        public static List<StatInfo> _ARENAWARS_AP_TIER100 = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_ARENAWARS_AP_TIER", Value=99 },
+            new StatInfo(){ Hash="_ARENAWARS_AP", Value=1030 },
+        };
+
+        /// <summary>
+        /// 解锁-竞技场-200级解锁地霸王拖车
+        /// </summary>
+        public static List<StatInfo> _ARENAWARS_AP_TIER200 = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_ARENAWARS_AP_TIER", Value=199 },
+            new StatInfo(){ Hash="_ARENAWARS_AP", Value=2030 },
+        };
+
+        /// <summary>
+        /// 解锁-竞技场-300级解锁混凝土搅拌车
+        /// </summary>
+        public static List<StatInfo> _ARENAWARS_AP_TIER300 = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_ARENAWARS_AP_TIER", Value=299 },
+            new StatInfo(){ Hash="_ARENAWARS_AP", Value=3030 },
+        };
+
+        /// <summary>
+        /// 解锁-竞技场-500级解锁星际码头
+        /// </summary>
+        public static List<StatInfo> _ARENAWARS_AP_TIER500 = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_ARENAWARS_AP_TIER", Value=499 },
+            new StatInfo(){ Hash="_ARENAWARS_AP", Value=5030 },
+        };
+
+        /// <summary>
+        /// 解锁-竞技场-1000级解锁老式拖拉机
+        /// </summary>
+        public static List<StatInfo> _ARENAWARS_AP_TIER1000 = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_ARENAWARS_AP_TIER", Value=999 },
+            new StatInfo(){ Hash="_ARENAWARS_AP", Value=10030 },
+        };
+
+        /// <summary>
+        /// 解锁-竞技场-冲冲猴旅行家购买权限
+        /// </summary>
+        public static List<StatInfo> _ARENAWARS_SKILL_LEVEL = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_ARENAWARS_SKILL_LEVEL", Value=19 },
+            new StatInfo(){ Hash="_ARENAWARS_SP", Value=209 },
+        };
+        #endregion
+
+        #region 解决问题
+        /// <summary>
         /// 解决赌场侦察拍照问题
         /// </summary>
         public static List<StatInfo> _H3OPT_ACCESSPOINTS = new List<StatInfo>()
@@ -270,6 +434,7 @@
             new StatInfo(){ Hash="_H3OPT_ACCESSPOINTS", Value=0 },
             new StatInfo(){ Hash="_H3OPT_POI", Value=0 },
         };
+        #endregion
 
         //////////////////////////////////////////////////////////////
 
@@ -279,7 +444,7 @@
             new StatClass(){ ClassName="玩家-零食全满", StatInfo=_NO_BOUGHT },
             new StatClass(){ ClassName="玩家-属性全满", StatInfo=_SCRIPT_INCREASE },
             new StatClass(){ ClassName="玩家-隐藏属性全满", StatInfo=_CHAR_ABILITY },
-            new StatClass(){ ClassName="玩家-性别修改", StatInfo=_GENDER_CHANGE },
+            new StatClass(){ ClassName="玩家-性别修改（去重新捏脸）", StatInfo=_GENDER_CHANGE },
             new StatClass(){ ClassName="玩家-修改等级为1", StatInfo=_CHAR_SET_RP1 },
             new StatClass(){ ClassName="玩家-修改等级为30", StatInfo=_CHAR_SET_RP30 },
             new StatClass(){ ClassName="玩家-修改等级为60", StatInfo=_CHAR_SET_RP60 },
@@ -288,20 +453,36 @@
 
             new StatClass(){ ClassName="资产-补满夜总会人气", StatInfo=_CLUB_POPULARITY },
             new StatClass(){ ClassName="资产-地堡和摩托帮自动进货", StatInfo=_PAYRESUPPLYTIMER0 },
-            new StatClass(){ ClassName="资产-重置地堡总营收", StatInfo=_LIFETIME_BKR_SELL },
+            new StatClass(){ ClassName="资产-跳过过场动画（地堡、摩托帮、办公室等）", StatInfo=_FM_CUT_DONE },
+            new StatClass(){ ClassName="资产-修改车友会等级为1", StatInfo=_CAR_CLUB_REP },
 
-            new StatClass(){ ClassName="重置-赌场抢劫面板重置", StatInfo=_H3OPT },
-            new StatClass(){ ClassName="重置-佩里克岛抢劫面板重置", StatInfo=_H4 },
-            new StatClass(){ ClassName="重置-重置载具销售计时", StatInfo=MPPLY_VEHICLE },
+            new StatClass(){ ClassName="抢劫任务-赌场抢劫面板重置", StatInfo=_H3OPT },
+            new StatClass(){ ClassName="抢劫任务-佩里克岛抢劫面板重置", StatInfo=_H4 },
+            new StatClass(){ ClassName="抢劫任务-跳过公寓抢劫准备任务", StatInfo=_HEIST_PLANNING_STAGE },
+            new StatClass(){ ClassName="抢劫任务-取消抢劫并重新开始", StatInfo=_CAS_HEIST_NOTS },
 
-            new StatClass(){ ClassName="其他-跳过过场动画", StatInfo=_FM_CUT_DONE },
-            new StatClass(){ ClassName="其他-CEO办公室满地钱和小金人", StatInfo=_LIFETIME_BUY_UNDERTAKEN },
-            new StatClass(){ ClassName="其他-解锁电话联系人功能", StatInfo=_FM_ACT_PHN },
-            new StatClass(){ ClassName="其他-载具节日涂装", StatInfo=MPPLY_XMASLIVERIES0 },
-            new StatClass(){ ClassName="其他-修改车友会等级为1", StatInfo=_CAR_CLUB_REP },
-            new StatClass(){ ClassName="其他-公寓抢劫直接分红", StatInfo=_HEIST_PLANNING_STAGE },
+            new StatClass(){ ClassName="末日抢劫-1数据泄露（M键-设施管理-关闭/开启策划大屏）", StatInfo=_GANGOPS_FLOW_MISSION_PROG1 },
+            new StatClass(){ ClassName="末日抢劫-2波格丹危机（M键-设施管理-关闭/开启策划大屏）", StatInfo=_GANGOPS_FLOW_MISSION_PROG2 },
+            new StatClass(){ ClassName="末日抢劫-3末日将至（M键-设施管理-关闭/开启策划大屏）", StatInfo=_GANGOPS_FLOW_MISSION_PROG3 },
 
-            new StatClass(){ ClassName="问题-解决赌场侦察拍照问题", StatInfo=_H3OPT_ACCESSPOINTS },
+            new StatClass(){ ClassName="解锁-CEO办公室满地钱和小金人", StatInfo=_LIFETIME_BUY_UNDERTAKEN },
+            new StatClass(){ ClassName="解锁-电话联系人", StatInfo=_FM_ACT_PHN },
+            new StatClass(){ ClassName="解锁-限定载具节日涂装", StatInfo=MPPLY_XMASLIVERIES0 },
+            new StatClass(){ ClassName="解锁-外星人纹身", StatInfo=_TATTOO_FM_CURRENT_32 },
+            new StatClass(){ ClassName="解锁-全部游艇任务", StatInfo=_YACHT_MISSION_PROG },
+            new StatClass(){ ClassName="解锁-载具金属质感喷漆与铬合金轮毂", StatInfo=_CHAR_FM_CARMOD_1_UNLCK },
+
+            new StatClass(){ ClassName="解锁-竞技场-25级解锁出租车", StatInfo=_ARENAWARS_AP_TIER25 },
+            new StatClass(){ ClassName="解锁-竞技场-50级解锁推土机", StatInfo=_ARENAWARS_AP_TIER50 },
+            new StatClass(){ ClassName="解锁-竞技场-75级解锁小丑花车", StatInfo=_ARENAWARS_AP_TIER75 },
+            new StatClass(){ ClassName="解锁-竞技场-100级解锁垃圾大王", StatInfo=_ARENAWARS_AP_TIER100 },
+            new StatClass(){ ClassName="解锁-竞技场-200级解锁地霸王拖车", StatInfo=_ARENAWARS_AP_TIER200 },
+            new StatClass(){ ClassName="解锁-竞技场-300级解锁混凝土搅拌车", StatInfo=_ARENAWARS_AP_TIER300 },
+            new StatClass(){ ClassName="解锁-竞技场-500级解锁星际码头", StatInfo=_ARENAWARS_AP_TIER500 },
+            new StatClass(){ ClassName="解锁-竞技场-1000级解锁老式拖拉机", StatInfo=_ARENAWARS_AP_TIER1000 },
+            new StatClass(){ ClassName="解锁-竞技场-解锁冲冲猴旅行家购买权限", StatInfo=_ARENAWARS_SKILL_LEVEL },
+
+            new StatClass(){ ClassName="解决问题-解决赌场侦察拍照问题", StatInfo=_H3OPT_ACCESSPOINTS },
 
         };
     }

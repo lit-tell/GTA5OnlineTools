@@ -231,71 +231,6 @@ namespace GTA5OnlineTools.Modules.Windows
                     TextBox_AppendText_MP("_MP_CHAR_ARMOUR_4_COUNT", "99");
                     TextBox_AppendText_MP("_MP_CHAR_ARMOUR_5_COUNT", "99");
                 }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "赌场-解除老虎机限制")
-                {
-                    TextBox_AppendText_NoMP("$MPPLY_CASINO_CHIPS_WON_GD", "0");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "CEO办公室-解锁小金人（切换战局，进出货一次）")
-                {
-                    TextBox_AppendText_MP("_LIFETIME_BUY_UNDERTAKEN", "1000");
-                    TextBox_AppendText_MP("_LIFETIME_BUY_COMPLETE", "1000");
-                    TextBox_AppendText_MP("_LIFETIME_SELL_UNDERTAKEN", "1000");
-                    TextBox_AppendText_MP("_LIFETIME_SELL_COMPLETE", "1000");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "CEO办公室-地板全是钱（前提你银行里必须有2000万以上存款）")
-                {
-                    TextBox_AppendText_MP("_LIFETIME_CONTRA_EARNINGS", "20000000");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "杂项-重置载具销售计时")
-                {
-                    TextBox_AppendText_NoMP("$MPPLY_VEHICLE_SELL_TIME", "0");
-                    TextBox_AppendText_NoMP("$MPPLY_NUM_CARS_SOLD_TODAY", "0");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "夜总会-补满人气")
-                {
-                    TextBox_AppendText_MP("_CLUB_POPULARITY", "1000");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "自动进货-摩托帮-假证（补完换战局）")
-                {
-                    TextBox_AppendText_MP("_PAYRESUPPLYTIMER0", "1");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "自动进货-摩托帮-大麻（补完换战局）")
-                {
-                    TextBox_AppendText_MP("_PAYRESUPPLYTIMER1", "1");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "自动进货-摩托帮-伪钞（补完换战局）")
-                {
-                    TextBox_AppendText_MP("_PAYRESUPPLYTIMER2", "1");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "自动进货-摩托帮-冰毒（补完换战局）")
-                {
-                    TextBox_AppendText_MP("_PAYRESUPPLYTIMER3", "1");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "自动进货-摩托帮-可卡因（补完换战局）")
-                {
-                    TextBox_AppendText_MP("_PAYRESUPPLYTIMER4", "1");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "自动进货-地堡（补完换战局）")
-                {
-                    TextBox_AppendText_MP("_PAYRESUPPLYTIMER5", "1");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "公寓抢劫-解锁全部公寓抢劫（切换角色生效）")
-                {
-                    TextBox_AppendText_NoMP("", "----------------");
-                    TextBox_AppendText_NoMP("注意", "此代码无法导入，需要人工一个一个执行");
-                    TextBox_AppendText_NoMP("----------------", "");
-                    TextBox_AppendText_NoMP("$MPPLY_AWD_COMPLET_HEIST_1STPER", "true");
-                    TextBox_AppendText_NoMP("$MPPLY_AWD_COMPLET_HEIST_MEM", "true");
-                    TextBox_AppendText_NoMP("$MPPLY_AWD_FLEECA_FIN", "true");
-                    TextBox_AppendText_NoMP("$MPPLY_AWD_PRISON_FIN", "true");
-                    TextBox_AppendText_NoMP("$MPPLY_AWD_HUMANE_FIN", "true");
-                    TextBox_AppendText_NoMP("$MPPLY_AWD_SERIESA_FIN", "true");
-                    TextBox_AppendText_NoMP("$MPPLY_AWD_PACIFIC_FIN", "true");
-                    TextBox_AppendText_NoMP("$MPPLY_AWD_HST_ORDER", "true");
-                    TextBox_AppendText_NoMP("$MPPLY_AWD_HST_SAME_TEAM", "true");
-                    TextBox_AppendText_NoMP("$MPPLY_AWD_HST_ULT_CHAL", "true");
-                    TextBox_AppendText_NoMP("$MPPLY_HEIST_ACH_TRACKER", "-1");
-                }
                 else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "公寓抢劫-跳过准备任务（看动画过程中输入）")
                 {
                     TextBox_AppendText_MP("_HEIST_PLANNING_STAGE", "-1");
@@ -375,8 +310,7 @@ namespace GTA5OnlineTools.Modules.Windows
                 }
                 else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "解锁-外星人纹身")
                 {
-                    TextBox_AppendText_MP("_TATTOO_FM_CURRENT_32", "32768");
-                    TextBox_AppendText_MP("_TATTOO_FM_CURRENT_32", "67108864");
+                    TextBox_AppendText_MP("_TATTOO_FM_CURRENT_32", "-1");
                 }
                 else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "解锁-载具金属质感喷漆与铬合金轮毂")
                 {
@@ -422,10 +356,6 @@ namespace GTA5OnlineTools.Modules.Windows
                     TextBox_AppendText_MP("_FM_CUT_DONE", "-1");
                     TextBox_AppendText_MP("_FM_CUT_DONE_2", "-1");
                 }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "赌场-重置购买筹码冷却")
-                {
-                    TextBox_AppendText_NoMP("MPPLY_CASINO_CHIPS_PUR_GD", "0");
-                }
                 else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "杂项-天基炮无冷却")
                 {
                     TextBox_AppendText_MP("_ORBITAL_CANNON_COOLDOWN", "0");
@@ -470,7 +400,7 @@ namespace GTA5OnlineTools.Modules.Windows
                     TextBox_AppendText_MP("_ARENAWARS_AP_TIER", "499");
                     TextBox_AppendText_MP("_ARENAWARS_AP", "5030");
                 }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "竞技场-1000级解锁老式机")
+                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "竞技场-1000级解锁老式拖拉机")
                 {
                     TextBox_AppendText_MP("_ARENAWARS_AP_TIER", "999");
                     TextBox_AppendText_MP("_ARENAWARS_AP", "10030");
@@ -632,10 +562,6 @@ namespace GTA5OnlineTools.Modules.Windows
                     TextBox_AppendText_MP("_H4CNF_BOLTCUT", "-1");
                     TextBox_AppendText_MP("_H4CNF_TROJAN", "4");
                     TextBox_AppendText_MP("_H4_PLAYTHROUGH_STATUS", "10");
-                }
-                else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "地堡-重置地堡总营收")
-                {
-                    TextBox_AppendText_MP("_LIFETIME_BKR_SELL_EARNINGS5", "0");
                 }
                 else if (SelectedItemContent(ListBox_GTAHaxCode_FuncList) == "杂项-取消抢劫并重新开始")
                 {

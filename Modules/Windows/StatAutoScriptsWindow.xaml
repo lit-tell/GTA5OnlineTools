@@ -66,13 +66,19 @@
                 Click="Button_ExecuteAutoScript_Click"
                 Content="执行选中脚本"
                 Style="{StaticResource ButtonNormalStyle}" />
+
+            <TextBlock />
             <TextBlock />
             <Button
                 x:Name="Button_LoadSession"
                 Click="Button_LoadSession_Click"
-                Content="部分代码执行完毕需要切换战局"
+                Content="如果没有效果请点我切换战局"
                 Style="{StaticResource ButtonNormalStyle}" />
-
+            <TextBlock
+                Margin="5"
+                Foreground="Green"
+                Text="提示：如果代码执行成功，游戏中会出现“大受好评”的奖章，并给予少于经验值"
+                TextWrapping="Wrap" />
         </StackPanel>
     </Grid>
 
