@@ -20,12 +20,9 @@
                 Orientation="Horizontal">
                 <TextBlock
                     Margin="0,0,5,0"
-                    FontSize="18"
-                    FontWeight="Bold"
-                    Style="{StaticResource IconFontBaseStyle}"
+                    Style="{StaticResource IconFontInfoTextBlockStyle}"
                     Text="&#xe624;" />
                 <TextBlock
-                    FontFamily="Arial"
                     FontSize="18"
                     FontWeight="Bold"
                     Text="最新公告" />
@@ -34,11 +31,8 @@
                 Padding="5"
                 DockPanel.Dock="Bottom"
                 Style="{StaticResource TextBoxShowInfoStyle}"
-                Text="{Binding UC0IndexModel.NoticeInfo}">
-                <TextBox.ToolTip>
-                    <TextBlock Text="每次打开小助手都会获取最新公告信息" />
-                </TextBox.ToolTip>
-            </TextBox>
+                Text="{Binding UC0IndexModel.NoticeInfo}"
+                ToolTip="每次打开小助手都会获取最新辅助公告信息" />
 
         </DockPanel>
     </Grid>

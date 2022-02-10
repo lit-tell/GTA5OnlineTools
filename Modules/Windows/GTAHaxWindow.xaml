@@ -34,13 +34,9 @@
                         Orientation="Horizontal">
                         <TextBlock
                             Margin="0,0,5,0"
-                            FontSize="18"
-                            FontWeight="Bold"
-                            Foreground="Black"
-                            Style="{StaticResource IconFontBaseStyle}"
+                            Style="{StaticResource IconFontInfoTextBlockStyle}"
                             Text="&#xe624;" />
                         <TextBlock
-                            FontFamily="Arial"
                             FontSize="18"
                             FontWeight="Bold"
                             Text="代码导入预览" />

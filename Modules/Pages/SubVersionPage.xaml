@@ -22,7 +22,7 @@
                     简介
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
-                    ● 更新subVersion v1.3.8，支持线上1.58版本 （当前版本为CrazyZhang修改版）
+                    ● 更新subVersion v1.3.8，支持线上1.58版本 （当前版本为CrazyZhang修改版，不完全更新，仅部分功能可用）
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
                     ● 辅助作者：AmazingPP，博客地址：<Hyperlink NavigateUri="https://www.zhaofupeng.com/" RequestNavigate="Hyperlink_RequestNavigate">
