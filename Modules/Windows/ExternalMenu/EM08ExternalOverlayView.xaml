@@ -242,6 +242,12 @@
                             Style="{StaticResource ButtonNormalStyle}" />
                     </StackPanel>
 
+                    <TextBlock
+                        Margin="5"
+                        Foreground="Green"
+                        Text="提示：有时候ESP帧数会过低（游戏内帧数波动大，切到游戏外帧数恢复正常），可能需要重启电脑才能恢复，原因尚不清楚"
+                        TextWrapping="Wrap" />
+
                 </StackPanel>
 
             </Grid>
