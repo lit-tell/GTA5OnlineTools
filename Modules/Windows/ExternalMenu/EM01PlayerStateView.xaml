@@ -228,6 +228,11 @@
                             x:Name="CheckBox_PoliceIgnore"
                             Click="CheckBox_NPCIgnore_Click"
                             Content="警察无视" />
+                        <TextBlock />
+                        <CheckBox
+                            x:Name="CheckBox_NoCollision"
+                            Click="CheckBox_NoCollision_Click"
+                            Content="玩家无碰撞体积（穿墙）" />
                     </StackPanel>
 
                 </StackPanel>
@@ -295,14 +300,6 @@
                             x:Name="CheckBox_MovingFoward"
                             Content="[F4] 坐标向前微调"
                             IsChecked="True" />
-                        <CheckBox
-                            x:Name="CheckBox_NoCollision"
-                            Click="CheckBox_NoCollision_Click"
-                            Content="[BACKSPACE] 玩家无碰撞体积">
-                            <CheckBox.ToolTip>
-                                勾选功能后，按【F9键】切换穿墙功能开关
-                            </CheckBox.ToolTip>
-                        </CheckBox>
                         <DockPanel LastChildFill="True">
                             <TextBlock
                                 Margin="5,5,0,5"

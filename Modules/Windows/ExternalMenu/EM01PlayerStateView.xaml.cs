@@ -32,14 +32,13 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             thread2.Start();
 
             MainHotKeys = new HotKeys();
-            MainHotKeys.AddKey(WinVK.INSERT);
             MainHotKeys.AddKey(WinVK.F3);
             MainHotKeys.AddKey(WinVK.F4);
             MainHotKeys.AddKey(WinVK.F5);
             MainHotKeys.AddKey(WinVK.F6);
             MainHotKeys.AddKey(WinVK.F7);
             MainHotKeys.AddKey(WinVK.F8);
-            MainHotKeys.AddKey(WinVK.BACK);
+            MainHotKeys.AddKey(WinVK.DELETE);
             MainHotKeys.KeyDownEvent += new HotKeys.KeyHandler(MyKeyDownEvent);
 
             ExternalMenuView.ClosingDisposeEvent += ExternalMenuView_ClosingDisposeEvent;
@@ -56,7 +55,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             {
                 switch (keyId)
                 {
-                    case (int)WinVK.INSERT:
+                    case (int)WinVK.DELETE:
                         ExternalMenuView.IsShowWindowDelegate();
                         break;
                     case (int)WinVK.F3:
@@ -93,12 +92,6 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                         if (CheckBox_ClearWanted.IsChecked == true)
                         {
                             Player.WantedLevel(0x00);
-                        }
-                        break;
-                    case (int)WinVK.BACK:
-                        if (CheckBox_NoCollision.IsChecked == true)
-                        {
-                            Settings.Player.NoCollision = !Settings.Player.NoCollision;
                         }
                         break;
                 }

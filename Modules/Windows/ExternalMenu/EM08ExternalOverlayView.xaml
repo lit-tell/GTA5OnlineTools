@@ -16,241 +16,308 @@
     </UserControl.Resources>
 
     <Grid>
-        <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-                <GroupBox
+        <GroupBox
+            Margin="5"
+            Header="ESP选项"
+            Style="{StaticResource GroupBoxWebStyle}">
+            <StackPanel>
+                <CheckBox
+                    x:Name="CheckBox_ESP_2DBox"
+                    Click="CheckBox_ESP_2DBox_Click"
+                    Content="显示2D方框"
+                    IsChecked="True" />
+                <CheckBox
+                    x:Name="CheckBox_ESP_3DBox"
+                    Click="CheckBox_ESP_3DBox_Click"
+                    Content="显示3D方框"
+                    IsChecked="False" />
+                <CheckBox
+                    x:Name="CheckBox_ESP_2DLine"
+                    Click="CheckBox_ESP_2DLine_Click"
+                    Content="显示射线"
+                    IsChecked="True" />
+                <CheckBox
+                    x:Name="CheckBox_ESP_Bone"
+                    Click="CheckBox_ESP_Bone_Click"
+                    Content="显示骨骼 ★"
+                    IsChecked="False" />
+                <CheckBox
+                    x:Name="CheckBox_ESP_2DHealthBar"
+                    Click="CheckBox_ESP_2DHealthBar_Click"
+                    Content="显示血条"
+                    IsChecked="True" />
+                <CheckBox
+                    x:Name="CheckBox_ESP_HealthText"
+                    Click="CheckBox_ESP_HealthText_Click"
+                    Content="显示数字血量 ★"
+                    IsChecked="True" />
+                <CheckBox
+                    x:Name="CheckBox_ESP_NameText"
+                    Click="CheckBox_ESP_NameText_Click"
+                    Content="显示玩家姓名 ★"
+                    IsChecked="True" />
+                <CheckBox
+                    x:Name="CheckBox_ESP_Player"
+                    Click="CheckBox_ESP_Player_Click"
+                    Content="显示玩家"
+                    IsChecked="True" />
+                <CheckBox
+                    x:Name="CheckBox_ESP_NPC"
+                    Click="CheckBox_ESP_NPC_Click"
+                    Content="显示NPC"
+                    IsChecked="True" />
+                <CheckBox
+                    x:Name="CheckBox_ESP_Crosshair"
+                    Click="CheckBox_ESP_Crosshair_Click"
+                    Content="显示准心"
+                    IsChecked="True" />
+                <TextBlock />
+                <CheckBox
+                    x:Name="CheckBox_AimBot_Enabled"
+                    Click="CheckBox_AimBot_Enabled_Click"
+                    Content="开启Aimbot"
+                    IsChecked="False" />
+                <CheckBox
+                    x:Name="CheckBox_NoTOPMostHide"
+                    Click="CheckBox_NoTOPMostHide_Click"
+                    Content="非游戏状态隐藏"
+                    IsChecked="False" />
+
+                <TextBlock />
+                <TextBlock
                     Margin="5"
-                    Header="ESP选项"
-                    Style="{StaticResource GroupBoxWebStyle}">
-                    <StackPanel>
-                        <CheckBox
-                            x:Name="CheckBox_ESP_2DBox"
-                            Click="CheckBox_ESP_2DBox_Click"
-                            Content="显示2D方框"
-                            IsChecked="True" />
-                        <CheckBox
-                            x:Name="CheckBox_ESP_3DBox"
-                            Click="CheckBox_ESP_3DBox_Click"
-                            Content="显示3D方框"
-                            IsChecked="False" />
-                        <CheckBox
-                            x:Name="CheckBox_ESP_2DLine"
-                            Click="CheckBox_ESP_2DLine_Click"
-                            Content="显示射线"
-                            IsChecked="True" />
-                        <CheckBox
-                            x:Name="CheckBox_ESP_Bone"
-                            Click="CheckBox_ESP_Bone_Click"
-                            Content="显示骨骼"
-                            IsChecked="False" />
-                        <CheckBox
-                            x:Name="CheckBox_ESP_2DHealthBar"
-                            Click="CheckBox_ESP_2DHealthBar_Click"
-                            Content="显示血条"
-                            IsChecked="True" />
-                        <CheckBox
-                            x:Name="CheckBox_ESP_HealthText"
-                            Click="CheckBox_ESP_HealthText_Click"
-                            Content="显示数字血量"
-                            IsChecked="True" />
-                        <CheckBox
-                            x:Name="CheckBox_ESP_NameText"
-                            Click="CheckBox_ESP_NameText_Click"
-                            Content="显示玩家姓名"
-                            IsChecked="True" />
-                        <CheckBox
-                            x:Name="CheckBox_ESP_Player"
-                            Click="CheckBox_ESP_Player_Click"
-                            Content="显示玩家"
-                            IsChecked="True" />
-                        <CheckBox
-                            x:Name="CheckBox_ESP_NPC"
-                            Click="CheckBox_ESP_NPC_Click"
-                            Content="显示NPC"
-                            IsChecked="True" />
-                        <CheckBox
-                            x:Name="CheckBox_ESP_Crosshair"
-                            Click="CheckBox_ESP_Crosshair_Click"
-                            Content="显示准心"
-                            IsChecked="True" />
-                        <TextBlock />
-                        <CheckBox
-                            x:Name="CheckBox_AimBot_Enabled"
-                            Click="CheckBox_AimBot_Enabled_Click"
-                            Content="开启Aimbot"
-                            IsChecked="False" />
-                        <TextBlock />
-                        <CheckBox
-                            x:Name="CheckBox_NoTOPMostHide"
-                            Click="CheckBox_NoTOPMostHide_Click"
-                            Content="非游戏状态隐藏"
-                            IsChecked="False" />
-                    </StackPanel>
-                </GroupBox>
+                    Foreground="Green"
+                    Text="提示：★ 代表该功能比较影响绘制帧数"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    Margin="5"
+                    Foreground="Green"
+                    Text="提示：部分功能改动后需要重新开启ESP功能"
+                    TextWrapping="Wrap" />
+            </StackPanel>
+        </GroupBox>
 
-                <StackPanel Grid.Column="1">
-                    <GroupBox
-                        Margin="5"
-                        Header="AimBot位置"
-                        Style="{StaticResource GroupBoxWebStyle}">
-                        <WrapPanel Orientation="Horizontal">
-                            <RadioButton
-                                x:Name="RadioButton_AimBot_BoneIndex_0"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimBot_BoneIndex_0_Click"
-                                Content="头部"
-                                IsChecked="True" />
-                            <RadioButton
-                                x:Name="RadioButton_AimBot_BoneIndex_7"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimBot_BoneIndex_0_Click"
-                                Content="颈部" />
-                            <RadioButton
-                                x:Name="RadioButton_AimBot_BoneIndex_8"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimBot_BoneIndex_0_Click"
-                                Content="腹部" />
-                        </WrapPanel>
-                    </GroupBox>
+        <StackPanel Grid.Column="1">
+            <GroupBox
+                Margin="5"
+                Header="AimBot位置"
+                Style="{StaticResource GroupBoxWebStyle}">
+                <WrapPanel Orientation="Horizontal">
+                    <RadioButton
+                        x:Name="RadioButton_AimBot_BoneIndex_0"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimBot_BoneIndex_0_Click"
+                        Content="头部"
+                        IsChecked="True" />
+                    <RadioButton
+                        x:Name="RadioButton_AimBot_BoneIndex_7"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimBot_BoneIndex_0_Click"
+                        Content="颈部" />
+                    <RadioButton
+                        x:Name="RadioButton_AimBot_BoneIndex_8"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimBot_BoneIndex_0_Click"
+                        Content="腹部" />
+                </WrapPanel>
+            </GroupBox>
 
-                    <GroupBox
-                        Margin="5"
-                        Header="Aimbot按键"
-                        Style="{StaticResource GroupBoxWebStyle}">
-                        <WrapPanel Orientation="Horizontal">
-                            <RadioButton
-                                x:Name="RadioButton_AimbotKey_CONTROL"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotKey_CONTROL_Click"
-                                Content="左Ctrl键"
-                                IsChecked="True" />
-                            <RadioButton
-                                x:Name="RadioButton_AimbotKey_SHIFT"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotKey_CONTROL_Click"
-                                Content="左Shift键" />
-                            <RadioButton
-                                x:Name="RadioButton_AimbotKey_LBUTTON"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotKey_CONTROL_Click"
-                                Content="鼠标左键" />
-                            <RadioButton
-                                x:Name="RadioButton_AimbotKey_RBUTTON"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotKey_CONTROL_Click"
-                                Content="鼠标右键" />
-                            <RadioButton
-                                x:Name="RadioButton_AimbotKey_XBUTTON1"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotKey_CONTROL_Click"
-                                Content="鼠标侧键1" />
-                            <RadioButton
-                                x:Name="RadioButton_AimbotKey_XBUTTON2"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotKey_CONTROL_Click"
-                                Content="鼠标侧键2" />
-                        </WrapPanel>
-                    </GroupBox>
+            <GroupBox
+                Margin="5"
+                Header="Aimbot按键"
+                Style="{StaticResource GroupBoxWebStyle}">
+                <WrapPanel Orientation="Horizontal">
+                    <RadioButton
+                        x:Name="RadioButton_AimbotKey_CONTROL"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotKey_CONTROL_Click"
+                        Content="左Ctrl键"
+                        IsChecked="True" />
+                    <RadioButton
+                        x:Name="RadioButton_AimbotKey_SHIFT"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotKey_CONTROL_Click"
+                        Content="左Shift键" />
+                    <RadioButton
+                        x:Name="RadioButton_AimbotKey_LBUTTON"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotKey_CONTROL_Click"
+                        Content="鼠标左键" />
+                    <RadioButton
+                        x:Name="RadioButton_AimbotKey_RBUTTON"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotKey_CONTROL_Click"
+                        Content="鼠标右键" />
+                    <RadioButton
+                        x:Name="RadioButton_AimbotKey_XBUTTON1"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotKey_CONTROL_Click"
+                        Content="鼠标侧键1" />
+                    <RadioButton
+                        x:Name="RadioButton_AimbotKey_XBUTTON2"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotKey_CONTROL_Click"
+                        Content="鼠标侧键2" />
+                </WrapPanel>
+            </GroupBox>
 
-                    <GroupBox
-                        Margin="5"
-                        Header="Aimbot范围"
-                        Style="{StaticResource GroupBoxWebStyle}">
-                        <WrapPanel Orientation="Horizontal">
-                            <RadioButton
-                                x:Name="RadioButton_AimbotFov_14Height"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotFov_Height_Click"
-                                Content="1/4屏幕高度"
-                                IsChecked="True" />
-                            <RadioButton
-                                x:Name="RadioButton_AimbotFov_12Height"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotFov_Height_Click"
-                                Content="1/2屏幕高度" />
-                            <RadioButton
-                                x:Name="RadioButton_AimbotFov_Height"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotFov_Height_Click"
-                                Content="屏幕高度" />
-                            <RadioButton
-                                x:Name="RadioButton_AimbotFov_Width"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotFov_Height_Click"
-                                Content="屏幕宽度" />
-                            <RadioButton
-                                x:Name="RadioButton_AimbotFov_All"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_AimbotFov_Height_Click"
-                                Content="全部范围" />
-                        </WrapPanel>
-                    </GroupBox>
+            <GroupBox
+                Margin="5"
+                Header="Aimbot范围"
+                Style="{StaticResource GroupBoxWebStyle}">
+                <WrapPanel Orientation="Horizontal">
+                    <RadioButton
+                        x:Name="RadioButton_AimbotFov_14Height"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotFov_Height_Click"
+                        Content="1/4屏幕高度"
+                        IsChecked="True" />
+                    <RadioButton
+                        x:Name="RadioButton_AimbotFov_12Height"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotFov_Height_Click"
+                        Content="1/2屏幕高度" />
+                    <RadioButton
+                        x:Name="RadioButton_AimbotFov_Height"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotFov_Height_Click"
+                        Content="屏幕高度" />
+                    <RadioButton
+                        x:Name="RadioButton_AimbotFov_Width"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotFov_Height_Click"
+                        Content="屏幕宽度" />
+                    <RadioButton
+                        x:Name="RadioButton_AimbotFov_All"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_AimbotFov_Height_Click"
+                        Content="全部范围" />
+                </WrapPanel>
+            </GroupBox>
 
-                    <GroupBox
-                        Margin="5"
-                        Header="ESP工作模式"
-                        Style="{StaticResource GroupBoxWebStyle}">
-                        <WrapPanel Orientation="Horizontal">
-                            <RadioButton
-                                x:Name="RadioButton_Overlay_RunMode0"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_Overlay_RunMode0_Click"
-                                Content="垂直同步"
-                                IsChecked="True" />
-                            <RadioButton
-                                x:Name="RadioButton_Overlay_RunMode1"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_Overlay_RunMode0_Click"
-                                Content="300帧" />
-                            <RadioButton
-                                x:Name="RadioButton_Overlay_RunMode2"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_Overlay_RunMode0_Click"
-                                Content="144帧" />
-                            <RadioButton
-                                x:Name="RadioButton_Overlay_RunMode3"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_Overlay_RunMode0_Click"
-                                Content="90帧" />
-                            <RadioButton
-                                x:Name="RadioButton_Overlay_RunMode4"
-                                Margin="5,5,10,5"
-                                Click="RadioButton_Overlay_RunMode0_Click"
-                                Content="60帧" />
-                        </WrapPanel>
-                    </GroupBox>
+            <GroupBox
+                Margin="5"
+                Header="ESP工作模式"
+                Style="{StaticResource GroupBoxWebStyle}">
+                <WrapPanel Orientation="Horizontal">
+                    <RadioButton
+                        x:Name="RadioButton_Overlay_RunMode0"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_Overlay_RunMode0_Click"
+                        Content="垂直同步"
+                        IsChecked="True" />
+                    <RadioButton
+                        x:Name="RadioButton_Overlay_RunMode1"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_Overlay_RunMode0_Click"
+                        Content="300帧" />
+                    <RadioButton
+                        x:Name="RadioButton_Overlay_RunMode2"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_Overlay_RunMode0_Click"
+                        Content="144帧" />
+                    <RadioButton
+                        x:Name="RadioButton_Overlay_RunMode3"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_Overlay_RunMode0_Click"
+                        Content="90帧" />
+                    <RadioButton
+                        x:Name="RadioButton_Overlay_RunMode4"
+                        Margin="5,5,10,5"
+                        Click="RadioButton_Overlay_RunMode0_Click"
+                        Content="60帧" />
+                </WrapPanel>
+            </GroupBox>
 
+            <StackPanel
+                Margin="5"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="Button_Overaly_Run"
+                    Click="Button_Overaly_Run_Click"
+                    Content="启动ESP"
+                    Style="{StaticResource ButtonNormalStyle}" />
+                <Button
+                    x:Name="Button_Overaly_Exit"
+                    Click="Button_Overaly_Exit_Click"
+                    Content="关闭ESP"
+                    Style="{StaticResource ButtonNormalStyle}" />
+            </StackPanel>
+
+            <TextBlock
+                Margin="5"
+                Foreground="Green"
+                Text="提示：有时候ESP帧数会过低（游戏内帧数波动大，切到游戏外帧数恢复正常），可能需要重启电脑才能恢复，原因尚不清楚"
+                TextWrapping="Wrap" />
+            <TextBlock
+                Margin="5"
+                Foreground="Green"
+                Text="提示：外部绘图会有性能损失，有时候绘制帧数低也是正常现象"
+                TextWrapping="Wrap" />
+        </StackPanel>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Margin="5">
+                <Border Style="{StaticResource BorderEffectStyle}" />
+                <DockPanel LastChildFill="True">
                     <StackPanel
-                        Margin="5"
-                        HorizontalAlignment="Right"
+                        Margin="10,10,0,0"
+                        DockPanel.Dock="Top"
                         Orientation="Horizontal">
-                        <Button
-                            x:Name="Button_Overaly_Run"
-                            Click="Button_Overaly_Run_Click"
-                            Content="启动ESP"
-                            Style="{StaticResource ButtonNormalStyle}" />
-                        <Button
-                            x:Name="Button_Overaly_Exit"
-                            Click="Button_Overaly_Exit_Click"
-                            Content="关闭ESP"
-                            Style="{StaticResource ButtonNormalStyle}" />
+                        <TextBlock
+                            Margin="0,0,5,0"
+                            Style="{StaticResource IconFontInfoTextBlockStyle}"
+                            Text="&#xe624;" />
+                        <TextBlock
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Text="操作日志" />
                     </StackPanel>
-
-                    <TextBlock
+                    <TextBox
+                        x:Name="TextBox_Log"
                         Margin="5"
-                        Foreground="Green"
-                        Text="提示：有时候ESP帧数会过低（游戏内帧数波动大，切到游戏外帧数恢复正常），可能需要重启电脑才能恢复，原因尚不清楚"
-                        TextWrapping="Wrap" />
-
-                </StackPanel>
-
+                        AcceptsReturn="False"
+                        BorderBrush="Gray"
+                        BorderThickness="0"
+                        Style="{StaticResource TextBoxNormalStyle}"
+                        TextWrapping="WrapWithOverflow" />
+                </DockPanel>
             </Grid>
-        </ScrollViewer>
+
+            <StackPanel Grid.Row="1">
+                <Button
+                    x:Name="Button_InjectMenu"
+                    Margin="5,5,5,10"
+                    Click="Button_InjectMenu_Click"
+                    Content="启用注入式ESP功能（测试版）"
+                    DockPanel.Dock="Right"
+                    Style="{StaticResource ButtonNormalStyle}" />
+                <TextBlock
+                    Margin="5"
+                    Foreground="Green"
+                    Text="提示：此注入式ESP功能仅Hook游戏D3D11函数绘图，并不调用内部Native函数，仅仅只有EPS功能，几乎没有风险"
+                    TextWrapping="Wrap" />
+                <TextBlock
+                    Margin="5"
+                    Foreground="Green"
+                    Text="提示：请在完全进入游戏后再启用此功能，否则可能出现游戏闪退问题，当前版本还处于测试状态"
+                    TextWrapping="Wrap" />
+                <TextBlock />
+            </StackPanel>
+
+        </Grid>
     </Grid>
+
 </UserControl>
