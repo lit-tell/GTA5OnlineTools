@@ -41,15 +41,13 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             if (overlay == null)
             {
-                Task t = new Task(() =>
-                {
-                    GameOverlay.TimerService.EnableHighPrecisionTimers();
+                GameOverlay.TimerService.EnableHighPrecisionTimers();
 
+                Task.Run(() =>
+                {
                     overlay = new Overlay();
                     overlay.Run();
                 });
-
-                t.Start();
             }
             else
             {
