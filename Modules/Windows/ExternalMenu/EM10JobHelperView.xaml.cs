@@ -361,8 +361,11 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             int index = MiscData.CEOCargos.FindIndex(t => t.Name == str);
             if (index != -1)
             {
+                // They are in gb_contraband_buy at func_915, for future updates.
+                Online.CEOSpecialCargo(false);
+                Thread.Sleep(100);
                 Online.CEOSpecialCargo(true);
-                Thread.Sleep(50);
+                Thread.Sleep(100);
                 Online.CEOCargoType(MiscData.CEOCargos[index].ID);
             }
         }

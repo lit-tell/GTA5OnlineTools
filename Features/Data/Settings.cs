@@ -50,8 +50,8 @@ namespace GTA5OnlineTools.Features.Data
             public static bool ESP_2DLine = true;
             public static bool ESP_Bone = false;
             public static bool ESP_2DHealthBar = true;
-            public static bool ESP_HealthText = true;
-            public static bool ESP_NameText = true;
+            public static bool ESP_HealthText = false;
+            public static bool ESP_NameText = false;
             public static bool ESP_Player = true;
             public static bool ESP_NPC = true;
             public static bool ESP_Crosshair = true;

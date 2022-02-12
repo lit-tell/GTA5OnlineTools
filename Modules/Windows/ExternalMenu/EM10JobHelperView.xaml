@@ -41,20 +41,20 @@
             <StackPanel Margin="5,0,5,5">
                 <TextBlock Style="{StaticResource TextBlockTitle000}" Text="CEO" />
                 <StackPanel>
-                    <UniformGrid Columns="1">
-                        <Button Click="Button_CEOCargos_Click" Content="医疗用品 (无特殊物品)" />
-                        <Button Click="Button_CEOCargos_Click" Content="烟酒 (无特殊物品)" />
-                        <Button Click="Button_CEOCargos_Click" Content="古董艺术品 (华丽彩蛋)" />
-                        <Button Click="Button_CEOCargos_Click" Content="电子产品 (无特殊物品)" />
-                        <Button Click="Button_CEOCargos_Click" Content="武器弹药 (黄金火神机枪)" />
-                        <Button Click="Button_CEOCargos_Click" Content="迷幻药 (无特殊物品)" />
-                        <Button Click="Button_CEOCargos_Click" Content="宝石 (一大颗钻石)" />
-                        <Button Click="Button_CEOCargos_Click" Content="动物材料 (稀有皮草)" />
-                        <Button Click="Button_CEOCargos_Click" Content="仿制品 (电影胶卷)" />
-                        <Button Click="Button_CEOCargos_Click" Content="珠宝 (稀有怀表)" />
-                        <Button Click="Button_CEOCargos_Click" Content="银块 (无特殊物品)" />
+                    <WrapPanel>
+                        <Button Click="Button_CEOCargos_Click" Content="医疗用品" />
+                        <Button Click="Button_CEOCargos_Click" Content="烟酒" />
+                        <Button Click="Button_CEOCargos_Click" Content="古董艺术品（华丽彩蛋）" />
+                        <Button Click="Button_CEOCargos_Click" Content="电子产品" />
+                        <Button Click="Button_CEOCargos_Click" Content="武器弹药（黄金火神机枪）" />
+                        <Button Click="Button_CEOCargos_Click" Content="迷幻药" />
+                        <Button Click="Button_CEOCargos_Click" Content="宝石（一大颗钻石）" />
+                        <Button Click="Button_CEOCargos_Click" Content="动物材料（稀有皮草）" />
+                        <Button Click="Button_CEOCargos_Click" Content="仿制品（电影胶卷）" />
+                        <Button Click="Button_CEOCargos_Click" Content="珠宝（稀有怀表）" />
+                        <Button Click="Button_CEOCargos_Click" Content="银块" />
 
-                    </UniformGrid>
+                    </WrapPanel>
 
                     <CheckBox
                         x:Name="CheckBox_CooldownForBuyingCrates"
@@ -70,11 +70,13 @@
                         Content="⚠️ 设置每箱出售单价为2W"
                         Foreground="Red"
                         Visibility="Collapsed" />
-                    <TextBlock
-                        Margin="5"
-                        Foreground="Green"
-                        Text="提示：需要退出CEOD电脑重新进入生效" />
                 </StackPanel>
+
+                <TextBlock
+                    Margin="5"
+                    Foreground="Green"
+                    Text="提示：需要退出CEOD电脑重新进入生效。特殊货物貌似没有效果"
+                    TextWrapping="Wrap" />
             </StackPanel>
 
             <StackPanel Grid.Column="1">

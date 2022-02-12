@@ -56,12 +56,12 @@
                     x:Name="CheckBox_ESP_HealthText"
                     Click="CheckBox_ESP_HealthText_Click"
                     Content="显示数字血量 ★"
-                    IsChecked="True" />
+                    IsChecked="False" />
                 <CheckBox
                     x:Name="CheckBox_ESP_NameText"
                     Click="CheckBox_ESP_NameText_Click"
                     Content="显示玩家姓名 ★"
-                    IsChecked="True" />
+                    IsChecked="False" />
                 <CheckBox
                     x:Name="CheckBox_ESP_Player"
                     Click="CheckBox_ESP_Player_Click"

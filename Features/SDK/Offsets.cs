@@ -112,7 +112,7 @@ public class Offsets
         public static int[] AmmoInfo = new int[] { 0x08, 0x10D8, 0x20, 0x60 };
         public static int[] AmmoModifier = new int[] { 0x08, 0x10D0, 0x78 };
 
-        public static int[] NoSpread = new int[] { 0x8, 0x10D8, 0x20, 0x74 };
+        public static int[] NoSpread = new int[] { 0x8, 0x10D8, 0x20, 0x7C };
         public static int[] NoRecoil = new int[] { 0x8, 0x10D8, 0x20, 0x2F4 };
 
         public static int[] ImpactType = new int[] { 0x08, 0x10D8, 0x20, 0x20 };

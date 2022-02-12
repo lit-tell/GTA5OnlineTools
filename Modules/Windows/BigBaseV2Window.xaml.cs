@@ -115,5 +115,99 @@ namespace GTA5OnlineTools.Modules.Windows
             ProcessUtil.OpenLink(e.Uri.OriginalString);
             e.Handled = true;
         }
+
+        //////////////////////////////////////////////////////
+
+        private bool IsInputNumber(KeyEventArgs e)
+        {
+            if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) ||
+               e.Key == Key.Delete || e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Tab)
+            {
+                // 按下了Alt、ctrl、shift等修饰键
+                if (e.KeyboardDevice.Modifiers != ModifierKeys.None)
+                {
+                    e.Handled = true;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                // 按下了字符等其它功能键
+                e.Handled = true;
+            }
+            return false;
+        }
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            IsInputNumber(e);
+        }
+
+        private void Button_Calculate_Click(object sender, RoutedEventArgs e)
+        {
+            AudioUtil.ClickSound();
+
+            try
+            {
+                if (RadioButton_ToMS.IsChecked == true)
+                {
+                    if (TextBox_d.Text != "" && TextBox_h.Text != "" && TextBox_m.Text != "" && TextBox_s.Text != "")
+                    {
+                        TextBox_ms.Text = (
+                        (Convert.ToInt64(TextBox_d.Text) * 86400 +
+                        Convert.ToInt64(TextBox_h.Text) * 3600 +
+                        Convert.ToInt64(TextBox_m.Text) * 60 +
+                        Convert.ToInt64(TextBox_s.Text)) * 1000
+                        ).ToString();
+                    }
+                }
+                else if (RadioButton_ToTIME.IsChecked == true)
+                {
+                    if (TextBox_ms.Text != "")
+                    {
+                        if (Convert.ToInt64(TextBox_ms.Text) >= 1000)
+                        {
+                            long t = Convert.ToInt64(TextBox_ms.Text) / 1000;
+
+                            long day = 0, hour = 0, minute = 0, second = 0;
+                            if (t >= 86400)         // 天
+                            {
+                                day = Convert.ToInt64(t / 86400);
+                                hour = Convert.ToInt64((t % 86400) / 3600);
+                                minute = Convert.ToInt64((t % 86400 % 3600) / 60);
+                                second = Convert.ToInt64(t % 86400 % 3600 % 60);
+                            }
+                            else if (t >= 3600)     // 时
+                            {
+                                hour = Convert.ToInt64(t / 3600);
+                                minute = Convert.ToInt64((t % 3600) / 60);
+                                second = Convert.ToInt64(t % 3600 % 60);
+                            }
+                            else if (t >= 60)       // 分
+                            {
+                                minute = Convert.ToInt64(t / 60);
+                                second = Convert.ToInt64(t % 60);
+                            }
+                            else
+                            {
+                                second = Convert.ToInt64(t);
+                            }
+
+                            TextBox_d.Text = day.ToString();
+                            TextBox_h.Text = hour.ToString();
+                            TextBox_m.Text = minute.ToString();
+                            TextBox_s.Text = second.ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBoxUtil.ExceptionMsgBox(ex);
+            }
+        }
     }
 }

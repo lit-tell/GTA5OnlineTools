@@ -20,7 +20,7 @@ namespace GTA5OnlineTools.Features.SDK
 
         private bool isDraw = true;
 
-        private bool isRun =true;
+        private bool isRun = true;
 
         public Overlay()
         {
@@ -37,7 +37,8 @@ namespace GTA5OnlineTools.Features.SDK
                 VSync = Settings.Overlay.VSync,
                 MeasureFPS = true,
                 PerPrimitiveAntiAliasing = true,
-                TextAntiAliasing = true
+                TextAntiAliasing = true,
+                UseMultiThreadedFactories = true
             };
 
             _window = new GraphicsWindow(windowData.Left, windowData.Top, windowData.Width, windowData.Height, gfx)
@@ -95,9 +96,7 @@ namespace GTA5OnlineTools.Features.SDK
 
             if (e.RecreateResources) return;
 
-            _fonts["arial"] = gfx.CreateFont("Arial", 12);
             _fonts["Microsoft YaHei"] = gfx.CreateFont("Microsoft YaHei", 12);
-            _fonts["consolas"] = gfx.CreateFont("Consolas", 14);
         }
 
         private void _window_DestroyGraphics(object sender, DestroyGraphicsEventArgs e)
@@ -428,7 +427,7 @@ namespace GTA5OnlineTools.Features.SDK
                 {
                     float aimBot_Min_Distance = Settings.Overlay.AimBot_Fov;
                     Vector3 aimBot_ViewAngles = new Vector3 { X = 0, Y = 0, Z = 0 };
-                    Vector3 teleWpedCoords = new Vector3 { X = 0, Y = 0, Z = 0 };
+                    Vector3 teleW_pedCoords = new Vector3 { X = 0, Y = 0, Z = 0 };
 
                     // 玩家自己RID
                     long myRID = Memory.Read<long>(Globals.WorldPTR, Offsets.RID);
@@ -500,7 +499,7 @@ namespace GTA5OnlineTools.Features.SDK
                         {
                             aimBot_Min_Distance = aimBot_Distance;
                             aimBot_ViewAngles = GetCCameraViewAngles(cameraV3Pos, GetBonePosition(ped_offset_0, Settings.Overlay.AimBot_BoneIndex));
-                            teleWpedCoords = pedV3Pos;
+                            teleW_pedCoords = pedV3Pos;
                         }
                     }
 
@@ -527,7 +526,7 @@ namespace GTA5OnlineTools.Features.SDK
 
                             if (Convert.ToBoolean(WinAPI.GetKeyState((int)WinVK.F5) & WinAPI.KEY_PRESSED))
                             {
-                                Teleport.SetTeleportV3Pos(teleWpedCoords);
+                                Teleport.SetTeleportV3Pos(teleW_pedCoords);
                             }
                         }
                     }
@@ -537,6 +536,7 @@ namespace GTA5OnlineTools.Features.SDK
             }
         }
 
+        // 绘制十字准星
         private void DrawCrosshair(Graphics gfx, IBrush brush, float length, float stroke)
         {
             gfx.DrawLine(brush,
@@ -553,89 +553,89 @@ namespace GTA5OnlineTools.Features.SDK
             //gfx.DrawCircle(brush, gview_width, gview_height, gview_height / 4, stroke);
         }
 
-        private void Draw2DBox(Graphics gfx, IBrush brush, Vector2 pedPosV2, Vector2 boxV2, float stroke)
+        // 2D方框
+        private static void Draw2DBox(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float stroke)
         {
-            // 2D方框
             gfx.DrawRectangle(brush, Rectangle.Create(
-                pedPosV2.X - boxV2.X / 2,
-                pedPosV2.Y - boxV2.Y / 2,
+                screenV2.X - boxV2.X / 2,
+                screenV2.Y - boxV2.Y / 2,
                 boxV2.X,
                 boxV2.Y), stroke);
         }
 
-        private void Draw2DLine(Graphics gfx, IBrush brush, Vector2 pedPosV2, Vector2 pedBoxV2, float stroke)
+        // 2D射线
+        private void Draw2DLine(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float stroke)
         {
-            // 2D射线
             gfx.DrawLine(brush,
                 windowData.Width / 2,
                 0,
-                pedPosV2.X,
-                pedPosV2.Y - pedBoxV2.Y / 2, stroke);
+                screenV2.X,
+                screenV2.Y - boxV2.Y / 2, stroke);
         }
 
-        private void Draw2DHealthBar(Graphics gfx, IBrush brush, Vector2 pedPosV2, Vector2 pedBoxV2, float pedHPPercentage, float stroke)
+        // 2DBox血条
+        private void Draw2DHealthBar(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float pedHPPercentage, float stroke)
         {
-            // 2DBox血条
             gfx.DrawRectangle(_brushes["white"], Rectangle.Create(
-                pedPosV2.X - pedBoxV2.X / 2 - pedBoxV2.X / 8,
-                pedPosV2.Y + pedBoxV2.Y / 2,
-                pedBoxV2.X / 10,
-                pedBoxV2.Y * -1.0f), stroke);
+                screenV2.X - boxV2.X / 2 - boxV2.X / 8,
+                screenV2.Y + boxV2.Y / 2,
+                boxV2.X / 10,
+                boxV2.Y * -1.0f), stroke);
             gfx.FillRectangle(brush, Rectangle.Create(
-                pedPosV2.X - pedBoxV2.X / 2 - pedBoxV2.X / 8,
-                pedPosV2.Y + pedBoxV2.Y / 2,
-                pedBoxV2.X / 10,
-                pedBoxV2.Y * pedHPPercentage * -1.0f));
+                screenV2.X - boxV2.X / 2 - boxV2.X / 8,
+                screenV2.Y + boxV2.Y / 2,
+                boxV2.X / 10,
+                boxV2.Y * pedHPPercentage * -1.0f));
         }
 
-        private void Draw3DHealthBar(Graphics gfx, IBrush brush, Vector2 pedPosV2, Vector2 pedBoxV2, float pedHPPercentage, float stroke)
+        // 3DBox血条
+        private void Draw3DHealthBar(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float hpPer, float stroke)
         {
-            // 3DBox血条
             gfx.DrawRectangle(_brushes["white"], Rectangle.Create(
-                pedPosV2.X - pedBoxV2.X / 2,
-                pedPosV2.Y + pedBoxV2.Y / 2 + pedBoxV2.X / 10,
-                pedBoxV2.X,
-                pedBoxV2.X / 10 / 2), stroke);
+                screenV2.X - boxV2.X / 2,
+                screenV2.Y + boxV2.Y / 2 + boxV2.X / 10,
+                boxV2.X,
+                boxV2.X / 10 / 2), stroke);
             gfx.FillRectangle(brush, Rectangle.Create(
-                pedPosV2.X - pedBoxV2.X / 2,
-                pedPosV2.Y + pedBoxV2.Y / 2 + pedBoxV2.X / 10,
-                pedBoxV2.X * pedHPPercentage,
-                pedBoxV2.X / 10 / 2));
+                screenV2.X - boxV2.X / 2,
+                screenV2.Y + boxV2.Y / 2 + boxV2.X / 10,
+                boxV2.X * hpPer,
+                boxV2.X / 10 / 2));
         }
 
-        private void Draw2DHealthText(Graphics gfx, IBrush brush, Vector2 pedPosV2, Vector2 pedBoxV2, float pedHealth, float pedMaxHealth, int index)
+        // 2DBox血量数字
+        private void Draw2DHealthText(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float health, float maxHealth, int index)
         {
-            // 2DBox血量数字
             gfx.DrawText(_fonts["Microsoft YaHei"], 10, brush,
-                pedPosV2.X - pedBoxV2.X / 2,
-                pedPosV2.Y + pedBoxV2.Y / 2 + pedBoxV2.X / 8 - pedBoxV2.X / 10,
+                screenV2.X - boxV2.X / 2,
+                screenV2.Y + boxV2.Y / 2 + boxV2.X / 8 - boxV2.X / 10,
+                $"[{index}] HP : {health:0}/{maxHealth:0}");
+        }
+
+        // 3DBox血量数字
+        private void Draw3DHealthText(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float pedHealth, float pedMaxHealth, int index)
+        {
+            gfx.DrawText(_fonts["Microsoft YaHei"], 10, brush,
+                screenV2.X - boxV2.X / 2,
+                screenV2.Y + boxV2.Y / 2 + boxV2.X / 10 + boxV2.X / 10 / 2 + boxV2.X / 8 - boxV2.X / 10,
                 $"[{index}] HP : {pedHealth:0}/{pedMaxHealth:0}");
         }
 
-        private void Draw3DHealthText(Graphics gfx, IBrush brush, Vector2 pedPosV2, Vector2 pedBoxV2, float pedHealth, float pedMaxHealth, int index)
+        // 2DBox玩家名称
+        private void Draw2DNameText(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, string name, float distance)
         {
-            // 3DBox血量数字
             gfx.DrawText(_fonts["Microsoft YaHei"], 10, brush,
-                pedPosV2.X - pedBoxV2.X / 2,
-                pedPosV2.Y + pedBoxV2.Y / 2 + pedBoxV2.X / 10 + pedBoxV2.X / 10 / 2 + pedBoxV2.X / 8 - pedBoxV2.X / 10,
-                $"[{index}] HP : {pedHealth:0}/{pedMaxHealth:0}");
-        }
-
-        private void Draw2DNameText(Graphics gfx, IBrush brush, Vector2 pedPosV2, Vector2 pedBoxV2, string name, float distance)
-        {
-            // 2DBox玩家名称
-            gfx.DrawText(_fonts["Microsoft YaHei"], 10, brush,
-                pedPosV2.X + pedBoxV2.X / 2 + pedBoxV2.X / 8 - pedBoxV2.X / 10,
-                pedPosV2.Y - pedBoxV2.Y / 2,
+                screenV2.X + boxV2.X / 2 + boxV2.X / 8 - boxV2.X / 10,
+                screenV2.Y - boxV2.Y / 2,
                 $"[{distance:0m}] ID : {name}");
         }
 
-        private void Draw3DNameText(Graphics gfx, IBrush brush, Vector2 pedPosV2, Vector2 pedBoxV2, string name, float distance)
+        // 3DBox玩家名称
+        private void Draw3DNameText(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, string name, float distance)
         {
-            // 3DBox玩家名称
             gfx.DrawText(_fonts["Microsoft YaHei"], 10, brush,
-                pedPosV2.X + pedBoxV2.X / 2 + pedBoxV2.X / 10 + pedBoxV2.X / 10 / 2 + pedBoxV2.X / 8 - pedBoxV2.X / 10,
-                pedPosV2.Y - pedBoxV2.Y / 2,
+                screenV2.X + boxV2.X / 2 + boxV2.X / 10 + boxV2.X / 10 / 2 + boxV2.X / 8 - boxV2.X / 10,
+                screenV2.Y - boxV2.Y / 2,
                 $"[{distance:0m}] ID : {name}");
         }
 
@@ -776,72 +776,75 @@ namespace GTA5OnlineTools.Features.SDK
             return bone_pos;
         }
 
-        private Vector3 GetCCameraViewAngles(Vector3 cameraV3Pos, Vector3 enemyV3Pos)
+        // 鼠标角度
+        private Vector3 GetCCameraViewAngles(Vector3 cameraV3, Vector3 targetV3)
         {
-            // 鼠标角度，自瞄需要用到
-            float distance = (float)Math.Sqrt(Math.Pow(cameraV3Pos.X - enemyV3Pos.X, 2) + Math.Pow(cameraV3Pos.Y - enemyV3Pos.Y, 2) + Math.Pow(cameraV3Pos.Z - enemyV3Pos.Z, 2));
+            float distance = (float)Math.Sqrt(Math.Pow(cameraV3.X - targetV3.X, 2) + Math.Pow(cameraV3.Y - targetV3.Y, 2) + Math.Pow(cameraV3.Z - targetV3.Z, 2));
 
             return new Vector3
             {
-                X = (enemyV3Pos.X - cameraV3Pos.X) / distance,
-                Y = (enemyV3Pos.Y - cameraV3Pos.Y) / distance,
-                Z = (enemyV3Pos.Z - cameraV3Pos.Z) / distance
+                X = (targetV3.X - cameraV3.X) / distance,
+                Y = (targetV3.Y - cameraV3.Y) / distance,
+                Z = (targetV3.Z - cameraV3.Z) / distance
             };
         }
 
+        // 判断屏幕坐标是否有效
         private bool IsNullVector2(Vector2 vector)
         {
             return vector == new Vector2(0, 0);
         }
 
-        private Vector2 WorldToScreen(Vector3 target)
+        // 世界坐标转屏幕坐标
+        private Vector2 WorldToScreen(Vector3 posV3)
         {
-            Vector2 _worldToScreenPos;
-            Vector3 _camera;
+            Vector2 screenV2;
+            Vector3 cameraV3;
 
-            float[] viewmatrix = Memory.ReadMatrix<float>(Globals.ViewPortPTR + 0xC0, 16);
+            float[] viewMatrix = Memory.ReadMatrix<float>(Globals.ViewPortPTR + 0xC0, 16);
 
-            _camera.Z = viewmatrix[2] * target.X + viewmatrix[6] * target.Y + viewmatrix[10] * target.Z + viewmatrix[14];
-            if (_camera.Z < 0.001f)
+            cameraV3.Z = viewMatrix[2] * posV3.X + viewMatrix[6] * posV3.Y + viewMatrix[10] * posV3.Z + viewMatrix[14];
+            if (cameraV3.Z < 0.001f)
                 return new Vector2(0, 0);
 
-            _camera.X = windowData.Width / 2;
-            _camera.Y = windowData.Height / 2;
-            _camera.Z = 1 / _camera.Z;
+            cameraV3.X = windowData.Width / 2;
+            cameraV3.Y = windowData.Height / 2;
+            cameraV3.Z = 1 / cameraV3.Z;
 
-            _worldToScreenPos.X = viewmatrix[0] * target.X + viewmatrix[4] * target.Y + viewmatrix[8] * target.Z + viewmatrix[12];
-            _worldToScreenPos.Y = viewmatrix[1] * target.X + viewmatrix[5] * target.Y + viewmatrix[9] * target.Z + viewmatrix[13];
+            screenV2.X = viewMatrix[0] * posV3.X + viewMatrix[4] * posV3.Y + viewMatrix[8] * posV3.Z + viewMatrix[12];
+            screenV2.Y = viewMatrix[1] * posV3.X + viewMatrix[5] * posV3.Y + viewMatrix[9] * posV3.Z + viewMatrix[13];
 
-            _worldToScreenPos.X = _camera.X + _camera.X * _worldToScreenPos.X * _camera.Z;
-            _worldToScreenPos.Y = _camera.Y - _camera.Y * _worldToScreenPos.Y * _camera.Z;
+            screenV2.X = cameraV3.X + cameraV3.X * screenV2.X * cameraV3.Z;
+            screenV2.Y = cameraV3.Y - cameraV3.Y * screenV2.Y * cameraV3.Z;
 
-            return _worldToScreenPos;
+            return screenV2;
         }
 
-        private Vector2 GetBoxWH(Vector3 target)
+        // 获取方框高度
+        private Vector2 GetBoxWH(Vector3 posV3)
         {
-            Vector2 _box;
-            Vector3 _camera;
+            Vector2 boxV2;
+            Vector3 cameraV3;
 
-            float[] viewmatrix = Memory.ReadMatrix<float>(Globals.ViewPortPTR + 0xC0, 16);
+            float[] viewMatrix = Memory.ReadMatrix<float>(Globals.ViewPortPTR + 0xC0, 16);
 
-            _camera.Z = viewmatrix[2] * target.X + viewmatrix[6] * target.Y + viewmatrix[10] * target.Z + viewmatrix[14];
-            if (_camera.Z < 0.001f)
+            cameraV3.Z = viewMatrix[2] * posV3.X + viewMatrix[6] * posV3.Y + viewMatrix[10] * posV3.Z + viewMatrix[14];
+            if (cameraV3.Z < 0.001f)
                 return new Vector2(0, 0);
 
-            _camera.Y = windowData.Height / 2;
-            _camera.Z = 1 / _camera.Z;
+            cameraV3.Y = windowData.Height / 2;
+            cameraV3.Z = 1 / cameraV3.Z;
 
-            _box.X = viewmatrix[1] * target.X + viewmatrix[5] * target.Y + viewmatrix[9] * (target.Z + 1.0f) + viewmatrix[13];
-            _box.Y = viewmatrix[1] * target.X + viewmatrix[5] * target.Y + viewmatrix[9] * (target.Z - 1.0f) + viewmatrix[13];
+            boxV2.X = viewMatrix[1] * posV3.X + viewMatrix[5] * posV3.Y + viewMatrix[9] * (posV3.Z + 1.0f) + viewMatrix[13];
+            boxV2.Y = viewMatrix[1] * posV3.X + viewMatrix[5] * posV3.Y + viewMatrix[9] * (posV3.Z - 1.0f) + viewMatrix[13];
 
-            _box.X = _camera.Y - _camera.Y * _box.X * _camera.Z;
-            _box.Y = _camera.Y - _camera.Y * _box.Y * _camera.Z;
+            boxV2.X = cameraV3.Y - cameraV3.Y * boxV2.X * cameraV3.Z;
+            boxV2.Y = cameraV3.Y - cameraV3.Y * boxV2.Y * cameraV3.Z;
 
-            _box.Y = Math.Abs(_box.X - _box.Y);
-            _box.X = _box.Y / 2;
+            boxV2.Y = Math.Abs(boxV2.X - boxV2.Y);
+            boxV2.X = boxV2.Y / 2;
 
-            return _box;
+            return boxV2;
         }
 
         /////////////////////////////////////////////

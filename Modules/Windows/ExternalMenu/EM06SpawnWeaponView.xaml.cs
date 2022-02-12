@@ -116,11 +116,15 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
         private void CheckBox_NoSpread_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Weapon.NoSpread();
         }
 
         private void CheckBox_Range_Click(object sender, RoutedEventArgs e)
         {
+            AudioUtil.ClickSound();
+
             Weapon.Range();
         }
 

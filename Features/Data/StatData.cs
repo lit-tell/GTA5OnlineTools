@@ -423,6 +423,14 @@
             new StatInfo(){ Hash="_ARENAWARS_SKILL_LEVEL", Value=19 },
             new StatInfo(){ Hash="_ARENAWARS_SP", Value=209 },
         };
+
+        /// <summary>
+        /// 解锁-解锁CEO特殊载具任务
+        /// </summary>
+        public static List<StatInfo> _AT_FLOW_IMPEXP_NUM = new List<StatInfo>()
+        {
+            new StatInfo(){ Hash="_AT_FLOW_IMPEXP_NUM", Value=32 },
+        };
         #endregion
 
         #region 解决问题
@@ -452,7 +460,7 @@
             new StatClass(){ ClassName="玩家-修改等级为120", StatInfo=_CHAR_SET_RP120 },
 
             new StatClass(){ ClassName="资产-补满夜总会人气", StatInfo=_CLUB_POPULARITY },
-            new StatClass(){ ClassName="资产-地堡和摩托帮自动进货", StatInfo=_PAYRESUPPLYTIMER0 },
+            //new StatClass(){ ClassName="资产-地堡和摩托帮自动进货", StatInfo=_PAYRESUPPLYTIMER0 },
             new StatClass(){ ClassName="资产-跳过过场动画（地堡、摩托帮、办公室等）", StatInfo=_FM_CUT_DONE },
             new StatClass(){ ClassName="资产-修改车友会等级为1", StatInfo=_CAR_CLUB_REP },
 
@@ -481,6 +489,8 @@
             new StatClass(){ ClassName="解锁-竞技场-500级解锁星际码头", StatInfo=_ARENAWARS_AP_TIER500 },
             new StatClass(){ ClassName="解锁-竞技场-1000级解锁老式拖拉机", StatInfo=_ARENAWARS_AP_TIER1000 },
             new StatClass(){ ClassName="解锁-竞技场-解锁冲冲猴旅行家购买权限", StatInfo=_ARENAWARS_SKILL_LEVEL },
+
+            new StatClass(){ ClassName="解锁-解锁CEO特殊载具任务", StatInfo=_AT_FLOW_IMPEXP_NUM },
 
             new StatClass(){ ClassName="解决问题-解决赌场侦察拍照问题", StatInfo=_H3OPT_ACCESSPOINTS },
 
