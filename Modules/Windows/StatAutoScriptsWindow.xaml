@@ -68,7 +68,6 @@
                 Style="{StaticResource ButtonNormalStyle}" />
 
             <TextBlock />
-            <TextBlock />
             <Button
                 x:Name="Button_LoadSession"
                 Click="Button_LoadSession_Click"

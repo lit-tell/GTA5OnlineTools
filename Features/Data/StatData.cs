@@ -127,15 +127,22 @@
         };
 
         /// <summary>
-        /// 地堡、摩托帮自动进货
+        /// 摩托帮自动进货（切换战局）
         /// </summary>
-        public static List<StatInfo> _PAYRESUPPLYTIMER0 = new List<StatInfo>()
+        public static List<StatInfo> _PAYRESUPPLYTIMER04 = new List<StatInfo>()
         {
             new StatInfo(){ Hash="_PAYRESUPPLYTIMER0", Value=1 },
             new StatInfo(){ Hash="_PAYRESUPPLYTIMER1", Value=1 },
             new StatInfo(){ Hash="_PAYRESUPPLYTIMER2", Value=1 },
             new StatInfo(){ Hash="_PAYRESUPPLYTIMER3", Value=1 },
             new StatInfo(){ Hash="_PAYRESUPPLYTIMER4", Value=1 },
+        };
+
+        /// <summary>
+        /// 地堡自动进货（切换战局）
+        /// </summary>
+        public static List<StatInfo> _PAYRESUPPLYTIMER5 = new List<StatInfo>()
+        {
             new StatInfo(){ Hash="_PAYRESUPPLYTIMER5", Value=1 },
         };
 
@@ -460,7 +467,8 @@
             new StatClass(){ ClassName="玩家-修改等级为120", StatInfo=_CHAR_SET_RP120 },
 
             new StatClass(){ ClassName="资产-补满夜总会人气", StatInfo=_CLUB_POPULARITY },
-            //new StatClass(){ ClassName="资产-地堡和摩托帮自动进货", StatInfo=_PAYRESUPPLYTIMER0 },
+            new StatClass(){ ClassName="资产-摩托帮自动进货（切换战局）", StatInfo=_PAYRESUPPLYTIMER04 },
+            new StatClass(){ ClassName="资产-地堡自动进货（切换战局）", StatInfo=_PAYRESUPPLYTIMER5 },
             new StatClass(){ ClassName="资产-跳过过场动画（地堡、摩托帮、办公室等）", StatInfo=_FM_CUT_DONE },
             new StatClass(){ ClassName="资产-修改车友会等级为1", StatInfo=_CAR_CLUB_REP },
 
