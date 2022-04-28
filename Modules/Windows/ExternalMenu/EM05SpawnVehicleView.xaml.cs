@@ -86,7 +86,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             {
                 if (hash != 0)
                 {
-                    const int oVMCreate = 2725260;
+                    const int oVMCreate = 2725269;
 
                     float x = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
                     float y = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
@@ -158,7 +158,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                 {
                     int dist = 5;
 
-                    const int oVMCreate = 2725260;
+                    const int oVMCreate = 2725269;
                     const int pegasus = 0;
 
                     float x = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
