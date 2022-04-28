@@ -33,17 +33,17 @@ namespace GTA5OnlineTools.Features.SDK
 
         public static int GET_NETWORK_TIME()
         {
-            return ReadGA<int>(1574747 + 11);
+            return ReadGA<int>(1574755 + 11);
         }
         public static int PLAYER_ID()
         {
-            return ReadGA<int>(2703656);
+            return ReadGA<int>(2703660);
         }
 
         public static int GetBusinessIndex(int ID)
         {
             // ID 0-5
-            return 1853128 + 1 + (PLAYER_ID() * 888) + 267 + 187 + 1 + (ID * 13);
+            return 1853131 + 1 + (PLAYER_ID() * 888) + 267 + 187 + 1 + (ID * 13);
         }
 
         public static uint Joaat(string input)
@@ -69,18 +69,18 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (hash.IndexOf("_") == 0)
             {
-                int Stat_MP = ReadGA<int>(1574907);
+                int Stat_MP = ReadGA<int>(1574915);
                 hash = $"MP{Stat_MP}{hash}";
             }
 
-            uint Stat_ResotreHash = ReadGA<uint>(1655444 + 4);
+            uint Stat_ResotreHash = ReadGA<uint>(1655453 + 4);
             int Stat_ResotreValue = ReadGA<int>(1020252 + 5526);
 
-            WriteGA<uint>(1655444 + 4, Joaat(hash));
+            WriteGA<uint>(1655453 + 4, Joaat(hash));
             WriteGA<int>(1020252 + 5526, value);
-            WriteGA<int>(1644209 + 1139, -1);
+            WriteGA<int>(1644218 + 1139, -1);
             Thread.Sleep(1000);
-            WriteGA<uint>(1655444 + 4, Stat_ResotreHash);
+            WriteGA<uint>(1655453 + 4, Stat_ResotreHash);
             WriteGA<int>(1020252 + 5526, Stat_ResotreValue);
         }
 
@@ -96,13 +96,13 @@ namespace GTA5OnlineTools.Features.SDK
             float y = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
             float z = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
 
-            WriteGA<float>(2783329 + 3, x);
-            WriteGA<float>(2783329 + 4, y);
-            WriteGA<float>(2783329 + 5, z + 3.0f);
-            WriteGA<int>(2783329 + 1, 9999);    // 9999
+            WriteGA<float>(2783345 + 3, x);
+            WriteGA<float>(2783345 + 4, y);
+            WriteGA<float>(2783345 + 5, z + 3.0f);
+            WriteGA<int>(2783345 + 1, 9999);    // 9999
 
             WriteGA<int>(4528329 + 1 + (ReadGA<int>(2783329) * 85) + 66 + 2, 2);
-            WriteGA<int>(2783335, 1);
+            WriteGA<int>(2783345, 1);
 
             Thread.Sleep(150);
 
