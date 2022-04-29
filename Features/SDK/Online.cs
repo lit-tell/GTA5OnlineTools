@@ -28,17 +28,17 @@ namespace GTA5OnlineTools.Features.SDK
 
                 if (sessionID == -1)
                 {
-                    Hacks.WriteGA<int>(1574587 + 2, -1);
-                    Hacks.WriteGA<int>(1574587, 1);
+                    Hacks.WriteGA<int>(1574589 + 2, -1);
+                    Hacks.WriteGA<int>(1574589, 1);
                     Task.Delay(200).Wait();
-                    Hacks.WriteGA<int>(1574587, 0);
+                    Hacks.WriteGA<int>(1574589, 0);
                 }
                 else
                 {
-                    Hacks.WriteGA<int>(1575004, sessionID);
-                    Hacks.WriteGA<int>(1574587, 1);
+                    Hacks.WriteGA<int>(1575012, sessionID);
+                    Hacks.WriteGA<int>(1574589, 1);
                     Task.Delay(200).Wait();
-                    Hacks.WriteGA<int>(1574587, 0);
+                    Hacks.WriteGA<int>(1574589, 0);
                 }
             });
         }
@@ -63,11 +63,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(2714627 + 744, 0);
+                Hacks.WriteGA<int>(2714635 + 744, 0);
             }
             else
             {
-                Hacks.WriteGA<int>(2714627 + 744, 1);
+                Hacks.WriteGA<int>(2714635 + 744, 1);
             }
         }
 
@@ -78,14 +78,14 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(2810287 + 6734, 0);
-                Hacks.WriteGA<int>(262145 + 28056, 3);
-                Hacks.WriteGA<int>(262145 + 28057, 3);
+                Hacks.WriteGA<int>(2810701 + 6729, 0);
+                Hacks.WriteGA<int>(262145 + 28072, 3);
+                Hacks.WriteGA<int>(262145 + 28073, 3);
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 28056, 300000);
-                Hacks.WriteGA<int>(262145 + 28057, 60000);
+                Hacks.WriteGA<int>(262145 + 28072, 300000);
+                Hacks.WriteGA<int>(262145 + 28073, 60000);
             }
         }
 
@@ -96,13 +96,13 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(2810287 + 4460, 0);
-                Hacks.WriteGA<int>(1966521, 0);
+                Hacks.WriteGA<int>(2810701 + 4460, 0);
+                Hacks.WriteGA<int>(1966542, 0);
             }
             else
             {
-                Hacks.WriteGA<int>(2810287 + 4460, 1);
-                Hacks.WriteGA<int>(1966521, 1);
+                Hacks.WriteGA<int>(2810701 + 4460, 1);
+                Hacks.WriteGA<int>(1966542, 1);
             }
         }
 
@@ -113,11 +113,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 22852, 0);
+                Hacks.WriteGA<int>(262145 + 22853, 0);
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 22852, 2880000);
+                Hacks.WriteGA<int>(262145 + 22853, 2880000);
             }
         }
 
@@ -126,7 +126,7 @@ namespace GTA5OnlineTools.Features.SDK
         /// </summary>
         public static void GetInOnlinePV()
         {
-            Hacks.WriteGA<int>(2671444 + 8, 1);
+            Hacks.WriteGA<int>(2671447 + 8, 1);
         }
 
         /// <summary>
@@ -151,14 +151,14 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 453 + 209, 1);
-                Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 70, Hacks.GET_NETWORK_TIME() + 3600000);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4629, 3);
+                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 451 + 207, 1);
+                Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 56, Hacks.GET_NETWORK_TIME() + 3600000);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4630, 3);
             }
             else
             {
-                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 453 + 209, 0);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4629, 0);
+                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 451 + 207, 0);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4630, 0);
             }
         }
 
@@ -169,14 +169,14 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 453 + 209, 1);
-                Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 70, Hacks.GET_NETWORK_TIME() + 3600000);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4629, 4);
+                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 451 + 207, 1);
+                Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 56, Hacks.GET_NETWORK_TIME() + 3600000);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4630, 4);
             }
             else
             {
-                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 453 + 209, 0);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4629, 0);
+                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 451 + 207, 0);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4630, 0);
             }
         }
 
@@ -187,15 +187,15 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4624, 1);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4626, Hacks.GET_NETWORK_TIME() + 3600000);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4623, 5);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4625, 1);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4627, Hacks.GET_NETWORK_TIME() + 3600000);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4624, 5);
             }
             else
             {
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4625, 0);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4627, 0);
                 Hacks.WriteGA<int>(Offsets.oVMYCar + 4624, 0);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4626, 0);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4623, 0);
             }
         }
 
@@ -206,15 +206,15 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4624, 1);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4626, Hacks.GET_NETWORK_TIME() + 3600000);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4623, 21);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4625, 1);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4627, Hacks.GET_NETWORK_TIME() + 3600000);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4624, 21);
             }
             else
             {
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4625, 0);
+                Hacks.WriteGA<int>(Offsets.oVMYCar + 4627, 0);
                 Hacks.WriteGA<int>(Offsets.oVMYCar + 4624, 0);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4626, 0);
-                Hacks.WriteGA<int>(Offsets.oVMYCar + 4623, 0);
             }
         }
 
@@ -225,13 +225,13 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 499 + 212, 1);
-                Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 71, Hacks.GET_NETWORK_TIME() + 3600000);
+                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 451 + 210, 1);
+                Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 57, Hacks.GET_NETWORK_TIME() + 3600000);
             }
             else
             {
-                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 499 + 212, 0);
-                Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 71, 0);
+                Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 451 + 210, 0);
+                Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 57, 0);
             }
         }
 
@@ -249,17 +249,17 @@ namespace GTA5OnlineTools.Features.SDK
         public static void REPMultiplier(float multiplier)
         {
             // car meet 汽车见面会       1819417801
-            Hacks.WriteGA<float>(262145 + 31283, multiplier);
+            Hacks.WriteGA<float>(262145 + 31299, multiplier);
             // Test Track
-            Hacks.WriteGA<float>(262145 + 31284, multiplier);
+            Hacks.WriteGA<float>(262145 + 31300, multiplier);
             // Head_2_Head 头对头
-            Hacks.WriteGA<float>(262145 + 31281, multiplier);
+            Hacks.WriteGA<float>(262145 + 31297, multiplier);
             // Scramble 攀登
-            Hacks.WriteGA<float>(262145 + 31280, multiplier);
+            Hacks.WriteGA<float>(262145 + 31296, multiplier);
             // Pursuit Race 追逐赛
-            Hacks.WriteGA<float>(262145 + 31279, multiplier);
+            Hacks.WriteGA<float>(262145 + 31295, multiplier);
             // Street Race 街头比赛
-            Hacks.WriteGA<float>(262145 + 31278, multiplier);
+            Hacks.WriteGA<float>(262145 + 31294, multiplier);
         }
 
         /// <summary>
@@ -269,11 +269,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(2703656 + 3590, 1);
+                Hacks.WriteGA<int>(2703660 + 3576, 1);
             }
             else
             {
-                Hacks.WriteGA<int>(2703656 + 3590, 5);
+                Hacks.WriteGA<int>(2703660 + 3576, 5);
             }
         }
 
@@ -284,11 +284,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(2810287 + 4454, 1);
+                Hacks.WriteGA<int>(2810701 + 4454, 1);
             }
             else
             {
-                Hacks.WriteGA<int>(2810287 + 4454, 0);
+                Hacks.WriteGA<int>(2810701 + 4454, 0);
             }
         }
 
@@ -299,11 +299,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(2810287 + 4455, 1);
+                Hacks.WriteGA<int>(2810701 + 4455, 1);
             }
             else
             {
-                Hacks.WriteGA<int>(2810287 + 4455, 0);
+                Hacks.WriteGA<int>(2810701 + 4455, 0);
             }
         }
 
@@ -314,11 +314,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(1946791, 1);
+                Hacks.WriteGA<int>(1946798, 1);
             }
             else
             {
-                Hacks.WriteGA<int>(1946791, 0);
+                Hacks.WriteGA<int>(1946798, 0);
             }
         }
 
@@ -327,7 +327,7 @@ namespace GTA5OnlineTools.Features.SDK
         /// </summary>
         public static void CEOCargoType(int cargoID)
         {
-            Hacks.WriteGA<int>(1946637, cargoID);
+            Hacks.WriteGA<int>(1946644, cargoID);
         }
 
         /// <summary>
@@ -337,11 +337,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 15360, 0);
+                Hacks.WriteGA<int>(262145 + 15361, 0);
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 15360, 300000);
+                Hacks.WriteGA<int>(262145 + 15361, 300000);
             }
         }
 
@@ -352,11 +352,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 15361, 0);
+                Hacks.WriteGA<int>(262145 + 15362, 0);
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 15361, 1800000);
+                Hacks.WriteGA<int>(262145 + 15362, 1800000);
             }
         }
 
@@ -367,51 +367,51 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 15595, 20000);      // 1
-                Hacks.WriteGA<int>(262145 + 15596, 20000);      // 2
-                Hacks.WriteGA<int>(262145 + 15597, 20000);      // 3                                                       
-                Hacks.WriteGA<int>(262145 + 15598, 20000);      // 4-5
-                Hacks.WriteGA<int>(262145 + 15599, 20000);      // 6-7
-                Hacks.WriteGA<int>(262145 + 15600, 20000);      // 8-9
-                Hacks.WriteGA<int>(262145 + 15601, 20000);      // 10-14
-                Hacks.WriteGA<int>(262145 + 15602, 20000);      // 15-19
-                Hacks.WriteGA<int>(262145 + 15603, 20000);      // 20-24
-                Hacks.WriteGA<int>(262145 + 15604, 20000);      // 25-29
-                Hacks.WriteGA<int>(262145 + 15605, 20000);      // 30-34
-                Hacks.WriteGA<int>(262145 + 15606, 20000);      // 35-39
-                Hacks.WriteGA<int>(262145 + 15607, 20000);      // 40-44
-                Hacks.WriteGA<int>(262145 + 15608, 20000);      // 45-49
-                Hacks.WriteGA<int>(262145 + 15609, 20000);      // 50-59
-                Hacks.WriteGA<int>(262145 + 15610, 20000);      // 60-69
-                Hacks.WriteGA<int>(262145 + 15611, 20000);      // 70-79
-                Hacks.WriteGA<int>(262145 + 15612, 20000);      // 80-89
-                Hacks.WriteGA<int>(262145 + 15613, 20000);      // 90-990
-                Hacks.WriteGA<int>(262145 + 15614, 20000);      // 100-11
-                Hacks.WriteGA<int>(262145 + 15615, 20000);      // 111
+                Hacks.WriteGA<int>(262145 + 15596, 20000);      // 1
+                Hacks.WriteGA<int>(262145 + 15597, 20000);      // 2
+                Hacks.WriteGA<int>(262145 + 15598, 20000);      // 3                                                       
+                Hacks.WriteGA<int>(262145 + 15599, 20000);      // 4-5
+                Hacks.WriteGA<int>(262145 + 15600, 20000);      // 6-7
+                Hacks.WriteGA<int>(262145 + 15601, 20000);      // 8-9
+                Hacks.WriteGA<int>(262145 + 15602, 20000);      // 10-14
+                Hacks.WriteGA<int>(262145 + 15603, 20000);      // 15-19
+                Hacks.WriteGA<int>(262145 + 15604, 20000);      // 20-24
+                Hacks.WriteGA<int>(262145 + 15605, 20000);      // 25-29
+                Hacks.WriteGA<int>(262145 + 15606, 20000);      // 30-34
+                Hacks.WriteGA<int>(262145 + 15607, 20000);      // 35-39
+                Hacks.WriteGA<int>(262145 + 15608, 20000);      // 40-44
+                Hacks.WriteGA<int>(262145 + 15609, 20000);      // 45-49
+                Hacks.WriteGA<int>(262145 + 15610, 20000);      // 50-59
+                Hacks.WriteGA<int>(262145 + 15611, 20000);      // 60-69
+                Hacks.WriteGA<int>(262145 + 15612, 20000);      // 70-79
+                Hacks.WriteGA<int>(262145 + 15613, 20000);      // 80-89
+                Hacks.WriteGA<int>(262145 + 15614, 20000);      // 90-990
+                Hacks.WriteGA<int>(262145 + 15615, 20000);      // 100-11
+                Hacks.WriteGA<int>(262145 + 15616, 20000);      // 111
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 15595, 10000);      // 1
-                Hacks.WriteGA<int>(262145 + 15596, 11000);      // 2
-                Hacks.WriteGA<int>(262145 + 15597, 12000);      // 3                                                       
-                Hacks.WriteGA<int>(262145 + 15598, 13000);      // 4-5
-                Hacks.WriteGA<int>(262145 + 15599, 13500);      // 6-7
-                Hacks.WriteGA<int>(262145 + 15600, 14000);      // 8-9
-                Hacks.WriteGA<int>(262145 + 15601, 14500);      // 10-14
-                Hacks.WriteGA<int>(262145 + 15602, 15000);      // 15-19
-                Hacks.WriteGA<int>(262145 + 15603, 15500);      // 20-24
-                Hacks.WriteGA<int>(262145 + 15604, 16000);      // 25-29
-                Hacks.WriteGA<int>(262145 + 15605, 16500);      // 30-34
-                Hacks.WriteGA<int>(262145 + 15606, 17000);      // 35-39
-                Hacks.WriteGA<int>(262145 + 15607, 17500);      // 40-44
-                Hacks.WriteGA<int>(262145 + 15608, 17750);      // 45-49
-                Hacks.WriteGA<int>(262145 + 15609, 18000);      // 50-59
-                Hacks.WriteGA<int>(262145 + 15610, 18250);      // 60-69
-                Hacks.WriteGA<int>(262145 + 15611, 18500);      // 70-79
-                Hacks.WriteGA<int>(262145 + 15612, 18750);      // 80-89
-                Hacks.WriteGA<int>(262145 + 15613, 19000);      // 90-990
-                Hacks.WriteGA<int>(262145 + 15614, 19500);      // 100-11
-                Hacks.WriteGA<int>(262145 + 15615, 20000);      // 111
+                Hacks.WriteGA<int>(262145 + 15596, 10000);      // 1
+                Hacks.WriteGA<int>(262145 + 15597, 11000);      // 2
+                Hacks.WriteGA<int>(262145 + 15598, 12000);      // 3                                                       
+                Hacks.WriteGA<int>(262145 + 15599, 13000);      // 4-5
+                Hacks.WriteGA<int>(262145 + 15600, 13500);      // 6-7
+                Hacks.WriteGA<int>(262145 + 15601, 14000);      // 8-9
+                Hacks.WriteGA<int>(262145 + 15602, 14500);      // 10-14
+                Hacks.WriteGA<int>(262145 + 15603, 15000);      // 15-19
+                Hacks.WriteGA<int>(262145 + 15604, 15500);      // 20-24
+                Hacks.WriteGA<int>(262145 + 15605, 16000);      // 25-29
+                Hacks.WriteGA<int>(262145 + 15606, 16500);      // 30-34
+                Hacks.WriteGA<int>(262145 + 15607, 17000);      // 35-39
+                Hacks.WriteGA<int>(262145 + 15608, 17500);      // 40-44
+                Hacks.WriteGA<int>(262145 + 15609, 17750);      // 45-49
+                Hacks.WriteGA<int>(262145 + 15610, 18000);      // 50-59
+                Hacks.WriteGA<int>(262145 + 15611, 18250);      // 60-69
+                Hacks.WriteGA<int>(262145 + 15612, 18500);      // 70-79
+                Hacks.WriteGA<int>(262145 + 15613, 18750);      // 80-89
+                Hacks.WriteGA<int>(262145 + 15614, 19000);      // 90-990
+                Hacks.WriteGA<int>(262145 + 15615, 19500);      // 100-11
+                Hacks.WriteGA<int>(262145 + 15616, 20000);      // 111
             }
         }
 
@@ -422,11 +422,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 21348, 0);
+                Hacks.WriteGA<int>(262145 + 21349, 0);
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 21348, 600);
+                Hacks.WriteGA<int>(262145 + 21349, 600);
             }
         }
 
@@ -438,26 +438,26 @@ namespace GTA5OnlineTools.Features.SDK
             if (isEnable)
             {
                 // Base Time to Produce
-                Hacks.WriteGA<int>(262145 + 21323, Settings.ProduceTime);  // Product                  215868155 
-                Hacks.WriteGA<int>(262145 + 21339, Settings.ProduceTime);  // Research                 -676414773
+                Hacks.WriteGA<int>(262145 + 21324, Settings.ProduceTime);  // Product                  215868155 
+                Hacks.WriteGA<int>(262145 + 21340, Settings.ProduceTime);  // Research                 -676414773
 
                 // Time to Produce Reductions
-                Hacks.WriteGA<int>(262145 + 21324, Settings.ProduceTime);  // Production Equipment     631477612
-                Hacks.WriteGA<int>(262145 + 21325, Settings.ProduceTime);  // Production Staff         818645907
-                Hacks.WriteGA<int>(262145 + 21340, Settings.ProduceTime);  // Research Equipment       -1148432846
-                Hacks.WriteGA<int>(262145 + 21341, Settings.ProduceTime);  // Research Staff           510883248
+                Hacks.WriteGA<int>(262145 + 21325, Settings.ProduceTime);  // Production Equipment     631477612
+                Hacks.WriteGA<int>(262145 + 21326, Settings.ProduceTime);  // Production Staff         818645907
+                Hacks.WriteGA<int>(262145 + 21341, Settings.ProduceTime);  // Research Equipment       -1148432846
+                Hacks.WriteGA<int>(262145 + 21342, Settings.ProduceTime);  // Research Staff           510883248
             }
             else
             {
                 // Base Time to Produce
-                Hacks.WriteGA<int>(262145 + 21323, 600000);  // Product
-                Hacks.WriteGA<int>(262145 + 21339, 300000);  // Research
+                Hacks.WriteGA<int>(262145 + 21324, 600000);  // Product
+                Hacks.WriteGA<int>(262145 + 21340, 300000);  // Research
 
                 // Time to Produce Reductions
-                Hacks.WriteGA<int>(262145 + 21324, 90000);  // Production Equipment
-                Hacks.WriteGA<int>(262145 + 21325, 90000);  // Production Staff
-                Hacks.WriteGA<int>(262145 + 21340, 45000);  // Research Equipment
-                Hacks.WriteGA<int>(262145 + 21341, 45000);  // Research Staff
+                Hacks.WriteGA<int>(262145 + 21325, 90000);  // Production Equipment
+                Hacks.WriteGA<int>(262145 + 21326, 90000);  // Production Staff
+                Hacks.WriteGA<int>(262145 + 21341, 45000);  // Research Equipment
+                Hacks.WriteGA<int>(262145 + 21342, 45000);  // Research Staff
             }
         }
 
@@ -469,14 +469,14 @@ namespace GTA5OnlineTools.Features.SDK
             if (isEnable)
             {
                 // Resupply Costs
-                Hacks.WriteGA<int>(262145 + 21346, 200);  // Discounted             970448219
-                Hacks.WriteGA<int>(262145 + 21347, 200);  // Base                   262971166
+                Hacks.WriteGA<int>(262145 + 21347, 200);  // Discounted             970448219
+                Hacks.WriteGA<int>(262145 + 21348, 200);  // Base                   262971166
             }
             else
             {
                 // Resupply Costs
-                Hacks.WriteGA<int>(262145 + 21346, 15000);  // Discounted
-                Hacks.WriteGA<int>(262145 + 21347, 15000);  // Base
+                Hacks.WriteGA<int>(262145 + 21347, 15000);  // Discounted
+                Hacks.WriteGA<int>(262145 + 21348, 15000);  // Base
             }
         }
 
@@ -488,14 +488,14 @@ namespace GTA5OnlineTools.Features.SDK
             if (isEnable)
             {
                 // Sale Multipliers
-                Hacks.WriteGA<float>(262145 + 21302, 2.0f);     // Near         1865029244
-                Hacks.WriteGA<float>(262145 + 21303, 3.0f);     // Far          1021567941
+                Hacks.WriteGA<float>(262145 + 21303, 2.0f);     // Near         1865029244
+                Hacks.WriteGA<float>(262145 + 21304, 3.0f);     // Far          1021567941
             }
             else
             {
                 // Sale Multipliers
-                Hacks.WriteGA<float>(262145 + 21302, 1.0f);     // Near
-                Hacks.WriteGA<float>(262145 + 21303, 1.5f);     // Far
+                Hacks.WriteGA<float>(262145 + 21303, 1.0f);     // Near
+                Hacks.WriteGA<float>(262145 + 21304, 1.5f);     // Far
             }
         }
 
@@ -507,14 +507,14 @@ namespace GTA5OnlineTools.Features.SDK
             if (isEnable)
             {
                 // Sale Multipliers
-                Hacks.WriteGA<float>(262145 + 18860, 2.0f);     // Near         -823848572
-                Hacks.WriteGA<float>(262145 + 18861, 3.0f);     // Far          1763638426
+                Hacks.WriteGA<float>(262145 + 18861, 2.0f);     // Near         -823848572
+                Hacks.WriteGA<float>(262145 + 18862, 3.0f);     // Far          1763638426
             }
             else
             {
                 // Sale Multipliers
-                Hacks.WriteGA<float>(262145 + 18860, 1.0f);     // Near
-                Hacks.WriteGA<float>(262145 + 18861, 1.5f);     // Far
+                Hacks.WriteGA<float>(262145 + 18861, 1.0f);     // Near
+                Hacks.WriteGA<float>(262145 + 18862, 1.5f);     // Far
             }
         }
 
@@ -526,18 +526,18 @@ namespace GTA5OnlineTools.Features.SDK
             if (isEnable)
             {
                 // Supplies Per Unit Produced
-                Hacks.WriteGA<int>(262145 + 21326, 1);     // Product Base              -1652502760
-                Hacks.WriteGA<int>(262145 + 21327, 1);     // Product Upgraded          1647327744
-                Hacks.WriteGA<int>(262145 + 21342, 1);     // Research Base             1485279815
-                Hacks.WriteGA<int>(262145 + 21343, 1);     // Research Upgraded         2041812011
+                Hacks.WriteGA<int>(262145 + 21327, 1);     // Product Base              -1652502760
+                Hacks.WriteGA<int>(262145 + 21328, 1);     // Product Upgraded          1647327744
+                Hacks.WriteGA<int>(262145 + 21343, 1);     // Research Base             1485279815
+                Hacks.WriteGA<int>(262145 + 21344, 1);     // Research Upgraded         2041812011
             }
             else
             {
                 // Supplies Per Unit Produced
-                Hacks.WriteGA<int>(262145 + 21326, 10);     // Product Base
-                Hacks.WriteGA<int>(262145 + 21327, 5);     // Product Upgraded
-                Hacks.WriteGA<int>(262145 + 21342, 2);     // Research Base
-                Hacks.WriteGA<int>(262145 + 21343, 1);     // Research Upgraded
+                Hacks.WriteGA<int>(262145 + 21327, 10);     // Product Base
+                Hacks.WriteGA<int>(262145 + 21328, 5);     // Product Upgraded
+                Hacks.WriteGA<int>(262145 + 21343, 2);     // Research Base
+                Hacks.WriteGA<int>(262145 + 21344, 1);     // Research Upgraded
             }
         }
 
@@ -549,30 +549,30 @@ namespace GTA5OnlineTools.Features.SDK
             if (isEnable)
             {
                 // Supplies Per Unit Produced
-                Hacks.WriteGA<int>(262145 + 17212, 1);     // Documents Base            -1839004359
-                Hacks.WriteGA<int>(262145 + 17213, 1);     // Cash Base
-                Hacks.WriteGA<int>(262145 + 17214, 1);     // Cocaine Base
-                Hacks.WriteGA<int>(262145 + 17215, 1);     // Meth Base
-                Hacks.WriteGA<int>(262145 + 17216, 1);     // Weed Base
-                Hacks.WriteGA<int>(262145 + 17217, 1);     // Documents Upgraded
-                Hacks.WriteGA<int>(262145 + 17218, 1);     // Cash Upgraded
-                Hacks.WriteGA<int>(262145 + 17219, 1);     // Cocaine Upgraded
-                Hacks.WriteGA<int>(262145 + 17220, 1);     // Meth Upgraded
-                Hacks.WriteGA<int>(262145 + 17221, 1);     // Weed Upgraded
+                Hacks.WriteGA<int>(262145 + 17213, 1);     // Documents Base            -1839004359
+                Hacks.WriteGA<int>(262145 + 17214, 1);     // Cash Base
+                Hacks.WriteGA<int>(262145 + 17215, 1);     // Cocaine Base
+                Hacks.WriteGA<int>(262145 + 17216, 1);     // Meth Base
+                Hacks.WriteGA<int>(262145 + 17217, 1);     // Weed Base
+                Hacks.WriteGA<int>(262145 + 17218, 1);     // Documents Upgraded
+                Hacks.WriteGA<int>(262145 + 17219, 1);     // Cash Upgraded
+                Hacks.WriteGA<int>(262145 + 17220, 1);     // Cocaine Upgraded
+                Hacks.WriteGA<int>(262145 + 17221, 1);     // Meth Upgraded
+                Hacks.WriteGA<int>(262145 + 17222, 1);     // Weed Upgraded
             }
             else
             {
                 // Supplies Per Unit Produced
-                Hacks.WriteGA<int>(262145 + 17212, 4);      // Documents Base
-                Hacks.WriteGA<int>(262145 + 17213, 10);     // Cash Base
-                Hacks.WriteGA<int>(262145 + 17214, 50);     // Cocaine Base
-                Hacks.WriteGA<int>(262145 + 17215, 24);     // Meth Base
-                Hacks.WriteGA<int>(262145 + 17216, 4);      // Weed Base
-                Hacks.WriteGA<int>(262145 + 17217, 2);      // Documents Upgraded
-                Hacks.WriteGA<int>(262145 + 17218, 5);      // Cash Upgraded
-                Hacks.WriteGA<int>(262145 + 17219, 25);     // Cocaine Upgraded
-                Hacks.WriteGA<int>(262145 + 17220, 12);     // Meth Upgraded
-                Hacks.WriteGA<int>(262145 + 17221, 2);      // Weed Upgraded
+                Hacks.WriteGA<int>(262145 + 17213, 4);      // Documents Base
+                Hacks.WriteGA<int>(262145 + 17214, 10);     // Cash Base
+                Hacks.WriteGA<int>(262145 + 17215, 50);     // Cocaine Base
+                Hacks.WriteGA<int>(262145 + 17216, 24);     // Meth Base
+                Hacks.WriteGA<int>(262145 + 17217, 4);      // Weed Base
+                Hacks.WriteGA<int>(262145 + 17218, 2);      // Documents Upgraded
+                Hacks.WriteGA<int>(262145 + 17219, 5);      // Cash Upgraded
+                Hacks.WriteGA<int>(262145 + 17220, 25);     // Cocaine Upgraded
+                Hacks.WriteGA<int>(262145 + 17221, 12);     // Meth Upgraded
+                Hacks.WriteGA<int>(262145 + 17222, 2);      // Weed Upgraded
             }
         }
 
@@ -583,11 +583,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 21476, 1);       // 886070202
+                Hacks.WriteGA<int>(262145 + 21477, 1);       // 886070202
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 21476, 0);
+                Hacks.WriteGA<int>(262145 + 21477, 0);
             }
         }
 
@@ -599,24 +599,24 @@ namespace GTA5OnlineTools.Features.SDK
             if (isEnable)
             {
                 // Time to Produce
-                Hacks.WriteGA<int>(262145 + 24134, Settings.ProduceTime);  // Sporting Goods               -147565853
-                Hacks.WriteGA<int>(262145 + 24135, Settings.ProduceTime);  // South American Imports
-                Hacks.WriteGA<int>(262145 + 24136, Settings.ProduceTime);  // Pharmaceutical Research
-                Hacks.WriteGA<int>(262145 + 24137, Settings.ProduceTime);  // Organic Produce
-                Hacks.WriteGA<int>(262145 + 24138, Settings.ProduceTime);  // Printing and Copying
-                Hacks.WriteGA<int>(262145 + 24139, Settings.ProduceTime);  // Cash Creation
-                Hacks.WriteGA<int>(262145 + 24140, Settings.ProduceTime);  // Cargo and Shipments
+                Hacks.WriteGA<int>(262145 + 24135, Settings.ProduceTime);  // Sporting Goods               -147565853
+                Hacks.WriteGA<int>(262145 + 24136, Settings.ProduceTime);  // South American Imports
+                Hacks.WriteGA<int>(262145 + 24137, Settings.ProduceTime);  // Pharmaceutical Research
+                Hacks.WriteGA<int>(262145 + 24138, Settings.ProduceTime);  // Organic Produce
+                Hacks.WriteGA<int>(262145 + 24139, Settings.ProduceTime);  // Printing and Copying
+                Hacks.WriteGA<int>(262145 + 24140, Settings.ProduceTime);  // Cash Creation
+                Hacks.WriteGA<int>(262145 + 24141, Settings.ProduceTime);  // Cargo and Shipments
             }
             else
             {
                 // Time to Produce
-                Hacks.WriteGA<int>(262145 + 24134, 4800000);    // Sporting Goods
-                Hacks.WriteGA<int>(262145 + 24135, 14400000);   // South American Imports
-                Hacks.WriteGA<int>(262145 + 24136, 7200000);    // Pharmaceutical Research
-                Hacks.WriteGA<int>(262145 + 24137, 2400000);    // Organic Produce
-                Hacks.WriteGA<int>(262145 + 24138, 1800000);    // Printing and Copying
-                Hacks.WriteGA<int>(262145 + 24139, 3600000);    // Cash Creation
-                Hacks.WriteGA<int>(262145 + 24140, 8400000);    // Cargo and Shipments
+                Hacks.WriteGA<int>(262145 + 24135, 4800000);    // Sporting Goods
+                Hacks.WriteGA<int>(262145 + 24136, 14400000);   // South American Imports
+                Hacks.WriteGA<int>(262145 + 24137, 7200000);    // Pharmaceutical Research
+                Hacks.WriteGA<int>(262145 + 24138, 2400000);    // Organic Produce
+                Hacks.WriteGA<int>(262145 + 24139, 1800000);    // Printing and Copying
+                Hacks.WriteGA<int>(262145 + 24140, 3600000);    // Cash Creation
+                Hacks.WriteGA<int>(262145 + 24141, 8400000);    // Cargo and Shipments
             }
         }
 
@@ -628,44 +628,44 @@ namespace GTA5OnlineTools.Features.SDK
             if (isEnable)
             {
                 // Base Time to Produce
-                Hacks.WriteGA<int>(262145 + 17197, Settings.ProduceTime);  // Weed         -635596193
-                Hacks.WriteGA<int>(262145 + 17198, Settings.ProduceTime);  // Meth
-                Hacks.WriteGA<int>(262145 + 17199, Settings.ProduceTime);  // Cocaine
-                Hacks.WriteGA<int>(262145 + 17200, Settings.ProduceTime);  // Documents
-                Hacks.WriteGA<int>(262145 + 17201, Settings.ProduceTime);  // Cash
+                Hacks.WriteGA<int>(262145 + 17198, Settings.ProduceTime);  // Weed         -635596193
+                Hacks.WriteGA<int>(262145 + 17199, Settings.ProduceTime);  // Meth
+                Hacks.WriteGA<int>(262145 + 17200, Settings.ProduceTime);  // Cocaine
+                Hacks.WriteGA<int>(262145 + 17201, Settings.ProduceTime);  // Documents
+                Hacks.WriteGA<int>(262145 + 17202, Settings.ProduceTime);  // Cash
 
                 // Time to Produce Reductions
-                Hacks.WriteGA<int>(262145 + 17202, 1);  // Documents Equipment
-                Hacks.WriteGA<int>(262145 + 17203, 1);  // Cash Equipment
-                Hacks.WriteGA<int>(262145 + 17204, 1);  // Cocaine Equipment
-                Hacks.WriteGA<int>(262145 + 17205, 1);  // Meth Equipment
-                Hacks.WriteGA<int>(262145 + 17206, 1);  // Weed Equipment
-                Hacks.WriteGA<int>(262145 + 17207, 1);  // Documents Staff
-                Hacks.WriteGA<int>(262145 + 17208, 1);  // Cash Staff
-                Hacks.WriteGA<int>(262145 + 17209, 1);  // Cocaine Staff
-                Hacks.WriteGA<int>(262145 + 17210, 1);  // Meth Staff
-                Hacks.WriteGA<int>(262145 + 17211, 1);  // Weed Staff
+                Hacks.WriteGA<int>(262145 + 17203, 1);  // Documents Equipment
+                Hacks.WriteGA<int>(262145 + 17204, 1);  // Cash Equipment
+                Hacks.WriteGA<int>(262145 + 17205, 1);  // Cocaine Equipment
+                Hacks.WriteGA<int>(262145 + 17206, 1);  // Meth Equipment
+                Hacks.WriteGA<int>(262145 + 17207, 1);  // Weed Equipment
+                Hacks.WriteGA<int>(262145 + 17208, 1);  // Documents Staff
+                Hacks.WriteGA<int>(262145 + 17209, 1);  // Cash Staff
+                Hacks.WriteGA<int>(262145 + 17210, 1);  // Cocaine Staff
+                Hacks.WriteGA<int>(262145 + 17211, 1);  // Meth Staff
+                Hacks.WriteGA<int>(262145 + 17212, 1);  // Weed Staff
             }
             else
             {
                 // Base Time to Produce
-                Hacks.WriteGA<int>(262145 + 17197, 360000);     // Weed
-                Hacks.WriteGA<int>(262145 + 17198, 1800000);    // Meth
-                Hacks.WriteGA<int>(262145 + 17199, 3000000);    // Cocaine
-                Hacks.WriteGA<int>(262145 + 17200, 300000);     // Documents
-                Hacks.WriteGA<int>(262145 + 17201, 720000);     // Cash
+                Hacks.WriteGA<int>(262145 + 17198, 360000);     // Weed
+                Hacks.WriteGA<int>(262145 + 17199, 1800000);    // Meth
+                Hacks.WriteGA<int>(262145 + 17200, 3000000);    // Cocaine
+                Hacks.WriteGA<int>(262145 + 17201, 300000);     // Documents
+                Hacks.WriteGA<int>(262145 + 17202, 720000);     // Cash
 
                 // Time to Produce Reductions
-                Hacks.WriteGA<int>(262145 + 17202, 60000);      // Documents Equipment
-                Hacks.WriteGA<int>(262145 + 17203, 120000);     // Cash Equipment
-                Hacks.WriteGA<int>(262145 + 17204, 600000);     // Cocaine Equipment
-                Hacks.WriteGA<int>(262145 + 17205, 360000);     // Meth Equipment
-                Hacks.WriteGA<int>(262145 + 17206, 60000);      // Weed Equipment
-                Hacks.WriteGA<int>(262145 + 17207, 60000);      // Documents Staff
-                Hacks.WriteGA<int>(262145 + 17208, 120000);     // Cash Staff
-                Hacks.WriteGA<int>(262145 + 17209, 600000);     // Cocaine Staff
-                Hacks.WriteGA<int>(262145 + 17210, 360000);     // Meth Staff
-                Hacks.WriteGA<int>(262145 + 17211, 60000);      // Weed Staff
+                Hacks.WriteGA<int>(262145 + 17203, 60000);      // Documents Equipment
+                Hacks.WriteGA<int>(262145 + 17204, 120000);     // Cash Equipment
+                Hacks.WriteGA<int>(262145 + 17205, 600000);     // Cocaine Equipment
+                Hacks.WriteGA<int>(262145 + 17206, 360000);     // Meth Equipment
+                Hacks.WriteGA<int>(262145 + 17207, 60000);      // Weed Equipment
+                Hacks.WriteGA<int>(262145 + 17208, 60000);      // Documents Staff
+                Hacks.WriteGA<int>(262145 + 17209, 120000);     // Cash Staff
+                Hacks.WriteGA<int>(262145 + 17210, 600000);     // Cocaine Staff
+                Hacks.WriteGA<int>(262145 + 17211, 360000);     // Meth Staff
+                Hacks.WriteGA<int>(262145 + 17212, 60000);      // Weed Staff
             }
         }
 
@@ -676,11 +676,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 18748, 0);          // 728170457
+                Hacks.WriteGA<int>(262145 + 18749, 0);          // 728170457
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 18748, 600);
+                Hacks.WriteGA<int>(262145 + 18749, 600);
             }
         }
 
@@ -691,11 +691,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 18747, 200);  // Discounted Resupply Cost       BIKER_PURCHASE_SUPPLIES_COST_PER_SEGMENT
+                Hacks.WriteGA<int>(262145 + 18748, 200);  // Discounted Resupply Cost       BIKER_PURCHASE_SUPPLIES_COST_PER_SEGMENT
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 18747, 15000);  // Discounted Resupply Cost
+                Hacks.WriteGA<int>(262145 + 18748, 15000);  // Discounted Resupply Cost
             }
         }
 
@@ -704,7 +704,7 @@ namespace GTA5OnlineTools.Features.SDK
         /// </summary>
         public static void MerryweatherServices(int serverId)
         {
-            Hacks.WriteGA<int>(2810287 + serverId, 1);
+            Hacks.WriteGA<int>(2810701 + serverId, 1);
         }
 
         /// <summary>
@@ -714,17 +714,17 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 19476, 0);          // 1001423248
-                Hacks.WriteGA<int>(262145 + 19477, 0);
+                Hacks.WriteGA<int>(262145 + 19477, 0);          // 1001423248
                 Hacks.WriteGA<int>(262145 + 19478, 0);
                 Hacks.WriteGA<int>(262145 + 19479, 0);
+                Hacks.WriteGA<int>(262145 + 19480, 0);
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 19476, 1200000);
-                Hacks.WriteGA<int>(262145 + 19477, 1680000);
-                Hacks.WriteGA<int>(262145 + 19478, 2340000);
-                Hacks.WriteGA<int>(262145 + 19479, 2880000);
+                Hacks.WriteGA<int>(262145 + 19477, 1200000);
+                Hacks.WriteGA<int>(262145 + 19478, 1680000);
+                Hacks.WriteGA<int>(262145 + 19479, 2340000);
+                Hacks.WriteGA<int>(262145 + 19480, 2880000);
             }
         }
 
@@ -733,9 +733,9 @@ namespace GTA5OnlineTools.Features.SDK
         /// </summary>
         public static void Disconnect()
         {
-            Hacks.WriteGA<int>(31782, 1);
+            Hacks.WriteGA<int>(31788, 1);
             Thread.Sleep(20);
-            Hacks.WriteGA<int>(31782, 0);
+            Hacks.WriteGA<int>(31788, 0);
         }
 
         /// <summary>
@@ -745,17 +745,17 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 22521, 0);          // 1278611667
-                Hacks.WriteGA<int>(262145 + 22522, 0);
+                Hacks.WriteGA<int>(262145 + 22522, 0);          // 1278611667
                 Hacks.WriteGA<int>(262145 + 22523, 0);
                 Hacks.WriteGA<int>(262145 + 22524, 0);
+                Hacks.WriteGA<int>(262145 + 22525, 0);
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 22521, 120000);
-                Hacks.WriteGA<int>(262145 + 22522, 180000);
-                Hacks.WriteGA<int>(262145 + 22523, 240000);
-                Hacks.WriteGA<int>(262145 + 22524, 60000);
+                Hacks.WriteGA<int>(262145 + 22522, 120000);
+                Hacks.WriteGA<int>(262145 + 22523, 180000);
+                Hacks.WriteGA<int>(262145 + 22524, 240000);
+                Hacks.WriteGA<int>(262145 + 22525, 60000);
             }
         }
 
@@ -767,11 +767,11 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 22560, 0);          // -1525481945
+                Hacks.WriteGA<int>(262145 + 22561, 0);          // -1525481945
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 22560, 180000);
+                Hacks.WriteGA<int>(262145 + 22561, 180000);
             }
         }
 
@@ -782,15 +782,15 @@ namespace GTA5OnlineTools.Features.SDK
         {
             if (isEnable)
             {
-                Hacks.WriteGA<int>(262145 + 24208, 0);      // 1763921019
-                Hacks.WriteGA<int>(262145 + 24243, 0);      // -1004589438
-                Hacks.WriteGA<int>(262145 + 24244, 0);
+                Hacks.WriteGA<int>(262145 + 24216, 0);      // 1763921019
+                Hacks.WriteGA<int>(262145 + 24251, 0);      // -1004589438
+                Hacks.WriteGA<int>(262145 + 24252, 0);
             }
             else
             {
-                Hacks.WriteGA<int>(262145 + 24208, 300000);
-                Hacks.WriteGA<int>(262145 + 24243, 300000);
-                Hacks.WriteGA<int>(262145 + 24244, 300000);
+                Hacks.WriteGA<int>(262145 + 24216, 300000);
+                Hacks.WriteGA<int>(262145 + 24251, 300000);
+                Hacks.WriteGA<int>(262145 + 24252, 300000);
             }
         }
 
@@ -802,11 +802,11 @@ namespace GTA5OnlineTools.Features.SDK
             // 托尼分红 GA(262145+24162) 默认10000
             if (isEnable)
             {
-                Hacks.WriteGA<float>(262145 + 24250, 0.000001f);        // -1002770353
+                Hacks.WriteGA<float>(262145 + 24258, 0.000001f);        // -1002770353
             }
             else
             {
-                Hacks.WriteGA<float>(262145 + 24250, 0.1f);
+                Hacks.WriteGA<float>(262145 + 24258, 0.1f);
             }
         }
     }

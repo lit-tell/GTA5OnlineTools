@@ -132,14 +132,14 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
 
             Task.Run(() =>
             {
-                int max_slots = ReadGA<int>(1585844);
+                int max_slots = ReadGA<int>(1585853);
                 for (int i = 0; i < max_slots; i++)
                 {
-                    long hash = ReadGA<long>(1585844 + 1 + (i * 142) + 66);
+                    long hash = ReadGA<long>(1585853 + 1 + (i * 142) + 66);
                     if (hash == 0)
                         continue;
 
-                    string plate = ReadGAString(1585844 + 1 + (i * 142) + 1);
+                    string plate = ReadGAString(1585853 + 1 + (i * 142) + 1);
 
                     pVInfos.Add(new PVInfo()
                     {
@@ -170,10 +170,10 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             {
                 Task.Run(() =>
                 {
-                    WriteGA<int>(2810287 + 965, pVInfos[index].Index);
-                    WriteGA<int>(2810287 + 962, 1);
+                    WriteGA<int>(2810701 + 965, pVInfos[index].Index);
+                    WriteGA<int>(2810701 + 962, 1);
                     Task.Delay(500).Wait();
-                    WriteGA<int>(2671444 + 8, 1);
+                    WriteGA<int>(2810701 + 8, 1);
                 });
             }
         }
