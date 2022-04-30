@@ -113,7 +113,7 @@ namespace GTA5OnlineTools.ViewModels
                                 StringBuilder windowName = new StringBuilder(length + 1);
                                 WinAPI.GetWindowText(child_handle, windowName, windowName.Capacity);
 
-                                if (windowName.ToString() == "Kiddion's Modest Menu v0.9.2")
+                                if (windowName.ToString() == "Kiddion's Modest Menu v0.9.3")
                                 {
                                     isShow = true;
                                     ProcessUtil.OpenProcess("Kiddion_Chs", true);
