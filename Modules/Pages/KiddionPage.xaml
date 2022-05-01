@@ -22,7 +22,7 @@
                     简介
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
-                    ● 已更新到Kiddion最新版本v0.9.1，支持线上1.58版本，已汉化（外置汉化）
+                    ● 已更新到Kiddion最新版本v0.9.3，支持线上1.59版本，已汉化（外置汉化）
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
                     ● 使用Kiddion外置辅助游戏需要设置无边框或窗口化

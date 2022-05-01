@@ -7,8 +7,8 @@
     <UseWPF>true</UseWPF>
     <Platforms>x64</Platforms>
     <StartupObject>GTA5OnlineTools.App</StartupObject>
-    <AssemblyVersion>3.0.2.5</AssemblyVersion>
-    <FileVersion>3.0.2.7</FileVersion>
+    <AssemblyVersion>3.0.2.6</AssemblyVersion>
+    <FileVersion>3.0.2.6</FileVersion>
     <ApplicationIcon>Assets\Images\Favicon.ico</ApplicationIcon>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <DebugType>full</DebugType>
@@ -46,8 +46,12 @@
     <None Remove="Features\Files\LSCHax.exe" />
     <None Remove="Features\Files\MyInjectMenu.dll" />
     <None Remove="Features\Files\PackedStatEditor.dll" />
+    <None Remove="Features\Files\scripts\demo.lua" />
+    <None Remove="Features\Files\scripts\menu.lua" />
     <None Remove="Features\Files\scripts\Readme.api" />
     <None Remove="Features\Files\scripts\sirius.lua.example" />
+    <None Remove="Features\Files\scripts\vehicle.lua" />
+    <None Remove="Features\Files\scripts\weapon.lua" />
     <None Remove="Features\Files\settings.ini" />
     <None Remove="Features\Files\stat.txt" />
     <None Remove="Features\Files\SubVersion.exe" />
@@ -70,8 +74,12 @@
     <EmbeddedResource Include="Features\Files\Kiddion_Chs.exe" />
     <EmbeddedResource Include="Features\Files\LSCHax.exe" />
     <EmbeddedResource Include="Features\Files\PackedStatEditor.dll" />
+    <EmbeddedResource Include="Features\Files\scripts\demo.lua" />
+    <EmbeddedResource Include="Features\Files\scripts\menu.lua" />
     <EmbeddedResource Include="Features\Files\scripts\Readme.api" />
     <EmbeddedResource Include="Features\Files\scripts\sirius.lua.example" />
+    <EmbeddedResource Include="Features\Files\scripts\vehicle.lua" />
+    <EmbeddedResource Include="Features\Files\scripts\weapon.lua" />
     <EmbeddedResource Include="Features\Files\settings.ini" />
     <EmbeddedResource Include="Features\Files\stat.txt" />
     <EmbeddedResource Include="Features\Files\SubVersion.exe" />
