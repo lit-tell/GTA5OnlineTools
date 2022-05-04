@@ -109,8 +109,9 @@ namespace GTA5OnlineTools.ViewModels
                     FileUtil.ExtractResFile(FileUtil.Resource_Path + "vehicles.json", FileUtil.Kiddion_Path + "vehicles.json");
                 if (!File.Exists(FileUtil.KiddionScripts_Path + "Readme.api"))
                     FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.Readme.api", FileUtil.KiddionScripts_Path + "Readme.api");
-                if (!File.Exists(FileUtil.KiddionScripts_Path + "scripts.sirius.lua.example"))
-                    FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.sirius.lua.example", FileUtil.KiddionScripts_Path + "sirius.lua.example");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.pre_skip.lua", FileUtil.KiddionScripts_Path + "pre_skip.lua");
+                //if (!File.Exists(FileUtil.KiddionScripts_Path + "scripts.sirius.lua.example"))
+                //FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.sirius.lua.example", FileUtil.KiddionScripts_Path + "sirius.lua.example");
                 if (!File.Exists(FileUtil.Kiddion_Path + "settings.ini"))
                     FileUtil.ExtractResFile(FileUtil.Resource_Path + "settings.ini", FileUtil.Kiddion_Path + "settings.ini");
 

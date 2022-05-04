@@ -7,8 +7,8 @@
     <UseWPF>true</UseWPF>
     <Platforms>x64</Platforms>
     <StartupObject>GTA5OnlineTools.App</StartupObject>
-    <AssemblyVersion>3.0.2.6</AssemblyVersion>
-    <FileVersion>3.0.2.6</FileVersion>
+    <AssemblyVersion>3.0.2.7</AssemblyVersion>
+    <FileVersion>3.0.2.7</FileVersion>
     <ApplicationIcon>Assets\Images\Favicon.ico</ApplicationIcon>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
     <DebugType>full</DebugType>
@@ -48,6 +48,7 @@
     <None Remove="Features\Files\PackedStatEditor.dll" />
     <None Remove="Features\Files\scripts\demo.lua" />
     <None Remove="Features\Files\scripts\menu.lua" />
+    <None Remove="Features\Files\scripts\pre_skip.lua" />
     <None Remove="Features\Files\scripts\Readme.api" />
     <None Remove="Features\Files\scripts\sirius.lua.example" />
     <None Remove="Features\Files\scripts\vehicle.lua" />
@@ -76,6 +77,7 @@
     <EmbeddedResource Include="Features\Files\PackedStatEditor.dll" />
     <EmbeddedResource Include="Features\Files\scripts\demo.lua" />
     <EmbeddedResource Include="Features\Files\scripts\menu.lua" />
+    <EmbeddedResource Include="Features\Files\scripts\pre_skip.lua" />
     <EmbeddedResource Include="Features\Files\scripts\Readme.api" />
     <EmbeddedResource Include="Features\Files\scripts\sirius.lua.example" />
     <EmbeddedResource Include="Features\Files\scripts\vehicle.lua" />
