@@ -22,9 +22,6 @@
                     简介
                 </Paragraph>
                 <Paragraph Style="{StaticResource ContentParagraphStyle}">
-                    ● 更新subVersion v1.3.9，支持线上1.60版本
-                </Paragraph>
-                <Paragraph Style="{StaticResource ContentParagraphStyle}">
                     ● 辅助作者：AmazingPP，博客地址：<Hyperlink NavigateUri="https://www.zhaofupeng.com/" RequestNavigate="Hyperlink_RequestNavigate">
                         https://www.zhaofupeng.com/
                     </Hyperlink>
