@@ -28,17 +28,17 @@ namespace GTA5OnlineTools.Features.SDK
 
                 if (sessionID == -1)
                 {
-                    Hacks.WriteGA<int>(1574589 + 2, -1);
-                    Hacks.WriteGA<int>(1574589, 1);
+                    Hacks.WriteGA<int>(Offsets.InitSession_Cache, -1);
+                    Hacks.WriteGA<int>(Offsets.InitSession, 1);
                     Task.Delay(200).Wait();
-                    Hacks.WriteGA<int>(1574589, 0);
+                    Hacks.WriteGA<int>(Offsets.InitSession, 0);
                 }
                 else
                 {
-                    Hacks.WriteGA<int>(1575012, sessionID);
-                    Hacks.WriteGA<int>(1574589, 1);
+                    Hacks.WriteGA<int>(Offsets.InitSession_Type, sessionID);
+                    Hacks.WriteGA<int>(Offsets.InitSession, 1);
                     Task.Delay(200).Wait();
-                    Hacks.WriteGA<int>(1574589, 0);
+                    Hacks.WriteGA<int>(Offsets.InitSession, 0);
                 }
             });
         }

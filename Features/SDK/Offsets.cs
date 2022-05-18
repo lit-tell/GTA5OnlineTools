@@ -27,7 +27,8 @@ public class Offsets
     ////////////////////////////////////////////////////////////////////
 
     public const int InitSession = 1574589;
-    public const int SessionType = 1575012;
+    public const int InitSession_Cache = 1574589 + 2;
+    public const int InitSession_Type = 1575012;
 
     public const int PlayerNameDisPlay_Epic = 0x2C36104;
     public const int PlayerNameDisPlay_Steam = 0x2C3AC94;
