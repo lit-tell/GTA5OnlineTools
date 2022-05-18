@@ -9,7 +9,7 @@ namespace GTA5OnlineTools.Common.Utils
         /// <summary>
         /// 主窗口标题
         /// </summary>
-        public const string MainAppWindowName = "GTA5线上小助手 支持1.59 完全免费 v";
+        public const string MainAppWindowName = "GTA5线上小助手 支持1.60 完全免费 v";
 
         /// <summary>
         /// 目标进程
