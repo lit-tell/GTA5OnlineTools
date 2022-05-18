@@ -88,51 +88,15 @@ namespace GTA5OnlineTools.ViewModels
             {
                 if (UC1HacksModel.KiddionIsRun)
                 {
-                    ProcessUtil.CloseProcess("Kiddion_Chs");
-
                     if (!ProcessUtil.IsAppRun("Kiddion"))
                         ProcessUtil.OpenProcess("Kiddion", true);
 
-                    bool isRun = false;
-                    do
+                    AudioUtil.SP_Click_02.Play();
+
+                    if ((int)System.Windows.Forms.MessageBox.Show("是否开启汉化？", "小助手提示", System.Windows.Forms.MessageBoxButtons.YesNo) == 6)
                     {
-                        if (ProcessUtil.IsAppRun("Kiddion"))
-                        {
-                            isRun = true;
-
-                            var pKiddion = Process.GetProcessesByName("Kiddion").ToList()[0];
-
-                            bool isShow = false;
-                            do
-                            {
-                                IntPtr Menu_handle = pKiddion.MainWindowHandle;
-                                IntPtr child_handle = WinAPI.FindWindowEx(Menu_handle, IntPtr.Zero, "Static", null);
-                                child_handle = WinAPI.FindWindowEx(Menu_handle, child_handle, "Static", null);
-
-                                int length = WinAPI.GetWindowTextLength(child_handle);
-                                StringBuilder windowName = new StringBuilder(length + 1);
-                                WinAPI.GetWindowText(child_handle, windowName, windowName.Capacity);
-
-                                if (windowName.ToString() == "Kiddion's Modest Menu v0.9.3")
-                                {
-                                    isShow = true;
-                                    ProcessUtil.OpenProcess("Kiddion_Chs", true);
-                                }
-                                else
-                                {
-                                    isShow = false;
-                                }
-
-                                Task.Delay(100).Wait();
-                            } while (!isShow);
-                        }
-                        else
-                        {
-                            isRun = false;
-                        }
-
-                        Task.Delay(100).Wait();
-                    } while (!isRun);
+                        ProcessUtil.OpenProcess("Kiddion_Chs", true);
+                    }
                 }
                 else
                 {
