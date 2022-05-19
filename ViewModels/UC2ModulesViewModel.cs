@@ -9,22 +9,22 @@ namespace GTA5OnlineTools.ViewModels
     public class UC2ModulesViewModel
     {
         private ExternalMenuView ExternalMenuView = null;
-
         private GTAHaxWindow GTAHaxWindow = null;
         private OutfitsWindow OutfitsWindow = null;
         private HeistCutWindow HeistCutWindow = null;
         private StatAutoScriptsWindow StatAutoScriptsWindow = null;
         private HeistPrepsWindow HeistPrepsWindow = null;
         private BigBaseV2Window BigBaseV2Window = null;
+        private CasinoHackWindow CasinoHackWindow = null;
 
         public DelegateCommand ExternalMenuClickCommand { get; private set; }
-
         public DelegateCommand GTAHaxClickCommand { get; private set; }
         public DelegateCommand OutfitsClickCommand { get; private set; }
         public DelegateCommand HeistCutClickCommand { get; private set; }
         public DelegateCommand StatAutoScriptsClickCommand { get; private set; }
         public DelegateCommand HeistPrepsClickCommand { get; private set; }
         public DelegateCommand BigBaseV2ClickCommand { get; private set; }
+        public DelegateCommand CasinoHackClickCommand { get; private set; }
 
         private IRegionManager _RegionManager;
 
@@ -35,13 +35,13 @@ namespace GTA5OnlineTools.ViewModels
             _RegionManager = regionManager;
 
             ExternalMenuClickCommand = new DelegateCommand(ExternalMenuClick);
-
             GTAHaxClickCommand = new DelegateCommand(GTAHaxClick);
             OutfitsClickCommand = new DelegateCommand(OutfitsClick);
             HeistCutClickCommand = new DelegateCommand(HeistCutClick);
             StatAutoScriptsClickCommand = new DelegateCommand(StatAutoScriptsClick);
             HeistPrepsClickCommand = new DelegateCommand(HeistPrepsClick);
             BigBaseV2ClickCommand = new DelegateCommand(BigBaseV2Click);
+            CasinoHackClickCommand = new DelegateCommand(CasinoHackClick);
         }
 
         private void ExternalMenuClick()
@@ -83,7 +83,6 @@ namespace GTA5OnlineTools.ViewModels
                 MsgBoxUtil.ErrorMsgBox(HintMsg);
             }
         }
-
         private void HeistPrepsClick()
         {
             AudioUtil.ClickSound();
@@ -119,7 +118,6 @@ namespace GTA5OnlineTools.ViewModels
                 MsgBoxUtil.ErrorMsgBox(HintMsg);
             }
         }
-
         private void StatAutoScriptsClick()
         {
             AudioUtil.ClickSound();
@@ -155,7 +153,6 @@ namespace GTA5OnlineTools.ViewModels
                 MsgBoxUtil.ErrorMsgBox(HintMsg);
             }
         }
-
         private void HeistCutClick()
         {
             AudioUtil.ClickSound();
@@ -191,7 +188,6 @@ namespace GTA5OnlineTools.ViewModels
                 MsgBoxUtil.ErrorMsgBox(HintMsg);
             }
         }
-
         private void OutfitsClick()
         {
             AudioUtil.ClickSound();
@@ -227,7 +223,6 @@ namespace GTA5OnlineTools.ViewModels
                 MsgBoxUtil.ErrorMsgBox(HintMsg);
             }
         }
-
         private void GTAHaxClick()
         {
             AudioUtil.ClickSound();
@@ -256,7 +251,6 @@ namespace GTA5OnlineTools.ViewModels
                 }
             });
         }
-
         private void BigBaseV2Click()
         {
             AudioUtil.ClickSound();
@@ -284,6 +278,41 @@ namespace GTA5OnlineTools.ViewModels
                     }
                 }
             });
+        }
+        private void CasinoHackClick()
+        {
+            AudioUtil.ClickSound();
+
+            if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    if (CasinoHackWindow == null)
+                    {
+                        CasinoHackWindow = new CasinoHackWindow();
+                        CasinoHackWindow.Show();
+                    }
+                    else
+                    {
+                        if (CasinoHackWindow.IsVisible)
+                        {
+                            CasinoHackWindow.Topmost = true;
+                            CasinoHackWindow.Topmost = false;
+                            CasinoHackWindow.WindowState = WindowState.Normal;
+                        }
+                        else
+                        {
+                            CasinoHackWindow = null;
+                            CasinoHackWindow = new CasinoHackWindow();
+                            CasinoHackWindow.Show();
+                        }
+                    }
+                });
+            }
+            else
+            {
+                MsgBoxUtil.ErrorMsgBox(HintMsg);
+            }
         }
     }
 }

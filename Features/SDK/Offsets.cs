@@ -22,6 +22,8 @@ public class Offsets
         public const string UnkModelMask = "4C 8B 15 ?? ?? ?? ?? 49 8B 04 D2 44 39 40 08";
 
         public const string PlayerchatterNameMask = "48 8D 0D ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 8D 0D ?? ?? ?? ?? 83";
+
+        public const string LocalScriptsMask = "48 8B 05 ?? ?? ?? ?? 8B CF 48 8B 0C C8 39 59 68";
     }
 
     ////////////////////////////////////////////////////////////////////

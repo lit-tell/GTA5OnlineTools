@@ -21,5 +21,7 @@
         public static long PickupDataPTR;
 
         public static long PlayerChatterNamePTR;
+
+        public static long LocalScriptsPTR;
     }
 }

@@ -1,0 +1,88 @@
+﻿<Window x:Class="GTA5OnlineTools.Modules.Windows.CasinoHackWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GTA5OnlineTools.Modules.Windows"
+        mc:Ignorable="d"
+        Title="GTA5线上小助手 赌场黑客" Height="450" Width="800"
+        Name="Window_CasinoHack"
+        Closing="Window_CasinoHack_Closing"
+        Loaded="Window_CasinoHack_Loaded"
+        Style="{StaticResource WindowNormalStyle}"
+        WindowStartupLocation="CenterScreen">
+    <ScrollViewer Grid.Row="1" Style="{StaticResource ScrollViewerVAHDStyle}">
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Margin="5">
+                <TextBlock Style="{StaticResource TextBlockTitle000}" Text="黑杰克" />
+                <TextBlock />
+
+                <UniformGrid Columns="3">
+                    <TextBlock />
+                    <CheckBox
+                            x:Name="CheckBox_Blackjack"
+                            Click="CheckBox_Blackjack_Click"
+                            Content="开启预测" />
+                    <TextBlock />
+                </UniformGrid>
+
+                <TextBlock />
+
+                <UniformGrid Columns="1">
+                    <TextBlock Text="庄家底牌为" />
+                    <TextBox x:Name="TextBox_Blackjack" />
+                </UniformGrid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="5">
+                <TextBlock Style="{StaticResource TextBlockTitle000}" Text="三张扑克" />
+                <TextBlock />
+
+                <UniformGrid Columns="3">
+                    <TextBlock />
+                    <CheckBox
+                            x:Name="CheckBox_Poker"
+                            Click="CheckBox_Poker_Click"
+                            Content="开启预测" />
+                    <TextBlock />
+                </UniformGrid>
+
+                <TextBlock />
+
+                <UniformGrid Columns="1">
+                    <TextBlock Text="您的牌为" />
+                    <TextBox x:Name="TextBox_Poker" />
+                </UniformGrid>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Margin="5">
+                <TextBlock Style="{StaticResource TextBlockTitle000}" Text="轮盘赌" />
+                <TextBlock />
+
+                <UniformGrid Columns="3">
+                    <TextBlock />
+                    <CheckBox
+                            x:Name="CheckBox_Roulette"
+                            Click="CheckBox_Roulette_Click"
+                            Content="操控中奖" />
+                    <TextBlock />
+                </UniformGrid>
+
+                <TextBlock />
+
+                <UniformGrid Columns="2">
+                    <TextBlock Text="中奖号码" />
+                    <ComboBox Name="cmb_Roulette" Grid.Row="1" Grid.Column="1" Height="23" DisplayMemberPath="Value" SelectedValuePath="Key" SelectionChanged="cmb_Roulette_SelectionChanged">
+                    </ComboBox>
+                </UniformGrid>
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+</Window>
