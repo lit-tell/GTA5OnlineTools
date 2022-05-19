@@ -82,7 +82,7 @@ namespace GTA5OnlineTools.ViewModels
 
         private void KiddionClick()
         {
-            AudioUtil.ClickSound();
+            //AudioUtil.ClickSound();
 
             Task.Run(() =>
             {
