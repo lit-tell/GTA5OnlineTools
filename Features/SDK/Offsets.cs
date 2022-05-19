@@ -51,6 +51,9 @@ public class Offsets
 
     ////////////////////////////////////////////////////////////////////
 
+    public const int SpawnPersonalVehicleIndex1 = oVMYCar + 965;
+    public const int SpawnPersonalVehicleIndex2 = oVMYCar + 962;
+
     public class Player
     {
         public static int[] Health = new int[] { 0x08, 0x280 };

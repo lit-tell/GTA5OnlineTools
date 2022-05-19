@@ -291,5 +291,30 @@ namespace GTA5OnlineTools.Features.SDK
                 }
             });
         }
+
+        public static void SpawnPersonalVehicle(int index)
+        {
+            Hacks.WriteGA<int>(Offsets.SpawnPersonalVehicleIndex1, index);
+            Hacks.WriteGA<int>(Offsets.SpawnPersonalVehicleIndex2, 1);
+        }
+
+        public static string FindVehicleDisplayName(long hash, bool isDisplay)
+        {
+            foreach (var item in Data.VehicleData.VehicleClassData)
+            {
+                foreach (var item0 in item.VehicleInfo)
+                {
+                    if (item0.Hash == hash)
+                    {
+                        if (isDisplay)
+                            return item0.DisplayName;
+                        else
+                            return item0.Name;
+                    }
+                }
+            }
+
+            return "";
+        }
     }
 }

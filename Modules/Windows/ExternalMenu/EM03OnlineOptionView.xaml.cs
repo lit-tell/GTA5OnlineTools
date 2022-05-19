@@ -144,7 +144,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
                     pVInfos.Add(new PVInfo()
                     {
                         Index = i,
-                        Name = FindVehicleDisplayName(hash, true),
+                        Name = Vehicle.FindVehicleDisplayName(hash, true),
                         hash = hash,
                         plate = plate
                     });
@@ -170,31 +170,11 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu
             {
                 Task.Run(() =>
                 {
-                    WriteGA<int>(2810701 + 965, pVInfos[index].Index);
-                    WriteGA<int>(2810701 + 962, 1);
-                    Task.Delay(500).Wait();
-                    WriteGA<int>(2810701 + 8, 1);
+                    Vehicle.SpawnPersonalVehicle(pVInfos[index].Index);
                 });
             }
         }
 
-        private string FindVehicleDisplayName(long hash, bool isDisplay)
-        {
-            foreach (var item in VehicleData.VehicleClassData)
-            {
-                foreach (var item0 in item.VehicleInfo)
-                {
-                    if (item0.Hash == hash)
-                    {
-                        if (isDisplay)
-                            return item0.DisplayName;
-                        else
-                            return item0.Name;
-                    }
-                }
-            }
-
-            return "";
-        }
+        
     }
 }
