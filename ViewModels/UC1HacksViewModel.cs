@@ -82,7 +82,6 @@ namespace GTA5OnlineTools.ViewModels
 
         private void KiddionClick()
         {
-            //AudioUtil.ClickSound();
 
             Task.Run(() =>
             {
@@ -91,7 +90,15 @@ namespace GTA5OnlineTools.ViewModels
                     if (!ProcessUtil.IsAppRun("Kiddion"))
                         ProcessUtil.OpenProcess("Kiddion", true);
 
-                    AudioUtil.SP_Click_02.Play();
+                    if (!ProcessUtil.IsAppRun("GTA5"))
+                    {
+                        AudioUtil.ClickSound();
+                        return;
+                    }
+                    else
+                    {
+                        AudioUtil.SP_Click_02.Play();
+                    }
 
                     if ((int)System.Windows.Forms.MessageBox.Show("是否开启汉化？", "小助手提示", System.Windows.Forms.MessageBoxButtons.YesNo) == 6)
                     {
@@ -100,6 +107,7 @@ namespace GTA5OnlineTools.ViewModels
                 }
                 else
                 {
+                    AudioUtil.ClickSound();
                     ProcessUtil.CloseProcess("Kiddion");
                     ProcessUtil.CloseProcess("Kiddion_Chs");
                 }
