@@ -160,6 +160,7 @@
                                     x:Name="Button_BigBaseV2_Inject"
                                     Click="Button_BigBaseV2_Inject_Click"
                                     Content="注入DLL到GTA5进程"
+                                    IsEnabled="False"
                                     Style="{StaticResource ButtonNormalStyle}" />
                                 <Button
                                     x:Name="Button_Located_Stats"
