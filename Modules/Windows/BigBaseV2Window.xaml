@@ -121,7 +121,7 @@
                                             Margin="5,5,10,5"
                                             Click="RadioButton_InjectDLL_Bread_Click"
                                             Content="Bread"
-                                            IsChecked="True">
+                                            IsChecked="False">
                                             <RadioButton.ToolTip>
                                                 <Image Source="/Assets/Images/Tips/Bread.png" Style="{StaticResource ImageHighQualityStyle}" />
                                             </RadioButton.ToolTip>
@@ -139,7 +139,8 @@
                                             x:Name="RadioButton_InjectDLL_PackedStatEditor"
                                             Margin="5,5,10,5"
                                             Click="RadioButton_InjectDLL_Bread_Click"
-                                            Content="Packed Stat Editor">
+                                            Content="Packed Stat Editor"
+                                            IsChecked="True">
                                             <RadioButton.ToolTip>
                                                 <Image Source="/Assets/Images/Tips/PackedStatEditor.png" Style="{StaticResource ImageHighQualityStyle}" />
                                             </RadioButton.ToolTip>
@@ -160,7 +161,7 @@
                                     x:Name="Button_BigBaseV2_Inject"
                                     Click="Button_BigBaseV2_Inject_Click"
                                     Content="注入DLL到GTA5进程"
-                                    IsEnabled="False"
+                                    IsEnabled="True"
                                     Style="{StaticResource ButtonNormalStyle}" />
                                 <Button
                                     x:Name="Button_Located_Stats"

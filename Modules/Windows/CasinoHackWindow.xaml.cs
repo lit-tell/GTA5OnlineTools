@@ -24,6 +24,11 @@ namespace GTA5OnlineTools.Modules.Windows
     /// </summary>
     public partial class CasinoHackWindow : Window
     {
+        public static int checked_blackjack = 0;
+        public static int checked_poker = 0;
+        public static int checked_roulette = 0;
+        public static int checked_slot_machine = 0;
+        public static int checked_lucky_wheel = 0;
         public CasinoHackWindow()
         {
             InitializeComponent();
@@ -99,7 +104,7 @@ namespace GTA5OnlineTools.Modules.Windows
         {
             while (true)
             { 
-                Dispatcher.BeginInvoke(new Action(delegate
+                /*Dispatcher.BeginInvoke(new Action(delegate
                 {
                     if (CheckBox_Blackjack.IsChecked == true)
                     {
@@ -179,21 +184,99 @@ namespace GTA5OnlineTools.Modules.Windows
                             Memory.Write<int>(p + index * 8, cmb_LuckyWheel.SelectedIndex);
                         }
                     }
-                }));
+                }));*/
+                if (checked_blackjack == 1)
+                {
+                    long p = Locals.LocalAddress("blackjack");
+                    if (p != 0)
+                    {
+                        p = Memory.Read<long>(p);
+                        int i = Memory.Read<int>(p + 0x3F60);
+                        string str = "";
+                        if ((i - 1) / 13 == 0) str += "♣梅花" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 1) str += "♦方块" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 2) str += "♥红心" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 3) str += "♠黑桃" + ((i - 1) % 13 + 1).ToString();
+                        TextBox_Blackjack.Text = str;
+                    }
+                }
+                if (checked_poker == 1)
+                {
+                    long p = Locals.LocalAddress("three_card_poker");
+                    if (p != 0)
+                    {
+                        p = Memory.Read<long>(p);
+                        int i = Memory.Read<int>(p + 0x3948);
+                        string str = "";
+                        if ((i - 1) / 13 == 0) str += "♣梅花" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 1) str += "♦方块" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 2) str += "♥红心" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 3) str += "♠黑桃" + ((i - 1) % 13 + 1).ToString();
+                        str += " ";
+                        i = Memory.Read<int>(p + 0x3938);
+                        if ((i - 1) / 13 == 0) str += "♣梅花" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 1) str += "♦方块" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 2) str += "♥红心" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 3) str += "♠黑桃" + ((i - 1) % 13 + 1).ToString();
+                        str += " ";
+                        i = Memory.Read<int>(p + 0x3940);
+                        if ((i - 1) / 13 == 0) str += "♣梅花" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 1) str += "♦方块" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 2) str += "♥红心" + ((i - 1) % 13 + 1).ToString();
+                        if ((i - 1) / 13 == 3) str += "♠黑桃" + ((i - 1) % 13 + 1).ToString();
+                        TextBox_Poker.Text = str;
+                    }
+                }
+                if (checked_roulette == 1)
+                {
+                    long p = Locals.LocalAddress("casinoroulette");
+                    if (p != 0)
+                    {
+                        p = Memory.Read<long>(p);
+                        for (int i = 0; i < 6; i++)
+                        {
+                            Memory.Write<int>(p + 0x32D0 + i * 0x8, cmb_Roulette.SelectedIndex);
+                        }
+                    }
+                }
+                if (checked_slot_machine == 1)
+                {
+                    long p = Locals.LocalAddress("casino_slots");
+                    if (p != 0)
+                    {
+                        p = Memory.Read<long>(p);
+                        for (int i = 0; i < 3; i++)
+                            for (int j = 0; j < 64; j++)
+                            {
+                                int index = 1339 + 1 + 1 + i * 65 + 1 + j;
+                                Memory.Write<int>(p + index * 8, cmb_SlotMachine.SelectedIndex);
+                            }
+                    }
+                }
+                if (checked_lucky_wheel == 1)
+                {
+                    long p = Locals.LocalAddress("casino_lucky_wheel");//https://www.unknowncheats.me/forum/grand-theft-auto-v/483416-gtavcsmm.html
+                    if (p != 0)
+                    {
+                        p = Memory.Read<long>(p);
+                        int index = 271 + 14;
+                        Memory.Write<int>(p + index * 8, cmb_LuckyWheel.SelectedIndex);
+                    }
+                }
                 Thread.Sleep(500);
             }
         }
         private void CheckBox_Blackjack_Click(object sender, RoutedEventArgs e)
         {
-
+            checked_blackjack = (CheckBox_Blackjack.IsChecked == true) ? 1 : 0;
         }
         private void CheckBox_Poker_Click(object sender, RoutedEventArgs e)
         {
-
+            checked_poker = (CheckBox_Poker.IsChecked == true) ? 1 : 0;
         }
         private void CheckBox_Roulette_Click(object sender, RoutedEventArgs e)
         {
-
+            checked_roulette = (CheckBox_Roulette.IsChecked == true) ? 1 : 0;
         }
         private void cmb_Roulette_SelectionChanged(object sender, RoutedEventArgs e)
         {
@@ -201,7 +284,7 @@ namespace GTA5OnlineTools.Modules.Windows
         }
         private void CheckBox_SlotMachine_Click(object sender, RoutedEventArgs e)
         {
-
+            checked_slot_machine = (CheckBox_SlotMachine.IsChecked == true) ? 1 : 0;
         }
         private void cmb_SlotMachine_SelectionChanged(object sender, RoutedEventArgs e)
         {
@@ -209,7 +292,7 @@ namespace GTA5OnlineTools.Modules.Windows
         }
         private void CheckBox_LuckyWheel_Click(object sender, RoutedEventArgs e)
         {
-
+            checked_lucky_wheel = (CheckBox_LuckyWheel.IsChecked == true) ? 1 :0;
         }
         private void cmb_LuckyWheel_SelectionChanged(object sender, RoutedEventArgs e)
         {
