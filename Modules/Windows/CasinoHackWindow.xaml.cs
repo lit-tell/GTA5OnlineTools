@@ -29,6 +29,9 @@ namespace GTA5OnlineTools.Modules.Windows
         public static int checked_roulette = 0;
         public static int checked_slot_machine = 0;
         public static int checked_lucky_wheel = 0;
+        public static int selected_index_roulette = 0;
+        public static int selected_index_slot_machine = 6;
+        public static int selected_index_lucky_wheel = 18;
         public CasinoHackWindow()
         {
             InitializeComponent();
@@ -197,7 +200,10 @@ namespace GTA5OnlineTools.Modules.Windows
                         if ((i - 1) / 13 == 1) str += "♦方块" + ((i - 1) % 13 + 1).ToString();
                         if ((i - 1) / 13 == 2) str += "♥红心" + ((i - 1) % 13 + 1).ToString();
                         if ((i - 1) / 13 == 3) str += "♠黑桃" + ((i - 1) % 13 + 1).ToString();
-                        TextBox_Blackjack.Text = str;
+                        Dispatcher.Invoke(new Action(delegate
+                        {
+                            TextBox_Blackjack.Text = str;
+                        }));                    
                     }
                 }
                 if (checked_poker == 1)
@@ -224,7 +230,10 @@ namespace GTA5OnlineTools.Modules.Windows
                         if ((i - 1) / 13 == 1) str += "♦方块" + ((i - 1) % 13 + 1).ToString();
                         if ((i - 1) / 13 == 2) str += "♥红心" + ((i - 1) % 13 + 1).ToString();
                         if ((i - 1) / 13 == 3) str += "♠黑桃" + ((i - 1) % 13 + 1).ToString();
-                        TextBox_Poker.Text = str;
+                        Dispatcher.Invoke(new Action(delegate
+                        {
+                            TextBox_Poker.Text = str;
+                        }));
                     }
                 }
                 if (checked_roulette == 1)
@@ -235,7 +244,7 @@ namespace GTA5OnlineTools.Modules.Windows
                         p = Memory.Read<long>(p);
                         for (int i = 0; i < 6; i++)
                         {
-                            Memory.Write<int>(p + 0x32D0 + i * 0x8, cmb_Roulette.SelectedIndex);
+                            Memory.Write<int>(p + 0x32D0 + i * 0x8, selected_index_roulette);
                         }
                     }
                 }
@@ -249,7 +258,7 @@ namespace GTA5OnlineTools.Modules.Windows
                             for (int j = 0; j < 64; j++)
                             {
                                 int index = 1339 + 1 + 1 + i * 65 + 1 + j;
-                                Memory.Write<int>(p + index * 8, cmb_SlotMachine.SelectedIndex);
+                                Memory.Write<int>(p + index * 8, selected_index_slot_machine);
                             }
                     }
                 }
@@ -260,7 +269,7 @@ namespace GTA5OnlineTools.Modules.Windows
                     {
                         p = Memory.Read<long>(p);
                         int index = 271 + 14;
-                        Memory.Write<int>(p + index * 8, cmb_LuckyWheel.SelectedIndex);
+                        Memory.Write<int>(p + index * 8, selected_index_lucky_wheel);
                     }
                 }
                 Thread.Sleep(500);
@@ -280,7 +289,7 @@ namespace GTA5OnlineTools.Modules.Windows
         }
         private void cmb_Roulette_SelectionChanged(object sender, RoutedEventArgs e)
         {
-
+            selected_index_roulette = cmb_Roulette.SelectedIndex;
         }
         private void CheckBox_SlotMachine_Click(object sender, RoutedEventArgs e)
         {
@@ -288,7 +297,7 @@ namespace GTA5OnlineTools.Modules.Windows
         }
         private void cmb_SlotMachine_SelectionChanged(object sender, RoutedEventArgs e)
         {
-
+            selected_index_slot_machine = cmb_SlotMachine.SelectedIndex;
         }
         private void CheckBox_LuckyWheel_Click(object sender, RoutedEventArgs e)
         {
@@ -296,7 +305,7 @@ namespace GTA5OnlineTools.Modules.Windows
         }
         private void cmb_LuckyWheel_SelectionChanged(object sender, RoutedEventArgs e)
         {
-
+            selected_index_lucky_wheel = cmb_LuckyWheel.SelectedIndex;
         }
     }
 }
