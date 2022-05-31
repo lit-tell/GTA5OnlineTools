@@ -69,6 +69,12 @@
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern bool GetCursorPos(out POINT pt);
+
+        [DllImport("kernel32.dll")]
+        public static extern Boolean AllocConsole();
+
+        [DllImport("kernel32.dll")]
+        public static extern Boolean FreeConsole();
     }
 
     public struct POINT

@@ -101,8 +101,8 @@ namespace GTA5OnlineTools.Features.SDK
             WriteGA<float>(2783345 + 5, z + 3.0f);
             WriteGA<int>(2783345 + 1, 9999);    // 9999
 
-            WriteGA<int>(4528329 + 1 + (ReadGA<int>(2783329) * 85) + 66 + 2, 2);
-            WriteGA<int>(2783345, 1);
+            WriteGA<int>(4528329 + 1 + (ReadGA<int>(2783345) * 85) + 66 + 2, 2);
+            WriteGA<int>(2783345 + 6, 1);
 
             Thread.Sleep(150);
 
