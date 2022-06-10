@@ -1,216 +1,215 @@
 ﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.Core;
 
-namespace GTA5OnlineTools.Modules.Windows
+namespace GTA5OnlineTools.Modules.Windows;
+
+/// <summary>
+/// BigBaseV2Window.xaml 的交互逻辑
+/// </summary>
+public partial class BigBaseV2Window : Window
 {
-    /// <summary>
-    /// BigBaseV2Window.xaml 的交互逻辑
-    /// </summary>
-    public partial class BigBaseV2Window : Window
+    private InjectInfo InjectInfo { get; set; }
+
+    public BigBaseV2Window()
     {
-        private InjectInfo InjectInfo { get; set; }
+        InitializeComponent();
+    }
 
-        public BigBaseV2Window()
+    private void Window_BigBaseV2_Loaded(object sender, RoutedEventArgs e)
+    {
+        Task.Run(() =>
         {
-            InitializeComponent();
+            InjectInfo = new InjectInfo();
+
+            InjectInfo.DLLPath = FileUtil.Cache_Path + "PackedStatEditor.dll";
+
+            Process process = Process.GetProcessesByName("GTA5")[0];
+            InjectInfo.PID = process.Id;
+            InjectInfo.PName = process.ProcessName;
+            InjectInfo.MWindowHandle = process.MainWindowHandle;
+        });
+
+        AppendTextBox("等待用户操作...");
+    }
+
+    private void Window_BigBaseV2_Closing(object sender, CancelEventArgs e)
+    {
+
+    }
+
+    private void AppendTextBox(string str)
+    {
+        TextBox_Log.AppendText($"[{DateTime.Now:T}] {str}\r\n");
+        TextBox_Log.ScrollToEnd();
+    }
+
+    private void RadioButton_InjectDLL_Bread_Click(object sender, RoutedEventArgs e)
+    {
+        if (RadioButton_InjectDLL_Bread.IsChecked == true)
+        {
+            InjectInfo.DLLPath = FileUtil.Cache_Path + "Bread.dll";
+            Button_BigBaseV2_Inject.IsEnabled = false;
+        }
+        else if (RadioButton_InjectDLL_Bread_Chs.IsChecked == true)
+        {
+            InjectInfo.DLLPath = FileUtil.Cache_Path + "Bread_Chs.dll";
+            Button_BigBaseV2_Inject.IsEnabled = false;
+        }
+        else if (RadioButton_InjectDLL_PackedStatEditor.IsChecked == true)
+        {
+            InjectInfo.DLLPath = FileUtil.Cache_Path + "PackedStatEditor.dll";
+            Button_BigBaseV2_Inject.IsEnabled = true;
+        }
+    }
+
+    private void Button_BigBaseV2_Inject_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.ClickSound();
+
+        if (InjectInfo.PID == 0)
+        {
+            AppendTextBox("未找到GTA5进程");
+            return;
+        }
+        else if (string.IsNullOrEmpty(InjectInfo.DLLPath))
+        {
+            AppendTextBox("DLL路径为空");
+            return;
         }
 
-        private void Window_BigBaseV2_Loaded(object sender, RoutedEventArgs e)
+        foreach (ProcessModule module in Process.GetProcessById(InjectInfo.PID).Modules)
         {
-            Task.Run(() =>
+            if (module.FileName == InjectInfo.DLLPath)
             {
-                InjectInfo = new InjectInfo();
-
-                InjectInfo.DLLPath = FileUtil.Cache_Path + "PackedStatEditor.dll";
-
-                Process process = Process.GetProcessesByName("GTA5")[0];
-                InjectInfo.PID = process.Id;
-                InjectInfo.PName = process.ProcessName;
-                InjectInfo.MWindowHandle = process.MainWindowHandle;
-            });
-
-            AppendTextBox("等待用户操作...");
-        }
-
-        private void Window_BigBaseV2_Closing(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void AppendTextBox(string str)
-        {
-            TextBox_Log.AppendText($"[{DateTime.Now:T}] {str}\r\n");
-            TextBox_Log.ScrollToEnd();
-        }
-
-        private void RadioButton_InjectDLL_Bread_Click(object sender, RoutedEventArgs e)
-        {
-            if (RadioButton_InjectDLL_Bread.IsChecked == true)
-            {
-                InjectInfo.DLLPath = FileUtil.Cache_Path + "Bread.dll";
-                Button_BigBaseV2_Inject.IsEnabled = false;
-            }
-            else if (RadioButton_InjectDLL_Bread_Chs.IsChecked == true)
-            {
-                InjectInfo.DLLPath = FileUtil.Cache_Path + "Bread_Chs.dll";
-                Button_BigBaseV2_Inject.IsEnabled = false;
-            }
-            else if (RadioButton_InjectDLL_PackedStatEditor.IsChecked == true)
-            {
-                InjectInfo.DLLPath = FileUtil.Cache_Path + "PackedStatEditor.dll";
-                Button_BigBaseV2_Inject.IsEnabled = true;
-            }
-        }
-
-        private void Button_BigBaseV2_Inject_Click(object sender, RoutedEventArgs e)
-        {
-            AudioUtil.ClickSound();
-
-            if (InjectInfo.PID == 0)
-            {
-                AppendTextBox("未找到GTA5进程");
+                AppendTextBox("该DLL已经被注入过了");
                 return;
             }
-            else if (string.IsNullOrEmpty(InjectInfo.DLLPath))
-            {
-                AppendTextBox("DLL路径为空");
-                return;
-            }
-
-            foreach (ProcessModule module in Process.GetProcessById(InjectInfo.PID).Modules)
-            {
-                if (module.FileName == InjectInfo.DLLPath)
-                {
-                    AppendTextBox("该DLL已经被注入过了");
-                    return;
-                }
-            }
-
-            try
-            {
-                BaseInjector.SetForegroundWindow(InjectInfo.MWindowHandle);
-
-                BaseInjector.DLLInjector(InjectInfo.PID, InjectInfo.DLLPath);
-                AppendTextBox($"DLL注入到进程 {InjectInfo.PName} 成功");
-            }
-            catch (Exception ex)
-            {
-                AppendTextBox($"发生错误：{ex.Message}");
-            }
         }
 
-        private void Button_Located_Stats_Click(object sender, RoutedEventArgs e)
+        try
         {
-            AudioUtil.ClickSound();
+            BaseInjector.SetForegroundWindow(InjectInfo.MWindowHandle);
 
-            try
-            {
-                ProcessUtil.OpenLink(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/BigBaseV2/");
-            }
-            catch (Exception ex)
-            {
-                MsgBoxUtil.ExceptionMsgBox(ex);
-            }
+            BaseInjector.DLLInjector(InjectInfo.PID, InjectInfo.DLLPath);
+            AppendTextBox($"DLL注入到进程 {InjectInfo.PName} 成功");
         }
-
-        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        catch (Exception ex)
         {
-            ProcessUtil.OpenLink(e.Uri.OriginalString);
-            e.Handled = true;
+            AppendTextBox($"发生错误：{ex.Message}");
         }
+    }
 
-        //////////////////////////////////////////////////////
+    private void Button_Located_Stats_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.ClickSound();
 
-        private bool IsInputNumber(KeyEventArgs e)
+        try
         {
-            if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) ||
-               e.Key == Key.Delete || e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Tab)
+            ProcessUtil.OpenLink(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/BigBaseV2/");
+        }
+        catch (Exception ex)
+        {
+            MsgBoxUtil.ExceptionMsgBox(ex);
+        }
+    }
+
+    private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+    {
+        ProcessUtil.OpenLink(e.Uri.OriginalString);
+        e.Handled = true;
+    }
+
+    //////////////////////////////////////////////////////
+
+    private bool IsInputNumber(KeyEventArgs e)
+    {
+        if ((e.Key >= Key.D0 && e.Key <= Key.D9) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) ||
+           e.Key == Key.Delete || e.Key == Key.Back || e.Key == Key.Left || e.Key == Key.Right || e.Key == Key.Tab)
+        {
+            // 按下了Alt、ctrl、shift等修饰键
+            if (e.KeyboardDevice.Modifiers != ModifierKeys.None)
             {
-                // 按下了Alt、ctrl、shift等修饰键
-                if (e.KeyboardDevice.Modifiers != ModifierKeys.None)
-                {
-                    e.Handled = true;
-                }
-                else
-                {
-                    return true;
-                }
+                e.Handled = true;
             }
             else
             {
-                // 按下了字符等其它功能键
-                e.Handled = true;
+                return true;
             }
-            return false;
         }
-
-        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        else
         {
-            IsInputNumber(e);
+            // 按下了字符等其它功能键
+            e.Handled = true;
         }
+        return false;
+    }
 
-        private void Button_Calculate_Click(object sender, RoutedEventArgs e)
+    private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        IsInputNumber(e);
+    }
+
+    private void Button_Calculate_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.ClickSound();
+
+        try
         {
-            AudioUtil.ClickSound();
-
-            try
+            if (RadioButton_ToMS.IsChecked == true)
             {
-                if (RadioButton_ToMS.IsChecked == true)
+                if (TextBox_d.Text != "" && TextBox_h.Text != "" && TextBox_m.Text != "" && TextBox_s.Text != "")
                 {
-                    if (TextBox_d.Text != "" && TextBox_h.Text != "" && TextBox_m.Text != "" && TextBox_s.Text != "")
-                    {
-                        TextBox_ms.Text = (
-                        (Convert.ToInt64(TextBox_d.Text) * 86400 +
-                        Convert.ToInt64(TextBox_h.Text) * 3600 +
-                        Convert.ToInt64(TextBox_m.Text) * 60 +
-                        Convert.ToInt64(TextBox_s.Text)) * 1000
-                        ).ToString();
-                    }
+                    TextBox_ms.Text = (
+                    (Convert.ToInt64(TextBox_d.Text) * 86400 +
+                    Convert.ToInt64(TextBox_h.Text) * 3600 +
+                    Convert.ToInt64(TextBox_m.Text) * 60 +
+                    Convert.ToInt64(TextBox_s.Text)) * 1000
+                    ).ToString();
                 }
-                else if (RadioButton_ToTIME.IsChecked == true)
+            }
+            else if (RadioButton_ToTIME.IsChecked == true)
+            {
+                if (TextBox_ms.Text != "")
                 {
-                    if (TextBox_ms.Text != "")
+                    if (Convert.ToInt64(TextBox_ms.Text) >= 1000)
                     {
-                        if (Convert.ToInt64(TextBox_ms.Text) >= 1000)
+                        long t = Convert.ToInt64(TextBox_ms.Text) / 1000;
+
+                        long day = 0, hour = 0, minute = 0, second = 0;
+                        if (t >= 86400)         // 天
                         {
-                            long t = Convert.ToInt64(TextBox_ms.Text) / 1000;
-
-                            long day = 0, hour = 0, minute = 0, second = 0;
-                            if (t >= 86400)         // 天
-                            {
-                                day = Convert.ToInt64(t / 86400);
-                                hour = Convert.ToInt64((t % 86400) / 3600);
-                                minute = Convert.ToInt64((t % 86400 % 3600) / 60);
-                                second = Convert.ToInt64(t % 86400 % 3600 % 60);
-                            }
-                            else if (t >= 3600)     // 时
-                            {
-                                hour = Convert.ToInt64(t / 3600);
-                                minute = Convert.ToInt64((t % 3600) / 60);
-                                second = Convert.ToInt64(t % 3600 % 60);
-                            }
-                            else if (t >= 60)       // 分
-                            {
-                                minute = Convert.ToInt64(t / 60);
-                                second = Convert.ToInt64(t % 60);
-                            }
-                            else
-                            {
-                                second = Convert.ToInt64(t);
-                            }
-
-                            TextBox_d.Text = day.ToString();
-                            TextBox_h.Text = hour.ToString();
-                            TextBox_m.Text = minute.ToString();
-                            TextBox_s.Text = second.ToString();
+                            day = Convert.ToInt64(t / 86400);
+                            hour = Convert.ToInt64((t % 86400) / 3600);
+                            minute = Convert.ToInt64((t % 86400 % 3600) / 60);
+                            second = Convert.ToInt64(t % 86400 % 3600 % 60);
                         }
+                        else if (t >= 3600)     // 时
+                        {
+                            hour = Convert.ToInt64(t / 3600);
+                            minute = Convert.ToInt64((t % 3600) / 60);
+                            second = Convert.ToInt64(t % 3600 % 60);
+                        }
+                        else if (t >= 60)       // 分
+                        {
+                            minute = Convert.ToInt64(t / 60);
+                            second = Convert.ToInt64(t % 60);
+                        }
+                        else
+                        {
+                            second = Convert.ToInt64(t);
+                        }
+
+                        TextBox_d.Text = day.ToString();
+                        TextBox_h.Text = hour.ToString();
+                        TextBox_m.Text = minute.ToString();
+                        TextBox_s.Text = second.ToString();
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                MsgBoxUtil.ExceptionMsgBox(ex);
-            }
+        }
+        catch (Exception ex)
+        {
+            MsgBoxUtil.ExceptionMsgBox(ex);
         }
     }
 }
