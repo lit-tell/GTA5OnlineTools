@@ -78,6 +78,12 @@ public class ProcessUtil
     {
         try
         {
+            if (!IsAppRun(processName))
+            {
+                MsgBoxUtil.WarningMsgBox($"未发现 {processName} 进程");
+                return;
+            }
+
             var process = Process.GetProcessesByName(processName)[0];
             var windowHandle = process.MainWindowHandle;
 
