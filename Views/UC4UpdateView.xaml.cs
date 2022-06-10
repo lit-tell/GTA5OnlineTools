@@ -1,15 +1,12 @@
-﻿using System.Windows.Controls;
+﻿namespace GTA5OnlineTools.Views;
 
-namespace GTA5OnlineTools.Views
+/// <summary>
+/// UC4UpdateView.xaml 的交互逻辑
+/// </summary>
+public partial class UC4UpdateView : UserControl
 {
-    /// <summary>
-    /// UC4UpdateView.xaml 的交互逻辑
-    /// </summary>
-    public partial class UC4UpdateView : UserControl
+    public UC4UpdateView()
     {
-        public UC4UpdateView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

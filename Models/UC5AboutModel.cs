@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace GTA5OnlineTools.Models;
 
-namespace GTA5OnlineTools.Models
+public class UC5AboutModel
 {
-    public class UC5AboutModel
-    {
 
-    }
 }

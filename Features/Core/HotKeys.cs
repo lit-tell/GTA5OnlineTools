@@ -1,147 +1,146 @@
-﻿namespace GTA5OnlineTools.Features.Core
+﻿namespace GTA5OnlineTools.Features.Core;
+
+public class HotKeys
 {
-    public class HotKeys
+    // Keys holder 按键持有者
+    private Dictionary<int, MyKeys> keys;
+
+    // Update thread 更新线程
+    private int interval = 20; // 20 ms
+
+    // Keys events 按键事件
+    public delegate void KeyHandler(int Id, string Name);
+    public event KeyHandler KeyUpEvent;
+    public event KeyHandler KeyDownEvent;
+
+    private bool isRun = true;
+
+    // Init 初始化
+    public HotKeys()
     {
-        // Keys holder 按键持有者
-        private Dictionary<int, MyKeys> keys;
+        isRun = true;
 
-        // Update thread 更新线程
-        private int interval = 20; // 20 ms
+        keys = new Dictionary<int, MyKeys>();
+        var thread = new Thread(new ParameterizedThreadStart(Update));
+        thread.IsBackground = true;
+        thread.Start();
+    }
 
-        // Keys events 按键事件
-        public delegate void KeyHandler(int Id, string Name);
-        public event KeyHandler KeyUpEvent;
-        public event KeyHandler KeyDownEvent;
+    public void Dispose()
+    {
+        isRun = false;
+    }
 
-        private bool isRun = true;
-
-        // Init 初始化
-        public HotKeys()
+    // Key Up 键弹起
+    protected void OnKeyUp(int Id, string Name)
+    {
+        if (KeyUpEvent != null)
         {
-            isRun = true;
-
-            keys = new Dictionary<int, MyKeys>();
-            var thread = new Thread(new ParameterizedThreadStart(Update));
-            thread.IsBackground = true;
-            thread.Start();
+            KeyUpEvent(Id, Name);
         }
+    }
 
-        public void Dispose()
+    // Key Down 键按下
+    protected void OnKeyDown(int Id, string Name)
+    {
+        if (KeyDownEvent != null)
         {
-            isRun = false;
+            KeyDownEvent(Id, Name);
         }
+    }
 
-        // Key Up 键弹起
-        protected void OnKeyUp(int Id, string Name)
+    // Add key 增加键
+    public void AddKey(int keyId, string keyName)
+    {
+        if (!keys.ContainsKey(keyId))
         {
-            if (KeyUpEvent != null)
+            keys.Add(keyId, new MyKeys(keyId, keyName));
+        }
+    }
+
+    // Add key 增加键
+    public void AddKey(WinVK key)
+    {
+        int keyId = (int)key;
+        if (!keys.ContainsKey(keyId))
+        {
+            keys.Add(keyId, new MyKeys(keyId, key.ToString()));
+        }
+    }
+
+    // Is Key Down 键是否按下
+    public bool IsKeyDown(int keyId)
+    {
+        MyKeys value;
+        if (keys.TryGetValue(keyId, out value))
+        {
+            return value.IsKeyDown;
+        }
+        return false;
+    }
+
+    // Update Thread 更新线程
+    private void Update(object sender)
+    {
+        while (isRun)
+        {
+            if (keys.Count > 0)
             {
-                KeyUpEvent(Id, Name);
-            }
-        }
-
-        // Key Down 键按下
-        protected void OnKeyDown(int Id, string Name)
-        {
-            if (KeyDownEvent != null)
-            {
-                KeyDownEvent(Id, Name);
-            }
-        }
-
-        // Add key 增加键
-        public void AddKey(int keyId, string keyName)
-        {
-            if (!keys.ContainsKey(keyId))
-            {
-                keys.Add(keyId, new MyKeys(keyId, keyName));
-            }
-        }
-
-        // Add key 增加键
-        public void AddKey(WinVK key)
-        {
-            int keyId = (int)key;
-            if (!keys.ContainsKey(keyId))
-            {
-                keys.Add(keyId, new MyKeys(keyId, key.ToString()));
-            }
-        }
-
-        // Is Key Down 键是否按下
-        public bool IsKeyDown(int keyId)
-        {
-            MyKeys value;
-            if (keys.TryGetValue(keyId, out value))
-            {
-                return value.IsKeyDown;
-            }
-            return false;
-        }
-
-        // Update Thread 更新线程
-        private void Update(object sender)
-        {
-            while (isRun)
-            {
-                if (keys.Count > 0)
+                List<MyKeys> keysData = new List<MyKeys>(keys.Values);
+                if (keysData != null && keysData.Count > 0)
                 {
-                    List<MyKeys> keysData = new List<MyKeys>(keys.Values);
-                    if (keysData != null && keysData.Count > 0)
+                    foreach (MyKeys key in keysData)
                     {
-                        foreach (MyKeys key in keysData)
+                        if (Convert.ToBoolean(WinAPI.GetKeyState(key.Id) & WinAPI.KEY_PRESSED))
                         {
-                            if (Convert.ToBoolean(WinAPI.GetKeyState(key.Id) & WinAPI.KEY_PRESSED))
+                            if (!key.IsKeyDown)
                             {
-                                if (!key.IsKeyDown)
-                                {
-                                    key.IsKeyDown = true;
-                                    OnKeyDown(key.Id, key.Name);
-                                }
+                                key.IsKeyDown = true;
+                                OnKeyDown(key.Id, key.Name);
                             }
-                            else
+                        }
+                        else
+                        {
+                            if (key.IsKeyDown)
                             {
-                                if (key.IsKeyDown)
-                                {
-                                    key.IsKeyDown = false;
-                                    OnKeyUp(key.Id, key.Name);
-                                }
+                                key.IsKeyDown = false;
+                                OnKeyUp(key.Id, key.Name);
                             }
                         }
                     }
                 }
-
-                Thread.Sleep(interval);
             }
+
+            Thread.Sleep(interval);
         }
     }
+}
 
-    public class MyKeys
+public class MyKeys
+{
+    private string keyName;
+    private int keyId;
+    private bool keyDown;
+
+    public MyKeys(int keyId, string keyName)
     {
-        private string keyName;
-        private int keyId;
-        private bool keyDown;
+        this.keyId = keyId;
+        this.keyName = keyName;
+    }
 
-        public MyKeys(int keyId, string keyName)
-        {
-            this.keyId = keyId;
-            this.keyName = keyName;
-        }
+    public string Name
+    {
+        get { return keyName; }
+    }
 
-        public string Name
-        {
-            get { return keyName; }
-        }
+    public int Id
+    {
+        get { return keyId; }
+    }
 
-        public int Id
-        {
-            get { return keyId; }
-        }
-
-        public bool IsKeyDown
-        {
-            get { return keyDown; }
-            set { keyDown = value; }
-        }
+    public bool IsKeyDown
+    {
+        get { return keyDown; }
+        set { keyDown = value; }
     }
 }

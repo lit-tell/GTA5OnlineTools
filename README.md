@@ -5,15 +5,15 @@
 ### 编译
 
 * Windows 10 专业版 21H2 x64  
-* Visual Studio 2022  
+* Visual Studio 2022 企业版  
 * .NET 6.0  
 
 ### 环境
 
 * SDK
-> https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/sdk-6.0.102-windows-x64-installer
+> https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/sdk-6.0.300-windows-x64-installer
 * Runtime
-> https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/runtime-desktop-6.0.4-windows-x64-installer
+> https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/runtime-desktop-6.0.5-windows-x64-installer
 
 ### 框架
 

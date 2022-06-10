@@ -1,137 +1,132 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Diagnostics;
-using GTA5OnlineTools.Features.Core;
+﻿using GTA5OnlineTools.Features.Core;
 
-namespace GTA5OnlineTools.Common.Utils
+namespace GTA5OnlineTools.Common.Utils;
+
+public class ProcessUtil
 {
-    public class ProcessUtil
+    /// <summary>
+    /// 打开指定链接或程序
+    /// </summary>
+    /// <param name="link"></param>
+    public static void OpenLink(string link)
     {
-        /// <summary>
-        /// 打开指定链接或程序
-        /// </summary>
-        /// <param name="link"></param>
-        public static void OpenLink(string link)
-        {
-            Process.Start(new ProcessStartInfo(link) { UseShellExecute = true });
-        }
+        Process.Start(new ProcessStartInfo(link) { UseShellExecute = true });
+    }
 
-        /// <summary>
-        /// 打开指定链接或程序
-        /// </summary>
-        /// <param name="link"></param>
-        public static void OpenLink(string link, string path)
-        {
-            Process.Start(new ProcessStartInfo(link, path) { UseShellExecute = true });
-        }
+    /// <summary>
+    /// 打开指定链接或程序
+    /// </summary>
+    /// <param name="link"></param>
+    public static void OpenLink(string link, string path)
+    {
+        Process.Start(new ProcessStartInfo(link, path) { UseShellExecute = true });
+    }
 
-        /// <summary>
-        /// 判断程序是否运行
-        /// </summary>
-        /// <param name="appName">程序名称</param>
-        /// <returns>正在运行返回true，未运行返回false</returns>
-        public static bool IsAppRun(string appName)
-        {
-            return Process.GetProcessesByName(appName).ToList().Count > 0;
-        }
+    /// <summary>
+    /// 判断程序是否运行
+    /// </summary>
+    /// <param name="appName">程序名称</param>
+    /// <returns>正在运行返回true，未运行返回false</returns>
+    public static bool IsAppRun(string appName)
+    {
+        return Process.GetProcessesByName(appName).ToList().Count > 0;
+    }
 
-        /// <summary>
-        /// 以管理员权限打开指定程序，不需要后缀.exe
-        /// </summary>
-        /// <param name="processName">程序名字，要带后缀名</param>
-        /// <param name="isKiddion">是否在Kiddion目录下</param>
-        public static void OpenProcess(string processName, bool isKiddion)
+    /// <summary>
+    /// 以管理员权限打开指定程序，不需要后缀.exe
+    /// </summary>
+    /// <param name="processName">程序名字，要带后缀名</param>
+    /// <param name="isKiddion">是否在Kiddion目录下</param>
+    public static void OpenProcess(string processName, bool isKiddion)
+    {
+        try
         {
-            try
+            if (IsAppRun(processName))
             {
-                if (IsAppRun(processName))
+                MsgBoxUtil.WarningMsgBox($"请不要重复打开，{processName} 已经在运行了");
+            }
+            else
+            {
+                string path = string.Empty;
+                if (isKiddion)
                 {
-                    MsgBoxUtil.WarningMsgBox($"请不要重复打开，{processName} 已经在运行了");
+                    path = FileUtil.Kiddion_Path;
                 }
                 else
                 {
-                    string path = string.Empty;
-                    if (isKiddion)
-                    {
-                        path = FileUtil.Kiddion_Path;
-                    }
-                    else
-                    {
-                        path = FileUtil.Cache_Path;
-                    }
-
-                    Directory.SetCurrentDirectory(path);
-                    Process.Start(new ProcessStartInfo(Path.Combine(path, processName + ".exe"))
-                    {
-                        UseShellExecute = true,
-                        Verb = "runas"
-                    });
+                    path = FileUtil.Cache_Path;
                 }
-            }
-            catch (Exception ex)
-            {
-                MsgBoxUtil.ExceptionMsgBox(ex);
-            }
-        }
 
-        /// <summary>
-        /// 是否置顶指定窗口
-        /// </summary>
-        public static void TopMostProcess(string processName, bool isTopMost)
-        {
-            try
-            {
-                var process = Process.GetProcessesByName(processName)[0];
-                var windowHandle = process.MainWindowHandle;
-
-                if (isTopMost)
+                Directory.SetCurrentDirectory(path);
+                Process.Start(new ProcessStartInfo(Path.Combine(path, processName + ".exe"))
                 {
-                    WinAPI.SetWindowPos(windowHandle, -1, 0, 0, 0, 0, 1 | 2);
-
-                    //MessageBox.Show($"将目标进程 {processName} 窗口置顶成功", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    WinAPI.SetWindowPos(windowHandle, -2, 0, 0, 0, 0, 1 | 2);
-
-                    //MessageBox.Show($"将目标进程 {processName} 取消窗口置顶成功", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MsgBoxUtil.ExceptionMsgBox(ex);
+                    UseShellExecute = true,
+                    Verb = "runas"
+                });
             }
         }
-
-        /// <summary>
-        /// 根据名字关闭指定程序
-        /// </summary>
-        /// <param name="processName">程序名字，不需要加.exe</param>
-        public static void CloseProcess(string processName)
+        catch (Exception ex)
         {
-            Process[] appProcess = Process.GetProcesses();
-            foreach (Process targetPro in appProcess)
+            MsgBoxUtil.ExceptionMsgBox(ex);
+        }
+    }
+
+    /// <summary>
+    /// 是否置顶指定窗口
+    /// </summary>
+    public static void TopMostProcess(string processName, bool isTopMost)
+    {
+        try
+        {
+            var process = Process.GetProcessesByName(processName)[0];
+            var windowHandle = process.MainWindowHandle;
+
+            if (isTopMost)
             {
-                if (targetPro.ProcessName.Equals(processName))
-                    targetPro.Kill();
+                WinAPI.SetWindowPos(windowHandle, -1, 0, 0, 0, 0, 1 | 2);
+
+                //MessageBox.Show($"将目标进程 {processName} 窗口置顶成功", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                WinAPI.SetWindowPos(windowHandle, -2, 0, 0, 0, 0, 1 | 2);
+
+                //MessageBox.Show($"将目标进程 {processName} 取消窗口置顶成功", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
-        /// <summary>
-        /// 关闭全部第三方exe进程
-        /// </summary> 
-        public static void CloseTheseProcess()
+        catch (Exception ex)
         {
-            CloseProcess("Kiddion");
-            CloseProcess("Kiddion_Chs");
-            CloseProcess("SubVersion");
-            CloseProcess("GTAHax");
-            CloseProcess("BincoHax");
-            CloseProcess("LSCHax");
-            CloseProcess("PedDropper");
-            CloseProcess("JobMoney");
-            CloseProcess("DefenderControl");
+            MsgBoxUtil.ExceptionMsgBox(ex);
         }
+    }
+
+    /// <summary>
+    /// 根据名字关闭指定程序
+    /// </summary>
+    /// <param name="processName">程序名字，不需要加.exe</param>
+    public static void CloseProcess(string processName)
+    {
+        Process[] appProcess = Process.GetProcesses();
+        foreach (Process targetPro in appProcess)
+        {
+            if (targetPro.ProcessName.Equals(processName))
+                targetPro.Kill();
+        }
+    }
+
+    /// <summary>
+    /// 关闭全部第三方exe进程
+    /// </summary> 
+    public static void CloseTheseProcess()
+    {
+        CloseProcess("Kiddion");
+        CloseProcess("Kiddion_Chs");
+        CloseProcess("SubVersion");
+        CloseProcess("GTAHax");
+        CloseProcess("BincoHax");
+        CloseProcess("LSCHax");
+        CloseProcess("PedDropper");
+        CloseProcess("JobMoney");
+        CloseProcess("DefenderControl");
     }
 }

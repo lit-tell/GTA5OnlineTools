@@ -1,152 +1,151 @@
 ﻿using GTA5OnlineTools.Features.Core;
 
-namespace GTA5OnlineTools.Features.SDK
+namespace GTA5OnlineTools.Features.SDK;
+
+public class Weapon
 {
-    public class Weapon
+    /// <summary>
+    /// 补满当前武器弹药
+    /// </summary>
+    public static void FillCurrentAmmo()
     {
-        /// <summary>
-        /// 补满当前武器弹药
-        /// </summary>
-        public static void FillCurrentAmmo()
+        // Ped实体
+        long pWeapon_AmmoInfo = Memory.Read<long>(Globals.WorldPTR, Offsets.Weapon.AmmoInfo);
+
+        int getMaxAmmo = Memory.Read<int>(pWeapon_AmmoInfo + 0x28);
+
+        long my_offset_0 = pWeapon_AmmoInfo;
+        long my_offset_1;
+        byte ammo_type;
+
+        do
         {
-            // Ped实体
-            long pWeapon_AmmoInfo = Memory.Read<long>(Globals.WorldPTR, Offsets.Weapon.AmmoInfo);
+            my_offset_0 = Memory.Read<long>(my_offset_0 + 0x08);
+            my_offset_1 = Memory.Read<long>(my_offset_0 + 0x00);
 
-            int getMaxAmmo = Memory.Read<int>(pWeapon_AmmoInfo + 0x28);
-
-            long my_offset_0 = pWeapon_AmmoInfo;
-            long my_offset_1;
-            byte ammo_type;
-
-            do
+            if (my_offset_0 == 0 || my_offset_1 == 0)
             {
-                my_offset_0 = Memory.Read<long>(my_offset_0 + 0x08);
-                my_offset_1 = Memory.Read<long>(my_offset_0 + 0x00);
-
-                if (my_offset_0 == 0 || my_offset_1 == 0)
-                {
-                    return;
-                }
-
-                ammo_type = Memory.Read<byte>(my_offset_1 + 0x0C);
-
-            } while (ammo_type == 0x00);
-
-            Memory.Write<int>(my_offset_1 + 0x18, getMaxAmmo);
-        }
-
-        /// <summary>
-        /// 无限弹药
-        /// </summary>
-        public static void InfiniteAmmo(bool isEnable)
-        {
-            if (isEnable)
-            {
-                long addrAmmo = Memory.FindPattern("41 2B D1 E8");
-                if (addrAmmo == 0)
-                {
-                    addrAmmo = Memory.FindPattern("90 90 90 E8");
-                }
-                Memory.WriteBytes(addrAmmo, new byte[] { 0x90, 0x90, 0x90 });
+                return;
             }
-            else
+
+            ammo_type = Memory.Read<byte>(my_offset_1 + 0x0C);
+
+        } while (ammo_type == 0x00);
+
+        Memory.Write<int>(my_offset_1 + 0x18, getMaxAmmo);
+    }
+
+    /// <summary>
+    /// 无限弹药
+    /// </summary>
+    public static void InfiniteAmmo(bool isEnable)
+    {
+        if (isEnable)
+        {
+            long addrAmmo = Memory.FindPattern("41 2B D1 E8");
+            if (addrAmmo == 0)
             {
-                long addrAmmo = Memory.FindPattern("41 2B D1 E8");
-                if (addrAmmo == 0)
-                {
-                    addrAmmo = Memory.FindPattern("90 90 90 E8");
-                }
-                Memory.WriteBytes(addrAmmo, new byte[] { 0x41, 0x2B, 0xD1 });
+                addrAmmo = Memory.FindPattern("90 90 90 E8");
             }
+            Memory.WriteBytes(addrAmmo, new byte[] { 0x90, 0x90, 0x90 });
         }
-
-        /// <summary>
-        /// 无需换弹
-        /// </summary>
-        public static void NoReload(bool isEnable)
+        else
         {
-            if (isEnable)
+            long addrAmmo = Memory.FindPattern("41 2B D1 E8");
+            if (addrAmmo == 0)
             {
-                long addrAmmo = Memory.FindPattern("41 2B C9 3B C8 0F");
-                if (addrAmmo == 0)
-                {
-                    addrAmmo = Memory.FindPattern("90 90 90 3B C8 0F");
-                }
-                Memory.WriteBytes(addrAmmo, new byte[] { 0x90, 0x90, 0x90 });
+                addrAmmo = Memory.FindPattern("90 90 90 E8");
             }
-            else
+            Memory.WriteBytes(addrAmmo, new byte[] { 0x41, 0x2B, 0xD1 });
+        }
+    }
+
+    /// <summary>
+    /// 无需换弹
+    /// </summary>
+    public static void NoReload(bool isEnable)
+    {
+        if (isEnable)
+        {
+            long addrAmmo = Memory.FindPattern("41 2B C9 3B C8 0F");
+            if (addrAmmo == 0)
             {
-                long addrAmmo = Memory.FindPattern("41 2B C9 3B C8 0F");
-                if (addrAmmo == 0)
-                {
-                    addrAmmo = Memory.FindPattern("90 90 90 3B C8 0F");
-                }
-                Memory.WriteBytes(addrAmmo, new byte[] { 0x41, 0x2B, 0xC9 });
+                addrAmmo = Memory.FindPattern("90 90 90 3B C8 0F");
             }
+            Memory.WriteBytes(addrAmmo, new byte[] { 0x90, 0x90, 0x90 });
         }
-
-        /// <summary>
-        /// 弹药编辑，默认0，无限弹药1，无限弹夹2，无限弹药和弹夹3
-        /// </summary>
-        public static void AmmoModifier(byte flag)
+        else
         {
-            Memory.Write<byte>(Globals.WorldPTR, Offsets.Weapon.AmmoModifier, flag);
-        }
-
-        /// <summary>
-        /// 无后坐力
-        /// </summary>
-        public static void NoRecoil()
-        {
-            Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.NoRecoil, 0.0f);
-        }
-
-        /// <summary>
-        /// 无子弹扩散
-        /// </summary>
-        public static void NoSpread()
-        {
-            Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.NoSpread, 0.0f);
-        }
-
-        /// <summary>
-        /// 启用子弹类型，2:Fists，3:Bullet，5:Explosion
-        /// </summary>
-        public static void ImpactType(byte type)
-        {
-            Memory.Write<byte>(Globals.WorldPTR, Offsets.Weapon.ImpactType, type);
-        }
-
-        /// <summary>
-        /// 设置子弹类型
-        /// </summary>
-        public static void ImpactExplosion(int id)
-        {
-            Memory.Write<int>(Globals.WorldPTR, Offsets.Weapon.ImpactExplosion, id);
-        }
-
-        /// <summary>
-        /// 武器射程
-        /// </summary>
-        public static void Range()
-        {
-            Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.Range, 2000.0f);
-            Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.LockRange, 1000.0f);
-        }
-
-        /// <summary>
-        /// 武器快速换弹
-        /// </summary>
-        public static void ReloadMult(bool isEnable)
-        {
-            if (isEnable)
+            long addrAmmo = Memory.FindPattern("41 2B C9 3B C8 0F");
+            if (addrAmmo == 0)
             {
-                Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.ReloadMult, 4.0f);
+                addrAmmo = Memory.FindPattern("90 90 90 3B C8 0F");
             }
-            else
-            {
-                Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.ReloadMult, 1.0f);
-            }
+            Memory.WriteBytes(addrAmmo, new byte[] { 0x41, 0x2B, 0xC9 });
+        }
+    }
+
+    /// <summary>
+    /// 弹药编辑，默认0，无限弹药1，无限弹夹2，无限弹药和弹夹3
+    /// </summary>
+    public static void AmmoModifier(byte flag)
+    {
+        Memory.Write<byte>(Globals.WorldPTR, Offsets.Weapon.AmmoModifier, flag);
+    }
+
+    /// <summary>
+    /// 无后坐力
+    /// </summary>
+    public static void NoRecoil()
+    {
+        Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.NoRecoil, 0.0f);
+    }
+
+    /// <summary>
+    /// 无子弹扩散
+    /// </summary>
+    public static void NoSpread()
+    {
+        Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.NoSpread, 0.0f);
+    }
+
+    /// <summary>
+    /// 启用子弹类型，2:Fists，3:Bullet，5:Explosion
+    /// </summary>
+    public static void ImpactType(byte type)
+    {
+        Memory.Write<byte>(Globals.WorldPTR, Offsets.Weapon.ImpactType, type);
+    }
+
+    /// <summary>
+    /// 设置子弹类型
+    /// </summary>
+    public static void ImpactExplosion(int id)
+    {
+        Memory.Write<int>(Globals.WorldPTR, Offsets.Weapon.ImpactExplosion, id);
+    }
+
+    /// <summary>
+    /// 武器射程
+    /// </summary>
+    public static void Range()
+    {
+        Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.Range, 2000.0f);
+        Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.LockRange, 1000.0f);
+    }
+
+    /// <summary>
+    /// 武器快速换弹
+    /// </summary>
+    public static void ReloadMult(bool isEnable)
+    {
+        if (isEnable)
+        {
+            Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.ReloadMult, 4.0f);
+        }
+        else
+        {
+            Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.ReloadMult, 1.0f);
         }
     }
 }

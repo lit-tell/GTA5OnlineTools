@@ -1,9 +1,8 @@
 ﻿using Prism.Events;
 
-namespace GTA5OnlineTools.Event
-{
-    public class ChangeMsgEvent : PubSubEvent<string>
-    {
+namespace GTA5OnlineTools.Event;
 
-    }
+public class ChangeMsgEvent : PubSubEvent<string>
+{
+
 }

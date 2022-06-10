@@ -1,210 +1,201 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Threading;
-using System.Threading.Tasks;
-using Prism.Commands;
+﻿using Prism.Commands;
+
 using GTA5OnlineTools.Models;
 using GTA5OnlineTools.Common.Utils;
-using System.Diagnostics;
-using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Modules.Pages;
 
-namespace GTA5OnlineTools.ViewModels
+namespace GTA5OnlineTools.ViewModels;
+
+public class UC1HacksViewModel
 {
-    public class UC1HacksViewModel
+    public UC1HacksModel UC1HacksModel { get; set; }
+
+    public DelegateCommand KiddionClickCommand { get; private set; }
+    public DelegateCommand SubVersionClickCommand { get; private set; }
+    public DelegateCommand GTAHaxClickCommand { get; private set; }
+    public DelegateCommand BincoHaxClickCommand { get; private set; }
+    public DelegateCommand LSCHaxClickCommand { get; private set; }
+
+    public DelegateCommand<string> ReadMeClickCommand { get; private set; }
+    public DelegateCommand FrameHideClickCommand { get; private set; }
+
+    private static KiddionPage KiddionPage = new KiddionPage();
+    private static SubVersionPage SubVersionPage = new SubVersionPage();
+    private static GTAHaxPage GTAHaxPage = new GTAHaxPage();
+    private static BincoHaxPage BincoHaxPage = new BincoHaxPage();
+    private static LSCHaxPage LSCHaxPage = new LSCHaxPage();
+
+    public UC1HacksViewModel()
     {
-        public UC1HacksModel UC1HacksModel { get; set; }
+        UC1HacksModel = new UC1HacksModel();
 
-        public DelegateCommand KiddionClickCommand { get; private set; }
-        public DelegateCommand SubVersionClickCommand { get; private set; }
-        public DelegateCommand GTAHaxClickCommand { get; private set; }
-        public DelegateCommand BincoHaxClickCommand { get; private set; }
-        public DelegateCommand LSCHaxClickCommand { get; private set; }
+        KiddionClickCommand = new DelegateCommand(KiddionClick);
+        SubVersionClickCommand = new DelegateCommand(SubVersionClick);
+        GTAHaxClickCommand = new DelegateCommand(GTAHaxClick);
+        BincoHaxClickCommand = new DelegateCommand(BincoHaxClick);
+        LSCHaxClickCommand = new DelegateCommand(LSCHaxClick);
 
-        public DelegateCommand<string> ReadMeClickCommand { get; private set; }
-        public DelegateCommand FrameHideClickCommand { get; private set; }
+        ReadMeClickCommand = new DelegateCommand<string>(ReadMeClick);
+        FrameHideClickCommand = new DelegateCommand(FrameHideClick);
 
-        private static KiddionPage KiddionPage = new KiddionPage();
-        private static SubVersionPage SubVersionPage = new SubVersionPage();
-        private static GTAHaxPage GTAHaxPage = new GTAHaxPage();
-        private static BincoHaxPage BincoHaxPage = new BincoHaxPage();
-        private static LSCHaxPage LSCHaxPage = new LSCHaxPage();
+        var thread = new Thread(MainThread);
+        thread.IsBackground = true;
+        thread.Start();
+    }
 
-        public UC1HacksViewModel()
+    private void MainThread()
+    {
+        while (true)
         {
-            UC1HacksModel = new UC1HacksModel();
+            // 判断 Kiddion 是否运行
+            UC1HacksModel.KiddionIsRun = ProcessUtil.IsAppRun("Kiddion") ? true : false;
 
-            KiddionClickCommand = new DelegateCommand(KiddionClick);
-            SubVersionClickCommand = new DelegateCommand(SubVersionClick);
-            GTAHaxClickCommand = new DelegateCommand(GTAHaxClick);
-            BincoHaxClickCommand = new DelegateCommand(BincoHaxClick);
-            LSCHaxClickCommand = new DelegateCommand(LSCHaxClick);
+            // 判断 SubVersion 是否运行
+            UC1HacksModel.SubVersionIsRun = ProcessUtil.IsAppRun("SubVersion") ? true : false;
 
-            ReadMeClickCommand = new DelegateCommand<string>(ReadMeClick);
-            FrameHideClickCommand = new DelegateCommand(FrameHideClick);
+            // 判断 GTAHax 是否运行
+            UC1HacksModel.GTAHaxIsRun = ProcessUtil.IsAppRun("GTAHax") ? true : false;
 
-            var thread = new Thread(MainThread);
-            thread.IsBackground = true;
-            thread.Start();
+            // 判断 BincoHax 是否运行
+            UC1HacksModel.BincoHaxIsRun = ProcessUtil.IsAppRun("BincoHax") ? true : false;
+
+            // 判断 LSCHax 是否运行
+            UC1HacksModel.LSCHaxIsRun = ProcessUtil.IsAppRun("LSCHax") ? true : false;
+
+            // 判断 PedDropper 是否运行
+            UC1HacksModel.PedDropperIsRun = ProcessUtil.IsAppRun("PedDropper") ? true : false;
+
+            // 判断 JobMoney 是否运行
+            UC1HacksModel.JobMoneyIsRun = ProcessUtil.IsAppRun("JobMoney") ? true : false;
+
+            Thread.Sleep(1000);
         }
+    }
 
-        private void MainThread()
+    private void KiddionClick()
+    {
+
+        Task.Run(() =>
         {
-            while (true)
+            if (UC1HacksModel.KiddionIsRun)
             {
-                // 判断 Kiddion 是否运行
-                UC1HacksModel.KiddionIsRun = ProcessUtil.IsAppRun("Kiddion") ? true : false;
+                if (!ProcessUtil.IsAppRun("Kiddion"))
+                    ProcessUtil.OpenProcess("Kiddion", true);
 
-                // 判断 SubVersion 是否运行
-                UC1HacksModel.SubVersionIsRun = ProcessUtil.IsAppRun("SubVersion") ? true : false;
-
-                // 判断 GTAHax 是否运行
-                UC1HacksModel.GTAHaxIsRun = ProcessUtil.IsAppRun("GTAHax") ? true : false;
-
-                // 判断 BincoHax 是否运行
-                UC1HacksModel.BincoHaxIsRun = ProcessUtil.IsAppRun("BincoHax") ? true : false;
-
-                // 判断 LSCHax 是否运行
-                UC1HacksModel.LSCHaxIsRun = ProcessUtil.IsAppRun("LSCHax") ? true : false;
-
-                // 判断 PedDropper 是否运行
-                UC1HacksModel.PedDropperIsRun = ProcessUtil.IsAppRun("PedDropper") ? true : false;
-
-                // 判断 JobMoney 是否运行
-                UC1HacksModel.JobMoneyIsRun = ProcessUtil.IsAppRun("JobMoney") ? true : false;
-
-                Thread.Sleep(1000);
-            }
-        }
-
-        private void KiddionClick()
-        {
-
-            Task.Run(() =>
-            {
-                if (UC1HacksModel.KiddionIsRun)
+                if (!ProcessUtil.IsAppRun("GTA5"))
                 {
-                    if (!ProcessUtil.IsAppRun("Kiddion"))
-                        ProcessUtil.OpenProcess("Kiddion", true);
-
-                    if (!ProcessUtil.IsAppRun("GTA5"))
-                    {
-                        AudioUtil.ClickSound();
-                        return;
-                    }
-                    else
-                    {
-                        AudioUtil.SP_Click_02.Play();
-                    }
-
-                    if ((int)System.Windows.Forms.MessageBox.Show("是否开启汉化？", "小助手提示", System.Windows.Forms.MessageBoxButtons.YesNo) == 6)
-                    {
-                        ProcessUtil.OpenProcess("Kiddion_Chs", true);
-                    }
+                    AudioUtil.ClickSound();
+                    return;
                 }
                 else
                 {
-                    AudioUtil.ClickSound();
-                    ProcessUtil.CloseProcess("Kiddion");
-                    ProcessUtil.CloseProcess("Kiddion_Chs");
+                    AudioUtil.SP_Click_02.Play();
                 }
-            });
-        }
 
-        private void SubVersionClick()
-        {
-            AudioUtil.ClickSound();
-
-            if (UC1HacksModel.SubVersionIsRun)
-            {
-                if (!ProcessUtil.IsAppRun("SubVersion"))
-                    ProcessUtil.OpenProcess("SubVersion", true);
+                if ((int)System.Windows.Forms.MessageBox.Show("是否开启汉化？", "小助手提示", System.Windows.Forms.MessageBoxButtons.YesNo) == 6)
+                {
+                    ProcessUtil.OpenProcess("Kiddion_Chs", true);
+                }
             }
             else
             {
-                ProcessUtil.CloseProcess("SubVersion");
+                AudioUtil.ClickSound();
+                ProcessUtil.CloseProcess("Kiddion");
+                ProcessUtil.CloseProcess("Kiddion_Chs");
             }
-        }
+        });
+    }
 
-        private void GTAHaxClick()
+    private void SubVersionClick()
+    {
+        AudioUtil.ClickSound();
+
+        if (UC1HacksModel.SubVersionIsRun)
         {
-            AudioUtil.ClickSound();
-
-            if (UC1HacksModel.GTAHaxIsRun)
-            {
-                if (!ProcessUtil.IsAppRun("GTAHax"))
-                    ProcessUtil.OpenProcess("GTAHax", false);
-            }
-            else
-            {
-                ProcessUtil.CloseProcess("GTAHax");
-            }
+            if (!ProcessUtil.IsAppRun("SubVersion"))
+                ProcessUtil.OpenProcess("SubVersion", true);
         }
-
-        private void BincoHaxClick()
+        else
         {
-            AudioUtil.ClickSound();
-
-            if (UC1HacksModel.BincoHaxIsRun)
-            {
-                if (!ProcessUtil.IsAppRun("BincoHax"))
-                    ProcessUtil.OpenProcess("BincoHax", false);
-            }
-            else
-            {
-                ProcessUtil.CloseProcess("BincoHax");
-            }
+            ProcessUtil.CloseProcess("SubVersion");
         }
+    }
 
-        private void LSCHaxClick()
+    private void GTAHaxClick()
+    {
+        AudioUtil.ClickSound();
+
+        if (UC1HacksModel.GTAHaxIsRun)
         {
-            AudioUtil.ClickSound();
-
-            if (UC1HacksModel.LSCHaxIsRun)
-            {
-                if (!ProcessUtil.IsAppRun("LSCHax"))
-                    ProcessUtil.OpenProcess("LSCHax", false);
-            }
-            else
-            {
-                ProcessUtil.CloseProcess("LSCHax");
-            }
+            if (!ProcessUtil.IsAppRun("GTAHax"))
+                ProcessUtil.OpenProcess("GTAHax", false);
         }
-
-        private void ReadMeClick(string pageName)
+        else
         {
-            switch (pageName)
-            {
-                case "KiddionPage":
-                    UC1HacksModel.FrameVisibilityState = Visibility.Visible;
-                    UC1HacksModel.FrameContent = KiddionPage;
-                    break;
-                case "SubVersionPage":
-                    UC1HacksModel.FrameVisibilityState = Visibility.Visible;
-                    UC1HacksModel.FrameContent = SubVersionPage;
-                    break;
-                case "GTAHaxPage":
-                    UC1HacksModel.FrameVisibilityState = Visibility.Visible;
-                    UC1HacksModel.FrameContent = GTAHaxPage;
-                    break;
-                case "BincoHaxPage":
-                    UC1HacksModel.FrameVisibilityState = Visibility.Visible;
-                    UC1HacksModel.FrameContent = BincoHaxPage;
-                    break;
-                case "LSCHaxPage":
-                    UC1HacksModel.FrameVisibilityState = Visibility.Visible;
-                    UC1HacksModel.FrameContent = LSCHaxPage;
-                    break;
-            }
+            ProcessUtil.CloseProcess("GTAHax");
         }
+    }
 
-        private void FrameHideClick()
+    private void BincoHaxClick()
+    {
+        AudioUtil.ClickSound();
+
+        if (UC1HacksModel.BincoHaxIsRun)
         {
-            UC1HacksModel.FrameVisibilityState = Visibility.Collapsed;
-            UC1HacksModel.FrameContent = null;
+            if (!ProcessUtil.IsAppRun("BincoHax"))
+                ProcessUtil.OpenProcess("BincoHax", false);
         }
+        else
+        {
+            ProcessUtil.CloseProcess("BincoHax");
+        }
+    }
+
+    private void LSCHaxClick()
+    {
+        AudioUtil.ClickSound();
+
+        if (UC1HacksModel.LSCHaxIsRun)
+        {
+            if (!ProcessUtil.IsAppRun("LSCHax"))
+                ProcessUtil.OpenProcess("LSCHax", false);
+        }
+        else
+        {
+            ProcessUtil.CloseProcess("LSCHax");
+        }
+    }
+
+    private void ReadMeClick(string pageName)
+    {
+        switch (pageName)
+        {
+            case "KiddionPage":
+                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
+                UC1HacksModel.FrameContent = KiddionPage;
+                break;
+            case "SubVersionPage":
+                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
+                UC1HacksModel.FrameContent = SubVersionPage;
+                break;
+            case "GTAHaxPage":
+                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
+                UC1HacksModel.FrameContent = GTAHaxPage;
+                break;
+            case "BincoHaxPage":
+                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
+                UC1HacksModel.FrameContent = BincoHaxPage;
+                break;
+            case "LSCHaxPage":
+                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
+                UC1HacksModel.FrameContent = LSCHaxPage;
+                break;
+        }
+    }
+
+    private void FrameHideClick()
+    {
+        UC1HacksModel.FrameVisibilityState = Visibility.Collapsed;
+        UC1HacksModel.FrameContent = null;
     }
 }
