@@ -22,6 +22,8 @@ public partial class UC3ToolsView : UserControl
     {
         InitializeComponent();
 
+        this.DataContext = this;
+
         ToolsButtonClickCommand = new(ToolsButtonClick);
         HyperlinkClickCommand = new(HyperlinkClick);
 

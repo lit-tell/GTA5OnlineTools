@@ -1,4 +1,5 @@
 ﻿using GTA5OnlineTools.Models;
+using Microsoft.Toolkit.Mvvm.Messaging;
 
 namespace GTA5OnlineTools.Views;
 
@@ -16,12 +17,11 @@ public partial class UC4UpdateView : UserControl
         this.DataContext = this;
 
         UC4UpdateModel = new();
-
         UC4UpdateModel.ChangeInfo = "正在获取更新日志...";
-    }
 
-    private void UpdateChange(string changeStr)
-    {
-        UC4UpdateModel.ChangeInfo = changeStr;
+        WeakReferenceMessenger.Default.Register<string, string>(this, "Change", (s, e) =>
+        {
+            UC4UpdateModel.ChangeInfo = e;
+        });
     }
 }

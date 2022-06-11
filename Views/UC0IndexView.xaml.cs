@@ -1,5 +1,7 @@
 ﻿using GTA5OnlineTools.Models;
 
+using Microsoft.Toolkit.Mvvm.Messaging;
+
 namespace GTA5OnlineTools.Views;
 
 /// <summary>
@@ -7,20 +9,18 @@ namespace GTA5OnlineTools.Views;
 /// </summary>
 public partial class UC0IndexView : UserControl
 {
-    public UC0IndexModel UC0IndexModel { get; set; }
+    public UC0IndexModel UC0IndexModel { get; set; } = new();
 
     public UC0IndexView()
     {
         InitializeComponent();
-
         this.DataContext = this;
 
-        UC0IndexModel = new UC0IndexModel();
         UC0IndexModel.NoticeInfo = "正在获取最新公告内容...";
-    }
 
-    private void UpdateNotice(string noticeStr)
-    {
-        UC0IndexModel.NoticeInfo = noticeStr;
+        WeakReferenceMessenger.Default.Register<string, string>(this, "Notice", (s, e) =>
+        {
+            UC0IndexModel.NoticeInfo = e;
+        });
     }
 }

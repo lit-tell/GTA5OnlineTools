@@ -1,12 +1,14 @@
-﻿using Microsoft.Toolkit.Mvvm.Input;
-using Hardcodet.Wpf.TaskbarNotification;
-
-using GTA5OnlineTools.Views;
+﻿using GTA5OnlineTools.Views;
 using GTA5OnlineTools.Models;
+using GTA5OnlineTools.Modules.Kits;
 using GTA5OnlineTools.Common.Data;
 using GTA5OnlineTools.Common.Http;
 using GTA5OnlineTools.Common.Utils;
-using GTA5OnlineTools.Modules.Kits;
+
+using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
+
+using Hardcodet.Wpf.TaskbarNotification;
 
 namespace GTA5OnlineTools;
 
@@ -17,8 +19,8 @@ public partial class MainWindow : Window
 {
     // 任务栏图标
     private static TaskbarIcon TaskbarIcon_Main = null;
-    // 数据模型
-    public MainModel MainModel { get; set; }
+    // 主窗口数据模型
+    public MainModel MainModel { get; set; } = new();
 
     // 页面导航命令
     public RelayCommand<string> NavigateCommand { get; private set; }
@@ -31,6 +33,9 @@ public partial class MainWindow : Window
     private UC4UpdateView UC4UpdateView { get; set; } = new();
     private UC5AboutView UC5AboutView { get; set; } = new();
 
+    /// <summary>
+    /// 用于向外暴露主窗口实例
+    /// </summary>
     public static Window MainWindowIns = null;
 
     // 声明一个变量，用于存储软件开始运行的时间
@@ -48,36 +53,41 @@ public partial class MainWindow : Window
     /// <param name="e"></param>
     private void Window_Main_Loaded(object sender, RoutedEventArgs e)
     {
-        this.Title = CoreUtil.MainAppWindowName + CoreUtil.ClientVersionInfo;
-
+        // 设置当前上下文数据
         this.DataContext = this;
+        // 向外暴露主窗口实例
         MainWindowIns = this;
 
-        MainModel = new();
+        // 初始化主数据模型
         NavigateCommand = new(Navigate);
-
-        //////////////////////////////////////////////////////////////////////////////
-
-        MainModel.WindowTitle = CoreUtil.MainAppWindowName + CoreUtil.ClientVersionInfo;
+        // 首页导航
+        Navigate("UC0IndexView");
 
         // 获取当前时间，存储到对于变量中
         Origin_DateTime = DateTime.Now;
 
+        //////////////////////////////////////////////////////////////////////////////
+
+        // 设置主窗口标题
+        MainModel.WindowTitle = CoreUtil.MainAppWindowName + CoreUtil.ClientVersionInfo;
+
         MainModel.GTA5IsRun = "GTA5 : OFF";
         MainModel.AppRunTime = "运行时间 : Loading...";
 
+        // 定时器线程
         var timer = new System.Timers.Timer();
         timer.Elapsed += new ElapsedEventHandler(Timer_Tick);
-        timer.Interval = 1000; ;
+        timer.Interval = 1000;
         timer.AutoReset = true;
         timer.Start();
-
+        // 初始化后台线程
         var thread0 = new Thread(InitThread);
         thread0.IsBackground = true;
         thread0.Start();
 
         //////////////////////////////////////////////////////////////////////////////
 
+        #region 状态栏图标
         TaskbarIcon_Main = new TaskbarIcon();
         TaskbarIcon_Main.IconSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/Favicon.ico", UriKind.RelativeOrAbsolute));
         TaskbarIcon_Main.MenuActivation = PopupActivationMode.RightClick;
@@ -96,6 +106,7 @@ public partial class MainWindow : Window
         TaskbarIcon_Main.ContextMenu = contextMenu;
 
         TaskbarIcon_Main.TrayMouseDoubleClick += TaskbarIcon_Main_TrayMouseDoubleClick;
+        #endregion
     }
 
     /// <summary>
@@ -105,13 +116,22 @@ public partial class MainWindow : Window
     /// <param name="e"></param>
     private void Window_Main_Closing(object sender, CancelEventArgs e)
     {
+        // 关闭第三方进程
         ProcessUtil.CloseTheseProcess();
+        // 释放状态栏图标
         TaskbarIcon_Main.IconSource = null;
         TaskbarIcon_Main.ContextMenu = null;
         TaskbarIcon_Main.Dispose();
+        // 结束程序
         Application.Current.Shutdown();
     }
 
+    #region 状态栏图标相关事件
+    /// <summary>
+    /// 托盘菜单显示点击事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void TaskbarIcon_MenuItem_Show_Click(object sender, RoutedEventArgs e)
     {
         Topmost = true;
@@ -120,11 +140,21 @@ public partial class MainWindow : Window
         WindowState = WindowState.Normal;
     }
 
+    /// <summary>
+    /// 托盘菜单退出点击事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void TaskbarIcon_MenuItem_Exit_Click(object sender, RoutedEventArgs e)
     {
         Close();
     }
 
+    /// <summary>
+    /// 鼠标双击事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void TaskbarIcon_Main_TrayMouseDoubleClick(object sender, RoutedEventArgs e)
     {
         Topmost = true;
@@ -133,10 +163,15 @@ public partial class MainWindow : Window
         WindowState = WindowState.Normal;
     }
 
+    /// <summary>
+    /// 显示通知信息
+    /// </summary>
+    /// <param name="msg"></param>
     public static void ShowNoticeInfo(string msg)
     {
         TaskbarIcon_Main?.ShowBalloonTip("提示", msg, BalloonIcon.Info);
     }
+    #endregion
 
     //////////////////////////////////////////////////////////////////////
 
@@ -264,26 +299,30 @@ public partial class MainWindow : Window
             await HttpHelper.HttpClientGET(CoreUtil.NoticeAddress).ContinueWith((t) =>
             {
                 if (t != null)
-                    CoreUtil.NoticeText = t.Result;
+                    WeakReferenceMessenger.Default.Send(t.Result, "Notice");
+                else
+                    WeakReferenceMessenger.Default.Send("获取最新公告内容失败！", "Notice");
             });
             // 获取更新日志
             await HttpHelper.HttpClientGET(CoreUtil.ChangeAddress).ContinueWith((t) =>
             {
                 if (t != null)
-                    CoreUtil.ChangeText = t.Result;
+                    WeakReferenceMessenger.Default.Send(t.Result, "Change");
+                else
+                    WeakReferenceMessenger.Default.Send("获取更新日志信息失败！", "Change");
             });
+
+            // 如果线上版本号大于本地版本号，则提示更新
+            if (CoreUtil.ServerVersionInfo > CoreUtil.ClientVersionInfo)
+            {
+                AudioUtil.SP_GTA5_Email.Play();
+                // 打开更新对话框
+                OpenUpateWindow();
+            }
         }
         catch (Exception ex)
         {
             MsgBoxUtil.ExceptionMsgBox(ex);
-        }
-
-        // 如果线上版本号大于本地版本号，则提示更新
-        if (CoreUtil.ServerVersionInfo > CoreUtil.ClientVersionInfo)
-        {
-            AudioUtil.SP_GTA5_Email.Play();
-            // 打开更新对话框
-            OpenUpateWindow();
         }
     }
 
@@ -300,6 +339,7 @@ public partial class MainWindow : Window
                 var UpdateWindow = new UpdateWindow();
                 // 设置父窗口
                 UpdateWindow.Owner = MainWindowIns;
+                // 以对话框形式显示更新窗口
                 UpdateWindow.ShowDialog();
             });
         }
