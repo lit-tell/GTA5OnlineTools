@@ -491,7 +491,7 @@ public class Overlay : IDisposable
                     }
 
                     Vector3 pedV3Pos = Memory.Read<Vector3>(ped_offset_0 + 0x90);
-                    Vector2 pedV2Pos = WorldToScreen(pedV3Pos);
+                    var pedV2Pos = WorldToScreen(pedV3Pos);
 
                     // 自瞄数据
                     float aimBot_Distance = (float)Math.Sqrt(Math.Pow(pedV2Pos.X - gview_width, 2) + Math.Pow(pedV2Pos.Y - gview_height, 2));

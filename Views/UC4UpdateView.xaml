@@ -15,7 +15,7 @@
         <!--<Border Style="{StaticResource BorderEffectStyle}" />-->
         <DockPanel LastChildFill="True">
             <StackPanel
-                Margin="10,10,0,0"
+                Margin="10,5,0,5"
                 DockPanel.Dock="Top"
                 Orientation="Horizontal">
                 <TextBlock
@@ -29,13 +29,11 @@
             </StackPanel>
             <TextBox
                 x:Name="TextBox_Change"
+                Margin="3,0,0,0"
                 Padding="5"
                 Style="{StaticResource TextBoxShowInfoStyle}"
-                Text="{Binding UC4UpdateModel.ChangeInfo}">
-                <TextBox.ToolTip>
-                    <TextBlock Text="显示小助手更新日志" />
-                </TextBox.ToolTip>
-            </TextBox>
+                Text="{Binding UC4UpdateModel.ChangeInfo}"
+                ToolTip="显示小助手更新日志" />
 
         </DockPanel>
     </Grid>

@@ -82,7 +82,7 @@
                         <DropShadowEffect
                             BlurRadius="5"
                             Direction="0"
-                            Opacity="1"
+                            Opacity="0.5"
                             ShadowDepth="1"
                             Color="Gray" />
                     </Border.Effect>

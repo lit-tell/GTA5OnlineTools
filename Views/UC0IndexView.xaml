@@ -15,7 +15,7 @@
         <!--<Border Style="{StaticResource BorderEffectStyle}" />-->
         <DockPanel LastChildFill="True">
             <StackPanel
-                Margin="10,10,0,0"
+                Margin="10,5,0,5"
                 DockPanel.Dock="Top"
                 Orientation="Horizontal">
                 <TextBlock
@@ -28,6 +28,7 @@
                     Text="最新公告" />
             </StackPanel>
             <TextBox
+                Margin="3,0,0,0"
                 Padding="5"
                 DockPanel.Dock="Bottom"
                 Style="{StaticResource TextBoxShowInfoStyle}"
