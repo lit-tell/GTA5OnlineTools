@@ -1,0 +1,228 @@
+﻿<Window
+    x:Class="GTA5OnlineTools.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="Window_Main"
+    Title="{Binding MainModel.WindowTitle}"
+    MinWidth="1000"
+    MinHeight="600"
+    Closing="Window_Main_Closing"
+    Loaded="Window_Main_Loaded"
+    Style="{StaticResource WindowNormalStyle}"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <Style x:Key="RadioButtonStyle" TargetType="{x:Type RadioButton}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Grid Height="40" Background="Transparent">
+                            <Border x:Name="border" Background="Transparent" />
+                            <Border x:Name="borderHeader" Background="Transparent" />
+                            <ContentPresenter Margin="5,0,0,0" VerticalAlignment="Center" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#E6E6E6" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#C2C3C9" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="borderHeader" Property="Margin" Value="0,7,0,7" />
+                                <Setter TargetName="borderHeader" Property="BorderThickness" Value="5,0,0,0" />
+                                <Setter TargetName="borderHeader" Property="BorderBrush" Value="#2196F3" />
+                                <Setter TargetName="border" Property="Background" Value="#CBCBCB" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border BorderBrush="Gray" BorderThickness="0,0.3,0,0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Border Background="White">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="5"
+                            Direction="0"
+                            Opacity="0.5"
+                            ShadowDepth="1"
+                            Color="Gray" />
+                    </Border.Effect>
+                </Border>
+                <DockPanel LastChildFill="True">
+                    <StackPanel DockPanel.Dock="Top">
+                        <TextBlock
+                            Margin="10"
+                            FontSize="80"
+                            Foreground="#2196F3"
+                            Style="{StaticResource IconFontHVStyle}"
+                            Text="&#xe64d;">
+                            <TextBlock.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="5"
+                                    Direction="0"
+                                    Opacity="1"
+                                    ShadowDepth="3"
+                                    Color="Gray" />
+                            </TextBlock.Effect>
+                        </TextBlock>
+                        <TextBlock
+                            Margin="0,0,0,15"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="GTA5线上小助手">
+                            <TextBlock.Effect>
+                                <DropShadowEffect
+                                    BlurRadius="5"
+                                    Direction="0"
+                                    Opacity="0.5"
+                                    ShadowDepth="1"
+                                    Color="Gray" />
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Margin="5,10,5,10" DockPanel.Dock="Bottom">
+                        <TextBlock
+                            Margin="0,0,0,5"
+                            HorizontalAlignment="Center"
+                            Text="{Binding MainModel.GTA5IsRun, FallbackValue='GTA5 : OFF'}">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="GTA5 : OFF">
+                                            <Setter Property="Foreground" Value="Red" />
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="GTA5 : ON">
+                                            <Setter Property="Foreground" Value="Green" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding MainModel.AppRunTime, FallbackValue='运行时间 : Loading...'}" />
+                    </StackPanel>
+
+                    <StackPanel DockPanel.Dock="Top">
+                        <!--  软件公告  -->
+                        <RadioButton
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="UC0IndexView"
+                            GroupName="menu"
+                            IsChecked="True"
+                            Style="{StaticResource RadioButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="15,0,15,0"
+                                    FontSize="20"
+                                    Foreground="#F45221"
+                                    Style="{StaticResource TextBlockStyle_IconFontNormal}"
+                                    Text="&#xe734;" />
+                                <TextBlock VerticalAlignment="Center" Text="软件公告" />
+                            </StackPanel>
+                        </RadioButton>
+                        <!--  第三方辅助  -->
+                        <RadioButton
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="UC1HacksView"
+                            GroupName="menu"
+                            Style="{StaticResource RadioButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="15,0,15,0"
+                                    FontSize="20"
+                                    Foreground="#00B2F2"
+                                    Style="{StaticResource TextBlockStyle_IconFontNormal}"
+                                    Text="&#xe630;" />
+                                <TextBlock VerticalAlignment="Center" Text="第三方辅助" />
+                            </StackPanel>
+                        </RadioButton>
+                        <!--  小助手辅助  -->
+                        <RadioButton
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="UC2ModulesView"
+                            GroupName="menu"
+                            Style="{StaticResource RadioButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="15,0,15,0"
+                                    FontSize="20"
+                                    Foreground="#88C600"
+                                    Style="{StaticResource TextBlockStyle_IconFontNormal}"
+                                    Text="&#xe609;" />
+                                <TextBlock VerticalAlignment="Center" Text="小助手辅助" />
+                            </StackPanel>
+                        </RadioButton>
+                        <!--  工具设置  -->
+                        <RadioButton
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="UC3ToolsView"
+                            GroupName="menu"
+                            Style="{StaticResource RadioButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="15,0,15,0"
+                                    FontSize="20"
+                                    Foreground="#673AB7"
+                                    Style="{StaticResource TextBlockStyle_IconFontNormal}"
+                                    Text="&#xe644;" />
+                                <TextBlock VerticalAlignment="Center" Text="工具设置" />
+                            </StackPanel>
+                        </RadioButton>
+                        <!--  更新日志  -->
+                        <RadioButton
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="UC4UpdateView"
+                            GroupName="menu"
+                            Style="{StaticResource RadioButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="15,0,15,0"
+                                    FontSize="20"
+                                    Foreground="#FFC501"
+                                    Style="{StaticResource TextBlockStyle_IconFontNormal}"
+                                    Text="&#xe652;" />
+                                <TextBlock VerticalAlignment="Center" Text="更新日志" />
+                            </StackPanel>
+                        </RadioButton>
+                        <!--  关于作者  -->
+                        <RadioButton
+                            Command="{Binding NavigateCommand}"
+                            CommandParameter="UC5AboutView"
+                            GroupName="menu"
+                            Style="{StaticResource RadioButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    Margin="15,0,15,0"
+                                    FontSize="20"
+                                    Foreground="#66CCCC"
+                                    Style="{StaticResource TextBlockStyle_IconFontNormal}"
+                                    Text="&#xe684;" />
+                                <TextBlock VerticalAlignment="Center" Text="关于作者" />
+                            </StackPanel>
+                        </RadioButton>
+                    </StackPanel>
+                </DockPanel>
+            </Grid>
+            <Grid Grid.Column="1">
+                <ContentControl x:Name="ContentControl_Main" />
+            </Grid>
+        </Grid>
+
+    </Border>
+</Window>

@@ -1,8 +1,8 @@
-﻿using Prism.Mvvm;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace GTA5OnlineTools.Models;
 
-public class MainModel : BindableBase
+public class MainModel : ObservableObject
 {
     /// <summary>
     /// 窗口标题
@@ -17,8 +17,8 @@ public class MainModel : BindableBase
     /// </summary>
     public string GTA5IsRun
     {
-        get { return _gTA5IsRun; }
-        set { _gTA5IsRun = value; RaisePropertyChanged(); }
+        get => _gTA5IsRun;
+        set => SetProperty(ref _gTA5IsRun, value);
     }
 
     private string _appRunTime;
@@ -27,7 +27,7 @@ public class MainModel : BindableBase
     /// </summary>
     public string AppRunTime
     {
-        get { return _appRunTime; }
-        set { _appRunTime = value; RaisePropertyChanged(); }
+        get => _appRunTime;
+        set => SetProperty(ref _appRunTime, value);
     }
 }

@@ -1,41 +1,60 @@
-﻿using Prism.Events;
-using Prism.Regions;
-using Prism.Commands;
+﻿using Microsoft.Toolkit.Mvvm.Input;
+using Hardcodet.Wpf.TaskbarNotification;
 
 using GTA5OnlineTools.Views;
-using GTA5OnlineTools.Event;
 using GTA5OnlineTools.Models;
-using GTA5OnlineTools.Common.Http;
 using GTA5OnlineTools.Common.Data;
+using GTA5OnlineTools.Common.Http;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Modules.Kits;
 
-namespace GTA5OnlineTools.ViewModels;
+namespace GTA5OnlineTools;
 
-public class MainViewModel
+/// <summary>
+/// MainWindow.xaml 的交互逻辑
+/// </summary>
+public partial class MainWindow : Window
 {
+    // 任务栏图标
+    private static TaskbarIcon TaskbarIcon_Main = null;
+    // 数据模型
     public MainModel MainModel { get; set; }
-    public List<MenuBar> MenuBars { get; set; }
 
-    public DelegateCommand<MenuBar> NavigateCommand { get; private set; }
+    // 页面导航命令
+    public RelayCommand<string> NavigateCommand { get; private set; }
 
-    private IRegionManager _RegionManager;
-    private IEventAggregator _EventAggregator;
+    // 用户控件，用于视图切换
+    private UC0IndexView UC0IndexView { get; set; } = new();
+    private UC1HacksView UC1HacksView { get; set; } = new();
+    private UC2ModulesView UC2ModulesView { get; set; } = new();
+    private UC3ToolsView UC3ToolsView { get; set; } = new();
+    private UC4UpdateView UC4UpdateView { get; set; } = new();
+    private UC5AboutView UC5AboutView { get; set; } = new();
+
+    public static Window MainWindowIns = null;
 
     // 声明一个变量，用于存储软件开始运行的时间
     private DateTime Origin_DateTime;
 
-    public MainViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
+    public MainWindow()
     {
-        MainModel = new MainModel();
-        MenuBars = new List<MenuBar>();
-        CreateMenuBar();
-        _RegionManager = regionManager;
-        _EventAggregator = eventAggregator;
-        NavigateCommand = new DelegateCommand<MenuBar>(Navigate);
+        InitializeComponent();
+    }
 
-        _RegionManager.RegisterViewWithRegion("MainViewRegion", "UC0IndexView");
-        _RegionManager.RegisterViewWithRegion("MainViewRegion", "UC4UpdateView");
+    /// <summary>
+    /// 窗口加载事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Window_Main_Loaded(object sender, RoutedEventArgs e)
+    {
+        this.Title = CoreUtil.MainAppWindowName + CoreUtil.ClientVersionInfo;
+
+        this.DataContext = this;
+        MainWindowIns = this;
+
+        MainModel = new();
+        NavigateCommand = new(Navigate);
 
         //////////////////////////////////////////////////////////////////////////////
 
@@ -56,33 +75,108 @@ public class MainViewModel
         var thread0 = new Thread(InitThread);
         thread0.IsBackground = true;
         thread0.Start();
+
+        //////////////////////////////////////////////////////////////////////////////
+
+        TaskbarIcon_Main = new TaskbarIcon();
+        TaskbarIcon_Main.IconSource = new BitmapImage(new Uri("pack://application:,,,/Assets/Images/Favicon.ico", UriKind.RelativeOrAbsolute));
+        TaskbarIcon_Main.MenuActivation = PopupActivationMode.RightClick;
+        TaskbarIcon_Main.ToolTipText = "GTA5线上小助手";
+        TaskbarIcon_Main.Visibility = Visibility.Visible;
+
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem MenuItem_Show = new MenuItem();
+        MenuItem_Show.Header = "显示";
+        MenuItem_Show.Click += TaskbarIcon_MenuItem_Show_Click;
+        MenuItem MenuItem_Exit = new MenuItem();
+        MenuItem_Exit.Header = "退出";
+        MenuItem_Exit.Click += TaskbarIcon_MenuItem_Exit_Click;
+        contextMenu.Items.Add(MenuItem_Show);
+        contextMenu.Items.Add(MenuItem_Exit);
+        TaskbarIcon_Main.ContextMenu = contextMenu;
+
+        TaskbarIcon_Main.TrayMouseDoubleClick += TaskbarIcon_Main_TrayMouseDoubleClick;
     }
 
     /// <summary>
-    /// 创建左侧菜单栏
+    /// 窗口关闭事件
     /// </summary>
-    private void CreateMenuBar()
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Window_Main_Closing(object sender, CancelEventArgs e)
     {
-        MenuBars.Add(new MenuBar() { Icon = "\xe734", Title = "软件公告", ColorHex = "#F45221", NameSpace = "UC0IndexView" });
-        MenuBars.Add(new MenuBar() { Icon = "\xe630", Title = "第三方辅助", ColorHex = "#00B2F2", NameSpace = "UC1HacksView" });
-        MenuBars.Add(new MenuBar() { Icon = "\xe609", Title = "小助手辅助", ColorHex = "#88C600", NameSpace = "UC2ModulesView" });
-        MenuBars.Add(new MenuBar() { Icon = "\xe644", Title = "工具设置", ColorHex = "#673AB7", NameSpace = "UC3ToolsView" });
-        MenuBars.Add(new MenuBar() { Icon = "\xe652", Title = "更新日志", ColorHex = "#FFC501", NameSpace = "UC4UpdateView" });
-        MenuBars.Add(new MenuBar() { Icon = "\xe684", Title = "关于作者", ColorHex = "#66CCCC", NameSpace = "UC5AboutView" });
+        ProcessUtil.CloseTheseProcess();
+        TaskbarIcon_Main.IconSource = null;
+        TaskbarIcon_Main.ContextMenu = null;
+        TaskbarIcon_Main.Dispose();
+        Application.Current.Shutdown();
     }
+
+    private void TaskbarIcon_MenuItem_Show_Click(object sender, RoutedEventArgs e)
+    {
+        Topmost = true;
+        Topmost = false;
+        ShowInTaskbar = true;
+        WindowState = WindowState.Normal;
+    }
+
+    private void TaskbarIcon_MenuItem_Exit_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
+    }
+
+    private void TaskbarIcon_Main_TrayMouseDoubleClick(object sender, RoutedEventArgs e)
+    {
+        Topmost = true;
+        Topmost = false;
+        ShowInTaskbar = true;
+        WindowState = WindowState.Normal;
+    }
+
+    public static void ShowNoticeInfo(string msg)
+    {
+        TaskbarIcon_Main?.ShowBalloonTip("提示", msg, BalloonIcon.Info);
+    }
+
+    //////////////////////////////////////////////////////////////////////
 
     /// <summary>
     /// 页面导航服务
     /// </summary>
-    /// <param name="obj"></param>
-    private void Navigate(MenuBar obj)
+    /// <param name="viewName"></param>
+    private void Navigate(string viewName)
     {
-        if (obj == null || string.IsNullOrEmpty(obj.NameSpace))
+        if (viewName == null || string.IsNullOrEmpty(viewName))
             return;
 
-        _RegionManager.Regions["MainViewRegion"].RequestNavigate(obj.NameSpace);
+        switch (viewName)
+        {
+            case "UC0IndexView":
+                if (ContentControl_Main.Content != UC0IndexView)
+                    ContentControl_Main.Content = UC0IndexView;
+                break;
+            case "UC1HacksView":
+                if (ContentControl_Main.Content != UC1HacksView)
+                    ContentControl_Main.Content = UC1HacksView;
+                break;
+            case "UC2ModulesView":
+                if (ContentControl_Main.Content != UC2ModulesView)
+                    ContentControl_Main.Content = UC2ModulesView;
+                break;
+            case "UC3ToolsView":
+                if (ContentControl_Main.Content != UC3ToolsView)
+                    ContentControl_Main.Content = UC3ToolsView;
+                break;
+            case "UC4UpdateView":
+                if (ContentControl_Main.Content != UC4UpdateView)
+                    ContentControl_Main.Content = UC4UpdateView;
+                break;
+            case "UC5AboutView":
+                if (ContentControl_Main.Content != UC5AboutView)
+                    ContentControl_Main.Content = UC5AboutView;
+                break;
+        }
     }
-
     /// <summary>
     /// 计时器独立线程
     /// </summary>
@@ -169,12 +263,14 @@ public class MainViewModel
             // 获取最新公告
             await HttpHelper.HttpClientGET(CoreUtil.NoticeAddress).ContinueWith((t) =>
             {
-                this._EventAggregator.GetEvent<NoticeMsgEvent>().Publish(t.Result);
+                if (t != null)
+                    CoreUtil.NoticeText = t.Result;
             });
             // 获取更新日志
             await HttpHelper.HttpClientGET(CoreUtil.ChangeAddress).ContinueWith((t) =>
             {
-                this._EventAggregator.GetEvent<ChangeMsgEvent>().Publish(t.Result);
+                if (t != null)
+                    CoreUtil.ChangeText = t.Result;
             });
         }
         catch (Exception ex)
@@ -203,7 +299,7 @@ public class MainViewModel
             {
                 var UpdateWindow = new UpdateWindow();
                 // 设置父窗口
-                UpdateWindow.Owner = MainView.MainWindow;
+                UpdateWindow.Owner = MainWindowIns;
                 UpdateWindow.ShowDialog();
             });
         }

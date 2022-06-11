@@ -1,11 +1,10 @@
-﻿using Prism.Regions;
-using Prism.Commands;
-
-using GTA5OnlineTools.Common.Data;
+﻿using GTA5OnlineTools.Common.Data;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
+
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu;
 
@@ -15,13 +14,10 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu;
 public partial class ExternalMenuView : Window
 {
     public List<MenuBar> MenuBars { get; set; }
-    public DelegateCommand<MenuBar> NavigateCommand { get; private set; }
+    public RelayCommand<MenuBar> NavigateCommand { get; private set; }
 
     public delegate void ClosingDispose();
     public static event ClosingDispose ClosingDisposeEvent;
-
-    private IRegionManager _RegionManager;
-    private IRegionManager _ScopedRegion;
 
     // 程序自身的窗口句柄
     private IntPtr EMHandle;
@@ -30,14 +26,9 @@ public partial class ExternalMenuView : Window
     public delegate void IsShowWindow();
     public static IsShowWindow IsShowWindowDelegate;
 
-    public ExternalMenuView(IRegionManager regionManager)
+    public ExternalMenuView()
     {
         InitializeComponent();
-
-        _RegionManager = regionManager;
-
-        _ScopedRegion = _RegionManager.CreateRegionManager();
-        RegionManager.SetRegionManager(this, _ScopedRegion);
 
         Button_TitleMin.Click += (s, e) => { this.WindowState = WindowState.Minimized; };
         Button_TitleClose.Click += (s, e) => { this.Close(); };
@@ -46,11 +37,10 @@ public partial class ExternalMenuView : Window
     private void Window_ExternalMenuView_Loaded(object sender, RoutedEventArgs e)
     {
         MenuBars = new List<MenuBar>();
-        CreateMenuBar();
-        NavigateCommand = new DelegateCommand<MenuBar>(Navigate);
 
-        _ScopedRegion.RequestNavigate("ExternalMenuViewRegion", "EM01PlayerStateView");
-        _ScopedRegion.RequestNavigate("ExternalMenuViewRegion", "EM00ReadMeView");
+        CreateMenuBar();
+
+        NavigateCommand = new(Navigate);
 
         // 获取自身窗口句柄
         EMHandle = new WindowInteropHelper(this).Handle;
@@ -134,8 +124,6 @@ public partial class ExternalMenuView : Window
     {
         if (obj == null || string.IsNullOrEmpty(obj.NameSpace))
             return;
-
-        _ScopedRegion.RequestNavigate("ExternalMenuViewRegion", obj.NameSpace);
     }
 
     private void InitThread()

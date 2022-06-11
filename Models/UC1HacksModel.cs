@@ -1,8 +1,8 @@
-﻿using Prism.Mvvm;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace GTA5OnlineTools.Models;
 
-public class UC1HacksModel : BindableBase
+public class UC1HacksModel : ObservableObject
 {
     private bool _kiddionIsRun = false;
     /// <summary>
@@ -10,8 +10,8 @@ public class UC1HacksModel : BindableBase
     /// </summary>
     public bool KiddionIsRun
     {
-        get { return _kiddionIsRun; }
-        set { _kiddionIsRun = value; RaisePropertyChanged(); }
+        get => _kiddionIsRun;
+        set => SetProperty(ref _kiddionIsRun, value);
     }
 
     private bool _subVersionIsRun = false;
@@ -20,8 +20,8 @@ public class UC1HacksModel : BindableBase
     /// </summary>
     public bool SubVersionIsRun
     {
-        get { return _subVersionIsRun; }
-        set { _subVersionIsRun = value; RaisePropertyChanged(); }
+        get => _subVersionIsRun;
+        set => SetProperty(ref _subVersionIsRun, value);
     }
 
     private bool _gTAHaxIsRun = false;
@@ -30,8 +30,8 @@ public class UC1HacksModel : BindableBase
     /// </summary>
     public bool GTAHaxIsRun
     {
-        get { return _gTAHaxIsRun; }
-        set { _gTAHaxIsRun = value; RaisePropertyChanged(); }
+        get => _gTAHaxIsRun;
+        set => SetProperty(ref _gTAHaxIsRun, value);
     }
 
     private bool _bincoHaxIsRun = false;
@@ -40,8 +40,8 @@ public class UC1HacksModel : BindableBase
     /// </summary>
     public bool BincoHaxIsRun
     {
-        get { return _bincoHaxIsRun; }
-        set { _bincoHaxIsRun = value; RaisePropertyChanged(); }
+        get => _bincoHaxIsRun;
+        set => SetProperty(ref _bincoHaxIsRun, value);
     }
 
     private bool _lSCHaxIsRun = false;
@@ -50,8 +50,8 @@ public class UC1HacksModel : BindableBase
     /// </summary>
     public bool LSCHaxIsRun
     {
-        get { return _lSCHaxIsRun; }
-        set { _lSCHaxIsRun = value; RaisePropertyChanged(); }
+        get => _lSCHaxIsRun;
+        set => SetProperty(ref _lSCHaxIsRun, value);
     }
 
     private bool _pedDropperIsRun = false;
@@ -60,8 +60,8 @@ public class UC1HacksModel : BindableBase
     /// </summary>
     public bool PedDropperIsRun
     {
-        get { return _pedDropperIsRun; }
-        set { _pedDropperIsRun = value; RaisePropertyChanged(); }
+        get => _pedDropperIsRun;
+        set => SetProperty(ref _pedDropperIsRun, value);
     }
 
     private bool _jobMoneyIsRun = false;
@@ -70,18 +70,17 @@ public class UC1HacksModel : BindableBase
     /// </summary>
     public bool JobMoneyIsRun
     {
-        get { return _jobMoneyIsRun; }
-        set { _jobMoneyIsRun = value; RaisePropertyChanged(); }
+        get => _jobMoneyIsRun;
+        set => SetProperty(ref _jobMoneyIsRun, value);
     }
 
     private object _frameContent;
 
     public object FrameContent
     {
-        get { return _frameContent; }
-        set { _frameContent = value; RaisePropertyChanged(); }
+        get => _frameContent;
+        set => SetProperty(ref _frameContent, value);
     }
-
 
     private Visibility _frameVisibilityState = Visibility.Collapsed;
     /// <summary>
@@ -89,7 +88,7 @@ public class UC1HacksModel : BindableBase
     /// </summary>
     public Visibility FrameVisibilityState
     {
-        get { return _frameVisibilityState; }
-        set { _frameVisibilityState = value; RaisePropertyChanged(); }
+        get => _frameVisibilityState;
+        set => SetProperty(ref _frameVisibilityState, value);
     }
 }

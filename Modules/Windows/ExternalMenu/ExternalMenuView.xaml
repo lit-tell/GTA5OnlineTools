@@ -3,9 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:prism="http://prismlibrary.com/"
     Name="Window_ExternalMenuView"
     Title="GTA5线上小助手 外置菜单"
     Width="1000"
@@ -154,7 +152,7 @@
                         VerticalAlignment="Center"
                         FontSize="14"
                         Foreground="White"
-                        Style="{StaticResource IconFontBaseStyle}"
+                        Style="{StaticResource TextBlockStyle_IconFontNormal}"
                         Text="&#xe64d;" />
                     <TextBlock
                         VerticalAlignment="Center"
@@ -200,7 +198,7 @@
                         DockPanel.Dock="Top"
                         FontSize="36"
                         Foreground="#2196F3"
-                        Style="{StaticResource IconFontBaseStyle}"
+                        Style="{StaticResource TextBlockStyle_IconFontNormal}"
                         Text="&#xe617;" />
 
                     <ListBox
@@ -210,11 +208,6 @@
                         ItemsSource="{Binding MenuBars}"
                         SelectedIndex="0"
                         Style="{StaticResource ListBoxMenuStyle}">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=MenuBar, Path=SelectedItem}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="{x:Type ListBoxItem}">
                                 <StackPanel Orientation="Horizontal">
@@ -223,7 +216,7 @@
                                         VerticalAlignment="Center"
                                         FontSize="14"
                                         Foreground="{Binding ColorHex}"
-                                        Style="{StaticResource IconFontBaseStyle}"
+                                        Style="{StaticResource TextBlockStyle_IconFontNormal}"
                                         Text="{Binding Icon}" />
                                     <TextBlock VerticalAlignment="Center" Text="{Binding Title}" />
                                 </StackPanel>
@@ -235,7 +228,7 @@
             </Border>
 
             <Grid Grid.Column="1">
-                <ContentControl prism:RegionManager.RegionName="ExternalMenuViewRegion" />
+                <ContentControl x:Name="ContentControl_Main" />
             </Grid>
         </Grid>
     </Grid>

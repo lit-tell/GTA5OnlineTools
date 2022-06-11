@@ -29,6 +29,9 @@ public class CoreUtil
     public const string GTA5OnlineToolsDiscord = "https://crazyzhang.cn/gta5/20210725032256.html";
     public const string GTA5OnlineToolsIssues = "https://github.com/CrazyZhang666/GTA5OnlineTools/issues/new";
 
+    public static string NoticeText = string.Empty;
+    public static string ChangeText = string.Empty;
+
     /// <summary>
     /// 正在更新时的文件名
     /// </summary>

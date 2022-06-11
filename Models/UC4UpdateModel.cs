@@ -1,8 +1,8 @@
-﻿using Prism.Mvvm;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace GTA5OnlineTools.Models;
 
-public class UC4UpdateModel : BindableBase
+public class UC4UpdateModel : ObservableObject
 {
     private string _changeInfo;
     /// <summary>
@@ -10,7 +10,7 @@ public class UC4UpdateModel : BindableBase
     /// </summary>
     public string ChangeInfo
     {
-        get { return _changeInfo; }
-        set { _changeInfo = value; RaisePropertyChanged(); }
+        get => _changeInfo;
+        set => SetProperty(ref _changeInfo, value);
     }
 }

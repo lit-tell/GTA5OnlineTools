@@ -1,8 +1,8 @@
-﻿using Prism.Mvvm;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace GTA5OnlineTools.Models;
 
-public class UC0IndexModel : BindableBase
+public class UC0IndexModel : ObservableObject
 {
     private string _noticeInfo;
     /// <summary>
@@ -10,7 +10,7 @@ public class UC0IndexModel : BindableBase
     /// </summary>
     public string NoticeInfo
     {
-        get { return _noticeInfo; }
-        set { _noticeInfo = value; RaisePropertyChanged(); }
+        get => _noticeInfo;
+        set => SetProperty(ref _noticeInfo, value);
     }
 }
