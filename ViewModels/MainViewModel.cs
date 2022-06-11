@@ -58,6 +58,9 @@ public class MainViewModel
         thread0.Start();
     }
 
+    /// <summary>
+    /// 创建左侧菜单栏
+    /// </summary>
     private void CreateMenuBar()
     {
         MenuBars.Add(new MenuBar() { Icon = "\xe734", Title = "软件公告", ColorHex = "#F45221", NameSpace = "UC0IndexView" });
@@ -68,6 +71,10 @@ public class MainViewModel
         MenuBars.Add(new MenuBar() { Icon = "\xe684", Title = "关于作者", ColorHex = "#66CCCC", NameSpace = "UC5AboutView" });
     }
 
+    /// <summary>
+    /// 页面导航服务
+    /// </summary>
+    /// <param name="obj"></param>
     private void Navigate(MenuBar obj)
     {
         if (obj == null || string.IsNullOrEmpty(obj.NameSpace))
@@ -76,6 +83,11 @@ public class MainViewModel
         _RegionManager.Regions["MainViewRegion"].RequestNavigate(obj.NameSpace);
     }
 
+    /// <summary>
+    /// 计时器独立线程
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Timer_Tick(object sender, ElapsedEventArgs e)
     {
         // 获取软件运行时间
@@ -85,10 +97,14 @@ public class MainViewModel
         MainModel.GTA5IsRun = ProcessUtil.IsAppRun("GTA5") ? "GTA5 : ON" : "GTA5 : OFF";
     }
 
+    /// <summary>
+    /// 初始化线程
+    /// </summary>
     private async void InitThread()
     {
         try
         {
+            // 创建、清空缓存文件夹
             Directory.CreateDirectory(FileUtil.Cache_Path);
             FileUtil.DelectDir(FileUtil.Cache_Path);
 
@@ -101,7 +117,7 @@ public class MainViewModel
             FileUtil.ExtractResFile(FileUtil.Resource_Path + "Kiddion.exe", FileUtil.Kiddion_Path + "Kiddion.exe");
             FileUtil.ExtractResFile(FileUtil.Resource_Path + "Kiddion_Chs.exe", FileUtil.Kiddion_Path + "Kiddion_Chs.exe");
             FileUtil.ExtractResFile(FileUtil.Resource_Path + "SubVersion.exe", FileUtil.Kiddion_Path + "SubVersion.exe");
-
+            // 释放前先判断，防止覆盖配置文件
             if (!File.Exists(FileUtil.Kiddion_Path + "config.json"))
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "config.json", FileUtil.Kiddion_Path + "config.json");
             if (!File.Exists(FileUtil.Kiddion_Path + "teleports.json"))
@@ -110,11 +126,12 @@ public class MainViewModel
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "vehicles.json", FileUtil.Kiddion_Path + "vehicles.json");
             if (!File.Exists(FileUtil.KiddionScripts_Path + "Readme.api"))
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.Readme.api", FileUtil.KiddionScripts_Path + "Readme.api");
+            if (!File.Exists(FileUtil.Kiddion_Path + "settings.ini"))
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "settings.ini", FileUtil.Kiddion_Path + "settings.ini");
+
             FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.pre_skip.lua", FileUtil.KiddionScripts_Path + "pre_skip.lua");
             //if (!File.Exists(FileUtil.KiddionScripts_Path + "scripts.sirius.lua.example"))
             //FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.sirius.lua.example", FileUtil.KiddionScripts_Path + "sirius.lua.example");
-            if (!File.Exists(FileUtil.Kiddion_Path + "settings.ini"))
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "settings.ini", FileUtil.Kiddion_Path + "settings.ini");
 
             /*****************************************************************************************************/
 
@@ -141,20 +158,20 @@ public class MainViewModel
         {
             // 刷新DNS缓存
             CoreUtil.CMD_Code("ipconfig /flushdns");
-
+            // 检查更新
             string webConfig = await HttpHelper.HttpClientGET(CoreUtil.ConfigAddress);
-
+            // 解析web返回的数据
             GlobalData.ServerData = JsonUtil.JsonDese<ServerData>(webConfig);
-
+            // 获取对应数据
             CoreUtil.ServerVersionInfo = Version.Parse(GlobalData.ServerData.Version);
             CoreUtil.NoticeAddress = GlobalData.ServerData.Address.Notice;
             CoreUtil.ChangeAddress = GlobalData.ServerData.Address.Change;
-
+            // 获取最新公告
             await HttpHelper.HttpClientGET(CoreUtil.NoticeAddress).ContinueWith((t) =>
             {
                 this._EventAggregator.GetEvent<NoticeMsgEvent>().Publish(t.Result);
             });
-
+            // 获取更新日志
             await HttpHelper.HttpClientGET(CoreUtil.ChangeAddress).ContinueWith((t) =>
             {
                 this._EventAggregator.GetEvent<ChangeMsgEvent>().Publish(t.Result);
@@ -165,13 +182,18 @@ public class MainViewModel
             MsgBoxUtil.ExceptionMsgBox(ex);
         }
 
+        // 如果线上版本号大于本地版本号，则提示更新
         if (CoreUtil.ServerVersionInfo > CoreUtil.ClientVersionInfo)
         {
             AudioUtil.SP_GTA5_Email.Play();
+            // 打开更新对话框
             OpenUpateWindow();
         }
     }
 
+    /// <summary>
+    /// 打开更新窗口
+    /// </summary>
     private static void OpenUpateWindow()
     {
         if (MessageBox.Show($"检测到新版本已发布，是否立即前往更新？\n\n{GlobalData.ServerData.Latest.Date}\n{GlobalData.ServerData.Latest.Change}\n\n强烈建议大家使用最新版本呢！",
@@ -180,6 +202,7 @@ public class MainViewModel
             Application.Current.Dispatcher.Invoke(() =>
             {
                 var UpdateWindow = new UpdateWindow();
+                // 设置父窗口
                 UpdateWindow.Owner = MainView.MainWindow;
                 UpdateWindow.ShowDialog();
             });

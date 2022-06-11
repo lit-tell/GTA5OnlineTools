@@ -215,7 +215,7 @@ public class Overlay : IDisposable
                     continue;
 
                 // ped坐标
-                Vector3 pedPosV3 = Memory.Read<Vector3>(m_navigation + 0x50);
+                var pedPosV3 = Memory.Read<Vector3>(m_navigation + 0x50);
 
                 // Ped与自己的距离
                 float myToPedDistance = (float)Math.Sqrt(
@@ -225,7 +225,7 @@ public class Overlay : IDisposable
 
                 // m_heading    0x20
                 // m_heading2   0x24
-                Vector2 v2PedSinCos = new Vector2
+                var v2PedSinCos = new Vector2
                 {
                     X = Memory.Read<float>(m_navigation + 0x20),
                     Y = Memory.Read<float>(m_navigation + 0x30)
@@ -793,7 +793,7 @@ public class Overlay : IDisposable
     // 判断屏幕坐标是否有效
     private bool IsNullVector2(Vector2 vector)
     {
-        return vector == new Vector2(0, 0);
+        return vector.X == 0 && vector.Y == 0;
     }
 
     // 世界坐标转屏幕坐标
@@ -882,4 +882,18 @@ public class Overlay : IDisposable
         GC.SuppressFinalize(this);
     }
     #endregion
+
+    /////////////////////////////////////////////
+
+    private struct Vector2
+    {
+        public float X;
+        public float Y;
+
+        public Vector2(float x, float y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+    }
 }
