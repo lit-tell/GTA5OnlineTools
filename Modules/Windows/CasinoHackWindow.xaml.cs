@@ -17,65 +17,11 @@ public partial class CasinoHackWindow : Window
     public static int selected_index_roulette = 0;
     public static int selected_index_slot_machine = 6;
     public static int selected_index_lucky_wheel = 18;
+
     public CasinoHackWindow()
     {
         InitializeComponent();
 
-        {
-            Dictionary<int, string> dicItem = new Dictionary<int, string>();
-            for (int i = 0; i < 37; i++)
-            {
-                dicItem.Add(i, i.ToString());
-            }
-            dicItem.Add(37, "00");
-            cmb_Roulette.ItemsSource = dicItem;
-            cmb_Roulette.SelectedIndex = 0;
-        }
-        {
-            Dictionary<int, string> dicItem = new Dictionary<int, string>();
-            dicItem.Add(0, "奖品一");
-            dicItem.Add(1, "奖品二");
-            dicItem.Add(2, "奖品三");
-            dicItem.Add(3, "奖品四");
-            dicItem.Add(4, "奖品五");
-            dicItem.Add(5, "奖品六");
-            dicItem.Add(6, "奖品七");
-            dicItem.Add(7, "奖品八");
-            cmb_SlotMachine.ItemsSource = dicItem;
-            cmb_SlotMachine.SelectedIndex = 6;
-        }
-        {
-            Dictionary<int, string> dicItem = new Dictionary<int, string>();
-            dicItem.Add(0, "衣服(1)");
-            dicItem.Add(1, "2500经验");
-            dicItem.Add(2, "20000美元");
-            dicItem.Add(3, "10000筹码");
-            dicItem.Add(4, "折扣");
-            dicItem.Add(5, "5000经验");
-            dicItem.Add(6, "30000美元 ");
-            dicItem.Add(7, "15000筹码");
-            dicItem.Add(8, "衣服(2)");
-            dicItem.Add(9, "7500经验");
-            dicItem.Add(10, "20000筹码");
-            dicItem.Add(11, "神秘奖品");
-            dicItem.Add(12, "衣服(3)");
-            dicItem.Add(13, "10000经验");
-            dicItem.Add(14, "40000美元");
-            dicItem.Add(15, "25000筹码");
-            dicItem.Add(16, "衣服(4)");
-            dicItem.Add(17, "15000经验");
-            dicItem.Add(18, "载具奖品");
-            dicItem.Add(19, "50000美元");
-            cmb_LuckyWheel.ItemsSource = dicItem;
-            cmb_LuckyWheel.SelectedIndex = 18;
-        }
-
-        var thread_main = new Thread(main_thread);
-        thread_main.IsBackground = true;
-        thread_main.Start();
-    }
-    private void Window_CasinoHack_Loaded(object sender, RoutedEventArgs e)
-    {
         Task.Run(() =>
         {
             Memory.Initialize(CoreUtil.TargetAppName);
@@ -83,11 +29,57 @@ public partial class CasinoHackWindow : Window
             Globals.LocalScriptsPTR = Memory.FindPattern(Offsets.Mask.LocalScriptsMask);
             Globals.LocalScriptsPTR = Memory.Rip_37(Globals.LocalScriptsPTR);
         });
-    }
-    private void Window_CasinoHack_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-    {
 
+        Dictionary<int, string> dicItem_Roulette = new Dictionary<int, string>();
+        for (int i = 0; i < 37; i++)
+        {
+            dicItem_Roulette.Add(i, i.ToString());
+        }
+        dicItem_Roulette.Add(37, "00");
+        cmb_Roulette.ItemsSource = dicItem_Roulette;
+        cmb_Roulette.SelectedIndex = 0;
+
+        Dictionary<int, string> dicItem_SlotMachin = new Dictionary<int, string>();
+        dicItem_SlotMachin.Add(0, "奖品一");
+        dicItem_SlotMachin.Add(1, "奖品二");
+        dicItem_SlotMachin.Add(2, "奖品三");
+        dicItem_SlotMachin.Add(3, "奖品四");
+        dicItem_SlotMachin.Add(4, "奖品五");
+        dicItem_SlotMachin.Add(5, "奖品六");
+        dicItem_SlotMachin.Add(6, "奖品七");
+        dicItem_SlotMachin.Add(7, "奖品八");
+        cmb_SlotMachine.ItemsSource = dicItem_SlotMachin;
+        cmb_SlotMachine.SelectedIndex = 6;
+
+        Dictionary<int, string> dicItem_LuckyWhee = new Dictionary<int, string>();
+        dicItem_LuckyWhee.Add(0, "衣服(1)");
+        dicItem_LuckyWhee.Add(1, "2500经验");
+        dicItem_LuckyWhee.Add(2, "20000美元");
+        dicItem_LuckyWhee.Add(3, "10000筹码");
+        dicItem_LuckyWhee.Add(4, "折扣");
+        dicItem_LuckyWhee.Add(5, "5000经验");
+        dicItem_LuckyWhee.Add(6, "30000美元 ");
+        dicItem_LuckyWhee.Add(7, "15000筹码");
+        dicItem_LuckyWhee.Add(8, "衣服(2)");
+        dicItem_LuckyWhee.Add(9, "7500经验");
+        dicItem_LuckyWhee.Add(10, "20000筹码");
+        dicItem_LuckyWhee.Add(11, "神秘奖品");
+        dicItem_LuckyWhee.Add(12, "衣服(3)");
+        dicItem_LuckyWhee.Add(13, "10000经验");
+        dicItem_LuckyWhee.Add(14, "40000美元");
+        dicItem_LuckyWhee.Add(15, "25000筹码");
+        dicItem_LuckyWhee.Add(16, "衣服(4)");
+        dicItem_LuckyWhee.Add(17, "15000经验");
+        dicItem_LuckyWhee.Add(18, "载具奖品");
+        dicItem_LuckyWhee.Add(19, "50000美元");
+        cmb_LuckyWheel.ItemsSource = dicItem_LuckyWhee;
+        cmb_LuckyWheel.SelectedIndex = 18;
+
+        var thread_main = new Thread(main_thread);
+        thread_main.IsBackground = true;
+        thread_main.Start();
     }
+
     private void main_thread()
     {
         while (true)
@@ -260,34 +252,42 @@ public partial class CasinoHackWindow : Window
             Thread.Sleep(500);
         }
     }
+
     private void CheckBox_Blackjack_Click(object sender, RoutedEventArgs e)
     {
         checked_blackjack = (CheckBox_Blackjack.IsChecked == true) ? 1 : 0;
     }
+
     private void CheckBox_Poker_Click(object sender, RoutedEventArgs e)
     {
         checked_poker = (CheckBox_Poker.IsChecked == true) ? 1 : 0;
     }
+
     private void CheckBox_Roulette_Click(object sender, RoutedEventArgs e)
     {
         checked_roulette = (CheckBox_Roulette.IsChecked == true) ? 1 : 0;
     }
+
     private void cmb_Roulette_SelectionChanged(object sender, RoutedEventArgs e)
     {
         selected_index_roulette = cmb_Roulette.SelectedIndex;
     }
+
     private void CheckBox_SlotMachine_Click(object sender, RoutedEventArgs e)
     {
         checked_slot_machine = (CheckBox_SlotMachine.IsChecked == true) ? 1 : 0;
     }
+
     private void cmb_SlotMachine_SelectionChanged(object sender, RoutedEventArgs e)
     {
         selected_index_slot_machine = cmb_SlotMachine.SelectedIndex;
     }
+
     private void CheckBox_LuckyWheel_Click(object sender, RoutedEventArgs e)
     {
         checked_lucky_wheel = (CheckBox_LuckyWheel.IsChecked == true) ? 1 :0;
     }
+
     private void cmb_LuckyWheel_SelectionChanged(object sender, RoutedEventArgs e)
     {
         selected_index_lucky_wheel = cmb_LuckyWheel.SelectedIndex;

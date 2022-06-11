@@ -256,29 +256,36 @@ public class UC2ModulesViewModel
     {
         AudioUtil.ClickSound();
 
-        Application.Current.Dispatcher.Invoke(() =>
+        if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
         {
-            if (BigBaseV2Window == null)
+            Application.Current.Dispatcher.Invoke(() =>
             {
-                BigBaseV2Window = new BigBaseV2Window();
-                BigBaseV2Window.Show();
-            }
-            else
-            {
-                if (BigBaseV2Window.IsVisible)
+                if (BigBaseV2Window == null)
                 {
-                    BigBaseV2Window.Topmost = true;
-                    BigBaseV2Window.Topmost = false;
-                    BigBaseV2Window.WindowState = WindowState.Normal;
-                }
-                else
-                {
-                    BigBaseV2Window = null;
                     BigBaseV2Window = new BigBaseV2Window();
                     BigBaseV2Window.Show();
                 }
-            }
-        });
+                else
+                {
+                    if (BigBaseV2Window.IsVisible)
+                    {
+                        BigBaseV2Window.Topmost = true;
+                        BigBaseV2Window.Topmost = false;
+                        BigBaseV2Window.WindowState = WindowState.Normal;
+                    }
+                    else
+                    {
+                        BigBaseV2Window = null;
+                        BigBaseV2Window = new BigBaseV2Window();
+                        BigBaseV2Window.Show();
+                    }
+                }
+            });
+        }
+        else
+        {
+            MsgBoxUtil.ErrorMsgBox(HintMsg);
+        }
     }
     private void CasinoHackClick()
     {
