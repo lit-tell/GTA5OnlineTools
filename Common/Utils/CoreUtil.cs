@@ -52,8 +52,8 @@ public class CoreUtil
     /// </summary>
     public static string ExecDateDiff(DateTime dateBegin, DateTime dateEnd)
     {
-        TimeSpan ts1 = new TimeSpan(dateBegin.Ticks);
-        TimeSpan ts2 = new TimeSpan(dateEnd.Ticks);
+        var ts1 = new TimeSpan(dateBegin.Ticks);
+        var ts2 = new TimeSpan(dateEnd.Ticks);
 
         return ts1.Subtract(ts2).Duration().ToString("c").Substring(0, 8);
     }
@@ -72,7 +72,7 @@ public class CoreUtil
     /// </summary>
     public static void CMD_Code(string cmd)
     {
-        Process CmdProcess = new Process();
+        var CmdProcess = new Process();
         CmdProcess.StartInfo.FileName = "cmd.exe";
         CmdProcess.StartInfo.CreateNoWindow = true;                     // 不创建新窗口
         CmdProcess.StartInfo.UseShellExecute = false;                   // 不启用shell启动进程  

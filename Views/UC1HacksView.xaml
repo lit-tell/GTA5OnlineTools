@@ -2,6 +2,7 @@
     x:Class="GTA5OnlineTools.Views.UC1HacksView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="720"
@@ -36,7 +37,13 @@
                                         <Image Source="/Assets/Images/Hacks/Kiddion.png" Style="{StaticResource ImageHighQualityStyle}" />
                                     </TextBlock.ToolTip>
                                 </TextBlock>
-                                <CheckBox IsChecked="{Binding UC1HacksModel.KiddionIsRun}" Style="{StaticResource ONOFFCheckBox}" />
+                                <CheckBox IsChecked="{Binding UC1HacksModel.KiddionIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding KiddionClickCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </CheckBox>
                             </UniformGrid>
                         </Grid>
                     </Border>
@@ -66,7 +73,13 @@
                                         <Image Source="/Assets/Images/Hacks/SubVersion.png" Style="{StaticResource ImageHighQualityStyle}" />
                                     </TextBlock.ToolTip>
                                 </TextBlock>
-                                <CheckBox IsChecked="{Binding UC1HacksModel.SubVersionIsRun}" Style="{StaticResource ONOFFCheckBox}" />
+                                <CheckBox IsChecked="{Binding UC1HacksModel.SubVersionIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding SubVersionClickCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </CheckBox>
                             </UniformGrid>
                         </Grid>
                     </Border>
@@ -96,7 +109,13 @@
                                         <Image Source="/Assets/Images/Hacks/GTAHax.png" Style="{StaticResource ImageHighQualityStyle}" />
                                     </TextBlock.ToolTip>
                                 </TextBlock>
-                                <CheckBox IsChecked="{Binding UC1HacksModel.GTAHaxIsRun}" Style="{StaticResource ONOFFCheckBox}" />
+                                <CheckBox IsChecked="{Binding UC1HacksModel.GTAHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding GTAHaxClickCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </CheckBox>
                             </UniformGrid>
                         </Grid>
                     </Border>
@@ -126,7 +145,13 @@
                                         <Image Source="/Assets/Images/Hacks/BincoHax.png" Style="{StaticResource ImageHighQualityStyle}" />
                                     </TextBlock.ToolTip>
                                 </TextBlock>
-                                <CheckBox IsChecked="{Binding UC1HacksModel.BincoHaxIsRun}" Style="{StaticResource ONOFFCheckBox}" />
+                                <CheckBox IsChecked="{Binding UC1HacksModel.BincoHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding BincoHaxClickCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </CheckBox>
                             </UniformGrid>
                         </Grid>
                     </Border>
@@ -156,7 +181,13 @@
                                         <Image Source="/Assets/Images/Hacks/LSCHax.png" Style="{StaticResource ImageHighQualityStyle}" />
                                     </TextBlock.ToolTip>
                                 </TextBlock>
-                                <CheckBox IsChecked="{Binding UC1HacksModel.LSCHaxIsRun}" Style="{StaticResource ONOFFCheckBox}" />
+                                <CheckBox IsChecked="{Binding UC1HacksModel.LSCHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding LSCHaxClickCommand}" />
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+                                </CheckBox>
                             </UniformGrid>
                         </Grid>
                     </Border>

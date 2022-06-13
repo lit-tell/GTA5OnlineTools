@@ -13,7 +13,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu;
 /// </summary>
 public partial class ExternalMenuView : Window
 {
-    public List<MenuBar> MenuBars { get; set; }
+    public List<MenuBar> MenuBars { get; set; } = new();
     public RelayCommand<MenuBar> NavigateCommand { get; private set; }
 
     public delegate void ClosingDispose();
@@ -26,6 +26,19 @@ public partial class ExternalMenuView : Window
     public delegate void IsShowWindow();
     public static IsShowWindow IsShowWindowDelegate;
 
+    // 用户控件
+    private EM00ReadMeView EM00ReadMeView { get; set; } = new();
+    private EM01PlayerStateView EM01PlayerStateView { get; set; } = new();
+    private EM02WorldFunctionView EM02WorldFunctionView { get; set; } = new();
+    private EM03OnlineOptionView EM03OnlineOptionView { get; set; } = new();
+    private EM04PlayerListView EM04PlayerListView { get; set; } = new();
+    private EM05SpawnVehicleView EM05SpawnVehicleView { get; set; } = new();
+    private EM06SpawnWeaponView EM06SpawnWeaponView { get; set; } = new();
+    private EM07CustomTPView EM07CustomTPView { get; set; } = new();
+    private EM08ExternalOverlayView EM08ExternalOverlayView { get; set; } = new();
+    private EM09SessionChatView EM09SessionChatView { get; set; } = new();
+    private EM10JobHelperView EM10JobHelperView { get; set; } = new();
+
     public ExternalMenuView()
     {
         InitializeComponent();
@@ -36,11 +49,14 @@ public partial class ExternalMenuView : Window
 
     private void Window_ExternalMenuView_Loaded(object sender, RoutedEventArgs e)
     {
-        MenuBars = new List<MenuBar>();
+        this.DataContext = this;
 
+        // 创建菜单
         CreateMenuBar();
-
+        // 绑定菜单切换命令
         NavigateCommand = new(Navigate);
+        // 设置主页
+        ContentControl_Main.Content = EM00ReadMeView;
 
         // 获取自身窗口句柄
         EMHandle = new WindowInteropHelper(this).Handle;
@@ -52,6 +68,7 @@ public partial class ExternalMenuView : Window
 
         Topmost = false;
 
+        // 初始化后台线程
         Task.Run(() =>
         {
             Memory.Initialize(CoreUtil.TargetAppName);
@@ -93,8 +110,6 @@ public partial class ExternalMenuView : Window
             Globals.CCameraPTR = Memory.Rip_37(Globals.TempPTR);
         });
 
-        this.DataContext = this;
-
         var thread = new Thread(InitThread);
         thread.IsBackground = true;
         thread.Start();
@@ -124,6 +139,43 @@ public partial class ExternalMenuView : Window
     {
         if (obj == null || string.IsNullOrEmpty(obj.NameSpace))
             return;
+
+        switch (obj.NameSpace)
+        {
+            case "EM00ReadMeView":
+                ContentControl_Main.Content = EM00ReadMeView;
+                break;
+            case "EM01PlayerStateView":
+                ContentControl_Main.Content = EM01PlayerStateView;
+                break;
+            case "EM02WorldFunctionView":
+                ContentControl_Main.Content = EM02WorldFunctionView;
+                break;
+            case "EM03OnlineOptionView":
+                ContentControl_Main.Content = EM03OnlineOptionView;
+                break;
+            case "EM04PlayerListView":
+                ContentControl_Main.Content = EM04PlayerListView;
+                break;
+            case "EM05SpawnVehicleView":
+                ContentControl_Main.Content = EM05SpawnVehicleView;
+                break;
+            case "EM06SpawnWeaponView":
+                ContentControl_Main.Content = EM06SpawnWeaponView;
+                break;
+            case "EM07CustomTPView":
+                ContentControl_Main.Content = EM07CustomTPView;
+                break;
+            case "EM08ExternalOverlayView":
+                ContentControl_Main.Content = EM08ExternalOverlayView;
+                break;
+            case "EM09SessionChatView":
+                ContentControl_Main.Content = EM09SessionChatView;
+                break;
+            case "EM10JobHelperView":
+                ContentControl_Main.Content = EM10JobHelperView;
+                break;
+        }
     }
 
     private void InitThread()

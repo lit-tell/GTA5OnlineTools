@@ -100,11 +100,11 @@ public partial class UC1HacksView : UserControl
                     {
                         isRun = true;
 
-                        var pKiddion = Process.GetProcessesByName("Kiddion").ToList()[0];
-
                         bool isShow = false;
                         do
                         {
+                            var pKiddion = Process.GetProcessesByName("Kiddion").ToList()[0];
+
                             IntPtr Menu_handle = pKiddion.MainWindowHandle;
                             IntPtr child_handle = WinAPI.FindWindowEx(Menu_handle, IntPtr.Zero, "Static", null);
                             child_handle = WinAPI.FindWindowEx(Menu_handle, child_handle, "Static", null);
@@ -113,7 +113,7 @@ public partial class UC1HacksView : UserControl
                             StringBuilder windowName = new StringBuilder(length + 1);
                             WinAPI.GetWindowText(child_handle, windowName, windowName.Capacity);
 
-                            if (windowName.ToString() == "Kiddion's Modest Menu v0.9.1")
+                            if (windowName.ToString() == "Kiddion's Modest Menu v0.9.3")
                             {
                                 isShow = true;
                                 ProcessUtil.OpenProcess("Kiddion_Chs", true);

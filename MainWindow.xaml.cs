@@ -17,13 +17,16 @@ namespace GTA5OnlineTools;
 /// </summary>
 public partial class MainWindow : Window
 {
-    // 任务栏图标
-    private static TaskbarIcon TaskbarIcon_Main = null;
     // 主窗口数据模型
     public MainModel MainModel { get; set; } = new();
+    // 主菜单数据模型
+    public List<MenuBar> MenuBars { get; set; } = new();
+
+    // 任务栏图标
+    private static TaskbarIcon TaskbarIcon_Main = null;
 
     // 页面导航命令
-    public RelayCommand<string> NavigateCommand { get; private set; }
+    public RelayCommand<MenuBar> NavigateCommand { get; private set; }
 
     // 用户控件，用于视图切换
     private UC0IndexView UC0IndexView { get; set; } = new();
@@ -58,10 +61,12 @@ public partial class MainWindow : Window
         // 向外暴露主窗口实例
         MainWindowIns = this;
 
+        // 创建主菜单
+        CreateMenuBar();
         // 初始化主数据模型
         NavigateCommand = new(Navigate);
         // 首页导航
-        Navigate("UC0IndexView");
+        ContentControl_Main.Content = UC0IndexView;
 
         // 获取当前时间，存储到对于变量中
         Origin_DateTime = DateTime.Now;
@@ -175,40 +180,44 @@ public partial class MainWindow : Window
 
     //////////////////////////////////////////////////////////////////////
 
+    private void CreateMenuBar()
+    {
+        MenuBars.Add(new MenuBar() { Icon = "\xe734", Title = "软件公告", ColorHex = "#F45221", NameSpace = "UC0IndexView" });
+        MenuBars.Add(new MenuBar() { Icon = "\xe630", Title = "第三方辅助", ColorHex = "#00B2F2", NameSpace = "UC1HacksView" });
+        MenuBars.Add(new MenuBar() { Icon = "\xe609", Title = "小助手辅助", ColorHex = "#88C600", NameSpace = "UC2ModulesView" });
+        MenuBars.Add(new MenuBar() { Icon = "\xe644", Title = "工具设置", ColorHex = "#673AB7", NameSpace = "UC3ToolsView" });
+        MenuBars.Add(new MenuBar() { Icon = "\xe652", Title = "更新日志", ColorHex = "#FFC501", NameSpace = "UC4UpdateView" });
+        MenuBars.Add(new MenuBar() { Icon = "\xe684", Title = "关于作者", ColorHex = "#66CCCC", NameSpace = "UC5AboutView" });
+    }
+
     /// <summary>
     /// 页面导航服务
     /// </summary>
     /// <param name="viewName"></param>
-    private void Navigate(string viewName)
+    private void Navigate(MenuBar obj)
     {
-        if (viewName == null || string.IsNullOrEmpty(viewName))
+        if (obj == null || string.IsNullOrEmpty(obj.NameSpace))
             return;
 
-        switch (viewName)
+        switch (obj.NameSpace)
         {
             case "UC0IndexView":
-                if (ContentControl_Main.Content != UC0IndexView)
-                    ContentControl_Main.Content = UC0IndexView;
+                ContentControl_Main.Content = UC0IndexView;
                 break;
             case "UC1HacksView":
-                if (ContentControl_Main.Content != UC1HacksView)
-                    ContentControl_Main.Content = UC1HacksView;
+                ContentControl_Main.Content = UC1HacksView;
                 break;
             case "UC2ModulesView":
-                if (ContentControl_Main.Content != UC2ModulesView)
-                    ContentControl_Main.Content = UC2ModulesView;
+                ContentControl_Main.Content = UC2ModulesView;
                 break;
             case "UC3ToolsView":
-                if (ContentControl_Main.Content != UC3ToolsView)
-                    ContentControl_Main.Content = UC3ToolsView;
+                ContentControl_Main.Content = UC3ToolsView;
                 break;
             case "UC4UpdateView":
-                if (ContentControl_Main.Content != UC4UpdateView)
-                    ContentControl_Main.Content = UC4UpdateView;
+                ContentControl_Main.Content = UC4UpdateView;
                 break;
             case "UC5AboutView":
-                if (ContentControl_Main.Content != UC5AboutView)
-                    ContentControl_Main.Content = UC5AboutView;
+                ContentControl_Main.Content = UC5AboutView;
                 break;
         }
     }
