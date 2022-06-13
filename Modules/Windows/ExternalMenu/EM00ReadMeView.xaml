@@ -40,7 +40,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />

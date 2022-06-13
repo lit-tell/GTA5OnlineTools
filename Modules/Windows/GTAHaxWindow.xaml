@@ -164,7 +164,7 @@
                                             FontSize="18"
                                             FontWeight="Bold"
                                             Foreground="White"
-                                            Style="{StaticResource IconFontBaseStyle}"
+                                            Style="{StaticResource TextBlockStyle_IconFontBase}"
                                             Text="&#xe753;" />
                                         <RadioButton
                                             x:Name="RadioButton_H3_P1"
@@ -280,7 +280,7 @@
                                             FontSize="18"
                                             FontWeight="Bold"
                                             Foreground="White"
-                                            Style="{StaticResource IconFontBaseStyle}"
+                                            Style="{StaticResource TextBlockStyle_IconFontBase}"
                                             Text="&#xe753;" />
                                         <RadioButton
                                             x:Name="RadioButton_H3_P2"
@@ -436,7 +436,7 @@
                                             FontSize="18"
                                             FontWeight="Bold"
                                             Foreground="White"
-                                            Style="{StaticResource IconFontBaseStyle}"
+                                            Style="{StaticResource TextBlockStyle_IconFontBase}"
                                             Text="&#xe753;" />
                                         <RadioButton
                                             x:Name="RadioButton_H4CNF_P1"
@@ -493,7 +493,7 @@
                                                     <TextBlock
                                                         HorizontalAlignment="Center"
                                                         VerticalAlignment="Center"
-                                                        Style="{StaticResource IconFontBaseStyle}"
+                                                        Style="{StaticResource TextBlockStyle_IconFontBase}"
                                                         Text="&#xe7f2;">
                                                         <TextBlock.ToolTip>
                                                             <StackPanel Orientation="Vertical">
@@ -530,7 +530,7 @@
                                                     <TextBlock
                                                         HorizontalAlignment="Center"
                                                         VerticalAlignment="Center"
-                                                        Style="{StaticResource IconFontBaseStyle}"
+                                                        Style="{StaticResource TextBlockStyle_IconFontBase}"
                                                         Text="&#xe7f2;">
                                                         <TextBlock.ToolTip>
                                                             <Image Source="/Assets/Images/Tips/PericoHeist02.png" />
@@ -688,7 +688,7 @@
                                                 FontSize="18"
                                                 FontWeight="Bold"
                                                 Foreground="White"
-                                                Style="{StaticResource IconFontBaseStyle}"
+                                                Style="{StaticResource TextBlockStyle_IconFontBase}"
                                                 Text="&#xe753;" />
                                             <RadioButton
                                                 x:Name="RadioButton_H4CNF_P2"

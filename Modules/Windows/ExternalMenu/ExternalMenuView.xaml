@@ -188,11 +188,17 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <Border
-                Grid.Column="0"
-                BorderBrush="Gray"
-                BorderThickness="0,0,0.3,0">
-
+            <Grid Grid.Column="0">
+                <Border Background="White">
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="5"
+                            Direction="0"
+                            Opacity="0.5"
+                            ShadowDepth="1"
+                            Color="Gray" />
+                    </Border.Effect>
+                </Border>
                 <DockPanel LastChildFill="True">
                     <TextBlock
                         Margin="0,10,0,5"
@@ -202,7 +208,6 @@
                         Foreground="#2196F3"
                         Style="{StaticResource TextBlockStyle_IconFontNormal}"
                         Text="&#xe617;" />
-
                     <ListBox
                         x:Name="MenuBar"
                         DockPanel.Dock="Bottom"
@@ -230,9 +235,8 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
                 </DockPanel>
-            </Border>
+            </Grid>
 
             <Grid Grid.Column="1">
                 <ContentControl x:Name="ContentControl_Main" />
