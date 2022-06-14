@@ -63,11 +63,11 @@
                 </TabControl.Resources>
 
                 <!--<TabItem Header="佩里克岛">
-                    <ScrollViewer Grid.Row="1" Style="{StaticResource ScrollViewerVAHDStyle}" />
+                    <ScrollViewer Grid.Row="1" Style="{StaticResource ScrollViewerStyle_VAHD}" />
                 </TabItem>-->
 
                 <TabItem Header="赌场抢劫">
-                    <ScrollViewer Grid.Row="1" Style="{StaticResource ScrollViewerVAHDStyle}">
+                    <ScrollViewer Grid.Row="1" Style="{StaticResource ScrollViewerStyle_VAHD}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -422,7 +422,7 @@
                 </TabItem>
 
                 <TabItem Header="末日抢劫">
-                    <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+                    <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -516,7 +516,7 @@
                 </TabItem>
 
                 <TabItem Header="公寓抢劫">
-                    <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+                    <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />

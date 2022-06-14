@@ -25,7 +25,7 @@
         </TabControl.Resources>
 
         <TabItem Header="主页">
-            <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -186,7 +186,7 @@
         </TabItem>
 
         <TabItem Header="生涯">
-            <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -359,7 +359,7 @@
         </TabItem>
 
         <TabItem Header="技能">
-            <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -453,7 +453,7 @@
         </TabItem>
 
         <TabItem Header="通用">
-            <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -678,7 +678,7 @@
         </TabItem>
 
         <TabItem Header="犯罪">
-            <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -873,7 +873,7 @@
         </TabItem>
 
         <TabItem Header="载具">
-            <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -1206,7 +1206,7 @@
         </TabItem>
 
         <TabItem Header="现金">
-            <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -1364,7 +1364,7 @@
         </TabItem>
 
         <TabItem Header="作战">
-            <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+            <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />

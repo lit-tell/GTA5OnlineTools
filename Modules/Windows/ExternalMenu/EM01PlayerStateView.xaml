@@ -17,7 +17,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+        <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

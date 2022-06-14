@@ -181,7 +181,7 @@
 
                                 </GroupBox.Header>
 
-                                <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+                                <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                                     <StackPanel Margin="3" Orientation="Vertical">
                                         <CheckBox
                                             x:Name="CheckBox_H3OPT_BITSET1"
@@ -295,7 +295,7 @@
                                     </StackPanel>
                                 </GroupBox.Header>
 
-                                <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+                                <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                                     <StackPanel Margin="3" Orientation="Vertical">
                                         <CheckBox
                                             x:Name="CheckBox_H3OPT_BITSET0"
@@ -452,7 +452,7 @@
                                     </StackPanel>
                                 </GroupBox.Header>
 
-                                <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+                                <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                                     <StackPanel Margin="3" Orientation="Vertical">
                                         <CheckBox
                                             x:Name="CheckBox_H4CNF_BS_GEN"
@@ -704,7 +704,7 @@
                                     </StackPanel>
                                 </GroupBox.Header>
 
-                                <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+                                <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
                                     <StackPanel Margin="3" Orientation="Vertical">
                                         <CheckBox
                                             x:Name="CheckBox_ResetEverything"
@@ -775,7 +775,7 @@
             </TabControl>
         </Grid>
 
-        <ScrollViewer Grid.Row="1" Style="{StaticResource ScrollViewerVAHDStyle}">
+        <ScrollViewer Grid.Row="1" Style="{StaticResource ScrollViewerStyle_VAHD}">
             <StackPanel
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"

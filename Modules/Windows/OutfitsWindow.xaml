@@ -99,7 +99,7 @@
             </StackPanel>
         </DockPanel>
 
-        <ScrollViewer Grid.Row="1" Style="{StaticResource ScrollViewerVAHDStyle}">
+        <ScrollViewer Grid.Row="1" Style="{StaticResource ScrollViewerStyle_VAHD}">
             <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

@@ -11,7 +11,7 @@
     mc:Ignorable="d">
 
     <Grid Margin="5">
-        <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+        <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
             <WrapPanel Orientation="Horizontal">
                 <Grid Margin="3">
                     <Border Style="{StaticResource HackBorderEffectBaseStyle}" />

@@ -55,7 +55,7 @@
                                     <DoubleAnimation
                                         From="0"
                                         To="640"
-                                        Duration="0:0:1.5">
+                                        Duration="0:0:1">
                                         <DoubleAnimation.EasingFunction>
                                             <SineEase EasingMode="EaseInOut" />
                                         </DoubleAnimation.EasingFunction>

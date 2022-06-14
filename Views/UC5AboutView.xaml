@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
     <Grid>
-        <ScrollViewer Style="{StaticResource ScrollViewerVAHDStyle}">
+        <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
             <Grid Margin="10">
                 <StackPanel Orientation="Vertical">
                     <TextBlock

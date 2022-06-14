@@ -14,7 +14,7 @@ public partial class LoadWindow : Window
     {
         Task.Run(() =>
         {
-            Task.Delay(1500).Wait();
+            Task.Delay(1000).Wait();
 
             this.Dispatcher.Invoke(() =>
             {

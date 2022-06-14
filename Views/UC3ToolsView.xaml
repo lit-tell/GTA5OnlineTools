@@ -9,7 +9,7 @@
     Style="{StaticResource UserControlLoadingStyle}"
     mc:Ignorable="d">
 
-    <ScrollViewer Margin="5" Style="{StaticResource ScrollViewerVAHDStyle}">
+    <ScrollViewer Margin="5" Style="{StaticResource ScrollViewerStyle_VAHD}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250" />
