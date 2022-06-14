@@ -15,10 +15,11 @@
 * Runtime
 > https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/runtime-desktop-6.0.5-windows-x64-installer
 
-### 框架
+### 技术
 
-* Prism
 * WPF
+* CSharp
+* MVVM
 
 ### Github加速器（推荐）
 

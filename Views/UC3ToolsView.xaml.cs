@@ -29,6 +29,7 @@ public partial class UC3ToolsView : UserControl
 
         SwitchButtonAudioCommand = new(SwitchButtonAudio);
     }
+
     private void SwitchButtonAudio()
     {
         if (AudioUtil.ClickSoundIndex < 5)
@@ -217,6 +218,9 @@ public partial class UC3ToolsView : UserControl
         MainWindow.ShowNoticeInfo("成功刷新DNS解析程序缓存");
     }
 
+    /// <summary>
+    /// 重命名小助手为英文
+    /// </summary>
     private void ReNameAppENClick()
     {
         try
@@ -244,6 +248,9 @@ public partial class UC3ToolsView : UserControl
         }
     }
 
+    /// <summary>
+    /// 重命名小助手为中文
+    /// </summary>
     private void ReNameAppCNClick()
     {
         try

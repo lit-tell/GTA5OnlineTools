@@ -169,7 +169,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// 显示通知信息
+    /// 发送通知栏提示信息
     /// </summary>
     /// <param name="msg"></param>
     public static void ShowNoticeInfo(string msg)

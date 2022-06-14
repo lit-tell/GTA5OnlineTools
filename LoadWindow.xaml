@@ -44,7 +44,8 @@
             MaxWidth="640"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
-            Background="#FCAF17">
+            Background="#FCAF17"
+            SnapsToDevicePixels="True">
             <Border.Style>
                 <Style TargetType="Border">
                     <Style.Triggers>
