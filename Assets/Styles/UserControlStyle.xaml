@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="UserControlLoadingStyle" TargetType="{x:Type UserControl}">
+    <Style x:Key="UserControlStyle_Loading" TargetType="{x:Type UserControl}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Style.Triggers>
             <EventTrigger RoutedEvent="UserControl.Loaded">

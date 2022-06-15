@@ -9,7 +9,7 @@
     Title="GTA5线上小助手 STAT自动化脚本"
     Closing="Window_StatAutoScripts_Closing"
     Loaded="Window_StatAutoScripts_Loaded"
-    Style="{StaticResource WindowNormalStyle}"
+    Style="{StaticResource WindowStyle_Normal}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

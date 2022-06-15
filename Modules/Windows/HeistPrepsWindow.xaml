@@ -9,7 +9,7 @@
     Title="GTA5线上小助手 抢劫前置任务编辑器"
     Closing="Window_HeistPreps_Closing"
     Loaded="Window_HeistPreps_Loaded"
-    Style="{StaticResource WindowNormalStyle}"
+    Style="{StaticResource WindowStyle_Normal}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

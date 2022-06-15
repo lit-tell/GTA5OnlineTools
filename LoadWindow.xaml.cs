@@ -19,11 +19,11 @@ public partial class LoadWindow : Window
             this.Dispatcher.Invoke(() =>
             {
                 var mainWindow = new MainWindow();
-                mainWindow.Show();
                 // 转移主程序控制权
                 Application.Current.MainWindow = mainWindow;
                 // 关闭初始化窗口
                 this.Close();
+                mainWindow.Show();
             });
         });
     }

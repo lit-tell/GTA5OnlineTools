@@ -36,7 +36,7 @@
             Grid.Column="1"
             Padding="5"
             Cursor="Arrow"
-            Style="{StaticResource TextBoxStyle}" />
+            Style="{StaticResource TextBoxStyle_Base}" />
 
         <StackPanel Grid.Column="2">
             <Button

@@ -8,7 +8,7 @@
     Title="BigBaseV2 - STAT编辑/解锁"
     Closing="Window_BigBaseV2_Closing"
     Loaded="Window_BigBaseV2_Loaded"
-    Style="{StaticResource WindowNormalStyle}"
+    Style="{StaticResource WindowStyle_Normal}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

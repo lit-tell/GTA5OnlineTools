@@ -11,7 +11,7 @@
     MinHeight="600"
     Closing="Window_Main_Closing"
     Loaded="Window_Main_Loaded"
-    Style="{StaticResource WindowNormalStyle}"
+    Style="{StaticResource WindowStyle_Normal}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 

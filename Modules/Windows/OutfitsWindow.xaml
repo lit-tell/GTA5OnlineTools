@@ -9,7 +9,7 @@
     Title="GTA5线上小助手 角色服装编辑器"
     Closing="Window_Outfits_Closing"
     Loaded="Window_Outfits_Loaded"
-    Style="{StaticResource WindowNormalStyle}"
+    Style="{StaticResource WindowStyle_Normal}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
