@@ -72,11 +72,11 @@ public partial class EM05SpawnVehicleView : UserControl
 
         if (str == "刷出线上载具（空地）")
         {
-            Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f, 5, SpawnVehicleMod);
+            Vehicle2.SpawnVehicle(SpawnVehicleHash, -255.0f, 5, SpawnVehicleMod);
         }
         else
         {
-            Vehicle.SpawnVehicle(SpawnVehicleHash, 0.0f, 5, SpawnVehicleMod);
+            Vehicle2.SpawnVehicle(SpawnVehicleHash, 0.0f, 5, SpawnVehicleMod);
         }
     }
 
@@ -84,50 +84,50 @@ public partial class EM05SpawnVehicleView : UserControl
 
     private void CheckBox_VehicleGodMode_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.GodMode(Settings.Vehicle.VehicleGodMode = true);
+        Vehicle2.GodMode(Settings.Vehicle.VehicleGodMode = true);
         Settings.Vehicle.VehicleGodMode = CheckBox_VehicleGodMode.IsChecked == true;
     }
 
     private void CheckBox_VehicleSeatbelt_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.Seatbelt(CheckBox_VehicleSeatbelt.IsChecked == true);
+        Vehicle2.Seatbelt(CheckBox_VehicleSeatbelt.IsChecked == true);
         Settings.Vehicle.VehicleSeatbelt = CheckBox_VehicleSeatbelt.IsChecked == true;
     }
 
     private void CheckBox_VehicleParachute_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.Parachute(CheckBox_VehicleParachute.IsChecked == true);
+        Vehicle2.Parachute(CheckBox_VehicleParachute.IsChecked == true);
     }
 
     private void CheckBox_VehicleInvisibility_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.Invisibility(CheckBox_VehicleInvisibility.IsChecked == true);
+        Vehicle2.Invisibility(CheckBox_VehicleInvisibility.IsChecked == true);
     }
 
     private void Button_FillVehicleHealth_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Vehicle.FillHealth();
+        Vehicle2.FillHealth();
     }
 
     private void RadioButton_VehicleExtras_None_Click(object sender, RoutedEventArgs e)
     {
         if (RadioButton_VehicleExtras_None.IsChecked == true)
         {
-            Vehicle.Extras(0);
+            Vehicle2.Extras(0);
         }
         else if (RadioButton_VehicleExtras_Jump.IsChecked == true)
         {
-            Vehicle.Extras(40);
+            Vehicle2.Extras(40);
         }
         else if (RadioButton_VehicleExtras_Boost.IsChecked == true)
         {
-            Vehicle.Extras(66);
+            Vehicle2.Extras(66);
         }
         else if (RadioButton_VehicleExtras_Both.IsChecked == true)
         {
-            Vehicle.Extras(96);
+            Vehicle2.Extras(96);
         }
     }
 
@@ -135,7 +135,7 @@ public partial class EM05SpawnVehicleView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Vehicle.Fix1stfoundBST();
+        Vehicle2.Fix1stfoundBST();
     }
 
     private void Button_TurnOffBST_Click(object sender, RoutedEventArgs e)

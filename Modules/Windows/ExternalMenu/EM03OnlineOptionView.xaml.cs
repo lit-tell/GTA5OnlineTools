@@ -144,7 +144,7 @@ public partial class EM03OnlineOptionView : UserControl
                 pVInfos.Add(new PVInfo()
                 {
                     Index = i,
-                    Name = Vehicle.FindVehicleDisplayName(hash, true),
+                    Name = Vehicle2.FindVehicleDisplayName(hash, true),
                     hash = hash,
                     plate = plate
                 });
@@ -170,7 +170,7 @@ public partial class EM03OnlineOptionView : UserControl
         {
             Task.Run(() =>
             {
-                Vehicle.SpawnPersonalVehicle(pVInfos[index].Index);
+                Vehicle2.SpawnPersonalVehicle(pVInfos[index].Index);
             });
         }
     }

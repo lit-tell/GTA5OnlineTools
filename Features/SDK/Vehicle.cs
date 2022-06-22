@@ -2,7 +2,7 @@
 
 namespace GTA5OnlineTools.Features.SDK;
 
-public class Vehicle
+public class Vehicle2
 {
     /// <summary>
     /// 载具无敌模式

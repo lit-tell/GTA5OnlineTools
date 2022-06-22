@@ -246,3 +246,28 @@ public class Ped
     public static void set_stealth_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0x18C }, value); }
     public static void set_wanted_level(long ped, int value) { Memory.Write<int>(ped + pCPlayerInfo, new int[] { 0x888 }, value); }
 }
+
+
+public class Vehicle
+{
+    public static bool get_godmode(long vehicle) { return Entity.get_invincible(vehicle); }
+    public static bool get_waterproof(long vehicle) { return Entity.get_waterproof(vehicle); }
+    public static Types.Vector3 get_position(long vehicle) { return Entity.get_coords(vehicle); }
+    public static float get_health(long vehicle) { return Memory.Read<float>(vehicle + 0x280); }
+    public static float get_max_health(long vehicle) { return Memory.Read<float>(vehicle + 0x2A0); }
+    public static float get_health2(long vehicle) { return Memory.Read<float>(vehicle + 0x840); }
+    public static float get_health3(long vehicle) { return Memory.Read<float>(vehicle + 0x844); }
+    public static float get_engine_health(long vehicle) { return Memory.Read<float>(vehicle + 0x908); }
+    public static float get_gravity(long vehicle) { return Memory.Read<float>(vehicle + 0xC5C); }
+
+
+    public static void set_godmode(long vehicle, bool toggle) { Entity.set_invincible(vehicle, toggle); }
+    public static void set_waterproof(long vehicle, bool toggle) { Entity.set_waterproof(vehicle, toggle); }
+    public static void set_position(long vehicle, Types.Vector3 pos) { Entity.set_coords(vehicle, pos); }
+    public static void set_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x280, value); }
+    public static void set_max_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x2A0, value); }
+    public static void set_health2(long vehicle, float value) { Memory.Write<float>(vehicle + 0x840, value); }
+    public static void set_health3(long vehicle, float value) { Memory.Write<float>(vehicle + 0x844, value); }
+    public static void set_engine_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x908, value); }
+    public static void set_gravity(long vehicle, float value) { Memory.Write<float>(vehicle + 0xC5C, value); }
+}
