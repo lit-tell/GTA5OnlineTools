@@ -50,6 +50,7 @@ public class Teleport
     {
         Types.Vector3 pos = Hacks.GetBlipPos(new int[] { 8 }, new int[] { 84 });
         if (pos.x == 0.0 && pos.y == 0.0 && pos.z == 0.0) return;
+        if (pos.z == 20.0) pos.z = (float)-255.0;
         Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
     }
 
