@@ -133,6 +133,25 @@ public class Hacks
             }
         }
     }
+
+    public Types.Vector3 GetBlipPos(int[] icons, int[] colors = null)
+    {
+        for (int i = 1; i < 2001; i++)
+        {
+            long p = Memory.Read<long>(Globals.BlipPTR + i * 0x8);
+            if (p == 0) continue;
+            int icon = Memory.Read<int>(p + 0x40);
+            int color = Memory.Read<int>(p + 0x48);
+            if (Array.IndexOf(icons, icon) == -1) continue;
+            if (colors != null || Array.IndexOf(colors, color) == -1) continue;
+            Types.Vector3 pos = new Types.Vector3();
+            pos.x = Memory.Read<float>(p + 0x10);
+            pos.y = Memory.Read<float>(p + 0x14);
+            pos.z = Memory.Read<float>(p + 0x18);
+            return pos;
+        }
+        return new Types.Vector3();
+    }
 }
 
 public class Ped
