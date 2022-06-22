@@ -2,6 +2,16 @@
 
 namespace GTA5OnlineTools.Features.SDK;
 
+public class Types
+{
+    public struct Vector3
+    {
+        public float x;
+        public float y;
+        public float z;
+    }
+}
+
 public class Hacks
 {
     public static long GlobalAddress(int address)
@@ -123,4 +133,76 @@ public class Hacks
             }
         }
     }
+}
+
+public class Ped
+{
+    public static int pCNavigation = 0x30;
+    public static int pCPlayerInfo = 0x10C8;
+    public static int pCWeaponInventory = 0x10D0;
+
+    public static float get_armor(long ped) { return Memory.Read<float>(ped + 0x1530); }
+    public static long get_current_vehicle(long ped) { return Memory.Read<long>(ped + 0xD30); }
+    public static bool get_godmode(long ped) { return ((Memory.Read<byte>(ped + 0x189) == 0) ? false : true); }
+    public static float get_health(long ped) { return Memory.Read<float>(ped + 0x280); }
+    public static float get_max_health(long ped) { return Memory.Read<float>(ped + 0x2A0); }
+    public static bool get_infinite_ammo(long ped) { return (((Memory.Read<byte>(ped + pCWeaponInventory, new int[] {0x78}) & (1 << 0)) == (1 << 0)) ? true : false); }
+    public static bool get_infinite_clip(long ped) { return (((Memory.Read<byte>(ped + pCWeaponInventory, new int[] { 0x78 }) & (1 << 1)) == (1 << 1)) ? true : false); }
+    public static bool get_no_ragdoll(long ped) { return (((Memory.Read<byte>(ped + 0x10B8) & (1 << 5)) == (1 << 5)) ? false : true); }
+    public static bool get_seatbelt(long ped) { return (((Memory.Read<byte>(ped + 0x145C) & (1 << 0)) == (1 << 0)) ? true : false); }
+    public static Types.Vector3 get_position(long ped) { return Memory.Read<Types.Vector3>(ped + pCNavigation, new int[] { 0x50 }); }
+    public static float get_run_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] {0xCF0}); }
+    public static float get_swim_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] { 0x170 }); }
+    public static float get_stealth_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] { 0x18C }); }
+    public static int get_wanted_level(long ped) { return Memory.Read<int>(ped + pCPlayerInfo, new int[] {0x888}); }
+    public static bool is_in_vehicle(long ped) { return ((Memory.Read<byte>(ped + 0xE52) == 1) ? true : false); }
+
+
+    public static void set_armour(long ped, float value) { Memory.Write<float>(ped + 0x1530, value); }
+    public static void set_godmode(long ped, bool toggle) 
+    {
+        byte temp = Memory.Read<byte>(ped + 0x189);
+        if (toggle) temp = (byte)(temp | (1 << 0));
+        else temp = (byte)(temp & ~(1 << 0));
+        Memory.Write<byte>(ped + 0x189, temp);
+    }
+    public static void set_health(long ped, float value) { Memory.Write<float>(ped + 0x280, value); }
+    public static void set_max_health(long ped, float value) { Memory.Write<float>(ped + 0x2A0, value); }
+    public static void set_infinite_ammo(long ped, bool toggle)
+    {
+        byte temp = Memory.Read<byte>(ped + pCWeaponInventory, new int[] { 0x78 });
+        if (toggle) temp = (byte)(temp | (1 << 0));
+        else temp = (byte)(temp & ~(1 << 0));
+        Memory.Write<byte>(ped + pCWeaponInventory, new int[] { 0x78 }, temp);
+    }
+    public static void set_infinite_clip(long ped, bool toggle)
+    {
+        byte temp = Memory.Read<byte>(ped + pCWeaponInventory, new int[] { 0x78 });
+        if (toggle) temp = (byte)(temp | (1 << 1));
+        else temp = (byte)(temp & ~(1 << 1));
+        Memory.Write<byte>(ped + pCWeaponInventory, new int[] { 0x78 }, temp);
+    }
+    public static void set_no_ragdoll(long ped, bool toggle)
+    {
+        byte temp = Memory.Read<byte>(ped + 0x10B8);
+        if (toggle) temp = (byte)(temp | (1 << 5));
+        else temp = (byte)(temp & ~(1 << 5));
+        Memory.Write<byte>(ped + 0x10B8, temp);
+    }
+    public static void get_seatbelt(long ped, bool toggle)
+    {
+        byte temp = Memory.Read<byte>(ped + 0x145C);
+        if (toggle) temp = (byte)(temp | (1 << 0));
+        else temp = (byte)(temp & ~(1 << 0));
+        Memory.Write<byte>(ped + 0x145C, temp);
+    }
+    public static void set_position(long ped, Types.Vector3 pos)
+    {
+        Memory.Write<Types.Vector3>(ped + 0x90, pos);
+        Memory.Write<Types.Vector3>(ped + pCNavigation, new int[] { 0x50 }, pos);
+    }
+    public static void set_run_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0xCF0 }, value); }
+    public static void set_swim_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0x170 }, value); }
+    public static void set_stealth_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0x18C }, value); }
+    public static void set_wanted_level(long ped, int value) { Memory.Write<int>(ped + pCPlayerInfo, new int[] { 0x888 }, value); }
 }
