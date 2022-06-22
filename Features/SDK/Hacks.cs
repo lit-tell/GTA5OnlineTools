@@ -278,3 +278,47 @@ public class Vehicle
     public static void set_engine_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x908, value); }
     public static void set_gravity(long vehicle, float value) { Memory.Write<float>(vehicle + 0xC5C, value); }
 }
+
+
+public class Replayinterface
+{
+    public static List<long> get_peds()
+    {
+        List<long> peds = new List<long>();
+        long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] {0x18});
+        int count = Memory.Read<int>(p + 0x110);
+        long list = Memory.Read<long>(p + 0x100);
+        for(int i = 0; i < 256; i++)
+        {
+            long ped = Memory.Read<long>(list + i * 0x10);
+            if(ped != 0) peds.Add(ped);
+        }
+        return peds;
+    }
+    public static List<long> get_pickups()
+    {
+        List<long> pickups = new List<long>();
+        long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x20 });
+        int count = Memory.Read<int>(p + 0x110);
+        long list = Memory.Read<long>(p + 0x100);
+        for (int i = 0; i < 256; i++)
+        {
+            long pickup = Memory.Read<long>(list + i * 0x10);
+            if (pickup != 0) pickups.Add(pickup);
+        }
+        return pickups;
+    }
+    public static List<long> get_vehicles()
+    {
+        List<long> vehicles = new List<long>();
+        long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x10 });
+        int count = Memory.Read<int>(p + 0x190);
+        long list = Memory.Read<long>(p + 0x180);
+        for (int i = 0; i < 256; i++)
+        {
+            long vehicle = Memory.Read<long>(list + i * 0x10);
+            if (vehicle != 0) vehicles.Add(vehicle);
+        }
+        return vehicles;
+    }
+}
