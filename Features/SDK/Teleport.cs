@@ -5,202 +5,6 @@ namespace GTA5OnlineTools.Features.SDK;
 
 public class Teleport
 {
-    public static float PlayerX
-    {
-        get => Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
-        set
-        {
-            Memory.Write(Globals.WorldPTR, Offsets.PlayerPositionX, value);
-            Memory.Write(Globals.WorldPTR, Offsets.PlayerVisualX, value);
-        }
-    }
-
-    public static float PlayerY
-    {
-        get => Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
-        set
-        {
-            Memory.Write(Globals.WorldPTR, Offsets.PlayerPositionY, value);
-            Memory.Write(Globals.WorldPTR, Offsets.PlayerVisualY, value);
-        }
-    }
-
-    public static float PlayerZ
-    {
-        get => Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
-        set
-        {
-            Memory.Write(Globals.WorldPTR, Offsets.PlayerPositionZ, value);
-            Memory.Write(Globals.WorldPTR, Offsets.PlayerVisualZ, value);
-        }
-    }
-
-    public static float VehicleX
-    {
-        get => Memory.Read<float>(Globals.WorldPTR, Offsets.VehiclePositionX);
-        set
-        {
-            Memory.Write(Globals.WorldPTR, Offsets.VehiclePositionX, value);
-            Memory.Write(Globals.WorldPTR, Offsets.VehicleVisualX, value);
-        }
-    }
-
-    public static float VehicleY
-    {
-        get => Memory.Read<float>(Globals.WorldPTR, Offsets.VehiclePositionY);
-        set
-        {
-            Memory.Write(Globals.WorldPTR, Offsets.VehiclePositionY, value);
-            Memory.Write(Globals.WorldPTR, Offsets.VehicleVisualY, value);
-        }
-    }
-
-    public static float VehicleZ
-    {
-        get => Memory.Read<float>(Globals.WorldPTR, Offsets.VehiclePositionZ);
-        set
-        {
-            Memory.Write(Globals.WorldPTR, Offsets.VehiclePositionZ, value);
-            Memory.Write(Globals.WorldPTR, Offsets.VehicleVisualZ, value);
-        }
-    }
-
-    /// <summary>
-    /// 传送功能
-    /// </summary>
-    public static void SetTeleportV3Pos(Vector3 pos)
-    {
-        if (pos != Vector3.Zero)
-        {
-            if (Memory.Read<byte>(Globals.WorldPTR, Offsets.InVehicle) == 0x00)
-            {
-                VehicleX = pos.X;
-                VehicleY = pos.Y;
-                VehicleZ = pos.Z;
-            }
-            else
-            {
-                PlayerX = pos.X;
-                PlayerY = pos.Y;
-                PlayerZ = pos.Z;
-            }
-        }
-    }
-
-    /// <summary>
-    /// 导航点坐标
-    /// </summary>
-    public static Vector3 WaypointCoords()
-    {
-        Vector3 v3 = Vector3.Zero;
-        int dwIcon, dwColor;
-
-        for (int i = 2000; i > 1; i--)
-        {
-            dwIcon = Memory.Read<int>(Globals.BlipPTR + (i * 8), new int[] { 0x40 });
-            dwColor = Memory.Read<int>(Globals.BlipPTR + (i * 8), new int[] { 0x48 });
-
-            if (dwIcon == 8 && dwColor == 84)
-            {
-                v3.X = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x10 });
-                v3.Y = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x14 });
-                v3.Z = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x18 });
-
-                v3.Z = v3.Z == 20.0f ? -225.0f : v3.Z + 1.0f;
-
-                return v3;
-            }
-        }
-
-        return v3;
-    }
-
-    /// <summary>
-    /// 目标点坐标
-    /// </summary>
-    public static Vector3 ObjectiveCoords()
-    {
-        Vector3 v3 = Vector3.Zero;
-        int dwIcon, dwColor;
-
-        for (int i = 2000; i > 1; i--)
-        {
-            dwIcon = Memory.Read<int>(Globals.BlipPTR + (i * 8), new int[] { 0x40 });
-            dwColor = Memory.Read<int>(Globals.BlipPTR + (i * 8), new int[] { 0x48 });
-
-            //  黄点
-            if (dwIcon == 1 &&
-                (dwColor == 5 || dwColor == 60 || dwColor == 66))
-            {
-
-                v3.X = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x10 });
-                v3.Y = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x14 });
-                v3.Z = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x18 }) + 1.0f;
-
-                return v3;
-            }
-        }
-
-        for (int i = 2000; i > 1; i--)
-        {
-            dwIcon = Memory.Read<int>(Globals.BlipPTR + (i * 8), new int[] { 0x40 });
-            dwColor = Memory.Read<int>(Globals.BlipPTR + (i * 8), new int[] { 0x48 });
-
-            if ((dwIcon == 1 || dwIcon == 225 || dwIcon == 427 || dwIcon == 478 || dwIcon == 501 || dwIcon == 523 || dwIcon == 556) &&
-                (dwColor == 1 || dwColor == 2 || dwColor == 3 || dwColor == 54 || dwColor == 78))
-            {
-                v3.X = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x10 });
-                v3.Y = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x14 });
-                v3.Z = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x18 }) + 1.0f;
-
-                return v3;
-            }
-        }
-
-        for (int i = 2000; i > 1; i--)
-        {
-            dwIcon = Memory.Read<int>(Globals.BlipPTR + (i * 8), new int[] { 0x40 });
-            dwColor = Memory.Read<int>(Globals.BlipPTR + (i * 8), new int[] { 0x48 });
-
-            if ((dwIcon == 432 || dwIcon == 443) &&
-                (dwColor == 59))
-            {
-                v3.X = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x10 });
-                v3.Y = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x14 });
-                v3.Z = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x18 }) + 1.0f;
-
-                return v3;
-            }
-        }
-
-        return v3;
-    }
-
-    /// <summary>
-    /// 目标点坐标自定义
-    /// </summary>
-    public static Vector3 ObjectiveCoordsCustom(int target_Icon)
-    {
-        Vector3 v3 = Vector3.Zero;
-        int dwIcon;
-
-        for (int i = 2000; i > 1; i--)
-        {
-            dwIcon = Memory.Read<int>(Globals.BlipPTR + (i * 8), new int[] { 0x40 });
-
-            if (dwIcon == target_Icon)
-            {
-                v3.X = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x10 });
-                v3.Y = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x14 });
-                v3.Z = Memory.Read<float>(Globals.BlipPTR + (i * 8), new int[] { 0x18 }) + 1.0f;
-
-                return v3;
-            }
-        }
-
-        return v3;
-    }
-
     /// <summary>
     /// 坐标向前微调
     /// </summary>
@@ -244,7 +48,9 @@ public class Teleport
     /// </summary>
     public static void ToWaypoint()
     {
-        SetTeleportV3Pos(WaypointCoords());
+        Types.Vector3 pos = Hacks.GetBlipPos(new int[] { 8 }, new int[] { 84 });
+        if (pos.x == 0.0 && pos.y == 0.0 && pos.z == 0.0) return;
+        Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
     }
 
     /// <summary>
@@ -252,14 +58,20 @@ public class Teleport
     /// </summary>
     public static void ToObjective()
     {
-        SetTeleportV3Pos(ObjectiveCoords());
+        Types.Vector3 pos = Hacks.GetBlipPos(new int[] { 1 }, new int[] { 5, 60, 66 });
+        if (pos.x == 0.0 && pos.y == 0.0 && pos.z == 0.0) pos = Hacks.GetBlipPos(new int[] { 1, 225, 427, 478, 501, 523, 556 }, new int[] { 1, 2, 3, 54, 78 });
+        if (pos.x == 0.0 && pos.y == 0.0 && pos.z == 0.0) pos = Hacks.GetBlipPos(new int[] { 432, 443 }, new int[] { 59 });
+        if (pos.x == 0.0 && pos.y == 0.0 && pos.z == 0.0) return;
+        Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
     }
 
     /// <summary>
     /// 传送到Blips
     /// </summary>
-    public static void ToBlips(int blipID)
+    public static void ToBlip(int[] icons, int[] colors = null)
     {
-        SetTeleportV3Pos(ObjectiveCoordsCustom(blipID));
+        Types.Vector3 pos = Hacks.GetBlipPos(icons, colors);
+        if (pos.x == 0.0 && pos.y == 0.0 && pos.z == 0.0) return;
+        Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
     }
 }

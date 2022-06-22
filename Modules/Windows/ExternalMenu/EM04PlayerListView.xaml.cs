@@ -126,7 +126,11 @@ public partial class EM04PlayerListView : UserControl
 
             if (index != -1)
             {
-                Teleport.SetTeleportV3Pos(playerData[index].PlayerInfo.V3Pos);
+                Types.Vector3 pos = new Types.Vector3();
+                pos.x = playerData[index].PlayerInfo.V3Pos.X;
+                pos.y = playerData[index].PlayerInfo.V3Pos.Y;
+                pos.z = playerData[index].PlayerInfo.V3Pos.Z;
+                if (pos.x != 0.0 || pos.y != 0.0 || pos.z != 0.0) Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
             }
         }
     }

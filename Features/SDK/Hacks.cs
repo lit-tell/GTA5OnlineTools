@@ -152,6 +152,13 @@ public class Hacks
         }
         return new Types.Vector3();
     }
+
+    public static long GetLocalPed() { return Memory.Read<long>(Globals.WorldPTR, new int[] { 0x8 }); }
+    public static void TeleportToCoords(long ped, Types.Vector3 pos)
+    {
+        if (Ped.is_in_vehicle(ped)) Vehicle.set_position(Ped.get_current_vehicle(ped), pos);
+        else Ped.set_position(ped, pos);
+    }
 }
 
 public class Entity

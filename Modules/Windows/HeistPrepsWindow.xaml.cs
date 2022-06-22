@@ -416,7 +416,11 @@ public partial class HeistPrepsWindow : Window
         int index = HeistPrepsConfig.FastTeleport.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Teleport.SetTeleportV3Pos(HeistPrepsConfig.FastTeleport[index].Position);
+            Types.Vector3 pos = new Types.Vector3();
+            pos.x = HeistPrepsConfig.FastTeleport[index].Position.X;
+            pos.y = HeistPrepsConfig.FastTeleport[index].Position.Y;
+            pos.z = HeistPrepsConfig.FastTeleport[index].Position.Z;
+            if (pos.x != 0.0 || pos.y != 0.0 || pos.z != 0.0) Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
         }
 
         AppendTextBox($"传送到 {str} 成功");
@@ -424,7 +428,7 @@ public partial class HeistPrepsWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        Teleport.ToBlips(740);
+        Teleport.ToBlip(new int[] { 740 });
 
         AppendTextBox($"传送到 游戏厅图标处 成功");
     }

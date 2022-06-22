@@ -209,7 +209,11 @@ public partial class EM07CustomTPView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Teleport.SetTeleportV3Pos(TempData.TCode);
+        Types.Vector3 pos = new Types.Vector3();
+        pos.x = TempData.TCode.X;
+        pos.y = TempData.TCode.Y;
+        pos.z = TempData.TCode.Z;
+        Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
 
         TextBox_Result.Text = $"传送到自定义坐标成功";
     }

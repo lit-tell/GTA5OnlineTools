@@ -91,7 +91,7 @@ public partial class EM03OnlineOptionView : UserControl
         int index = MiscData.Blips.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Teleport.ToBlips(MiscData.Blips[index].ID);
+            Teleport.ToBlip(new int[] { MiscData.Blips[index].ID });
         }
     }
 
