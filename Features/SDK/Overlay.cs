@@ -531,7 +531,7 @@ public class Overlay : IDisposable
                             pos.x = teleW_pedCoords.X;
                             pos.y = teleW_pedCoords.Y;
                             pos.z = teleW_pedCoords.Z;
-                            if (pos.x != 0.0 || pos.y != 0.0 || pos.z != 0.0) Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
+                            if (pos.x != 0.0f || pos.y != 0.0f || pos.z != 0.0f) Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
                         }
                     }
                 }

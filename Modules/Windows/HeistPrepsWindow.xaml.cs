@@ -420,7 +420,7 @@ public partial class HeistPrepsWindow : Window
             pos.x = HeistPrepsConfig.FastTeleport[index].Position.X;
             pos.y = HeistPrepsConfig.FastTeleport[index].Position.Y;
             pos.z = HeistPrepsConfig.FastTeleport[index].Position.Z;
-            if (pos.x != 0.0 || pos.y != 0.0 || pos.z != 0.0) Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
+            if (pos.x != 0.0f || pos.y != 0.0f || pos.z != 0.0f) Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
         }
 
         AppendTextBox($"传送到 {str} 成功");
