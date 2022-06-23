@@ -300,7 +300,7 @@ public class Replayinterface
         for(int i = 0; i < 256; i++)
         {
             long ped = Memory.Read<long>(list + i * 0x10);
-            if(ped != 0) peds.Add(ped);
+            if(Memory.IsValid(ped)) peds.Add(ped);
         }
         return peds;
     }
@@ -313,7 +313,7 @@ public class Replayinterface
         for (int i = 0; i < 256; i++)
         {
             long pickup = Memory.Read<long>(list + i * 0x10);
-            if (pickup != 0) pickups.Add(pickup);
+            if (Memory.IsValid(pickup)) pickups.Add(pickup);
         }
         return pickups;
     }
@@ -326,7 +326,7 @@ public class Replayinterface
         for (int i = 0; i < 256; i++)
         {
             long vehicle = Memory.Read<long>(list + i * 0x10);
-            if (vehicle != 0) vehicles.Add(vehicle);
+            if (Memory.IsValid(vehicle)) vehicles.Add(vehicle);
         }
         return vehicles;
     }
