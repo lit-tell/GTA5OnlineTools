@@ -165,7 +165,7 @@ public class Entity
     public static bool get_waterproof(long entity) { return ((Memory.Read<byte>(entity + 0x18B) == 0) ? false : true); }
     public static Vector3 get_coords(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x50 }); }
     public static uint get_model_hash(long entity) { return Memory.Read<uint>(entity + pCModelInfo, new int[] { 0x18 }); }
-    public static ushort get_model_type(long entity) { return Memory.Read<ushort>(entity + pCModelInfo, new int[] { 0x9D }); }
+    public static byte get_model_type(long entity) { return Memory.Read<byte>(entity + pCModelInfo, new int[] { 0x9D }); }
 
 
     public static void set_invincible(long entity, bool toggle)
@@ -210,10 +210,10 @@ public class Ped
     public static float get_stealth_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] { 0x18C }); }
     public static int get_wanted_level(long ped) { return Memory.Read<int>(ped + pCPlayerInfo, new int[] {0x888}); }
     public static bool is_in_vehicle(long ped) { return ((Memory.Read<byte>(ped + 0xE52) == 1) ? true : false); }
-    public static ushort get_pedtype(long ped) { return (ushort)(Memory.Read<ushort>(ped + 0x10B8) << 11 >> 25); }
+    public static uint get_pedtype(long ped) { return Memory.Read<uint>(ped + 0x10B8) << 11 >> 25; }
     public static bool is_player(long ped) { return ((Memory.Read<byte>(ped + 0x28) == 156) ? true : false); }
     public static uint get_model_hash(long ped) { return Entity.get_model_hash(ped); }
-    public static ushort get_model_type(long ped) { return Entity.get_model_type(ped); }
+    public static byte get_model_type(long ped) { return Entity.get_model_type(ped); }
 
 
     public static void set_armour(long ped, float value) { Memory.Write<float>(ped + 0x1530, value); }
@@ -269,7 +269,7 @@ public class Vehicle
     public static float get_engine_health(long vehicle) { return Memory.Read<float>(vehicle + 0x908); }
     public static float get_gravity(long vehicle) { return Memory.Read<float>(vehicle + 0xC5C); }
     public static uint get_model_hash(long vehicle) { return Entity.get_model_hash(vehicle); }
-    public static ushort get_model_type(long vehicle) { return Entity.get_model_type(vehicle); }
+    public static byte get_model_type(long vehicle) { return Entity.get_model_type(vehicle); }
 
 
     public static void set_godmode(long vehicle, bool toggle) { Entity.set_invincible(vehicle, toggle); }
