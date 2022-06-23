@@ -416,11 +416,7 @@ public partial class HeistPrepsWindow : Window
         int index = HeistPrepsConfig.FastTeleport.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Types.Vector3 pos = new Types.Vector3();
-            pos.x = HeistPrepsConfig.FastTeleport[index].Position.X;
-            pos.y = HeistPrepsConfig.FastTeleport[index].Position.Y;
-            pos.z = HeistPrepsConfig.FastTeleport[index].Position.Z;
-            if (pos.x != 0.0f || pos.y != 0.0f || pos.z != 0.0f) Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
+            Hacks.TeleportToCoords(Hacks.GetLocalPed(), HeistPrepsConfig.FastTeleport[index].Position);
         }
 
         AppendTextBox($"传送到 {str} 成功");

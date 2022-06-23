@@ -126,11 +126,7 @@ public partial class EM04PlayerListView : UserControl
 
             if (index != -1)
             {
-                Types.Vector3 pos = new Types.Vector3();
-                pos.x = playerData[index].PlayerInfo.V3Pos.X;
-                pos.y = playerData[index].PlayerInfo.V3Pos.Y;
-                pos.z = playerData[index].PlayerInfo.V3Pos.Z;
-                if (pos.x != 0.0f || pos.y != 0.0f || pos.z != 0.0f) Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
+                Hacks.TeleportToCoords(Hacks.GetLocalPed(), playerData[index].PlayerInfo.V3Pos);
             }
         }
     }

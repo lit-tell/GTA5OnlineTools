@@ -527,11 +527,7 @@ public class Overlay : IDisposable
 
                         if (Convert.ToBoolean(WinAPI.GetKeyState((int)WinVK.F5) & WinAPI.KEY_PRESSED))
                         {
-                            Types.Vector3 pos = new Types.Vector3();
-                            pos.x = teleW_pedCoords.X;
-                            pos.y = teleW_pedCoords.Y;
-                            pos.z = teleW_pedCoords.Z;
-                            if (pos.x != 0.0f || pos.y != 0.0f || pos.z != 0.0f) Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
+                            Hacks.TeleportToCoordsWithCheck(Hacks.GetLocalPed(), teleW_pedCoords);
                         }
                     }
                 }

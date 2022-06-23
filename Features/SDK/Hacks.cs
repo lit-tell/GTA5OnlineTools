@@ -2,16 +2,6 @@
 
 namespace GTA5OnlineTools.Features.SDK;
 
-public class Types
-{
-    public struct Vector3
-    {
-        public float x;
-        public float y;
-        public float z;
-    }
-}
-
 public class Hacks
 {
     public static long GlobalAddress(int address)
@@ -134,7 +124,7 @@ public class Hacks
         }
     }
 
-    public static Types.Vector3 GetBlipPos(int[] icons, int[] colors = null)
+    public static Vector3 GetBlipPos(int[] icons, int[] colors = null)
     {
         for (int i = 1; i < 2001; i++)
         {
@@ -144,20 +134,25 @@ public class Hacks
             int color = Memory.Read<int>(p + 0x48);
             if (Array.IndexOf(icons, icon) == -1) continue;
             if (colors != null && Array.IndexOf(colors, color) == -1) continue;
-            Types.Vector3 pos = new Types.Vector3();
-            pos.x = Memory.Read<float>(p + 0x10);
-            pos.y = Memory.Read<float>(p + 0x14);
-            pos.z = Memory.Read<float>(p + 0x18);
+            Vector3 pos = new Vector3();
+            pos.X = Memory.Read<float>(p + 0x10);
+            pos.Y = Memory.Read<float>(p + 0x14);
+            pos.Z = Memory.Read<float>(p + 0x18);
             return pos;
         }
-        return new Types.Vector3();
+        return new Vector3();
     }
 
     public static long GetLocalPed() { return Memory.Read<long>(Globals.WorldPTR, new int[] { 0x8 }); }
-    public static void TeleportToCoords(long ped, Types.Vector3 pos)
+    public static void TeleportToCoords(long ped, Vector3 pos)
     {
         if (Ped.is_in_vehicle(ped)) Vehicle.set_position(Ped.get_current_vehicle(ped), pos);
         else Ped.set_position(ped, pos);
+    }
+    public static void TeleportToCoordsWithCheck(long ped, Vector3 pos)
+    {
+        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
+        TeleportToCoords(ped, pos);
     }
 }
 
@@ -168,7 +163,7 @@ public class Entity
 
     public static bool get_invincible(long entity) { return ((Memory.Read<byte>(entity + 0x189) == 0) ? false : true); }
     public static bool get_waterproof(long entity) { return ((Memory.Read<byte>(entity + 0x18B) == 0) ? false : true); }
-    public static Types.Vector3 get_coords(long entity) { return Memory.Read<Types.Vector3>(entity + pCNavigation, new int[] { 0x50 }); }
+    public static Vector3 get_coords(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x50 }); }
     public static uint get_model_hash(long entity) { return Memory.Read<uint>(entity + pCModelInfo, new int[] { 0x18 }); }
     public static ushort get_model_type(long entity) { return Memory.Read<ushort>(entity + pCModelInfo, new int[] { 0x9D }); }
 
@@ -187,10 +182,10 @@ public class Entity
         else temp = (byte)(temp & ~(1 << 0));
         Memory.Write<byte>(entity + 0x18B, temp);
     }
-    public static void set_coords(long entity, Types.Vector3 pos)
+    public static void set_coords(long entity, Vector3 pos)
     {
-        Memory.Write<Types.Vector3>(entity + 0x90, pos);
-        Memory.Write<Types.Vector3>(entity + pCNavigation, new int[] { 0x50 }, pos);
+        Memory.Write<Vector3>(entity + 0x90, pos);
+        Memory.Write<Vector3>(entity + pCNavigation, new int[] { 0x50 }, pos);
     }
 }
 
@@ -209,7 +204,7 @@ public class Ped
     public static bool get_infinite_clip(long ped) { return (((Memory.Read<byte>(ped + pCWeaponInventory, new int[] { 0x78 }) & (1 << 1)) == (1 << 1)) ? true : false); }
     public static bool get_no_ragdoll(long ped) { return (((Memory.Read<byte>(ped + 0x10B8) & (1 << 5)) == (1 << 5)) ? false : true); }
     public static bool get_seatbelt(long ped) { return (((Memory.Read<byte>(ped + 0x145C) & (1 << 0)) == (1 << 0)) ? true : false); }
-    public static Types.Vector3 get_position(long ped) { return Entity.get_coords(ped); }
+    public static Vector3 get_position(long ped) { return Entity.get_coords(ped); }
     public static float get_run_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] {0xCF0}); }
     public static float get_swim_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] { 0x170 }); }
     public static float get_stealth_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] { 0x18C }); }
@@ -254,7 +249,7 @@ public class Ped
         else temp = (byte)(temp & ~(1 << 0));
         Memory.Write<byte>(ped + 0x145C, temp);
     }
-    public static void set_position(long ped, Types.Vector3 pos) { Entity.set_coords(ped, pos); }
+    public static void set_position(long ped, Vector3 pos) { Entity.set_coords(ped, pos); }
     public static void set_run_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0xCF0 }, value); }
     public static void set_swim_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0x170 }, value); }
     public static void set_stealth_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0x18C }, value); }
@@ -266,7 +261,7 @@ public class Vehicle
 {
     public static bool get_godmode(long vehicle) { return Entity.get_invincible(vehicle); }
     public static bool get_waterproof(long vehicle) { return Entity.get_waterproof(vehicle); }
-    public static Types.Vector3 get_position(long vehicle) { return Entity.get_coords(vehicle); }
+    public static Vector3 get_position(long vehicle) { return Entity.get_coords(vehicle); }
     public static float get_health(long vehicle) { return Memory.Read<float>(vehicle + 0x280); }
     public static float get_max_health(long vehicle) { return Memory.Read<float>(vehicle + 0x2A0); }
     public static float get_health2(long vehicle) { return Memory.Read<float>(vehicle + 0x840); }
@@ -279,7 +274,7 @@ public class Vehicle
 
     public static void set_godmode(long vehicle, bool toggle) { Entity.set_invincible(vehicle, toggle); }
     public static void set_waterproof(long vehicle, bool toggle) { Entity.set_waterproof(vehicle, toggle); }
-    public static void set_position(long vehicle, Types.Vector3 pos) { Entity.set_coords(vehicle, pos); }
+    public static void set_position(long vehicle, Vector3 pos) { Entity.set_coords(vehicle, pos); }
     public static void set_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x280, value); }
     public static void set_max_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x2A0, value); }
     public static void set_health2(long vehicle, float value) { Memory.Write<float>(vehicle + 0x840, value); }

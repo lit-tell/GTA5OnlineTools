@@ -48,9 +48,9 @@ public class Teleport
     /// </summary>
     public static void ToWaypoint()
     {
-        Types.Vector3 pos = Hacks.GetBlipPos(new int[] { 8 }, new int[] { 84 });
-        if (pos.x == 0.0f && pos.y == 0.0f && pos.z == 0.0f) return;
-        pos.z = pos.z == 20.0f ? -225.0f : pos.z + 1.0f;
+        Vector3 pos = Hacks.GetBlipPos(new int[] { 8 }, new int[] { 84 });
+        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
+        pos.Z = pos.Z == 20.0f ? -225.0f : pos.Z + 1.0f;
         Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
     }
 
@@ -59,11 +59,10 @@ public class Teleport
     /// </summary>
     public static void ToObjective()
     {
-        Types.Vector3 pos = Hacks.GetBlipPos(new int[] { 1 }, new int[] { 5, 60, 66 });
-        if (pos.x == 0.0f && pos.y == 0.0f && pos.z == 0.0f) pos = Hacks.GetBlipPos(new int[] { 1, 225, 427, 478, 501, 523, 556 }, new int[] { 1, 2, 3, 54, 78 });
-        if (pos.x == 0.0f && pos.y == 0.0f && pos.z == 0.0f) pos = Hacks.GetBlipPos(new int[] { 432, 443 }, new int[] { 59 });
-        if (pos.x == 0.0f && pos.y == 0.0f && pos.z == 0.0f) return;
-        Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
+        Vector3 pos = Hacks.GetBlipPos(new int[] { 1 }, new int[] { 5, 60, 66 });
+        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) pos = Hacks.GetBlipPos(new int[] { 1, 225, 427, 478, 501, 523, 556 }, new int[] { 1, 2, 3, 54, 78 });
+        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) pos = Hacks.GetBlipPos(new int[] { 432, 443 }, new int[] { 59 });
+        Hacks.TeleportToCoordsWithCheck(Hacks.GetLocalPed(), pos);
     }
 
     /// <summary>
@@ -71,8 +70,7 @@ public class Teleport
     /// </summary>
     public static void ToBlip(int[] icons, int[] colors = null)
     {
-        Types.Vector3 pos = Hacks.GetBlipPos(icons, colors);
-        if (pos.x == 0.0f && pos.y == 0.0f && pos.z == 0.0f) return;
-        Hacks.TeleportToCoords(Hacks.GetLocalPed(), pos);
+        Vector3 pos = Hacks.GetBlipPos(icons, colors);
+        Hacks.TeleportToCoordsWithCheck(Hacks.GetLocalPed(), pos);
     }
 }
