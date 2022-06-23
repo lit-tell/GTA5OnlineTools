@@ -87,41 +87,14 @@ public class Hacks
     /// <summary>
     /// 掉落物品
     /// </summary>
-    public static void CreateAmbientPickup(string pickup)
+    public static void CreateAmbientPickup(int amount, Vector3 pos)
     {
-        //uint modelHash = Joaat("prop_cash_pile_01");
-        uint pickupHash = Joaat(pickup);
-
-        float x = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
-        float y = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
-        float z = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
-
-        WriteGA<float>(2783345 + 3, x);
-        WriteGA<float>(2783345 + 4, y);
-        WriteGA<float>(2783345 + 5, z + 3.0f);
-        WriteGA<int>(2783345 + 1, 9999);    // 9999
-
+        WriteGA<float>(2783345 + 3, pos.X);
+        WriteGA<float>(2783345 + 4, pos.Y);
+        WriteGA<float>(2783345 + 5, pos.Z);
+        WriteGA<int>(2783345 + 1, amount);
         WriteGA<int>(4528329 + 1 + (ReadGA<int>(2783345) * 85) + 66 + 2, 2);
         WriteGA<int>(2783345 + 6, 1);
-
-        Thread.Sleep(150);
-
-        var m_dwpPickUpInterface = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x20 });
-
-        var dw_curPickUpNum = Memory.Read<long>(m_dwpPickUpInterface + 0x110, null);
-        var m_dwpPedList = Memory.Read<long>(m_dwpPickUpInterface + 0x100, null);
-
-        for (long i = 0; i < dw_curPickUpNum; i++)
-        {
-            long dwpPickup = Memory.Read<long>(m_dwpPedList + i * 0x10, null);
-            uint dwPickupHash = Memory.Read<uint>(dwpPickup + 0x488, null);
-
-            if (dwPickupHash == 4263048111)
-            {
-                Memory.Write<uint>(dwpPickup + 0x488, pickupHash);
-                break;
-            }
-        }
     }
 
     public static Vector3 GetBlipPos(int[] icons, int[] colors = null)
@@ -154,6 +127,24 @@ public class Hacks
         if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
         TeleportToCoords(ped, pos);
     }
+    public static void SpawnDrop(uint hash, long ped, float dist = 0.0f, float height = 3.0f)
+    {
+        Vector3 pos = Ped.get_forwardpos(ped, dist);
+        pos.Z += height;
+        CreateAmbientPickup(9999, pos);
+        Thread.Sleep(150);
+        List<long> pickups = Replayinterface.get_pickups();
+        for(int i = 0; i < pickups.Count; i++)
+        {
+            long pickup = pickups[i];
+            if(Pickup.get_pickup_hash(pickup) == 4263048111)
+            {
+                Pickup.set_pickup_hash(pickup, hash);
+                break;
+            }
+        }
+    }
+    public static void SpawnDrop(string name, long ped, float dist = 0.0f, float height = 3.0f) { SpawnDrop(Joaat(name), ped, dist, height); }
 }
 
 public class Entity
@@ -371,4 +362,14 @@ public class OnlinePlayer
         if (!Memory.IsValid(CPed)) return 0;
         return CPed;
     }
+}
+
+public class Pickup
+{
+    public static uint get_pickup_hash(long pickup) { return Memory.Read<uint>(pickup + 0x488); }
+    public static uint get_model_hash() { return Memory.Read<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }); }
+
+
+    public static void set_pickup_hash(long pickup, uint hash) { Memory.Write<uint>(pickup + 0x488, hash); }
+    public static void set_model_hash(uint hash) { Memory.Write<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }, hash); }
 }
