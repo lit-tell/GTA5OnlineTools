@@ -166,6 +166,15 @@ public class Entity
     public static Vector3 get_coords(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x50 }); }
     public static uint get_model_hash(long entity) { return Memory.Read<uint>(entity + pCModelInfo, new int[] { 0x18 }); }
     public static byte get_model_type(long entity) { return Memory.Read<byte>(entity + pCModelInfo, new int[] { 0x9D }); }
+    public static Vector3 get_heading(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x20 }); }
+    public static Vector3 get_forwardpos(long entity, float dist = 7.0f)
+    {
+        Vector3 heading = get_heading(entity);
+        Vector3 pos = get_coords(entity);
+        pos.X -= dist * heading.Y;
+        pos.Y += dist * heading.X;
+        return pos;
+    }
 
 
     public static void set_invincible(long entity, bool toggle)
@@ -214,6 +223,8 @@ public class Ped
     public static bool is_player(long ped) { return ((Memory.Read<byte>(ped + 0x28) == 156) ? true : false); }
     public static uint get_model_hash(long ped) { return Entity.get_model_hash(ped); }
     public static byte get_model_type(long ped) { return Entity.get_model_type(ped); }
+    public static Vector3 get_heading(long ped) { return Entity.get_heading(ped); }
+    public static Vector3 get_forwardpos(long ped, float dist = 7.0f) { return Entity.get_forwardpos(ped, dist); }
 
 
     public static void set_armour(long ped, float value) { Memory.Write<float>(ped + 0x1530, value); }
@@ -270,6 +281,8 @@ public class Vehicle
     public static float get_gravity(long vehicle) { return Memory.Read<float>(vehicle + 0xC5C); }
     public static uint get_model_hash(long vehicle) { return Entity.get_model_hash(vehicle); }
     public static byte get_model_type(long vehicle) { return Entity.get_model_type(vehicle); }
+    public static Vector3 get_heading(long vehicle) { return Entity.get_heading(vehicle); }
+    public static Vector3 get_forwardpos(long vehicle, float dist = 7.0f) { return Entity.get_forwardpos(vehicle, dist); }
 
 
     public static void set_godmode(long vehicle, bool toggle) { Entity.set_invincible(vehicle, toggle); }
