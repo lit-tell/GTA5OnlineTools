@@ -339,3 +339,36 @@ public class Replayinterface
         return vehicles;
     }
 }
+
+public class OnlinePlayer
+{
+    public static int pCPlayerInfo = 0x10C8;
+    public static int get_number_of_players()
+    {
+        int number = 0;
+        for(int i = 0; i < 32; i++)
+        {
+            if (get_player_ped(i) == 0) continue;
+            number++;
+        }
+        return number;
+    }
+    public static string get_player_name(int i)
+    {
+        long ped = get_player_ped(i);
+        if (ped == 0) return null;
+        return Memory.ReadString(ped, new int[] { pCPlayerInfo, 0xA4 }, 20);
+    }
+    public static long get_player_ped(int i)//0-31
+    {
+        long CNetworkPlayerMgr = Memory.Read<long>(Globals.NetworkPlayerMgrPTR);
+        if (!Memory.IsValid(CNetworkPlayerMgr)) return 0;
+        long CNetGamePlayer = Memory.Read<long>(CNetworkPlayerMgr + 0x180 + i * 0x8);
+        if (!Memory.IsValid(CNetGamePlayer)) return 0;
+        long CPlayerInfo = Memory.Read<long>(CNetGamePlayer + 0xA0);
+        if (!Memory.IsValid(CPlayerInfo)) return 0;
+        long CPed = Memory.Read<long>(CPlayerInfo + 0x1E8);
+        if (!Memory.IsValid(CPed)) return 0;
+        return CPed;
+    }
+}
