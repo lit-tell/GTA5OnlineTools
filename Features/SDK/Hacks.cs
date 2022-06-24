@@ -276,10 +276,25 @@ public class Vehicle : Entity
 
 public class Replayinterface
 {
+    public static List<long> get_vehicles()
+    {
+        List<long> vehicles = new List<long>();
+        long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x10 });
+        int max_num = Memory.Read<int>(p + 0x188);
+        int count = Memory.Read<int>(p + 0x190);
+        long list = Memory.Read<long>(p + 0x180);
+        for (int i = 0; i < 300; i++)
+        {
+            long vehicle = Memory.Read<long>(list + i * 0x10);
+            if (Memory.IsValid(vehicle)) vehicles.Add(vehicle);
+        }
+        return vehicles;
+    }
     public static List<long> get_peds()
     {
         List<long> peds = new List<long>();
         long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] {0x18});
+        int max_num = Memory.Read<int>(p + 0x108);
         int count = Memory.Read<int>(p + 0x110);
         long list = Memory.Read<long>(p + 0x100);
         for(int i = 0; i < 256; i++)
@@ -293,6 +308,7 @@ public class Replayinterface
     {
         List<long> pickups = new List<long>();
         long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x20 });
+        int max_num = Memory.Read<int>(p + 0x108);
         int count = Memory.Read<int>(p + 0x110);
         long list = Memory.Read<long>(p + 0x100);
         for (int i = 0; i < 256; i++)
@@ -302,18 +318,19 @@ public class Replayinterface
         }
         return pickups;
     }
-    public static List<long> get_vehicles()
+    public static List<long> get_objects()
     {
-        List<long> vehicles = new List<long>();
-        long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x10 });
-        int count = Memory.Read<int>(p + 0x190);
-        long list = Memory.Read<long>(p + 0x180);
-        for (int i = 0; i < 256; i++)
+        List<long> objects = new List<long>();
+        long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x28 });
+        int max_num = Memory.Read<int>(p + 0x160);
+        int count = Memory.Read<int>(p + 0x168);
+        long list = Memory.Read<long>(p + 0x158);
+        for (int i = 0; i < 2300; i++)
         {
-            long vehicle = Memory.Read<long>(list + i * 0x10);
-            if (Memory.IsValid(vehicle)) vehicles.Add(vehicle);
+            long object_ = Memory.Read<long>(list + i * 0x10);
+            if (Memory.IsValid(object_)) objects.Add(object_);
         }
-        return vehicles;
+        return objects;
     }
 }
 
