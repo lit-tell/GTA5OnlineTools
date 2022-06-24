@@ -33,23 +33,23 @@ public partial class EM04PlayerListView : UserControl
 
         if (index != -1)
         {
-            TextBox_PlayerInfo.AppendText($"战局房主 : {playerData[index].PlayerInfo.Host}\r\n\r\n");
+            TextBox_PlayerInfo.AppendText($"战局房主 : {playerData[index].PlayerInfo2.Host}\r\n\r\n");
 
             TextBox_PlayerInfo.AppendText($"玩家RID : {playerData[index].RID}\r\n");
             TextBox_PlayerInfo.AppendText($"玩家昵称 : {playerData[index].Name}\r\n\r\n");
 
-            TextBox_PlayerInfo.AppendText($"当前生命值 : {playerData[index].PlayerInfo.Health:0.0}\r\n");
-            TextBox_PlayerInfo.AppendText($"最大生命值 : {playerData[index].PlayerInfo.MaxHealth:0.0}\r\n\r\n");
+            TextBox_PlayerInfo.AppendText($"当前生命值 : {playerData[index].PlayerInfo2.Health:0.0}\r\n");
+            TextBox_PlayerInfo.AppendText($"最大生命值 : {playerData[index].PlayerInfo2.MaxHealth:0.0}\r\n\r\n");
 
-            TextBox_PlayerInfo.AppendText($"无敌状态 : {playerData[index].PlayerInfo.GodMode}\r\n");
-            TextBox_PlayerInfo.AppendText($"无布娃娃 : {playerData[index].PlayerInfo.NoRagdoll}\r\n\r\n");
+            TextBox_PlayerInfo.AppendText($"无敌状态 : {playerData[index].PlayerInfo2.GodMode}\r\n");
+            TextBox_PlayerInfo.AppendText($"无布娃娃 : {playerData[index].PlayerInfo2.NoRagdoll}\r\n\r\n");
 
-            TextBox_PlayerInfo.AppendText($"通缉等级 : {playerData[index].PlayerInfo.WantedLevel}\r\n");
-            TextBox_PlayerInfo.AppendText($"奔跑速度 : {playerData[index].PlayerInfo.RunSpeed:0.0}\r\n\r\n");
+            TextBox_PlayerInfo.AppendText($"通缉等级 : {playerData[index].PlayerInfo2.WantedLevel}\r\n");
+            TextBox_PlayerInfo.AppendText($"奔跑速度 : {playerData[index].PlayerInfo2.RunSpeed:0.0}\r\n\r\n");
 
-            TextBox_PlayerInfo.AppendText($"X : {playerData[index].PlayerInfo.V3Pos.X:0.0000}\r\n");
-            TextBox_PlayerInfo.AppendText($"Y : {playerData[index].PlayerInfo.V3Pos.Y:0.0000}\r\n");
-            TextBox_PlayerInfo.AppendText($"Z : {playerData[index].PlayerInfo.V3Pos.Z:0.0000}\r\n");
+            TextBox_PlayerInfo.AppendText($"X : {playerData[index].PlayerInfo2.V3Pos.X:0.0000}\r\n");
+            TextBox_PlayerInfo.AppendText($"Y : {playerData[index].PlayerInfo2.V3Pos.Y:0.0000}\r\n");
+            TextBox_PlayerInfo.AppendText($"Z : {playerData[index].PlayerInfo2.V3Pos.Z:0.0000}\r\n");
         }
     }
 
@@ -85,7 +85,7 @@ public partial class EM04PlayerListView : UserControl
                 RID = Memory.Read<long>(pCPlayerInfo + 0x90),
                 Name = Memory.ReadString(pCPlayerInfo + 0xA4, null, 20),
 
-                PlayerInfo = new PlayerInfo()
+                PlayerInfo2 = new PlayerInfo2()
                 {
                     Host = Hacks.ReadGA<int>(1893548 + 1 + (i * 600) + 10) == 1 ? true : false,
                     Health = Memory.Read<float>(pCPed + 0x280),
@@ -103,7 +103,7 @@ public partial class EM04PlayerListView : UserControl
 
         foreach (var item in playerData)
         {
-            if (item.PlayerInfo.Host)
+            if (item.PlayerInfo2.Host)
             {
                 index++;
                 ListBox_PlayerList.Items.Add($"{index}  {item.Name} [房主]");
@@ -126,7 +126,7 @@ public partial class EM04PlayerListView : UserControl
 
             if (index != -1)
             {
-                Hacks.TeleportToCoords(Hacks.GetLocalPed(), playerData[index].PlayerInfo.V3Pos);
+                Hacks.TeleportToCoords(Hacks.GetLocalPed(), playerData[index].PlayerInfo2.V3Pos);
             }
         }
     }

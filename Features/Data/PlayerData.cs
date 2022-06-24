@@ -5,10 +5,10 @@ public class PlayerData
     public long RID { get; set; }
     public string Name { get; set; }
 
-    public PlayerInfo PlayerInfo { get; set; }
+    public PlayerInfo2 PlayerInfo2 { get; set; }
 }
 
-public class PlayerInfo
+public class PlayerInfo2
 {
     public bool Host { get; set; }
     public float Health { get; set; }

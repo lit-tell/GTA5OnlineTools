@@ -200,6 +200,7 @@ public class Ped : Entity
     public static int pCPlayerInfo = 0x10C8;
     public static int pCWeaponInventory = 0x10D0;
 
+    public static long get_playerinfo(long ped) { return Memory.Read<long>(ped + 0x10C8); }
     public static float get_armor(long ped) { return Memory.Read<float>(ped + 0x1530); }
     public static long get_current_vehicle(long ped) { return Memory.Read<long>(ped + 0xD30); }
     public static float get_health(long ped) { return Memory.Read<float>(ped + 0x280); }
@@ -375,4 +376,10 @@ public class Pickup : Entity
 
     public static void set_pickup_hash(long pickup, uint hash) { Memory.Write<uint>(pickup + 0x488, hash); }
     public static void set_model_hash_pickup(uint hash) { Memory.Write<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }, hash); }
+}
+
+
+public class PlayerInfo
+{
+    public static long get_ped(long playerinfo) { return Memory.Read<long>(playerinfo + 0x1E8); }
 }
