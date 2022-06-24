@@ -117,10 +117,28 @@ public class Hacks
     }
 
     public static long GetLocalPed() { return Memory.Read<long>(Globals.WorldPTR, new int[] { 0x8 }); }
+    public static bool Entity_is_player(long entity) { return ((Entity.get_type(entity) == 156) ? true : false); }
+    public static bool Ped_is_player(long ped) { return Entity_is_player(ped); }
+    public static Vector3 Entity_get_forwardpos(long entity, float dist = 7.0f)
+    {
+        long navigation = Entity.get_navigation(entity);
+        Vector3 vec = Navigation.get_right_vector3(navigation);
+        Vector3 pos = Navigation.get_position(navigation);
+        pos.X -= dist * vec.Y;
+        pos.Y += dist * vec.X;
+        return pos;
+    }
+    public static Vector3 Ped_get_forwardpos(long ped, float dist = 7.0f) { return Entity_get_forwardpos(ped, dist); }
+    public static void Entity_set_entity_coords(long entity, Vector3 pos) 
+    {
+        long navigation = Entity.get_navigation(entity);
+        Navigation.set_position(navigation, pos);
+        Entity.set_position(entity, pos);
+    }
     public static void TeleportToCoords(long ped, Vector3 pos)
     {
-        if (Ped.is_in_vehicle(ped)) Vehicle.set_position(Ped.get_current_vehicle(ped), pos);
-        else Ped.set_position(ped, pos);
+        long entity = (Ped.is_in_vehicle(ped) ? Ped.get_current_vehicle(ped) : ped);
+        Entity_set_entity_coords(ped, pos);
     }
     public static void TeleportToCoordsWithCheck(long ped, Vector3 pos)
     {
@@ -135,7 +153,7 @@ public class Hacks
         for (int i = 0; i < pickups.Count; i++)
         {
             long pickup = pickups[i];
-            if (Pickup.get_hash(pickup) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
+            if (BaseModelInfo.get_hash(Pickup.get_basemodelinfo(pickup)) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
             {
                 Pickup.set_pickup_hash(pickup, hash);
                 break;
@@ -144,36 +162,51 @@ public class Hacks
     }
     public static void SpawnDrop(long ped, uint hash, float dist = 0.0f, float height = 3.0f)
     {
-        Vector3 pos = Ped.get_forwardpos(ped, dist);
+        Vector3 pos = Ped_get_forwardpos(ped, dist);
         pos.Z += height;
         SpawnDrop(hash, pos);
     }
     public static void SpawnDrop(long ped, string name, float dist = 0.0f, float height = 3.0f) { SpawnDrop(ped, Joaat(name), dist, height); }
 }
 
+
+public class BaseModelInfo
+{
+    public static uint get_hash(long basemodelinfo) { return Memory.Read<uint>(basemodelinfo + 0x18); }
+    public static byte get_type(long basemodelinfo) { return Memory.Read<byte>(basemodelinfo + 0x9D); }
+}
+
+
+public class Navigation
+{
+    public static Vector3 get_right_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x20); }
+    public static Vector3 get_forward_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x30); }
+    public static Vector3 get_up_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x40); }
+    public static Vector3 get_position(long navigation) { return Memory.Read<Vector3>(navigation + 0x50); }
+
+
+    public static void set_right_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x20, pos); }
+    public static void set_forward_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x30, pos); }
+    public static void set_up_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x40, pos); }
+    public static void set_position(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x50, pos); }
+}
+
+
 public class Entity
 {
-    public static int pCModelInfo = 0x20;
-    public static int pCNavigation = 0x30;
-
+    public static long get_basemodelinfo(long entity) { return Memory.Read<long>(entity + 0x20); }
+    public static byte get_type(long entity) { return Memory.Read<byte>(entity + 0x28); }
+    public static byte get_type2(long entity) { return Memory.Read<byte>(entity + 0x29); }
+    public static long get_navigation(long entity) { return Memory.Read<long>(entity + 0x30); }
+    public static Vector3 get_right_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x60); }
+    public static Vector3 get_forward_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x70); }
+    public static Vector3 get_up_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x80); }
+    public static Vector3 get_position(long entity) { return Memory.Read<Vector3>(entity + 0x90); }
     public static bool get_godmode(long entity) { return ((Memory.Read<byte>(entity + 0x189) == 0) ? false : true); }//invincible
     public static bool get_waterproof(long entity) { return ((Memory.Read<byte>(entity + 0x18B) == 0) ? false : true); }
-    public static Vector3 get_position(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x50 }); }//coords
-    public static uint get_hash(long entity) { return Memory.Read<uint>(entity + pCModelInfo, new int[] { 0x18 }); }
-    public static byte get_type(long entity) { return Memory.Read<byte>(entity + pCModelInfo, new int[] { 0x9D }); }
-    public static Vector3 get_right_vector3(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x20 }); }
-    public static Vector3 get_forward_vector3(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x30 }); }
-    public static Vector3 get_up_vector3(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x40 }); }
-    public static Vector3 get_forwardpos(long entity, float dist = 7.0f)
-    {
-        Vector3 vec = get_right_vector3(entity);
-        Vector3 pos = get_position(entity);
-        pos.X -= dist * vec.Y;
-        pos.Y += dist * vec.X;
-        return pos;
-    }
 
 
+    public static void set_position(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x90, pos); }
     public static void set_godmode(long entity, bool toggle)
     {
         byte temp = Memory.Read<byte>(entity + 0x189);
@@ -188,53 +221,48 @@ public class Entity
         else temp = (byte)(temp & ~(1 << 0));
         Memory.Write<byte>(entity + 0x18B, temp);
     }
-    public static void set_position(long entity, Vector3 pos)
+}
+
+
+public class WeaponInventory
+{
+    public static bool get_infinite_ammo(long weaponinventory) { return (((Memory.Read<byte>(weaponinventory + 0x78, new int[] { 0x78 }) & (1 << 0)) == (1 << 0)) ? true : false); }
+    public static bool get_infinite_clip(long weaponinventory) { return (((Memory.Read<byte>(weaponinventory + 0x78, new int[] { 0x78 }) & (1 << 1)) == (1 << 1)) ? true : false); }
+
+
+    public static void set_infinite_ammo(long weaponinventory, bool toggle)
     {
-        Memory.Write<Vector3>(entity + 0x90, pos);
-        Memory.Write<Vector3>(entity + pCNavigation, new int[] { 0x50 }, pos);
+        byte temp = Memory.Read<byte>(weaponinventory + 0x78);
+        if (toggle) temp = (byte)(temp | (1 << 0));
+        else temp = (byte)(temp & ~(1 << 0));
+        Memory.Write<byte>(weaponinventory + 0x78, temp);
+    }
+    public static void set_infinite_clip(long weaponinventory, bool toggle)
+    {
+        byte temp = Memory.Read<byte>(weaponinventory + 0x78);
+        if (toggle) temp = (byte)(temp | (1 << 1));
+        else temp = (byte)(temp & ~(1 << 1));
+        Memory.Write<byte>(weaponinventory + 0x78, temp);
     }
 }
 
+
 public class Ped : Entity
 {
-    public static int pCPlayerInfo = 0x10C8;
-    public static int pCWeaponInventory = 0x10D0;
-
-    public static long get_playerinfo(long ped) { return Memory.Read<long>(ped + 0x10C8); }
-    public static float get_armor(long ped) { return Memory.Read<float>(ped + 0x1530); }
-    public static long get_current_vehicle(long ped) { return Memory.Read<long>(ped + 0xD30); }
     public static float get_health(long ped) { return Memory.Read<float>(ped + 0x280); }
     public static float get_max_health(long ped) { return Memory.Read<float>(ped + 0x2A0); }
-    public static bool get_infinite_ammo(long ped) { return (((Memory.Read<byte>(ped + pCWeaponInventory, new int[] {0x78}) & (1 << 0)) == (1 << 0)) ? true : false); }
-    public static bool get_infinite_clip(long ped) { return (((Memory.Read<byte>(ped + pCWeaponInventory, new int[] { 0x78 }) & (1 << 1)) == (1 << 1)) ? true : false); }
-    public static bool get_no_ragdoll(long ped) { return (((Memory.Read<byte>(ped + 0x10B8) & (1 << 5)) == (1 << 5)) ? false : true); }
-    public static bool get_seatbelt(long ped) { return (((Memory.Read<byte>(ped + 0x145C) & (1 << 0)) == (1 << 0)) ? true : false); }
-    public static float get_run_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] {0xCF0}); }
-    public static float get_swim_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] { 0x170 }); }
-    public static float get_stealth_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] { 0x18C }); }
-    public static int get_wanted_level(long ped) { return Memory.Read<int>(ped + pCPlayerInfo, new int[] {0x888}); }
+    public static long get_current_vehicle(long ped) { return Memory.Read<long>(ped + 0xD30); }
     public static bool is_in_vehicle(long ped) { return ((Memory.Read<byte>(ped + 0xE52) == 1) ? true : false); }
     public static uint get_pedtype(long ped) { return Memory.Read<uint>(ped + 0x10B8) << 11 >> 25; }
-    public static bool is_player(long ped) { return ((Memory.Read<byte>(ped + 0x28) == 156) ? true : false); }
+    public static bool get_no_ragdoll(long ped) { return (((Memory.Read<byte>(ped + 0x10B8) & (1 << 5)) == (1 << 5)) ? false : true); }
+    public static long get_playerinfo(long ped) { return Memory.Read<long>(ped + 0x10C8); }
+    public static long get_weaponinventory(long ped) { return Memory.Read<long>(ped + 0x10D0); }
+    public static bool get_seatbelt(long ped) { return (((Memory.Read<byte>(ped + 0x145C) & (1 << 0)) == (1 << 0)) ? true : false); }
+    public static float get_armor(long ped) { return Memory.Read<float>(ped + 0x1530); }
 
 
-    public static void set_armour(long ped, float value) { Memory.Write<float>(ped + 0x1530, value); }
     public static void set_health(long ped, float value) { Memory.Write<float>(ped + 0x280, value); }
     public static void set_max_health(long ped, float value) { Memory.Write<float>(ped + 0x2A0, value); }
-    public static void set_infinite_ammo(long ped, bool toggle)
-    {
-        byte temp = Memory.Read<byte>(ped + pCWeaponInventory, new int[] { 0x78 });
-        if (toggle) temp = (byte)(temp | (1 << 0));
-        else temp = (byte)(temp & ~(1 << 0));
-        Memory.Write<byte>(ped + pCWeaponInventory, new int[] { 0x78 }, temp);
-    }
-    public static void set_infinite_clip(long ped, bool toggle)
-    {
-        byte temp = Memory.Read<byte>(ped + pCWeaponInventory, new int[] { 0x78 });
-        if (toggle) temp = (byte)(temp | (1 << 1));
-        else temp = (byte)(temp & ~(1 << 1));
-        Memory.Write<byte>(ped + pCWeaponInventory, new int[] { 0x78 }, temp);
-    }
     public static void set_no_ragdoll(long ped, bool toggle)
     {
         byte temp = Memory.Read<byte>(ped + 0x10B8);
@@ -249,10 +277,7 @@ public class Ped : Entity
         else temp = (byte)(temp & ~(1 << 0));
         Memory.Write<byte>(ped + 0x145C, temp);
     }
-    public static void set_run_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0xCF0 }, value); }
-    public static void set_swim_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0x170 }, value); }
-    public static void set_stealth_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0x18C }, value); }
-    public static void set_wanted_level(long ped, int value) { Memory.Write<int>(ped + pCPlayerInfo, new int[] { 0x888 }, value); }
+    public static void set_armour(long ped, float value) { Memory.Write<float>(ped + 0x1530, value); }
 }
 
 
@@ -337,7 +362,6 @@ public class Replayinterface
 
 public class OnlinePlayer
 {
-    public static int pCPlayerInfo = 0x10C8;
     public static int get_number_of_players()
     {
         int number = 0;
@@ -352,7 +376,7 @@ public class OnlinePlayer
     {
         long ped = get_player_ped(i);
         if (ped == 0) return null;
-        return Memory.ReadString(ped, new int[] { pCPlayerInfo, 0xA4 }, 20);
+        return PlayerInfo.get_name(Ped.get_playerinfo(ped));
     }
     public static long get_player_ped(int i)//0-31
     {
@@ -362,7 +386,7 @@ public class OnlinePlayer
         if (!Memory.IsValid(CNetGamePlayer)) return 0;
         long CPlayerInfo = Memory.Read<long>(CNetGamePlayer + 0xA0);
         if (!Memory.IsValid(CPlayerInfo)) return 0;
-        long CPed = Memory.Read<long>(CPlayerInfo + 0x1E8);
+        long CPed = PlayerInfo.get_ped(CPlayerInfo);
         if (!Memory.IsValid(CPed)) return 0;
         return CPed;
     }
@@ -381,5 +405,17 @@ public class Pickup : Entity
 
 public class PlayerInfo
 {
+    public static uint get_scid(long playerinfo) { return Memory.Read<uint>(playerinfo + 0x90); }
+    public static string get_name(long playerinfo) { return Memory.ReadString(playerinfo + 0xA4, null, 20); }
+    public static float get_swim_speed(long playerinfo) { return Memory.Read<float>(playerinfo + 0x170); }
+    public static float get_stealth_speed(long playerinfo) { return Memory.Read<float>(playerinfo + 0x18C); }
     public static long get_ped(long playerinfo) { return Memory.Read<long>(playerinfo + 0x1E8); }
+    public static int get_wanted_level(long playerinfo) { return Memory.Read<int>(playerinfo + 0x888); }
+    public static float get_run_speed(long playerinfo) { return Memory.Read<float>(playerinfo + 0xCF0); }
+
+
+    public static void set_swim_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x170, value); }
+    public static void set_stealth_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x18C, value); }
+    public static void set_wanted_level(long playerinfo, int value) { Memory.Write<int>(playerinfo + 0x888, value); }
+    public static void set_run_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0xCF0, value); }
 }
