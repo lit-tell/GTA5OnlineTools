@@ -135,7 +135,7 @@ public class Hacks
         for (int i = 0; i < pickups.Count; i++)
         {
             long pickup = pickups[i];
-            if (Pickup.get_model_hash(pickup) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
+            if (Pickup.get_hash(pickup) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
             {
                 Pickup.set_pickup_hash(pickup, hash);
                 break;
@@ -159,8 +159,8 @@ public class Entity
     public static bool get_godmode(long entity) { return ((Memory.Read<byte>(entity + 0x189) == 0) ? false : true); }//invincible
     public static bool get_waterproof(long entity) { return ((Memory.Read<byte>(entity + 0x18B) == 0) ? false : true); }
     public static Vector3 get_position(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x50 }); }//coords
-    public static uint get_model_hash(long entity) { return Memory.Read<uint>(entity + pCModelInfo, new int[] { 0x18 }); }
-    public static byte get_model_type(long entity) { return Memory.Read<byte>(entity + pCModelInfo, new int[] { 0x9D }); }
+    public static uint get_hash(long entity) { return Memory.Read<uint>(entity + pCModelInfo, new int[] { 0x18 }); }
+    public static byte get_type(long entity) { return Memory.Read<byte>(entity + pCModelInfo, new int[] { 0x9D }); }
     public static Vector3 get_right_vector3(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x20 }); }
     public static Vector3 get_forward_vector3(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x30 }); }
     public static Vector3 get_up_vector3(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x40 }); }
@@ -371,11 +371,11 @@ public class OnlinePlayer
 public class Pickup : Entity
 {
     public static uint get_pickup_hash(long pickup) { return Memory.Read<uint>(pickup + 0x488); }
-    public static uint get_model_hash_pickup() { return Memory.Read<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }); }
+    public static uint get_model_hash() { return Memory.Read<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }); }
 
 
     public static void set_pickup_hash(long pickup, uint hash) { Memory.Write<uint>(pickup + 0x488, hash); }
-    public static void set_model_hash_pickup(uint hash) { Memory.Write<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }, hash); }
+    public static void set_model_hash(uint hash) { Memory.Write<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }, hash); }
 }
 
 
