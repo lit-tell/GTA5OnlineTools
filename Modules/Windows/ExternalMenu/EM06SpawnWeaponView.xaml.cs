@@ -67,7 +67,7 @@ public partial class EM06SpawnWeaponView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.SpawnDrop(TempData.WPickup, Hacks.GetLocalPed());
+        Hacks.SpawnDrop(Hacks.GetLocalPed(), TempData.WPickup);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////

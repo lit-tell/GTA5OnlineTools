@@ -127,24 +127,28 @@ public class Hacks
         if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
         TeleportToCoords(ped, pos);
     }
-    public static void SpawnDrop(uint hash, long ped, float dist = 0.0f, float height = 3.0f)
+    public static void SpawnDrop(uint hash, Vector3 pos)
     {
-        Vector3 pos = Ped.get_forwardpos(ped, dist);
-        pos.Z += height;
         CreateAmbientPickup(9999, pos);
         Thread.Sleep(150);
         List<long> pickups = Replayinterface.get_pickups();
-        for(int i = 0; i < pickups.Count; i++)
+        for (int i = 0; i < pickups.Count; i++)
         {
             long pickup = pickups[i];
-            if(Pickup.get_model_hash(pickup) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
+            if (Pickup.get_model_hash(pickup) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
             {
                 Pickup.set_pickup_hash(pickup, hash);
                 break;
             }
         }
     }
-    public static void SpawnDrop(string name, long ped, float dist = 0.0f, float height = 3.0f) { SpawnDrop(Joaat(name), ped, dist, height); }
+    public static void SpawnDrop(long ped, uint hash, float dist = 0.0f, float height = 3.0f)
+    {
+        Vector3 pos = Ped.get_forwardpos(ped, dist);
+        pos.Z += height;
+        SpawnDrop(hash, pos);
+    }
+    public static void SpawnDrop(long ped, string name, float dist = 0.0f, float height = 3.0f) { SpawnDrop(ped, Joaat(name), dist, height); }
 }
 
 public class Entity
@@ -152,23 +156,23 @@ public class Entity
     public static int pCModelInfo = 0x20;
     public static int pCNavigation = 0x30;
 
-    public static bool get_invincible(long entity) { return ((Memory.Read<byte>(entity + 0x189) == 0) ? false : true); }
+    public static bool get_godmode(long entity) { return ((Memory.Read<byte>(entity + 0x189) == 0) ? false : true); }//invincible
     public static bool get_waterproof(long entity) { return ((Memory.Read<byte>(entity + 0x18B) == 0) ? false : true); }
-    public static Vector3 get_coords(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x50 }); }
+    public static Vector3 get_position(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x50 }); }//coords
     public static uint get_model_hash(long entity) { return Memory.Read<uint>(entity + pCModelInfo, new int[] { 0x18 }); }
     public static byte get_model_type(long entity) { return Memory.Read<byte>(entity + pCModelInfo, new int[] { 0x9D }); }
     public static Vector3 get_heading(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x20 }); }
     public static Vector3 get_forwardpos(long entity, float dist = 7.0f)
     {
         Vector3 heading = get_heading(entity);
-        Vector3 pos = get_coords(entity);
+        Vector3 pos = get_position(entity);
         pos.X -= dist * heading.Y;
         pos.Y += dist * heading.X;
         return pos;
     }
 
 
-    public static void set_invincible(long entity, bool toggle)
+    public static void set_godmode(long entity, bool toggle)
     {
         byte temp = Memory.Read<byte>(entity + 0x189);
         if (toggle) temp = (byte)(temp | (1 << 0));
@@ -182,29 +186,26 @@ public class Entity
         else temp = (byte)(temp & ~(1 << 0));
         Memory.Write<byte>(entity + 0x18B, temp);
     }
-    public static void set_coords(long entity, Vector3 pos)
+    public static void set_position(long entity, Vector3 pos)
     {
         Memory.Write<Vector3>(entity + 0x90, pos);
         Memory.Write<Vector3>(entity + pCNavigation, new int[] { 0x50 }, pos);
     }
 }
 
-public class Ped
+public class Ped : Entity
 {
     public static int pCPlayerInfo = 0x10C8;
     public static int pCWeaponInventory = 0x10D0;
 
     public static float get_armor(long ped) { return Memory.Read<float>(ped + 0x1530); }
     public static long get_current_vehicle(long ped) { return Memory.Read<long>(ped + 0xD30); }
-    public static bool get_godmode(long ped) { return Entity.get_invincible(ped); }
-    public static bool get_waterproof(long ped) { return Entity.get_waterproof(ped); }
     public static float get_health(long ped) { return Memory.Read<float>(ped + 0x280); }
     public static float get_max_health(long ped) { return Memory.Read<float>(ped + 0x2A0); }
     public static bool get_infinite_ammo(long ped) { return (((Memory.Read<byte>(ped + pCWeaponInventory, new int[] {0x78}) & (1 << 0)) == (1 << 0)) ? true : false); }
     public static bool get_infinite_clip(long ped) { return (((Memory.Read<byte>(ped + pCWeaponInventory, new int[] { 0x78 }) & (1 << 1)) == (1 << 1)) ? true : false); }
     public static bool get_no_ragdoll(long ped) { return (((Memory.Read<byte>(ped + 0x10B8) & (1 << 5)) == (1 << 5)) ? false : true); }
     public static bool get_seatbelt(long ped) { return (((Memory.Read<byte>(ped + 0x145C) & (1 << 0)) == (1 << 0)) ? true : false); }
-    public static Vector3 get_position(long ped) { return Entity.get_coords(ped); }
     public static float get_run_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] {0xCF0}); }
     public static float get_swim_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] { 0x170 }); }
     public static float get_stealth_speed(long ped) { return Memory.Read<float>(ped + pCPlayerInfo, new int[] { 0x18C }); }
@@ -212,15 +213,9 @@ public class Ped
     public static bool is_in_vehicle(long ped) { return ((Memory.Read<byte>(ped + 0xE52) == 1) ? true : false); }
     public static uint get_pedtype(long ped) { return Memory.Read<uint>(ped + 0x10B8) << 11 >> 25; }
     public static bool is_player(long ped) { return ((Memory.Read<byte>(ped + 0x28) == 156) ? true : false); }
-    public static uint get_model_hash(long ped) { return Entity.get_model_hash(ped); }
-    public static byte get_model_type(long ped) { return Entity.get_model_type(ped); }
-    public static Vector3 get_heading(long ped) { return Entity.get_heading(ped); }
-    public static Vector3 get_forwardpos(long ped, float dist = 7.0f) { return Entity.get_forwardpos(ped, dist); }
 
 
     public static void set_armour(long ped, float value) { Memory.Write<float>(ped + 0x1530, value); }
-    public static void set_godmode(long ped, bool toggle) { Entity.set_invincible(ped, toggle); }
-    public static void set_waterproof(long ped, bool toggle) { Entity.set_waterproof(ped, toggle); }
     public static void set_health(long ped, float value) { Memory.Write<float>(ped + 0x280, value); }
     public static void set_max_health(long ped, float value) { Memory.Write<float>(ped + 0x2A0, value); }
     public static void set_infinite_ammo(long ped, bool toggle)
@@ -251,7 +246,6 @@ public class Ped
         else temp = (byte)(temp & ~(1 << 0));
         Memory.Write<byte>(ped + 0x145C, temp);
     }
-    public static void set_position(long ped, Vector3 pos) { Entity.set_coords(ped, pos); }
     public static void set_run_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0xCF0 }, value); }
     public static void set_swim_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0x170 }, value); }
     public static void set_stealth_speed(long ped, float value) { Memory.Write<float>(ped + pCPlayerInfo, new int[] { 0x18C }, value); }
@@ -259,26 +253,16 @@ public class Ped
 }
 
 
-public class Vehicle
+public class Vehicle : Entity
 {
-    public static bool get_godmode(long vehicle) { return Entity.get_invincible(vehicle); }
-    public static bool get_waterproof(long vehicle) { return Entity.get_waterproof(vehicle); }
-    public static Vector3 get_position(long vehicle) { return Entity.get_coords(vehicle); }
     public static float get_health(long vehicle) { return Memory.Read<float>(vehicle + 0x280); }
     public static float get_max_health(long vehicle) { return Memory.Read<float>(vehicle + 0x2A0); }
     public static float get_health2(long vehicle) { return Memory.Read<float>(vehicle + 0x840); }
     public static float get_health3(long vehicle) { return Memory.Read<float>(vehicle + 0x844); }
     public static float get_engine_health(long vehicle) { return Memory.Read<float>(vehicle + 0x908); }
     public static float get_gravity(long vehicle) { return Memory.Read<float>(vehicle + 0xC5C); }
-    public static uint get_model_hash(long vehicle) { return Entity.get_model_hash(vehicle); }
-    public static byte get_model_type(long vehicle) { return Entity.get_model_type(vehicle); }
-    public static Vector3 get_heading(long vehicle) { return Entity.get_heading(vehicle); }
-    public static Vector3 get_forwardpos(long vehicle, float dist = 7.0f) { return Entity.get_forwardpos(vehicle, dist); }
 
 
-    public static void set_godmode(long vehicle, bool toggle) { Entity.set_invincible(vehicle, toggle); }
-    public static void set_waterproof(long vehicle, bool toggle) { Entity.set_waterproof(vehicle, toggle); }
-    public static void set_position(long vehicle, Vector3 pos) { Entity.set_coords(vehicle, pos); }
     public static void set_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x280, value); }
     public static void set_max_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x2A0, value); }
     public static void set_health2(long vehicle, float value) { Memory.Write<float>(vehicle + 0x840, value); }
@@ -364,16 +348,12 @@ public class OnlinePlayer
     }
 }
 
-public class Pickup
+public class Pickup : Entity
 {
-    public static Vector3 get_position(long pickup) { return Entity.get_coords(pickup); }
-    public static uint get_model_hash(long pickup) { return Entity.get_model_hash(pickup); }
-    public static byte get_model_type(long pickup) { return Entity.get_model_type(pickup); }
     public static uint get_pickup_hash(long pickup) { return Memory.Read<uint>(pickup + 0x488); }
     public static uint get_model_hash() { return Memory.Read<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }); }
 
 
-    public static void set_position(long pickup, Vector3 pos) { Entity.set_coords(pickup, pos); }
     public static void set_pickup_hash(long pickup, uint hash) { Memory.Write<uint>(pickup + 0x488, hash); }
     public static void set_model_hash(uint hash) { Memory.Write<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }, hash); }
 }
