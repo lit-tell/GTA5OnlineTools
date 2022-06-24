@@ -145,6 +145,7 @@ public class Hacks
         if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
         TeleportToCoords(ped, pos);
     }
+    public static uint Entity_get_hash(long entity) { return BaseModelInfo.get_hash(Entity.get_basemodelinfo(entity)); }
     public static void SpawnDrop(uint hash, Vector3 pos)
     {
         CreateAmbientPickup(9999, pos);
@@ -153,7 +154,7 @@ public class Hacks
         for (int i = 0; i < pickups.Count; i++)
         {
             long pickup = pickups[i];
-            if (BaseModelInfo.get_hash(Pickup.get_basemodelinfo(pickup)) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
+            if (Entity_get_hash(pickup) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
             {
                 Pickup.set_pickup_hash(pickup, hash);
                 break;
@@ -206,6 +207,9 @@ public class Entity
     public static bool get_waterproof(long entity) { return ((Memory.Read<byte>(entity + 0x18B) == 0) ? false : true); }
 
 
+    public static void set_right_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x60, pos); }
+    public static void set_forward_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x70, pos); }
+    public static void set_up_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x80, pos); }
     public static void set_position(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x90, pos); }
     public static void set_godmode(long entity, bool toggle)
     {
