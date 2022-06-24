@@ -376,11 +376,15 @@ public class OnlinePlayer
         }
         return number;
     }
-    public static string get_player_name(int i)
+    public static long get_player_info(int i)
     {
-        long ped = get_player_ped(i);
-        if (ped == 0) return null;
-        return PlayerInfo.get_name(Ped.get_playerinfo(ped));
+        long CNetworkPlayerMgr = Memory.Read<long>(Globals.NetworkPlayerMgrPTR);
+        if (!Memory.IsValid(CNetworkPlayerMgr)) return 0;
+        long CNetGamePlayer = Memory.Read<long>(CNetworkPlayerMgr + 0x180 + i * 0x8);
+        if (!Memory.IsValid(CNetGamePlayer)) return 0;
+        long CPlayerInfo = Memory.Read<long>(CNetGamePlayer + 0xA0);
+        if (!Memory.IsValid(CPlayerInfo)) return 0;
+        return CPlayerInfo;
     }
     public static long get_player_ped(int i)//0-31
     {
