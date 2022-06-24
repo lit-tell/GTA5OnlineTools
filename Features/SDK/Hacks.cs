@@ -161,13 +161,15 @@ public class Entity
     public static Vector3 get_position(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x50 }); }//coords
     public static uint get_model_hash(long entity) { return Memory.Read<uint>(entity + pCModelInfo, new int[] { 0x18 }); }
     public static byte get_model_type(long entity) { return Memory.Read<byte>(entity + pCModelInfo, new int[] { 0x9D }); }
-    public static Vector3 get_heading(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x20 }); }
+    public static Vector3 get_right_vector3(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x20 }); }
+    public static Vector3 get_forward_vector3(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x30 }); }
+    public static Vector3 get_up_vector3(long entity) { return Memory.Read<Vector3>(entity + pCNavigation, new int[] { 0x40 }); }
     public static Vector3 get_forwardpos(long entity, float dist = 7.0f)
     {
-        Vector3 heading = get_heading(entity);
+        Vector3 vec = get_right_vector3(entity);
         Vector3 pos = get_position(entity);
-        pos.X -= dist * heading.Y;
-        pos.Y += dist * heading.X;
+        pos.X -= dist * vec.Y;
+        pos.Y += dist * vec.X;
         return pos;
     }
 
