@@ -170,6 +170,11 @@ public class Hacks
         SpawnDrop(hash, pos);
     }
     public static void SpawnDrop(long ped, string name, float dist = 0.0f, float height = 3.0f) { SpawnDrop(ped, Joaat(name), dist, height); }
+    public static bool Ped_get_infinite_ammo(long ped) { return WeaponInventory.get_infinite_ammo(Ped.get_weaponinventory(ped)); }
+    public static bool Ped_get_infinite_clip(long ped) { return WeaponInventory.get_infinite_clip(Ped.get_weaponinventory(ped)); }
+    public static void Ped_set_infinite_ammo(long ped, bool toggle) { WeaponInventory.set_infinite_ammo(Ped.get_weaponinventory(ped), toggle); }
+    public static void Ped_set_infinite_clip(long ped, bool toggle) { WeaponInventory.set_infinite_clip(Ped.get_weaponinventory(ped), toggle); }
+    public static bool Ped_is_enemy(long ped) { return ((Ped.get_hostility(ped) > 1) ? true : false); }
 }
 
 
@@ -255,6 +260,7 @@ public class WeaponInventory
 
 public class Ped : Entity
 {
+    public static byte get_hostility(long ped) { return Memory.Read<byte>(ped + 0x18C); }
     public static float get_health(long ped) { return Memory.Read<float>(ped + 0x280); }
     public static float get_max_health(long ped) { return Memory.Read<float>(ped + 0x2A0); }
     public static long get_current_vehicle(long ped) { return Memory.Read<long>(ped + 0xD30); }
