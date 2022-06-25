@@ -97,7 +97,7 @@ public class Hacks
         WriteGA<int>(2783345 + 6, 1);
     }
 
-    public static Vector3 GetBlipPos(int[] icons, int[] colors = null)
+    public static long GetBlip(int[] icons, int[] colors = null)
     {
         for (int i = 1; i < 2001; i++)
         {
@@ -107,13 +107,15 @@ public class Hacks
             int color = Memory.Read<int>(p + 0x48);
             if (Array.IndexOf(icons, icon) == -1) continue;
             if (colors != null && Array.IndexOf(colors, color) == -1) continue;
-            Vector3 pos = new Vector3();
-            pos.X = Memory.Read<float>(p + 0x10);
-            pos.Y = Memory.Read<float>(p + 0x14);
-            pos.Z = Memory.Read<float>(p + 0x18);
-            return pos;
+            return p;
         }
-        return new Vector3();
+        return 0;
+    }
+
+    public static Vector3 GetBlipPos(int[] icons, int[] colors = null)
+    {
+        long blip = GetBlip(icons, colors);
+        return ((blip == 0) ? new Vector3() : Memory.Read<Vector3>(blip + 0x10));
     }
 
     public static long GetLocalPed() { return Memory.Read<long>(Globals.WorldPTR, new int[] { 0x8 }); }
