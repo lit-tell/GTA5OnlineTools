@@ -428,10 +428,44 @@ public class PlayerInfo
     public static long get_ped(long playerinfo) { return Memory.Read<long>(playerinfo + 0x1E8); }
     public static int get_wanted_level(long playerinfo) { return Memory.Read<int>(playerinfo + 0x888); }
     public static float get_run_speed(long playerinfo) { return Memory.Read<float>(playerinfo + 0xCF0); }
+    public static byte get_frame_flags(long playerinfo) { return Memory.Read<byte>(playerinfo + 0x219); }
+    public static bool get_frame_flags_explosiveammo(long playerinfo) { return (((get_frame_flags(playerinfo) & (1 << 3)) == (1 << 3)) ? true : false); }
+    public static bool get_frame_flags_flamingammo(long playerinfo) { return (((get_frame_flags(playerinfo) & (1 << 4)) == (1 << 4)) ? true : false); }//fire ammo
+    public static bool get_frame_flags_explosivefists(long playerinfo) { return (((get_frame_flags(playerinfo) & (1 << 5)) == (1 << 5)) ? true : false); }//explosive punch
+    public static bool get_frame_flags_superjump(long playerinfo) { return (((get_frame_flags(playerinfo) & (1 << 6)) == (1 << 6)) ? true : false); }
 
 
     public static void set_swim_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x170, value); }
     public static void set_stealth_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x18C, value); }
     public static void set_wanted_level(long playerinfo, int value) { Memory.Write<int>(playerinfo + 0x888, value); }
     public static void set_run_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0xCF0, value); }
+    public static void set_frame_flags(long playerinfo, byte value) { Memory.Write<byte>(playerinfo + 0x219, value); }
+    public static void set_frame_flags_explosiveammo(long playerinfo, bool toggle) 
+    {
+        byte temp = get_frame_flags(playerinfo);
+        if (toggle) temp = (byte)(temp | (1 << 3));
+        else temp = (byte)(temp & ~(1 << 3));
+        set_frame_flags(playerinfo, temp);
+    }
+    public static void set_frame_flags_flamingammo(long playerinfo, bool toggle)
+    {
+        byte temp = get_frame_flags(playerinfo);
+        if (toggle) temp = (byte)(temp | (1 << 4));
+        else temp = (byte)(temp & ~(1 << 4));
+        set_frame_flags(playerinfo, temp);
+    }
+    public static void set_frame_flags_explosivefists(long playerinfo, bool toggle)
+    {
+        byte temp = get_frame_flags(playerinfo);
+        if (toggle) temp = (byte)(temp | (1 << 5));
+        else temp = (byte)(temp & ~(1 << 5));
+        set_frame_flags(playerinfo, temp);
+    }
+    public static void set_frame_flags_superjump(long playerinfo, bool toggle)
+    {
+        byte temp = get_frame_flags(playerinfo);
+        if (toggle) temp = (byte)(temp | (1 << 6));
+        else temp = (byte)(temp & ~(1 << 6));
+        set_frame_flags(playerinfo, temp);
+    }
 }
