@@ -183,6 +183,14 @@ public class Hacks
     public static void Ped_set_frame_flags_flamingammo(long ped, bool toggle) { PlayerInfo.set_frame_flags_flamingammo(Ped.get_playerinfo(ped), toggle); }
     public static void Ped_set_frame_flags_explosivefists(long ped, bool toggle) { PlayerInfo.set_frame_flags_explosivefists(Ped.get_playerinfo(ped), toggle); }
     public static void Ped_set_frame_flags_superjump(long ped, bool toggle) { PlayerInfo.set_frame_flags_superjump(Ped.get_playerinfo(ped), toggle); }
+    public static int Ped_get_wanted_level(long ped) { return PlayerInfo.get_wanted_level((Ped.get_playerinfo(ped))); }
+    public static void Ped_set_wanted_level(long ped, int value) { PlayerInfo.set_wanted_level(Ped.get_playerinfo(ped), value); }
+    public static float Ped_get_run_speed(long ped) { return PlayerInfo.get_run_speed(Ped.get_playerinfo(ped)); }
+    public static float Ped_get_swim_speed(long ped) { return PlayerInfo.get_swim_speed(Ped.get_playerinfo(ped)); }
+    public static float Ped_get_stealth_speed(long ped) { return PlayerInfo.get_stealth_speed(Ped.get_playerinfo(ped)); }
+    public static void Ped_set_run_speed(long ped, float value) { PlayerInfo.set_run_speed(Ped.get_playerinfo(ped), value); }
+    public static void Ped_set_swim_speed(long ped, float value) { PlayerInfo.set_swim_speed(Ped.get_playerinfo(ped), value); }
+    public static void Ped_set_stealth_speed(long ped, float value) { PlayerInfo.set_stealth_speed(Ped.get_playerinfo(ped), value); }
 }
 
 
@@ -309,6 +317,7 @@ public class Vehicle : Entity
     public static float get_health3(long vehicle) { return Memory.Read<float>(vehicle + 0x844); }
     public static float get_engine_health(long vehicle) { return Memory.Read<float>(vehicle + 0x908); }
     public static float get_gravity(long vehicle) { return Memory.Read<float>(vehicle + 0xC5C); }
+    public static byte get_cur_num_of_passenger(long vehicle) { return Memory.Read<byte>(vehicle + 0xC62); }
 
 
     public static void set_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x280, value); }

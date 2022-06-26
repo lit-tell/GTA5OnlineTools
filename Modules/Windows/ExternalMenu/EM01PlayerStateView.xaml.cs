@@ -106,17 +106,17 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            float oHealth = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.Health);
-            float oMaxHealth = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.MaxHealth);
-            float oArmor = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.Armor);
+            float oHealth = Ped.get_health(Hacks.GetLocalPed());
+            float oMaxHealth = Ped.get_max_health(Hacks.GetLocalPed());
+            float oArmor = Ped.get_armor(Hacks.GetLocalPed());
 
-            byte oWanted = Memory.Read<byte>(Globals.WorldPTR, Offsets.Player.Wanted);
-            float oRunSpeed = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.RunSpeed);
-            float oSwimSpeed = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.SwimSpeed);
-            float oStealthSpeed = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.StealthSpeed);
+            int oWanted = Hacks.Ped_get_wanted_level(Hacks.GetLocalPed());
+            float oRunSpeed = Hacks.Ped_get_run_speed(Hacks.GetLocalPed());
+            float oSwimSpeed = Hacks.Ped_get_swim_speed(Hacks.GetLocalPed());
+            float oStealthSpeed = Hacks.Ped_get_stealth_speed(Hacks.GetLocalPed());
 
-            byte oInVehicle = Memory.Read<byte>(Globals.WorldPTR, Offsets.InVehicle);
-            byte oCurPassenger = Memory.Read<byte>(Globals.WorldPTR, Offsets.Vehicle.CurPassenger);
+            bool oInVehicle = Ped.is_in_vehicle(Hacks.GetLocalPed());
+            byte oCurPassenger = Vehicle.get_cur_num_of_passenger(Ped.get_current_vehicle(Hacks.GetLocalPed()));
 
             ////////////////////////////////
 
@@ -201,40 +201,19 @@ public partial class EM01PlayerStateView : UserControl
         }
     }
 
-    private void Slider_Health_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.Health, (float)Slider_Health.Value);
-    }
+    private void Slider_Health_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_health(Hacks.GetLocalPed(), (float)Slider_Health.Value); }
 
-    private void Slider_MaxHealth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.MaxHealth, (float)Slider_MaxHealth.Value);
-    }
+    private void Slider_MaxHealth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_max_health(Hacks.GetLocalPed(), (float)Slider_MaxHealth.Value); }
 
-    private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.Armor, (float)Slider_Armor.Value);
-    }
+    private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_armour(Hacks.GetLocalPed(), (float)Slider_Armor.Value); }
 
-    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-        Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.Wanted, (byte)Slider_Wanted.Value);
-    }
+    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Hacks.Ped_set_wanted_level(Hacks.GetLocalPed(), (int)Slider_Wanted.Value); }
 
-    private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.RunSpeed, (float)Slider_RunSpeed.Value);
-    }
+    private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Hacks.Ped_set_run_speed(Hacks.GetLocalPed(), (float)Slider_RunSpeed.Value); }
 
-    private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.SwimSpeed, (float)Slider_SwimSpeed.Value);
-    }
+    private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Hacks.Ped_set_swim_speed(Hacks.GetLocalPed(), (float)Slider_SwimSpeed.Value); }
 
-    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.StealthSpeed, (float)Slider_StealthSpeed.Value);
-    }
+    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Hacks.Ped_set_stealth_speed(Hacks.GetLocalPed(), (float)Slider_StealthSpeed.Value); }
 
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)
     {
