@@ -175,6 +175,14 @@ public class Hacks
     public static void Ped_set_infinite_ammo(long ped, bool toggle) { WeaponInventory.set_infinite_ammo(Ped.get_weaponinventory(ped), toggle); }
     public static void Ped_set_infinite_clip(long ped, bool toggle) { WeaponInventory.set_infinite_clip(Ped.get_weaponinventory(ped), toggle); }
     public static bool Ped_is_enemy(long ped) { return ((Ped.get_hostility(ped) > 1) ? true : false); }
+    public static bool Ped_get_frame_flags_explosiveammo(long ped) { return PlayerInfo.get_frame_flags_explosiveammo(Ped.get_playerinfo(ped)); }
+    public static bool Ped_get_frame_flags_flamingammo(long ped) { return PlayerInfo.get_frame_flags_flamingammo(Ped.get_playerinfo(ped)); }
+    public static bool Ped_get_frame_flags_explosivefists(long ped) { return PlayerInfo.get_frame_flags_explosivefists(Ped.get_playerinfo(ped)); }
+    public static bool Ped_get_frame_flags_superjump(long ped) { return PlayerInfo.get_frame_flags_superjump(Ped.get_playerinfo(ped)); }
+    public static void Ped_set_frame_flags_explosiveammo(long ped, bool toggle) { PlayerInfo.set_frame_flags_explosiveammo(Ped.get_playerinfo(ped), toggle); }
+    public static void Ped_set_frame_flags_flamingammo(long ped, bool toggle) { PlayerInfo.set_frame_flags_flamingammo(Ped.get_playerinfo(ped), toggle); }
+    public static void Ped_set_frame_flags_explosivefists(long ped, bool toggle) { PlayerInfo.set_frame_flags_explosivefists(Ped.get_playerinfo(ped), toggle); }
+    public static void Ped_set_frame_flags_superjump(long ped, bool toggle) { PlayerInfo.set_frame_flags_superjump(Ped.get_playerinfo(ped), toggle); }
 }
 
 

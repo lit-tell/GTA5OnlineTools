@@ -14,6 +14,10 @@ public partial class EM01PlayerStateView : UserControl
     private HotKeys MainHotKeys;
     // 特殊功能
     private int FrameFlag = 0;
+    private int FrameFlagsExplosiveAmmo = 0;
+    private int FrameFlagsFlamingAmmo = 0;
+    private int FrameFlagsExplosiveFists = 0;
+    private int FrameFlagsSuperJump = 0;
 
     public EM01PlayerStateView()
     {
@@ -168,18 +172,10 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            switch (FrameFlag)
-            {
-                case 1:
-                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.SuperJump);
-                    break;
-                case 2:
-                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.FireAmmo);
-                    break;
-                case 3:
-                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.ExplosiveAmmo);
-                    break;
-            }
+            if (FrameFlagsExplosiveAmmo == 1) Hacks.Ped_set_frame_flags_explosiveammo(Hacks.GetLocalPed(), true);
+            if (FrameFlagsFlamingAmmo == 1) Hacks.Ped_set_frame_flags_flamingammo(Hacks.GetLocalPed(), true);
+            if (FrameFlagsExplosiveFists == 1) Hacks.Ped_set_frame_flags_explosivefists(Hacks.GetLocalPed(), true);
+            if (FrameFlagsSuperJump == 1) Hacks.Ped_set_frame_flags_superjump(Hacks.GetLocalPed(), true);
 
             Thread.Sleep(1);
         }
@@ -317,24 +313,12 @@ public partial class EM01PlayerStateView : UserControl
         Settings.Common.AutoKillPolice = CheckBox_AutoKillPolice.IsChecked == true;
     }
 
-    private void RadioButton_FrameFlags_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_FrameFlags_Click(object sender, RoutedEventArgs e)
     {
-        if (RadioButton_FrameFlags_Default.IsChecked == true)
-        {
-            FrameFlag = 0;
-        }
-        else if (RadioButton_FrameFlags_SuperJump.IsChecked == true)
-        {
-            FrameFlag = 1;
-        }
-        else if (RadioButton_FrameFlags_FireAmmo.IsChecked == true)
-        {
-            FrameFlag = 2;
-        }
-        else if (RadioButton_FrameFlags_ExplosiveAmmo.IsChecked == true)
-        {
-            FrameFlag = 3;
-        }
+        FrameFlagsExplosiveAmmo  = ((CheckBox_FrameFlagsExplosiveAmmo.IsChecked == true) ? 1 : 0);
+        FrameFlagsFlamingAmmo    = ((CheckBox_FrameFlagsFlamingAmmo.IsChecked == true) ? 1 : 0);
+        FrameFlagsExplosiveFists = ((CheckBox_FrameFlagsExplosiveFists.IsChecked == true) ? 1 : 0);
+        FrameFlagsSuperJump      = ((CheckBox_FrameFlagsSuperJump.IsChecked == true) ? 1 : 0);
     }
 
     private void CheckBox_NoCollision_Click(object sender, RoutedEventArgs e)

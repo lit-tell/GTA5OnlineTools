@@ -245,27 +245,26 @@
                             Text="特殊功能" />
                     </Border>
                     <WrapPanel Margin="3,0,3,0">
-                        <RadioButton
-                            x:Name="RadioButton_FrameFlags_Default"
-                            Margin="5"
-                            Click="RadioButton_FrameFlags_Click"
-                            Content="默认"
-                            IsChecked="True" />
-                        <RadioButton
-                            x:Name="RadioButton_FrameFlags_SuperJump"
-                            Margin="5"
-                            Click="RadioButton_FrameFlags_Click"
-                            Content="超级跳跃" />
-                        <RadioButton
-                            x:Name="RadioButton_FrameFlags_FireAmmo"
-                            Margin="5"
-                            Click="RadioButton_FrameFlags_Click"
-                            Content="燃烧子弹" />
-                        <RadioButton
-                            x:Name="RadioButton_FrameFlags_ExplosiveAmmo"
-                            Margin="5"
-                            Click="RadioButton_FrameFlags_Click"
-                            Content="爆炸子弹" />
+                        <CheckBox
+                            x:Name="CheckBox_FrameFlagsExplosiveAmmo"
+                            Margin="2"
+                            Content="爆炸子弹"
+                            Click="CheckBox_FrameFlags_Click" />
+                        <CheckBox
+                            x:Name="CheckBox_FrameFlagsFlamingAmmo"
+                            Margin="2"
+                            Content="燃烧子弹"
+                            Click="CheckBox_FrameFlags_Click" />
+                        <CheckBox
+                            x:Name="CheckBox_FrameFlagsExplosiveFists"
+                            Margin="2"
+                            Content="爆炸近战"
+                            Click="CheckBox_FrameFlags_Click" />
+                        <CheckBox
+                            x:Name="CheckBox_FrameFlagsSuperJump"
+                            Margin="2"
+                            Content="超级跳跃"
+                            Click="CheckBox_FrameFlags_Click" />
                     </WrapPanel>
 
                     <Border Style="{StaticResource BorderTitleStyle}">
