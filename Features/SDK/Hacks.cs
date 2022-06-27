@@ -155,7 +155,7 @@ public class Hacks
         {
             long ped = peds[i];
             if (Ped.is_player(ped)) continue;
-            if (Ped.is_enemy(ped)) Ped.set_health(ped, 0.0f); ;
+            if (Ped.is_enemy(ped)) Ped.set_health(ped, 0.0f);
         }
     }
     public static void kill_cops()
@@ -169,6 +169,46 @@ public class Hacks
             if(pedtype == (uint)Data.EnumData.PedTypes.COP ||
                 pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
                 pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.set_health(ped, 0.0f);
+        }
+    }
+    public static void destroy_veh(long vehicle)
+    {
+        Vehicle.set_health(vehicle, -1.0f);
+        Vehicle.set_health2(vehicle, -1.0f);
+        Vehicle.set_health3(vehicle, -1.0f);
+        Vehicle.set_engine_health(vehicle, -1.0f);
+    }
+    public static void destroy_vehs_of_npcs()
+    {
+        List<long> peds = Replayinterface.get_peds();
+        for (int i = 0; i < peds.Count; i++)
+        {
+            long ped = peds[i];
+            if (Ped.is_player(ped)) continue;
+            destroy_veh(Ped.get_current_vehicle(ped));
+        }
+    }
+    public static void destroy_vehs_of_enemies()
+    {
+        List<long> peds = Replayinterface.get_peds();
+        for (int i = 0; i < peds.Count; i++)
+        {
+            long ped = peds[i];
+            if (ped == Hacks.GetLocalPed()) continue;
+            if (Ped.is_enemy(ped)) destroy_veh(Ped.get_current_vehicle(ped));
+        }
+    }
+    public static void destroy_vehs_of_cops()
+    {
+        List<long> peds = Replayinterface.get_peds();
+        for (int i = 0; i < peds.Count; i++)
+        {
+            long ped = peds[i];
+            if (ped == Hacks.GetLocalPed()) continue;
+            uint pedtype = Ped.get_pedtype(ped);
+            if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
+                pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
+                pedtype == (uint)Data.EnumData.PedTypes.ARMY) destroy_veh(Ped.get_current_vehicle(ped));
         }
     }
 }
@@ -323,9 +363,9 @@ public class Vehicle : Entity
 {
     public static float get_health(long vehicle) { return Memory.Read<float>(vehicle + 0x280); }
     public static float get_max_health(long vehicle) { return Memory.Read<float>(vehicle + 0x2A0); }
-    public static float get_health2(long vehicle) { return Memory.Read<float>(vehicle + 0x840); }
-    public static float get_health3(long vehicle) { return Memory.Read<float>(vehicle + 0x844); }
-    public static float get_engine_health(long vehicle) { return Memory.Read<float>(vehicle + 0x908); }
+    public static float get_health2(long vehicle) { return Memory.Read<float>(vehicle + 0x840); }//m_body_health
+    public static float get_health3(long vehicle) { return Memory.Read<float>(vehicle + 0x844); }//m_petrol_tank_health
+    public static float get_engine_health(long vehicle) { return Memory.Read<float>(vehicle + 0x908); }//m_engine_health
     public static float get_gravity(long vehicle) { return Memory.Read<float>(vehicle + 0xC5C); }
     public static byte get_cur_num_of_passenger(long vehicle) { return Memory.Read<byte>(vehicle + 0xC62); }
 
