@@ -171,12 +171,21 @@ public class Hacks
                 pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.set_health(ped, 0.0f);
         }
     }
+    public static void revive_veh(long vehicle)
+    {
+        Vehicle.set_state_is_destroyed(vehicle, false);
+        Vehicle.set_health(vehicle, 1000.0f);
+        Vehicle.set_health2(vehicle, 1000.0f);
+        Vehicle.set_health3(vehicle, 1000.0f);
+        Vehicle.set_engine_health(vehicle, 1000.0f);
+    }
     public static void destroy_veh(long vehicle)
     {
-        Vehicle.set_health(vehicle, 0.0f);
-        Vehicle.set_health2(vehicle, 0.0f);
-        Vehicle.set_health3(vehicle, -1000.0f);
-        Vehicle.set_engine_health(vehicle, -4000.0f);
+        revive_veh(vehicle);
+        //Vehicle.set_health(vehicle, 0.0f);
+        //Vehicle.set_health2(vehicle, 0.0f);
+        Vehicle.set_health3(vehicle, -999.9f);//-1000.0f
+        //Vehicle.set_engine_health(vehicle, -3999.0f);//-4000.0f
     }
     public static void destroy_vehs_of_npcs()
     {
@@ -380,6 +389,7 @@ public class Vehicle : Entity
     public static float get_engine_health(long vehicle) { return Memory.Read<float>(vehicle + 0x908); }//m_engine_health
     public static float get_gravity(long vehicle) { return Memory.Read<float>(vehicle + 0xC5C); }
     public static byte get_cur_num_of_passenger(long vehicle) { return Memory.Read<byte>(vehicle + 0xC62); }
+
 
     public static void set_state(long vehicle, byte value) { Memory.Write<byte>(vehicle + 0xD8, value); }
     public static void set_state_is_personal(long vehicle, bool toggle)
