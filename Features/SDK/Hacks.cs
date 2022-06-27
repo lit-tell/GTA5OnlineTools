@@ -199,7 +199,6 @@ public class Hacks
         for(int i = 0;i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (ped == GetLocalPed()) continue;
             if (Ped_is_player(ped)) continue;
             Ped.set_health(ped, 0.0f);
         }
@@ -210,7 +209,6 @@ public class Hacks
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (ped == GetLocalPed()) continue;
             if (Ped_is_player(ped)) continue;
             if (Ped_is_enemy(ped)) Ped.set_health(ped, 0.0f); ;
         }
@@ -221,7 +219,6 @@ public class Hacks
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (ped == GetLocalPed()) continue;
             if (Ped_is_player(ped)) continue;
             uint pedtype = Ped.get_pedtype(ped);
             if(pedtype == (uint)Data.EnumData.PedTypes.COP ||
@@ -257,7 +254,7 @@ public class Navigation
 public class Entity
 {
     public static long get_basemodelinfo(long entity) { return Memory.Read<long>(entity + 0x20); }
-    public static byte get_type(long entity) { return Memory.Read<byte>(entity + 0x28); }
+    public static byte get_type(long entity) { return Memory.Read<byte>(entity + 0x2B); }
     public static byte get_type2(long entity) { return Memory.Read<byte>(entity + 0x29); }
     public static bool get_invisible(long entity) { return (((Memory.Read<byte>(entity + 0x2C) & (1 << 0)) == (1 << 0)) ? false : true); }
     public static long get_navigation(long entity) { return Memory.Read<long>(entity + 0x30); }
