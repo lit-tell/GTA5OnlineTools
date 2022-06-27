@@ -361,6 +361,18 @@ public class Ped : Entity
 
 public class Vehicle : Entity
 {
+    public static byte get_state(long vehicle) { return Memory.Read<byte>(vehicle + 0xD8); }
+    public static bool get_state_is_personal(long vehicle) { return (((get_state(vehicle) & (1 << 5)) == (1 << 5)) ? true : false); }
+    public static bool get_state_is_using(long vehicle)
+    {
+        byte temp = get_state(vehicle);
+        return ((((temp & (1 << 1)) == (1 << 1)) && !((temp & (1 << 0)) == (1 << 0))) ? true : false);
+    }
+    public static bool get_state_is_destroyed(long vehicle)
+    {
+        byte temp = get_state(vehicle);
+        return ((((temp & (1 << 1)) == (1 << 1)) && ((temp & (1 << 0)) == (1 << 0))) ? true : false);
+    }
     public static float get_health(long vehicle) { return Memory.Read<float>(vehicle + 0x280); }
     public static float get_max_health(long vehicle) { return Memory.Read<float>(vehicle + 0x2A0); }
     public static float get_health2(long vehicle) { return Memory.Read<float>(vehicle + 0x840); }//m_body_health
@@ -369,7 +381,28 @@ public class Vehicle : Entity
     public static float get_gravity(long vehicle) { return Memory.Read<float>(vehicle + 0xC5C); }
     public static byte get_cur_num_of_passenger(long vehicle) { return Memory.Read<byte>(vehicle + 0xC62); }
 
-
+    public static void set_state(long vehicle, byte value) { Memory.Write<byte>(vehicle + 0xD8, value); }
+    public static void set_state_is_personal(long vehicle, bool toggle)
+    {
+        byte temp = get_state(vehicle);
+        if (toggle) temp = (byte)(temp | (1 << 5));
+        else temp = (byte)(temp & ~(1 << 5));
+        set_state(vehicle, temp);
+    }
+    public static void set_state_is_using(long vehicle, bool toggle)
+    {
+        byte temp = get_state(vehicle);
+        if (toggle) temp = (byte)(temp | (1 << 1) & ~(1 << 0));
+        else temp = (byte)(temp & ~(1 << 1) & ~(1 << 0));
+        set_state(vehicle, temp);
+    }
+    public static void set_state_is_destroyed(long vehicle, bool toggle)
+    {
+        byte temp = get_state(vehicle);
+        if (toggle) temp = (byte)(temp | (1 << 1) | (1 << 0));
+        else temp = (byte)(temp & ~(1 << 0));
+        set_state(vehicle, temp);
+    }
     public static void set_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x280, value); }
     public static void set_max_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x2A0, value); }
     public static void set_health2(long vehicle, float value) { Memory.Write<float>(vehicle + 0x840, value); }
