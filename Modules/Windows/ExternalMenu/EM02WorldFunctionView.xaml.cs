@@ -57,7 +57,7 @@ public partial class EM02WorldFunctionView : UserControl
         int index = MiscData.LocalWeathers.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            World.SetLocalWeather(MiscData.LocalWeathers[index].ID);
+            Hacks.SetLocalWeather(MiscData.LocalWeathers[index].ID);
         }
     }
 
@@ -65,55 +65,55 @@ public partial class EM02WorldFunctionView : UserControl
     {
         AudioUtil.ClickSound();
 
-        World.KillNPC(false);
+        Hacks.kill_npcs();
     }
     private void Button_KillAllHostilityNPC_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        World.KillNPC(true);
+        Hacks.kill_enemies();
     }
 
     private void Button_KillAllPolice_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        World.KillPolice();
+        Hacks.kill_cops();
     }
 
     private void Button_DestroyAllVehicles_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        World.DestroyAllVehicles();
+        Hacks.destroy_all_vehicles();
     }
 
     private void Button_DestroyAllNPCVehicles_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        World.DestroyNPCVehicles(false);
+        Hacks.destroy_vehs_of_npcs();
     }
 
     private void Button_DestroyAllHostilityNPCVehicles_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        World.DestroyNPCVehicles(true);
+        Hacks.destroy_vehs_of_enemies();
     }
 
     private void Button_TPAllNPCToMe_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        World.TeleportNPCToMe(false);
+        Hacks.tp_npcs_to_me();
     }
 
     private void Button_TPHostilityNPCToMe_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        World.TeleportNPCToMe(true);
+        Hacks.tp_enemies_to_me();
     }
 
     private void Button_RPxN_Click(object sender, RoutedEventArgs e)

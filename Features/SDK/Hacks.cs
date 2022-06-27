@@ -179,7 +179,7 @@ public class Hacks
         Vehicle.set_health3(vehicle, 1000.0f);
         Vehicle.set_engine_health(vehicle, 1000.0f);
     }
-    public static void destroy_veh(long vehicle)
+    public static void destroy_vehicle(long vehicle)
     {
         revive_vehicle(vehicle);
         //Vehicle.set_health(vehicle, 0.0f);
@@ -194,7 +194,7 @@ public class Hacks
         {
             long ped = peds[i];
             if (Ped.is_player(ped)) continue;
-            destroy_veh(Ped.get_current_vehicle(ped));
+            destroy_vehicle(Ped.get_current_vehicle(ped));
         }
     }
     public static void destroy_vehs_of_enemies()
@@ -204,7 +204,7 @@ public class Hacks
         {
             long ped = peds[i];
             if (ped == Hacks.GetLocalPed()) continue;
-            if (Ped.is_enemy(ped)) destroy_veh(Ped.get_current_vehicle(ped));
+            if (Ped.is_enemy(ped)) destroy_vehicle(Ped.get_current_vehicle(ped));
         }
     }
     public static void destroy_vehs_of_cops()
@@ -217,7 +217,19 @@ public class Hacks
             uint pedtype = Ped.get_pedtype(ped);
             if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
                 pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) destroy_veh(Ped.get_current_vehicle(ped));
+                pedtype == (uint)Data.EnumData.PedTypes.ARMY) destroy_vehicle(Ped.get_current_vehicle(ped));
+        }
+    }
+    /// <summary>
+    /// 摧毁附近所有载具
+    /// </summary>
+    public static void destroy_all_vehicles()
+    {
+        List<long> vehicles = Replayinterface.get_vehicles();
+        for (int i = 0; i < vehicles.Count; i++)
+        {
+            long vehicle = vehicles[i];
+            destroy_vehicle(vehicle);
         }
     }
     /// <summary>
@@ -231,6 +243,78 @@ public class Hacks
             long vehicle = vehicles[i];
             revive_vehicle(vehicle);
         }
+    }
+    public static void tp_npcs_to_me()
+    {
+        List<long> peds = Replayinterface.get_peds();
+        for (int i = 0; i < peds.Count; i++)
+        {
+            long ped = peds[i];
+            if (Ped.is_player(ped)) continue;
+            Ped.set_position(ped, Ped.get_real_forwardpos(GetLocalPed(), 5.0f));
+        }
+    }
+    public static void tp_enemies_to_me()
+    {
+        List<long> peds = Replayinterface.get_peds();
+        for (int i = 0; i < peds.Count; i++)
+        {
+            long ped = peds[i];
+            if (Ped.is_player(ped)) continue;
+            if (Ped.is_enemy(ped)) Ped.set_position(ped, Ped.get_real_forwardpos(GetLocalPed(), 5.0f));
+        }
+    }
+    public static void tp_not_enemies_to_me()
+    {
+        List<long> peds = Replayinterface.get_peds();
+        for (int i = 0; i < peds.Count; i++)
+        {
+            long ped = peds[i];
+            if (Ped.is_player(ped)) continue;
+            if (!Ped.is_enemy(ped)) Ped.set_position(ped, Ped.get_real_forwardpos(GetLocalPed(), 5.0f));
+        }
+    }
+    public static void tp_cops_to_me()
+    {
+        List<long> peds = Replayinterface.get_peds();
+        for (int i = 0; i < peds.Count; i++)
+        {
+            long ped = peds[i];
+            if (Ped.is_player(ped)) continue;
+            uint pedtype = Ped.get_pedtype(ped);
+            if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
+                pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
+                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.set_position(ped, Ped.get_real_forwardpos(GetLocalPed(), 5.0f));
+        }
+    }
+    /// <summary>
+    /// 设置天气
+    /// </summary>
+    /// <param name="weatherID"></param>
+    public static void SetLocalWeather(int weatherID)
+    {
+        /*
+         -1:Default
+         0:Extra Sunny
+         1:Clear
+         2:Clouds
+         3:Smog
+         4:Foggy
+         5:Overcast
+         6:Rain
+         7:Thunder
+         8:Light Rain
+         9:Smoggy Light Rain
+         10:Very Light Snow
+         11:Windy Snow
+         12:Light Snow
+         14:Halloween
+         */
+
+        //Memory.Write(Common.WeatherPTR, weatherID);
+        //Memory.Write(Common.WeatherPTR + 0x04, weatherID);
+
+        Memory.Write(Globals.WeatherPTR + 0x104, weatherID);
     }
 }
 
@@ -311,8 +395,7 @@ public class Entity
     public static void set_visual_position(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x90, pos); }
     public static void set_position(long entity, Vector3 pos)
     {
-        long navigation = get_navigation(entity);
-        Navigation.set_real_position(navigation, pos);
+        set_real_position(entity, pos);
         set_visual_position(entity, pos);
     }
     public static void set_godmode(long entity, bool toggle)
