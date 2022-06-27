@@ -15,6 +15,11 @@ public class Settings
         public static bool GodMode = false;
         public static bool AntiAFK = false;
         public static bool NoRagdoll = false;
+        public static bool WaterProof = false;
+        public static bool Invisible = false;
+        public static bool UndeadOffRadar = false;
+        public static bool EveryoneIgnore = false;
+        public static bool CopsIgnore = false;
 
         public static bool NoCollision = false;
     }

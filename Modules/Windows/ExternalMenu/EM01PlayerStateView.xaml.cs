@@ -13,7 +13,6 @@ public partial class EM01PlayerStateView : UserControl
     // 快捷键
     private HotKeys MainHotKeys;
     // 特殊功能
-    private int FrameFlag = 0;
     private int FrameFlagsExplosiveAmmo = 0;
     private int FrameFlagsFlamingAmmo = 0;
     private int FrameFlagsExplosiveFists = 0;
@@ -89,13 +88,15 @@ public partial class EM01PlayerStateView : UserControl
                 case (int)WinVK.F7:
                     if (CheckBox_FillHealthArmor.IsChecked == true)
                     {
-                        Player.FillHealthArmor();
+                        Ped.set_health(Hacks.GetLocalPed(), 328.0f);
+                        Ped.set_max_health(Hacks.GetLocalPed(), 328.0f);
+                        Ped.set_armour(Hacks.GetLocalPed(), 50.0f);
                     }
                     break;
                 case (int)WinVK.F8:
                     if (CheckBox_ClearWanted.IsChecked == true)
                     {
-                        Player.WantedLevel(0x00);
+                        Hacks.Ped_set_wanted_level(Hacks.GetLocalPed(), 0);
                     }
                     break;
             }
@@ -121,16 +122,31 @@ public partial class EM01PlayerStateView : UserControl
             ////////////////////////////////
 
             if (Settings.Player.GodMode)
-                Player.GodMode(true);
+                Ped.set_godmode(Hacks.GetLocalPed(), true);
 
             if (Settings.Player.AntiAFK)
-                Player.AntiAFK(true);
+                Globals.anti_afk(true);
 
             if (Settings.Player.NoRagdoll)
-                Player.NoRagdoll(true);
+                Ped.set_no_ragdoll(Hacks.GetLocalPed(), true);
+
+            if (Settings.Player.WaterProof)
+                Ped.set_waterproof(Hacks.GetLocalPed(), true);
+
+            if (Settings.Player.Invisible)
+                Ped.set_invisible(Hacks.GetLocalPed(), true);
+
+            if (Settings.Player.UndeadOffRadar)
+                Ped.set_max_health(Hacks.GetLocalPed(), 0.0f);
+
+            if (Settings.Player.EveryoneIgnore)
+                Hacks.Ped_set_everyone_ignore(Hacks.GetLocalPed(), true);
+
+            if (Settings.Player.CopsIgnore)
+                Hacks.Ped_set_cops_ignore(Hacks.GetLocalPed(), true);
 
             if (Settings.Player.NoCollision)
-                Memory.Write(Globals.WorldPTR, Offsets.Player.NoCollision, -1.0f);
+                Ped.set_no_collision(Hacks.GetLocalPed(), true);
 
             if (Settings.Vehicle.VehicleGodMode)
                 Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
@@ -186,16 +202,16 @@ public partial class EM01PlayerStateView : UserControl
         while (true)
         {
             if (Settings.Common.AutoClearWanted)
-                Player.WantedLevel(0x00);
+                Hacks.Ped_set_wanted_level(Hacks.GetLocalPed(), 0);
 
             if (Settings.Common.AutoKillNPC)
-                World.KillNPC(false);
+                Hacks.kill_npcs();
 
             if (Settings.Common.AutoKillHostilityNPC)
-                World.KillNPC(true);
+                Hacks.kill_enemies();
 
             if (Settings.Common.AutoKillPolice)
-                World.KillPolice();
+                Hacks.kill_cops();
 
             Thread.Sleep(200);
         }
@@ -217,78 +233,69 @@ public partial class EM01PlayerStateView : UserControl
 
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)
     {
-        Player.GodMode(CheckBox_PlayerGodMode.IsChecked == true);
+        Ped.set_godmode(Hacks.GetLocalPed(), (CheckBox_PlayerGodMode.IsChecked == true));
         Settings.Player.GodMode = CheckBox_PlayerGodMode.IsChecked == true;
     }
 
     private void CheckBox_AntiAFK_Click(object sender, RoutedEventArgs e)
     {
-        Player.AntiAFK(CheckBox_AntiAFK.IsChecked == true);
+        Globals.anti_afk((CheckBox_AntiAFK.IsChecked == true));
         Settings.Player.AntiAFK = CheckBox_AntiAFK.IsChecked == true;
     }
 
     private void CheckBox_WaterProof_Click(object sender, RoutedEventArgs e)
     {
-        Player.WaterProof(CheckBox_WaterProof.IsChecked == true);
+        Ped.set_waterproof(Hacks.GetLocalPed(), (CheckBox_WaterProof.IsChecked == true));
+        Settings.Player.WaterProof = CheckBox_WaterProof.IsChecked == true;
     }
 
     private void CheckBox_Invisibility_Click(object sender, RoutedEventArgs e)
     {
-        Player.Invisibility(CheckBox_Invisibility.IsChecked == true);
+        Ped.set_invisible(Hacks.GetLocalPed(), (CheckBox_Invisibility.IsChecked == true));
+        Settings.Player.Invisible = CheckBox_Invisibility.IsChecked == true;
     }
 
     private void CheckBox_UndeadOffRadar_Click(object sender, RoutedEventArgs e)
     {
-        Player.UndeadOffRadar(CheckBox_UndeadOffRadar.IsChecked == true);
+        Ped.set_max_health(Hacks.GetLocalPed(), ((CheckBox_UndeadOffRadar.IsChecked == true) ? 0.0f : 328.0f));
+        Settings.Player.UndeadOffRadar = CheckBox_UndeadOffRadar.IsChecked == true;
     }
 
     private void CheckBox_NoRagdoll_Click(object sender, RoutedEventArgs e)
     {
-        Player.NoRagdoll(CheckBox_NoRagdoll.IsChecked == true);
+        Ped.set_no_ragdoll(Hacks.GetLocalPed(), (CheckBox_NoRagdoll.IsChecked == true));
         Settings.Player.NoRagdoll = CheckBox_NoRagdoll.IsChecked == true;
     }
 
     private void CheckBox_NPCIgnore_Click(object sender, RoutedEventArgs e)
     {
-        if (CheckBox_NPCIgnore.IsChecked == true && CheckBox_PoliceIgnore.IsChecked == false)
-        {
-            Memory.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0x04);
-        }
-        else if (CheckBox_NPCIgnore.IsChecked == false && CheckBox_PoliceIgnore.IsChecked == true)
-        {
-            Memory.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0xC3);
-        }
-        else if (CheckBox_NPCIgnore.IsChecked == true && CheckBox_PoliceIgnore.IsChecked == true)
-        {
-            Memory.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0xC7);
-        }
-        else
-        {
-            Memory.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0x00);
-        }
+        Hacks.Ped_set_everyone_ignore(Hacks.GetLocalPed(), (CheckBox_NPCIgnore.IsChecked == true));
+        Hacks.Ped_set_cops_ignore(Hacks.GetLocalPed(), (CheckBox_PoliceIgnore.IsChecked == true));
+        Settings.Player.EveryoneIgnore = CheckBox_NPCIgnore.IsChecked == true;
+        Settings.Player.CopsIgnore = CheckBox_PoliceIgnore.IsChecked == true;
     }
 
     private void CheckBox_AutoClearWanted_Click(object sender, RoutedEventArgs e)
     {
-        Player.WantedLevel(0x00);
+        Hacks.Ped_set_wanted_level(Hacks.GetLocalPed(), 0);
         Settings.Common.AutoClearWanted = CheckBox_AutoClearWanted.IsChecked == true;
     }
 
     private void CheckBox_AutoKillNPC_Click(object sender, RoutedEventArgs e)
     {
-        World.KillNPC(false);
+        Hacks.kill_npcs();
         Settings.Common.AutoKillNPC = CheckBox_AutoKillNPC.IsChecked == true;
     }
 
     private void CheckBox_AutoKillHostilityNPC_Click(object sender, RoutedEventArgs e)
     {
-        World.KillNPC(true);
+        Hacks.kill_enemies();
         Settings.Common.AutoKillHostilityNPC = CheckBox_AutoKillHostilityNPC.IsChecked == true;
     }
 
     private void CheckBox_AutoKillPolice_Click(object sender, RoutedEventArgs e)
     {
-        World.KillPolice();
+        Hacks.kill_cops();
         Settings.Common.AutoKillPolice = CheckBox_AutoKillPolice.IsChecked == true;
     }
 
@@ -302,7 +309,7 @@ public partial class EM01PlayerStateView : UserControl
 
     private void CheckBox_NoCollision_Click(object sender, RoutedEventArgs e)
     {
-        Player.NoCollision(CheckBox_NoCollision.IsChecked == true);
+        Ped.set_no_collision(Hacks.GetLocalPed(), CheckBox_NoCollision.IsChecked == true);
         Settings.Player.NoCollision = CheckBox_NoCollision.IsChecked == true;
     }
 
@@ -324,21 +331,23 @@ public partial class EM01PlayerStateView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Player.FillHealthArmor();
+        Ped.set_health(Hacks.GetLocalPed(), 328.0f);
+        Ped.set_max_health(Hacks.GetLocalPed(), 328.0f);
+        Ped.set_armour(Hacks.GetLocalPed(), 50.0f);
     }
 
     private void Button_ClearWanted_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Player.WantedLevel(0x00);
+        Hacks.Ped_set_wanted_level(Hacks.GetLocalPed(), 0);
     }
 
     private void Button_Suicide_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Player.Suicide();
+        Ped.set_health(Hacks.GetLocalPed(), 0.0f);
     }
 
     private void Slider_MovingFoward_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

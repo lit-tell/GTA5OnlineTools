@@ -191,6 +191,44 @@ public class Hacks
     public static void Ped_set_run_speed(long ped, float value) { PlayerInfo.set_run_speed(Ped.get_playerinfo(ped), value); }
     public static void Ped_set_swim_speed(long ped, float value) { PlayerInfo.set_swim_speed(Ped.get_playerinfo(ped), value); }
     public static void Ped_set_stealth_speed(long ped, float value) { PlayerInfo.set_stealth_speed(Ped.get_playerinfo(ped), value); }
+    public static void Ped_set_everyone_ignore(long ped, bool toggle) { PlayerInfo.set_everyone_ignore(Ped.get_playerinfo(ped), toggle); }
+    public static void Ped_set_cops_ignore(long ped, bool toggle) { PlayerInfo.set_cops_ignore(Ped.get_playerinfo(ped), toggle); }
+    public static void kill_npcs() 
+    {
+        List<long> peds = Replayinterface.get_peds();
+        for(int i = 0;i < peds.Count; i++)
+        {
+            long ped = peds[i];
+            if (ped == GetLocalPed()) continue;
+            if (Ped_is_player(ped)) continue;
+            Ped.set_health(ped, 0.0f);
+        }
+    }
+    public static void kill_enemies() 
+    {
+        List<long> peds = Replayinterface.get_peds();
+        for (int i = 0; i < peds.Count; i++)
+        {
+            long ped = peds[i];
+            if (ped == GetLocalPed()) continue;
+            if (Ped_is_player(ped)) continue;
+            if (Ped_is_enemy(ped)) Ped.set_health(ped, 0.0f); ;
+        }
+    }
+    public static void kill_cops()
+    {
+        List<long> peds = Replayinterface.get_peds();
+        for (int i = 0; i < peds.Count; i++)
+        {
+            long ped = peds[i];
+            if (ped == GetLocalPed()) continue;
+            if (Ped_is_player(ped)) continue;
+            uint pedtype = Ped.get_pedtype(ped);
+            if(pedtype == (uint)Data.EnumData.PedTypes.COP ||
+                pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
+                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.set_health(ped, 0.0f);
+        }
+    }
 }
 
 
@@ -221,6 +259,7 @@ public class Entity
     public static long get_basemodelinfo(long entity) { return Memory.Read<long>(entity + 0x20); }
     public static byte get_type(long entity) { return Memory.Read<byte>(entity + 0x28); }
     public static byte get_type2(long entity) { return Memory.Read<byte>(entity + 0x29); }
+    public static bool get_invisible(long entity) { return (((Memory.Read<byte>(entity + 0x2C) & (1 << 0)) == (1 << 0)) ? false : true); }
     public static long get_navigation(long entity) { return Memory.Read<long>(entity + 0x30); }
     public static Vector3 get_right_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x60); }
     public static Vector3 get_forward_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x70); }
@@ -230,6 +269,13 @@ public class Entity
     public static bool get_waterproof(long entity) { return ((Memory.Read<byte>(entity + 0x18B) == 0) ? false : true); }
 
 
+    public static void set_invisible(long entity, bool toggle)
+    {
+        byte temp = Memory.Read<byte>(entity + 0x2C);
+        if (toggle) temp = (byte)(temp & ~(1 << 0));
+        else temp = (byte)(temp | (1 << 0));
+        Memory.Write(entity + 0x2C, temp);
+    }
     public static void set_right_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x60, pos); }
     public static void set_forward_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x70, pos); }
     public static void set_up_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x80, pos); }
@@ -287,7 +333,8 @@ public class Ped : Entity
     public static long get_weaponinventory(long ped) { return Memory.Read<long>(ped + 0x10D0); }
     public static bool get_seatbelt(long ped) { return (((Memory.Read<byte>(ped + 0x145C) & (1 << 0)) == (1 << 0)) ? true : false); }
     public static float get_armor(long ped) { return Memory.Read<float>(ped + 0x1530); }
-
+    private static float get_collision(long ped) { return Memory.Read<float>(ped + 0x30, new int[] { 0x10, 0x20, 0x70, 0x00, 0x2C }); }
+    public static bool get_no_collision(long ped) { return ((get_collision(ped) <= -1.0f) ? true : false); }
 
     public static void set_health(long ped, float value) { Memory.Write<float>(ped + 0x280, value); }
     public static void set_max_health(long ped, float value) { Memory.Write<float>(ped + 0x2A0, value); }
@@ -306,6 +353,8 @@ public class Ped : Entity
         Memory.Write<byte>(ped + 0x145C, temp);
     }
     public static void set_armour(long ped, float value) { Memory.Write<float>(ped + 0x1530, value); }
+    private static void set_collision(long ped, float value) { Memory.Write<float>(ped + 0x30, new int[] { 0x10, 0x20, 0x70, 0x00, 0x2C }, value); }
+    public static void set_no_collision(long ped, bool toggle) { set_collision(ped, (toggle ? -1.0f : 0.25f)); }
 }
 
 
@@ -443,6 +492,9 @@ public class PlayerInfo
     public static float get_swim_speed(long playerinfo) { return Memory.Read<float>(playerinfo + 0x170); }
     public static float get_stealth_speed(long playerinfo) { return Memory.Read<float>(playerinfo + 0x18C); }
     public static long get_ped(long playerinfo) { return Memory.Read<long>(playerinfo + 0x1E8); }
+    public static byte get_npc_ignore(long playerinfo) { return Memory.Read<byte>(playerinfo + 0x872); }
+    public static bool get_everyone_ignore(long playerinfo) { return (((get_npc_ignore(playerinfo) & (1 << 2)) == (1 << 2)) ? true : false); }
+    public static bool get_cops_ignore(long playerinfo) { return (((get_npc_ignore(playerinfo) & ((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7))) == ((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7))) ? true : false); }
     public static int get_wanted_level(long playerinfo) { return Memory.Read<int>(playerinfo + 0x888); }
     public static float get_run_speed(long playerinfo) { return Memory.Read<float>(playerinfo + 0xCF0); }
     public static byte get_frame_flags(long playerinfo) { return Memory.Read<byte>(playerinfo + 0x219); }
@@ -454,6 +506,21 @@ public class PlayerInfo
 
     public static void set_swim_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x170, value); }
     public static void set_stealth_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x18C, value); }
+    public static void set_npc_ignore(long playerinfo, byte value) { Memory.Write<byte>(playerinfo + 0x872, value); }
+    public static void set_everyone_ignore(long playerinfo, bool toggle) 
+    {
+        byte temp = get_npc_ignore(playerinfo);
+        if (toggle) temp = (byte)(temp | (1 << 2));
+        else temp = (byte)(temp & ~(1 << 2));
+        set_npc_ignore(playerinfo, temp);
+    }
+    public static void set_cops_ignore(long playerinfo, bool toggle) 
+    {
+        byte temp = get_npc_ignore(playerinfo);
+        if (toggle) temp = (byte)(temp | ((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7)));
+        else temp = (byte)(temp & ~((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7)));
+        set_npc_ignore(playerinfo, temp);
+    }
     public static void set_wanted_level(long playerinfo, int value) { Memory.Write<int>(playerinfo + 0x888, value); }
     public static void set_run_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0xCF0, value); }
     public static void set_frame_flags(long playerinfo, byte value) { Memory.Write<byte>(playerinfo + 0x219, value); }
