@@ -96,7 +96,7 @@ public partial class EM01PlayerStateView : UserControl
                 case (int)WinVK.F8:
                     if (CheckBox_ClearWanted.IsChecked == true)
                     {
-                        Hacks.Ped_set_wanted_level(Hacks.GetLocalPed(), 0);
+                        Ped.set_wanted_level(Hacks.GetLocalPed(), 0);
                     }
                     break;
             }
@@ -111,10 +111,10 @@ public partial class EM01PlayerStateView : UserControl
             float oMaxHealth = Ped.get_max_health(Hacks.GetLocalPed());
             float oArmor = Ped.get_armor(Hacks.GetLocalPed());
 
-            int oWanted = Hacks.Ped_get_wanted_level(Hacks.GetLocalPed());
-            float oRunSpeed = Hacks.Ped_get_run_speed(Hacks.GetLocalPed());
-            float oSwimSpeed = Hacks.Ped_get_swim_speed(Hacks.GetLocalPed());
-            float oStealthSpeed = Hacks.Ped_get_stealth_speed(Hacks.GetLocalPed());
+            int oWanted = Ped.get_wanted_level(Hacks.GetLocalPed());
+            float oRunSpeed = Ped.get_run_speed(Hacks.GetLocalPed());
+            float oSwimSpeed = Ped.get_swim_speed(Hacks.GetLocalPed());
+            float oStealthSpeed = Ped.get_stealth_speed(Hacks.GetLocalPed());
 
             bool oInVehicle = Ped.is_in_vehicle(Hacks.GetLocalPed());
             byte oCurPassenger = Vehicle.get_cur_num_of_passenger(Ped.get_current_vehicle(Hacks.GetLocalPed()));
@@ -140,10 +140,10 @@ public partial class EM01PlayerStateView : UserControl
                 Ped.set_max_health(Hacks.GetLocalPed(), 0.0f);
 
             if (Settings.Player.EveryoneIgnore)
-                Hacks.Ped_set_everyone_ignore(Hacks.GetLocalPed(), true);
+                Ped.set_everyone_ignore(Hacks.GetLocalPed(), true);
 
             if (Settings.Player.CopsIgnore)
-                Hacks.Ped_set_cops_ignore(Hacks.GetLocalPed(), true);
+                Ped.set_cops_ignore(Hacks.GetLocalPed(), true);
 
             if (Settings.Player.NoCollision)
                 Ped.set_no_collision(Hacks.GetLocalPed(), true);
@@ -188,10 +188,10 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            if (FrameFlagsExplosiveAmmo == 1) Hacks.Ped_set_frame_flags_explosiveammo(Hacks.GetLocalPed(), true);
-            if (FrameFlagsFlamingAmmo == 1) Hacks.Ped_set_frame_flags_flamingammo(Hacks.GetLocalPed(), true);
-            if (FrameFlagsExplosiveFists == 1) Hacks.Ped_set_frame_flags_explosivefists(Hacks.GetLocalPed(), true);
-            if (FrameFlagsSuperJump == 1) Hacks.Ped_set_frame_flags_superjump(Hacks.GetLocalPed(), true);
+            if (FrameFlagsExplosiveAmmo == 1) Ped.set_frame_flags_explosiveammo(Hacks.GetLocalPed(), true);
+            if (FrameFlagsFlamingAmmo == 1) Ped.set_frame_flags_flamingammo(Hacks.GetLocalPed(), true);
+            if (FrameFlagsExplosiveFists == 1) Ped.set_frame_flags_explosivefists(Hacks.GetLocalPed(), true);
+            if (FrameFlagsSuperJump == 1) Ped.set_frame_flags_superjump(Hacks.GetLocalPed(), true);
 
             Thread.Sleep(1);
         }
@@ -202,7 +202,7 @@ public partial class EM01PlayerStateView : UserControl
         while (true)
         {
             if (Settings.Common.AutoClearWanted)
-                Hacks.Ped_set_wanted_level(Hacks.GetLocalPed(), 0);
+                Ped.set_wanted_level(Hacks.GetLocalPed(), 0);
 
             if (Settings.Common.AutoKillNPC)
                 Hacks.kill_npcs();
@@ -223,13 +223,13 @@ public partial class EM01PlayerStateView : UserControl
 
     private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_armour(Hacks.GetLocalPed(), (float)Slider_Armor.Value); }
 
-    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Hacks.Ped_set_wanted_level(Hacks.GetLocalPed(), (int)Slider_Wanted.Value); }
+    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_wanted_level(Hacks.GetLocalPed(), (int)Slider_Wanted.Value); }
 
-    private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Hacks.Ped_set_run_speed(Hacks.GetLocalPed(), (float)Slider_RunSpeed.Value); }
+    private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_run_speed(Hacks.GetLocalPed(), (float)Slider_RunSpeed.Value); }
 
-    private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Hacks.Ped_set_swim_speed(Hacks.GetLocalPed(), (float)Slider_SwimSpeed.Value); }
+    private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_swim_speed(Hacks.GetLocalPed(), (float)Slider_SwimSpeed.Value); }
 
-    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Hacks.Ped_set_stealth_speed(Hacks.GetLocalPed(), (float)Slider_StealthSpeed.Value); }
+    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_stealth_speed(Hacks.GetLocalPed(), (float)Slider_StealthSpeed.Value); }
 
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)
     {
@@ -269,15 +269,15 @@ public partial class EM01PlayerStateView : UserControl
 
     private void CheckBox_NPCIgnore_Click(object sender, RoutedEventArgs e)
     {
-        Hacks.Ped_set_everyone_ignore(Hacks.GetLocalPed(), (CheckBox_NPCIgnore.IsChecked == true));
-        Hacks.Ped_set_cops_ignore(Hacks.GetLocalPed(), (CheckBox_PoliceIgnore.IsChecked == true));
+        Ped.set_everyone_ignore(Hacks.GetLocalPed(), (CheckBox_NPCIgnore.IsChecked == true));
+        Ped.set_cops_ignore(Hacks.GetLocalPed(), (CheckBox_PoliceIgnore.IsChecked == true));
         Settings.Player.EveryoneIgnore = CheckBox_NPCIgnore.IsChecked == true;
         Settings.Player.CopsIgnore = CheckBox_PoliceIgnore.IsChecked == true;
     }
 
     private void CheckBox_AutoClearWanted_Click(object sender, RoutedEventArgs e)
     {
-        Hacks.Ped_set_wanted_level(Hacks.GetLocalPed(), 0);
+        Ped.set_wanted_level(Hacks.GetLocalPed(), 0);
         Settings.Common.AutoClearWanted = CheckBox_AutoClearWanted.IsChecked == true;
     }
 
@@ -340,7 +340,7 @@ public partial class EM01PlayerStateView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.Ped_set_wanted_level(Hacks.GetLocalPed(), 0);
+        Ped.set_wanted_level(Hacks.GetLocalPed(), 0);
     }
 
     private void Button_Suicide_Click(object sender, RoutedEventArgs e)

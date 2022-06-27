@@ -69,4 +69,17 @@ public class Globals
             SG<int>(anti_afk_index_8, 30000);
         }
     }
+
+    /// <summary>
+    /// 掉落物品
+    /// </summary>
+    public static void CreateAmbientPickup(int amount, Vector3 pos)
+    {
+        SG<float>(2783345 + 3, pos.X);
+        SG<float>(2783345 + 4, pos.Y);
+        SG<float>(2783345 + 5, pos.Z);
+        SG<int>(2783345 + 1, amount);
+        SG<int>(4528329 + 1 + (GG<int>(2783345) * 85) + 66 + 2, 2);
+        SG<int>(2783345 + 6, 1);
+    }
 }
