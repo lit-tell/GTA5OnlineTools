@@ -173,10 +173,10 @@ public class Hacks
     }
     public static void destroy_veh(long vehicle)
     {
-        Vehicle.set_health(vehicle, -1.0f);
-        Vehicle.set_health2(vehicle, -1.0f);
-        Vehicle.set_health3(vehicle, -1.0f);
-        Vehicle.set_engine_health(vehicle, -1.0f);
+        Vehicle.set_health(vehicle, 0.0f);
+        Vehicle.set_health2(vehicle, 0.0f);
+        Vehicle.set_health3(vehicle, -1000.0f);
+        Vehicle.set_engine_health(vehicle, -4000.0f);
     }
     public static void destroy_vehs_of_npcs()
     {
