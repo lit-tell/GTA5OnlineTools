@@ -478,10 +478,12 @@ public class OnlinePlayer
 public class Pickup : Entity
 {
     public static uint get_pickup_hash(long pickup) { return Memory.Read<uint>(pickup + 0x488); }
+    public static uint get_pickup_value(long pickup) { return Memory.Read<uint>(pickup + 0x490); }
     public static uint get_model_hash() { return Memory.Read<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }); }
 
 
     public static void set_pickup_hash(long pickup, uint hash) { Memory.Write<uint>(pickup + 0x488, hash); }
+    public static void set_pickup_value(long pickup, uint value) { Memory.Write<uint>(pickup + 0x490, value); }
     public static void set_model_hash(uint hash) { Memory.Write<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }, hash); }
 }
 
