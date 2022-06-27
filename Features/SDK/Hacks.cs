@@ -133,7 +133,7 @@ public class Hacks
     }
     public static void SpawnDrop(long ped, uint hash, float dist = 0.0f, float height = 3.0f)
     {
-        Vector3 pos = Ped.get_forwardpos(ped, dist);
+        Vector3 pos = Ped.get_real_forwardpos(ped, dist);
         pos.Z += height;
         SpawnDrop(hash, pos);
     }
@@ -232,15 +232,15 @@ public class ModelInfo
 
 public class Navigation
 {
-    public static Vector3 get_right_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x20); }
-    public static Vector3 get_forward_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x30); }
-    public static Vector3 get_up_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x40); }
+    public static Vector3 get_real_right_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x20); }
+    public static Vector3 get_real_forward_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x30); }
+    public static Vector3 get_real_up_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x40); }
     public static Vector3 get_real_position(long navigation) { return Memory.Read<Vector3>(navigation + 0x50); }
 
 
-    public static void set_right_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x20, pos); }
-    public static void set_forward_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x30, pos); }
-    public static void set_up_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x40, pos); }
+    public static void set_real_right_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x20, pos); }
+    public static void set_real_forward_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x30, pos); }
+    public static void set_real_up_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x40, pos); }
     public static void set_real_position(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x50, pos); }
 }
 
@@ -254,19 +254,30 @@ public class Entity
     public static bool is_player(long entity) { return ((get_type(entity) == 156) ? true : false); }
     public static bool get_invisible(long entity) { return (((Memory.Read<byte>(entity + 0x2C) & (1 << 0)) == (1 << 0)) ? false : true); }
     public static long get_navigation(long entity) { return Memory.Read<long>(entity + 0x30); }
-    public static Vector3 get_forwardpos(long entity, float dist = 7.0f)
+    public static Vector3 get_real_right_vector3(long entity) { return Navigation.get_real_right_vector3(get_navigation(entity)); }
+    public static Vector3 get_real_forward_vector3(long entity) { return Navigation.get_real_forward_vector3(get_navigation(entity)); }
+    public static Vector3 get_real_up_vector3(long entity) { return Navigation.get_real_up_vector3(get_navigation(entity)); }
+    public static Vector3 get_real_position(long entity) { return Navigation.get_real_position(get_navigation(entity)); }
+    public static Vector3 get_real_forwardpos(long entity, float dist = 7.0f)
     {
-        long navigation = get_navigation(entity);
-        Vector3 vec = Navigation.get_right_vector3(navigation);
-        Vector3 pos = Navigation.get_real_position(navigation);
+        Vector3 vec = get_real_right_vector3(entity);
+        Vector3 pos = get_real_position(entity);
         pos.X -= dist * vec.Y;
         pos.Y += dist * vec.X;
         return pos;
     }
-    public static Vector3 get_right_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x60); }
-    public static Vector3 get_forward_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x70); }
-    public static Vector3 get_up_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x80); }
+    public static Vector3 get_visual_right_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x60); }
+    public static Vector3 get_visual_forward_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x70); }
+    public static Vector3 get_visual_up_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x80); }
     public static Vector3 get_visual_position(long entity) { return Memory.Read<Vector3>(entity + 0x90); }
+    public static Vector3 get_visual_forwardpos(long entity, float dist = 7.0f)
+    {
+        Vector3 vec = get_visual_right_vector3(entity);
+        Vector3 pos = get_visual_position(entity);
+        pos.X -= dist * vec.Y;
+        pos.Y += dist * vec.X;
+        return pos;
+    }
     public static bool get_godmode(long entity) { return ((Memory.Read<byte>(entity + 0x189) == 0) ? false : true); }//invincible
     public static bool get_waterproof(long entity) { return ((Memory.Read<byte>(entity + 0x18B) == 0) ? false : true); }
 
@@ -278,9 +289,13 @@ public class Entity
         else temp = (byte)(temp | (1 << 0));
         Memory.Write(entity + 0x2C, temp);
     }
-    public static void set_right_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x60, pos); }
-    public static void set_forward_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x70, pos); }
-    public static void set_up_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x80, pos); }
+    public static void set_real_right_vector3(long entity, Vector3 pos) { Navigation.set_real_right_vector3(get_navigation(entity), pos); }
+    public static void set_real_forward_vector3(long entity, Vector3 pos) { Navigation.set_real_forward_vector3(get_navigation(entity), pos); }
+    public static void set_real_up_vector3(long entity, Vector3 pos) { Navigation.set_real_up_vector3(get_navigation(entity), pos); }
+    public static void set_real_position(long entity, Vector3 pos) { Navigation.set_real_position(get_navigation(entity), pos); }
+    public static void set_visual_right_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x60, pos); }
+    public static void set_visual_forward_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x70, pos); }
+    public static void set_visual_up_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x80, pos); }
     public static void set_visual_position(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x90, pos); }
     public static void set_position(long entity, Vector3 pos)
     {
