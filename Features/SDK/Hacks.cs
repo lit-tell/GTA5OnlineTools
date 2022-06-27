@@ -171,7 +171,7 @@ public class Hacks
                 pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.set_health(ped, 0.0f);
         }
     }
-    public static void revive_veh(long vehicle)
+    public static void revive_vehicle(long vehicle)
     {
         Vehicle.set_state_is_destroyed(vehicle, false);
         Vehicle.set_health(vehicle, 1000.0f);
@@ -181,7 +181,7 @@ public class Hacks
     }
     public static void destroy_veh(long vehicle)
     {
-        revive_veh(vehicle);
+        revive_vehicle(vehicle);
         //Vehicle.set_health(vehicle, 0.0f);
         //Vehicle.set_health2(vehicle, 0.0f);
         Vehicle.set_health3(vehicle, -999.9f);//-1000.0f
@@ -218,6 +218,18 @@ public class Hacks
             if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
                 pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
                 pedtype == (uint)Data.EnumData.PedTypes.ARMY) destroy_veh(Ped.get_current_vehicle(ped));
+        }
+    }
+    /// <summary>
+    /// 复活附近所有载具
+    /// </summary>
+    public static void revive_all_vehicles()
+    {
+        List<long> vehicles = Replayinterface.get_vehicles();
+        for(int i = 0; i < vehicles.Count; i++)
+        {
+            long vehicle = vehicles[i];
+            revive_vehicle(vehicle);
         }
     }
 }
