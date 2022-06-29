@@ -66,7 +66,7 @@ public partial class Hacks
         for (int i = 0; i < pickups.Count; i++)
         {
             long pickup = pickups[i];
-            if (Entity.get_hash(pickup) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
+            if (Entity.get_model_hash(pickup) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
             {
                 Pickup.set_pickup_hash(pickup, hash);
                 break;
@@ -276,12 +276,21 @@ public partial class Hacks
 }
 
 
-public class ModelInfo
+public class BaseModelInfo
 {
     public static uint get_hash(long basemodelinfo) { return Memory.Read<uint>(basemodelinfo + 0x18); }
     public static byte get_type(long basemodelinfo) { return Memory.Read<byte>(basemodelinfo + 0x9D); }
 }
 
+public class PedModelInfo : BaseModelInfo
+{
+
+}
+
+public class VehicleModelInfo : BaseModelInfo
+{
+
+}
 
 public class Navigation
 {
@@ -301,7 +310,8 @@ public class Navigation
 public class Entity
 {
     public static long get_basemodelinfo(long entity) { return Memory.Read<long>(entity + 0x20); }
-    public static uint get_hash(long entity) { return ModelInfo.get_hash(get_basemodelinfo(entity)); }
+    public static uint get_model_hash(long entity) { return BaseModelInfo.get_hash(get_basemodelinfo(entity)); }
+    public static uint get_model_type(long entity) { return BaseModelInfo.get_type(get_basemodelinfo(entity)); }
     public static byte get_type2(long entity) { return Memory.Read<byte>(entity + 0x29); }
     public static byte get_type(long entity) { return Memory.Read<byte>(entity + 0x2B); }
     public static bool is_player(long entity) { return ((get_type(entity) == 156) ? true : false); }
