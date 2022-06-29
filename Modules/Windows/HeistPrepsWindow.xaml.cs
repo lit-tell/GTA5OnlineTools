@@ -49,7 +49,7 @@ public partial class HeistPrepsWindow : Window
 
     private void WriteStatWithDelay(string hash, int value)
     {
-        Hacks.WriteStat(hash, value);
+        Globals.stat_set_int(hash, value);
         Thread.Sleep(1000);
     }
 

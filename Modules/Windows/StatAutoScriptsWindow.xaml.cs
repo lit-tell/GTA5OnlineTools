@@ -47,7 +47,7 @@ public partial class StatAutoScriptsWindow : Window
     {
         AudioUtil.ClickSound();
 
-        Online.LoadSession(11);
+        Globals.load_session(11);
     }
 
     private void AppendTextBox(string str)
@@ -76,7 +76,7 @@ public partial class StatAutoScriptsWindow : Window
                     {
                         AppendTextBox($"正在执行 第 {i + 1}/{StatDataClass[index].StatInfo.Count} 条代码");
 
-                        Hacks.WriteStat(StatDataClass[index].StatInfo[i].Hash, StatDataClass[index].StatInfo[i].Value);
+                        Globals.stat_set_int(StatDataClass[index].StatInfo[i].Hash, StatDataClass[index].StatInfo[i].Value);
                         Task.Delay(500).Wait();
                     }
 

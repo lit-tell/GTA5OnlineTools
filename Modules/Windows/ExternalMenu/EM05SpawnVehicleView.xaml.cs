@@ -142,13 +142,13 @@ public partial class EM05SpawnVehicleView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Online.InstantBullShark(false);
+        Globals.instant_bull_shark(false);
     }
 
     private void Button_GetInOnlinePV_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Online.GetInOnlinePV();
+        Globals.get_into_online_personal_vehicle();
     }
 }

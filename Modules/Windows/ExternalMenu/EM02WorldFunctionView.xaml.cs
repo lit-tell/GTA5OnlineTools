@@ -30,7 +30,7 @@ public partial class EM02WorldFunctionView : UserControl
         int index = MiscData.Sessions.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Online.LoadSession(MiscData.Sessions[index].ID);
+            Globals.load_session(MiscData.Sessions[index].ID);
         }
     }
 
@@ -38,14 +38,14 @@ public partial class EM02WorldFunctionView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Online.Disconnect();
+        Globals.disconnect();
     }
 
     private void Button_EmptySession_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Online.EmptySession();
+        Hacks.EmptySession();
     }
 
     private void Button_LocalWeather_Click(object sender, RoutedEventArgs e)
@@ -125,7 +125,7 @@ public partial class EM02WorldFunctionView : UserControl
         int index = MiscData.RPxNs.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Online.RPMultiplier(MiscData.RPxNs[index].ID);
+            Globals.rp_multiplier(MiscData.RPxNs[index].ID);
         }
     }
 
@@ -138,7 +138,7 @@ public partial class EM02WorldFunctionView : UserControl
         int index = MiscData.REPxNs.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Online.REPMultiplier(MiscData.REPxNs[index].ID);
+            Globals.rep_multiplier(MiscData.REPxNs[index].ID);
         }
     }
 }

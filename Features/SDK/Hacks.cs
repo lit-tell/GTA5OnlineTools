@@ -2,50 +2,8 @@
 
 namespace GTA5OnlineTools.Features.SDK;
 
-public class Hacks
+public partial class Hacks
 {
-    public static long GlobalAddress(int address)
-    {
-        return Memory.Read<long>(Globals.GlobalPTR + 0x8 * ((address >> 0x12) & 0x3F)) + 8 * (address & 0x3FFFF);
-    }
-
-    public static T ReadGA<T>(int ga) where T : struct
-    {
-        return Memory.Read<T>(GlobalAddress(ga));
-    }
-
-    public static void WriteGA<T>(int ga, T vaule) where T : struct
-    {
-        Memory.Write<T>(GlobalAddress(ga), vaule);
-    }
-
-    public static string ReadGAString(int ga)
-    {
-        return Memory.ReadString(GlobalAddress(ga), null, 20);
-    }
-
-    public static void WriteGAString(int ga, string str)
-    {
-        Memory.WriteString(GlobalAddress(ga), null, str);
-    }
-
-    /*********************************************************/
-
-    public static int GET_NETWORK_TIME()
-    {
-        return ReadGA<int>(1574755 + 11);
-    }
-    public static int PLAYER_ID()
-    {
-        return ReadGA<int>(2703660);
-    }
-
-    public static int GetBusinessIndex(int ID)
-    {
-        // ID 0-5
-        return 1853131 + 1 + (PLAYER_ID() * 888) + 267 + 187 + 1 + (ID * 13);
-    }
-
     public static uint Joaat(string input)
     {
         uint num1 = 0U;
@@ -61,29 +19,10 @@ public class Hacks
 
         return num5 + (num5 << 15);
     }
+}
 
-    /// <summary>
-    /// 写入stat值，只支持int类型
-    /// </summary>
-    public static void WriteStat(string hash, int value)
-    {
-        if (hash.IndexOf("_") == 0)
-        {
-            int Stat_MP = ReadGA<int>(1574915);
-            hash = $"MP{Stat_MP}{hash}";
-        }
-
-        uint Stat_ResotreHash = ReadGA<uint>(1655453 + 4);
-        int Stat_ResotreValue = ReadGA<int>(1020252 + 5526);
-
-        WriteGA<uint>(1655453 + 4, Joaat(hash));
-        WriteGA<int>(1020252 + 5526, value);
-        WriteGA<int>(1644218 + 1139, -1);
-        Thread.Sleep(1000);
-        WriteGA<uint>(1655453 + 4, Stat_ResotreHash);
-        WriteGA<int>(1020252 + 5526, Stat_ResotreValue);
-    }
-
+public partial class Hacks
+{
     public static long GetBlip(int[] icons, int[] colors = null)
     {
         for (int i = 1; i < 2001; i++)
@@ -106,19 +45,22 @@ public class Hacks
     }
 
     public static long GetLocalPed() { return Memory.Read<long>(Globals.WorldPTR, new int[] { 0x8 }); }
+
     public static void TeleportToCoords(long ped, Vector3 pos)
     {
         long entity = (Ped.is_in_vehicle(ped) ? Ped.get_current_vehicle(ped) : ped);
         Entity.set_position(ped, pos);
     }
+
     public static void TeleportToCoordsWithCheck(long ped, Vector3 pos)
     {
         if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
         TeleportToCoords(ped, pos);
     }
+
     public static void SpawnDrop(uint hash, Vector3 pos)
     {
-        Globals.CreateAmbientPickup(9999, pos);
+        Globals.create_ambient_pickup(9999, pos);
         Thread.Sleep(150);
         List<long> pickups = Replayinterface.get_pickups();
         for (int i = 0; i < pickups.Count; i++)
@@ -131,6 +73,7 @@ public class Hacks
             }
         }
     }
+
     public static void SpawnDrop(long ped, uint hash, float dist = 0.0f, float height = 3.0f)
     {
         Vector3 pos = Ped.get_real_forwardpos(ped, dist);
@@ -138,6 +81,7 @@ public class Hacks
         SpawnDrop(hash, pos);
     }
     public static void SpawnDrop(long ped, string name, float dist = 0.0f, float height = 3.0f) { SpawnDrop(ped, Joaat(name), dist, height); }
+
     public static void kill_npcs() 
     {
         List<long> peds = Replayinterface.get_peds();
@@ -287,10 +231,7 @@ public class Hacks
                 pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.set_position(ped, Ped.get_real_forwardpos(GetLocalPed(), 5.0f));
         }
     }
-    /// <summary>
-    /// 设置天气
-    /// </summary>
-    /// <param name="weatherID"></param>
+
     public static void SetLocalWeather(int weatherID)
     {
         /*
@@ -310,11 +251,27 @@ public class Hacks
          12:Light Snow
          14:Halloween
          */
-
-        //Memory.Write(Common.WeatherPTR, weatherID);
-        //Memory.Write(Common.WeatherPTR + 0x04, weatherID);
-
+        if(weatherID == -1)
+        {
+            Memory.Write(Globals.WeatherPTR + 0x24, -1);
+            Memory.Write(Globals.WeatherPTR + 0x104, 13);
+        }
+        if(weatherID == 13)
+        {
+            Memory.Write(Globals.WeatherPTR + 0x24, 13);
+            Memory.Write(Globals.WeatherPTR + 0x104, 13);
+        }
         Memory.Write(Globals.WeatherPTR + 0x104, weatherID);
+    }
+
+    public static void EmptySession()
+    {
+        Task.Run(() =>
+        {
+            ProcessMgr.SuspendProcess(Memory.GetProcessID());
+            Task.Delay(10000).Wait();
+            ProcessMgr.ResumeProcess(Memory.GetProcessID());
+        });
     }
 }
 
