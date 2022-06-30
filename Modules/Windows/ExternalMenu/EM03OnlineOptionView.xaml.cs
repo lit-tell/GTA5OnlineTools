@@ -91,7 +91,7 @@ public partial class EM03OnlineOptionView : UserControl
         int index = MiscData.Blips.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Teleport.ToBlip(new int[] { MiscData.Blips[index].ID });
+            Hacks.to_blip(new int[] { MiscData.Blips[index].ID });
         }
     }
 
@@ -144,7 +144,7 @@ public partial class EM03OnlineOptionView : UserControl
                 pVInfos.Add(new PVInfo()
                 {
                     Index = i,
-                    Name = Vehicle2.FindVehicleDisplayName(hash, true),
+                    Name = Hacks.find_vehicle_display_name(hash, true),
                     hash = hash,
                     plate = plate
                 });
@@ -170,7 +170,7 @@ public partial class EM03OnlineOptionView : UserControl
         {
             Task.Run(() =>
             {
-                Vehicle2.SpawnPersonalVehicle(pVInfos[index].Index);
+                Globals.deliver_personal_vehicle(pVInfos[index].Index);
             });
         }
     }

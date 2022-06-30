@@ -72,11 +72,11 @@ public partial class EM05SpawnVehicleView : UserControl
 
         if (str == "刷出线上载具（空地）")
         {
-            Vehicle2.SpawnVehicle(SpawnVehicleHash, -255.0f, 5, SpawnVehicleMod);
+            Globals.create_vehicle(SpawnVehicleHash, -255.0f, 5, SpawnVehicleMod);
         }
         else
         {
-            Vehicle2.SpawnVehicle(SpawnVehicleHash, 0.0f, 5, SpawnVehicleMod);
+            Globals.create_vehicle(SpawnVehicleHash, 0.0f, 5, SpawnVehicleMod);
         }
     }
 
@@ -84,50 +84,52 @@ public partial class EM05SpawnVehicleView : UserControl
 
     private void CheckBox_VehicleGodMode_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle2.GodMode(Settings.Vehicle.VehicleGodMode = true);
+        Vehicle.set_godmode(Ped.get_current_vehicle(Hacks.get_local_ped()), Settings.Vehicle.VehicleGodMode = true);
         Settings.Vehicle.VehicleGodMode = CheckBox_VehicleGodMode.IsChecked == true;
     }
 
     private void CheckBox_VehicleSeatbelt_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle2.Seatbelt(CheckBox_VehicleSeatbelt.IsChecked == true);
+        Ped.set_seatbelt(Hacks.get_local_ped(), CheckBox_VehicleSeatbelt.IsChecked == true);
         Settings.Vehicle.VehicleSeatbelt = CheckBox_VehicleSeatbelt.IsChecked == true;
     }
 
     private void CheckBox_VehicleParachute_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle2.Parachute(CheckBox_VehicleParachute.IsChecked == true);
+        Vehicle.set_extras_parachute(Ped.get_current_vehicle(Hacks.get_local_ped()), CheckBox_VehicleParachute.IsChecked == true);
     }
 
     private void CheckBox_VehicleInvisibility_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle2.Invisibility(CheckBox_VehicleInvisibility.IsChecked == true);
+        Vehicle.set_invisible(Ped.get_current_vehicle(Hacks.get_local_ped()), CheckBox_VehicleInvisibility.IsChecked == true);
     }
 
     private void Button_FillVehicleHealth_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Vehicle2.FillHealth();
+        Hacks.revive_vehicle(Ped.get_current_vehicle(Hacks.get_local_ped()));
     }
 
     private void RadioButton_VehicleExtras_None_Click(object sender, RoutedEventArgs e)
     {
         if (RadioButton_VehicleExtras_None.IsChecked == true)
         {
-            Vehicle2.Extras(0);
+            Vehicle.set_extras_vehicle_jump(Ped.get_current_vehicle(Hacks.get_local_ped()), false);
+            Vehicle.set_extras_rocket_boost(Ped.get_current_vehicle(Hacks.get_local_ped()), false);
         }
         else if (RadioButton_VehicleExtras_Jump.IsChecked == true)
         {
-            Vehicle2.Extras(40);
+            Vehicle.set_extras_vehicle_jump(Ped.get_current_vehicle(Hacks.get_local_ped()), true);
         }
         else if (RadioButton_VehicleExtras_Boost.IsChecked == true)
         {
-            Vehicle2.Extras(66);
+            Vehicle.set_extras_rocket_boost(Ped.get_current_vehicle(Hacks.get_local_ped()), true);
         }
         else if (RadioButton_VehicleExtras_Both.IsChecked == true)
         {
-            Vehicle2.Extras(96);
+            Vehicle.set_extras_vehicle_jump(Ped.get_current_vehicle(Hacks.get_local_ped()), true);
+            Vehicle.set_extras_rocket_boost(Ped.get_current_vehicle(Hacks.get_local_ped()), true);
         }
     }
 
@@ -135,7 +137,7 @@ public partial class EM05SpawnVehicleView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Vehicle2.Fix1stfoundBST();
+        Hacks.repair_online_vehicle(Ped.get_current_vehicle(Hacks.get_local_ped()));
     }
 
     private void Button_TurnOffBST_Click(object sender, RoutedEventArgs e)

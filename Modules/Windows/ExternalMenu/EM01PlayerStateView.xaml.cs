@@ -64,39 +64,39 @@ public partial class EM01PlayerStateView : UserControl
                 case (int)WinVK.F3:
                     if (CheckBox_FillCurrentAmmo.IsChecked == true)
                     {
-                        Weapon.FillCurrentAmmo();
+                        Hacks.fill_current_ammo();
                     }
                     break;
                 case (int)WinVK.F4:
                     if (CheckBox_MovingFoward.IsChecked == true)
                     {
-                        Teleport.MovingFoward();
+                        Hacks.to_coords(Hacks.get_local_ped(), Ped.get_real_forwardpos(Hacks.get_local_ped(), Settings.Forward));
                     }
                     break;
                 case (int)WinVK.F5:
                     if (CheckBox_ToWaypoint.IsChecked == true)
                     {
-                        Teleport.ToWaypoint();
+                        Hacks.to_waypoint();
                     }
                     break;
                 case (int)WinVK.F6:
                     if (CheckBox_ToObjective.IsChecked == true)
                     {
-                        Teleport.ToObjective();
+                        Hacks.to_objective();
                     }
                     break;
                 case (int)WinVK.F7:
                     if (CheckBox_FillHealthArmor.IsChecked == true)
                     {
-                        Ped.set_health(Hacks.GetLocalPed(), 328.0f);
-                        Ped.set_max_health(Hacks.GetLocalPed(), 328.0f);
-                        Ped.set_armour(Hacks.GetLocalPed(), 50.0f);
+                        Ped.set_health(Hacks.get_local_ped(), 328.0f);
+                        Ped.set_max_health(Hacks.get_local_ped(), 328.0f);
+                        Ped.set_armour(Hacks.get_local_ped(), 50.0f);
                     }
                     break;
                 case (int)WinVK.F8:
                     if (CheckBox_ClearWanted.IsChecked == true)
                     {
-                        Ped.set_wanted_level(Hacks.GetLocalPed(), 0);
+                        Ped.set_wanted_level(Hacks.get_local_ped(), 0);
                     }
                     break;
             }
@@ -107,46 +107,46 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            float oHealth = Ped.get_health(Hacks.GetLocalPed());
-            float oMaxHealth = Ped.get_max_health(Hacks.GetLocalPed());
-            float oArmor = Ped.get_armor(Hacks.GetLocalPed());
+            float oHealth = Ped.get_health(Hacks.get_local_ped());
+            float oMaxHealth = Ped.get_max_health(Hacks.get_local_ped());
+            float oArmor = Ped.get_armor(Hacks.get_local_ped());
 
-            int oWanted = Ped.get_wanted_level(Hacks.GetLocalPed());
-            float oRunSpeed = Ped.get_run_speed(Hacks.GetLocalPed());
-            float oSwimSpeed = Ped.get_swim_speed(Hacks.GetLocalPed());
-            float oStealthSpeed = Ped.get_stealth_speed(Hacks.GetLocalPed());
+            int oWanted = Ped.get_wanted_level(Hacks.get_local_ped());
+            float oRunSpeed = Ped.get_run_speed(Hacks.get_local_ped());
+            float oSwimSpeed = Ped.get_swim_speed(Hacks.get_local_ped());
+            float oStealthSpeed = Ped.get_stealth_speed(Hacks.get_local_ped());
 
-            bool oInVehicle = Ped.is_in_vehicle(Hacks.GetLocalPed());
-            byte oCurPassenger = Vehicle.get_cur_num_of_passenger(Ped.get_current_vehicle(Hacks.GetLocalPed()));
+            bool oInVehicle = Ped.is_in_vehicle(Hacks.get_local_ped());
+            byte oCurPassenger = Vehicle.get_cur_num_of_passenger(Ped.get_current_vehicle(Hacks.get_local_ped()));
 
             ////////////////////////////////
 
             if (Settings.Player.GodMode)
-                Ped.set_godmode(Hacks.GetLocalPed(), true);
+                Ped.set_godmode(Hacks.get_local_ped(), true);
 
             if (Settings.Player.AntiAFK)
                 Globals.anti_afk(true);
 
             if (Settings.Player.NoRagdoll)
-                Ped.set_no_ragdoll(Hacks.GetLocalPed(), true);
+                Ped.set_no_ragdoll(Hacks.get_local_ped(), true);
 
             if (Settings.Player.WaterProof)
-                Ped.set_waterproof(Hacks.GetLocalPed(), true);
+                Ped.set_waterproof(Hacks.get_local_ped(), true);
 
             if (Settings.Player.Invisible)
-                Ped.set_invisible(Hacks.GetLocalPed(), true);
+                Ped.set_invisible(Hacks.get_local_ped(), true);
 
             if (Settings.Player.UndeadOffRadar)
-                Ped.set_max_health(Hacks.GetLocalPed(), 0.0f);
+                Ped.set_max_health(Hacks.get_local_ped(), 0.0f);
 
             if (Settings.Player.EveryoneIgnore)
-                Ped.set_everyone_ignore(Hacks.GetLocalPed(), true);
+                Ped.set_everyone_ignore(Hacks.get_local_ped(), true);
 
             if (Settings.Player.CopsIgnore)
-                Ped.set_cops_ignore(Hacks.GetLocalPed(), true);
+                Ped.set_cops_ignore(Hacks.get_local_ped(), true);
 
             if (Settings.Player.NoCollision)
-                Ped.set_no_collision(Hacks.GetLocalPed(), true);
+                Ped.set_no_collision(Hacks.get_local_ped(), true);
 
             if (Settings.Vehicle.VehicleGodMode)
                 Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
@@ -188,10 +188,10 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            if (FrameFlagsExplosiveAmmo == 1) Ped.set_frame_flags_explosiveammo(Hacks.GetLocalPed(), true);
-            if (FrameFlagsFlamingAmmo == 1) Ped.set_frame_flags_flamingammo(Hacks.GetLocalPed(), true);
-            if (FrameFlagsExplosiveFists == 1) Ped.set_frame_flags_explosivefists(Hacks.GetLocalPed(), true);
-            if (FrameFlagsSuperJump == 1) Ped.set_frame_flags_superjump(Hacks.GetLocalPed(), true);
+            if (FrameFlagsExplosiveAmmo == 1) Ped.set_frame_flags_explosiveammo(Hacks.get_local_ped(), true);
+            if (FrameFlagsFlamingAmmo == 1) Ped.set_frame_flags_flamingammo(Hacks.get_local_ped(), true);
+            if (FrameFlagsExplosiveFists == 1) Ped.set_frame_flags_explosivefists(Hacks.get_local_ped(), true);
+            if (FrameFlagsSuperJump == 1) Ped.set_frame_flags_superjump(Hacks.get_local_ped(), true);
 
             Thread.Sleep(1);
         }
@@ -202,7 +202,7 @@ public partial class EM01PlayerStateView : UserControl
         while (true)
         {
             if (Settings.Common.AutoClearWanted)
-                Ped.set_wanted_level(Hacks.GetLocalPed(), 0);
+                Ped.set_wanted_level(Hacks.get_local_ped(), 0);
 
             if (Settings.Common.AutoKillNPC)
                 Hacks.kill_npcs();
@@ -217,23 +217,23 @@ public partial class EM01PlayerStateView : UserControl
         }
     }
 
-    private void Slider_Health_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_health(Hacks.GetLocalPed(), (float)Slider_Health.Value); }
+    private void Slider_Health_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_health(Hacks.get_local_ped(), (float)Slider_Health.Value); }
 
-    private void Slider_MaxHealth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_max_health(Hacks.GetLocalPed(), (float)Slider_MaxHealth.Value); }
+    private void Slider_MaxHealth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_max_health(Hacks.get_local_ped(), (float)Slider_MaxHealth.Value); }
 
-    private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_armour(Hacks.GetLocalPed(), (float)Slider_Armor.Value); }
+    private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_armour(Hacks.get_local_ped(), (float)Slider_Armor.Value); }
 
-    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_wanted_level(Hacks.GetLocalPed(), (int)Slider_Wanted.Value); }
+    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_wanted_level(Hacks.get_local_ped(), (int)Slider_Wanted.Value); }
 
-    private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_run_speed(Hacks.GetLocalPed(), (float)Slider_RunSpeed.Value); }
+    private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_run_speed(Hacks.get_local_ped(), (float)Slider_RunSpeed.Value); }
 
-    private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_swim_speed(Hacks.GetLocalPed(), (float)Slider_SwimSpeed.Value); }
+    private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_swim_speed(Hacks.get_local_ped(), (float)Slider_SwimSpeed.Value); }
 
-    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_stealth_speed(Hacks.GetLocalPed(), (float)Slider_StealthSpeed.Value); }
+    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_stealth_speed(Hacks.get_local_ped(), (float)Slider_StealthSpeed.Value); }
 
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)
     {
-        Ped.set_godmode(Hacks.GetLocalPed(), (CheckBox_PlayerGodMode.IsChecked == true));
+        Ped.set_godmode(Hacks.get_local_ped(), (CheckBox_PlayerGodMode.IsChecked == true));
         Settings.Player.GodMode = CheckBox_PlayerGodMode.IsChecked == true;
     }
 
@@ -245,39 +245,39 @@ public partial class EM01PlayerStateView : UserControl
 
     private void CheckBox_WaterProof_Click(object sender, RoutedEventArgs e)
     {
-        Ped.set_waterproof(Hacks.GetLocalPed(), (CheckBox_WaterProof.IsChecked == true));
+        Ped.set_waterproof(Hacks.get_local_ped(), (CheckBox_WaterProof.IsChecked == true));
         Settings.Player.WaterProof = CheckBox_WaterProof.IsChecked == true;
     }
 
     private void CheckBox_Invisibility_Click(object sender, RoutedEventArgs e)
     {
-        Ped.set_invisible(Hacks.GetLocalPed(), (CheckBox_Invisibility.IsChecked == true));
+        Ped.set_invisible(Hacks.get_local_ped(), (CheckBox_Invisibility.IsChecked == true));
         Settings.Player.Invisible = CheckBox_Invisibility.IsChecked == true;
     }
 
     private void CheckBox_UndeadOffRadar_Click(object sender, RoutedEventArgs e)
     {
-        Ped.set_max_health(Hacks.GetLocalPed(), ((CheckBox_UndeadOffRadar.IsChecked == true) ? 0.0f : 328.0f));
+        Ped.set_max_health(Hacks.get_local_ped(), ((CheckBox_UndeadOffRadar.IsChecked == true) ? 0.0f : 328.0f));
         Settings.Player.UndeadOffRadar = CheckBox_UndeadOffRadar.IsChecked == true;
     }
 
     private void CheckBox_NoRagdoll_Click(object sender, RoutedEventArgs e)
     {
-        Ped.set_no_ragdoll(Hacks.GetLocalPed(), (CheckBox_NoRagdoll.IsChecked == true));
+        Ped.set_no_ragdoll(Hacks.get_local_ped(), (CheckBox_NoRagdoll.IsChecked == true));
         Settings.Player.NoRagdoll = CheckBox_NoRagdoll.IsChecked == true;
     }
 
     private void CheckBox_NPCIgnore_Click(object sender, RoutedEventArgs e)
     {
-        Ped.set_everyone_ignore(Hacks.GetLocalPed(), (CheckBox_NPCIgnore.IsChecked == true));
-        Ped.set_cops_ignore(Hacks.GetLocalPed(), (CheckBox_PoliceIgnore.IsChecked == true));
+        Ped.set_everyone_ignore(Hacks.get_local_ped(), (CheckBox_NPCIgnore.IsChecked == true));
+        Ped.set_cops_ignore(Hacks.get_local_ped(), (CheckBox_PoliceIgnore.IsChecked == true));
         Settings.Player.EveryoneIgnore = CheckBox_NPCIgnore.IsChecked == true;
         Settings.Player.CopsIgnore = CheckBox_PoliceIgnore.IsChecked == true;
     }
 
     private void CheckBox_AutoClearWanted_Click(object sender, RoutedEventArgs e)
     {
-        Ped.set_wanted_level(Hacks.GetLocalPed(), 0);
+        Ped.set_wanted_level(Hacks.get_local_ped(), 0);
         Settings.Common.AutoClearWanted = CheckBox_AutoClearWanted.IsChecked == true;
     }
 
@@ -309,7 +309,7 @@ public partial class EM01PlayerStateView : UserControl
 
     private void CheckBox_NoCollision_Click(object sender, RoutedEventArgs e)
     {
-        Ped.set_no_collision(Hacks.GetLocalPed(), CheckBox_NoCollision.IsChecked == true);
+        Ped.set_no_collision(Hacks.get_local_ped(), CheckBox_NoCollision.IsChecked == true);
         Settings.Player.NoCollision = CheckBox_NoCollision.IsChecked == true;
     }
 
@@ -317,37 +317,37 @@ public partial class EM01PlayerStateView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Teleport.ToWaypoint();
+        Hacks.to_waypoint();
     }
 
     private void Button_ToObjective_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Teleport.ToObjective();
+        Hacks.to_objective();
     }
 
     private void Button_FillHealthArmor_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.set_health(Hacks.GetLocalPed(), 328.0f);
-        Ped.set_max_health(Hacks.GetLocalPed(), 328.0f);
-        Ped.set_armour(Hacks.GetLocalPed(), 50.0f);
+        Ped.set_health(Hacks.get_local_ped(), 328.0f);
+        Ped.set_max_health(Hacks.get_local_ped(), 328.0f);
+        Ped.set_armour(Hacks.get_local_ped(), 50.0f);
     }
 
     private void Button_ClearWanted_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.set_wanted_level(Hacks.GetLocalPed(), 0);
+        Ped.set_wanted_level(Hacks.get_local_ped(), 0);
     }
 
     private void Button_Suicide_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.set_health(Hacks.GetLocalPed(), 0.0f);
+        Ped.set_health(Hacks.get_local_ped(), 0.0f);
     }
 
     private void Slider_MovingFoward_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

@@ -25,6 +25,13 @@ public partial class Globals
     public static long PlayerChatterNamePTR;
 
     public static long LocalScriptsPTR;
+
+    public static long InfiniteAmmoADDR;
+    //41 2B D1 E8 ?? ?? ?? ?? 
+    //90 90 90 E8 ?? ?? ?? ?? 
+    public static long NoReloadADDR;
+    //41 2B C9 3B C8 0F 4D C8 
+    //90 90 90 3B C8 
 }
 
 public partial class Globals
@@ -222,6 +229,8 @@ public partial class Globals
         SG<float>(262145 + 31294, value);
     }
 
+    public static bool is_in_bull_shark() { return GG<int>(oNETTimeHelp + 3576) != 0; }
+
     public static void instant_bull_shark(bool toggle)
     {
         if (!toggle)
@@ -232,6 +241,8 @@ public partial class Globals
     public static void backup_heli(bool toggle) { SG<int>(oVMYCar + 4454, toggle ? 1 : 0); }
 
     public static void airstrike(bool toggle) { SG<int>(oVMYCar + 4455, toggle ? 1 : 0); }
+
+    public static void deliver_bull_shark(bool toggle) { SG<int>(oVMYCar + 882, toggle ? 1 : 0); }
 
     public static void ceo_special_cargo(bool toggle) { SG<int>(1946798, toggle ? 1 : 0); }
 
@@ -400,5 +411,160 @@ public partial class Globals
     }
 
     public static void nightclub_no_tony_laundering_money(bool toggle) { SG<float>(262145 + 24258, toggle ? 0.000001f : 0.1f);        /* -1002770353 */}
+
+    public static void deliver_personal_vehicle(int index)
+    {
+        SG<int>(oVMYCar + 965, index);
+        SG<int>(oVMYCar + 962, 1);
+    }
+
+    public static void create_vehicle(long hash, float z255, int dist, int[] mod)
+    {
+        Task.Run(() =>
+        {
+            if (hash != 0)
+            {
+                const int oVMCreate = Offsets.oVMCreate;
+
+                float x = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
+                float y = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
+                float z = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
+                float sin = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerSin);
+                float cos = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerCos);
+
+                x += cos * dist;
+                y += sin * dist;
+
+                if (z255 == -255.0f)
+                    z = z255;
+                else
+                    z += z255;
+
+                SG<long>(oVMCreate + 27 + 66, hash);   // 载具哈希值
+
+                SG<int>(oVMCreate + 27 + 94, 2);       // personal car ownerflag  个人载具拥有者标志
+                SG<int>(oVMCreate + 27 + 95, 14);      // ownerflag  拥有者标志
+
+                SG<int>(oVMCreate + 27 + 5, -1);       // primary -1 auto 159  主色调
+                SG<int>(oVMCreate + 27 + 6, -1);       // secondary -1 auto 159  副色调
+
+                SG<float>(oVMCreate + 7 + 0, x);       // 载具坐标x
+                SG<float>(oVMCreate + 7 + 1, y);       // 载具坐标y
+                SG<float>(oVMCreate + 7 + 2, z);       // 载具坐标z
+
+                set_global_string(oVMCreate + 27 + 1, Guid.NewGuid().ToString()[..8]);    // License plate  车牌
+
+                for (int i = 0; i < 43; i++)
+                {
+                    if (i < 17)
+                    {
+                        SG<int>(oVMCreate + 27 + 10 + i, mod[i]);
+                    }
+                    else if (i >= 17 && i != 42)
+                    {
+                        SG<int>(oVMCreate + 27 + 10 + 6 + i, mod[i]);
+                    }
+                    else if (mod[42] > 0 && i == 42)
+                    {
+                        SG<int>(oVMCreate + 27 + 10 + 6 + 42, new Random().Next(1, mod[42] + 1));
+                    }
+                }
+
+                SG<int>(oVMCreate + 27 + 7, -1);       // pearlescent
+                SG<int>(oVMCreate + 27 + 8, -1);       // wheel color
+                SG<int>(oVMCreate + 27 + 33, -1);      // wheel selection
+                SG<int>(oVMCreate + 27 + 69, -1);      // Wheel type
+
+                SG<int>(oVMCreate + 27 + 28, 1);
+                SG<int>(oVMCreate + 27 + 30, 1);
+                SG<int>(oVMCreate + 27 + 32, 1);
+                SG<int>(oVMCreate + 27 + 65, 1);
+
+                SG<long>(oVMCreate + 27 + 77, 0xF0400200);         // vehstate  载具状态 没有这个载具起落架是收起状态
+
+                SG<int>(oVMCreate + 5, 1);                         // can spawn flag must be odd
+                SG<int>(oVMCreate + 2, 1);                         // spawn toggle gets reset to 0 on car spawn
+            }
+        });
+    }
+
+    public static string get_outfit_name_by_index(int index) { return get_global_string(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (index * 13) + 1126 - (index * 5)); }
+
+    public static void set_outfit_name_by_index(int index, string str) { set_global_string(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (index * 13) + 1126 - (index * 5), str); }
+
+    public static int  get_top(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 14); }
+    public static void set_top(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 14, value); }
+    public static int  get_top_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 14); }
+    public static void set_top_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 14, value); }
+
+    public static int  get_undershirt(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 11); }
+    public static void set_undershirt(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 11, value); }
+    public static int  get_undershirt_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 11); }
+    public static void set_undershirt_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 11, value); }
+
+    public static int  get_legs(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 7); }
+    public static void set_legs(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 7, value); }
+    public static int  get_legs_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 7); }
+    public static void set_legs_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 7, value); }
+
+    public static int  get_feet(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 9); }
+    public static void set_feet(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 9, value); }
+    public static int  get_feet_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 9); }
+    public static void set_feet_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 9, value); }
+
+    public static int  get_accessories(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 10); }
+    public static void set_accessories(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 10, value); }
+    public static int  get_accessories_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 10); }
+    public static void set_accessories_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 10, value); }
+
+    public static int  get_bags(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 8); }
+    public static void set_bags(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 8, value); }
+    public static int  get_bags_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 8); }
+    public static void set_bags_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 8, value); }
+
+    public static int  get_gloves(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 6); }
+    public static void set_gloves(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 6, value); }
+    public static int  get_gloves_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 6); }
+    public static void set_gloves_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 6, value); }
+
+    public static int  get_decals(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 13); }
+    public static void set_decals(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 13, value); }
+    public static int  get_decals_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 13); }
+    public static void set_decals_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 13, value); }
+
+    public static int  get_mask(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 4); }
+    public static void set_mask(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 4, value); }
+    public static int  get_mask_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 4); }
+    public static void set_mask_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 4, value); }
+
+    public static int  get_armor(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 12); }
+    public static void set_armor(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent    + (index * 13) + 12, value); }
+    public static int  get_armor_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 12); }
+    public static void set_armor_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (index * 13) + 12, value); }
+
+    public static int  get_hats(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp    + (index * 10) + 3); }
+    public static void set_hats(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp    + (index * 10) + 3, value); }
+    public static int  get_hats_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (index * 10) + 3); }
+    public static void set_hats_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (index * 10) + 3, value); }
+
+    public static int  get_glasses(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp    + (index * 10) + 4); }
+    public static void set_glasses(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp    + (index * 10) + 4, value); }
+    public static int  get_glasses_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (index * 10) + 4); }
+    public static void set_glasses_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (index * 10) + 4, value); }
+
+    public static int  get_ears(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp    + (index * 10) + 5); }
+    public static void set_ears(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp    + (index * 10) + 5, value); }
+    public static int  get_ears_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (index * 10) + 5); }
+    public static void set_ears_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (index * 10) + 5, value); }
+
+    public static int  get_watches(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp    + (index * 10) + 9); }
+    public static void set_watches(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp    + (index * 10) + 9, value); }
+    public static int  get_watches_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (index * 10) + 9); }
+    public static void set_watches_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (index * 10) + 9, value); }
+
+    public static int  get_wrist(int index)         { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp    + (index * 10) + 10); }
+    public static void set_wrist(int index, int value)     { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp    + (index * 10) + 10, value); }
+    public static int  get_wrist_tex(int index)     { return GG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (index * 10) + 10); }
+    public static void set_wrist_tex(int index, int value) { SG<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (index * 10) + 10, value); }
 }
 

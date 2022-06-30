@@ -67,7 +67,7 @@ public partial class EM06SpawnWeaponView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.SpawnDrop(Hacks.GetLocalPed(), TempData.WPickup);
+        Hacks.spawn_drop(Hacks.get_local_ped(), TempData.WPickup);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -76,67 +76,70 @@ public partial class EM06SpawnWeaponView : UserControl
     {
         if (RadioButton_AmmoModifier_None.IsChecked == true)
         {
-            Weapon.AmmoModifier(0);
+            Ped.set_infinite_ammo(Hacks.get_local_ped(), false);
+            Ped.set_infinite_clip(Hacks.get_local_ped(), false);
         }
         else if (RadioButton_AmmoModifier_AMMO.IsChecked == true)
         {
-            Weapon.AmmoModifier(1);
+            Ped.set_infinite_ammo(Hacks.get_local_ped(), true);
         }
         else if (RadioButton_AmmoModifier_CLIP.IsChecked == true)
         {
-            Weapon.AmmoModifier(2);
+            Ped.set_infinite_clip(Hacks.get_local_ped(), true);
         }
         else if (RadioButton_AmmoModifier_Both.IsChecked == true)
         {
-            Weapon.AmmoModifier(3);
+            Ped.set_infinite_ammo(Hacks.get_local_ped(), true);
+            Ped.set_infinite_clip(Hacks.get_local_ped(), true);
         }
     }
 
     private void CheckBox_InfiniteAmmo_Click(object sender, RoutedEventArgs e)
     {
-        Weapon.InfiniteAmmo(CheckBox_InfiniteAmmo.IsChecked == true);
+        Hacks.infinite_ammo(CheckBox_InfiniteAmmo.IsChecked == true);
     }
 
     private void CheckBox_NoReload_Click(object sender, RoutedEventArgs e)
     {
-        Weapon.NoReload(CheckBox_NoReload.IsChecked == true);
+        Hacks.no_reload(CheckBox_NoReload.IsChecked == true);
     }
 
     private void CheckBox_ReloadMult_Click(object sender, RoutedEventArgs e)
     {
-        Weapon.ReloadMult(CheckBox_ReloadMult.IsChecked == true);
+        Ped.set_reload_time_multiplier(Hacks.get_local_ped(), CheckBox_ReloadMult.IsChecked == true ? 4.0f : 1.0f);
     }
 
     private void Button_NoRecoil_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Weapon.NoRecoil();
+        Ped.set_recoil(Hacks.get_local_ped(), 0.0f);
     }
 
     private void CheckBox_NoSpread_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Weapon.NoSpread();
+        Ped.set_spread(Hacks.get_local_ped(), 0.0f);
     }
 
     private void CheckBox_Range_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Weapon.Range();
+        Ped.set_lock_on_range(Hacks.get_local_ped(), 1000.0f);
+        Ped.set_range(Hacks.get_local_ped(), 2000.0f);
     }
 
     private void CheckBox_ImpactType_Click(object sender, RoutedEventArgs e)
     {
         if (CheckBox_ImpactType.IsChecked == true)
         {
-            Weapon.ImpactType(5);
+            Ped.set_damage_type(Hacks.get_local_ped(), 5);
         }
         else
         {
-            Weapon.ImpactType(3);
+            Ped.set_damage_type(Hacks.get_local_ped(), 3);
         }
     }
 
@@ -146,7 +149,7 @@ public partial class EM06SpawnWeaponView : UserControl
 
         if (index != -1)
         {
-            Weapon.ImpactExplosion(MiscData.ImpactExplosions[index].ID);
+            Ped.set_explosion_type(Hacks.get_local_ped(), MiscData.ImpactExplosions[index].ID);
         }
     }
 
@@ -154,6 +157,6 @@ public partial class EM06SpawnWeaponView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Weapon.FillCurrentAmmo();
+        Hacks.fill_current_ammo();
     }
 }

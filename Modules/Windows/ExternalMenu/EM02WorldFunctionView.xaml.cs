@@ -45,7 +45,7 @@ public partial class EM02WorldFunctionView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.EmptySession();
+        Hacks.empty_session();
     }
 
     private void Button_LocalWeather_Click(object sender, RoutedEventArgs e)
@@ -57,7 +57,7 @@ public partial class EM02WorldFunctionView : UserControl
         int index = MiscData.LocalWeathers.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Hacks.SetLocalWeather(MiscData.LocalWeathers[index].ID);
+            Hacks.set_local_weather(MiscData.LocalWeathers[index].ID);
         }
     }
 

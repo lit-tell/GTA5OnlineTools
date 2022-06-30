@@ -126,7 +126,7 @@ public partial class EM04PlayerListView : UserControl
 
             if (index != -1)
             {
-                Hacks.TeleportToCoords(Hacks.GetLocalPed(), playerData[index].PlayerInfo2.V3Pos);
+                Hacks.to_coords(Hacks.get_local_ped(), playerData[index].PlayerInfo2.V3Pos);
             }
         }
     }
