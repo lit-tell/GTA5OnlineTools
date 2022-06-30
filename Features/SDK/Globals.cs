@@ -418,74 +418,59 @@ public partial class Globals
         SG<int>(oVMYCar + 962, 1);
     }
 
-    public static void create_vehicle(long hash, float z255, int dist, int[] mod)
+    public static void create_vehicle(uint hash, int[] mod, Vector3 pos)
     {
-        Task.Run(() =>
+        SG<uint>(oVMCreate + 27 + 66, hash);   // 载具哈希值
+
+        SG<int>(oVMCreate + 27 + 94, 2);       // personal car ownerflag  个人载具拥有者标志
+        SG<int>(oVMCreate + 27 + 95, 14);      // ownerflag  拥有者标志
+
+        SG<int>(oVMCreate + 27 + 5, -1);       // primary -1 auto 159  主色调
+        SG<int>(oVMCreate + 27 + 6, -1);       // secondary -1 auto 159  副色调
+
+        SG<float>(oVMCreate + 7 + 0, pos.X);       // 载具坐标x
+        SG<float>(oVMCreate + 7 + 1, pos.Y);       // 载具坐标y
+        SG<float>(oVMCreate + 7 + 2, pos.Z);       // 载具坐标z
+
+        set_global_string(oVMCreate + 27 + 1, Guid.NewGuid().ToString()[..8]);    // License plate  车牌
+
+        for (int i = 0; i < 43; i++)
         {
-            if (hash != 0)
+            if (i < 17)
             {
-                const int oVMCreate = Offsets.oVMCreate;
-
-                float x = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
-                float y = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
-                float z = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
-                float sin = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerSin);
-                float cos = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerCos);
-
-                x += cos * dist;
-                y += sin * dist;
-
-                if (z255 == -255.0f)
-                    z = z255;
-                else
-                    z += z255;
-
-                SG<long>(oVMCreate + 27 + 66, hash);   // 载具哈希值
-
-                SG<int>(oVMCreate + 27 + 94, 2);       // personal car ownerflag  个人载具拥有者标志
-                SG<int>(oVMCreate + 27 + 95, 14);      // ownerflag  拥有者标志
-
-                SG<int>(oVMCreate + 27 + 5, -1);       // primary -1 auto 159  主色调
-                SG<int>(oVMCreate + 27 + 6, -1);       // secondary -1 auto 159  副色调
-
-                SG<float>(oVMCreate + 7 + 0, x);       // 载具坐标x
-                SG<float>(oVMCreate + 7 + 1, y);       // 载具坐标y
-                SG<float>(oVMCreate + 7 + 2, z);       // 载具坐标z
-
-                set_global_string(oVMCreate + 27 + 1, Guid.NewGuid().ToString()[..8]);    // License plate  车牌
-
-                for (int i = 0; i < 43; i++)
-                {
-                    if (i < 17)
-                    {
-                        SG<int>(oVMCreate + 27 + 10 + i, mod[i]);
-                    }
-                    else if (i >= 17 && i != 42)
-                    {
-                        SG<int>(oVMCreate + 27 + 10 + 6 + i, mod[i]);
-                    }
-                    else if (mod[42] > 0 && i == 42)
-                    {
-                        SG<int>(oVMCreate + 27 + 10 + 6 + 42, new Random().Next(1, mod[42] + 1));
-                    }
-                }
-
-                SG<int>(oVMCreate + 27 + 7, -1);       // pearlescent
-                SG<int>(oVMCreate + 27 + 8, -1);       // wheel color
-                SG<int>(oVMCreate + 27 + 33, -1);      // wheel selection
-                SG<int>(oVMCreate + 27 + 69, -1);      // Wheel type
-
-                SG<int>(oVMCreate + 27 + 28, 1);
-                SG<int>(oVMCreate + 27 + 30, 1);
-                SG<int>(oVMCreate + 27 + 32, 1);
-                SG<int>(oVMCreate + 27 + 65, 1);
-
-                SG<long>(oVMCreate + 27 + 77, 0xF0400200);         // vehstate  载具状态 没有这个载具起落架是收起状态
-
-                SG<int>(oVMCreate + 5, 1);                         // can spawn flag must be odd
-                SG<int>(oVMCreate + 2, 1);                         // spawn toggle gets reset to 0 on car spawn
+                SG<int>(oVMCreate + 27 + 10 + i, mod[i]);
             }
-        });
+            else if (i >= 17 && i != 42)
+            {
+                SG<int>(oVMCreate + 27 + 10 + 6 + i, mod[i]);
+            }
+            else if (mod[42] > 0 && i == 42)
+            {
+                SG<int>(oVMCreate + 27 + 10 + 6 + 42, new Random().Next(1, mod[42] + 1));
+            }
+        }
+
+        SG<int>(oVMCreate + 27 + 7, -1);       // pearlescent
+        SG<int>(oVMCreate + 27 + 8, -1);       // wheel color
+        SG<int>(oVMCreate + 27 + 33, -1);      // wheel selection
+        SG<int>(oVMCreate + 27 + 69, -1);      // Wheel type
+
+        SG<int>(oVMCreate + 27 + 28, 1);
+        SG<int>(oVMCreate + 27 + 30, 1);
+        SG<int>(oVMCreate + 27 + 32, 1);
+        SG<int>(oVMCreate + 27 + 65, 1);
+
+        SG<uint>(oVMCreate + 27 + 77, 0xF0400200);         // vehstate  载具状态 没有这个载具起落架是收起状态
+
+        SG<int>(oVMCreate + 5, 1);                         // can spawn flag must be odd
+        SG<int>(oVMCreate + 2, 1);                         // spawn toggle gets reset to 0 on car spawn
+    }
+
+    public static void create_vehicle(long ped, uint hash, int[] mod, float dist = 7.0f, float height = 0.0f)
+    {
+        Vector3 pos = Ped.get_real_forwardpos(ped, dist);
+        pos.Z = height == -225.0f ? height : pos.Z + height;
+        create_vehicle(hash, mod, pos);
     }
 
     public static string get_outfit_name_by_index(int index) { return get_global_string(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (index * 13) + 1126 - (index * 5)); }

@@ -11,7 +11,7 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu;
 /// </summary>
 public partial class EM05SpawnVehicleView : UserControl
 {
-    private long SpawnVehicleHash = 0;
+    private uint SpawnVehicleHash = 0;
     private int[] SpawnVehicleMod;
 
     public EM05SpawnVehicleView()
@@ -72,11 +72,11 @@ public partial class EM05SpawnVehicleView : UserControl
 
         if (str == "刷出线上载具（空地）")
         {
-            Globals.create_vehicle(SpawnVehicleHash, -255.0f, 5, SpawnVehicleMod);
+            Globals.create_vehicle(Hacks.get_local_ped(), SpawnVehicleHash, SpawnVehicleMod, 7.0f, -225.0f);
         }
         else
         {
-            Globals.create_vehicle(SpawnVehicleHash, 0.0f, 5, SpawnVehicleMod);
+            Globals.create_vehicle(Hacks.get_local_ped(), SpawnVehicleHash, SpawnVehicleMod, 7.0f, 0.0f);
         }
     }
 

@@ -59,7 +59,7 @@ public class VehicleData
     {
         public string Name;
         public string DisplayName;
-        public long Hash;
+        public uint Hash;
         public int[] Mod;
     }
 

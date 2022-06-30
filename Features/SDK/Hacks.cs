@@ -458,14 +458,29 @@ public class WeaponInfo : BaseModelInfo
     public static void set_recoil(long weaponinfo, float value) { Memory.Write<float>(weaponinfo + 0x2F4, value); }
 }
 
+public class ArchetypeDamp//rage::phArchetypeDamp
+{
+    public static float get_water_collision_strength(long archetypedamp) { return Memory.Read<float>(archetypedamp + 0x54); }
+    public static bool get_no_water_collision_strength(long archetypedamp) { return get_water_collision_strength(archetypedamp) <= 0.0f; }
+
+
+    public static void set_water_collision_strength(long archetypedamp, float value) { Memory.Write<float>(archetypedamp + 0x54, value); }
+    public static void set_no_water_collision_strength(long archetypedamp, bool toggle) { set_water_collision_strength(archetypedamp, toggle ? 0.0f : 1.0f); }
+}
+
 public class Navigation
 {
+    public static long get_archetypedamp(long navigation) { return Memory.Read<long>(navigation + 0x10); }
+    public static float get_water_collision_strength(long navigation) { return ArchetypeDamp.get_water_collision_strength(get_archetypedamp(navigation)); }
+    public static bool get_no_water_collision_strength(long navigation) { return ArchetypeDamp.get_no_water_collision_strength(get_archetypedamp(navigation)); }
     public static Vector3 get_real_right_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x20); }
     public static Vector3 get_real_forward_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x30); }
     public static Vector3 get_real_up_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x40); }
     public static Vector3 get_real_position(long navigation) { return Memory.Read<Vector3>(navigation + 0x50); }
 
 
+    public static void set_water_collision_strength(long navigation, float value) { ArchetypeDamp.set_water_collision_strength(get_archetypedamp(navigation), value); }
+    public static void set_no_water_collision_strength(long navigation, bool toggle) { ArchetypeDamp.set_no_water_collision_strength(get_archetypedamp(navigation), toggle); }
     public static void set_real_right_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x20, pos); }
     public static void set_real_forward_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x30, pos); }
     public static void set_real_up_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x40, pos); }
@@ -495,6 +510,8 @@ public class Entity
         pos.Y += dist * vec.X;
         return pos;
     }
+    public static float get_water_collision_strength(long entity) { return Navigation.get_water_collision_strength(get_navigation(entity)); }
+    public static bool get_no_water_collision_strength(long entity) { return Navigation.get_no_water_collision_strength(get_navigation(entity)); }
     public static Vector3 get_visual_right_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x60); }
     public static Vector3 get_visual_forward_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x70); }
     public static Vector3 get_visual_up_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x80); }
@@ -522,6 +539,8 @@ public class Entity
     public static void set_real_forward_vector3(long entity, Vector3 pos) { Navigation.set_real_forward_vector3(get_navigation(entity), pos); }
     public static void set_real_up_vector3(long entity, Vector3 pos) { Navigation.set_real_up_vector3(get_navigation(entity), pos); }
     public static void set_real_position(long entity, Vector3 pos) { Navigation.set_real_position(get_navigation(entity), pos); }
+    public static void set_water_collision_strength(long entity, float value) { Navigation.set_water_collision_strength(get_navigation(entity), value); }
+    public static void set_no_water_collision_strength(long entity, bool toggle) { Navigation.set_no_water_collision_strength(get_navigation(entity), toggle); }
     public static void set_visual_right_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x60, pos); }
     public static void set_visual_forward_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x70, pos); }
     public static void set_visual_up_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x80, pos); }
