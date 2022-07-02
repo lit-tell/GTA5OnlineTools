@@ -20,8 +20,9 @@ public class Settings
         public static bool UndeadOffRadar = false;
         public static bool EveryoneIgnore = false;
         public static bool CopsIgnore = false;
-
         public static bool NoCollision = false;
+        public static sbyte AmmoModifier_InfiniteAmmo = -1;
+        public static sbyte AmmoModifier_InfiniteClip = -1;
     }
 
     public struct Vehicle

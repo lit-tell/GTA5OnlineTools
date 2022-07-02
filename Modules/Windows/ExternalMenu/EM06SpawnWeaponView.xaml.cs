@@ -72,26 +72,14 @@ public partial class EM06SpawnWeaponView : UserControl
 
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    private void RadioButton_AmmoModifier_None_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_AmmoModifier_InfiniteAmmo_Click(object sender, RoutedEventArgs e)
     {
-        if (RadioButton_AmmoModifier_None.IsChecked == true)
-        {
-            Ped.set_infinite_ammo(Hacks.get_local_ped(), false);
-            Ped.set_infinite_clip(Hacks.get_local_ped(), false);
-        }
-        else if (RadioButton_AmmoModifier_AMMO.IsChecked == true)
-        {
-            Ped.set_infinite_ammo(Hacks.get_local_ped(), true);
-        }
-        else if (RadioButton_AmmoModifier_CLIP.IsChecked == true)
-        {
-            Ped.set_infinite_clip(Hacks.get_local_ped(), true);
-        }
-        else if (RadioButton_AmmoModifier_Both.IsChecked == true)
-        {
-            Ped.set_infinite_ammo(Hacks.get_local_ped(), true);
-            Ped.set_infinite_clip(Hacks.get_local_ped(), true);
-        }
+        Settings.Player.AmmoModifier_InfiniteAmmo = (sbyte)(CheckBox_AmmoModifier_InfiniteAmmo.IsChecked == true ? 1 : 0);
+    }
+
+    private void CheckBox_AmmoModifier_InfiniteClip_Click(object sender, RoutedEventArgs e)
+    {
+        Settings.Player.AmmoModifier_InfiniteClip = (sbyte)(CheckBox_AmmoModifier_InfiniteClip.IsChecked == true ? 1 : 0);
     }
 
     private void CheckBox_InfiniteAmmo_Click(object sender, RoutedEventArgs e)

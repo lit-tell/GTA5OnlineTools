@@ -148,6 +148,12 @@ public partial class EM01PlayerStateView : UserControl
             if (Settings.Player.NoCollision)
                 Ped.set_no_collision(Hacks.get_local_ped(), true);
 
+            if (Settings.Player.AmmoModifier_InfiniteAmmo == 1) Ped.set_infinite_ammo(Hacks.get_local_ped(), true);
+            else if (Settings.Player.AmmoModifier_InfiniteAmmo == 0) { Ped.set_infinite_ammo(Hacks.get_local_ped(), false); Settings.Player.AmmoModifier_InfiniteAmmo = -1; }
+
+            if (Settings.Player.AmmoModifier_InfiniteClip == 1) Ped.set_infinite_clip(Hacks.get_local_ped(), true);
+            else if (Settings.Player.AmmoModifier_InfiniteClip == 0) { Ped.set_infinite_clip(Hacks.get_local_ped(), false); Settings.Player.AmmoModifier_InfiniteClip = -1; }
+
             if (Settings.Vehicle.VehicleGodMode)
                 Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
 
