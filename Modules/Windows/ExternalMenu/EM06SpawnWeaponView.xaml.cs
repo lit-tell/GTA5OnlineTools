@@ -72,15 +72,9 @@ public partial class EM06SpawnWeaponView : UserControl
 
     ////////////////////////////////////////////////////////////////////////////////////////
 
-    private void CheckBox_AmmoModifier_InfiniteAmmo_Click(object sender, RoutedEventArgs e)
-    {
-        Settings.Player.AmmoModifier_InfiniteAmmo = (sbyte)(CheckBox_AmmoModifier_InfiniteAmmo.IsChecked == true ? 1 : 0);
-    }
+    private void CheckBox_AmmoModifier_InfiniteAmmo_Click(object sender, RoutedEventArgs e) { Settings.Player.AmmoModifier_InfiniteAmmo = CheckBox_AmmoModifier_InfiniteAmmo.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_AmmoModifier_InfiniteClip_Click(object sender, RoutedEventArgs e)
-    {
-        Settings.Player.AmmoModifier_InfiniteClip = (sbyte)(CheckBox_AmmoModifier_InfiniteClip.IsChecked == true ? 1 : 0);
-    }
+    private void CheckBox_AmmoModifier_InfiniteClip_Click(object sender, RoutedEventArgs e) { Settings.Player.AmmoModifier_InfiniteClip = CheckBox_AmmoModifier_InfiniteClip.IsChecked == true ? 1 : 0; }
 
     private void CheckBox_InfiniteAmmo_Click(object sender, RoutedEventArgs e)
     {

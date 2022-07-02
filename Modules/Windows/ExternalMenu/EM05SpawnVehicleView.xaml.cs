@@ -82,17 +82,9 @@ public partial class EM05SpawnVehicleView : UserControl
 
     /////////////////////////////////////////////////////////////////////////////////
 
-    private void CheckBox_VehicleGodMode_Click(object sender, RoutedEventArgs e)
-    {
-        Vehicle.set_godmode(Ped.get_current_vehicle(Hacks.get_local_ped()), Settings.Vehicle.VehicleGodMode = true);
-        Settings.Vehicle.VehicleGodMode = CheckBox_VehicleGodMode.IsChecked == true;
-    }
+    private void CheckBox_VehicleGodMode_Click(object sender, RoutedEventArgs e) { Settings.Vehicle.VehicleGodMode = CheckBox_VehicleGodMode.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_VehicleSeatbelt_Click(object sender, RoutedEventArgs e)
-    {
-        Ped.set_seatbelt(Hacks.get_local_ped(), CheckBox_VehicleSeatbelt.IsChecked == true);
-        Settings.Vehicle.VehicleSeatbelt = CheckBox_VehicleSeatbelt.IsChecked == true;
-    }
+    private void CheckBox_PlayerSeatbelt_Click(object sender, RoutedEventArgs e) { Settings.Player.Seatbelt = CheckBox_PlayerSeatbelt.IsChecked == true ? 1 : 0; }
 
     private void CheckBox_VehicleParachute_Click(object sender, RoutedEventArgs e)
     {

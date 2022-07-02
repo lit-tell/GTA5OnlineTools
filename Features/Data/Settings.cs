@@ -6,36 +6,37 @@ public class Settings
 {
     public static bool ShowWindow = true;
 
-    public static float Forward = 1.5f;
+    public static float ForwardDist = 1.5f;
 
     public static int ProduceTime = 5;
 
     public struct Player
     {
-        public static bool GodMode = false;
-        public static bool AntiAFK = false;
-        public static bool NoRagdoll = false;
-        public static bool WaterProof = false;
-        public static bool Invisible = false;
-        public static bool UndeadOffRadar = false;
-        public static bool EveryoneIgnore = false;
-        public static bool CopsIgnore = false;
-        public static bool NoCollision = false;
-        public static sbyte AmmoModifier_InfiniteAmmo = -1;
-        public static sbyte AmmoModifier_InfiniteClip = -1;
+        public static int GodMode = -1;
+        public static int AntiAFK = -1;
+        public static int NoRagdoll = -1;
+        public static int WaterProof = -1;
+        public static int Invisible = -1;
+        public static int UndeadOffRadar = -1;
+        public static int EveryoneIgnore = -1;
+        public static int CopsIgnore = -1;
+        public static int NoCollision = -1;
+        public static int AmmoModifier_InfiniteAmmo = -1;
+        public static int AmmoModifier_InfiniteClip = -1;
+        public static int Seatbelt = -1;
     }
 
     public struct Vehicle
     {
-        public static bool VehicleGodMode = false;
-        public static bool VehicleSeatbelt = false;
+        public static int VehicleGodMode = -1;
     }
 
     public struct Special
     {
-        public static bool FireAmmo = false;
-        public static bool ExplosiveAmmo = false;
-        public static bool SuperJump = false;
+        public static bool FrameFlagsExplosiveAmmo = false;
+        public static bool FrameFlagsFlamingAmmo = false;
+        public static bool FrameFlagsExplosiveFists = false;
+        public static bool FrameFlagsSuperJump = false;
     }
 
     public struct Common

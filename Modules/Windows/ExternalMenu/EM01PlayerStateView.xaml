@@ -222,11 +222,11 @@
                             Content="无布娃娃" />
                         <CheckBox
                             x:Name="CheckBox_NPCIgnore"
-                            Click="CheckBox_NPCIgnore_Click"
+                            Click="CheckBox_NpcsIgnore_Click"
                             Content="NPC无视" />
                         <CheckBox
                             x:Name="CheckBox_PoliceIgnore"
-                            Click="CheckBox_NPCIgnore_Click"
+                            Click="CheckBox_CopsIgnore_Click"
                             Content="警察无视" />
                         <TextBlock />
                         <CheckBox
