@@ -598,11 +598,11 @@ public class Ped : Entity
     public static bool get_cops_ignore(long ped) { return PlayerInfo.get_cops_ignore(get_playerinfo(ped)); }
     public static void set_everyone_ignore(long ped, bool toggle) { PlayerInfo.set_everyone_ignore(get_playerinfo(ped), toggle); }
     public static void set_cops_ignore(long ped, bool toggle) { PlayerInfo.set_cops_ignore(get_playerinfo(ped), toggle); }
-    public static long get_weaponinventory(long ped) { return Memory.Read<long>(ped + 0x10D0); }
-    public static bool get_infinite_ammo(long ped) { return WeaponInventory.get_infinite_ammo(get_weaponinventory(ped)); }
-    public static bool get_infinite_clip(long ped) { return WeaponInventory.get_infinite_clip(get_weaponinventory(ped)); }
-    public static void set_infinite_ammo(long ped, bool toggle) { WeaponInventory.set_infinite_ammo(get_weaponinventory(ped), toggle); }
-    public static void set_infinite_clip(long ped, bool toggle) { WeaponInventory.set_infinite_clip(get_weaponinventory(ped), toggle); }
+    public static long get_ped_inventory(long ped) { return Memory.Read<long>(ped + 0x10D0); }
+    public static bool get_infinite_ammo(long ped) { return PedInventory.get_infinite_ammo(get_ped_inventory(ped)); }
+    public static bool get_infinite_clip(long ped) { return PedInventory.get_infinite_clip(get_ped_inventory(ped)); }
+    public static void set_infinite_ammo(long ped, bool toggle) { PedInventory.set_infinite_ammo(get_ped_inventory(ped), toggle); }
+    public static void set_infinite_clip(long ped, bool toggle) { PedInventory.set_infinite_clip(get_ped_inventory(ped), toggle); }
     public static long get_pedweaponmanager(long ped) { return Memory.Read<long>(ped + 0x10D8); }
     public static short get_damage_type(long ped) { return PedWeaponManager.get_damage_type(get_pedweaponmanager(ped)); }
     public static int get_explosion_type(long ped) { return PedWeaponManager.get_explosion_type(get_pedweaponmanager(ped)); }
@@ -893,25 +893,25 @@ public class PlayerInfo
 }
 
 
-public class WeaponInventory
+public class PedInventory
 {
-    public static bool get_infinite_ammo(long weaponinventory) { return (((Memory.Read<byte>(weaponinventory + 0x78, new int[] { 0x78 }) & (1 << 0)) == (1 << 0)) ? true : false); }
-    public static bool get_infinite_clip(long weaponinventory) { return (((Memory.Read<byte>(weaponinventory + 0x78, new int[] { 0x78 }) & (1 << 1)) == (1 << 1)) ? true : false); }
+    public static bool get_infinite_ammo(long ped_inventory) { return (((Memory.Read<byte>(ped_inventory + 0x78, new int[] { 0x78 }) & (1 << 0)) == (1 << 0)) ? true : false); }
+    public static bool get_infinite_clip(long ped_inventory) { return (((Memory.Read<byte>(ped_inventory + 0x78, new int[] { 0x78 }) & (1 << 1)) == (1 << 1)) ? true : false); }
 
 
-    public static void set_infinite_ammo(long weaponinventory, bool toggle)
+    public static void set_infinite_ammo(long ped_inventory, bool toggle)
     {
-        byte temp = Memory.Read<byte>(weaponinventory + 0x78);
+        byte temp = Memory.Read<byte>(ped_inventory + 0x78);
         if (toggle) temp = (byte)(temp | (1 << 0));
         else temp = (byte)(temp & ~(1 << 0));
-        Memory.Write<byte>(weaponinventory + 0x78, temp);
+        Memory.Write<byte>(ped_inventory + 0x78, temp);
     }
-    public static void set_infinite_clip(long weaponinventory, bool toggle)
+    public static void set_infinite_clip(long ped_inventory, bool toggle)
     {
-        byte temp = Memory.Read<byte>(weaponinventory + 0x78);
+        byte temp = Memory.Read<byte>(ped_inventory + 0x78);
         if (toggle) temp = (byte)(temp | (1 << 1));
         else temp = (byte)(temp & ~(1 << 1));
-        Memory.Write<byte>(weaponinventory + 0x78, temp);
+        Memory.Write<byte>(ped_inventory + 0x78, temp);
     }
 }
 
