@@ -142,6 +142,10 @@
                     x:Name="Button_FillCurrentAmmo"
                     Click="Button_FillCurrentAmmo_Click"
                     Content="补满当前武器弹药" />
+                <Button
+                    x:Name="Button_FillAllAmmo"
+                    Click="Button_FillAllAmmo_Click"
+                    Content="补满所有武器弹药" />
             </WrapPanel>
 
             <StackPanel Margin="0,20,0,0" DockPanel.Dock="Bottom">

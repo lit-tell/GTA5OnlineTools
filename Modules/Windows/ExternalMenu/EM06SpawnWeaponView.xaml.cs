@@ -159,4 +159,11 @@ public partial class EM06SpawnWeaponView : UserControl
 
         Hacks.fill_current_ammo();
     }
+
+    private void Button_FillAllAmmo_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.ClickSound();
+
+        Hacks.fill_all_ammo();
+    }
 }

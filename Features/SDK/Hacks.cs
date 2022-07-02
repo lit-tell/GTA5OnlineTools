@@ -382,6 +382,28 @@ public partial class Hacks
 
         Memory.Write<int>(my_offset_1 + 0x18, getMaxAmmo);
     }
+    public static void fill_all_ammo()
+    {
+        long p = Ped.get_ped_inventory(get_local_ped());
+        p = Memory.Read<long>(p + 0x48);
+        //for(int i = 0; i < 32; i++)
+        //{
+        //    long temp = Memory.Read<long>(p + i * 0x08);
+        //    if (!Memory.IsValid(temp)) continue;
+        //    if (!Memory.IsValid(Memory.Read<long>(temp + 0x08))) continue;
+        //    Func<int, int, int> Max = (int a, int b) => { return  a > b ? a : b; };
+        //    int max_ammo = Max(Memory.Read<int>(temp + 0x08, new int[] { 0x28 }), Memory.Read<int>(temp + 0x08, new int[] { 0x34 }));
+        //    Memory.Write<int>(temp + 0x20, max_ammo);
+        //}
+        int count = 0;
+        while (Memory.Read<int>(p + count * 0x08) != 0 && Memory.Read<int>(p + count * 0x08, new int[] {0x08}) != 0)
+        {
+            Func<int, int, int> Max = (int a, int b) => { return a > b ? a : b; };
+            int max_ammo = Max(Memory.Read<int>(p + count * 0x08, new int[] { 0x08, 0x28 }), Memory.Read<int>(p + count * 0x08, new int[] { 0x08, 0x34 }));
+            Memory.Write<int>(p + count * 0x08, new int[] { 0x20 }, max_ammo);
+            count++;
+        }
+    }
 }
 
 
