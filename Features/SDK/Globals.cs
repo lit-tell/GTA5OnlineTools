@@ -238,12 +238,18 @@ public partial class Globals
         if (toggle) SG<int>(oNETTimeHelp + 3576, 1);
     }
 
-    public static void backup_heli(bool toggle) { SG<int>(oVMYCar + 4454, toggle ? 1 : 0); }
-
-    public static void airstrike(bool toggle) { SG<int>(oVMYCar + 4455, toggle ? 1 : 0); }
-
+    public static void call_heli_backup(bool toggle) { SG<int>(oVMYCar + 4454, toggle ? 1 : 0); }
+    public static void call_airstrike(bool toggle) { SG<int>(oVMYCar + 4455, toggle ? 1 : 0); }
+    public static void deliver_ammo(bool toggle) { SG<int>(oVMYCar + 874, toggle ? 1 : 0); }
     public static void deliver_bull_shark(bool toggle) { SG<int>(oVMYCar + 882, toggle ? 1 : 0); }
-
+    public static void deliver_ballistic_armor(bool toggle) { SG<int>(oVMYCar + 884, toggle ? 1 : 0); }//Request Ballistic Equipment
+    public static void ballistic_armor_request_cost(int value) { SG<int>(262145 + 20083, value); }//Ballistic Armor Request Cost
+    public static void trigger_boat_pickup(bool toggle) { SG<int>(oVMYCar + 875, toggle ? 1 : 0); }
+    public static void trigger_heli_pickup(bool toggle, bool is_vip)
+    {
+        SG<int>(oVMYCar + 876, toggle ? 1 : 0);
+        SG<int>(oVMYCar + 883, is_vip ? 1 : -1);
+    }
     public static void ceo_special_cargo(bool toggle) { SG<int>(1946798, toggle ? 1 : 0); }
 
     public static void ceo_cargo_type(int cargoID) { SG<int>(1946644, cargoID); }

@@ -115,12 +115,12 @@ public partial class EM03OnlineOptionView : UserControl
 
     private void CheckBox_BackupHeli_Click(object sender, RoutedEventArgs e)
     {
-        Globals.backup_heli(CheckBox_BackupHeli.IsChecked == true);
+        Globals.call_heli_backup(CheckBox_BackupHeli.IsChecked == true);
     }
 
     private void CheckBox_Airstrike_Click(object sender, RoutedEventArgs e)
     {
-        Globals.airstrike(CheckBox_Airstrike.IsChecked == true);
+        Globals.call_airstrike(CheckBox_Airstrike.IsChecked == true);
     }
 
     private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
