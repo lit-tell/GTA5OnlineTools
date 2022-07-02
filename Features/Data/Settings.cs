@@ -10,42 +10,30 @@ public class Settings
 
     public static int ProduceTime = 5;
 
-    public struct Player
-    {
-        public static int GodMode = -1;
-        public static int AntiAFK = -1;
-        public static int NoRagdoll = -1;
-        public static int WaterProof = -1;
-        public static int Invisible = -1;
-        public static int UndeadOffRadar = -1;
-        public static int EveryoneIgnore = -1;
-        public static int CopsIgnore = -1;
-        public static int NoCollision = -1;
-        public static int AmmoModifier_InfiniteAmmo = -1;
-        public static int AmmoModifier_InfiniteClip = -1;
-        public static int Seatbelt = -1;
-    }
+    public static int GodMode = -1;
+    public static int AntiAFK = -1;
+    public static int NoRagdoll = -1;
+    public static int WaterProof = -1;
+    public static int Invisible = -1;
+    public static int UndeadOffRadar = -1;
+    public static int EveryoneIgnore = -1;
+    public static int CopsIgnore = -1;
+    public static int NoCollision = -1;
+    public static int AmmoModifier_InfiniteAmmo = -1;
+    public static int AmmoModifier_InfiniteClip = -1;
+    public static int Seatbelt = -1;
 
-    public struct Vehicle
-    {
-        public static int VehicleGodMode = -1;
-    }
+    public static int VehicleGodMode = -1;
 
-    public struct Special
-    {
-        public static bool FrameFlagsExplosiveAmmo = false;
-        public static bool FrameFlagsFlamingAmmo = false;
-        public static bool FrameFlagsExplosiveFists = false;
-        public static bool FrameFlagsSuperJump = false;
-    }
+    public static bool FrameFlagsExplosiveAmmo = false;
+    public static bool FrameFlagsFlamingAmmo = false;
+    public static bool FrameFlagsExplosiveFists = false;
+    public static bool FrameFlagsSuperJump = false;
 
-    public struct Common
-    {
-        public static bool AutoClearWanted = false;
-        public static bool AutoKillNPC = false;
-        public static bool AutoKillHostilityNPC = false;
-        public static bool AutoKillPolice = false;
-    }
+    public static bool AutoClearWanted = false;
+    public static bool AutoKillNPC = false;
+    public static bool AutoKillHostilityNPC = false;
+    public static bool AutoKillPolice = false;
 
     public struct Overlay
     {

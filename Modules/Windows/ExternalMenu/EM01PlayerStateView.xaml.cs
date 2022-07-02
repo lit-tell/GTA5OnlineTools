@@ -128,44 +128,44 @@ public partial class EM01PlayerStateView : UserControl
 
             ////////////////////////////////
 
-            if (Settings.Player.GodMode == 1) Ped.set_godmode(local_ped, true);
-            else if (Settings.Player.GodMode == 0) { Ped.set_godmode(local_ped, false); Settings.Player.GodMode = -1; }
+            if (Settings.GodMode == 1) Ped.set_godmode(local_ped, true);
+            else if (Settings.GodMode == 0) { Ped.set_godmode(local_ped, false); Settings.GodMode = -1; }
 
-            if (Settings.Player.AntiAFK == 1) Globals.anti_afk(true);
-            else if (Settings.Player.AntiAFK == 0) { Globals.anti_afk(false); Settings.Player.AntiAFK = -1; }
+            if (Settings.AntiAFK == 1) Globals.anti_afk(true);
+            else if (Settings.AntiAFK == 0) { Globals.anti_afk(false); Settings.AntiAFK = -1; }
 
-            if (Settings.Player.NoRagdoll == 1) Ped.set_no_ragdoll(local_ped, true);
-            else if (Settings.Player.NoRagdoll == 0) { Ped.set_no_ragdoll(local_ped, false); Settings.Player.NoRagdoll = -1; }
+            if (Settings.NoRagdoll == 1) Ped.set_no_ragdoll(local_ped, true);
+            else if (Settings.NoRagdoll == 0) { Ped.set_no_ragdoll(local_ped, false); Settings.NoRagdoll = -1; }
 
-            if (Settings.Player.WaterProof == 1) Ped.set_waterproof(local_ped, true);
-            else if (Settings.Player.WaterProof == 0) { Ped.set_waterproof(local_ped, false); Settings.Player.WaterProof = -1; }
+            if (Settings.WaterProof == 1) Ped.set_waterproof(local_ped, true);
+            else if (Settings.WaterProof == 0) { Ped.set_waterproof(local_ped, false); Settings.WaterProof = -1; }
 
-            if (Settings.Player.Invisible == 1) Ped.set_invisible(local_ped, true);
-            else if (Settings.Player.Invisible == 0) { Ped.set_invisible(local_ped, false); Settings.Player.Invisible = -1; }
+            if (Settings.Invisible == 1) Ped.set_invisible(local_ped, true);
+            else if (Settings.Invisible == 0) { Ped.set_invisible(local_ped, false); Settings.Invisible = -1; }
 
-            if (Settings.Player.UndeadOffRadar == 1) Ped.set_max_health(local_ped, 0.0f);
-            else if (Settings.Player.UndeadOffRadar == 0) { Ped.set_max_health(local_ped, 328.0f); Settings.Player.UndeadOffRadar = -1; }
+            if (Settings.UndeadOffRadar == 1) Ped.set_max_health(local_ped, 0.0f);
+            else if (Settings.UndeadOffRadar == 0) { Ped.set_max_health(local_ped, 328.0f); Settings.UndeadOffRadar = -1; }
 
-            if (Settings.Player.EveryoneIgnore == 1) Ped.set_everyone_ignore(local_ped, true);
-            else if (Settings.Player.EveryoneIgnore == 0) { Ped.set_everyone_ignore(local_ped, false); Settings.Player.EveryoneIgnore = -1; }
+            if (Settings.EveryoneIgnore == 1) Ped.set_everyone_ignore(local_ped, true);
+            else if (Settings.EveryoneIgnore == 0) { Ped.set_everyone_ignore(local_ped, false); Settings.EveryoneIgnore = -1; }
 
-            if (Settings.Player.CopsIgnore == 1) Ped.set_cops_ignore(local_ped, true);
-            else if (Settings.Player.CopsIgnore == 0) { Ped.set_cops_ignore(local_ped, false); Settings.Player.CopsIgnore = -1; }
+            if (Settings.CopsIgnore == 1) Ped.set_cops_ignore(local_ped, true);
+            else if (Settings.CopsIgnore == 0) { Ped.set_cops_ignore(local_ped, false); Settings.CopsIgnore = -1; }
 
-            if (Settings.Player.NoCollision == 1) Ped.set_no_collision(local_ped, true);
-            else if (Settings.Player.NoCollision == 0) { Ped.set_no_collision(local_ped, false); Settings.Player.NoCollision = -1; }
+            if (Settings.NoCollision == 1) Ped.set_no_collision(local_ped, true);
+            else if (Settings.NoCollision == 0) { Ped.set_no_collision(local_ped, false); Settings.NoCollision = -1; }
 
-            if (Settings.Player.AmmoModifier_InfiniteAmmo == 1) Ped.set_infinite_ammo(local_ped, true);
-            else if (Settings.Player.AmmoModifier_InfiniteAmmo == 0) { Ped.set_infinite_ammo(local_ped, false); Settings.Player.AmmoModifier_InfiniteAmmo = -1; }
+            if (Settings.AmmoModifier_InfiniteAmmo == 1) Ped.set_infinite_ammo(local_ped, true);
+            else if (Settings.AmmoModifier_InfiniteAmmo == 0) { Ped.set_infinite_ammo(local_ped, false); Settings.AmmoModifier_InfiniteAmmo = -1; }
 
-            if (Settings.Player.AmmoModifier_InfiniteClip == 1) Ped.set_infinite_clip(local_ped, true);
-            else if (Settings.Player.AmmoModifier_InfiniteClip == 0) { Ped.set_infinite_clip(local_ped, false); Settings.Player.AmmoModifier_InfiniteClip = -1; }
+            if (Settings.AmmoModifier_InfiniteClip == 1) Ped.set_infinite_clip(local_ped, true);
+            else if (Settings.AmmoModifier_InfiniteClip == 0) { Ped.set_infinite_clip(local_ped, false); Settings.AmmoModifier_InfiniteClip = -1; }
 
-            if (Settings.Player.Seatbelt == 1) Ped.set_seatbelt(local_ped, true);
-            else if (Settings.Player.Seatbelt == 0) { Ped.set_seatbelt(local_ped, false); Settings.Player.Seatbelt = -1; }
+            if (Settings.Seatbelt == 1) Ped.set_seatbelt(local_ped, true);
+            else if (Settings.Seatbelt == 0) { Ped.set_seatbelt(local_ped, false); Settings.Seatbelt = -1; }
 
-            if (Settings.Vehicle.VehicleGodMode == 1) Vehicle.set_godmode(local_ped_current_vehicle, true);
-            else if (Settings.Vehicle.VehicleGodMode == 0) { Vehicle.set_godmode(local_ped_current_vehicle, false); Settings.Vehicle.VehicleGodMode = -1; }
+            if (Settings.VehicleGodMode == 1) Vehicle.set_godmode(local_ped_current_vehicle, true);
+            else if (Settings.VehicleGodMode == 0) { Vehicle.set_godmode(local_ped_current_vehicle, false); Settings.VehicleGodMode = -1; }
 
             ////////////////////////////////
 
@@ -201,10 +201,10 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            if (Settings.Special.FrameFlagsExplosiveAmmo) Ped.set_frame_flags_explosiveammo(local_ped, true);
-            if (Settings.Special.FrameFlagsFlamingAmmo) Ped.set_frame_flags_flamingammo(local_ped, true);
-            if (Settings.Special.FrameFlagsExplosiveFists) Ped.set_frame_flags_explosivefists(local_ped, true);
-            if (Settings.Special.FrameFlagsSuperJump) Ped.set_frame_flags_superjump(local_ped, true);
+            if (Settings.FrameFlagsExplosiveAmmo) Ped.set_frame_flags_explosiveammo(local_ped, true);
+            if (Settings.FrameFlagsFlamingAmmo) Ped.set_frame_flags_flamingammo(local_ped, true);
+            if (Settings.FrameFlagsExplosiveFists) Ped.set_frame_flags_explosivefists(local_ped, true);
+            if (Settings.FrameFlagsSuperJump) Ped.set_frame_flags_superjump(local_ped, true);
 
             Thread.Sleep(1);
         }
@@ -214,16 +214,16 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            if (Settings.Common.AutoClearWanted)
+            if (Settings.AutoClearWanted)
                 Ped.set_wanted_level(local_ped, 0);
 
-            if (Settings.Common.AutoKillNPC)
+            if (Settings.AutoKillNPC)
                 Hacks.kill_npcs();
 
-            if (Settings.Common.AutoKillHostilityNPC)
+            if (Settings.AutoKillHostilityNPC)
                 Hacks.kill_enemies();
 
-            if (Settings.Common.AutoKillPolice)
+            if (Settings.AutoKillPolice)
                 Hacks.kill_cops();
 
             Thread.Sleep(200);
@@ -244,39 +244,39 @@ public partial class EM01PlayerStateView : UserControl
 
     private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_stealth_speed(local_ped, (float)Slider_StealthSpeed.Value); }
 
-    private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e) { Settings.Player.GodMode = CheckBox_PlayerGodMode.IsChecked == true ? 1 : 0; }
+    private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e) { Settings.GodMode = CheckBox_PlayerGodMode.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_AntiAFK_Click(object sender, RoutedEventArgs e) { Settings.Player.AntiAFK = CheckBox_AntiAFK.IsChecked == true ? 1 : 0; }
+    private void CheckBox_AntiAFK_Click(object sender, RoutedEventArgs e) { Settings.AntiAFK = CheckBox_AntiAFK.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_WaterProof_Click(object sender, RoutedEventArgs e) { Settings.Player.WaterProof = CheckBox_WaterProof.IsChecked == true ? 1 : 0; }
+    private void CheckBox_WaterProof_Click(object sender, RoutedEventArgs e) { Settings.WaterProof = CheckBox_WaterProof.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_Invisibility_Click(object sender, RoutedEventArgs e) { Settings.Player.Invisible = CheckBox_Invisibility.IsChecked == true ? 1 : 0; }
+    private void CheckBox_Invisibility_Click(object sender, RoutedEventArgs e) { Settings.Invisible = CheckBox_Invisibility.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_UndeadOffRadar_Click(object sender, RoutedEventArgs e) { Settings.Player.UndeadOffRadar = CheckBox_UndeadOffRadar.IsChecked == true ? 1 : 0; }
+    private void CheckBox_UndeadOffRadar_Click(object sender, RoutedEventArgs e) { Settings.UndeadOffRadar = CheckBox_UndeadOffRadar.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_NoRagdoll_Click(object sender, RoutedEventArgs e) { Settings.Player.NoRagdoll = CheckBox_NoRagdoll.IsChecked == true ? 1 : 0; }
+    private void CheckBox_NoRagdoll_Click(object sender, RoutedEventArgs e) { Settings.NoRagdoll = CheckBox_NoRagdoll.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_NpcsIgnore_Click(object sender, RoutedEventArgs e) { Settings.Player.EveryoneIgnore = CheckBox_NPCIgnore.IsChecked == true ? 1 : 0; }
+    private void CheckBox_NpcsIgnore_Click(object sender, RoutedEventArgs e) { Settings.EveryoneIgnore = CheckBox_NPCIgnore.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_CopsIgnore_Click(object sender, RoutedEventArgs e) { Settings.Player.CopsIgnore = CheckBox_PoliceIgnore.IsChecked == true ? 1 : 0; }
+    private void CheckBox_CopsIgnore_Click(object sender, RoutedEventArgs e) { Settings.CopsIgnore = CheckBox_PoliceIgnore.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_AutoClearWanted_Click(object sender, RoutedEventArgs e) { Settings.Common.AutoClearWanted = CheckBox_AutoClearWanted.IsChecked == true; }
+    private void CheckBox_AutoClearWanted_Click(object sender, RoutedEventArgs e) { Settings.AutoClearWanted = CheckBox_AutoClearWanted.IsChecked == true; }
 
-    private void CheckBox_AutoKillNPC_Click(object sender, RoutedEventArgs e) { Settings.Common.AutoKillNPC = CheckBox_AutoKillNPC.IsChecked == true; }
+    private void CheckBox_AutoKillNPC_Click(object sender, RoutedEventArgs e) { Settings.AutoKillNPC = CheckBox_AutoKillNPC.IsChecked == true; }
 
-    private void CheckBox_AutoKillHostilityNPC_Click(object sender, RoutedEventArgs e) { Settings.Common.AutoKillHostilityNPC = CheckBox_AutoKillHostilityNPC.IsChecked == true; }
+    private void CheckBox_AutoKillHostilityNPC_Click(object sender, RoutedEventArgs e) { Settings.AutoKillHostilityNPC = CheckBox_AutoKillHostilityNPC.IsChecked == true; }
 
-    private void CheckBox_AutoKillPolice_Click(object sender, RoutedEventArgs e) { Settings.Common.AutoKillPolice = CheckBox_AutoKillPolice.IsChecked == true; }
+    private void CheckBox_AutoKillPolice_Click(object sender, RoutedEventArgs e) { Settings.AutoKillPolice = CheckBox_AutoKillPolice.IsChecked == true; }
 
     private void CheckBox_FrameFlags_Click(object sender, RoutedEventArgs e)
     {
-        Settings.Special.FrameFlagsExplosiveAmmo  = CheckBox_FrameFlagsExplosiveAmmo.IsChecked == true;
-        Settings.Special.FrameFlagsFlamingAmmo    = CheckBox_FrameFlagsFlamingAmmo.IsChecked == true;
-        Settings.Special.FrameFlagsExplosiveFists = CheckBox_FrameFlagsExplosiveFists.IsChecked == true;
-        Settings.Special.FrameFlagsSuperJump      = CheckBox_FrameFlagsSuperJump.IsChecked == true;
+        Settings.FrameFlagsExplosiveAmmo  = CheckBox_FrameFlagsExplosiveAmmo.IsChecked == true;
+        Settings.FrameFlagsFlamingAmmo    = CheckBox_FrameFlagsFlamingAmmo.IsChecked == true;
+        Settings.FrameFlagsExplosiveFists = CheckBox_FrameFlagsExplosiveFists.IsChecked == true;
+        Settings.FrameFlagsSuperJump      = CheckBox_FrameFlagsSuperJump.IsChecked == true;
     }
 
-    private void CheckBox_NoCollision_Click(object sender, RoutedEventArgs e) { Settings.Player.NoCollision = CheckBox_NoCollision.IsChecked == true ? 1 : 0; }
+    private void CheckBox_NoCollision_Click(object sender, RoutedEventArgs e) { Settings.NoCollision = CheckBox_NoCollision.IsChecked == true ? 1 : 0; }
 
     private void Button_ToWaypoint_Click(object sender, RoutedEventArgs e)
     {
