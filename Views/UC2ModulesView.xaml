@@ -188,6 +188,27 @@
                     </Button.Content>
                 </Button>
 
+                <Button Command="{Binding DeleteMoneyClickCommand}" Style="{StaticResource ButtonFunctionSelfStyle}">
+                    <Button.Content>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="Margin" Value="0,5,0,0" />
+                                </Style>
+                            </StackPanel.Resources>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="42"
+                                Foreground="#37aefe"
+                                Style="{StaticResource HomeIcoTextBlock}"
+                                Text="&#xe666;" />
+                            <TextBlock Text="Delete Money" />
+                            <TextBlock Text="删除钱" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
             </WrapPanel>
         </ScrollViewer>
 

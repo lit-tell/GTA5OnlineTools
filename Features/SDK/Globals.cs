@@ -243,7 +243,8 @@ public partial class Globals
     public static void deliver_ammo(bool toggle) { SG<int>(oVMYCar + 874, toggle ? 1 : 0); }
     public static void deliver_bull_shark(bool toggle) { SG<int>(oVMYCar + 882, toggle ? 1 : 0); }
     public static void deliver_ballistic_armor(bool toggle) { SG<int>(oVMYCar + 884, toggle ? 1 : 0); }//Request Ballistic Equipment
-    public static void ballistic_armor_request_cost(int value) { SG<int>(262145 + 20083, value); }//Ballistic Armor Request Cost
+    public static int get_ballistic_armor_request_cost() { return GG<int>(262145 + 20083); }//Ballistic Armor Request Cost
+    public static void set_ballistic_armor_request_cost(int value) { SG<int>(262145 + 20083, value); }//Ballistic Armor Request Cost
     public static void trigger_boat_pickup(bool toggle) { SG<int>(oVMYCar + 875, toggle ? 1 : 0); }
     public static void trigger_heli_pickup(bool toggle, bool is_vip)
     {
