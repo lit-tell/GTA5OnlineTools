@@ -78,13 +78,13 @@ public partial class EM03OnlineOptionView : UserControl
         }
     }
 
-    private void Button_InstantBullShark_True_Click(object sender, RoutedEventArgs e) { Globals.instant_bull_shark(true); }
+    private void Button_InstantBullShark_True_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.instant_bull_shark(true); }
 
-    private void Button_InstantBullShark_False_Click(object sender, RoutedEventArgs e) { Globals.instant_bull_shark(false); }
+    private void Button_InstantBullShark_False_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.instant_bull_shark(false); }
 
-    private void Button_CallAirstrike_Click(object sender, RoutedEventArgs e) { Globals.call_airstrike(true); }
+    private void Button_CallAirstrike_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.call_airstrike(true); }
 
-    private void Button_CallHeliBackup_Click(object sender, RoutedEventArgs e) { Globals.call_heli_backup(true); }
+    private void Button_CallHeliBackup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.call_heli_backup(true); }
 
     private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
     {
