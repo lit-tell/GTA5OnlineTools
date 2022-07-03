@@ -17,8 +17,8 @@ public partial class DeleteMoneyWindow : Window
 
         Memory.Initialize(CoreUtil.TargetAppName);
 
-        Globals.GlobalPTR = Memory.FindPattern(Offsets.Mask.GlobalMask);
-        Globals.GlobalPTR = Memory.Rip_37(Globals.GlobalPTR);
+        Globals.TempPTR = Memory.FindPattern(Offsets.Mask.GlobalMask);
+        Globals.GlobalPTR = Memory.Rip_37(Globals.TempPTR);
 
         Dispatcher.Invoke(new Action(delegate
         {

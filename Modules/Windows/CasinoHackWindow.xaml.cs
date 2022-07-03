@@ -26,8 +26,8 @@ public partial class CasinoHackWindow : Window
         {
             Memory.Initialize(CoreUtil.TargetAppName);
 
-            Globals.LocalScriptsPTR = Memory.FindPattern(Offsets.Mask.LocalScriptsMask);
-            Globals.LocalScriptsPTR = Memory.Rip_37(Globals.LocalScriptsPTR);
+            Globals.TempPTR = Memory.FindPattern(Offsets.Mask.LocalScriptsMask);
+            Globals.LocalScriptsPTR = Memory.Rip_37(Globals.TempPTR);
         });
 
         Dictionary<int, string> dicItem_Roulette = new Dictionary<int, string>();
