@@ -22,6 +22,17 @@ public class Settings
     public static int AmmoModifier_InfiniteAmmo = -1;
     public static int AmmoModifier_InfiniteClip = -1;
     public static int Seatbelt = -1;
+    public static int RemovePassiveModeCooldown = -1;
+    public static int RemoveSuicideCooldown = -1;
+    public static int DisableOrbitalCooldown = -1;
+    public static int OffRadar = -1;
+    public static int GhostOrganization = -1;
+    public static int BlindCops = -1;
+    public static int BribeCops = -1;
+    public static int RevealPlayers = -1;
+    public static int AllowSellOnNonPublic = -1;
+    public static int OnlineSnow = -1;
+
 
     public static int VehicleGodMode = -1;
 

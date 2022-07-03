@@ -167,6 +167,35 @@ public partial class EM01PlayerStateView : UserControl
             if (Settings.VehicleGodMode == 1) Vehicle.set_godmode(local_ped_current_vehicle, true);
             else if (Settings.VehicleGodMode == 0) { Vehicle.set_godmode(local_ped_current_vehicle, false); Settings.VehicleGodMode = -1; }
 
+            if(Settings.RemovePassiveModeCooldown == 1) { Globals.remove_passive_mode_cooldown(true); }
+            else if (Settings.RemovePassiveModeCooldown == 0) { Globals.remove_passive_mode_cooldown(false); Settings.RemovePassiveModeCooldown = -1; }
+
+            if (Settings.RemoveSuicideCooldown == 1) { Globals.remove_suicide_cooldown(true); }
+            else if (Settings.RemoveSuicideCooldown == 0) { Globals.remove_suicide_cooldown(false); Settings.RemoveSuicideCooldown = -1; }
+
+            if (Settings.DisableOrbitalCooldown == 1) { Globals.disable_orbital_cooldown(true); }
+            else if (Settings.DisableOrbitalCooldown == 0) { Globals.disable_orbital_cooldown(false); Settings.DisableOrbitalCooldown = -1; }
+
+            if(Settings.OffRadar == 1) { Globals.off_radar(true); }
+            else if (Settings.OffRadar == 0) { Globals.off_radar(false); Settings.OffRadar = -1; }
+
+            if (Settings.GhostOrganization == 1) { Globals.ghost_organization(true); }
+            else if (Settings.GhostOrganization == 0) { Globals.ghost_organization(false); Settings.GhostOrganization = -1; }
+
+            if (Settings.BlindCops == 1) { Globals.blind_cops(true); }
+            else if (Settings.BlindCops == 0) { Globals.blind_cops(false); Settings.BlindCops = -1; }
+
+            if (Settings.BribeCops == 1) { Globals.bribe_cops(true); }
+            else if (Settings.BribeCops == 0) { Globals.bribe_cops(false); Settings.BribeCops = -1; }
+
+            if (Settings.RevealPlayers == 1) { Globals.reveal_players(true); }
+            else if (Settings.RevealPlayers == 0) { Globals.reveal_players(false); Settings.RevealPlayers = -1; }
+
+            if (Settings.AllowSellOnNonPublic == 1) { Globals.allow_sell_on_non_public(true); }
+            else if (Settings.AllowSellOnNonPublic == 0) { Globals.allow_sell_on_non_public(false); Settings.AllowSellOnNonPublic = -1; }
+
+            if (Settings.OnlineSnow == 1) { Globals.session_snow(true); }
+            else if (Settings.OnlineSnow == 0) { Globals.session_snow(false); Settings.OnlineSnow = -1; }
             ////////////////////////////////
 
             Dispatcher.BeginInvoke(new Action(delegate

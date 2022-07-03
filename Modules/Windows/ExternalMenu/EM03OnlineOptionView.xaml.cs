@@ -32,55 +32,25 @@ public partial class EM03OnlineOptionView : UserControl
         
     }
 
-    private void CheckBox_RemovePassiveModeCooldown_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.remove_passive_mode_cooldown(CheckBox_RemovePassiveModeCooldown.IsChecked == true);
-    }
+    private void CheckBox_RemovePassiveModeCooldown_Click(object sender, RoutedEventArgs e) { Settings.RemovePassiveModeCooldown = CheckBox_RemovePassiveModeCooldown.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_RemoveSuicideCooldown_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.remove_suicide_cooldown(CheckBox_RemoveSuicideCooldown.IsChecked == true);
-    }
+    private void CheckBox_RemoveSuicideCooldown_Click(object sender, RoutedEventArgs e) { Settings.RemoveSuicideCooldown = CheckBox_RemoveSuicideCooldown.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_DisableOrbitalCooldown_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.disable_orbital_cooldown(CheckBox_DisableOrbitalCooldown.IsChecked == true);
-    }
+    private void CheckBox_DisableOrbitalCooldown_Click(object sender, RoutedEventArgs e) { Settings.DisableOrbitalCooldown = CheckBox_DisableOrbitalCooldown.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_OffRadar_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.off_radar(CheckBox_OffRadar.IsChecked == true);
-    }
+    private void CheckBox_OffRadar_Click(object sender, RoutedEventArgs e) { Settings.OffRadar = CheckBox_OffRadar.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_GhostOrganization_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.ghost_organization(CheckBox_GhostOrganization.IsChecked == true);
-    }
+    private void CheckBox_GhostOrganization_Click(object sender, RoutedEventArgs e) { Settings.GhostOrganization = CheckBox_GhostOrganization.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_BribeOrBlindCops_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.blind_cops(CheckBox_BribeOrBlindCops.IsChecked == true);
-    }
+    private void CheckBox_BribeOrBlindCops_Click(object sender, RoutedEventArgs e) { Settings.BlindCops = CheckBox_BribeOrBlindCops.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_BribeAuthorities_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.bribe_cops(CheckBox_BribeAuthorities.IsChecked == true);
-    }
+    private void CheckBox_BribeAuthorities_Click(object sender, RoutedEventArgs e) { Settings.BribeCops = CheckBox_BribeAuthorities.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_RevealPlayers_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.reveal_players(CheckBox_RevealPlayers.IsChecked == true);
-    }
+    private void CheckBox_RevealPlayers_Click(object sender, RoutedEventArgs e) { Settings.RevealPlayers = CheckBox_RevealPlayers.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_AllowSellOnNonPublic_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.allow_sell_on_non_public(CheckBox_AllowSellOnNonPublic.IsChecked == true);
-    }
+    private void CheckBox_AllowSellOnNonPublic_Click(object sender, RoutedEventArgs e) { Settings.AllowSellOnNonPublic = CheckBox_AllowSellOnNonPublic.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_OnlineSnow_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.session_snow(CheckBox_OnlineSnow.IsChecked == true);
-    }
+    private void CheckBox_OnlineSnow_Click(object sender, RoutedEventArgs e) { Settings.OnlineSnow = CheckBox_OnlineSnow.IsChecked == true ? 1 : 0; }
 
     private void Button_Blips_Click(object sender, RoutedEventArgs e)
     {
@@ -108,20 +78,13 @@ public partial class EM03OnlineOptionView : UserControl
         }
     }
 
-    private void CheckBox_InstantBullShark_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.instant_bull_shark(CheckBox_InstantBullShark.IsChecked == true);
-    }
+    private void Button_InstantBullShark_True_Click(object sender, RoutedEventArgs e) { Globals.instant_bull_shark(true); }
 
-    private void CheckBox_BackupHeli_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.call_heli_backup(CheckBox_BackupHeli.IsChecked == true);
-    }
+    private void Button_InstantBullShark_False_Click(object sender, RoutedEventArgs e) { Globals.instant_bull_shark(false); }
 
-    private void CheckBox_Airstrike_Click(object sender, RoutedEventArgs e)
-    {
-        Globals.call_airstrike(CheckBox_Airstrike.IsChecked == true);
-    }
+    private void Button_CallAirstrike_Click(object sender, RoutedEventArgs e) { Globals.call_airstrike(true); }
+
+    private void Button_CallHeliBackup_Click(object sender, RoutedEventArgs e) { Globals.call_heli_backup(true); }
 
     private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
     {
