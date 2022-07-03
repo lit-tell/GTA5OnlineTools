@@ -65,18 +65,17 @@ public partial class EM03OnlineOptionView : UserControl
         }
     }
 
-    private void Button_MerryweatherServices_Click(object sender, RoutedEventArgs e)
-    {
-        AudioUtil.ClickSound();
+    private void Button_DeliverAmmo_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.deliver_ammo(true); }
+    
+    private void Button_DeliverBallisticArmor_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.deliver_ballistic_armor(true); }
+    
+    private void Button_DeliverBullShark_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.deliver_bull_shark(true); }
+    
+    private void Button_TriggerBoatPickup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.trigger_boat_pickup(true); }
+    
+    private void Button_TriggerHeliPickup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.trigger_heli_pickup(true, false); }
 
-        var str = (e.OriginalSource as Button).Content.ToString();
-
-        int index = MiscData.MerryweatherServices.FindIndex(t => t.Name == str);
-        if (index != -1)
-        {
-            Globals.merry_weather_services(MiscData.MerryweatherServices[index].ID);
-        }
-    }
+    private void Button_TriggerHeliVipPickup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.trigger_heli_pickup(true, true); }
 
     private void Button_InstantBullShark_True_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.instant_bull_shark(true); }
 

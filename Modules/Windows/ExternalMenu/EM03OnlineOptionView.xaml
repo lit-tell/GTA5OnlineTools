@@ -126,15 +126,16 @@
                     Text="梅利威瑟" />
             </Border>
             <WrapPanel Margin="3,0,3,0">
-                <Button Click="Button_MerryweatherServices_Click" Content="请求弹药空投" />
-                <Button Click="Button_MerryweatherServices_Click" Content="请求重型防弹装甲" />
-                <Button Click="Button_MerryweatherServices_Click" Content="请求牛鲨睾酮" />
-                <Button Click="Button_MerryweatherServices_Click" Content="请求船只接送" />
-                <Button Click="Button_MerryweatherServices_Click" Content="请求直升机接送" />
-                <Button x:Name="Button_InstantBullShark_True" Click="Button_InstantBullShark_True_Click" Content="启动牛鲨状态" />
+                <Button x:Name="Button_DeliverAmmo"            Click="Button_DeliverAmmo_Click"            Content="请求弹药空投" />
+                <Button x:Name="Button_DeliverBallisticArmor"  Click="Button_DeliverBallisticArmor_Click"  Content="请求重型防弹装甲" />
+                <Button x:Name="Button_DeliverBullShark"       Click="Button_DeliverBullShark_Click"       Content="请求牛鲨睾酮" />
+                <Button x:Name="Button_TriggerBoatPickup"      Click="Button_TriggerBoatPickup_Click"      Content="请求船只接送" />
+                <Button x:Name="Button_TriggerHeliPickup"      Click="Button_TriggerHeliPickup_Click"      Content="请求直升机接送" />
+                <Button x:Name="Button_TriggerHeliVipPickup"   Click="Button_TriggerHeliVipPickup_Click"   Content="请求直升机Vip接送" />
+                <Button x:Name="Button_InstantBullShark_True"  Click="Button_InstantBullShark_True_Click"  Content="启动牛鲨状态" />
                 <Button x:Name="Button_InstantBullShark_False" Click="Button_InstantBullShark_False_Click" Content="关闭牛鲨状态" />
-                <Button x:Name="Button_CallAirstrike" Click="Button_CallAirstrike_Click" Content="呼叫空袭" />
-                <Button x:Name="Button_CallHeliBackup" Click="Button_CallHeliBackup_Click" Content="呼叫直升机支援" />
+                <Button x:Name="Button_CallAirstrike"          Click="Button_CallAirstrike_Click"          Content="呼叫空袭" />
+                <Button x:Name="Button_CallHeliBackup"         Click="Button_CallHeliBackup_Click"         Content="呼叫直升机支援" />
             </WrapPanel>
         </StackPanel>
 
