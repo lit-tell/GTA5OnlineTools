@@ -74,7 +74,7 @@ public partial class Hacks
     public static void to_coords(long ped, Vector3 pos)
     {
         long entity = (Ped.is_in_vehicle(ped) ? Ped.get_current_vehicle(ped) : ped);
-        Entity.set_position(ped, pos);
+        Entity.set_position(entity, pos);
     }
 
     public static void to_coords_with_check(long ped, Vector3 pos)
