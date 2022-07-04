@@ -290,10 +290,14 @@
                             x:Name="CheckBox_ClearWanted"
                             Content="[F8] 消除警星"
                             IsChecked="True" />
+                        <CheckBox
+                            x:Name="CheckBox_ThroughTheWall"
+                            Content="[E][按住] 穿墙"
+                            IsChecked="True" />
                         <TextBlock />
                         <CheckBox
                             x:Name="CheckBox_FillCurrentAmmo"
-                            Content="[F3] 补满当前武器弹药"
+                            Content="[F3] 补满所有武器弹药"
                             IsChecked="True" />
                         <CheckBox
                             x:Name="CheckBox_MovingFoward"

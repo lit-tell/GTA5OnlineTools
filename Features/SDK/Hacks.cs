@@ -637,7 +637,7 @@ public class Ped : Entity
     public static bool get_seatbelt(long ped) { return (((Memory.Read<byte>(ped + 0x145C) & (1 << 0)) == (1 << 0)) ? true : false); }
     public static float get_armor(long ped) { return Memory.Read<float>(ped + 0x1530); }
     private static float get_collision(long ped) { return Memory.Read<float>(ped + 0x30, new int[] { 0x10, 0x20, 0x70, 0x00, 0x2C }); }
-    public static bool get_no_collision(long ped) { return ((get_collision(ped) <= -1.0f) ? true : false); }
+    public static bool get_no_collision(long ped) { return ((get_collision(ped) <= 0.0f) ? true : false); }
 
 
     public static void set_damage_type(long ped, short value) { PedWeaponManager.set_damage_type(get_pedweaponmanager(ped), value); }

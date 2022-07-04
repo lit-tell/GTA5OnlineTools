@@ -70,7 +70,7 @@ public partial class EM01PlayerStateView : UserControl
                 case (int)WinVK.F3:
                     if (CheckBox_FillCurrentAmmo.IsChecked == true)
                     {
-                        Hacks.fill_current_ammo();
+                        Hacks.fill_all_ammo();
                     }
                     break;
                 case (int)WinVK.F4:
@@ -104,6 +104,13 @@ public partial class EM01PlayerStateView : UserControl
                     {
                         Ped.set_wanted_level(local_ped, 0);
                     }
+                    break;
+                case (int)WinVK.E:
+                    if (CheckBox_ThroughTheWall.IsChecked == true)
+                    {
+                        Ped.set_no_collision(local_ped, true);
+                    }
+                    else if (Ped.get_no_collision(local_ped)) Ped.set_no_collision(local_ped, false);
                     break;
             }
         }));
