@@ -293,7 +293,7 @@
                         <CheckBox
                             x:Name="CheckBox_ThroughTheWall"
                             Content="[E] 切换穿墙"
-                            IsChecked="True" />
+                            IsChecked="False" />
                         <TextBlock />
                         <CheckBox
                             x:Name="CheckBox_FillCurrentAmmo"
