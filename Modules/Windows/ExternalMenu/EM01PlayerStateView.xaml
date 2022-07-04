@@ -292,7 +292,7 @@
                             IsChecked="True" />
                         <CheckBox
                             x:Name="CheckBox_ThroughTheWall"
-                            Content="[E][按住] 穿墙"
+                            Content="[E] 切换穿墙"
                             IsChecked="True" />
                         <TextBlock />
                         <CheckBox

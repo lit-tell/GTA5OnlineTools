@@ -48,6 +48,7 @@ public partial class EM01PlayerStateView : UserControl
         MainHotKeys.AddKey(WinVK.F7);
         MainHotKeys.AddKey(WinVK.F8);
         MainHotKeys.AddKey(WinVK.DELETE);
+        MainHotKeys.AddKey(WinVK.E);
         MainHotKeys.KeyDownEvent += new HotKeys.KeyHandler(MyKeyDownEvent);
 
         ExternalMenuView.ClosingDisposeEvent += ExternalMenuView_ClosingDisposeEvent;
@@ -108,9 +109,9 @@ public partial class EM01PlayerStateView : UserControl
                 case (int)WinVK.E:
                     if (CheckBox_ThroughTheWall.IsChecked == true)
                     {
-                        Ped.set_no_collision(local_ped, true);
+                        CheckBox_NoCollision.IsChecked = !CheckBox_NoCollision.IsChecked;
+                        Settings.NoCollision = CheckBox_NoCollision.IsChecked == true ? 1 : 0;
                     }
-                    else if (Ped.get_no_collision(local_ped)) Ped.set_no_collision(local_ped, false);
                     break;
             }
         }));
