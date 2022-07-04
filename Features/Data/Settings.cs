@@ -32,6 +32,13 @@ public class Settings
     public static int RevealPlayers = -1;
     public static int AllowSellOnNonPublic = -1;
     public static int OnlineSnow = -1;
+    public static int ProofsBullet = -1;
+    public static int ProofsFire = -1;
+    public static int ProofsCollision = -1;
+    public static int ProofsMelee = -1;
+    public static int ProofsExplosion = -1;
+    public static int ProofsSteam = -1;
+    public static int ProofsDrown = -1;
 
 
     public static int VehicleGodMode = -1;

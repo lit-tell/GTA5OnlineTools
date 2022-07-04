@@ -546,8 +546,16 @@ public class Entity
         pos.Y += dist * vec.X;
         return pos;
     }
-    public static bool get_godmode(long entity) { return ((Memory.Read<byte>(entity + 0x189) == 0) ? false : true); }//invincible
-    public static bool get_waterproof(long entity) { return ((Memory.Read<byte>(entity + 0x18B) == 0) ? false : true); }
+    public static uint get_damage_bits(long entity) { return Memory.Read<uint>(entity + 0x188); }
+    public static bool get_proofs_bullet(long entity) { return (get_damage_bits(entity) & (1 << 4)) == (1 << 4); }
+    public static bool get_proofs_fire(long entity) { return (get_damage_bits(entity) & (1 << 5)) == (1 << 5); }
+    public static bool get_proofs_collision(long entity) { return (get_damage_bits(entity) & (1 << 6)) == (1 << 6); }
+    public static bool get_proofs_melee(long entity) { return (get_damage_bits(entity) & (1 << 7)) == (1 << 7); }
+    public static bool get_proofs_god(long entity) { return (get_damage_bits(entity) & (1 << 8)) == (1 << 8); }//invincible
+    public static bool get_proofs_explosion(long entity) { return (get_damage_bits(entity) & (1 << 11)) == (1 << 11); }
+    public static bool get_proofs_steam(long entity) { return (get_damage_bits(entity) & (1 << 15)) == (1 << 15); }
+    public static bool get_proofs_drown(long entity) { return (get_damage_bits(entity) & (1 << 16)) == (1 << 16); }
+    public static bool get_proofs_water(long entity) { return (get_damage_bits(entity) & (1 << 24)) == (1 << 24); }
 
 
     public static void set_invisible(long entity, bool toggle)
@@ -572,19 +580,60 @@ public class Entity
         set_real_position(entity, pos);
         set_visual_position(entity, pos);
     }
-    public static void set_godmode(long entity, bool toggle)
+    public static void set_damage_bits(long entity, uint value) { Memory.Write<uint>(entity + 0x188, value); }
+    public static void set_proofs_bullet(long entity, bool toggle)
     {
-        byte temp = Memory.Read<byte>(entity + 0x189);
-        if (toggle) temp = (byte)(temp | (1 << 0));
-        else temp = (byte)(temp & ~(1 << 0));
-        Memory.Write<byte>(entity + 0x189, temp);
+        uint temp = get_damage_bits(entity);
+        temp = toggle ? (uint)(temp | (1 << 4)) : (uint)(temp & ~(1 << 4));
+        set_damage_bits(entity, temp);
     }
-    public static void set_waterproof(long entity, bool toggle)
+    public static void set_proofs_fire(long entity, bool toggle)
     {
-        byte temp = Memory.Read<byte>(entity + 0x18B);
-        if (toggle) temp = (byte)(temp | (1 << 0));
-        else temp = (byte)(temp & ~(1 << 0));
-        Memory.Write<byte>(entity + 0x18B, temp);
+        uint temp = get_damage_bits(entity);
+        temp = toggle ? (uint)(temp | (1 << 5)) : (uint)(temp & ~(1 << 5));
+        set_damage_bits(entity, temp);
+    }
+    public static void set_proofs_collision(long entity, bool toggle)
+    {
+        uint temp = get_damage_bits(entity);
+        temp = toggle ? (uint)(temp | (1 << 6)) : (uint)(temp & ~(1 << 6));
+        set_damage_bits(entity, temp);
+    }
+    public static void set_proofs_melee(long entity, bool toggle)
+    {
+        uint temp = get_damage_bits(entity);
+        temp = toggle ? (uint)(temp | (1 << 7)) : (uint)(temp & ~(1 << 7));
+        set_damage_bits(entity, temp);
+    }
+    public static void set_proofs_god(long entity, bool toggle)
+    {
+        uint temp = get_damage_bits(entity);
+        temp = toggle ? (uint)(temp | (1 << 8)) : (uint)(temp & ~(1 << 8));
+        set_damage_bits(entity, temp);
+    }
+    public static void set_proofs_explosion(long entity, bool toggle)
+    {
+        uint temp = get_damage_bits(entity);
+        temp = toggle ? (uint)(temp | (1 << 11)) : (uint)(temp & ~(1 << 11));
+        set_damage_bits(entity, temp);
+    }
+    public static void set_proofs_steam(long entity, bool toggle)
+    {
+        uint temp = get_damage_bits(entity);
+        temp = toggle ? (uint)(temp | (1 << 15)) : (uint)(temp & ~(1 << 15));
+        set_damage_bits(entity, temp);
+    }
+    public static void set_proofs_drown(long entity, bool toggle)
+    {
+        uint temp = get_damage_bits(entity);
+        temp = toggle ? (uint)(temp | (1 << 16)) : (uint)(temp & ~(1 << 16));
+        set_damage_bits(entity, temp);
+    }
+    public static void set_proofs_water(long entity, bool toggle)
+    {
+        uint temp = get_damage_bits(entity);
+        temp = toggle ? (uint)(temp | (1 << 24)) : (uint)(temp & ~(1 << 24));
+        set_damage_bits(entity, temp);
     }
 }
 

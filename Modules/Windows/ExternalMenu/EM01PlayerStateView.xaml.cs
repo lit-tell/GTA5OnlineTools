@@ -136,8 +136,8 @@ public partial class EM01PlayerStateView : UserControl
 
             ////////////////////////////////
 
-            if (Settings.GodMode == 1) Ped.set_godmode(local_ped, true);
-            else if (Settings.GodMode == 0) { Ped.set_godmode(local_ped, false); Settings.GodMode = -1; }
+            if (Settings.GodMode == 1) Ped.set_proofs_god(local_ped, true);
+            else if (Settings.GodMode == 0) { Ped.set_proofs_god(local_ped, false); Settings.GodMode = -1; }
 
             if (Settings.AntiAFK == 1) Globals.anti_afk(true);
             else if (Settings.AntiAFK == 0) { Globals.anti_afk(false); Settings.AntiAFK = -1; }
@@ -145,8 +145,8 @@ public partial class EM01PlayerStateView : UserControl
             if (Settings.NoRagdoll == 1) Ped.set_no_ragdoll(local_ped, true);
             else if (Settings.NoRagdoll == 0) { Ped.set_no_ragdoll(local_ped, false); Settings.NoRagdoll = -1; }
 
-            if (Settings.WaterProof == 1) Ped.set_waterproof(local_ped, true);
-            else if (Settings.WaterProof == 0) { Ped.set_waterproof(local_ped, false); Settings.WaterProof = -1; }
+            if (Settings.WaterProof == 1) Ped.set_proofs_water(local_ped, true);
+            else if (Settings.WaterProof == 0) { Ped.set_proofs_water(local_ped, false); Settings.WaterProof = -1; }
 
             if (Settings.Invisible == 1) Ped.set_invisible(local_ped, true);
             else if (Settings.Invisible == 0) { Ped.set_invisible(local_ped, false); Settings.Invisible = -1; }
@@ -172,8 +172,29 @@ public partial class EM01PlayerStateView : UserControl
             if (Settings.Seatbelt == 1) Ped.set_seatbelt(local_ped, true);
             else if (Settings.Seatbelt == 0) { Ped.set_seatbelt(local_ped, false); Settings.Seatbelt = -1; }
 
-            if (Settings.VehicleGodMode == 1) Vehicle.set_godmode(local_ped_current_vehicle, true);
-            else if (Settings.VehicleGodMode == 0) { Vehicle.set_godmode(local_ped_current_vehicle, false); Settings.VehicleGodMode = -1; }
+            if (Settings.ProofsBullet == 1) Ped.set_proofs_bullet(local_ped, true);
+            else if (Settings.ProofsBullet == 0) { Ped.set_proofs_bullet(local_ped, false); Settings.ProofsBullet = -1; }
+
+            if (Settings.ProofsFire == 1) Ped.set_proofs_fire(local_ped, true);
+            else if (Settings.ProofsFire == 0) { Ped.set_proofs_fire(local_ped, false); Settings.ProofsFire = -1; }
+
+            if (Settings.ProofsCollision == 1) Ped.set_proofs_collision(local_ped, true);
+            else if (Settings.ProofsCollision == 0) { Ped.set_proofs_collision(local_ped, false); Settings.ProofsCollision = -1; }
+
+            if (Settings.ProofsMelee == 1) Ped.set_proofs_melee(local_ped, true);
+            else if (Settings.ProofsMelee == 0) { Ped.set_proofs_melee(local_ped, false); Settings.ProofsMelee = -1; }
+
+            if (Settings.ProofsExplosion == 1) Ped.set_proofs_explosion(local_ped, true);
+            else if (Settings.ProofsExplosion == 0) { Ped.set_proofs_explosion(local_ped, false); Settings.ProofsExplosion = -1; }
+
+            if (Settings.ProofsSteam == 1) Ped.set_proofs_steam(local_ped, true);
+            else if (Settings.ProofsSteam == 0) { Ped.set_proofs_steam(local_ped, false); Settings.ProofsSteam = -1; }
+
+            if (Settings.ProofsDrown == 1) Ped.set_proofs_drown(local_ped, true);
+            else if (Settings.ProofsDrown == 0) { Ped.set_proofs_drown(local_ped, false); Settings.ProofsDrown = -1; }
+
+            if (Settings.VehicleGodMode == 1) Vehicle.set_proofs_god(local_ped_current_vehicle, true);
+            else if (Settings.VehicleGodMode == 0) { Vehicle.set_proofs_god(local_ped_current_vehicle, false); Settings.VehicleGodMode = -1; }
 
             if(Settings.RemovePassiveModeCooldown == 1) { Globals.remove_passive_mode_cooldown(true); }
             else if (Settings.RemovePassiveModeCooldown == 0) { Globals.remove_passive_mode_cooldown(false); Settings.RemovePassiveModeCooldown = -1; }
@@ -356,4 +377,19 @@ public partial class EM01PlayerStateView : UserControl
     {
         Settings.ForwardDist = (float)Slider_MovingFoward.Value;
     }
+
+    private void CheckBox_ProofsBullet_Click(object sender, RoutedEventArgs e) { Settings.ProofsBullet = CheckBox_ProofsBullet.IsChecked == true ? 1 : 0; }
+
+    private void CheckBox_ProofsFire_Click(object sender, RoutedEventArgs e) { Settings.ProofsFire = CheckBox_ProofsFire.IsChecked == true ? 1 : 0; }
+
+    private void CheckBox_ProofsCollision_Click(object sender, RoutedEventArgs e) { Settings.ProofsCollision = CheckBox_ProofsCollision.IsChecked == true ? 1 : 0; }
+
+    private void CheckBox_ProofsMelee_Click(object sender, RoutedEventArgs e) { Settings.ProofsMelee = CheckBox_ProofsMelee.IsChecked == true ? 1 : 0; }
+
+    private void CheckBox_ProofsExplosion_Click(object sender, RoutedEventArgs e) { Settings.ProofsExplosion = CheckBox_ProofsExplosion.IsChecked == true ? 1 : 0; }
+
+    private void CheckBox_ProofsSteam_Click(object sender, RoutedEventArgs e) { Settings.ProofsSteam = CheckBox_ProofsSteam.IsChecked == true ? 1 : 0; }
+
+    private void CheckBox_ProofsDrown_Click(object sender, RoutedEventArgs e) { Settings.ProofsDrown = CheckBox_ProofsDrown.IsChecked == true ? 1 : 0; }
+
 }
