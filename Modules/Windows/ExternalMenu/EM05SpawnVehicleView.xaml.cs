@@ -11,9 +11,6 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu;
 /// </summary>
 public partial class EM05SpawnVehicleView : UserControl
 {
-    private uint SpawnVehicleHash = 0;
-    private int[] SpawnVehicleMod;
-
     public EM05SpawnVehicleView()
     {
         InitializeComponent();
@@ -52,15 +49,15 @@ public partial class EM05SpawnVehicleView : UserControl
 
     private void ListBox_VehicleInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        SpawnVehicleHash = 0;
+        Settings.SpawnVehicleHash = 0;
 
         int index1 = ListBox_VehicleClass.SelectedIndex;
         int index2 = ListBox_VehicleInfo.SelectedIndex;
 
         if (index1 != -1 && index2 != -1)
         {
-            SpawnVehicleHash = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Hash;
-            SpawnVehicleMod = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Mod;
+            Settings.SpawnVehicleHash = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Hash;
+            Settings.SpawnVehicleMod = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Mod;
         }
     }
 
@@ -72,11 +69,11 @@ public partial class EM05SpawnVehicleView : UserControl
 
         if (str == "刷出线上载具（空地）")
         {
-            Globals.create_vehicle(Hacks.get_local_ped(), SpawnVehicleHash, SpawnVehicleMod, 7.0f, -225.0f);
+            Globals.create_vehicle(Hacks.get_local_ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, -225.0f);
         }
         else
         {
-            Globals.create_vehicle(Hacks.get_local_ped(), SpawnVehicleHash, SpawnVehicleMod, 7.0f, 0.0f);
+            Globals.create_vehicle(Hacks.get_local_ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, 0.0f);
         }
     }
 

@@ -76,4 +76,7 @@ public class Settings
 
         public static bool IsNoTOPMostHide = false;
     }
+
+    public static uint SpawnVehicleHash = 0;
+    public static int[] SpawnVehicleMod;
 }

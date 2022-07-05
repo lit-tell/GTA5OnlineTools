@@ -49,6 +49,7 @@ public partial class EM01PlayerStateView : UserControl
         MainHotKeys.AddKey(WinVK.F8);
         MainHotKeys.AddKey(WinVK.DELETE);
         MainHotKeys.AddKey(WinVK.E);
+        MainHotKeys.AddKey(WinVK.ADD);
         MainHotKeys.KeyDownEvent += new HotKeys.KeyHandler(MyKeyDownEvent);
         MainHotKeys.KeyUpEvent += new HotKeys.KeyHandler(MyKeyUpEvent);
 
@@ -112,6 +113,13 @@ public partial class EM01PlayerStateView : UserControl
                     {
                         Settings.NoCollision = 1;
                         Ped.set_no_collision(local_ped, true);
+                    }
+                    break;
+                case (int)WinVK.ADD:
+                    if (CheckBox_SpawnVehicle.IsChecked == true)
+                    {
+                        Globals.create_vehicle(Hacks.get_local_ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, -225.0f);
+                        Globals.create_vehicle(Hacks.get_local_ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, 0.0f);
                     }
                     break;
             }
