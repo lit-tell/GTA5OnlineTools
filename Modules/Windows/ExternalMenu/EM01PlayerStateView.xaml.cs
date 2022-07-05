@@ -50,6 +50,7 @@ public partial class EM01PlayerStateView : UserControl
         MainHotKeys.AddKey(WinVK.DELETE);
         MainHotKeys.AddKey(WinVK.E);
         MainHotKeys.KeyDownEvent += new HotKeys.KeyHandler(MyKeyDownEvent);
+        MainHotKeys.KeyUpEvent += new HotKeys.KeyHandler(MyKeyUpEvent);
 
         ExternalMenuView.ClosingDisposeEvent += ExternalMenuView_ClosingDisposeEvent;
     }
@@ -109,7 +110,22 @@ public partial class EM01PlayerStateView : UserControl
                 case (int)WinVK.E:
                     if (CheckBox_ThroughTheWall.IsChecked == true)
                     {
-                        CheckBox_NoCollision.IsChecked = !CheckBox_NoCollision.IsChecked;
+                        Settings.NoCollision = 1;
+                    }
+                    break;
+            }
+        }));
+    }
+
+    private void MyKeyUpEvent(int keyId, string keyName)
+    {
+        Dispatcher.BeginInvoke(new Action(delegate
+        {
+            switch (keyId)
+            {
+                case (int)WinVK.E:
+                    if (CheckBox_ThroughTheWall.IsChecked == true)
+                    {
                         Settings.NoCollision = CheckBox_NoCollision.IsChecked == true ? 1 : 0;
                     }
                     break;
@@ -251,7 +267,7 @@ public partial class EM01PlayerStateView : UserControl
                     Slider_StealthSpeed.Value = local_ped_stealth_speed;
             }));
 
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
         }
     }
 
