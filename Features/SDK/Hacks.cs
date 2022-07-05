@@ -53,7 +53,7 @@ public partial class Hacks
     {
         Vector3 pos = get_blip_pos(new int[] { 8 }, new int[] { 84 });
         if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
-        pos.Z = pos.Z == 20.0f ? -225.0f : pos.Z + 1.0f;
+        pos.Z = pos.Z == 20.0f ? -255.0f : pos.Z + 1.0f;
         to_coords(get_local_ped(), pos);
     }
 
