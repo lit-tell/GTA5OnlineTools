@@ -128,7 +128,7 @@ public partial class EM01PlayerStateView : UserControl
                     if (CheckBox_ThroughTheWall.IsChecked == true)
                     {
                         Settings.NoCollision = CheckBox_NoCollision.IsChecked == true ? 1 : 0;
-                        Ped.set_no_collision(local_ped, false);
+                        if(Settings.NoCollision == 0) Ped.set_no_collision(local_ped, false);
                     }
                     break;
             }
