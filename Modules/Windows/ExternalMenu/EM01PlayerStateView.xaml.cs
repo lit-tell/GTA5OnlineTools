@@ -111,6 +111,7 @@ public partial class EM01PlayerStateView : UserControl
                     if (CheckBox_ThroughTheWall.IsChecked == true)
                     {
                         Settings.NoCollision = 1;
+                        Ped.set_no_collision(local_ped, true);
                     }
                     break;
             }
@@ -127,6 +128,7 @@ public partial class EM01PlayerStateView : UserControl
                     if (CheckBox_ThroughTheWall.IsChecked == true)
                     {
                         Settings.NoCollision = CheckBox_NoCollision.IsChecked == true ? 1 : 0;
+                        Ped.set_no_collision(local_ped, false);
                     }
                     break;
             }
@@ -267,7 +269,7 @@ public partial class EM01PlayerStateView : UserControl
                     Slider_StealthSpeed.Value = local_ped_stealth_speed;
             }));
 
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
         }
     }
 
