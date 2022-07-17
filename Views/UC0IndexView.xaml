@@ -23,7 +23,6 @@
                     Text="📃 最新公告" />
             </StackPanel>
             <TextBox
-                Margin="3,0,0,0"
                 Padding="5"
                 DockPanel.Dock="Bottom"
                 Style="{StaticResource TextBoxShowInfoStyle}"

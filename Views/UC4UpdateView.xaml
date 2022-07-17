@@ -24,7 +24,6 @@
             </StackPanel>
             <TextBox
                 x:Name="TextBox_Change"
-                Margin="3,0,0,0"
                 Padding="5"
                 DockPanel.Dock="Bottom"
                 Style="{StaticResource TextBoxShowInfoStyle}"

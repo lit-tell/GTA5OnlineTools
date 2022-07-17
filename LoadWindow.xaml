@@ -24,48 +24,30 @@
 
     <Window.Template>
         <ControlTemplate TargetType="{x:Type Window}">
-            <Border BorderBrush="Gray" BorderThickness="1">
-                <Grid>
-                    <Image
-                        RenderOptions.BitmapScalingMode="HighQuality"
-                        Source="/Assets/Images/Launch.jpg"
-                        Stretch="UniformToFill" />
-                    <ContentPresenter ClipToBounds="True" />
-                </Grid>
+            <Border
+                Background="White"
+                BorderBrush="Gray"
+                BorderThickness="1">
+                <ContentPresenter ClipToBounds="True" />
             </Border>
         </ControlTemplate>
     </Window.Template>
 
     <Grid>
-        <Border
-            x:Name="Border_Launch"
-            Width="0"
-            Height="25"
-            MaxWidth="640"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            Background="#FCAF17"
-            SnapsToDevicePixels="True">
-            <Border.Style>
-                <Style TargetType="Border">
-                    <Style.Triggers>
-                        <EventTrigger RoutedEvent="Border.Loaded">
-                            <BeginStoryboard>
-                                <Storyboard Storyboard.TargetProperty="Width">
-                                    <DoubleAnimation
-                                        From="0"
-                                        To="640"
-                                        Duration="0:0:1">
-                                        <DoubleAnimation.EasingFunction>
-                                            <SineEase EasingMode="EaseInOut" />
-                                        </DoubleAnimation.EasingFunction>
-                                    </DoubleAnimation>
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Border.Style>
-        </Border>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <!--  左侧图片  -->
+        <Image Grid.Column="0" Source="/Assets/Images/Launch.png" />
+        <!--  右侧初始化内容  -->
+        <StackPanel Grid.Column="1" Margin="10">
+            <TextBlock
+                Margin="5"
+                FontSize="32"
+                FontWeight="Bold"
+                Text="GTA5线上小助手" />
+            <TextBlock Margin="5" Text="正在初始化程序，请稍后..." />
+        </StackPanel>
     </Grid>
 </Window>

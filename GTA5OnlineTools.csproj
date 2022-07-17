@@ -24,7 +24,7 @@
     <None Remove="Assets\Images\Hacks\Kiddion.png" />
     <None Remove="Assets\Images\Hacks\LSCHax.png" />
     <None Remove="Assets\Images\Hacks\SubVersion.png" />
-    <None Remove="Assets\Images\Launch.jpg" />
+    <None Remove="Assets\Images\Launch.png" />
     <None Remove="Assets\Images\Tips\Bread.png" />
     <None Remove="Assets\Images\Tips\Bread_Chs.png" />
     <None Remove="Assets\Images\Tips\Cayo01.png" />
@@ -110,7 +110,7 @@
     <Resource Include="Assets\Images\Hacks\Kiddion.png" />
     <Resource Include="Assets\Images\Hacks\LSCHax.png" />
     <Resource Include="Assets\Images\Hacks\SubVersion.png" />
-    <Resource Include="Assets\Images\Launch.jpg" />
+    <Resource Include="Assets\Images\Launch.png" />
     <Resource Include="Assets\Images\Tips\Bread.png" />
     <Resource Include="Assets\Images\Tips\Bread_Chs.png" />
     <Resource Include="Assets\Images\Tips\Cayo01.png" />

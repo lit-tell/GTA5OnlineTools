@@ -76,102 +76,94 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <Border Background="White">
-                    <Border.Effect>
-                        <DropShadowEffect
-                            BlurRadius="5"
-                            Direction="0"
-                            Opacity="0.5"
-                            ShadowDepth="1"
-                            Color="Gray" />
-                    </Border.Effect>
-                </Border>
-                <DockPanel LastChildFill="True">
-                    <StackPanel DockPanel.Dock="Top">
-                        <TextBlock
+                <Border Background="White" BorderBrush="Gray" BorderThickness="0,0,0.8,0">
+                    <DockPanel LastChildFill="True">
+                        <StackPanel DockPanel.Dock="Top">
+                            <TextBlock
                             Margin="10"
                             FontSize="80"
                             Foreground="#2196F3"
                             Style="{StaticResource IconFontHVStyle}"
                             Text="&#xe64d;">
-                            <TextBlock.Effect>
-                                <DropShadowEffect
+                                <TextBlock.Effect>
+                                    <DropShadowEffect
                                     BlurRadius="5"
                                     Direction="0"
                                     Opacity="1"
                                     ShadowDepth="3"
                                     Color="Gray" />
-                            </TextBlock.Effect>
-                        </TextBlock>
-                        <TextBlock
+                                </TextBlock.Effect>
+                            </TextBlock>
+                            <TextBlock
                             Margin="0,0,0,15"
                             HorizontalAlignment="Center"
                             FontSize="20"
                             FontWeight="Bold"
                             Text="GTA5线上小助手">
-                            <TextBlock.Effect>
-                                <DropShadowEffect
+                                <TextBlock.Effect>
+                                    <DropShadowEffect
                                     BlurRadius="5"
                                     Direction="0"
                                     Opacity="0.5"
                                     ShadowDepth="1"
                                     Color="Gray" />
-                            </TextBlock.Effect>
-                        </TextBlock>
-                    </StackPanel>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                        </StackPanel>
 
-                    <StackPanel Margin="5,10,5,10" DockPanel.Dock="Bottom">
-                        <TextBlock
+                        <StackPanel Margin="5,10,5,10" DockPanel.Dock="Bottom">
+                            <TextBlock
                             Margin="0,0,0,5"
                             HorizontalAlignment="Center"
                             Text="{Binding MainModel.GTA5IsRun, FallbackValue='GTA5 : OFF'}">
-                            <TextBlock.Style>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Style.Triggers>
-                                        <Trigger Property="Text" Value="GTA5 : OFF">
-                                            <Setter Property="Foreground" Value="Red" />
-                                        </Trigger>
-                                        <Trigger Property="Text" Value="GTA5 : ON">
-                                            <Setter Property="Foreground" Value="Green" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding MainModel.AppRunTime, FallbackValue='运行时间 : Loading...'}" />
-                    </StackPanel>
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="GTA5 : OFF">
+                                                <Setter Property="Foreground" Value="Red" />
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="GTA5 : ON">
+                                                <Setter Property="Foreground" Value="Green" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock HorizontalAlignment="Center" Text="{Binding MainModel.AppRunTime, FallbackValue='运行时间 : Loading...'}" />
+                        </StackPanel>
 
-                    <ListBox
+                        <ListBox
                         x:Name="MenuBar"
                         DockPanel.Dock="Top"
                         ItemContainerStyle="{StaticResource ListBoxItemMenuStyle}"
                         ItemsSource="{Binding MenuBars}"
                         SelectedIndex="0"
                         Style="{StaticResource ListBoxMenuStyle}">
-                        <b:Interaction.Triggers>
-                            <b:EventTrigger EventName="SelectionChanged">
-                                <b:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=MenuBar, Path=SelectedItem}" />
-                            </b:EventTrigger>
-                        </b:Interaction.Triggers>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type ListBoxItem}">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock
+                            <b:Interaction.Triggers>
+                                <b:EventTrigger EventName="SelectionChanged">
+                                    <b:InvokeCommandAction Command="{Binding NavigateCommand}" CommandParameter="{Binding ElementName=MenuBar, Path=SelectedItem}" />
+                                </b:EventTrigger>
+                            </b:Interaction.Triggers>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type ListBoxItem}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock
                                         Margin="20,0,0,0"
                                         VerticalAlignment="Center"
                                         FontSize="18"
                                         Foreground="{Binding ColorHex}"
                                         Style="{StaticResource TextBlockStyle_IconFontBase}"
                                         Text="{Binding Icon}" />
-                                    <TextBlock
+                                        <TextBlock
                                         Margin="15,0,0,0"
                                         VerticalAlignment="Center"
                                         Text="{Binding Title}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </DockPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </DockPanel>
+                </Border>
             </Grid>
             <Grid Grid.Column="1">
                 <ContentControl x:Name="ContentControl_Main" />
