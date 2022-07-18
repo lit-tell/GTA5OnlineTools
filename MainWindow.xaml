@@ -83,7 +83,8 @@
                     <DockPanel LastChildFill="True">
                         <StackPanel DockPanel.Dock="Top">
                             <Image
-                                Height="100"
+                                Width="96"
+                                Height="96"
                                 Margin="10"
                                 Source="/Assets/Images/Favicon.ico" />
                             <TextBlock

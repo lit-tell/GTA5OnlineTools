@@ -14,7 +14,8 @@
             <Grid Margin="10">
                 <StackPanel Orientation="Vertical">
                     <Image
-                        Height="125"
+                        Width="128"
+                        Height="128"
                         Margin="10"
                         Source="/Assets/Images/Favicon.ico" />
                     <TextBlock

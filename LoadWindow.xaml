@@ -42,12 +42,21 @@
         <Image Grid.Column="0" Source="/Assets/Images/Launch.png" />
         <!--  右侧初始化内容  -->
         <StackPanel Grid.Column="1" Margin="10">
-            <TextBlock
-                Margin="5"
-                FontSize="32"
-                FontWeight="Bold"
-                Text="GTA5线上小助手" />
+            <StackPanel Orientation="Horizontal">
+                <Image
+                    Width="48"
+                    Height="48"
+                    Margin="5"
+                    Source="/Assets/Images/Favicon.ico" />
+                <TextBlock
+                    Margin="5"
+                    VerticalAlignment="Center"
+                    FontSize="32"
+                    FontWeight="Bold"
+                    Text="GTA5线上小助手" />
+            </StackPanel>
             <TextBlock Margin="5" Text="正在初始化程序，请稍后..." />
+
         </StackPanel>
     </Grid>
 </Window>
