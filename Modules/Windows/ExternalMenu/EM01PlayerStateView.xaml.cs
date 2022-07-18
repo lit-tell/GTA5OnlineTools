@@ -354,9 +354,9 @@ public partial class EM01PlayerStateView : UserControl
 
     private void CheckBox_FrameFlags_Click(object sender, RoutedEventArgs e)
     {
-        Settings.FrameFlagsExplosiveAmmo  = CheckBox_FrameFlagsExplosiveAmmo.IsChecked == true;
-        Settings.FrameFlagsFlamingAmmo    = CheckBox_FrameFlagsFlamingAmmo.IsChecked == true;
-        Settings.FrameFlagsExplosiveFists = CheckBox_FrameFlagsExplosiveFists.IsChecked == true;
+        //Settings.FrameFlagsExplosiveAmmo  = CheckBox_FrameFlagsExplosiveAmmo.IsChecked == true;
+        //Settings.FrameFlagsFlamingAmmo    = CheckBox_FrameFlagsFlamingAmmo.IsChecked == true;
+        //Settings.FrameFlagsExplosiveFists = CheckBox_FrameFlagsExplosiveFists.IsChecked == true;
         Settings.FrameFlagsSuperJump      = CheckBox_FrameFlagsSuperJump.IsChecked == true;
     }
 

@@ -76,16 +76,6 @@ public partial class EM06SpawnWeaponView : UserControl
 
     private void CheckBox_AmmoModifier_InfiniteClip_Click(object sender, RoutedEventArgs e) { Settings.AmmoModifier_InfiniteClip = CheckBox_AmmoModifier_InfiniteClip.IsChecked == true ? 1 : 0; }
 
-    private void CheckBox_InfiniteAmmo_Click(object sender, RoutedEventArgs e)
-    {
-        Hacks.infinite_ammo(CheckBox_InfiniteAmmo.IsChecked == true);
-    }
-
-    private void CheckBox_NoReload_Click(object sender, RoutedEventArgs e)
-    {
-        Hacks.no_reload(CheckBox_NoReload.IsChecked == true);
-    }
-
     private void CheckBox_ReloadMult_Click(object sender, RoutedEventArgs e)
     {
         Ped.set_reload_time_multiplier(Hacks.get_local_ped(), CheckBox_ReloadMult.IsChecked == true ? 4.0f : 1.0f);

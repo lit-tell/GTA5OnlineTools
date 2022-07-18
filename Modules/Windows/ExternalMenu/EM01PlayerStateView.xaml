@@ -246,23 +246,8 @@
                     </Border>
                     <WrapPanel Margin="3,0,3,0">
                         <CheckBox
-                            x:Name="CheckBox_FrameFlagsExplosiveAmmo"
-                            Margin="2"
-                            Content="爆炸子弹"
-                            Click="CheckBox_FrameFlags_Click" />
-                        <CheckBox
-                            x:Name="CheckBox_FrameFlagsFlamingAmmo"
-                            Margin="2"
-                            Content="燃烧子弹"
-                            Click="CheckBox_FrameFlags_Click" />
-                        <CheckBox
-                            x:Name="CheckBox_FrameFlagsExplosiveFists"
-                            Margin="2"
-                            Content="爆炸近战"
-                            Click="CheckBox_FrameFlags_Click" />
-                        <CheckBox
                             x:Name="CheckBox_FrameFlagsSuperJump"
-                            Margin="2"
+                            Margin="5"
                             Content="超级跳跃"
                             Click="CheckBox_FrameFlags_Click" />
                     </WrapPanel>
