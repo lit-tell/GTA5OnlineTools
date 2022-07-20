@@ -68,7 +68,11 @@
         </Style>
     </Window.Resources>
 
-    <Border BorderBrush="Gray" BorderThickness="0,0.3,0,0">
+    <Border
+        Background="White"
+        BorderBrush="Gray"
+        BorderThickness="0,0.5,0,0"
+        SnapsToDevicePixels="True">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
@@ -77,9 +81,9 @@
 
             <Grid Grid.Column="0">
                 <Border
-                    Background="White"
                     BorderBrush="Gray"
-                    BorderThickness="0,0,0.8,0">
+                    BorderThickness="0,0,0.5,0"
+                    SnapsToDevicePixels="True">
                     <DockPanel LastChildFill="True">
                         <StackPanel DockPanel.Dock="Top">
                             <Image

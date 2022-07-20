@@ -13,185 +13,171 @@
     <Grid Margin="5">
         <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
             <WrapPanel Orientation="Horizontal">
-                <Grid Margin="3">
-                    <Border Style="{StaticResource HackBorderEffectBaseStyle}" />
-                    <Border Style="{StaticResource HackBorderStyle}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Image
-                                Source="/Assets/Images/Hacks/Kiddion.png"
-                                Style="{StaticResource ImageHighQualityStyle}"
-                                ToolTip="Kiddion 外置辅助菜单" />
-                            <UniformGrid
-                                Grid.Row="1"
-                                Margin="5"
-                                Columns="2">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="KiddionPage">
-                                        使用说明
-                                    </Hyperlink>
-                                    <TextBlock.ToolTip>
-                                        <Image Source="/Assets/Images/Hacks/Kiddion.png" Style="{StaticResource ImageHighQualityStyle}" />
-                                    </TextBlock.ToolTip>
-                                </TextBlock>
-                                <CheckBox IsChecked="{Binding UC1HacksModel.KiddionIsRun}" Style="{StaticResource ONOFFCheckBox}">
-                                    <b:Interaction.Triggers>
-                                        <b:EventTrigger EventName="Click">
-                                            <b:InvokeCommandAction Command="{Binding KiddionClickCommand}" />
-                                        </b:EventTrigger>
-                                    </b:Interaction.Triggers>
-                                </CheckBox>
-                            </UniformGrid>
-                        </Grid>
-                    </Border>
-                </Grid>
-
-                <Grid Margin="3">
-                    <Border Style="{StaticResource HackBorderEffectBaseStyle}" />
-                    <Border Style="{StaticResource HackBorderStyle}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Image
-                                Source="/Assets/Images/Hacks/SubVersion.png"
-                                Style="{StaticResource ImageHighQualityStyle}"
-                                ToolTip="SubVersion 外置辅助菜单" />
-                            <UniformGrid
-                                Grid.Row="1"
-                                Margin="5"
-                                Columns="2">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="SubVersionPage">
-                                        使用说明
-                                    </Hyperlink>
-                                    <TextBlock.ToolTip>
-                                        <Image Source="/Assets/Images/Hacks/SubVersion.png" Style="{StaticResource ImageHighQualityStyle}" />
-                                    </TextBlock.ToolTip>
-                                </TextBlock>
-                                <CheckBox IsChecked="{Binding UC1HacksModel.SubVersionIsRun}" Style="{StaticResource ONOFFCheckBox}">
-                                    <b:Interaction.Triggers>
-                                        <b:EventTrigger EventName="Click">
-                                            <b:InvokeCommandAction Command="{Binding SubVersionClickCommand}" />
-                                        </b:EventTrigger>
-                                    </b:Interaction.Triggers>
-                                </CheckBox>
-                            </UniformGrid>
-                        </Grid>
-                    </Border>
-                </Grid>
-
-                <Grid Margin="3">
-                    <Border Style="{StaticResource HackBorderEffectBaseStyle}" />
-                    <Border Style="{StaticResource HackBorderStyle}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Image
-                                Source="/Assets/Images/Hacks/GTAHax.png"
-                                Style="{StaticResource ImageHighQualityStyle}"
-                                ToolTip="GTAHax 全局变量修改工具" />
-                            <UniformGrid
-                                Grid.Row="1"
-                                Margin="5"
-                                Columns="2">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="GTAHaxPage">
-                                        使用说明
-                                    </Hyperlink>
-                                    <TextBlock.ToolTip>
-                                        <Image Source="/Assets/Images/Hacks/GTAHax.png" Style="{StaticResource ImageHighQualityStyle}" />
-                                    </TextBlock.ToolTip>
-                                </TextBlock>
-                                <CheckBox IsChecked="{Binding UC1HacksModel.GTAHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
-                                    <b:Interaction.Triggers>
-                                        <b:EventTrigger EventName="Click">
-                                            <b:InvokeCommandAction Command="{Binding GTAHaxClickCommand}" />
-                                        </b:EventTrigger>
-                                    </b:Interaction.Triggers>
-                                </CheckBox>
-                            </UniformGrid>
-                        </Grid>
-                    </Border>
-                </Grid>
-
-                <Grid Margin="3">
-                    <Border Style="{StaticResource HackBorderEffectBaseStyle}" />
-                    <Border Style="{StaticResource HackBorderStyle}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Image
-                                Source="/Assets/Images/Hacks/BincoHax.png"
-                                Style="{StaticResource ImageHighQualityStyle}"
-                                ToolTip="BincoHax 角色服装修改工具" />
-                            <UniformGrid
-                                Grid.Row="1"
-                                Margin="5"
-                                Columns="2">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="BincoHaxPage">
-                                        使用说明
-                                    </Hyperlink>
-                                    <TextBlock.ToolTip>
-                                        <Image Source="/Assets/Images/Hacks/BincoHax.png" Style="{StaticResource ImageHighQualityStyle}" />
-                                    </TextBlock.ToolTip>
-                                </TextBlock>
-                                <CheckBox IsChecked="{Binding UC1HacksModel.BincoHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
-                                    <b:Interaction.Triggers>
-                                        <b:EventTrigger EventName="Click">
-                                            <b:InvokeCommandAction Command="{Binding BincoHaxClickCommand}" />
-                                        </b:EventTrigger>
-                                    </b:Interaction.Triggers>
-                                </CheckBox>
-                            </UniformGrid>
-                        </Grid>
-                    </Border>
-                </Grid>
-
-                <Grid Margin="3">
-                    <Border Style="{StaticResource HackBorderEffectBaseStyle}" />
-                    <Border Style="{StaticResource HackBorderStyle}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Image
-                                Source="/Assets/Images/Hacks/LSCHax.png"
-                                Style="{StaticResource ImageHighQualityStyle}"
-                                ToolTip="LSCHax 载具改装编辑器" />
-                            <UniformGrid
-                                Grid.Row="1"
-                                Margin="5"
-                                Columns="2">
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="LSCHaxPage">
-                                        使用说明
-                                    </Hyperlink>
-                                    <TextBlock.ToolTip>
-                                        <Image Source="/Assets/Images/Hacks/LSCHax.png" Style="{StaticResource ImageHighQualityStyle}" />
-                                    </TextBlock.ToolTip>
-                                </TextBlock>
-                                <CheckBox IsChecked="{Binding UC1HacksModel.LSCHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
-                                    <b:Interaction.Triggers>
-                                        <b:EventTrigger EventName="Click">
-                                            <b:InvokeCommandAction Command="{Binding LSCHaxClickCommand}" />
-                                        </b:EventTrigger>
-                                    </b:Interaction.Triggers>
-                                </CheckBox>
-                            </UniformGrid>
-                        </Grid>
-                    </Border>
-                </Grid>
+                <!--  Kiddion 外置辅助菜单  -->
+                <Border Style="{StaticResource HackBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Source="/Assets/Images/Hacks/Kiddion.png"
+                            Style="{StaticResource ImageHighQualityStyle}"
+                            ToolTip="Kiddion 外置辅助菜单" />
+                        <UniformGrid
+                            Grid.Row="1"
+                            Margin="5"
+                            Columns="2">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="KiddionPage">
+                                    使用说明
+                                </Hyperlink>
+                                <TextBlock.ToolTip>
+                                    <Image Source="/Assets/Images/Hacks/Kiddion.png" Style="{StaticResource ImageHighQualityStyle}" />
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                            <CheckBox IsChecked="{Binding UC1HacksModel.KiddionIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Click">
+                                        <b:InvokeCommandAction Command="{Binding KiddionClickCommand}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </CheckBox>
+                        </UniformGrid>
+                    </Grid>
+                </Border>
+                <!--  SubVersion 外置辅助菜单  -->
+                <Border Style="{StaticResource HackBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Source="/Assets/Images/Hacks/SubVersion.png"
+                            Style="{StaticResource ImageHighQualityStyle}"
+                            ToolTip="SubVersion 外置辅助菜单" />
+                        <UniformGrid
+                            Grid.Row="1"
+                            Margin="5"
+                            Columns="2">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="SubVersionPage">
+                                    使用说明
+                                </Hyperlink>
+                                <TextBlock.ToolTip>
+                                    <Image Source="/Assets/Images/Hacks/SubVersion.png" Style="{StaticResource ImageHighQualityStyle}" />
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                            <CheckBox IsChecked="{Binding UC1HacksModel.SubVersionIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Click">
+                                        <b:InvokeCommandAction Command="{Binding SubVersionClickCommand}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </CheckBox>
+                        </UniformGrid>
+                    </Grid>
+                </Border>
+                <!--  GTAHax 全局变量修改工具  -->
+                <Border Style="{StaticResource HackBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Source="/Assets/Images/Hacks/GTAHax.png"
+                            Style="{StaticResource ImageHighQualityStyle}"
+                            ToolTip="GTAHax 全局变量修改工具" />
+                        <UniformGrid
+                            Grid.Row="1"
+                            Margin="5"
+                            Columns="2">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="GTAHaxPage">
+                                    使用说明
+                                </Hyperlink>
+                                <TextBlock.ToolTip>
+                                    <Image Source="/Assets/Images/Hacks/GTAHax.png" Style="{StaticResource ImageHighQualityStyle}" />
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                            <CheckBox IsChecked="{Binding UC1HacksModel.GTAHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Click">
+                                        <b:InvokeCommandAction Command="{Binding GTAHaxClickCommand}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </CheckBox>
+                        </UniformGrid>
+                    </Grid>
+                </Border>
+                <!--  BincoHax 角色服装修改工具  -->
+                <Border Style="{StaticResource HackBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Source="/Assets/Images/Hacks/BincoHax.png"
+                            Style="{StaticResource ImageHighQualityStyle}"
+                            ToolTip="BincoHax 角色服装修改工具" />
+                        <UniformGrid
+                            Grid.Row="1"
+                            Margin="5"
+                            Columns="2">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="BincoHaxPage">
+                                    使用说明
+                                </Hyperlink>
+                                <TextBlock.ToolTip>
+                                    <Image Source="/Assets/Images/Hacks/BincoHax.png" Style="{StaticResource ImageHighQualityStyle}" />
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                            <CheckBox IsChecked="{Binding UC1HacksModel.BincoHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Click">
+                                        <b:InvokeCommandAction Command="{Binding BincoHaxClickCommand}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </CheckBox>
+                        </UniformGrid>
+                    </Grid>
+                </Border>
+                <!--  LSCHax 载具改装编辑器  -->
+                <Border Style="{StaticResource HackBorderStyle}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Source="/Assets/Images/Hacks/LSCHax.png"
+                            Style="{StaticResource ImageHighQualityStyle}"
+                            ToolTip="LSCHax 载具改装编辑器" />
+                        <UniformGrid
+                            Grid.Row="1"
+                            Margin="5"
+                            Columns="2">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="LSCHaxPage">
+                                    使用说明
+                                </Hyperlink>
+                                <TextBlock.ToolTip>
+                                    <Image Source="/Assets/Images/Hacks/LSCHax.png" Style="{StaticResource ImageHighQualityStyle}" />
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                            <CheckBox IsChecked="{Binding UC1HacksModel.LSCHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="Click">
+                                        <b:InvokeCommandAction Command="{Binding LSCHaxClickCommand}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
+                            </CheckBox>
+                        </UniformGrid>
+                    </Grid>
+                </Border>
 
             </WrapPanel>
         </ScrollViewer>

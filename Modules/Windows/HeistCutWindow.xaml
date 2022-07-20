@@ -62,9 +62,10 @@
         <TabControl
             Grid.Row="1"
             Margin="5"
+            Style="{StaticResource TabControlStyle_Main}"
             TabStripPlacement="Top">
             <TabControl.Resources>
-                <Style TargetType="TabItem">
+                <Style BasedOn="{StaticResource TabItemStyle_Main}" TargetType="{x:Type TabItem}">
                     <Setter Property="Padding" Value="10" />
                     <Setter Property="Background" Value="#F5F5F6" />
                 </Style>

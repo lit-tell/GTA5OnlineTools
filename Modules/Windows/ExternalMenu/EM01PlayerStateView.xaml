@@ -248,8 +248,8 @@
                         <CheckBox
                             x:Name="CheckBox_FrameFlagsSuperJump"
                             Margin="5"
-                            Content="超级跳跃⚠️"
-                            Click="CheckBox_FrameFlags_Click" />
+                            Click="CheckBox_FrameFlags_Click"
+                            Content="超级跳跃⚠️" />
                     </WrapPanel>
 
                     <Border Style="{StaticResource BorderTitleStyle}">
