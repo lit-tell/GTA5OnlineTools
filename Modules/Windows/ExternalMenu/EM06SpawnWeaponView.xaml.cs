@@ -67,7 +67,7 @@ public partial class EM06SpawnWeaponView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.spawn_drop(Hacks.get_local_ped(), TempData.WPickup);
+        Hacks.Spawn_Drop(Hacks.Get_Local_Ped(), TempData.WPickup);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////
@@ -78,40 +78,40 @@ public partial class EM06SpawnWeaponView : UserControl
 
     private void CheckBox_ReloadMult_Click(object sender, RoutedEventArgs e)
     {
-        Ped.set_reload_time_multiplier(Hacks.get_local_ped(), CheckBox_ReloadMult.IsChecked == true ? 4.0f : 1.0f);
+        Ped.Set_Reload_Time_Multiplier(Hacks.Get_Local_Ped(), CheckBox_ReloadMult.IsChecked == true ? 4.0f : 1.0f);
     }
 
     private void Button_NoRecoil_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.set_recoil(Hacks.get_local_ped(), 0.0f);
+        Ped.Set_Recoil(Hacks.Get_Local_Ped(), 0.0f);
     }
 
     private void CheckBox_NoSpread_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.set_spread(Hacks.get_local_ped(), 0.0f);
+        Ped.Set_Spread(Hacks.Get_Local_Ped(), 0.0f);
     }
 
     private void CheckBox_Range_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.set_lock_on_range(Hacks.get_local_ped(), 1000.0f);
-        Ped.set_range(Hacks.get_local_ped(), 2000.0f);
+        Ped.Set_Lock_On_Range(Hacks.Get_Local_Ped(), 1000.0f);
+        Ped.Set_Range(Hacks.Get_Local_Ped(), 2000.0f);
     }
 
     private void CheckBox_ImpactType_Click(object sender, RoutedEventArgs e)
     {
         if (CheckBox_ImpactType.IsChecked == true)
         {
-            Ped.set_damage_type(Hacks.get_local_ped(), 5);
+            Ped.Set_Damage_Type(Hacks.Get_Local_Ped(), 5);
         }
         else
         {
-            Ped.set_damage_type(Hacks.get_local_ped(), 3);
+            Ped.Set_Damage_Type(Hacks.Get_Local_Ped(), 3);
         }
     }
 
@@ -121,7 +121,7 @@ public partial class EM06SpawnWeaponView : UserControl
 
         if (index != -1)
         {
-            Ped.set_explosion_type(Hacks.get_local_ped(), MiscData.ImpactExplosions[index].ID);
+            Ped.Set_Explosion_Type(Hacks.Get_Local_Ped(), MiscData.ImpactExplosions[index].ID);
         }
     }
 
@@ -129,13 +129,13 @@ public partial class EM06SpawnWeaponView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.fill_current_ammo();
+        Hacks.Fill_Current_Ammo();
     }
 
     private void Button_FillAllAmmo_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.fill_all_ammo();
+        Hacks.Fill_All_Ammo();
     }
 }

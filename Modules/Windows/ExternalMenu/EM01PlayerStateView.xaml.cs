@@ -73,53 +73,53 @@ public partial class EM01PlayerStateView : UserControl
                 case (int)WinVK.F3:
                     if (CheckBox_FillCurrentAmmo.IsChecked == true)
                     {
-                        Hacks.fill_all_ammo();
+                        Hacks.Fill_All_Ammo();
                     }
                     break;
                 case (int)WinVK.F4:
                     if (CheckBox_MovingFoward.IsChecked == true)
                     {
-                        Hacks.to_coords(local_ped, Ped.get_real_forwardpos(local_ped, Settings.ForwardDist));
+                        Hacks.To_Coords(local_ped, Ped.Get_Real_Forward_Position(local_ped, Settings.ForwardDist));
                     }
                     break;
                 case (int)WinVK.F5:
                     if (CheckBox_ToWaypoint.IsChecked == true)
                     {
-                        Hacks.to_waypoint();
+                        Hacks.To_Waypoint();
                     }
                     break;
                 case (int)WinVK.F6:
                     if (CheckBox_ToObjective.IsChecked == true)
                     {
-                        Hacks.to_objective();
+                        Hacks.To_Objective();
                     }
                     break;
                 case (int)WinVK.F7:
                     if (CheckBox_FillHealthArmor.IsChecked == true)
                     {
-                        Ped.set_health(local_ped, 328.0f);
-                        Ped.set_max_health(local_ped, 328.0f);
-                        Ped.set_armour(local_ped, 50.0f);
+                        Ped.Set_Health(local_ped, 328.0f);
+                        Ped.Set_Max_Health(local_ped, 328.0f);
+                        Ped.Set_Armour(local_ped, 50.0f);
                     }
                     break;
                 case (int)WinVK.F8:
                     if (CheckBox_ClearWanted.IsChecked == true)
                     {
-                        Ped.set_wanted_level(local_ped, 0);
+                        Ped.Set_Wanted_Level(local_ped, 0);
                     }
                     break;
                 case (int)WinVK.E:
                     if (CheckBox_ThroughTheWall.IsChecked == true)
                     {
                         Settings.NoCollision = 1;
-                        Ped.set_no_collision(local_ped, true);
+                        Ped.Set_No_Collision(local_ped, true);
                     }
                     break;
                 case (int)WinVK.ADD:
                     if (CheckBox_SpawnVehicle.IsChecked == true)
                     {
-                        Globals.create_vehicle(Hacks.get_local_ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, -225.0f);
-                        Globals.create_vehicle(Hacks.get_local_ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, 0.0f);
+                        Globals.Create_Vehicle(Hacks.Get_Local_Ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, -225.0f);
+                        Globals.Create_Vehicle(Hacks.Get_Local_Ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, 0.0f);
                     }
                     break;
             }
@@ -136,7 +136,7 @@ public partial class EM01PlayerStateView : UserControl
                     if (CheckBox_ThroughTheWall.IsChecked == true)
                     {
                         Settings.NoCollision = CheckBox_NoCollision.IsChecked == true ? 1 : 0;
-                        if(Settings.NoCollision == 0) Ped.set_no_collision(local_ped, false);
+                        if(Settings.NoCollision == 0) Ped.Set_No_Collision(local_ped, false);
                     }
                     break;
             }
@@ -147,110 +147,110 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            local_ped = Hacks.get_local_ped();
-            local_ped_current_vehicle = Ped.get_current_vehicle(local_ped);
-            local_ped_is_in_vehicle = Ped.is_in_vehicle(local_ped);
+            local_ped = Hacks.Get_Local_Ped();
+            local_ped_current_vehicle = Ped.Get_Current_Vehicle(local_ped);
+            local_ped_is_in_vehicle = Ped.Is_In_Vehicle(local_ped);
 
-            local_ped_health = Ped.get_health(local_ped);
-            local_ped_max_health = Ped.get_max_health(local_ped);
-            local_ped_armor = Ped.get_armor(local_ped);
+            local_ped_health = Ped.Get_Health(local_ped);
+            local_ped_max_health = Ped.Get_Max_Health(local_ped);
+            local_ped_armor = Ped.Get_Armor(local_ped);
 
-            local_ped_wanted_level = Ped.get_wanted_level(local_ped);
-            local_ped_run_speed = Ped.get_run_speed(local_ped);
-            local_ped_swim_speed = Ped.get_swim_speed(local_ped);
-            local_ped_stealth_speed = Ped.get_stealth_speed(local_ped);
+            local_ped_wanted_level = Ped.Get_Wanted_Level(local_ped);
+            local_ped_run_speed = Ped.Get_Run_Speed(local_ped);
+            local_ped_swim_speed = Ped.Get_Swim_Speed(local_ped);
+            local_ped_stealth_speed = Ped.Get_Stealth_Speed(local_ped);
 
             ////////////////////////////////
 
-            if (Settings.GodMode == 1) Ped.set_proofs_god(local_ped, true);
-            else if (Settings.GodMode == 0) { Ped.set_proofs_god(local_ped, false); Settings.GodMode = -1; }
+            if (Settings.GodMode == 1) Ped.Set_Proofs_God(local_ped, true);
+            else if (Settings.GodMode == 0) { Ped.Set_Proofs_God(local_ped, false); Settings.GodMode = -1; }
 
-            if (Settings.AntiAFK == 1) Globals.anti_afk(true);
-            else if (Settings.AntiAFK == 0) { Globals.anti_afk(false); Settings.AntiAFK = -1; }
+            if (Settings.AntiAFK == 1) Globals.Anti_AFK(true);
+            else if (Settings.AntiAFK == 0) { Globals.Anti_AFK(false); Settings.AntiAFK = -1; }
 
-            if (Settings.NoRagdoll == 1) Ped.set_no_ragdoll(local_ped, true);
-            else if (Settings.NoRagdoll == 0) { Ped.set_no_ragdoll(local_ped, false); Settings.NoRagdoll = -1; }
+            if (Settings.NoRagdoll == 1) Ped.Set_No_Ragdoll(local_ped, true);
+            else if (Settings.NoRagdoll == 0) { Ped.Set_No_Ragdoll(local_ped, false); Settings.NoRagdoll = -1; }
 
-            if (Settings.WaterProof == 1) Ped.set_proofs_water(local_ped, true);
-            else if (Settings.WaterProof == 0) { Ped.set_proofs_water(local_ped, false); Settings.WaterProof = -1; }
+            if (Settings.WaterProof == 1) Ped.Set_Proofs_Water(local_ped, true);
+            else if (Settings.WaterProof == 0) { Ped.Set_Proofs_Water(local_ped, false); Settings.WaterProof = -1; }
 
-            if (Settings.Invisible == 1) Ped.set_invisible(local_ped, true);
-            else if (Settings.Invisible == 0) { Ped.set_invisible(local_ped, false); Settings.Invisible = -1; }
+            if (Settings.Invisible == 1) Ped.Set_Invisible(local_ped, true);
+            else if (Settings.Invisible == 0) { Ped.Set_Invisible(local_ped, false); Settings.Invisible = -1; }
 
-            if (Settings.UndeadOffRadar == 1) Ped.set_max_health(local_ped, 0.0f);
-            else if (Settings.UndeadOffRadar == 0) { Ped.set_max_health(local_ped, 328.0f); Settings.UndeadOffRadar = -1; }
+            if (Settings.UndeadOffRadar == 1) Ped.Set_Max_Health(local_ped, 0.0f);
+            else if (Settings.UndeadOffRadar == 0) { Ped.Set_Max_Health(local_ped, 328.0f); Settings.UndeadOffRadar = -1; }
 
-            if (Settings.EveryoneIgnore == 1) Ped.set_everyone_ignore(local_ped, true);
-            else if (Settings.EveryoneIgnore == 0) { Ped.set_everyone_ignore(local_ped, false); Settings.EveryoneIgnore = -1; }
+            if (Settings.EveryoneIgnore == 1) Ped.Set_Everyone_Ignore(local_ped, true);
+            else if (Settings.EveryoneIgnore == 0) { Ped.Set_Everyone_Ignore(local_ped, false); Settings.EveryoneIgnore = -1; }
 
-            if (Settings.CopsIgnore == 1) Ped.set_cops_ignore(local_ped, true);
-            else if (Settings.CopsIgnore == 0) { Ped.set_cops_ignore(local_ped, false); Settings.CopsIgnore = -1; }
+            if (Settings.CopsIgnore == 1) Ped.Set_Cops_Ignore(local_ped, true);
+            else if (Settings.CopsIgnore == 0) { Ped.Set_Cops_Ignore(local_ped, false); Settings.CopsIgnore = -1; }
 
-            if (Settings.NoCollision == 1) Ped.set_no_collision(local_ped, true);
-            else if (Settings.NoCollision == 0) { Ped.set_no_collision(local_ped, false); Settings.NoCollision = -1; }
+            if (Settings.NoCollision == 1) Ped.Set_No_Collision(local_ped, true);
+            else if (Settings.NoCollision == 0) { Ped.Set_No_Collision(local_ped, false); Settings.NoCollision = -1; }
 
-            if (Settings.AmmoModifier_InfiniteAmmo == 1) Ped.set_infinite_ammo(local_ped, true);
-            else if (Settings.AmmoModifier_InfiniteAmmo == 0) { Ped.set_infinite_ammo(local_ped, false); Settings.AmmoModifier_InfiniteAmmo = -1; }
+            if (Settings.AmmoModifier_InfiniteAmmo == 1) Ped.Set_Infinite_Ammo(local_ped, true);
+            else if (Settings.AmmoModifier_InfiniteAmmo == 0) { Ped.Set_Infinite_Ammo(local_ped, false); Settings.AmmoModifier_InfiniteAmmo = -1; }
 
-            if (Settings.AmmoModifier_InfiniteClip == 1) Ped.set_infinite_clip(local_ped, true);
-            else if (Settings.AmmoModifier_InfiniteClip == 0) { Ped.set_infinite_clip(local_ped, false); Settings.AmmoModifier_InfiniteClip = -1; }
+            if (Settings.AmmoModifier_InfiniteClip == 1) Ped.Set_Infinite_Clip(local_ped, true);
+            else if (Settings.AmmoModifier_InfiniteClip == 0) { Ped.Set_Infinite_Clip(local_ped, false); Settings.AmmoModifier_InfiniteClip = -1; }
 
-            if (Settings.Seatbelt == 1) Ped.set_seatbelt(local_ped, true);
-            else if (Settings.Seatbelt == 0) { Ped.set_seatbelt(local_ped, false); Settings.Seatbelt = -1; }
+            if (Settings.Seatbelt == 1) Ped.Set_Seatbelt(local_ped, true);
+            else if (Settings.Seatbelt == 0) { Ped.Set_Seatbelt(local_ped, false); Settings.Seatbelt = -1; }
 
-            if (Settings.ProofsBullet == 1) Ped.set_proofs_bullet(local_ped, true);
-            else if (Settings.ProofsBullet == 0) { Ped.set_proofs_bullet(local_ped, false); Settings.ProofsBullet = -1; }
+            if (Settings.ProofsBullet == 1) Ped.Set_Proofs_Bullet(local_ped, true);
+            else if (Settings.ProofsBullet == 0) { Ped.Set_Proofs_Bullet(local_ped, false); Settings.ProofsBullet = -1; }
 
-            if (Settings.ProofsFire == 1) Ped.set_proofs_fire(local_ped, true);
-            else if (Settings.ProofsFire == 0) { Ped.set_proofs_fire(local_ped, false); Settings.ProofsFire = -1; }
+            if (Settings.ProofsFire == 1) Ped.Set_Proofs_Fire(local_ped, true);
+            else if (Settings.ProofsFire == 0) { Ped.Set_Proofs_Fire(local_ped, false); Settings.ProofsFire = -1; }
 
-            if (Settings.ProofsCollision == 1) Ped.set_proofs_collision(local_ped, true);
-            else if (Settings.ProofsCollision == 0) { Ped.set_proofs_collision(local_ped, false); Settings.ProofsCollision = -1; }
+            if (Settings.ProofsCollision == 1) Ped.Set_Proofs_Collision(local_ped, true);
+            else if (Settings.ProofsCollision == 0) { Ped.Set_Proofs_Collision(local_ped, false); Settings.ProofsCollision = -1; }
 
-            if (Settings.ProofsMelee == 1) Ped.set_proofs_melee(local_ped, true);
-            else if (Settings.ProofsMelee == 0) { Ped.set_proofs_melee(local_ped, false); Settings.ProofsMelee = -1; }
+            if (Settings.ProofsMelee == 1) Ped.Set_Proofs_Melee(local_ped, true);
+            else if (Settings.ProofsMelee == 0) { Ped.Set_Proofs_Melee(local_ped, false); Settings.ProofsMelee = -1; }
 
-            if (Settings.ProofsExplosion == 1) Ped.set_proofs_explosion(local_ped, true);
-            else if (Settings.ProofsExplosion == 0) { Ped.set_proofs_explosion(local_ped, false); Settings.ProofsExplosion = -1; }
+            if (Settings.ProofsExplosion == 1) Ped.Set_Proofs_Explosion(local_ped, true);
+            else if (Settings.ProofsExplosion == 0) { Ped.Set_Proofs_Explosion(local_ped, false); Settings.ProofsExplosion = -1; }
 
-            if (Settings.ProofsSteam == 1) Ped.set_proofs_steam(local_ped, true);
-            else if (Settings.ProofsSteam == 0) { Ped.set_proofs_steam(local_ped, false); Settings.ProofsSteam = -1; }
+            if (Settings.ProofsSteam == 1) Ped.Set_Proofs_Steam(local_ped, true);
+            else if (Settings.ProofsSteam == 0) { Ped.Set_Proofs_Steam(local_ped, false); Settings.ProofsSteam = -1; }
 
-            if (Settings.ProofsDrown == 1) Ped.set_proofs_drown(local_ped, true);
-            else if (Settings.ProofsDrown == 0) { Ped.set_proofs_drown(local_ped, false); Settings.ProofsDrown = -1; }
+            if (Settings.ProofsDrown == 1) Ped.Set_Proofs_Drown(local_ped, true);
+            else if (Settings.ProofsDrown == 0) { Ped.Set_Proofs_Drown(local_ped, false); Settings.ProofsDrown = -1; }
 
-            if (Settings.VehicleGodMode == 1) Vehicle.set_proofs_god(local_ped_current_vehicle, true);
-            else if (Settings.VehicleGodMode == 0) { Vehicle.set_proofs_god(local_ped_current_vehicle, false); Settings.VehicleGodMode = -1; }
+            if (Settings.VehicleGodMode == 1) Vehicle.Set_Proofs_God(local_ped_current_vehicle, true);
+            else if (Settings.VehicleGodMode == 0) { Vehicle.Set_Proofs_God(local_ped_current_vehicle, false); Settings.VehicleGodMode = -1; }
 
-            if(Settings.RemovePassiveModeCooldown == 1) { Globals.remove_passive_mode_cooldown(true); }
-            else if (Settings.RemovePassiveModeCooldown == 0) { Globals.remove_passive_mode_cooldown(false); Settings.RemovePassiveModeCooldown = -1; }
+            if(Settings.RemovePassiveModeCooldown == 1) { Globals.Remove_Passive_Mode_Cooldown(true); }
+            else if (Settings.RemovePassiveModeCooldown == 0) { Globals.Remove_Passive_Mode_Cooldown(false); Settings.RemovePassiveModeCooldown = -1; }
 
-            if (Settings.RemoveSuicideCooldown == 1) { Globals.remove_suicide_cooldown(true); }
-            else if (Settings.RemoveSuicideCooldown == 0) { Globals.remove_suicide_cooldown(false); Settings.RemoveSuicideCooldown = -1; }
+            if (Settings.RemoveSuicideCooldown == 1) { Globals.Remove_Suicide_Cooldown(true); }
+            else if (Settings.RemoveSuicideCooldown == 0) { Globals.Remove_Suicide_Cooldown(false); Settings.RemoveSuicideCooldown = -1; }
 
-            if (Settings.DisableOrbitalCooldown == 1) { Globals.disable_orbital_cooldown(true); }
-            else if (Settings.DisableOrbitalCooldown == 0) { Globals.disable_orbital_cooldown(false); Settings.DisableOrbitalCooldown = -1; }
+            if (Settings.DisableOrbitalCooldown == 1) { Globals.Disable_Orbital_Cooldown(true); }
+            else if (Settings.DisableOrbitalCooldown == 0) { Globals.Disable_Orbital_Cooldown(false); Settings.DisableOrbitalCooldown = -1; }
 
-            if(Settings.OffRadar == 1) { Globals.off_radar(true); }
-            else if (Settings.OffRadar == 0) { Globals.off_radar(false); Settings.OffRadar = -1; }
+            if(Settings.OffRadar == 1) { Globals.Off_Radar(true); }
+            else if (Settings.OffRadar == 0) { Globals.Off_Radar(false); Settings.OffRadar = -1; }
 
-            if (Settings.GhostOrganization == 1) { Globals.ghost_organization(true); }
-            else if (Settings.GhostOrganization == 0) { Globals.ghost_organization(false); Settings.GhostOrganization = -1; }
+            if (Settings.GhostOrganization == 1) { Globals.Ghost_Organization(true); }
+            else if (Settings.GhostOrganization == 0) { Globals.Ghost_Organization(false); Settings.GhostOrganization = -1; }
 
-            if (Settings.BlindCops == 1) { Globals.blind_cops(true); }
-            else if (Settings.BlindCops == 0) { Globals.blind_cops(false); Settings.BlindCops = -1; }
+            if (Settings.BlindCops == 1) { Globals.Blind_Cops(true); }
+            else if (Settings.BlindCops == 0) { Globals.Blind_Cops(false); Settings.BlindCops = -1; }
 
-            if (Settings.BribeCops == 1) { Globals.bribe_cops(true); }
-            else if (Settings.BribeCops == 0) { Globals.bribe_cops(false); Settings.BribeCops = -1; }
+            if (Settings.BribeCops == 1) { Globals.Bribe_Cops(true); }
+            else if (Settings.BribeCops == 0) { Globals.Bribe_Cops(false); Settings.BribeCops = -1; }
 
-            if (Settings.RevealPlayers == 1) { Globals.reveal_players(true); }
-            else if (Settings.RevealPlayers == 0) { Globals.reveal_players(false); Settings.RevealPlayers = -1; }
+            if (Settings.RevealPlayers == 1) { Globals.Reveal_Players(true); }
+            else if (Settings.RevealPlayers == 0) { Globals.Reveal_Players(false); Settings.RevealPlayers = -1; }
 
-            if (Settings.AllowSellOnNonPublic == 1) { Globals.allow_sell_on_non_public(true); }
-            else if (Settings.AllowSellOnNonPublic == 0) { Globals.allow_sell_on_non_public(false); Settings.AllowSellOnNonPublic = -1; }
+            if (Settings.AllowSellOnNonPublic == 1) { Globals.Allow_Sell_On_Non_Public(true); }
+            else if (Settings.AllowSellOnNonPublic == 0) { Globals.Allow_Sell_On_Non_Public(false); Settings.AllowSellOnNonPublic = -1; }
 
-            if (Settings.OnlineSnow == 1) { Globals.session_snow(true); }
-            else if (Settings.OnlineSnow == 0) { Globals.session_snow(false); Settings.OnlineSnow = -1; }
+            if (Settings.OnlineSnow == 1) { Globals.Session_Snow(true); }
+            else if (Settings.OnlineSnow == 0) { Globals.Session_Snow(false); Settings.OnlineSnow = -1; }
             ////////////////////////////////
 
             Dispatcher.BeginInvoke(new Action(delegate
@@ -285,10 +285,10 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            if (Settings.FrameFlagsExplosiveAmmo) Ped.set_frame_flags_explosiveammo(local_ped, true);
-            if (Settings.FrameFlagsFlamingAmmo) Ped.set_frame_flags_flamingammo(local_ped, true);
-            if (Settings.FrameFlagsExplosiveFists) Ped.set_frame_flags_explosivefists(local_ped, true);
-            if (Settings.FrameFlagsSuperJump) Ped.set_frame_flags_superjump(local_ped, true);
+            if (Settings.FrameFlagsExplosiveAmmo) Ped.Set_Frame_Flags_Explosiveammo(local_ped, true);
+            if (Settings.FrameFlagsFlamingAmmo) Ped.Set_Frame_Flags_Flamingammo(local_ped, true);
+            if (Settings.FrameFlagsExplosiveFists) Ped.Set_Frame_Flags_Explosivefists(local_ped, true);
+            if (Settings.FrameFlagsSuperJump) Ped.Set_Frame_Flags_Superjump(local_ped, true);
 
             Thread.Sleep(1);
         }
@@ -299,34 +299,34 @@ public partial class EM01PlayerStateView : UserControl
         while (true)
         {
             if (Settings.AutoClearWanted)
-                Ped.set_wanted_level(local_ped, 0);
+                Ped.Set_Wanted_Level(local_ped, 0);
 
             if (Settings.AutoKillNPC)
-                Hacks.kill_npcs();
+                Hacks.Kill_Npcs();
 
             if (Settings.AutoKillHostilityNPC)
-                Hacks.kill_enemies();
+                Hacks.Kill_Enemies();
 
             if (Settings.AutoKillPolice)
-                Hacks.kill_cops();
+                Hacks.Kill_Cops();
 
             Thread.Sleep(200);
         }
     }
 
-    private void Slider_Health_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_health(local_ped, (float)Slider_Health.Value); }
+    private void Slider_Health_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Health(local_ped, (float)Slider_Health.Value); }
 
-    private void Slider_MaxHealth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_max_health(local_ped, (float)Slider_MaxHealth.Value); }
+    private void Slider_MaxHealth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Max_Health(local_ped, (float)Slider_MaxHealth.Value); }
 
-    private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_armour(local_ped, (float)Slider_Armor.Value); }
+    private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Armour(local_ped, (float)Slider_Armor.Value); }
 
-    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_wanted_level(local_ped, (int)Slider_Wanted.Value); }
+    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Wanted_Level(local_ped, (int)Slider_Wanted.Value); }
 
-    private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_run_speed(local_ped, (float)Slider_RunSpeed.Value); }
+    private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Run_Speed(local_ped, (float)Slider_RunSpeed.Value); }
 
-    private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_swim_speed(local_ped, (float)Slider_SwimSpeed.Value); }
+    private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Swim_Speed(local_ped, (float)Slider_SwimSpeed.Value); }
 
-    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.set_stealth_speed(local_ped, (float)Slider_StealthSpeed.Value); }
+    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Stealth_Speed(local_ped, (float)Slider_StealthSpeed.Value); }
 
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e) { Settings.GodMode = CheckBox_PlayerGodMode.IsChecked == true ? 1 : 0; }
 
@@ -366,37 +366,37 @@ public partial class EM01PlayerStateView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.to_waypoint();
+        Hacks.To_Waypoint();
     }
 
     private void Button_ToObjective_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.to_objective();
+        Hacks.To_Objective();
     }
 
     private void Button_FillHealthArmor_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.set_health(local_ped, 328.0f);
-        Ped.set_max_health(local_ped, 328.0f);
-        Ped.set_armour(local_ped, 50.0f);
+        Ped.Set_Health(local_ped, 328.0f);
+        Ped.Set_Max_Health(local_ped, 328.0f);
+        Ped.Set_Armour(local_ped, 50.0f);
     }
 
     private void Button_ClearWanted_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.set_wanted_level(local_ped, 0);
+        Ped.Set_Wanted_Level(local_ped, 0);
     }
 
     private void Button_Suicide_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.set_health(local_ped, 0.0f);
+        Ped.Set_Health(local_ped, 0.0f);
     }
 
     private void Slider_MovingFoward_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

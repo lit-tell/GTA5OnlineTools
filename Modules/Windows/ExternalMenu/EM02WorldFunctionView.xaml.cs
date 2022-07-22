@@ -30,7 +30,7 @@ public partial class EM02WorldFunctionView : UserControl
         int index = MiscData.Sessions.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Globals.load_session(MiscData.Sessions[index].ID);
+            Globals.Load_Session(MiscData.Sessions[index].ID);
         }
     }
 
@@ -38,14 +38,14 @@ public partial class EM02WorldFunctionView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Globals.disconnect();
+        Globals.Disconnect();
     }
 
     private void Button_EmptySession_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.empty_session();
+        Hacks.Empty_Session();
     }
 
     private void Button_LocalWeather_Click(object sender, RoutedEventArgs e)
@@ -57,7 +57,7 @@ public partial class EM02WorldFunctionView : UserControl
         int index = MiscData.LocalWeathers.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Hacks.set_local_weather(MiscData.LocalWeathers[index].ID);
+            Hacks.Set_Local_Weather(MiscData.LocalWeathers[index].ID);
         }
     }
 
@@ -65,55 +65,55 @@ public partial class EM02WorldFunctionView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.kill_npcs();
+        Hacks.Kill_Npcs();
     }
     private void Button_KillAllHostilityNPC_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.kill_enemies();
+        Hacks.Kill_Enemies();
     }
 
     private void Button_KillAllPolice_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.kill_cops();
+        Hacks.Kill_Cops();
     }
 
     private void Button_DestroyAllVehicles_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.destroy_all_vehicles();
+        Hacks.Destroy_All_Vehicles();
     }
 
     private void Button_DestroyAllNPCVehicles_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.destroy_vehs_of_npcs();
+        Hacks.Destroy_Vehs_Of_Npcs();
     }
 
     private void Button_DestroyAllHostilityNPCVehicles_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.destroy_vehs_of_enemies();
+        Hacks.Destroy_Vehs_Of_Enemies();
     }
 
     private void Button_TPAllNPCToMe_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.tp_npcs_to_me();
+        Hacks.Tp_Npcs_To_Me();
     }
 
     private void Button_TPHostilityNPCToMe_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.tp_enemies_to_me();
+        Hacks.Tp_Enemies_To_Me();
     }
 
     private void Button_RPxN_Click(object sender, RoutedEventArgs e)
@@ -125,7 +125,7 @@ public partial class EM02WorldFunctionView : UserControl
         int index = MiscData.RPxNs.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Globals.rp_multiplier(MiscData.RPxNs[index].ID);
+            Globals.RP_Multiplier(MiscData.RPxNs[index].ID);
         }
     }
 
@@ -138,7 +138,7 @@ public partial class EM02WorldFunctionView : UserControl
         int index = MiscData.REPxNs.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Globals.rep_multiplier(MiscData.REPxNs[index].ID);
+            Globals.REP_Multiplier(MiscData.REPxNs[index].ID);
         }
     }
 }

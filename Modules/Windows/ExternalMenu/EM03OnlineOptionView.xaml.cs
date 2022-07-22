@@ -61,29 +61,29 @@ public partial class EM03OnlineOptionView : UserControl
         int index = MiscData.Blips.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Hacks.to_blip(new int[] { MiscData.Blips[index].ID });
+            Hacks.To_Blip(new int[] { MiscData.Blips[index].ID });
         }
     }
 
-    private void Button_DeliverAmmo_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.deliver_ammo(true); }
+    private void Button_DeliverAmmo_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Deliver_Ammo(true); }
     
-    private void Button_DeliverBallisticArmor_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.deliver_ballistic_armor(true); }
+    private void Button_DeliverBallisticArmor_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Deliver_Ballistic_Armor(true); }
     
-    private void Button_DeliverBullShark_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.deliver_bull_shark(true); }
+    private void Button_DeliverBullShark_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Deliver_Bull_Shark(true); }
     
-    private void Button_TriggerBoatPickup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.trigger_boat_pickup(true); }
+    private void Button_TriggerBoatPickup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Trigger_Boat_Pickup(true); }
     
-    private void Button_TriggerHeliPickup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.trigger_heli_pickup(true, false); }
+    private void Button_TriggerHeliPickup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Trigger_Heli_Pickup(true, false); }
 
-    private void Button_TriggerHeliVipPickup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.trigger_heli_pickup(true, true); }
+    private void Button_TriggerHeliVipPickup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Trigger_Heli_Pickup(true, true); }
 
-    private void Button_InstantBullShark_True_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.instant_bull_shark(true); }
+    private void Button_InstantBullShark_True_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Instant_Bull_Shark(true); }
 
-    private void Button_InstantBullShark_False_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.instant_bull_shark(false); }
+    private void Button_InstantBullShark_False_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Instant_Bull_Shark(false); }
 
-    private void Button_CallAirstrike_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.call_airstrike(true); }
+    private void Button_CallAirstrike_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Call_Airstrike(true); }
 
-    private void Button_CallHeliBackup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.call_heli_backup(true); }
+    private void Button_CallHeliBackup_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Call_Heli_Backup(true); }
 
     private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
     {
@@ -101,12 +101,12 @@ public partial class EM03OnlineOptionView : UserControl
                 if (hash == 0)
                     continue;
 
-                string plate = Globals.get_global_string(1585853 + 1 + (i * 142) + 1);
+                string plate = Globals.Get_Global_String(1585853 + 1 + (i * 142) + 1);
 
                 pVInfos.Add(new PVInfo()
                 {
                     Index = i,
-                    Name = Hacks.find_vehicle_display_name(hash, true),
+                    Name = Hacks.Find_Vehicle_Display_Name(hash, true),
                     hash = hash,
                     plate = plate
                 });
@@ -132,7 +132,7 @@ public partial class EM03OnlineOptionView : UserControl
         {
             Task.Run(() =>
             {
-                Globals.deliver_personal_vehicle(pVInfos[index].Index);
+                Globals.Deliver_Personal_Vehicle(pVInfos[index].Index);
             });
         }
     }

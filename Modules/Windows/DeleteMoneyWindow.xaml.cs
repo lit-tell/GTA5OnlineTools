@@ -22,7 +22,7 @@ public partial class DeleteMoneyWindow : Window
 
         Dispatcher.Invoke(new Action(delegate
         {
-            TextBox_Cost.Text = Globals.get_ballistic_armor_request_cost().ToString();
+            TextBox_Cost.Text = Globals.Get_Ballistic_Armor_Request_Cost().ToString();
         }));
 
         var thread_init = new Thread(InitThread);
@@ -60,5 +60,5 @@ public partial class DeleteMoneyWindow : Window
         //}
     }
 
-    private void Button_SetCost_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.set_ballistic_armor_request_cost(cost); }
+    private void Button_SetCost_Click(object sender, RoutedEventArgs e) { AudioUtil.ClickSound(); Globals.Set_Ballistic_Armor_Request_Cost(cost); }
 }

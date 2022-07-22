@@ -23,7 +23,7 @@ public partial class Hacks
 
 public partial class Hacks
 {
-    public static long get_blip(int[] icons, int[] colors = null)
+    public static long Get_Blip(int[] icons, int[] colors = null)
     {
         for (int i = 1; i < 2001; i++)
         {
@@ -38,226 +38,226 @@ public partial class Hacks
         return 0;
     }
 
-    public static Vector3 get_blip_pos(int[] icons, int[] colors = null)
+    public static Vector3 Get_Blip_Pos(int[] icons, int[] colors = null)
     {
-        long blip = get_blip(icons, colors);
+        long blip = Get_Blip(icons, colors);
         return ((blip == 0) ? new Vector3() : Memory.Read<Vector3>(blip + 0x10));
     }
 
-    public static long get_local_ped() { return Memory.Read<long>(Globals.WorldPTR, new int[] { 0x8 }); }
+    public static long Get_Local_Ped() { return Memory.Read<long>(Globals.WorldPTR, new int[] { 0x8 }); }
 
     /// <summary>
     /// 传送到导航点
     /// </summary>
-    public static void to_waypoint()
+    public static void To_Waypoint()
     {
-        Vector3 pos = get_blip_pos(new int[] { 8 }, new int[] { 84 });
+        Vector3 pos = Get_Blip_Pos(new int[] { 8 }, new int[] { 84 });
         if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
         pos.Z = pos.Z == 20.0f ? -255.0f : pos.Z + 1.0f;
-        to_coords(get_local_ped(), pos);
+        To_Coords(Get_Local_Ped(), pos);
     }
 
-    public static void to_objective()
+    public static void To_Objective()
     {
-        Vector3 pos = get_blip_pos(new int[] { 1 }, new int[] { 5, 60, 66 });
-        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) pos = get_blip_pos(new int[] { 1, 225, 427, 478, 501, 523, 556 }, new int[] { 1, 2, 3, 54, 78 });
-        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) pos = get_blip_pos(new int[] { 432, 443 }, new int[] { 59 });
-        to_coords_with_check(get_local_ped(), pos);
+        Vector3 pos = Get_Blip_Pos(new int[] { 1 }, new int[] { 5, 60, 66 });
+        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) pos = Get_Blip_Pos(new int[] { 1, 225, 427, 478, 501, 523, 556 }, new int[] { 1, 2, 3, 54, 78 });
+        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) pos = Get_Blip_Pos(new int[] { 432, 443 }, new int[] { 59 });
+        To_Coords_With_Check(Get_Local_Ped(), pos);
     }
 
-    public static void to_blip(int[] icons, int[] colors = null)
+    public static void To_Blip(int[] icons, int[] colors = null)
     {
-        Vector3 pos = get_blip_pos(icons, colors);
-        to_coords_with_check(get_local_ped(), pos);
+        Vector3 pos = Get_Blip_Pos(icons, colors);
+        To_Coords_With_Check(Get_Local_Ped(), pos);
     }
 
-    public static void to_coords(long ped, Vector3 pos)
+    public static void To_Coords(long ped, Vector3 pos)
     {
-        long entity = (Ped.is_in_vehicle(ped) ? Ped.get_current_vehicle(ped) : ped);
-        Entity.set_position(entity, pos);
+        long entity = (Ped.Is_In_Vehicle(ped) ? Ped.Get_Current_Vehicle(ped) : ped);
+        Entity.Set_Position(entity, pos);
     }
 
-    public static void to_coords_with_check(long ped, Vector3 pos)
+    public static void To_Coords_With_Check(long ped, Vector3 pos)
     {
         if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
-        to_coords(ped, pos);
+        To_Coords(ped, pos);
     }
 
-    public static void spawn_drop(uint hash, Vector3 pos)
+    public static void Spawn_Drop(uint hash, Vector3 pos)
     {
-        Globals.create_ambient_pickup(9999, pos);
+        Globals.Create_Ambient_Pickup(9999, pos);
         Thread.Sleep(150);
-        List<long> pickups = Replayinterface.get_pickups();
+        List<long> pickups = Replayinterface.Get_Pickups();
         for (int i = 0; i < pickups.Count; i++)
         {
             long pickup = pickups[i];
-            if (Entity.get_model_hash(pickup) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
+            if (Entity.Get_Model_Hash(pickup) == Joaat("prop_cash_pile_01")) //if (Pickup.get_pickup_hash(pickup) == 4263048111)
             {
-                Pickup.set_pickup_hash(pickup, hash);
+                Pickup.Set_Pickup_Hash(pickup, hash);
                 break;
             }
         }
     }
 
-    public static void spawn_drop(long ped, uint hash, float dist = 0.0f, float height = 3.0f)
+    public static void Spawn_Drop(long ped, uint hash, float dist = 0.0f, float height = 3.0f)
     {
-        Vector3 pos = Ped.get_real_forwardpos(ped, dist);
+        Vector3 pos = Ped.Get_Real_Forward_Position(ped, dist);
         pos.Z += height;
-        spawn_drop(hash, pos);
+        Spawn_Drop(hash, pos);
     }
-    public static void spawn_drop(long ped, string name, float dist = 0.0f, float height = 3.0f) { spawn_drop(ped, Joaat(name), dist, height); }
+    public static void Spawn_Drop(long ped, string name, float dist = 0.0f, float height = 3.0f) { Spawn_Drop(ped, Joaat(name), dist, height); }
 
-    public static void kill_npcs() 
+    public static void Kill_Npcs() 
     {
-        List<long> peds = Replayinterface.get_peds();
+        List<long> peds = Replayinterface.Get_Peds();
         for(int i = 0;i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.is_player(ped)) continue;
-            Ped.set_health(ped, 0.0f);
+            if (Ped.Is_Player(ped)) continue;
+            Ped.Set_Health(ped, 0.0f);
         }
     }
-    public static void kill_enemies() 
+    public static void Kill_Enemies() 
     {
-        List<long> peds = Replayinterface.get_peds();
+        List<long> peds = Replayinterface.Get_Peds();
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.is_player(ped)) continue;
-            if (Ped.is_enemy(ped)) Ped.set_health(ped, 0.0f);
+            if (Ped.Is_Player(ped)) continue;
+            if (Ped.Is_Enemy(ped)) Ped.Set_Health(ped, 0.0f);
         }
     }
-    public static void kill_cops()
+    public static void Kill_Cops()
     {
-        List<long> peds = Replayinterface.get_peds();
+        List<long> peds = Replayinterface.Get_Peds();
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.is_player(ped)) continue;
-            uint pedtype = Ped.get_pedtype(ped);
+            if (Ped.Is_Player(ped)) continue;
+            uint pedtype = Ped.Get_Pedtype(ped);
             if(pedtype == (uint)Data.EnumData.PedTypes.COP ||
                 pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.set_health(ped, 0.0f);
+                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.Set_Health(ped, 0.0f);
         }
     }
-    public static void revive_vehicle(long vehicle)
+    public static void Revive_Vehicle(long vehicle)
     {
-        Vehicle.set_state_is_destroyed(vehicle, false);
-        Vehicle.set_health(vehicle, 1000.0f);
-        Vehicle.set_health2(vehicle, 1000.0f);
-        Vehicle.set_health3(vehicle, 1000.0f);
-        Vehicle.set_engine_health(vehicle, 1000.0f);
+        Vehicle.Set_State_Is_Destroyed(vehicle, false);
+        Vehicle.Set_Health(vehicle, 1000.0f);
+        Vehicle.Set_Health2(vehicle, 1000.0f);
+        Vehicle.Set_Health3(vehicle, 1000.0f);
+        Vehicle.Set_Engine_Health(vehicle, 1000.0f);
     }
-    public static void destroy_vehicle(long vehicle)
+    public static void Destroy_Vehicle(long vehicle)
     {
-        revive_vehicle(vehicle);
+        Revive_Vehicle(vehicle);
         //Vehicle.set_health(vehicle, 0.0f);
         //Vehicle.set_health2(vehicle, 0.0f);
-        Vehicle.set_health3(vehicle, -999.9f);//-1000.0f
+        Vehicle.Set_Health3(vehicle, -999.9f);//-1000.0f
         //Vehicle.set_engine_health(vehicle, -3999.0f);//-4000.0f
     }
-    public static void destroy_vehs_of_npcs()
+    public static void Destroy_Vehs_Of_Npcs()
     {
-        List<long> peds = Replayinterface.get_peds();
+        List<long> peds = Replayinterface.Get_Peds();
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.is_player(ped)) continue;
-            destroy_vehicle(Ped.get_current_vehicle(ped));
+            if (Ped.Is_Player(ped)) continue;
+            Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
         }
     }
-    public static void destroy_vehs_of_enemies()
+    public static void Destroy_Vehs_Of_Enemies()
     {
-        List<long> peds = Replayinterface.get_peds();
+        List<long> peds = Replayinterface.Get_Peds();
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (ped == Hacks.get_local_ped()) continue;
-            if (Ped.is_enemy(ped)) destroy_vehicle(Ped.get_current_vehicle(ped));
+            if (ped == Hacks.Get_Local_Ped()) continue;
+            if (Ped.Is_Enemy(ped)) Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
         }
     }
-    public static void destroy_vehs_of_cops()
+    public static void Destroy_Vehs_Of_Cops()
     {
-        List<long> peds = Replayinterface.get_peds();
+        List<long> peds = Replayinterface.Get_Peds();
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (ped == Hacks.get_local_ped()) continue;
-            uint pedtype = Ped.get_pedtype(ped);
+            if (ped == Hacks.Get_Local_Ped()) continue;
+            uint pedtype = Ped.Get_Pedtype(ped);
             if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
                 pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) destroy_vehicle(Ped.get_current_vehicle(ped));
+                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
         }
     }
     /// <summary>
     /// 摧毁附近所有载具
     /// </summary>
-    public static void destroy_all_vehicles()
+    public static void Destroy_All_Vehicles()
     {
-        List<long> vehicles = Replayinterface.get_vehicles();
+        List<long> vehicles = Replayinterface.Get_Vehicles();
         for (int i = 0; i < vehicles.Count; i++)
         {
             long vehicle = vehicles[i];
-            destroy_vehicle(vehicle);
+            Destroy_Vehicle(vehicle);
         }
     }
     /// <summary>
     /// 复活附近所有载具
     /// </summary>
-    public static void revive_all_vehicles()
+    public static void Revive_All_Vehicles()
     {
-        List<long> vehicles = Replayinterface.get_vehicles();
+        List<long> vehicles = Replayinterface.Get_Vehicles();
         for(int i = 0; i < vehicles.Count; i++)
         {
             long vehicle = vehicles[i];
-            revive_vehicle(vehicle);
+            Revive_Vehicle(vehicle);
         }
     }
-    public static void tp_npcs_to_me()
+    public static void Tp_Npcs_To_Me()
     {
-        List<long> peds = Replayinterface.get_peds();
+        List<long> peds = Replayinterface.Get_Peds();
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.is_player(ped)) continue;
-            Ped.set_position(ped, Ped.get_real_forwardpos(get_local_ped(), 5.0f));
+            if (Ped.Is_Player(ped)) continue;
+            Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
         }
     }
-    public static void tp_enemies_to_me()
+    public static void Tp_Enemies_To_Me()
     {
-        List<long> peds = Replayinterface.get_peds();
+        List<long> peds = Replayinterface.Get_Peds();
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.is_player(ped)) continue;
-            if (Ped.is_enemy(ped)) Ped.set_position(ped, Ped.get_real_forwardpos(get_local_ped(), 5.0f));
+            if (Ped.Is_Player(ped)) continue;
+            if (Ped.Is_Enemy(ped)) Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
         }
     }
-    public static void tp_not_enemies_to_me()
+    public static void Tp_Not_Enemies_To_Me()
     {
-        List<long> peds = Replayinterface.get_peds();
+        List<long> peds = Replayinterface.Get_Peds();
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.is_player(ped)) continue;
-            if (!Ped.is_enemy(ped)) Ped.set_position(ped, Ped.get_real_forwardpos(get_local_ped(), 5.0f));
+            if (Ped.Is_Player(ped)) continue;
+            if (!Ped.Is_Enemy(ped)) Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
         }
     }
-    public static void tp_cops_to_me()
+    public static void Tp_Cops_To_Me()
     {
-        List<long> peds = Replayinterface.get_peds();
+        List<long> peds = Replayinterface.Get_Peds();
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.is_player(ped)) continue;
-            uint pedtype = Ped.get_pedtype(ped);
+            if (Ped.Is_Player(ped)) continue;
+            uint pedtype = Ped.Get_Pedtype(ped);
             if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
                 pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.set_position(ped, Ped.get_real_forwardpos(get_local_ped(), 5.0f));
+                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
         }
     }
 
-    public static void set_local_weather(int weatherID)
+    public static void Set_Local_Weather(int weatherID)
     {
         /*
          -1:Default
@@ -289,7 +289,7 @@ public partial class Hacks
         Memory.Write(Globals.WeatherPTR + 0x104, weatherID);
     }
 
-    public static void empty_session()
+    public static void Empty_Session()
     {
         Task.Run(() =>
         {
@@ -299,40 +299,40 @@ public partial class Hacks
         });
     }
 
-    public static uint get_fix_veh_value() { return Memory.Read<uint>(Globals.PickupDataPTR, new int[] { 0x228 }); }
-    public static uint get_bull_shark_testosterone_value() { return Memory.Read<uint>(Globals.PickupDataPTR, new int[] { 0x160 }); }
-    public static void repair_online_vehicle(long vehicle)
+    public static uint Get_Fix_Veh_Value() { return Memory.Read<uint>(Globals.PickupDataPTR, new int[] { 0x228 }); }
+    public static uint Get_Bull_Shark_Testosterone_Value() { return Memory.Read<uint>(Globals.PickupDataPTR, new int[] { 0x160 }); }
+    public static void Repair_Online_Vehicle(long vehicle)
     {
         Task.Run(() =>
         {
-            Globals.deliver_bull_shark(true);
+            Globals.Deliver_Bull_Shark(true);
             Task.Delay(300).Wait();
-            uint fix_veh_value = get_fix_veh_value();
-            uint bull_shark_testosterone_value = get_bull_shark_testosterone_value();
-            List<long> pickups = Replayinterface.get_pickups();
+            uint fix_veh_value = Get_Fix_Veh_Value();
+            uint bull_shark_testosterone_value = Get_Bull_Shark_Testosterone_Value();
+            List<long> pickups = Replayinterface.Get_Pickups();
             for (int i = 0; i < pickups.Count; i++)
             {
-                if (Pickup.get_pickup_value(pickups[i]) == bull_shark_testosterone_value)
+                if (Pickup.Get_Pickup_Value(pickups[i]) == bull_shark_testosterone_value)
                 {
-                    Pickup.set_pickup_value(pickups[i], fix_veh_value);
+                    Pickup.Set_Pickup_Value(pickups[i], fix_veh_value);
                     Task.Delay(10).Wait();
-                    Vehicle.set_health(vehicle, 999.0f);
+                    Vehicle.Set_Health(vehicle, 999.0f);
                     Task.Delay(10).Wait();
-                    Pickup.set_position(pickups[i], Vehicle.get_real_position(vehicle));
+                    Pickup.Set_Position(pickups[i], Vehicle.Get_Real_Position(vehicle));
                     Task.Delay(10).Wait();
                     break;
                 }
             }
             Task.Delay(1000).Wait();
-            if(Globals.is_in_bull_shark())
+            if(Globals.Is_In_Bull_Shark())
             {
-                Vehicle.set_dirt_level(vehicle, 0.0f);
-                Globals.instant_bull_shark(false);
+                Vehicle.Set_Dirt_Level(vehicle, 0.0f);
+                Globals.Instant_Bull_Shark(false);
             }
         });
     }
 
-    public static string find_vehicle_display_name(long hash, bool isDisplay)
+    public static string Find_Vehicle_Display_Name(long hash, bool isDisplay)
     {
         foreach (var item in Data.VehicleData.VehicleClassData)
         {
@@ -351,11 +351,11 @@ public partial class Hacks
         return "";
     }
 
-    public static void infinite_ammo(bool toggle) { Memory.WriteBytes(Globals.InfiniteAmmoADDR, toggle ? new byte[] { 0x90, 0x90, 0x90 } : new byte[] { 0x41, 0x2B, 0xD1 }); }
+    public static void Infinite_Ammo(bool toggle) { Memory.WriteBytes(Globals.InfiniteAmmoADDR, toggle ? new byte[] { 0x90, 0x90, 0x90 } : new byte[] { 0x41, 0x2B, 0xD1 }); }
 
-    public static void no_reload(bool toggle) { Memory.WriteBytes(Globals.NoReloadADDR, toggle ? new byte[] { 0x90, 0x90, 0x90 } : new byte[] { 0x41, 0x2B, 0xC9 }); }
+    public static void No_Reload(bool toggle) { Memory.WriteBytes(Globals.NoReloadADDR, toggle ? new byte[] { 0x90, 0x90, 0x90 } : new byte[] { 0x41, 0x2B, 0xC9 }); }
 
-    public static void fill_current_ammo()
+    public static void Fill_Current_Ammo()
     {
         // Ped实体
         long pWeapon_AmmoInfo = Memory.Read<long>(Globals.WorldPTR, Offsets.Weapon.AmmoInfo);
@@ -382,9 +382,9 @@ public partial class Hacks
 
         Memory.Write<int>(my_offset_1 + 0x18, getMaxAmmo);
     }
-    public static void fill_all_ammo()
+    public static void Fill_All_Ammo()
     {
-        long p = Ped.get_ped_inventory(get_local_ped());
+        long p = Ped.Get_Ped_Inventory(Get_Local_Ped());
         p = Memory.Read<long>(p + 0x48);
         //for(int i = 0; i < 32; i++)
         //{
@@ -409,8 +409,8 @@ public partial class Hacks
 
 public class BaseModelInfo
 {
-    public static uint get_hash(long basemodelinfo) { return Memory.Read<uint>(basemodelinfo + 0x18); }
-    public static byte get_type(long basemodelinfo) { return Memory.Read<byte>(basemodelinfo + 0x9D); }
+    public static uint Get_Hash(long baseModelInfo) { return Memory.Read<uint>(baseModelInfo + 0x18); }
+    public static byte Get_Type(long baseModelInfo) { return Memory.Read<byte>(baseModelInfo + 0x9D); }
 }
 
 public class PedModelInfo : BaseModelInfo
@@ -420,374 +420,374 @@ public class PedModelInfo : BaseModelInfo
 
 public class VehicleModelInfo : BaseModelInfo
 {
-    public static ushort get_extras(long vehiclemodelinfo) { return Memory.Read<ushort>(vehiclemodelinfo + 0x58B); }
-    public static bool get_extras_rocket_boost(long vehiclemodelinfo) { return (get_extras(vehiclemodelinfo) & (1 << 6)) == (1 << 6); }
-    public static bool get_extras_vehicle_jump(long vehiclemodelinfo) { return (get_extras(vehiclemodelinfo) & (1 << 5)) == (1 << 5); }
-    public static bool get_extras_parachute(long vehiclemodelinfo) { return (get_extras(vehiclemodelinfo) & (1 << 8)) == (1 << 8); }
-    public static bool get_extras_ramp_buggy(long vehiclemodelinfo) { return (get_extras(vehiclemodelinfo) & (1 << 9)) == (1 << 9); }
+    public static ushort Get_Extras(long vehicleModelInfo) { return Memory.Read<ushort>(vehicleModelInfo + 0x58B); }
+    public static bool Get_Extras_Rocket_Boost(long vehicleModelInfo) { return (Get_Extras(vehicleModelInfo) & (1 << 6)) == (1 << 6); }
+    public static bool Get_Extras_Vehicle_Jump(long vehicleModelInfo) { return (Get_Extras(vehicleModelInfo) & (1 << 5)) == (1 << 5); }
+    public static bool Get_Extras_Parachute(long vehicleModelInfo) { return (Get_Extras(vehicleModelInfo) & (1 << 8)) == (1 << 8); }
+    public static bool Get_Extras_Ramp_Buggy(long vehicleModelInfo) { return (Get_Extras(vehicleModelInfo) & (1 << 9)) == (1 << 9); }
 
 
-    public static void set_extras(long vehiclemodelinfo, ushort value) { Memory.Write<ushort>(vehiclemodelinfo + 0x58B, value); }
-    public static void set_extras_rocket_boost(long vehiclemodelinfo, bool toggle)
+    public static void Set_Extras(long vehicleModelInfo, ushort value) { Memory.Write<ushort>(vehicleModelInfo + 0x58B, value); }
+    public static void Set_Extras_Rocket_Boost(long vehicleModelInfo, bool toggle)
     {
-        ushort temp = get_extras(vehiclemodelinfo);
+        ushort temp = Get_Extras(vehicleModelInfo);
         if (toggle) temp = (ushort)(temp | (1 << 6));
         else temp = (ushort)(temp & ~(1 << 6));
-        set_extras(vehiclemodelinfo, temp);
+        Set_Extras(vehicleModelInfo, temp);
     }
-    public static void set_extras_vehicle_jump(long vehiclemodelinfo, bool toggle)
+    public static void Set_Extras_Vehicle_Jump(long vehicleModelInfo, bool toggle)
     {
-        ushort temp = get_extras(vehiclemodelinfo);
+        ushort temp = Get_Extras(vehicleModelInfo);
         if (toggle) temp = (ushort)(temp | (1 << 5));
         else temp = (ushort)(temp & ~(1 << 5));
-        set_extras(vehiclemodelinfo, temp);
+        Set_Extras(vehicleModelInfo, temp);
     }
-    public static void set_extras_parachute(long vehiclemodelinfo, bool toggle)
+    public static void Set_Extras_Parachute(long vehicleModelInfo, bool toggle)
     {
-        ushort temp = get_extras(vehiclemodelinfo);
+        ushort temp = Get_Extras(vehicleModelInfo);
         if (toggle) temp = (ushort)(temp | (1 << 8));
         else temp = (ushort)(temp & ~(1 << 8));
-        set_extras(vehiclemodelinfo, temp);
+        Set_Extras(vehicleModelInfo, temp);
     }
-    public static void set_extras_ramp_buggy(long vehiclemodelinfo, bool toggle)
+    public static void Set_Extras_Ramp_Buggy(long vehicleModelInfo, bool toggle)
     {
-        ushort temp = get_extras(vehiclemodelinfo);
+        ushort temp = Get_Extras(vehicleModelInfo);
         if (toggle) temp = (ushort)(temp | (1 << 9));
         else temp = (ushort)(temp & ~(1 << 9));
-        set_extras(vehiclemodelinfo, temp);
+        Set_Extras(vehicleModelInfo, temp);
     }
 }
 
 public class WeaponInfo : BaseModelInfo
 {
-    public static short get_damage_type(long weaponinfo) { return Memory.Read<short>(weaponinfo + 0x20); }
-    public static int get_explosion_type(long weaponinfo) { return Memory.Read<int>(weaponinfo + 0x24); }
-    public static int get_fire_type(long weaponinfo) { return Memory.Read<int>(weaponinfo + 0x54); }
-    public static float get_spread(long weaponinfo) { return Memory.Read<float>(weaponinfo + 0x7C); }
-    public static float get_reload_time_multiplier(long weaponinfo) { return Memory.Read<float>(weaponinfo + 0x134); }
-    public static float get_lock_on_range(long weaponinfo) { return Memory.Read<float>(weaponinfo + 0x288); }
-    public static float get_range(long weaponinfo) { return Memory.Read<float>(weaponinfo + 0x28C); }
-    public static float get_recoil(long weaponinfo) { return Memory.Read<float>(weaponinfo + 0x2F4); }
+    public static short Get_Damage_Type(long weaponInfo) { return Memory.Read<short>(weaponInfo + 0x20); }
+    public static int Get_Explosion_Type(long weaponInfo) { return Memory.Read<int>(weaponInfo + 0x24); }
+    public static int Get_Fire_Type(long weaponInfo) { return Memory.Read<int>(weaponInfo + 0x54); }
+    public static float Get_Spread(long weaponInfo) { return Memory.Read<float>(weaponInfo + 0x7C); }
+    public static float Get_Reload_Time_Multiplier(long weaponInfo) { return Memory.Read<float>(weaponInfo + 0x134); }
+    public static float Get_Lock_On_Range(long weaponInfo) { return Memory.Read<float>(weaponInfo + 0x288); }
+    public static float Get_Range(long weaponInfo) { return Memory.Read<float>(weaponInfo + 0x28C); }
+    public static float Get_Recoil(long weaponInfo) { return Memory.Read<float>(weaponInfo + 0x2F4); }
 
 
-    public static void set_damage_type(long weaponinfo, short value) { Memory.Write<short>(weaponinfo + 0x20, value); }
-    public static void set_explosion_type(long weaponinfo, int value) { Memory.Write<int>(weaponinfo + 0x24, value); }
-    public static void set_fire_type(long weaponinfo, int value) { Memory.Write<int>(weaponinfo + 0x54, value); }
-    public static void set_spread(long weaponinfo, float value) { Memory.Write<float>(weaponinfo + 0x7C, value); }
-    public static void set_reload_time_multiplier(long weaponinfo, float value) { Memory.Write<float>(weaponinfo + 0x134, value); }
-    public static void set_lock_on_range(long weaponinfo, float value) { Memory.Write<float>(weaponinfo + 0x288, value); }
-    public static void set_range(long weaponinfo, float value) { Memory.Write<float>(weaponinfo + 0x28C, value); }
-    public static void set_recoil(long weaponinfo, float value) { Memory.Write<float>(weaponinfo + 0x2F4, value); }
+    public static void Set_Damage_Type(long weaponInfo, short value) { Memory.Write<short>(weaponInfo + 0x20, value); }
+    public static void Set_Explosion_Type(long weaponInfo, int value) { Memory.Write<int>(weaponInfo + 0x24, value); }
+    public static void Set_Fire_Type(long weaponInfo, int value) { Memory.Write<int>(weaponInfo + 0x54, value); }
+    public static void Set_Spread(long weaponInfo, float value) { Memory.Write<float>(weaponInfo + 0x7C, value); }
+    public static void Set_Reload_Time_Multiplier(long weaponInfo, float value) { Memory.Write<float>(weaponInfo + 0x134, value); }
+    public static void Set_Lock_On_Range(long weaponInfo, float value) { Memory.Write<float>(weaponInfo + 0x288, value); }
+    public static void Set_Range(long weaponInfo, float value) { Memory.Write<float>(weaponInfo + 0x28C, value); }
+    public static void Set_Recoil(long weaponInfo, float value) { Memory.Write<float>(weaponInfo + 0x2F4, value); }
 }
 
 public class ArchetypeDamp//rage::phArchetypeDamp
 {
-    public static float get_water_collision_strength(long archetypedamp) { return Memory.Read<float>(archetypedamp + 0x54); }
-    public static bool get_no_water_collision_strength(long archetypedamp) { return get_water_collision_strength(archetypedamp) <= 0.0f; }
+    public static float Get_Water_Collision_Strength(long archetypeDamp) { return Memory.Read<float>(archetypeDamp + 0x54); }
+    public static bool Get_No_Water_Collision_Strength(long archetypeDamp) { return Get_Water_Collision_Strength(archetypeDamp) <= 0.0f; }
 
 
-    public static void set_water_collision_strength(long archetypedamp, float value) { Memory.Write<float>(archetypedamp + 0x54, value); }
-    public static void set_no_water_collision_strength(long archetypedamp, bool toggle) { set_water_collision_strength(archetypedamp, toggle ? 0.0f : 1.0f); }
+    public static void Set_Water_Collision_Strength(long archetypeDamp, float value) { Memory.Write<float>(archetypeDamp + 0x54, value); }
+    public static void Set_No_Water_Collision_Strength(long archetypeDamp, bool toggle) { Set_Water_Collision_Strength(archetypeDamp, toggle ? 0.0f : 1.0f); }
 }
 
 public class Navigation
 {
-    public static long get_archetypedamp(long navigation) { return Memory.Read<long>(navigation + 0x10); }
-    public static float get_water_collision_strength(long navigation) { return ArchetypeDamp.get_water_collision_strength(get_archetypedamp(navigation)); }
-    public static bool get_no_water_collision_strength(long navigation) { return ArchetypeDamp.get_no_water_collision_strength(get_archetypedamp(navigation)); }
-    public static Vector3 get_real_right_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x20); }
-    public static Vector3 get_real_forward_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x30); }
-    public static Vector3 get_real_up_vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x40); }
-    public static Vector3 get_real_position(long navigation) { return Memory.Read<Vector3>(navigation + 0x50); }
+    public static long Get_Archetypedamp(long navigation) { return Memory.Read<long>(navigation + 0x10); }
+    public static float Get_Water_Collision_Strength(long navigation) { return ArchetypeDamp.Get_Water_Collision_Strength(Get_Archetypedamp(navigation)); }
+    public static bool Get_No_Water_Collision_Strength(long navigation) { return ArchetypeDamp.Get_No_Water_Collision_Strength(Get_Archetypedamp(navigation)); }
+    public static Vector3 Get_Real_Right_Vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x20); }
+    public static Vector3 Get_Real_Forward_Vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x30); }
+    public static Vector3 Get_Real_Up_Vector3(long navigation) { return Memory.Read<Vector3>(navigation + 0x40); }
+    public static Vector3 Get_Real_Position(long navigation) { return Memory.Read<Vector3>(navigation + 0x50); }
 
 
-    public static void set_water_collision_strength(long navigation, float value) { ArchetypeDamp.set_water_collision_strength(get_archetypedamp(navigation), value); }
-    public static void set_no_water_collision_strength(long navigation, bool toggle) { ArchetypeDamp.set_no_water_collision_strength(get_archetypedamp(navigation), toggle); }
-    public static void set_real_right_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x20, pos); }
-    public static void set_real_forward_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x30, pos); }
-    public static void set_real_up_vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x40, pos); }
-    public static void set_real_position(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x50, pos); }
+    public static void Set_Water_Collision_Strength(long navigation, float value) { ArchetypeDamp.Set_Water_Collision_Strength(Get_Archetypedamp(navigation), value); }
+    public static void Set_No_Water_Collision_Strength(long navigation, bool toggle) { ArchetypeDamp.Set_No_Water_Collision_Strength(Get_Archetypedamp(navigation), toggle); }
+    public static void Set_Real_Right_Vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x20, pos); }
+    public static void Set_Real_Forward_Vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x30, pos); }
+    public static void Set_Real_Up_Vector3(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x40, pos); }
+    public static void Set_Real_Position(long navigation, Vector3 pos) { Memory.Write<Vector3>(navigation + 0x50, pos); }
 }
 
 
 public class Entity
 {
-    public static long get_modelinfo(long entity) { return Memory.Read<long>(entity + 0x20); }
-    public static uint get_model_hash(long entity) { return BaseModelInfo.get_hash(get_modelinfo(entity)); }
-    public static uint get_model_type(long entity) { return BaseModelInfo.get_type(get_modelinfo(entity)); }
-    public static byte get_type2(long entity) { return Memory.Read<byte>(entity + 0x29); }
-    public static byte get_type(long entity) { return Memory.Read<byte>(entity + 0x2B); }
-    public static bool is_player(long entity) { return ((get_type(entity) == 156) ? true : false); }
-    public static bool get_invisible(long entity) { return (((Memory.Read<byte>(entity + 0x2C) & (1 << 0)) == (1 << 0)) ? false : true); }
-    public static long get_navigation(long entity) { return Memory.Read<long>(entity + 0x30); }
-    public static Vector3 get_real_right_vector3(long entity) { return Navigation.get_real_right_vector3(get_navigation(entity)); }
-    public static Vector3 get_real_forward_vector3(long entity) { return Navigation.get_real_forward_vector3(get_navigation(entity)); }
-    public static Vector3 get_real_up_vector3(long entity) { return Navigation.get_real_up_vector3(get_navigation(entity)); }
-    public static Vector3 get_real_position(long entity) { return Navigation.get_real_position(get_navigation(entity)); }
-    public static Vector3 get_real_forwardpos(long entity, float dist = 7.0f)
+    public static long Get_Model_Info(long entity) { return Memory.Read<long>(entity + 0x20); }
+    public static uint Get_Model_Hash(long entity) { return BaseModelInfo.Get_Hash(Get_Model_Info(entity)); }
+    public static uint Get_Model_Type(long entity) { return BaseModelInfo.Get_Type(Get_Model_Info(entity)); }
+    public static byte Get_Type2(long entity) { return Memory.Read<byte>(entity + 0x29); }
+    public static byte Get_Type(long entity) { return Memory.Read<byte>(entity + 0x2B); }
+    public static bool Is_Player(long entity) { return ((Get_Type(entity) == 156) ? true : false); }
+    public static bool Get_Invisible(long entity) { return (((Memory.Read<byte>(entity + 0x2C) & (1 << 0)) == (1 << 0)) ? false : true); }
+    public static long Get_Navigation(long entity) { return Memory.Read<long>(entity + 0x30); }
+    public static Vector3 Get_Real_Right_Vector3(long entity) { return Navigation.Get_Real_Right_Vector3(Get_Navigation(entity)); }
+    public static Vector3 Get_Real_Forward_Vector3(long entity) { return Navigation.Get_Real_Forward_Vector3(Get_Navigation(entity)); }
+    public static Vector3 Get_Real_Up_Vector3(long entity) { return Navigation.Get_Real_Up_Vector3(Get_Navigation(entity)); }
+    public static Vector3 Get_Real_Position(long entity) { return Navigation.Get_Real_Position(Get_Navigation(entity)); }
+    public static Vector3 Get_Real_Forward_Position(long entity, float dist = 7.0f)
     {
-        Vector3 vec = get_real_right_vector3(entity);
-        Vector3 pos = get_real_position(entity);
+        Vector3 vec = Get_Real_Right_Vector3(entity);
+        Vector3 pos = Get_Real_Position(entity);
         pos.X -= dist * vec.Y;
         pos.Y += dist * vec.X;
         return pos;
     }
-    public static float get_water_collision_strength(long entity) { return Navigation.get_water_collision_strength(get_navigation(entity)); }
-    public static bool get_no_water_collision_strength(long entity) { return Navigation.get_no_water_collision_strength(get_navigation(entity)); }
-    public static Vector3 get_visual_right_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x60); }
-    public static Vector3 get_visual_forward_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x70); }
-    public static Vector3 get_visual_up_vector3(long entity) { return Memory.Read<Vector3>(entity + 0x80); }
-    public static Vector3 get_visual_position(long entity) { return Memory.Read<Vector3>(entity + 0x90); }
-    public static Vector3 get_visual_forwardpos(long entity, float dist = 7.0f)
+    public static float Get_Water_Collision_Strength(long entity) { return Navigation.Get_Water_Collision_Strength(Get_Navigation(entity)); }
+    public static bool Get_No_Water_Collision_Strength(long entity) { return Navigation.Get_No_Water_Collision_Strength(Get_Navigation(entity)); }
+    public static Vector3 Get_Visual_Right_Vector3(long entity) { return Memory.Read<Vector3>(entity + 0x60); }
+    public static Vector3 Get_Visual_Forward_Vector3(long entity) { return Memory.Read<Vector3>(entity + 0x70); }
+    public static Vector3 Get_Visual_Up_Vector3(long entity) { return Memory.Read<Vector3>(entity + 0x80); }
+    public static Vector3 Get_Visual_Position(long entity) { return Memory.Read<Vector3>(entity + 0x90); }
+    public static Vector3 Get_Visual_Forward_Position(long entity, float dist = 7.0f)
     {
-        Vector3 vec = get_visual_right_vector3(entity);
-        Vector3 pos = get_visual_position(entity);
+        Vector3 vec = Get_Visual_Right_Vector3(entity);
+        Vector3 pos = Get_Visual_Position(entity);
         pos.X -= dist * vec.Y;
         pos.Y += dist * vec.X;
         return pos;
     }
-    public static uint get_damage_bits(long entity) { return Memory.Read<uint>(entity + 0x188); }
-    public static bool get_proofs_bullet(long entity) { return (get_damage_bits(entity) & (1 << 4)) == (1 << 4); }
-    public static bool get_proofs_fire(long entity) { return (get_damage_bits(entity) & (1 << 5)) == (1 << 5); }
-    public static bool get_proofs_collision(long entity) { return (get_damage_bits(entity) & (1 << 6)) == (1 << 6); }
-    public static bool get_proofs_melee(long entity) { return (get_damage_bits(entity) & (1 << 7)) == (1 << 7); }
-    public static bool get_proofs_god(long entity) { return (get_damage_bits(entity) & (1 << 8)) == (1 << 8); }//invincible
-    public static bool get_proofs_explosion(long entity) { return (get_damage_bits(entity) & (1 << 11)) == (1 << 11); }
-    public static bool get_proofs_steam(long entity) { return (get_damage_bits(entity) & (1 << 15)) == (1 << 15); }
-    public static bool get_proofs_drown(long entity) { return (get_damage_bits(entity) & (1 << 16)) == (1 << 16); }
-    public static bool get_proofs_water(long entity) { return (get_damage_bits(entity) & (1 << 24)) == (1 << 24); }
+    public static uint Get_Damage_Bits(long entity) { return Memory.Read<uint>(entity + 0x188); }
+    public static bool Get_Proofs_Bullet(long entity) { return (Get_Damage_Bits(entity) & (1 << 4)) == (1 << 4); }
+    public static bool Get_Proofs_Fire(long entity) { return (Get_Damage_Bits(entity) & (1 << 5)) == (1 << 5); }
+    public static bool Get_Proofs_Collision(long entity) { return (Get_Damage_Bits(entity) & (1 << 6)) == (1 << 6); }
+    public static bool Get_Proofs_Melee(long entity) { return (Get_Damage_Bits(entity) & (1 << 7)) == (1 << 7); }
+    public static bool Get_Proofs_God(long entity) { return (Get_Damage_Bits(entity) & (1 << 8)) == (1 << 8); }//invincible
+    public static bool Get_Proofs_Explosion(long entity) { return (Get_Damage_Bits(entity) & (1 << 11)) == (1 << 11); }
+    public static bool Get_Proofs_Steam(long entity) { return (Get_Damage_Bits(entity) & (1 << 15)) == (1 << 15); }
+    public static bool Get_Proofs_Drown(long entity) { return (Get_Damage_Bits(entity) & (1 << 16)) == (1 << 16); }
+    public static bool Get_Proofs_Water(long entity) { return (Get_Damage_Bits(entity) & (1 << 24)) == (1 << 24); }
 
 
-    public static void set_invisible(long entity, bool toggle)
+    public static void Set_Invisible(long entity, bool toggle)
     {
         byte temp = Memory.Read<byte>(entity + 0x2C);
         if (toggle) temp = (byte)(temp & ~(1 << 0));
         else temp = (byte)(temp | (1 << 0));
         Memory.Write(entity + 0x2C, temp);
     }
-    public static void set_real_right_vector3(long entity, Vector3 pos) { Navigation.set_real_right_vector3(get_navigation(entity), pos); }
-    public static void set_real_forward_vector3(long entity, Vector3 pos) { Navigation.set_real_forward_vector3(get_navigation(entity), pos); }
-    public static void set_real_up_vector3(long entity, Vector3 pos) { Navigation.set_real_up_vector3(get_navigation(entity), pos); }
-    public static void set_real_position(long entity, Vector3 pos) { Navigation.set_real_position(get_navigation(entity), pos); }
-    public static void set_water_collision_strength(long entity, float value) { Navigation.set_water_collision_strength(get_navigation(entity), value); }
-    public static void set_no_water_collision_strength(long entity, bool toggle) { Navigation.set_no_water_collision_strength(get_navigation(entity), toggle); }
-    public static void set_visual_right_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x60, pos); }
-    public static void set_visual_forward_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x70, pos); }
-    public static void set_visual_up_vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x80, pos); }
-    public static void set_visual_position(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x90, pos); }
-    public static void set_position(long entity, Vector3 pos)
+    public static void Set_Real_Right_Vector3(long entity, Vector3 pos) { Navigation.Set_Real_Right_Vector3(Get_Navigation(entity), pos); }
+    public static void Set_Real_Forward_Vector3(long entity, Vector3 pos) { Navigation.Set_Real_Forward_Vector3(Get_Navigation(entity), pos); }
+    public static void Set_Real_Up_Vector3(long entity, Vector3 pos) { Navigation.Set_Real_Up_Vector3(Get_Navigation(entity), pos); }
+    public static void Set_Real_Position(long entity, Vector3 pos) { Navigation.Set_Real_Position(Get_Navigation(entity), pos); }
+    public static void Set_Water_Collision_Strength(long entity, float value) { Navigation.Set_Water_Collision_Strength(Get_Navigation(entity), value); }
+    public static void Set_No_Water_Collision_Strength(long entity, bool toggle) { Navigation.Set_No_Water_Collision_Strength(Get_Navigation(entity), toggle); }
+    public static void Set_Visual_Right_Vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x60, pos); }
+    public static void Set_Visual_Forward_Vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x70, pos); }
+    public static void Set_Visual_Up_Vector3(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x80, pos); }
+    public static void Set_Visual_Position(long entity, Vector3 pos) { Memory.Write<Vector3>(entity + 0x90, pos); }
+    public static void Set_Position(long entity, Vector3 pos)
     {
-        set_real_position(entity, pos);
-        set_visual_position(entity, pos);
+        Set_Real_Position(entity, pos);
+        Set_Visual_Position(entity, pos);
     }
-    public static void set_damage_bits(long entity, uint value) { Memory.Write<uint>(entity + 0x188, value); }
-    public static void set_proofs_bullet(long entity, bool toggle)
+    public static void Set_Damage_Bits(long entity, uint value) { Memory.Write<uint>(entity + 0x188, value); }
+    public static void Set_Proofs_Bullet(long entity, bool toggle)
     {
-        uint temp = get_damage_bits(entity);
+        uint temp = Get_Damage_Bits(entity);
         temp = toggle ? (uint)(temp | (1 << 4)) : (uint)(temp & ~(1 << 4));
-        set_damage_bits(entity, temp);
+        Set_Damage_Bits(entity, temp);
     }
-    public static void set_proofs_fire(long entity, bool toggle)
+    public static void Set_Proofs_Fire(long entity, bool toggle)
     {
-        uint temp = get_damage_bits(entity);
+        uint temp = Get_Damage_Bits(entity);
         temp = toggle ? (uint)(temp | (1 << 5)) : (uint)(temp & ~(1 << 5));
-        set_damage_bits(entity, temp);
+        Set_Damage_Bits(entity, temp);
     }
-    public static void set_proofs_collision(long entity, bool toggle)
+    public static void Set_Proofs_Collision(long entity, bool toggle)
     {
-        uint temp = get_damage_bits(entity);
+        uint temp = Get_Damage_Bits(entity);
         temp = toggle ? (uint)(temp | (1 << 6)) : (uint)(temp & ~(1 << 6));
-        set_damage_bits(entity, temp);
+        Set_Damage_Bits(entity, temp);
     }
-    public static void set_proofs_melee(long entity, bool toggle)
+    public static void Set_Proofs_Melee(long entity, bool toggle)
     {
-        uint temp = get_damage_bits(entity);
+        uint temp = Get_Damage_Bits(entity);
         temp = toggle ? (uint)(temp | (1 << 7)) : (uint)(temp & ~(1 << 7));
-        set_damage_bits(entity, temp);
+        Set_Damage_Bits(entity, temp);
     }
-    public static void set_proofs_god(long entity, bool toggle)
+    public static void Set_Proofs_God(long entity, bool toggle)
     {
-        uint temp = get_damage_bits(entity);
+        uint temp = Get_Damage_Bits(entity);
         temp = toggle ? (uint)(temp | (1 << 8)) : (uint)(temp & ~(1 << 8));
-        set_damage_bits(entity, temp);
+        Set_Damage_Bits(entity, temp);
     }
-    public static void set_proofs_explosion(long entity, bool toggle)
+    public static void Set_Proofs_Explosion(long entity, bool toggle)
     {
-        uint temp = get_damage_bits(entity);
+        uint temp = Get_Damage_Bits(entity);
         temp = toggle ? (uint)(temp | (1 << 11)) : (uint)(temp & ~(1 << 11));
-        set_damage_bits(entity, temp);
+        Set_Damage_Bits(entity, temp);
     }
-    public static void set_proofs_steam(long entity, bool toggle)
+    public static void Set_Proofs_Steam(long entity, bool toggle)
     {
-        uint temp = get_damage_bits(entity);
+        uint temp = Get_Damage_Bits(entity);
         temp = toggle ? (uint)(temp | (1 << 15)) : (uint)(temp & ~(1 << 15));
-        set_damage_bits(entity, temp);
+        Set_Damage_Bits(entity, temp);
     }
-    public static void set_proofs_drown(long entity, bool toggle)
+    public static void Set_Proofs_Drown(long entity, bool toggle)
     {
-        uint temp = get_damage_bits(entity);
+        uint temp = Get_Damage_Bits(entity);
         temp = toggle ? (uint)(temp | (1 << 16)) : (uint)(temp & ~(1 << 16));
-        set_damage_bits(entity, temp);
+        Set_Damage_Bits(entity, temp);
     }
-    public static void set_proofs_water(long entity, bool toggle)
+    public static void Set_Proofs_Water(long entity, bool toggle)
     {
-        uint temp = get_damage_bits(entity);
+        uint temp = Get_Damage_Bits(entity);
         temp = toggle ? (uint)(temp | (1 << 24)) : (uint)(temp & ~(1 << 24));
-        set_damage_bits(entity, temp);
+        Set_Damage_Bits(entity, temp);
     }
 }
 
 
 public class Ped : Entity
 {
-    public static byte get_hostility(long ped) { return Memory.Read<byte>(ped + 0x18C); }
-    public static bool is_enemy(long ped) { return ((get_hostility(ped) > 1) ? true : false); }
-    public static float get_health(long ped) { return Memory.Read<float>(ped + 0x280); }
-    public static float get_max_health(long ped) { return Memory.Read<float>(ped + 0x2A0); }
-    public static long get_current_vehicle(long ped) { return Memory.Read<long>(ped + 0xD30); }
-    public static bool is_in_vehicle(long ped) { return ((Memory.Read<byte>(ped + 0xE52) == 1) ? true : false); }
-    public static uint get_pedtype(long ped) { return Memory.Read<uint>(ped + 0x10B8) << 11 >> 25; }
-    public static bool get_no_ragdoll(long ped) { return (((Memory.Read<byte>(ped + 0x10B8) & (1 << 5)) == (1 << 5)) ? false : true); }
-    public static long get_playerinfo(long ped) { return Memory.Read<long>(ped + 0x10C8); }
-    public static bool get_frame_flags_explosiveammo(long ped) { return PlayerInfo.get_frame_flags_explosiveammo(get_playerinfo(ped)); }
-    public static bool get_frame_flags_flamingammo(long ped) { return PlayerInfo.get_frame_flags_flamingammo(get_playerinfo(ped)); }
-    public static bool get_frame_flags_explosivefists(long ped) { return PlayerInfo.get_frame_flags_explosivefists(get_playerinfo(ped)); }
-    public static bool get_frame_flags_superjump(long ped) { return PlayerInfo.get_frame_flags_superjump(get_playerinfo(ped)); }
-    public static void set_frame_flags_explosiveammo(long ped, bool toggle) { PlayerInfo.set_frame_flags_explosiveammo(get_playerinfo(ped), toggle); }
-    public static void set_frame_flags_flamingammo(long ped, bool toggle) { PlayerInfo.set_frame_flags_flamingammo(get_playerinfo(ped), toggle); }
-    public static void set_frame_flags_explosivefists(long ped, bool toggle) { PlayerInfo.set_frame_flags_explosivefists(get_playerinfo(ped), toggle); }
-    public static void set_frame_flags_superjump(long ped, bool toggle) { PlayerInfo.set_frame_flags_superjump(get_playerinfo(ped), toggle); }
-    public static int  get_wanted_level(long ped) { return PlayerInfo.get_wanted_level((get_playerinfo(ped))); }
-    public static void set_wanted_level(long ped, int value) { PlayerInfo.set_wanted_level(get_playerinfo(ped), value); }
-    public static float get_run_speed(long ped) { return PlayerInfo.get_run_speed(get_playerinfo(ped)); }
-    public static float get_swim_speed(long ped) { return PlayerInfo.get_swim_speed(get_playerinfo(ped)); }
-    public static float get_stealth_speed(long ped) { return PlayerInfo.get_stealth_speed(get_playerinfo(ped)); }
-    public static void set_run_speed(long ped, float value) { PlayerInfo.set_run_speed(get_playerinfo(ped), value); }
-    public static void set_swim_speed(long ped, float value) { PlayerInfo.set_swim_speed(get_playerinfo(ped), value); }
-    public static void set_stealth_speed(long ped, float value) { PlayerInfo.set_stealth_speed(get_playerinfo(ped), value); }
-    public static bool get_everyone_ignore(long ped) { return PlayerInfo.get_everyone_ignore(get_playerinfo(ped)); }
-    public static bool get_cops_ignore(long ped) { return PlayerInfo.get_cops_ignore(get_playerinfo(ped)); }
-    public static void set_everyone_ignore(long ped, bool toggle) { PlayerInfo.set_everyone_ignore(get_playerinfo(ped), toggle); }
-    public static void set_cops_ignore(long ped, bool toggle) { PlayerInfo.set_cops_ignore(get_playerinfo(ped), toggle); }
-    public static long get_ped_inventory(long ped) { return Memory.Read<long>(ped + 0x10D0); }
-    public static bool get_infinite_ammo(long ped) { return PedInventory.get_infinite_ammo(get_ped_inventory(ped)); }
-    public static bool get_infinite_clip(long ped) { return PedInventory.get_infinite_clip(get_ped_inventory(ped)); }
-    public static void set_infinite_ammo(long ped, bool toggle) { PedInventory.set_infinite_ammo(get_ped_inventory(ped), toggle); }
-    public static void set_infinite_clip(long ped, bool toggle) { PedInventory.set_infinite_clip(get_ped_inventory(ped), toggle); }
+    public static byte Get_Hostility(long ped) { return Memory.Read<byte>(ped + 0x18C); }
+    public static bool Is_Enemy(long ped) { return ((Get_Hostility(ped) > 1) ? true : false); }
+    public static float Get_Health(long ped) { return Memory.Read<float>(ped + 0x280); }
+    public static float Get_Max_Health(long ped) { return Memory.Read<float>(ped + 0x2A0); }
+    public static long Get_Current_Vehicle(long ped) { return Memory.Read<long>(ped + 0xD30); }
+    public static bool Is_In_Vehicle(long ped) { return ((Memory.Read<byte>(ped + 0xE52) == 1) ? true : false); }
+    public static uint Get_Pedtype(long ped) { return Memory.Read<uint>(ped + 0x10B8) << 11 >> 25; }
+    public static bool Get_No_Ragdoll(long ped) { return (((Memory.Read<byte>(ped + 0x10B8) & (1 << 5)) == (1 << 5)) ? false : true); }
+    public static long Get_Player_Info(long ped) { return Memory.Read<long>(ped + 0x10C8); }
+    public static bool Get_Frame_Flags_Explosiveammo(long ped) { return PlayerInfo.Get_Frame_Flags_Explosiveammo(Get_Player_Info(ped)); }
+    public static bool Get_Frame_Flags_Flamingammo(long ped) { return PlayerInfo.Get_Frame_Flags_Flamingammo(Get_Player_Info(ped)); }
+    public static bool Get_Frame_Flags_Explosivefists(long ped) { return PlayerInfo.Get_Frame_Flags_Explosivefists(Get_Player_Info(ped)); }
+    public static bool Get_Frame_Flags_Superjump(long ped) { return PlayerInfo.Get_Frame_Flags_Superjump(Get_Player_Info(ped)); }
+    public static void Set_Frame_Flags_Explosiveammo(long ped, bool toggle) { PlayerInfo.Set_Frame_Flags_Explosiveammo(Get_Player_Info(ped), toggle); }
+    public static void Set_Frame_Flags_Flamingammo(long ped, bool toggle) { PlayerInfo.Set_Frame_Flags_Flamingammo(Get_Player_Info(ped), toggle); }
+    public static void Set_Frame_Flags_Explosivefists(long ped, bool toggle) { PlayerInfo.Set_Frame_Flags_Explosivefists(Get_Player_Info(ped), toggle); }
+    public static void Set_Frame_Flags_Superjump(long ped, bool toggle) { PlayerInfo.Set_Frame_Flags_Superjump(Get_Player_Info(ped), toggle); }
+    public static int  Get_Wanted_Level(long ped) { return PlayerInfo.Get_Wanted_Level((Get_Player_Info(ped))); }
+    public static void Set_Wanted_Level(long ped, int value) { PlayerInfo.Set_Wanted_Level(Get_Player_Info(ped), value); }
+    public static float Get_Run_Speed(long ped) { return PlayerInfo.Get_Run_Speed(Get_Player_Info(ped)); }
+    public static float Get_Swim_Speed(long ped) { return PlayerInfo.Get_Swim_Speed(Get_Player_Info(ped)); }
+    public static float Get_Stealth_Speed(long ped) { return PlayerInfo.Get_Stealth_Speed(Get_Player_Info(ped)); }
+    public static void Set_Run_Speed(long ped, float value) { PlayerInfo.Set_Run_Speed(Get_Player_Info(ped), value); }
+    public static void Set_Swim_Speed(long ped, float value) { PlayerInfo.Set_Swim_Speed(Get_Player_Info(ped), value); }
+    public static void Set_Stealth_Speed(long ped, float value) { PlayerInfo.Set_Stealth_Speed(Get_Player_Info(ped), value); }
+    public static bool Get_Everyone_Ignore(long ped) { return PlayerInfo.Get_Everyone_Ignore(Get_Player_Info(ped)); }
+    public static bool Get_Cops_Ignore(long ped) { return PlayerInfo.Get_Cops_Ignore(Get_Player_Info(ped)); }
+    public static void Set_Everyone_Ignore(long ped, bool toggle) { PlayerInfo.Set_Everyone_Ignore(Get_Player_Info(ped), toggle); }
+    public static void Set_Cops_Ignore(long ped, bool toggle) { PlayerInfo.Set_Cops_Ignore(Get_Player_Info(ped), toggle); }
+    public static long Get_Ped_Inventory(long ped) { return Memory.Read<long>(ped + 0x10D0); }
+    public static bool Get_Infinite_Ammo(long ped) { return PedInventory.Get_Infinite_Ammo(Get_Ped_Inventory(ped)); }
+    public static bool Get_Infinite_Clip(long ped) { return PedInventory.Get_Infinite_Clip(Get_Ped_Inventory(ped)); }
+    public static void Set_Infinite_Ammo(long ped, bool toggle) { PedInventory.Set_Infinite_Ammo(Get_Ped_Inventory(ped), toggle); }
+    public static void Set_Infinite_Clip(long ped, bool toggle) { PedInventory.Set_Infinite_Clip(Get_Ped_Inventory(ped), toggle); }
     public static long get_pedweaponmanager(long ped) { return Memory.Read<long>(ped + 0x10D8); }
-    public static short get_damage_type(long ped) { return PedWeaponManager.get_damage_type(get_pedweaponmanager(ped)); }
-    public static int get_explosion_type(long ped) { return PedWeaponManager.get_explosion_type(get_pedweaponmanager(ped)); }
-    public static int get_fire_type(long ped) { return PedWeaponManager.get_fire_type(get_pedweaponmanager(ped)); }
-    public static float get_spread(long ped) { return PedWeaponManager.get_spread(get_pedweaponmanager(ped)); }
-    public static float get_reload_time_multiplier(long ped) { return PedWeaponManager.get_reload_time_multiplier(get_pedweaponmanager(ped)); }
-    public static float get_lock_on_range(long ped) { return PedWeaponManager.get_lock_on_range(get_pedweaponmanager(ped)); }
-    public static float get_range(long ped) { return PedWeaponManager.get_range(get_pedweaponmanager(ped)); }
-    public static float get_recoil(long ped) { return PedWeaponManager.get_recoil(get_pedweaponmanager(ped)); }
-    public static bool get_seatbelt(long ped) { return (((Memory.Read<byte>(ped + 0x145C) & (1 << 0)) == (1 << 0)) ? true : false); }
-    public static float get_armor(long ped) { return Memory.Read<float>(ped + 0x1530); }
-    private static float get_collision(long ped) { return Memory.Read<float>(ped + 0x30, new int[] { 0x10, 0x20, 0x70, 0x00, 0x2C }); }
-    public static bool get_no_collision(long ped) { return ((get_collision(ped) <= 0.0f) ? true : false); }
+    public static short Get_Damage_Type(long ped) { return PedWeaponManager.Get_Damage_Type(get_pedweaponmanager(ped)); }
+    public static int Get_Explosion_Type(long ped) { return PedWeaponManager.Get_Explosion_Type(get_pedweaponmanager(ped)); }
+    public static int Get_Fire_Type(long ped) { return PedWeaponManager.Get_Fire_Type(get_pedweaponmanager(ped)); }
+    public static float Get_Spread(long ped) { return PedWeaponManager.Get_Spread(get_pedweaponmanager(ped)); }
+    public static float Get_Reload_Time_Multiplier(long ped) { return PedWeaponManager.Get_Reload_Time_Multiplier(get_pedweaponmanager(ped)); }
+    public static float Get_Lock_On_Range(long ped) { return PedWeaponManager.Get_Lock_On_Range(get_pedweaponmanager(ped)); }
+    public static float Get_Range(long ped) { return PedWeaponManager.Get_Range(get_pedweaponmanager(ped)); }
+    public static float Get_Recoil(long ped) { return PedWeaponManager.Get_Recoil(get_pedweaponmanager(ped)); }
+    public static bool Get_Seatbelt(long ped) { return (((Memory.Read<byte>(ped + 0x145C) & (1 << 0)) == (1 << 0)) ? true : false); }
+    public static float Get_Armor(long ped) { return Memory.Read<float>(ped + 0x1530); }
+    private static float Get_Collision(long ped) { return Memory.Read<float>(ped + 0x30, new int[] { 0x10, 0x20, 0x70, 0x00, 0x2C }); }
+    public static bool Get_No_Collision(long ped) { return ((Get_Collision(ped) <= 0.0f) ? true : false); }
 
 
-    public static void set_damage_type(long ped, short value) { PedWeaponManager.set_damage_type(get_pedweaponmanager(ped), value); }
-    public static void set_explosion_type(long ped, int value) { PedWeaponManager.set_explosion_type(get_pedweaponmanager(ped), value); }
-    public static void set_fire_type(long ped, int value) { PedWeaponManager.set_fire_type(get_pedweaponmanager(ped), value); }
-    public static void set_spread(long ped, float value) { PedWeaponManager.set_spread(get_pedweaponmanager(ped), value); }
-    public static void set_reload_time_multiplier(long ped, float value) { PedWeaponManager.set_reload_time_multiplier(get_pedweaponmanager(ped), value); }
-    public static void set_lock_on_range(long ped, float value) { PedWeaponManager.set_lock_on_range(get_pedweaponmanager(ped), value); }
-    public static void set_range(long ped, float value) { PedWeaponManager.set_range(get_pedweaponmanager(ped), value); }
-    public static void set_recoil(long ped, float value) { PedWeaponManager.set_recoil(get_pedweaponmanager(ped), value); }
-    public static void set_health(long ped, float value) { Memory.Write<float>(ped + 0x280, value); }
-    public static void set_max_health(long ped, float value) { Memory.Write<float>(ped + 0x2A0, value); }
-    public static void set_no_ragdoll(long ped, bool toggle)
+    public static void Set_Damage_Type(long ped, short value) { PedWeaponManager.Set_Damage_Type(get_pedweaponmanager(ped), value); }
+    public static void Set_Explosion_Type(long ped, int value) { PedWeaponManager.Set_Explosion_Type(get_pedweaponmanager(ped), value); }
+    public static void Set_Fire_Type(long ped, int value) { PedWeaponManager.Set_Fire_Type(get_pedweaponmanager(ped), value); }
+    public static void Set_Spread(long ped, float value) { PedWeaponManager.Set_Spread(get_pedweaponmanager(ped), value); }
+    public static void Set_Reload_Time_Multiplier(long ped, float value) { PedWeaponManager.Set_Reload_Time_Multiplier(get_pedweaponmanager(ped), value); }
+    public static void Set_Lock_On_Range(long ped, float value) { PedWeaponManager.Set_Lock_On_Range(get_pedweaponmanager(ped), value); }
+    public static void Set_Range(long ped, float value) { PedWeaponManager.Set_Range(get_pedweaponmanager(ped), value); }
+    public static void Set_Recoil(long ped, float value) { PedWeaponManager.Set_Recoil(get_pedweaponmanager(ped), value); }
+    public static void Set_Health(long ped, float value) { Memory.Write<float>(ped + 0x280, value); }
+    public static void Set_Max_Health(long ped, float value) { Memory.Write<float>(ped + 0x2A0, value); }
+    public static void Set_No_Ragdoll(long ped, bool toggle)
     {
         byte temp = Memory.Read<byte>(ped + 0x10B8);
         if (toggle) temp = (byte)(temp | (1 << 5));
         else temp = (byte)(temp & ~(1 << 5));
         Memory.Write<byte>(ped + 0x10B8, temp);
     }
-    public static void set_seatbelt(long ped, bool toggle)
+    public static void Set_Seatbelt(long ped, bool toggle)
     {
         byte temp = Memory.Read<byte>(ped + 0x145C);
         if (toggle) temp = (byte)(temp | (1 << 0));
         else temp = (byte)(temp & ~(1 << 0));
         Memory.Write<byte>(ped + 0x145C, temp);
     }
-    public static void set_armour(long ped, float value) { Memory.Write<float>(ped + 0x1530, value); }
-    private static void set_collision(long ped, float value) { Memory.Write<float>(ped + 0x30, new int[] { 0x10, 0x20, 0x70, 0x00, 0x2C }, value); }
-    public static void set_no_collision(long ped, bool toggle) { set_collision(ped, (toggle ? -1.0f : 0.25f)); }
+    public static void Set_Armour(long ped, float value) { Memory.Write<float>(ped + 0x1530, value); }
+    private static void Set_Collision(long ped, float value) { Memory.Write<float>(ped + 0x30, new int[] { 0x10, 0x20, 0x70, 0x00, 0x2C }, value); }
+    public static void Set_No_Collision(long ped, bool toggle) { Set_Collision(ped, (toggle ? -1.0f : 0.25f)); }
 }
 
 
 public class Vehicle : Entity
 {
-    public static ushort get_extras(long vehicle) { return VehicleModelInfo.get_extras(get_modelinfo(vehicle)); }
-    public static bool get_extras_rocket_boost(long vehicle) { return VehicleModelInfo.get_extras_rocket_boost(get_modelinfo(vehicle)); }
-    public static bool get_extras_vehicle_jump(long vehicle) { return VehicleModelInfo.get_extras_vehicle_jump(get_modelinfo(vehicle)); }
-    public static bool get_extras_parachute(long vehicle) { return VehicleModelInfo.get_extras_parachute(get_modelinfo(vehicle)); }
-    public static bool get_extras_ramp_buggy(long vehicle) { return VehicleModelInfo.get_extras_ramp_buggy(get_modelinfo(vehicle)); }
-    public static byte get_state(long vehicle) { return Memory.Read<byte>(vehicle + 0xD8); }
-    public static bool get_state_is_personal(long vehicle) { return (((get_state(vehicle) & (1 << 5)) == (1 << 5)) ? true : false); }
-    public static bool get_state_is_using(long vehicle)
+    public static ushort Get_Extras(long vehicle) { return VehicleModelInfo.Get_Extras(Get_Model_Info(vehicle)); }
+    public static bool Get_Extras_Rocket_Boost(long vehicle) { return VehicleModelInfo.Get_Extras_Rocket_Boost(Get_Model_Info(vehicle)); }
+    public static bool Get_Extras_Vehicle_Jump(long vehicle) { return VehicleModelInfo.Get_Extras_Vehicle_Jump(Get_Model_Info(vehicle)); }
+    public static bool Get_Extras_Parachute(long vehicle) { return VehicleModelInfo.Get_Extras_Parachute(Get_Model_Info(vehicle)); }
+    public static bool Get_Extras_Ramp_Buggy(long vehicle) { return VehicleModelInfo.Get_Extras_Ramp_Buggy(Get_Model_Info(vehicle)); }
+    public static byte Get_State(long vehicle) { return Memory.Read<byte>(vehicle + 0xD8); }
+    public static bool Get_State_Is_Personal(long vehicle) { return (((Get_State(vehicle) & (1 << 5)) == (1 << 5)) ? true : false); }
+    public static bool Get_State_Is_Using(long vehicle)
     {
-        byte temp = get_state(vehicle);
+        byte temp = Get_State(vehicle);
         return ((((temp & (1 << 1)) == (1 << 1)) && !((temp & (1 << 0)) == (1 << 0))) ? true : false);
     }
-    public static bool get_state_is_destroyed(long vehicle)
+    public static bool Get_State_Is_Destroyed(long vehicle)
     {
-        byte temp = get_state(vehicle);
+        byte temp = Get_State(vehicle);
         return ((((temp & (1 << 1)) == (1 << 1)) && ((temp & (1 << 0)) == (1 << 0))) ? true : false);
     }
-    public static float get_health(long vehicle) { return Memory.Read<float>(vehicle + 0x280); }
-    public static float get_max_health(long vehicle) { return Memory.Read<float>(vehicle + 0x2A0); }
-    public static float get_health2(long vehicle) { return Memory.Read<float>(vehicle + 0x840); }//m_body_health
-    public static float get_health3(long vehicle) { return Memory.Read<float>(vehicle + 0x844); }//m_petrol_tank_health
-    public static float get_engine_health(long vehicle) { return Memory.Read<float>(vehicle + 0x908); }//m_engine_health
-    public static float get_dirt_level(long vehicle) { return Memory.Read<float>(vehicle + 0x9F8); }
-    public static float get_gravity(long vehicle) { return Memory.Read<float>(vehicle + 0xC5C); }
-    public static byte get_cur_num_of_passenger(long vehicle) { return Memory.Read<byte>(vehicle + 0xC62); }
+    public static float Get_Health(long vehicle) { return Memory.Read<float>(vehicle + 0x280); }
+    public static float Get_Max_Health(long vehicle) { return Memory.Read<float>(vehicle + 0x2A0); }
+    public static float Get_Health2(long vehicle) { return Memory.Read<float>(vehicle + 0x840); }//m_body_health
+    public static float Get_Health3(long vehicle) { return Memory.Read<float>(vehicle + 0x844); }//m_petrol_tank_health
+    public static float Get_Engine_Health(long vehicle) { return Memory.Read<float>(vehicle + 0x908); }//m_engine_health
+    public static float Get_Dirt_Level(long vehicle) { return Memory.Read<float>(vehicle + 0x9F8); }
+    public static float Get_Gravity(long vehicle) { return Memory.Read<float>(vehicle + 0xC5C); }
+    public static byte Get_Cur_Num_Of_Passenger(long vehicle) { return Memory.Read<byte>(vehicle + 0xC62); }
 
 
-    public static void set_extras(long vehicle, ushort value) { VehicleModelInfo.set_extras(get_modelinfo(vehicle), value); }
-    public static void set_extras_rocket_boost(long vehicle, bool toggle) { VehicleModelInfo.set_extras_rocket_boost(get_modelinfo(vehicle), toggle); }
-    public static void set_extras_vehicle_jump(long vehicle, bool toggle) { VehicleModelInfo.set_extras_vehicle_jump(get_modelinfo(vehicle), toggle); }
-    public static void set_extras_parachute(long vehicle, bool toggle) { VehicleModelInfo.set_extras_parachute(get_modelinfo(vehicle), toggle); }
-    public static void set_extras_ramp_buggy(long vehicle, bool toggle) { VehicleModelInfo.set_extras_ramp_buggy(get_modelinfo(vehicle), toggle); }
-    public static void set_state(long vehicle, byte value) { Memory.Write<byte>(vehicle + 0xD8, value); }
-    public static void set_state_is_personal(long vehicle, bool toggle)
+    public static void Set_Extras(long vehicle, ushort value) { VehicleModelInfo.Set_Extras(Get_Model_Info(vehicle), value); }
+    public static void Set_Extras_Rocket_Boost(long vehicle, bool toggle) { VehicleModelInfo.Set_Extras_Rocket_Boost(Get_Model_Info(vehicle), toggle); }
+    public static void Set_Extras_Vehicle_Jump(long vehicle, bool toggle) { VehicleModelInfo.Set_Extras_Vehicle_Jump(Get_Model_Info(vehicle), toggle); }
+    public static void Set_Extras_Parachute(long vehicle, bool toggle) { VehicleModelInfo.Set_Extras_Parachute(Get_Model_Info(vehicle), toggle); }
+    public static void Set_Extras_Ramp_Buggy(long vehicle, bool toggle) { VehicleModelInfo.Set_Extras_Ramp_Buggy(Get_Model_Info(vehicle), toggle); }
+    public static void Set_State(long vehicle, byte value) { Memory.Write<byte>(vehicle + 0xD8, value); }
+    public static void Set_State_Is_Personal(long vehicle, bool toggle)
     {
-        byte temp = get_state(vehicle);
+        byte temp = Get_State(vehicle);
         if (toggle) temp = (byte)(temp | (1 << 5));
         else temp = (byte)(temp & ~(1 << 5));
-        set_state(vehicle, temp);
+        Set_State(vehicle, temp);
     }
-    public static void set_state_is_using(long vehicle, bool toggle)
+    public static void Set_State_Is_Using(long vehicle, bool toggle)
     {
-        byte temp = get_state(vehicle);
+        byte temp = Get_State(vehicle);
         if (toggle) temp = (byte)(temp | (1 << 1) & ~(1 << 0));
         else temp = (byte)(temp & ~(1 << 1) & ~(1 << 0));
-        set_state(vehicle, temp);
+        Set_State(vehicle, temp);
     }
-    public static void set_state_is_destroyed(long vehicle, bool toggle)
+    public static void Set_State_Is_Destroyed(long vehicle, bool toggle)
     {
-        byte temp = get_state(vehicle);
+        byte temp = Get_State(vehicle);
         if (toggle) temp = (byte)(temp | (1 << 1) | (1 << 0));
         else temp = (byte)(temp & ~(1 << 0));
-        set_state(vehicle, temp);
+        Set_State(vehicle, temp);
     }
-    public static void set_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x280, value); }
-    public static void set_max_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x2A0, value); }
-    public static void set_health2(long vehicle, float value) { Memory.Write<float>(vehicle + 0x840, value); }
-    public static void set_health3(long vehicle, float value) { Memory.Write<float>(vehicle + 0x844, value); }
-    public static void set_engine_health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x908, value); }
-    public static void set_dirt_level(long vehicle, float value) { Memory.Write<float>(vehicle + 0x9F8, value); }
-    public static void set_gravity(long vehicle, float value) { Memory.Write<float>(vehicle + 0xC5C, value); }
+    public static void Set_Health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x280, value); }
+    public static void Set_Max_Health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x2A0, value); }
+    public static void Set_Health2(long vehicle, float value) { Memory.Write<float>(vehicle + 0x840, value); }
+    public static void Set_Health3(long vehicle, float value) { Memory.Write<float>(vehicle + 0x844, value); }
+    public static void Set_Engine_Health(long vehicle, float value) { Memory.Write<float>(vehicle + 0x908, value); }
+    public static void Set_Dirt_Level(long vehicle, float value) { Memory.Write<float>(vehicle + 0x9F8, value); }
+    public static void Set_Gravity(long vehicle, float value) { Memory.Write<float>(vehicle + 0xC5C, value); }
 }
 
 
 public class Replayinterface
 {
-    public static List<long> get_vehicles()
+    public static List<long> Get_Vehicles()
     {
         List<long> vehicles = new List<long>();
         long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x10 });
@@ -801,7 +801,7 @@ public class Replayinterface
         }
         return vehicles;
     }
-    public static List<long> get_peds()
+    public static List<long> Get_Peds()
     {
         List<long> peds = new List<long>();
         long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] {0x18});
@@ -815,7 +815,7 @@ public class Replayinterface
         }
         return peds;
     }
-    public static List<long> get_pickups()
+    public static List<long> Get_Pickups()
     {
         List<long> pickups = new List<long>();
         long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x20 });
@@ -829,7 +829,7 @@ public class Replayinterface
         }
         return pickups;
     }
-    public static List<long> get_objects()//https://github.com/Yimura/YimMenu/blob/2e57cd273ffa1cef5637efc60746a686516d58d4/BigBaseV2/src/gta/replay.hpp#L57
+    public static List<long> Get_Objects()//https://github.com/Yimura/YimMenu/blob/2e57cd273ffa1cef5637efc60746a686516d58d4/BigBaseV2/src/gta/replay.hpp#L57
     {
         List<long> objects = new List<long>();
         long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x28 });
@@ -847,17 +847,17 @@ public class Replayinterface
 
 public class OnlinePlayer
 {
-    public static int get_number_of_players()
+    public static int Get_Number_Of_Players()
     {
         int number = 0;
         for(int i = 0; i < 32; i++)
         {
-            if (get_player_ped(i) == 0) continue;
+            if (Get_Player_Ped(i) == 0) continue;
             number++;
         }
         return number;
     }
-    public static long get_player_info(int i)
+    public static long Get_Player_Info(int i)
     {
         long CNetworkPlayerMgr = Memory.Read<long>(Globals.NetworkPlayerMgrPTR);
         if (!Memory.IsValid(CNetworkPlayerMgr)) return 0;
@@ -867,7 +867,7 @@ public class OnlinePlayer
         if (!Memory.IsValid(CPlayerInfo)) return 0;
         return CPlayerInfo;
     }
-    public static long get_player_ped(int i)//0-31
+    public static long Get_Player_Ped(int i)//0-31
     {
         long CNetworkPlayerMgr = Memory.Read<long>(Globals.NetworkPlayerMgrPTR);
         if (!Memory.IsValid(CNetworkPlayerMgr)) return 0;
@@ -875,7 +875,7 @@ public class OnlinePlayer
         if (!Memory.IsValid(CNetGamePlayer)) return 0;
         long CPlayerInfo = Memory.Read<long>(CNetGamePlayer + 0xA0);
         if (!Memory.IsValid(CPlayerInfo)) return 0;
-        long CPed = PlayerInfo.get_ped(CPlayerInfo);
+        long CPed = PlayerInfo.Get_Ped(CPlayerInfo);
         if (!Memory.IsValid(CPed)) return 0;
         return CPed;
     }
@@ -883,130 +883,130 @@ public class OnlinePlayer
 
 public class Pickup : Entity
 {
-    public static uint get_pickup_hash(long pickup) { return Memory.Read<uint>(pickup + 0x488); }
-    public static uint get_pickup_value(long pickup) { return Memory.Read<uint>(pickup + 0x490); }
-    public static uint get_model_hash() { return Memory.Read<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }); }
+    public static uint Get_Pickup_Hash(long pickup) { return Memory.Read<uint>(pickup + 0x488); }
+    public static uint Get_Pickup_Value(long pickup) { return Memory.Read<uint>(pickup + 0x490); }
+    public static uint Get_Model_Hash() { return Memory.Read<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }); }
 
 
-    public static void set_pickup_hash(long pickup, uint hash) { Memory.Write<uint>(pickup + 0x488, hash); }
-    public static void set_pickup_value(long pickup, uint value) { Memory.Write<uint>(pickup + 0x490, value); }
-    public static void set_model_hash(uint hash) { Memory.Write<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }, hash); }
+    public static void Set_Pickup_Hash(long pickup, uint hash) { Memory.Write<uint>(pickup + 0x488, hash); }
+    public static void Set_Pickup_Value(long pickup, uint value) { Memory.Write<uint>(pickup + 0x490, value); }
+    public static void Set_Model_Hash(uint hash) { Memory.Write<uint>(Globals.ReplayInterfacePTR, new int[] { 0x20, 0xB0, 0x0, 0x490, 0xE80 }, hash); }
 }
 
 
 public class PlayerInfo
 {
-    public static uint get_scid(long playerinfo) { return Memory.Read<uint>(playerinfo + 0x90); }
-    public static string get_name(long playerinfo) { return Memory.ReadString(playerinfo + 0xA4, null, 20); }
-    public static float get_swim_speed(long playerinfo) { return Memory.Read<float>(playerinfo + 0x170); }
-    public static float get_stealth_speed(long playerinfo) { return Memory.Read<float>(playerinfo + 0x18C); }
-    public static long get_ped(long playerinfo) { return Memory.Read<long>(playerinfo + 0x1E8); }
-    public static byte get_npc_ignore(long playerinfo) { return Memory.Read<byte>(playerinfo + 0x872); }
-    public static bool get_everyone_ignore(long playerinfo) { return (((get_npc_ignore(playerinfo) & (1 << 2)) == (1 << 2)) ? true : false); }
-    public static bool get_cops_ignore(long playerinfo) { return (((get_npc_ignore(playerinfo) & ((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7))) == ((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7))) ? true : false); }
-    public static int get_wanted_level(long playerinfo) { return Memory.Read<int>(playerinfo + 0x888); }
-    public static float get_run_speed(long playerinfo) { return Memory.Read<float>(playerinfo + 0xCF0); }
-    public static byte get_frame_flags(long playerinfo) { return Memory.Read<byte>(playerinfo + 0x219); }
-    public static bool get_frame_flags_explosiveammo(long playerinfo) { return (((get_frame_flags(playerinfo) & (1 << 3)) == (1 << 3)) ? true : false); }
-    public static bool get_frame_flags_flamingammo(long playerinfo) { return (((get_frame_flags(playerinfo) & (1 << 4)) == (1 << 4)) ? true : false); }//fire ammo
-    public static bool get_frame_flags_explosivefists(long playerinfo) { return (((get_frame_flags(playerinfo) & (1 << 5)) == (1 << 5)) ? true : false); }//explosive punch
-    public static bool get_frame_flags_superjump(long playerinfo) { return (((get_frame_flags(playerinfo) & (1 << 6)) == (1 << 6)) ? true : false); }
+    public static uint Get_SC_Id(long playerInfo) { return Memory.Read<uint>(playerInfo + 0x90); }
+    public static string Get_Name(long playerInfo) { return Memory.ReadString(playerInfo + 0xA4, null, 20); }
+    public static float Get_Swim_Speed(long playerInfo) { return Memory.Read<float>(playerInfo + 0x170); }
+    public static float Get_Stealth_Speed(long playerInfo) { return Memory.Read<float>(playerInfo + 0x18C); }
+    public static long Get_Ped(long playerInfo) { return Memory.Read<long>(playerInfo + 0x1E8); }
+    public static byte Get_Npc_Ignore(long playerInfo) { return Memory.Read<byte>(playerInfo + 0x872); }
+    public static bool Get_Everyone_Ignore(long playerInfo) { return (((Get_Npc_Ignore(playerInfo) & (1 << 2)) == (1 << 2)) ? true : false); }
+    public static bool Get_Cops_Ignore(long playerInfo) { return (((Get_Npc_Ignore(playerInfo) & ((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7))) == ((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7))) ? true : false); }
+    public static int Get_Wanted_Level(long playerInfo) { return Memory.Read<int>(playerInfo + 0x888); }
+    public static float Get_Run_Speed(long playerInfo) { return Memory.Read<float>(playerInfo + 0xCF0); }
+    public static byte Get_Frame_Flags(long playerInfo) { return Memory.Read<byte>(playerInfo + 0x219); }
+    public static bool Get_Frame_Flags_Explosiveammo(long playerInfo) { return (((Get_Frame_Flags(playerInfo) & (1 << 3)) == (1 << 3)) ? true : false); }
+    public static bool Get_Frame_Flags_Flamingammo(long playerInfo) { return (((Get_Frame_Flags(playerInfo) & (1 << 4)) == (1 << 4)) ? true : false); }//fire ammo
+    public static bool Get_Frame_Flags_Explosivefists(long playerInfo) { return (((Get_Frame_Flags(playerInfo) & (1 << 5)) == (1 << 5)) ? true : false); }//explosive punch
+    public static bool Get_Frame_Flags_Superjump(long playerInfo) { return (((Get_Frame_Flags(playerInfo) & (1 << 6)) == (1 << 6)) ? true : false); }
 
 
-    public static void set_swim_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x170, value); }
-    public static void set_stealth_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x18C, value); }
-    public static void set_npc_ignore(long playerinfo, byte value) { Memory.Write<byte>(playerinfo + 0x872, value); }
-    public static void set_everyone_ignore(long playerinfo, bool toggle) 
+    public static void Set_Swim_Speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x170, value); }
+    public static void Set_Stealth_Speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x18C, value); }
+    public static void Set_Npc_Ignore(long playerinfo, byte value) { Memory.Write<byte>(playerinfo + 0x872, value); }
+    public static void Set_Everyone_Ignore(long playerinfo, bool toggle) 
     {
-        byte temp = get_npc_ignore(playerinfo);
+        byte temp = Get_Npc_Ignore(playerinfo);
         if (toggle) temp = (byte)(temp | (1 << 2));
         else temp = (byte)(temp & ~(1 << 2));
-        set_npc_ignore(playerinfo, temp);
+        Set_Npc_Ignore(playerinfo, temp);
     }
-    public static void set_cops_ignore(long playerinfo, bool toggle) 
+    public static void Set_Cops_Ignore(long playerinfo, bool toggle) 
     {
-        byte temp = get_npc_ignore(playerinfo);
+        byte temp = Get_Npc_Ignore(playerinfo);
         if (toggle) temp = (byte)(temp | ((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7)));
         else temp = (byte)(temp & ~((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7)));
-        set_npc_ignore(playerinfo, temp);
+        Set_Npc_Ignore(playerinfo, temp);
     }
-    public static void set_wanted_level(long playerinfo, int value) { Memory.Write<int>(playerinfo + 0x888, value); }
-    public static void set_run_speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0xCF0, value); }
-    public static void set_frame_flags(long playerinfo, byte value) { Memory.Write<byte>(playerinfo + 0x219, value); }
-    public static void set_frame_flags_explosiveammo(long playerinfo, bool toggle) 
+    public static void Set_Wanted_Level(long playerinfo, int value) { Memory.Write<int>(playerinfo + 0x888, value); }
+    public static void Set_Run_Speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0xCF0, value); }
+    public static void Set_Frame_Flags(long playerinfo, byte value) { Memory.Write<byte>(playerinfo + 0x219, value); }
+    public static void Set_Frame_Flags_Explosiveammo(long playerinfo, bool toggle) 
     {
-        byte temp = get_frame_flags(playerinfo);
+        byte temp = Get_Frame_Flags(playerinfo);
         if (toggle) temp = (byte)(temp | (1 << 3));
         else temp = (byte)(temp & ~(1 << 3));
-        set_frame_flags(playerinfo, temp);
+        Set_Frame_Flags(playerinfo, temp);
     }
-    public static void set_frame_flags_flamingammo(long playerinfo, bool toggle)
+    public static void Set_Frame_Flags_Flamingammo(long playerinfo, bool toggle)
     {
-        byte temp = get_frame_flags(playerinfo);
+        byte temp = Get_Frame_Flags(playerinfo);
         if (toggle) temp = (byte)(temp | (1 << 4));
         else temp = (byte)(temp & ~(1 << 4));
-        set_frame_flags(playerinfo, temp);
+        Set_Frame_Flags(playerinfo, temp);
     }
-    public static void set_frame_flags_explosivefists(long playerinfo, bool toggle)
+    public static void Set_Frame_Flags_Explosivefists(long playerinfo, bool toggle)
     {
-        byte temp = get_frame_flags(playerinfo);
+        byte temp = Get_Frame_Flags(playerinfo);
         if (toggle) temp = (byte)(temp | (1 << 5));
         else temp = (byte)(temp & ~(1 << 5));
-        set_frame_flags(playerinfo, temp);
+        Set_Frame_Flags(playerinfo, temp);
     }
-    public static void set_frame_flags_superjump(long playerinfo, bool toggle)
+    public static void Set_Frame_Flags_Superjump(long playerinfo, bool toggle)
     {
-        byte temp = get_frame_flags(playerinfo);
+        byte temp = Get_Frame_Flags(playerinfo);
         if (toggle) temp = (byte)(temp | (1 << 6));
         else temp = (byte)(temp & ~(1 << 6));
-        set_frame_flags(playerinfo, temp);
+        Set_Frame_Flags(playerinfo, temp);
     }
 }
 
 
 public class PedInventory
 {
-    public static bool get_infinite_ammo(long ped_inventory) { return (((Memory.Read<byte>(ped_inventory + 0x78, new int[] { 0x78 }) & (1 << 0)) == (1 << 0)) ? true : false); }
-    public static bool get_infinite_clip(long ped_inventory) { return (((Memory.Read<byte>(ped_inventory + 0x78, new int[] { 0x78 }) & (1 << 1)) == (1 << 1)) ? true : false); }
+    public static bool Get_Infinite_Ammo(long pedInventory) { return (((Memory.Read<byte>(pedInventory + 0x78, new int[] { 0x78 }) & (1 << 0)) == (1 << 0)) ? true : false); }
+    public static bool Get_Infinite_Clip(long pedInventory) { return (((Memory.Read<byte>(pedInventory + 0x78, new int[] { 0x78 }) & (1 << 1)) == (1 << 1)) ? true : false); }
 
 
-    public static void set_infinite_ammo(long ped_inventory, bool toggle)
+    public static void Set_Infinite_Ammo(long pedInventory, bool toggle)
     {
-        byte temp = Memory.Read<byte>(ped_inventory + 0x78);
+        byte temp = Memory.Read<byte>(pedInventory + 0x78);
         if (toggle) temp = (byte)(temp | (1 << 0));
         else temp = (byte)(temp & ~(1 << 0));
-        Memory.Write<byte>(ped_inventory + 0x78, temp);
+        Memory.Write<byte>(pedInventory + 0x78, temp);
     }
-    public static void set_infinite_clip(long ped_inventory, bool toggle)
+    public static void Set_Infinite_Clip(long pedInventory, bool toggle)
     {
-        byte temp = Memory.Read<byte>(ped_inventory + 0x78);
+        byte temp = Memory.Read<byte>(pedInventory + 0x78);
         if (toggle) temp = (byte)(temp | (1 << 1));
         else temp = (byte)(temp & ~(1 << 1));
-        Memory.Write<byte>(ped_inventory + 0x78, temp);
+        Memory.Write<byte>(pedInventory + 0x78, temp);
     }
 }
 
 public class PedWeaponManager
 {
-    public static long get_weapon_info(long pedweaponmanager) { return Memory.Read<long>(pedweaponmanager + 0x20); }
-    public static short get_damage_type(long pedweaponmanager) { return WeaponInfo.get_damage_type(get_weapon_info(pedweaponmanager)); }
-    public static int get_explosion_type(long pedweaponmanager) { return WeaponInfo.get_explosion_type(get_weapon_info(pedweaponmanager)); }
-    public static int get_fire_type(long pedweaponmanager) { return WeaponInfo.get_fire_type(get_weapon_info(pedweaponmanager)); }
-    public static float get_spread(long pedweaponmanager) { return WeaponInfo.get_spread(get_weapon_info(pedweaponmanager)); }
-    public static float get_reload_time_multiplier(long pedweaponmanager) { return WeaponInfo.get_reload_time_multiplier(get_weapon_info(pedweaponmanager)); }
-    public static float get_lock_on_range(long pedweaponmanager) { return WeaponInfo.get_lock_on_range(get_weapon_info(pedweaponmanager)); }
-    public static float get_range(long pedweaponmanager) { return WeaponInfo.get_range(get_weapon_info(pedweaponmanager)); }
-    public static float get_recoil(long pedweaponmanager) { return WeaponInfo.get_recoil(get_weapon_info(pedweaponmanager)); }
+    public static long Get_Weapon_Info(long pedWeaponManager) { return Memory.Read<long>(pedWeaponManager + 0x20); }
+    public static short Get_Damage_Type(long pedWeaponManager) { return WeaponInfo.Get_Damage_Type(Get_Weapon_Info(pedWeaponManager)); }
+    public static int Get_Explosion_Type(long pedWeaponManager) { return WeaponInfo.Get_Explosion_Type(Get_Weapon_Info(pedWeaponManager)); }
+    public static int Get_Fire_Type(long pedWeaponManager) { return WeaponInfo.Get_Fire_Type(Get_Weapon_Info(pedWeaponManager)); }
+    public static float Get_Spread(long pedWeaponManager) { return WeaponInfo.Get_Spread(Get_Weapon_Info(pedWeaponManager)); }
+    public static float Get_Reload_Time_Multiplier(long pedWeaponManager) { return WeaponInfo.Get_Reload_Time_Multiplier(Get_Weapon_Info(pedWeaponManager)); }
+    public static float Get_Lock_On_Range(long pedWeaponManager) { return WeaponInfo.Get_Lock_On_Range(Get_Weapon_Info(pedWeaponManager)); }
+    public static float Get_Range(long pedWeaponManager) { return WeaponInfo.Get_Range(Get_Weapon_Info(pedWeaponManager)); }
+    public static float Get_Recoil(long pedWeaponManager) { return WeaponInfo.Get_Recoil(Get_Weapon_Info(pedWeaponManager)); }
 
 
-    public static void set_damage_type(long pedweaponmanager, short value) { WeaponInfo.set_damage_type(get_weapon_info(pedweaponmanager), value); }
-    public static void set_explosion_type(long pedweaponmanager, int value) { WeaponInfo.set_explosion_type(get_weapon_info(pedweaponmanager), value); }
-    public static void set_fire_type(long pedweaponmanager, int value) { WeaponInfo.set_fire_type(get_weapon_info(pedweaponmanager), value); }
-    public static void set_spread(long pedweaponmanager, float value) { WeaponInfo.set_spread(get_weapon_info(pedweaponmanager), value); }
-    public static void set_reload_time_multiplier(long pedweaponmanager, float value) { WeaponInfo.set_reload_time_multiplier(get_weapon_info(pedweaponmanager), value); }
-    public static void set_lock_on_range(long pedweaponmanager, float value) { WeaponInfo.set_lock_on_range(get_weapon_info(pedweaponmanager), value); }
-    public static void set_range(long pedweaponmanager, float value) { WeaponInfo.set_range(get_weapon_info(pedweaponmanager), value); }
-    public static void set_recoil(long pedweaponmanager, float value) { WeaponInfo.set_recoil(get_weapon_info(pedweaponmanager), value); }
+    public static void Set_Damage_Type(long pedWeaponManager, short value) { WeaponInfo.Set_Damage_Type(Get_Weapon_Info(pedWeaponManager), value); }
+    public static void Set_Explosion_Type(long pedWeaponManager, int value) { WeaponInfo.Set_Explosion_Type(Get_Weapon_Info(pedWeaponManager), value); }
+    public static void Set_Fire_Type(long pedWeaponManager, int value) { WeaponInfo.Set_Fire_Type(Get_Weapon_Info(pedWeaponManager), value); }
+    public static void Set_Spread(long pedWeaponManager, float value) { WeaponInfo.Set_Spread(Get_Weapon_Info(pedWeaponManager), value); }
+    public static void Set_Reload_Time_Multiplier(long pedWeaponManager, float value) { WeaponInfo.Set_Reload_Time_Multiplier(Get_Weapon_Info(pedWeaponManager), value); }
+    public static void Set_Lock_On_Range(long pedWeaponManager, float value) { WeaponInfo.Set_Lock_On_Range(Get_Weapon_Info(pedWeaponManager), value); }
+    public static void Set_Range(long pedWeaponManager, float value) { WeaponInfo.Set_Range(Get_Weapon_Info(pedWeaponManager), value); }
+    public static void Set_Recoil(long pedWeaponManager, float value) { WeaponInfo.Set_Recoil(Get_Weapon_Info(pedWeaponManager), value); }
 }
 
 public class Outfits
@@ -1016,148 +1016,148 @@ public class Outfits
     /// </summary>
     public static int OutfitIndex = 0;
 
-    public static string GetOutfitNameByIndex() { return Globals.get_outfit_name_by_index(OutfitIndex); }
+    public static string GetOutfitNameByIndex() { return Globals.Get_Outfit_Name_By_Index(OutfitIndex); }
 
-    public static void SetOutfitNameByIndex(string str) { Globals.set_outfit_name_by_index(OutfitIndex, str); }
+    public static void SetOutfitNameByIndex(string str) { Globals.Set_Outfit_Name_By_Index(OutfitIndex, str); }
 
     /*********************** TOP ***********************/
 
     public static int TOP
     {
-        get => Globals.get_top(OutfitIndex);
-        set => Globals.set_top(OutfitIndex, value);
+        get => Globals.Get_Top(OutfitIndex);
+        set => Globals.Set_Top(OutfitIndex, value);
     }
 
     public static int TOP_TEX
     {
-        get => Globals.get_top_tex(OutfitIndex);
-        set => Globals.set_top_tex(OutfitIndex, value);
+        get => Globals.Get_Top_Tex(OutfitIndex);
+        set => Globals.Set_Top_Tex(OutfitIndex, value);
     }
 
     /*********************** UNDERSHIRT ***********************/
 
     public static int UNDERSHIRT
     {
-        get => Globals.get_undershirt(OutfitIndex);
-        set => Globals.set_undershirt(OutfitIndex, value);
+        get => Globals.Get_Undershirt(OutfitIndex);
+        set => Globals.Set_Undershirt(OutfitIndex, value);
     }
 
     public static int UNDERSHIRT_TEX
     {
-        get => Globals.get_undershirt_tex(OutfitIndex);
-        set => Globals.set_undershirt_tex(OutfitIndex, value);
+        get => Globals.Get_Undershirt_Tex(OutfitIndex);
+        set => Globals.Set_Undershirt_Tex(OutfitIndex, value);
     }
 
     /*********************** LEGS ***********************/
 
     public static int LEGS
     {
-        get => Globals.get_legs(OutfitIndex);
-        set => Globals.set_legs(OutfitIndex, value);
+        get => Globals.Get_Legs(OutfitIndex);
+        set => Globals.Set_Legs(OutfitIndex, value);
     }
 
     public static int LEGS_TEX
     {
-        get => Globals.get_legs_tex(OutfitIndex);
-        set => Globals.set_legs_tex(OutfitIndex, value);
+        get => Globals.Get_Legs_Tex(OutfitIndex);
+        set => Globals.Set_Legs_Tex(OutfitIndex, value);
     }
 
     /*********************** FEET ***********************/
 
     public static int FEET
     {
-        get => Globals.get_feet(OutfitIndex);
-        set => Globals.set_feet(OutfitIndex, value);
+        get => Globals.Get_Feet(OutfitIndex);
+        set => Globals.Set_Feet(OutfitIndex, value);
     }
 
     public static int FEET_TEX
     {
-        get => Globals.get_feet_tex(OutfitIndex);
-        set => Globals.set_feet_tex(OutfitIndex, value);
+        get => Globals.Get_Feet_Tex(OutfitIndex);
+        set => Globals.Set_Feet_Tex(OutfitIndex, value);
     }
 
     /*********************** ACCESSORIES ***********************/
 
     public static int ACCESSORIES
     {
-        get => Globals.get_accessories(OutfitIndex);
-        set => Globals.set_accessories(OutfitIndex, value);
+        get => Globals.Get_Accessories(OutfitIndex);
+        set => Globals.Set_Accessories(OutfitIndex, value);
     }
 
     public static int ACCESSORIES_TEX
     {
-        get => Globals.get_accessories_tex(OutfitIndex);
-        set => Globals.set_accessories_tex(OutfitIndex, value);
+        get => Globals.Get_Accessories_Tex(OutfitIndex);
+        set => Globals.Set_Accessories_Tex(OutfitIndex, value);
     }
 
     /*********************** BAGS ***********************/
 
     public static int BAGS
     {
-        get => Globals.get_bags(OutfitIndex);
-        set => Globals.set_bags(OutfitIndex, value);
+        get => Globals.Get_Bags(OutfitIndex);
+        set => Globals.Set_Bags(OutfitIndex, value);
     }
 
     public static int BAGS_TEX
     {
-        get => Globals.get_bags_tex(OutfitIndex);
-        set => Globals.set_bags_tex(OutfitIndex, value);
+        get => Globals.Get_Bags_Tex(OutfitIndex);
+        set => Globals.Set_Bags_Tex(OutfitIndex, value);
     }
 
     /*********************** GLOVES ***********************/
 
     public static int GLOVES
     {
-        get => Globals.get_gloves(OutfitIndex);
-        set => Globals.set_gloves(OutfitIndex, value);
+        get => Globals.Get_Gloves(OutfitIndex);
+        set => Globals.Set_Gloves(OutfitIndex, value);
     }
 
     public static int GLOVES_TEX
     {
-        get => Globals.get_gloves_tex(OutfitIndex);
-        set => Globals.set_gloves_tex(OutfitIndex, value);
+        get => Globals.Get_Gloves_Tex(OutfitIndex);
+        set => Globals.Set_Gloves_Tex(OutfitIndex, value);
     }
 
     /*********************** DECALS ***********************/
 
     public static int DECALS
     {
-        get => Globals.get_decals(OutfitIndex);
-        set => Globals.set_decals(OutfitIndex, value);
+        get => Globals.Get_Decals(OutfitIndex);
+        set => Globals.Set_Decals(OutfitIndex, value);
     }
 
     public static int DECALS_TEX
     {
-        get => Globals.get_decals_tex(OutfitIndex);
-        set => Globals.set_decals_tex(OutfitIndex, value);
+        get => Globals.Get_Decals_Tex(OutfitIndex);
+        set => Globals.Set_Decals_Tex(OutfitIndex, value);
     }
 
     /*********************** MASK ***********************/
 
     public static int MASK
     {
-        get => Globals.get_mask(OutfitIndex);
-        set => Globals.set_mask(OutfitIndex, value);
+        get => Globals.Get_Mask(OutfitIndex);
+        set => Globals.Set_Mask(OutfitIndex, value);
     }
 
     public static int MASK_TEX
     {
-        get => Globals.get_mask_tex(OutfitIndex);
-        set => Globals.set_mask_tex(OutfitIndex, value);
+        get => Globals.Get_Mask_Tex(OutfitIndex);
+        set => Globals.Set_Mask_Tex(OutfitIndex, value);
     }
 
     /*********************** ARMOR ***********************/
 
     public static int ARMOR
     {
-        get => Globals.get_armor(OutfitIndex);
-        set => Globals.set_armor(OutfitIndex, value);
+        get => Globals.Get_Armor(OutfitIndex);
+        set => Globals.Set_Armor(OutfitIndex, value);
     }
 
     public static int ARMOR_TEX
     {
-        get => Globals.get_armor_tex(OutfitIndex);
-        set => Globals.set_armor_tex(OutfitIndex, value);
+        get => Globals.Get_Armor_Tex(OutfitIndex);
+        set => Globals.Set_Armor_Tex(OutfitIndex, value);
     }
 
     /********************************************************************************************/
@@ -1168,69 +1168,69 @@ public class Outfits
 
     public static int HATS
     {
-        get => Globals.get_hats(OutfitIndex);
-        set => Globals.set_hats(OutfitIndex, value);
+        get => Globals.Get_Hats(OutfitIndex);
+        set => Globals.Set_Hats(OutfitIndex, value);
     }
 
     public static int HATS_TEX
     {
-        get => Globals.get_hats_tex(OutfitIndex);
-        set => Globals.set_hats_tex(OutfitIndex, value);
+        get => Globals.Get_Hats_Tex(OutfitIndex);
+        set => Globals.Set_Hats_Tex(OutfitIndex, value);
     }
 
     /*********************** GLASSES ***********************/
 
     public static int GLASSES
     {
-        get => Globals.get_glasses(OutfitIndex);
-        set => Globals.set_glasses(OutfitIndex, value);
+        get => Globals.Get_Glasses(OutfitIndex);
+        set => Globals.Set_Glasses(OutfitIndex, value);
     }
 
     public static int GLASSES_TEX
     {
-        get => Globals.get_glasses_tex(OutfitIndex);
-        set => Globals.set_glasses_tex(OutfitIndex, value);
+        get => Globals.Get_Glasses_Tex(OutfitIndex);
+        set => Globals.Set_Glasses_Tex(OutfitIndex, value);
     }
 
     /*********************** EARS ***********************/
 
     public static int EARS
     {
-        get => Globals.get_ears(OutfitIndex);
-        set => Globals.set_ears(OutfitIndex, value);
+        get => Globals.Get_Ears(OutfitIndex);
+        set => Globals.Set_Ears(OutfitIndex, value);
     }
 
     public static int EARS_TEX
     {
-        get => Globals.get_ears_tex(OutfitIndex);
-        set => Globals.set_ears_tex(OutfitIndex, value);
+        get => Globals.Get_Ears_Tex(OutfitIndex);
+        set => Globals.Set_Ears_Tex(OutfitIndex, value);
     }
 
     /*********************** WATCHES ***********************/
 
     public static int WATCHES
     {
-        get => Globals.get_watches(OutfitIndex);
-        set => Globals.set_watches(OutfitIndex, value);
+        get => Globals.Get_Watches(OutfitIndex);
+        set => Globals.Set_Watches(OutfitIndex, value);
     }
 
     public static int WATCHES_TEX
     {
-        get => Globals.get_watches_tex(OutfitIndex);
-        set => Globals.set_watches_tex(OutfitIndex, value);
+        get => Globals.Get_Watches_Tex(OutfitIndex);
+        set => Globals.Set_Watches_Tex(OutfitIndex, value);
     }
 
     /*********************** WRIST ***********************/
 
     public static int WRIST
     {
-        get => Globals.get_wrist(OutfitIndex);
-        set => Globals.set_wrist(OutfitIndex, value);
+        get => Globals.Get_Wrist(OutfitIndex);
+        set => Globals.Set_Wrist(OutfitIndex, value);
     }
 
     public static int WRIST_TEX
     {
-        get => Globals.get_wrist_tex(OutfitIndex);
-        set => Globals.set_wrist_tex(OutfitIndex, value);
+        get => Globals.Get_Wrist_Tex(OutfitIndex);
+        set => Globals.Set_Wrist_Tex(OutfitIndex, value);
     }
 }

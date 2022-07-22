@@ -69,11 +69,11 @@ public partial class EM05SpawnVehicleView : UserControl
 
         if (str == "刷出线上载具（空地）")
         {
-            Globals.create_vehicle(Hacks.get_local_ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, -225.0f);
+            Globals.Create_Vehicle(Hacks.Get_Local_Ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, -225.0f);
         }
         else
         {
-            Globals.create_vehicle(Hacks.get_local_ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, 0.0f);
+            Globals.Create_Vehicle(Hacks.Get_Local_Ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, 0.0f);
         }
     }
 
@@ -85,40 +85,40 @@ public partial class EM05SpawnVehicleView : UserControl
 
     private void CheckBox_VehicleParachute_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.set_extras_parachute(Ped.get_current_vehicle(Hacks.get_local_ped()), CheckBox_VehicleParachute.IsChecked == true);
+        Vehicle.Set_Extras_Parachute(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), CheckBox_VehicleParachute.IsChecked == true);
     }
 
     private void CheckBox_VehicleInvisibility_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.set_invisible(Ped.get_current_vehicle(Hacks.get_local_ped()), CheckBox_VehicleInvisibility.IsChecked == true);
+        Vehicle.Set_Invisible(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), CheckBox_VehicleInvisibility.IsChecked == true);
     }
 
     private void Button_FillVehicleHealth_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.revive_vehicle(Ped.get_current_vehicle(Hacks.get_local_ped()));
+        Hacks.Revive_Vehicle(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()));
     }
 
     private void RadioButton_VehicleExtras_None_Click(object sender, RoutedEventArgs e)
     {
         if (RadioButton_VehicleExtras_None.IsChecked == true)
         {
-            Vehicle.set_extras_vehicle_jump(Ped.get_current_vehicle(Hacks.get_local_ped()), false);
-            Vehicle.set_extras_rocket_boost(Ped.get_current_vehicle(Hacks.get_local_ped()), false);
+            Vehicle.Set_Extras_Vehicle_Jump(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), false);
+            Vehicle.Set_Extras_Rocket_Boost(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), false);
         }
         else if (RadioButton_VehicleExtras_Jump.IsChecked == true)
         {
-            Vehicle.set_extras_vehicle_jump(Ped.get_current_vehicle(Hacks.get_local_ped()), true);
+            Vehicle.Set_Extras_Vehicle_Jump(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), true);
         }
         else if (RadioButton_VehicleExtras_Boost.IsChecked == true)
         {
-            Vehicle.set_extras_rocket_boost(Ped.get_current_vehicle(Hacks.get_local_ped()), true);
+            Vehicle.Set_Extras_Rocket_Boost(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), true);
         }
         else if (RadioButton_VehicleExtras_Both.IsChecked == true)
         {
-            Vehicle.set_extras_vehicle_jump(Ped.get_current_vehicle(Hacks.get_local_ped()), true);
-            Vehicle.set_extras_rocket_boost(Ped.get_current_vehicle(Hacks.get_local_ped()), true);
+            Vehicle.Set_Extras_Vehicle_Jump(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), true);
+            Vehicle.Set_Extras_Rocket_Boost(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), true);
         }
     }
 
@@ -126,20 +126,20 @@ public partial class EM05SpawnVehicleView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.repair_online_vehicle(Ped.get_current_vehicle(Hacks.get_local_ped()));
+        Hacks.Repair_Online_Vehicle(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()));
     }
 
     private void Button_TurnOffBST_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Globals.instant_bull_shark(false);
+        Globals.Instant_Bull_Shark(false);
     }
 
     private void Button_GetInOnlinePV_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Globals.get_into_online_personal_vehicle();
+        Globals.Get_Into_Online_Personal_Vehicle();
     }
 }

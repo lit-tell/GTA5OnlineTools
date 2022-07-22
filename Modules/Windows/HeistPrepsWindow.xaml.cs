@@ -49,7 +49,7 @@ public partial class HeistPrepsWindow : Window
 
     private void WriteStatWithDelay(string hash, int value)
     {
-        Globals.stat_set_int(hash, value);
+        Globals.Stat_Set_Int(hash, value);
         Thread.Sleep(1000);
     }
 
@@ -416,7 +416,7 @@ public partial class HeistPrepsWindow : Window
         int index = HeistPrepsConfig.FastTeleport.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Hacks.to_coords(Hacks.get_local_ped(), HeistPrepsConfig.FastTeleport[index].Position);
+            Hacks.To_Coords(Hacks.Get_Local_Ped(), HeistPrepsConfig.FastTeleport[index].Position);
         }
 
         AppendTextBox($"传送到 {str} 成功");
@@ -424,7 +424,7 @@ public partial class HeistPrepsWindow : Window
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        Hacks.to_blip(new int[] { 740 });
+        Hacks.To_Blip(new int[] { 740 });
 
         AppendTextBox($"传送到 游戏厅图标处 成功");
     }
