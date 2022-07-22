@@ -193,7 +193,7 @@ public partial class MainWindow : Window
     /// <summary>
     /// 页面导航服务
     /// </summary>
-    /// <param name="viewName"></param>
+    /// <param name="obj"></param>
     private void Navigate(MenuBar obj)
     {
         if (obj == null || string.IsNullOrEmpty(obj.NameSpace))

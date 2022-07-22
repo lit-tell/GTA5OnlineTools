@@ -11,7 +11,7 @@
 
     <Grid Margin="5">
         <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
-            <WrapPanel Orientation="Horizontal">
+            <WrapPanel>
                 <Button Command="{Binding ExternalMenuClickCommand}" Style="{StaticResource ButtonFunctionSelfStyle}">
                     <Button.Content>
                         <StackPanel Orientation="Vertical">

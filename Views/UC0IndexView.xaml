@@ -11,7 +11,6 @@
     mc:Ignorable="d">
 
     <Grid>
-        <!--<Border Style="{StaticResource BorderEffectStyle}" />-->
         <DockPanel LastChildFill="True">
             <StackPanel
                 Margin="10,5,0,5"

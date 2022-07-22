@@ -31,7 +31,7 @@
 
                     <TextBlock Margin="5" HorizontalAlignment="Center">
                         <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://crazyzhang.cn">
-                            支持作者，帮作者点一点小助手网站上的谷歌广告，感谢支持
+                            支持作者，帮作者点一点小助手网站上的谷歌广告，感谢大家的支持
                         </Hyperlink>
                     </TextBlock>
 

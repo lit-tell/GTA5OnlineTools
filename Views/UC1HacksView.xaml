@@ -12,7 +12,7 @@
 
     <Grid Margin="5">
         <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
-            <WrapPanel Orientation="Horizontal">
+            <WrapPanel>
                 <!--  Kiddion 外置辅助菜单  -->
                 <Border Style="{StaticResource HackBorderStyle}">
                     <Grid>
