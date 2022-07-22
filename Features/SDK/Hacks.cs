@@ -2,8 +2,74 @@
 
 namespace GTA5OnlineTools.Features.SDK;
 
-public partial class Hacks
+public static class Hacks
 {
+
+    // -- Vehicle Menus Globals
+
+    public const int oVMCreate = 2725269;       // -- Create any vehicle.
+    public const int oVMYCar = 2810701;         // -- Get my car.
+    public const int oVGETIn = 2671447;         // -- Spawn into vehicle.
+    public const int oVMSlots = 1585853;        // -- Get vehicle slots.
+
+    // -- Some Player / Network times associated Globals
+
+    public const int oPlayerGA = 2703660;
+    public const int oPlayerIDHelp = 2689224;
+    public const int oNETTimeHelp = 2703660;
+
+    //////////////////////////////////////////////////////////
+
+    public static long GlobalAddress(int index)
+    {
+        return Memory.Read<long>(Globals.GlobalPTR + 0x8 * ((index >> 0x12) & 0x3F)) + 8 * (index & 0x3FFFF);
+    }
+
+    public static T ReadGA<T>(int index) where T : struct
+    {
+        return Memory.Read<T>(GlobalAddress(index));
+    }
+
+    public static void WriteGA<T>(int index, T vaule) where T : struct
+    {
+        Memory.Write<T>(GlobalAddress(index), vaule);
+    }
+
+    public static string ReadGAString(int index)
+    {
+        return Memory.ReadString(GlobalAddress(index), null, 20);
+    }
+
+    public static void WriteGAString(int index, string str)
+    {
+        Memory.WriteString(GlobalAddress(index), null, str);
+    }
+
+    /////////////////////////////////////////////////////
+
+    public static int GET_NETWORK_TIME()
+    {
+        return ReadGA<int>(1574755 + 11);
+    }
+
+    public static int PLAYER_ID()
+    {
+        return ReadGA<int>(oPlayerGA);
+    }
+
+    public static int GetBusinessIndex(int ID)
+    {
+        // ID 0-5
+        return 1853131 + 1 + (PLAYER_ID() * 888) + 267 + 187 + 1 + (ID * 13);
+    }
+
+    public static int Get_Last_MP_Char()
+    {
+        return ReadGA<int>(1574915);
+    }
+
+    /////////////////////////////////////////
+
     public static uint Joaat(string input)
     {
         uint num1 = 0U;
@@ -19,69 +85,46 @@ public partial class Hacks
 
         return num5 + (num5 << 15);
     }
+
+    public static void Stat_Set_Int(string hash, int value)
+    {
+        if (hash.IndexOf("_") == 0)
+        {
+            int Stat_MP = Get_Last_MP_Char();
+            hash = $"MP{Stat_MP}{hash}";
+        }
+
+        uint Stat_ResotreHash = ReadGA<uint>(1655453 + 4);
+        int Stat_ResotreValue = ReadGA<int>(1020252 + 5526);
+
+        WriteGA<uint>(1655453 + 4, Hacks.Joaat(hash));
+        WriteGA<int>(1020252 + 5526, value);
+        WriteGA<int>(1644218 + 1139, -1);
+        Thread.Sleep(1000);
+        WriteGA<uint>(1655453 + 4, Stat_ResotreHash);
+        WriteGA<int>(1020252 + 5526, Stat_ResotreValue);
+    }
+
+    public static void Create_Ambient_Pickup(int amount, Vector3 pos)
+    {
+        WriteGA<float>(2783345 + 3, pos.X);
+        WriteGA<float>(2783345 + 4, pos.Y);
+        WriteGA<float>(2783345 + 5, pos.Z);
+        WriteGA<int>(2783345 + 1, amount);
+        WriteGA<int>(4528329 + 1 + (ReadGA<int>(2783345) * 85) + 66 + 2, 2);
+        WriteGA<int>(2783345 + 6, 1);
+    }
+
+    public static long Get_Local_Ped()
+    {
+        return Memory.Read<long>(Globals.WorldPTR, new int[] { 0x8 });
+    }
 }
+
 
 public partial class Hacks
 {
-    public static long Get_Blip(int[] icons, int[] colors = null)
-    {
-        for (int i = 1; i < 2001; i++)
-        {
-            long p = Memory.Read<long>(Globals.BlipPTR + i * 0x8);
-            if (p == 0) continue;
-            int icon = Memory.Read<int>(p + 0x40);
-            int color = Memory.Read<int>(p + 0x48);
-            if (Array.IndexOf(icons, icon) == -1) continue;
-            if (colors != null && Array.IndexOf(colors, color) == -1) continue;
-            return p;
-        }
-        return 0;
-    }
-
-    public static Vector3 Get_Blip_Pos(int[] icons, int[] colors = null)
-    {
-        long blip = Get_Blip(icons, colors);
-        return ((blip == 0) ? new Vector3() : Memory.Read<Vector3>(blip + 0x10));
-    }
-
-    public static long Get_Local_Ped() { return Memory.Read<long>(Globals.WorldPTR, new int[] { 0x8 }); }
-
-    /// <summary>
-    /// 传送到导航点
-    /// </summary>
-    public static void To_Waypoint()
-    {
-        Vector3 pos = Get_Blip_Pos(new int[] { 8 }, new int[] { 84 });
-        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
-        pos.Z = pos.Z == 20.0f ? -255.0f : pos.Z + 1.0f;
-        To_Coords(Get_Local_Ped(), pos);
-    }
-
-    public static void To_Objective()
-    {
-        Vector3 pos = Get_Blip_Pos(new int[] { 1 }, new int[] { 5, 60, 66 });
-        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) pos = Get_Blip_Pos(new int[] { 1, 225, 427, 478, 501, 523, 556 }, new int[] { 1, 2, 3, 54, 78 });
-        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) pos = Get_Blip_Pos(new int[] { 432, 443 }, new int[] { 59 });
-        To_Coords_With_Check(Get_Local_Ped(), pos);
-    }
-
-    public static void To_Blip(int[] icons, int[] colors = null)
-    {
-        Vector3 pos = Get_Blip_Pos(icons, colors);
-        To_Coords_With_Check(Get_Local_Ped(), pos);
-    }
-
-    public static void To_Coords(long ped, Vector3 pos)
-    {
-        long entity = (Ped.Is_In_Vehicle(ped) ? Ped.Get_Current_Vehicle(ped) : ped);
-        Entity.Set_Position(entity, pos);
-    }
-
-    public static void To_Coords_With_Check(long ped, Vector3 pos)
-    {
-        if (pos.X == 0.0f && pos.Y == 0.0f && pos.Z == 0.0f) return;
-        To_Coords(ped, pos);
-    }
+  
 
     public static void Spawn_Drop(uint hash, Vector3 pos)
     {
@@ -105,202 +148,22 @@ public partial class Hacks
         pos.Z += height;
         Spawn_Drop(hash, pos);
     }
-    public static void Spawn_Drop(long ped, string name, float dist = 0.0f, float height = 3.0f) { Spawn_Drop(ped, Joaat(name), dist, height); }
-
-    public static void Kill_Npcs() 
+    public static void Spawn_Drop(long ped, string name, float dist = 0.0f, float height = 3.0f)
     {
-        List<long> peds = Replayinterface.Get_Peds();
-        for(int i = 0;i < peds.Count; i++)
-        {
-            long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            Ped.Set_Health(ped, 0.0f);
-        }
-    }
-    public static void Kill_Enemies() 
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            if (Ped.Is_Enemy(ped)) Ped.Set_Health(ped, 0.0f);
-        }
-    }
-    public static void Kill_Cops()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            uint pedtype = Ped.Get_Pedtype(ped);
-            if(pedtype == (uint)Data.EnumData.PedTypes.COP ||
-                pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.Set_Health(ped, 0.0f);
-        }
-    }
-    public static void Revive_Vehicle(long vehicle)
-    {
-        Vehicle.Set_State_Is_Destroyed(vehicle, false);
-        Vehicle.Set_Health(vehicle, 1000.0f);
-        Vehicle.Set_Health2(vehicle, 1000.0f);
-        Vehicle.Set_Health3(vehicle, 1000.0f);
-        Vehicle.Set_Engine_Health(vehicle, 1000.0f);
-    }
-    public static void Destroy_Vehicle(long vehicle)
-    {
-        Revive_Vehicle(vehicle);
-        //Vehicle.set_health(vehicle, 0.0f);
-        //Vehicle.set_health2(vehicle, 0.0f);
-        Vehicle.Set_Health3(vehicle, -999.9f);//-1000.0f
-        //Vehicle.set_engine_health(vehicle, -3999.0f);//-4000.0f
-    }
-    public static void Destroy_Vehs_Of_Npcs()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
-        }
-    }
-    public static void Destroy_Vehs_Of_Enemies()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-            if (ped == Hacks.Get_Local_Ped()) continue;
-            if (Ped.Is_Enemy(ped)) Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
-        }
-    }
-    public static void Destroy_Vehs_Of_Cops()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-            if (ped == Hacks.Get_Local_Ped()) continue;
-            uint pedtype = Ped.Get_Pedtype(ped);
-            if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
-                pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
-        }
-    }
-    /// <summary>
-    /// 摧毁附近所有载具
-    /// </summary>
-    public static void Destroy_All_Vehicles()
-    {
-        List<long> vehicles = Replayinterface.Get_Vehicles();
-        for (int i = 0; i < vehicles.Count; i++)
-        {
-            long vehicle = vehicles[i];
-            Destroy_Vehicle(vehicle);
-        }
-    }
-    /// <summary>
-    /// 复活附近所有载具
-    /// </summary>
-    public static void Revive_All_Vehicles()
-    {
-        List<long> vehicles = Replayinterface.Get_Vehicles();
-        for(int i = 0; i < vehicles.Count; i++)
-        {
-            long vehicle = vehicles[i];
-            Revive_Vehicle(vehicle);
-        }
-    }
-    public static void Tp_Npcs_To_Me()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
-        }
-    }
-    public static void Tp_Enemies_To_Me()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            if (Ped.Is_Enemy(ped)) Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
-        }
-    }
-    public static void Tp_Not_Enemies_To_Me()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            if (!Ped.Is_Enemy(ped)) Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
-        }
-    }
-    public static void Tp_Cops_To_Me()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            uint pedtype = Ped.Get_Pedtype(ped);
-            if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
-                pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
-        }
+        Spawn_Drop(ped, Joaat(name), dist, height);
     }
 
-    public static void Set_Local_Weather(int weatherID)
+
+    public static uint Get_Fix_Veh_Value()
     {
-        /*
-         -1:Default
-         0:Extra Sunny
-         1:Clear
-         2:Clouds
-         3:Smog
-         4:Foggy
-         5:Overcast
-         6:Rain
-         7:Thunder
-         8:Light Rain
-         9:Smoggy Light Rain
-         10:Very Light Snow
-         11:Windy Snow
-         12:Light Snow
-         14:Halloween
-         */
-        if(weatherID == -1)
-        {
-            Memory.Write(Globals.WeatherPTR + 0x24, -1);
-            Memory.Write(Globals.WeatherPTR + 0x104, 13);
-        }
-        if(weatherID == 13)
-        {
-            Memory.Write(Globals.WeatherPTR + 0x24, 13);
-            Memory.Write(Globals.WeatherPTR + 0x104, 13);
-        }
-        Memory.Write(Globals.WeatherPTR + 0x104, weatherID);
+        return Memory.Read<uint>(Globals.PickupDataPTR, new int[] { 0x228 });
     }
 
-    public static void Empty_Session()
+    public static uint Get_Bull_Shark_Testosterone_Value()
     {
-        Task.Run(() =>
-        {
-            ProcessMgr.SuspendProcess(Memory.GetProcessID());
-            Task.Delay(10000).Wait();
-            ProcessMgr.ResumeProcess(Memory.GetProcessID());
-        });
+        return Memory.Read<uint>(Globals.PickupDataPTR, new int[] { 0x160 });
     }
 
-    public static uint Get_Fix_Veh_Value() { return Memory.Read<uint>(Globals.PickupDataPTR, new int[] { 0x228 }); }
-    public static uint Get_Bull_Shark_Testosterone_Value() { return Memory.Read<uint>(Globals.PickupDataPTR, new int[] { 0x160 }); }
     public static void Repair_Online_Vehicle(long vehicle)
     {
         Task.Run(() =>
@@ -324,7 +187,7 @@ public partial class Hacks
                 }
             }
             Task.Delay(1000).Wait();
-            if(Globals.Is_In_Bull_Shark())
+            if (Globals.Is_In_Bull_Shark())
             {
                 Vehicle.Set_Dirt_Level(vehicle, 0.0f);
                 Globals.Instant_Bull_Shark(false);
@@ -351,9 +214,15 @@ public partial class Hacks
         return "";
     }
 
-    public static void Infinite_Ammo(bool toggle) { Memory.WriteBytes(Globals.InfiniteAmmoADDR, toggle ? new byte[] { 0x90, 0x90, 0x90 } : new byte[] { 0x41, 0x2B, 0xD1 }); }
+    public static void Infinite_Ammo(bool toggle)
+    {
+        Memory.WriteBytes(Globals.InfiniteAmmoADDR, toggle ? new byte[] { 0x90, 0x90, 0x90 } : new byte[] { 0x41, 0x2B, 0xD1 });
+    }
 
-    public static void No_Reload(bool toggle) { Memory.WriteBytes(Globals.NoReloadADDR, toggle ? new byte[] { 0x90, 0x90, 0x90 } : new byte[] { 0x41, 0x2B, 0xC9 }); }
+    public static void No_Reload(bool toggle)
+    {
+        Memory.WriteBytes(Globals.NoReloadADDR, toggle ? new byte[] { 0x90, 0x90, 0x90 } : new byte[] { 0x41, 0x2B, 0xC9 });
+    }
 
     public static void Fill_Current_Ammo()
     {
@@ -382,6 +251,7 @@ public partial class Hacks
 
         Memory.Write<int>(my_offset_1 + 0x18, getMaxAmmo);
     }
+
     public static void Fill_All_Ammo()
     {
         long p = Ped.Get_Ped_Inventory(Get_Local_Ped());
@@ -396,7 +266,7 @@ public partial class Hacks
         //    Memory.Write<int>(temp + 0x20, max_ammo);
         //}
         int count = 0;
-        while (Memory.Read<int>(p + count * 0x08) != 0 && Memory.Read<int>(p + count * 0x08, new int[] {0x08}) != 0)
+        while (Memory.Read<int>(p + count * 0x08) != 0 && Memory.Read<int>(p + count * 0x08, new int[] { 0x08 }) != 0)
         {
             Func<int, int, int> Max = (int a, int b) => { return a > b ? a : b; };
             int max_ammo = Max(Memory.Read<int>(p + count * 0x08, new int[] { 0x08, 0x28 }), Memory.Read<int>(p + count * 0x08, new int[] { 0x08, 0x34 }));
@@ -657,7 +527,7 @@ public class Ped : Entity
     public static void Set_Frame_Flags_Flamingammo(long ped, bool toggle) { PlayerInfo.Set_Frame_Flags_Flamingammo(Get_Player_Info(ped), toggle); }
     public static void Set_Frame_Flags_Explosivefists(long ped, bool toggle) { PlayerInfo.Set_Frame_Flags_Explosivefists(Get_Player_Info(ped), toggle); }
     public static void Set_Frame_Flags_Superjump(long ped, bool toggle) { PlayerInfo.Set_Frame_Flags_Superjump(Get_Player_Info(ped), toggle); }
-    public static int  Get_Wanted_Level(long ped) { return PlayerInfo.Get_Wanted_Level((Get_Player_Info(ped))); }
+    public static int Get_Wanted_Level(long ped) { return PlayerInfo.Get_Wanted_Level((Get_Player_Info(ped))); }
     public static void Set_Wanted_Level(long ped, int value) { PlayerInfo.Set_Wanted_Level(Get_Player_Info(ped), value); }
     public static float Get_Run_Speed(long ped) { return PlayerInfo.Get_Run_Speed(Get_Player_Info(ped)); }
     public static float Get_Swim_Speed(long ped) { return PlayerInfo.Get_Swim_Speed(Get_Player_Info(ped)); }
@@ -804,14 +674,14 @@ public class Replayinterface
     public static List<long> Get_Peds()
     {
         List<long> peds = new List<long>();
-        long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] {0x18});
+        long p = Memory.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x18 });
         int max_num = Memory.Read<int>(p + 0x108);
         int count = Memory.Read<int>(p + 0x110);
         long list = Memory.Read<long>(p + 0x100);
-        for(int i = 0; i < 256; i++)
+        for (int i = 0; i < 256; i++)
         {
             long ped = Memory.Read<long>(list + i * 0x10);
-            if(Memory.IsValid(ped)) peds.Add(ped);
+            if (Memory.IsValid(ped)) peds.Add(ped);
         }
         return peds;
     }
@@ -850,7 +720,7 @@ public class OnlinePlayer
     public static int Get_Number_Of_Players()
     {
         int number = 0;
-        for(int i = 0; i < 32; i++)
+        for (int i = 0; i < 32; i++)
         {
             if (Get_Player_Ped(i) == 0) continue;
             number++;
@@ -916,14 +786,14 @@ public class PlayerInfo
     public static void Set_Swim_Speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x170, value); }
     public static void Set_Stealth_Speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0x18C, value); }
     public static void Set_Npc_Ignore(long playerinfo, byte value) { Memory.Write<byte>(playerinfo + 0x872, value); }
-    public static void Set_Everyone_Ignore(long playerinfo, bool toggle) 
+    public static void Set_Everyone_Ignore(long playerinfo, bool toggle)
     {
         byte temp = Get_Npc_Ignore(playerinfo);
         if (toggle) temp = (byte)(temp | (1 << 2));
         else temp = (byte)(temp & ~(1 << 2));
         Set_Npc_Ignore(playerinfo, temp);
     }
-    public static void Set_Cops_Ignore(long playerinfo, bool toggle) 
+    public static void Set_Cops_Ignore(long playerinfo, bool toggle)
     {
         byte temp = Get_Npc_Ignore(playerinfo);
         if (toggle) temp = (byte)(temp | ((1 << 0) + (1 << 1) + (1 << 6) + (1 << 7)));
@@ -933,7 +803,7 @@ public class PlayerInfo
     public static void Set_Wanted_Level(long playerinfo, int value) { Memory.Write<int>(playerinfo + 0x888, value); }
     public static void Set_Run_Speed(long playerinfo, float value) { Memory.Write<float>(playerinfo + 0xCF0, value); }
     public static void Set_Frame_Flags(long playerinfo, byte value) { Memory.Write<byte>(playerinfo + 0x219, value); }
-    public static void Set_Frame_Flags_Explosiveammo(long playerinfo, bool toggle) 
+    public static void Set_Frame_Flags_Explosiveammo(long playerinfo, bool toggle)
     {
         byte temp = Get_Frame_Flags(playerinfo);
         if (toggle) temp = (byte)(temp | (1 << 3));
