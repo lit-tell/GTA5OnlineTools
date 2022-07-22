@@ -38,16 +38,21 @@ public static class World
             Memory.Write(Globals.WeatherPTR + 0x24, 13);
             Memory.Write(Globals.WeatherPTR + 0x104, 13);
         }
+
         Memory.Write(Globals.WeatherPTR + 0x104, weatherID);
     }
 
     public static void Kill_Npcs()
     {
         List<long> peds = Replayinterface.Get_Peds();
+
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
+
+            if (Ped.Is_Player(ped)) 
+                continue;
+
             Ped.Set_Health(ped, 0.0f);
         }
     }
@@ -55,25 +60,35 @@ public static class World
     public static void Kill_Enemies()
     {
         List<long> peds = Replayinterface.Get_Peds();
+
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            if (Ped.Is_Enemy(ped)) Ped.Set_Health(ped, 0.0f);
+
+            if (Ped.Is_Player(ped)) 
+                continue;
+
+            if (Ped.Is_Enemy(ped)) 
+                Ped.Set_Health(ped, 0.0f);
         }
     }
 
     public static void Kill_Cops()
     {
         List<long> peds = Replayinterface.Get_Peds();
+
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
+
+            if (Ped.Is_Player(ped)) 
+                continue;
+
             uint pedtype = Ped.Get_Pedtype(ped);
             if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
                 pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.Set_Health(ped, 0.0f);
+                pedtype == (uint)Data.EnumData.PedTypes.ARMY) 
+                Ped.Set_Health(ped, 0.0f);
         }
     }
 
@@ -98,10 +113,14 @@ public static class World
     public static void Destroy_Vehs_Of_Npcs()
     {
         List<long> peds = Replayinterface.Get_Peds();
+
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
+
+            if (Ped.Is_Player(ped)) 
+                continue;
+
             Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
         }
     }
@@ -109,25 +128,35 @@ public static class World
     public static void Destroy_Vehs_Of_Enemies()
     {
         List<long> peds = Replayinterface.Get_Peds();
+
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (ped == Hacks.Get_Local_Ped()) continue;
-            if (Ped.Is_Enemy(ped)) Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
+
+            if (ped == Hacks.Get_Local_Ped()) 
+                continue;
+
+            if (Ped.Is_Enemy(ped)) 
+                Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
         }
     }
 
     public static void Destroy_Vehs_Of_Cops()
     {
         List<long> peds = Replayinterface.Get_Peds();
+
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (ped == Hacks.Get_Local_Ped()) continue;
+
+            if (ped == Hacks.Get_Local_Ped()) 
+                continue;
+
             uint pedtype = Ped.Get_Pedtype(ped);
             if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
                 pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
+                pedtype == (uint)Data.EnumData.PedTypes.ARMY) 
+                Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
         }
     }
 
@@ -137,6 +166,7 @@ public static class World
     public static void Destroy_All_Vehicles()
     {
         List<long> vehicles = Replayinterface.Get_Vehicles();
+
         for (int i = 0; i < vehicles.Count; i++)
         {
             long vehicle = vehicles[i];
@@ -150,6 +180,7 @@ public static class World
     public static void Revive_All_Vehicles()
     {
         List<long> vehicles = Replayinterface.Get_Vehicles();
+
         for (int i = 0; i < vehicles.Count; i++)
         {
             long vehicle = vehicles[i];
@@ -160,10 +191,14 @@ public static class World
     public static void Tp_Npcs_To_Me()
     {
         List<long> peds = Replayinterface.Get_Peds();
+
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
+
+            if (Ped.Is_Player(ped))
+                continue;
+
             Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
         }
     }
@@ -171,22 +206,32 @@ public static class World
     public static void Tp_Enemies_To_Me()
     {
         List<long> peds = Replayinterface.Get_Peds();
+
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            if (Ped.Is_Enemy(ped)) Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
+
+            if (Ped.Is_Player(ped)) 
+                continue;
+
+            if (Ped.Is_Enemy(ped)) 
+                Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
         }
     }
 
     public static void Tp_Not_Enemies_To_Me()
     {
         List<long> peds = Replayinterface.Get_Peds();
+
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
-            if (!Ped.Is_Enemy(ped)) Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
+
+            if (Ped.Is_Player(ped)) 
+                continue;
+
+            if (!Ped.Is_Enemy(ped)) 
+                Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
         }
     }
 
@@ -196,11 +241,15 @@ public static class World
         for (int i = 0; i < peds.Count; i++)
         {
             long ped = peds[i];
-            if (Ped.Is_Player(ped)) continue;
+
+            if (Ped.Is_Player(ped)) 
+                continue;
+
             uint pedtype = Ped.Get_Pedtype(ped);
             if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
                 pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
+                pedtype == (uint)Data.EnumData.PedTypes.ARMY) 
+                Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
         }
     }
 }

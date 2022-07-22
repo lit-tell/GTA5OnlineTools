@@ -110,10 +110,12 @@ public partial class ExternalMenuView : Window
             Globals.CCameraPTR = Memory.Rip_37(Globals.TempPTR);
 
             Globals.InfiniteAmmoADDR = Memory.FindPattern("41 2B D1 E8 ?? ?? ?? ??");
-            if(Globals.InfiniteAmmoADDR == 0) Globals.InfiniteAmmoADDR = Memory.FindPattern("90 90 90 E8 ?? ?? ?? ??");
+            if (Globals.InfiniteAmmoADDR == 0)
+                Globals.InfiniteAmmoADDR = Memory.FindPattern("90 90 90 E8 ?? ?? ?? ??");
 
             Globals.NoReloadADDR = Memory.FindPattern("41 2B C9 3B C8 0F 4D C8");
-            if(Globals.NoReloadADDR == 0) Globals.NoReloadADDR = Memory.FindPattern("90 90 90 3B C8");
+            if (Globals.NoReloadADDR == 0)
+                Globals.NoReloadADDR = Memory.FindPattern("90 90 90 3B C8");
         });
 
         var thread = new Thread(InitThread);

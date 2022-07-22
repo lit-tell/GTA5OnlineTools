@@ -104,35 +104,42 @@ public static class Online
     public static void Off_Radar(bool toggle)
     {
         Hacks.WriteGA<int>(Hacks.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 451 + 207, toggle ? 1 : 0);
-        if (toggle) Hacks.WriteGA<int>(Hacks.oNETTimeHelp + 56, Hacks.GET_NETWORK_TIME() + 3600000);
-        if (toggle) Hacks.WriteGA<int>(Hacks.oVMYCar + 4630, 3);
+        if (toggle)
+            Hacks.WriteGA<int>(Hacks.oNETTimeHelp + 56, Hacks.GET_NETWORK_TIME() + 3600000);
+        if (toggle)
+            Hacks.WriteGA<int>(Hacks.oVMYCar + 4630, 3);
     }
 
     public static void Ghost_Organization(bool toggle)
     {
         Hacks.WriteGA<int>(Hacks.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 451 + 207, toggle ? 1 : 0);
-        if (toggle) Hacks.WriteGA<int>(Hacks.oNETTimeHelp + 56, Hacks.GET_NETWORK_TIME() + 3600000);
-        if (toggle) Hacks.WriteGA<int>(Hacks.oVMYCar + 4630, 4);
+        if (toggle)
+            Hacks.WriteGA<int>(Hacks.oNETTimeHelp + 56, Hacks.GET_NETWORK_TIME() + 3600000);
+        if (toggle)
+            Hacks.WriteGA<int>(Hacks.oVMYCar + 4630, 4);
     }
 
     public static void Blind_Cops(bool toggle)
     {
         Hacks.WriteGA<int>(Hacks.oVMYCar + 4625, toggle ? 1 : 0);
-        if (toggle) Hacks.WriteGA<int>(Hacks.oVMYCar + 4627, Hacks.GET_NETWORK_TIME() + 3600000);
+        if (toggle)
+            Hacks.WriteGA<int>(Hacks.oVMYCar + 4627, Hacks.GET_NETWORK_TIME() + 3600000);
         Hacks.WriteGA<int>(Hacks.oVMYCar + 4624, toggle ? 5 : 0);
     }
 
     public static void Bribe_Cops(bool toggle)
     {
         Hacks.WriteGA<int>(Hacks.oVMYCar + 4625, toggle ? 1 : 0);
-        if (toggle) Hacks.WriteGA<int>(Hacks.oVMYCar + 4627, Hacks.GET_NETWORK_TIME() + 3600000);
+        if (toggle)
+            Hacks.WriteGA<int>(Hacks.oVMYCar + 4627, Hacks.GET_NETWORK_TIME() + 3600000);
         Hacks.WriteGA<int>(Hacks.oVMYCar + 4624, toggle ? 21 : 0);
     }
 
     public static void Reveal_Players(bool toggle)
     {
         Hacks.WriteGA<int>(Hacks.oPlayerIDHelp + 1 + Hacks.PLAYER_ID() * 451 + 210, toggle ? 1 : 0);
-        if (toggle) Hacks.WriteGA<int>(Hacks.oNETTimeHelp + 57, Hacks.GET_NETWORK_TIME() + 3600000);
+        if (toggle) 
+            Hacks.WriteGA<int>(Hacks.oNETTimeHelp + 57, Hacks.GET_NETWORK_TIME() + 3600000);
     }
 
     public static void RP_Multiplier(float value)
