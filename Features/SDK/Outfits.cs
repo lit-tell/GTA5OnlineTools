@@ -27,7 +27,6 @@ public static class Outfits
         Hacks.WriteGAString(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (index * 13) + 1126 - (index * 5), str);
     }
 
-
     /*********************** TOP ***********************/
 
     public static int TOP

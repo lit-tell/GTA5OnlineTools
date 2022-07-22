@@ -4,7 +4,6 @@ namespace GTA5OnlineTools.Features.SDK;
 
 public static class Hacks
 {
-
     // -- Vehicle Menus Globals
 
     public const int oVMCreate = 2725269;       // -- Create any vehicle.
@@ -119,16 +118,10 @@ public static class Hacks
     {
         return Memory.Read<long>(Globals.WorldPTR, new int[] { 0x8 });
     }
-}
-
-
-public partial class Hacks
-{
-  
 
     public static void Spawn_Drop(uint hash, Vector3 pos)
     {
-        Globals.Create_Ambient_Pickup(9999, pos);
+        Create_Ambient_Pickup(9999, pos);
         Thread.Sleep(150);
         List<long> pickups = Replayinterface.Get_Pickups();
         for (int i = 0; i < pickups.Count; i++)
@@ -152,128 +145,17 @@ public partial class Hacks
     {
         Spawn_Drop(ped, Joaat(name), dist, height);
     }
+}
 
 
-    public static uint Get_Fix_Veh_Value()
-    {
-        return Memory.Read<uint>(Globals.PickupDataPTR, new int[] { 0x228 });
-    }
+public partial class Hacks12312
+{
+  
 
-    public static uint Get_Bull_Shark_Testosterone_Value()
-    {
-        return Memory.Read<uint>(Globals.PickupDataPTR, new int[] { 0x160 });
-    }
 
-    public static void Repair_Online_Vehicle(long vehicle)
-    {
-        Task.Run(() =>
-        {
-            Globals.Deliver_Bull_Shark(true);
-            Task.Delay(300).Wait();
-            uint fix_veh_value = Get_Fix_Veh_Value();
-            uint bull_shark_testosterone_value = Get_Bull_Shark_Testosterone_Value();
-            List<long> pickups = Replayinterface.Get_Pickups();
-            for (int i = 0; i < pickups.Count; i++)
-            {
-                if (Pickup.Get_Pickup_Value(pickups[i]) == bull_shark_testosterone_value)
-                {
-                    Pickup.Set_Pickup_Value(pickups[i], fix_veh_value);
-                    Task.Delay(10).Wait();
-                    Vehicle.Set_Health(vehicle, 999.0f);
-                    Task.Delay(10).Wait();
-                    Pickup.Set_Position(pickups[i], Vehicle.Get_Real_Position(vehicle));
-                    Task.Delay(10).Wait();
-                    break;
-                }
-            }
-            Task.Delay(1000).Wait();
-            if (Globals.Is_In_Bull_Shark())
-            {
-                Vehicle.Set_Dirt_Level(vehicle, 0.0f);
-                Globals.Instant_Bull_Shark(false);
-            }
-        });
-    }
 
-    public static string Find_Vehicle_Display_Name(long hash, bool isDisplay)
-    {
-        foreach (var item in Data.VehicleData.VehicleClassData)
-        {
-            foreach (var item0 in item.VehicleInfo)
-            {
-                if (item0.Hash == hash)
-                {
-                    if (isDisplay)
-                        return item0.DisplayName;
-                    else
-                        return item0.Name;
-                }
-            }
-        }
 
-        return "";
-    }
 
-    public static void Infinite_Ammo(bool toggle)
-    {
-        Memory.WriteBytes(Globals.InfiniteAmmoADDR, toggle ? new byte[] { 0x90, 0x90, 0x90 } : new byte[] { 0x41, 0x2B, 0xD1 });
-    }
-
-    public static void No_Reload(bool toggle)
-    {
-        Memory.WriteBytes(Globals.NoReloadADDR, toggle ? new byte[] { 0x90, 0x90, 0x90 } : new byte[] { 0x41, 0x2B, 0xC9 });
-    }
-
-    public static void Fill_Current_Ammo()
-    {
-        // Ped实体
-        long pWeapon_AmmoInfo = Memory.Read<long>(Globals.WorldPTR, Offsets.Weapon.AmmoInfo);
-
-        int getMaxAmmo = Memory.Read<int>(pWeapon_AmmoInfo + 0x28);
-
-        long my_offset_0 = pWeapon_AmmoInfo;
-        long my_offset_1;
-        byte ammo_type;
-
-        do
-        {
-            my_offset_0 = Memory.Read<long>(my_offset_0 + 0x08);
-            my_offset_1 = Memory.Read<long>(my_offset_0 + 0x00);
-
-            if (my_offset_0 == 0 || my_offset_1 == 0)
-            {
-                return;
-            }
-
-            ammo_type = Memory.Read<byte>(my_offset_1 + 0x0C);
-
-        } while (ammo_type == 0x00);
-
-        Memory.Write<int>(my_offset_1 + 0x18, getMaxAmmo);
-    }
-
-    public static void Fill_All_Ammo()
-    {
-        long p = Ped.Get_Ped_Inventory(Get_Local_Ped());
-        p = Memory.Read<long>(p + 0x48);
-        //for(int i = 0; i < 32; i++)
-        //{
-        //    long temp = Memory.Read<long>(p + i * 0x08);
-        //    if (!Memory.IsValid(temp)) continue;
-        //    if (!Memory.IsValid(Memory.Read<long>(temp + 0x08))) continue;
-        //    Func<int, int, int> Max = (int a, int b) => { return  a > b ? a : b; };
-        //    int max_ammo = Max(Memory.Read<int>(temp + 0x08, new int[] { 0x28 }), Memory.Read<int>(temp + 0x08, new int[] { 0x34 }));
-        //    Memory.Write<int>(temp + 0x20, max_ammo);
-        //}
-        int count = 0;
-        while (Memory.Read<int>(p + count * 0x08) != 0 && Memory.Read<int>(p + count * 0x08, new int[] { 0x08 }) != 0)
-        {
-            Func<int, int, int> Max = (int a, int b) => { return a > b ? a : b; };
-            int max_ammo = Max(Memory.Read<int>(p + count * 0x08, new int[] { 0x08, 0x28 }), Memory.Read<int>(p + count * 0x08, new int[] { 0x08, 0x34 }));
-            Memory.Write<int>(p + count * 0x08, new int[] { 0x20 }, max_ammo);
-            count++;
-        }
-    }
 }
 
 
