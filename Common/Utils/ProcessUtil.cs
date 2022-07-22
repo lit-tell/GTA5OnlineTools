@@ -2,7 +2,7 @@
 
 namespace GTA5OnlineTools.Common.Utils;
 
-public class ProcessUtil
+public static class ProcessUtil
 {
     /// <summary>
     /// 打开指定链接或程序
@@ -107,7 +107,7 @@ public class ProcessUtil
     }
 
     /// <summary>
-    /// 根据名字关闭指定程序
+    /// 根据进程名字关闭指定程序
     /// </summary>
     /// <param name="processName">程序名字，不需要加.exe</param>
     public static void CloseProcess(string processName)

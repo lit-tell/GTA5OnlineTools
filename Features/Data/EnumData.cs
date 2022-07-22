@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Features.Data;
 
-public class EnumData
+public static class EnumData
 {
     public enum PedTypes : int
     {

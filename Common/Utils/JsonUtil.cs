@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Common.Utils;
 
-public class JsonUtil
+public static class JsonUtil
 {
     private static JsonSerializerOptions Options1 = new JsonSerializerOptions()
     {

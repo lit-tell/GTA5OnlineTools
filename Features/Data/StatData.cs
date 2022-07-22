@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Features.Data;
 
-public class StatData
+public static class StatData
 {
     public struct StatClass
     {

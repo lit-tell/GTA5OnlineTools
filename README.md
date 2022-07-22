@@ -11,9 +11,9 @@
 ### 环境
 
 * SDK
-> https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/sdk-6.0.300-windows-x64-installer
+> https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/sdk-6.0.302-windows-x64-installer
 * Runtime
-> https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/runtime-desktop-6.0.6-windows-x64-installer
+> https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/runtime-desktop-6.0.7-windows-x64-installer
 
 ### 技术
 
@@ -22,8 +22,6 @@
 * MVVM
 
 ### Github加速器（推荐）
-
-> 再也不用担心无法访问Github了😊
 
 * Steam++
 > https://steampp.net/

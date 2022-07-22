@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Features.Core;
 
-public class WinAPI
+public static class WinAPI
 {
     public const int PROCESS_VM_READ = 0x0010;
     public const int PROCESS_VM_WRITE = 0x0020;

@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Features.Data;
 
-public class MiscData
+public static class MiscData
 {
     public struct Blip
     {

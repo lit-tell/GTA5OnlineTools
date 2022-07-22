@@ -1,18 +1,20 @@
 ﻿namespace GTA5OnlineTools.Common.Utils;
 
-public class AudioUtil
+public static class AudioUtil
 {
-    public static SoundPlayer SP_Click_01 = new SoundPlayer(Properties.Resources.Click_01);
-    public static SoundPlayer SP_Click_02 = new SoundPlayer(Properties.Resources.Click_02);
-    public static SoundPlayer SP_Click_03 = new SoundPlayer(Properties.Resources.Click_03);
-    public static SoundPlayer SP_Click_04 = new SoundPlayer(Properties.Resources.Click_04);
-    public static SoundPlayer SP_Click_05 = new SoundPlayer(Properties.Resources.Click_05);
+    public static SoundPlayer SP_Click_01 = new(Properties.Resources.Click_01);
+    public static SoundPlayer SP_Click_02 = new(Properties.Resources.Click_02);
+    public static SoundPlayer SP_Click_03 = new(Properties.Resources.Click_03);
+    public static SoundPlayer SP_Click_04 = new(Properties.Resources.Click_04);
+    public static SoundPlayer SP_Click_05 = new(Properties.Resources.Click_05);
 
-    public static SoundPlayer SP_GTA5_Email = new SoundPlayer(Properties.Resources.GTA5_Email);
-    public static SoundPlayer SP_GTA5_Job = new SoundPlayer(Properties.Resources.GTA5_Job);
-    public static SoundPlayer SP_DownloadOK = new SoundPlayer(Properties.Resources.DownloadOK);
+    public static SoundPlayer SP_GTA5_Email = new(Properties.Resources.GTA5_Email);
+    public static SoundPlayer SP_GTA5_Job = new(Properties.Resources.GTA5_Job);
+    public static SoundPlayer SP_DownloadOK = new(Properties.Resources.DownloadOK);
 
-    // 按钮提示音
+    /// <summary>
+    /// 按钮提示音
+    /// </summary>
     public static int ClickSoundIndex = 4;
 
     /// <summary>

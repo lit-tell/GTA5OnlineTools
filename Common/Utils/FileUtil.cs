@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Common.Utils;
 
-public class FileUtil
+public static class FileUtil
 {
     public const string Default_Path = @"C:\ProgramData\GTA5OnlineTools\";
     public const string Config_Path = Default_Path + @"Config\";
@@ -8,6 +8,7 @@ public class FileUtil
     public const string Kiddion_Path = Default_Path + @"Kiddion\";
     public const string KiddionScripts_Path = Kiddion_Path + @"scripts\";
     public const string GTAHaxStat_Path = Cache_Path + @"stat.txt";
+
     public static string CustomTPList_Path = Config_Path + "CustomTPList.json";
 
     public const string Resource_Path = "GTA5OnlineTools.Features.Files.";

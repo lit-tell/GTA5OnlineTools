@@ -2,7 +2,7 @@
 
 namespace GTA5OnlineTools.Features.Data;
 
-public class Settings
+public static class Settings
 {
     public static bool ShowWindow = true;
 
@@ -53,7 +53,7 @@ public class Settings
     public static bool AutoKillHostilityNPC = false;
     public static bool AutoKillPolice = false;
 
-    public struct Overlay
+    public static class Overlay
     {
         public static bool VSync = false;
         public static int FPS = 300;

@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Features.Core;
 
-public class BaseInjector
+public static class BaseInjector
 {
     // OpenProcess signture https://www.pinvoke.net/default.aspx/kernel32.openprocess
     [Flags]

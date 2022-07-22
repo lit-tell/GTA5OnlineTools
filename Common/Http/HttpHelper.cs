@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Common.Http;
 
-public class HttpHelper
+public static class HttpHelper
 {
     private static readonly HttpClient client = new HttpClient();
 

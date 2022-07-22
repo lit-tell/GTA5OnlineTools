@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Features.Core;
 
-public class Memory
+public static class Memory
 {
     public static Process process;
     public static IntPtr windowHandle;
