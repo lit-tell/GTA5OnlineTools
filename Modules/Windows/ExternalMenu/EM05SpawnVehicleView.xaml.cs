@@ -11,6 +11,9 @@ namespace GTA5OnlineTools.Modules.Windows.ExternalMenu;
 /// </summary>
 public partial class EM05SpawnVehicleView : UserControl
 {
+    private long SpawnVehicleHash = 0;
+    private int[] SpawnVehicleMod;
+
     public EM05SpawnVehicleView()
     {
         InitializeComponent();
@@ -49,15 +52,15 @@ public partial class EM05SpawnVehicleView : UserControl
 
     private void ListBox_VehicleInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        Settings.SpawnVehicleHash = 0;
+        SpawnVehicleHash = 0;
 
         int index1 = ListBox_VehicleClass.SelectedIndex;
         int index2 = ListBox_VehicleInfo.SelectedIndex;
 
         if (index1 != -1 && index2 != -1)
         {
-            Settings.SpawnVehicleHash = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Hash;
-            Settings.SpawnVehicleMod = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Mod;
+            SpawnVehicleHash = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Hash;
+            SpawnVehicleMod = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Mod;
         }
     }
 
@@ -69,56 +72,62 @@ public partial class EM05SpawnVehicleView : UserControl
 
         if (str == "刷出线上载具（空地）")
         {
-            Globals.Create_Vehicle(Hacks.Get_Local_Ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, -225.0f);
+            Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f, 5, SpawnVehicleMod);
         }
         else
         {
-            Globals.Create_Vehicle(Hacks.Get_Local_Ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, 0.0f);
+            Vehicle.SpawnVehicle(SpawnVehicleHash, 0.0f, 5, SpawnVehicleMod);
         }
     }
 
     /////////////////////////////////////////////////////////////////////////////////
 
-    private void CheckBox_VehicleGodMode_Click(object sender, RoutedEventArgs e) { Settings.VehicleGodMode = CheckBox_VehicleGodMode.IsChecked == true ? 1 : 0; }
+    private void CheckBox_VehicleGodMode_Click(object sender, RoutedEventArgs e)
+    {
+        Vehicle.GodMode(Settings.Vehicle.VehicleGodMode = true);
+        Settings.Vehicle.VehicleGodMode = CheckBox_VehicleGodMode.IsChecked == true;
+    }
 
-    private void CheckBox_PlayerSeatbelt_Click(object sender, RoutedEventArgs e) { Settings.Seatbelt = CheckBox_PlayerSeatbelt.IsChecked == true ? 1 : 0; }
+    private void CheckBox_VehicleSeatbelt_Click(object sender, RoutedEventArgs e)
+    {
+        Vehicle.Seatbelt(CheckBox_VehicleSeatbelt.IsChecked == true);
+        Settings.Vehicle.VehicleSeatbelt = CheckBox_VehicleSeatbelt.IsChecked == true;
+    }
 
     private void CheckBox_VehicleParachute_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.Set_Extras_Parachute(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), CheckBox_VehicleParachute.IsChecked == true);
+        Vehicle.Parachute(CheckBox_VehicleParachute.IsChecked == true);
     }
 
     private void CheckBox_VehicleInvisibility_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.Set_Invisible(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), CheckBox_VehicleInvisibility.IsChecked == true);
+        Vehicle.Invisibility(CheckBox_VehicleInvisibility.IsChecked == true);
     }
 
     private void Button_FillVehicleHealth_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.Revive_Vehicle(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()));
+        Vehicle.FillHealth();
     }
 
     private void RadioButton_VehicleExtras_None_Click(object sender, RoutedEventArgs e)
     {
         if (RadioButton_VehicleExtras_None.IsChecked == true)
         {
-            Vehicle.Set_Extras_Vehicle_Jump(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), false);
-            Vehicle.Set_Extras_Rocket_Boost(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), false);
+            Vehicle.Extras(0);
         }
         else if (RadioButton_VehicleExtras_Jump.IsChecked == true)
         {
-            Vehicle.Set_Extras_Vehicle_Jump(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), true);
+            Vehicle.Extras(40);
         }
         else if (RadioButton_VehicleExtras_Boost.IsChecked == true)
         {
-            Vehicle.Set_Extras_Rocket_Boost(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), true);
+            Vehicle.Extras(66);
         }
         else if (RadioButton_VehicleExtras_Both.IsChecked == true)
         {
-            Vehicle.Set_Extras_Vehicle_Jump(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), true);
-            Vehicle.Set_Extras_Rocket_Boost(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()), true);
+            Vehicle.Extras(96);
         }
     }
 
@@ -126,20 +135,20 @@ public partial class EM05SpawnVehicleView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.Repair_Online_Vehicle(Ped.Get_Current_Vehicle(Hacks.Get_Local_Ped()));
+        Vehicle.Fix1stfoundBST();
     }
 
     private void Button_TurnOffBST_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Globals.Instant_Bull_Shark(false);
+        Online.InstantBullShark(false);
     }
 
     private void Button_GetInOnlinePV_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Globals.Get_Into_Online_Personal_Vehicle();
+        Online.GetInOnlinePV();
     }
 }

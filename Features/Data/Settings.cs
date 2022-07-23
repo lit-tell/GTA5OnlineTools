@@ -6,52 +6,39 @@ public static class Settings
 {
     public static bool ShowWindow = true;
 
-    public static float ForwardDist = 1.5f;
+    public static float Forward = 1.5f;
 
     public static int ProduceTime = 5;
 
-    public static int GodMode = -1;
-    public static int AntiAFK = -1;
-    public static int NoRagdoll = -1;
-    public static int WaterProof = -1;
-    public static int Invisible = -1;
-    public static int UndeadOffRadar = -1;
-    public static int EveryoneIgnore = -1;
-    public static int CopsIgnore = -1;
-    public static int NoCollision = -1;
-    public static int AmmoModifier_InfiniteAmmo = -1;
-    public static int AmmoModifier_InfiniteClip = -1;
-    public static int Seatbelt = -1;
-    public static int RemovePassiveModeCooldown = -1;
-    public static int RemoveSuicideCooldown = -1;
-    public static int DisableOrbitalCooldown = -1;
-    public static int OffRadar = -1;
-    public static int GhostOrganization = -1;
-    public static int BlindCops = -1;
-    public static int BribeCops = -1;
-    public static int RevealPlayers = -1;
-    public static int AllowSellOnNonPublic = -1;
-    public static int OnlineSnow = -1;
-    public static int ProofsBullet = -1;
-    public static int ProofsFire = -1;
-    public static int ProofsCollision = -1;
-    public static int ProofsMelee = -1;
-    public static int ProofsExplosion = -1;
-    public static int ProofsSteam = -1;
-    public static int ProofsDrown = -1;
+    public static class Player
+    {
+        public static bool GodMode = false;
+        public static bool AntiAFK = false;
+        public static bool NoRagdoll = false;
 
+        public static bool NoCollision = false;
+    }
 
-    public static int VehicleGodMode = -1;
+    public static class Vehicle
+    {
+        public static bool VehicleGodMode = false;
+        public static bool VehicleSeatbelt = false;
+    }
 
-    public static bool FrameFlagsExplosiveAmmo = false;
-    public static bool FrameFlagsFlamingAmmo = false;
-    public static bool FrameFlagsExplosiveFists = false;
-    public static bool FrameFlagsSuperJump = false;
+    public static class Special
+    {
+        public static bool FireAmmo = false;
+        public static bool ExplosiveAmmo = false;
+        public static bool SuperJump = false;
+    }
 
-    public static bool AutoClearWanted = false;
-    public static bool AutoKillNPC = false;
-    public static bool AutoKillHostilityNPC = false;
-    public static bool AutoKillPolice = false;
+    public static class Common
+    {
+        public static bool AutoClearWanted = false;
+        public static bool AutoKillNPC = false;
+        public static bool AutoKillHostilityNPC = false;
+        public static bool AutoKillPolice = false;
+    }
 
     public static class Overlay
     {
@@ -76,7 +63,4 @@ public static class Settings
 
         public static bool IsNoTOPMostHide = false;
     }
-
-    public static uint SpawnVehicleHash = 0;
-    public static int[] SpawnVehicleMod;
 }

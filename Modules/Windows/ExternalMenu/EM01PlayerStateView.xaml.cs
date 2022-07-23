@@ -12,17 +12,8 @@ public partial class EM01PlayerStateView : UserControl
 {
     // 快捷键
     private HotKeys MainHotKeys;
-
-    private long local_ped;
-    private long local_ped_current_vehicle;
-    private bool local_ped_is_in_vehicle;
-    private float local_ped_health;
-    private float local_ped_max_health;
-    private float local_ped_armor;
-    private float local_ped_wanted_level;
-    private float local_ped_run_speed;
-    private float local_ped_swim_speed;
-    private float local_ped_stealth_speed;
+    // 特殊功能
+    private int FrameFlag = 0;
 
     public EM01PlayerStateView()
     {
@@ -48,10 +39,7 @@ public partial class EM01PlayerStateView : UserControl
         MainHotKeys.AddKey(WinVK.F7);
         MainHotKeys.AddKey(WinVK.F8);
         MainHotKeys.AddKey(WinVK.DELETE);
-        MainHotKeys.AddKey(WinVK.E);
-        MainHotKeys.AddKey(WinVK.ADD);
         MainHotKeys.KeyDownEvent += new HotKeys.KeyHandler(MyKeyDownEvent);
-        MainHotKeys.KeyUpEvent += new HotKeys.KeyHandler(MyKeyUpEvent);
 
         ExternalMenuView.ClosingDisposeEvent += ExternalMenuView_ClosingDisposeEvent;
     }
@@ -73,70 +61,37 @@ public partial class EM01PlayerStateView : UserControl
                 case (int)WinVK.F3:
                     if (CheckBox_FillCurrentAmmo.IsChecked == true)
                     {
-                        Hacks.Fill_All_Ammo();
+                        Weapon.FillCurrentAmmo();
                     }
                     break;
                 case (int)WinVK.F4:
                     if (CheckBox_MovingFoward.IsChecked == true)
                     {
-                        Hacks.To_Coords(local_ped, Ped.Get_Real_Forward_Position(local_ped, Settings.ForwardDist));
+                        Teleport.MovingFoward();
                     }
                     break;
                 case (int)WinVK.F5:
                     if (CheckBox_ToWaypoint.IsChecked == true)
                     {
-                        Hacks.To_Waypoint();
+                        Teleport.ToWaypoint();
                     }
                     break;
                 case (int)WinVK.F6:
                     if (CheckBox_ToObjective.IsChecked == true)
                     {
-                        Hacks.To_Objective();
+                        Teleport.ToObjective();
                     }
                     break;
                 case (int)WinVK.F7:
                     if (CheckBox_FillHealthArmor.IsChecked == true)
                     {
-                        Ped.Set_Health(local_ped, 328.0f);
-                        Ped.Set_Max_Health(local_ped, 328.0f);
-                        Ped.Set_Armour(local_ped, 50.0f);
+                        Player.FillHealthArmor();
                     }
                     break;
                 case (int)WinVK.F8:
                     if (CheckBox_ClearWanted.IsChecked == true)
                     {
-                        Ped.Set_Wanted_Level(local_ped, 0);
-                    }
-                    break;
-                case (int)WinVK.E:
-                    if (CheckBox_ThroughTheWall.IsChecked == true)
-                    {
-                        Settings.NoCollision = 1;
-                        Ped.Set_No_Collision(local_ped, true);
-                    }
-                    break;
-                case (int)WinVK.ADD:
-                    if (CheckBox_SpawnVehicle.IsChecked == true)
-                    {
-                        Globals.Create_Vehicle(Hacks.Get_Local_Ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, -225.0f);
-                        Globals.Create_Vehicle(Hacks.Get_Local_Ped(), Settings.SpawnVehicleHash, Settings.SpawnVehicleMod, 7.0f, 0.0f);
-                    }
-                    break;
-            }
-        }));
-    }
-
-    private void MyKeyUpEvent(int keyId, string keyName)
-    {
-        Dispatcher.BeginInvoke(new Action(delegate
-        {
-            switch (keyId)
-            {
-                case (int)WinVK.E:
-                    if (CheckBox_ThroughTheWall.IsChecked == true)
-                    {
-                        Settings.NoCollision = CheckBox_NoCollision.IsChecked == true ? 1 : 0;
-                        if(Settings.NoCollision == 0) Ped.Set_No_Collision(local_ped, false);
+                        Player.WantedLevel(0x00);
                     }
                     break;
             }
@@ -147,134 +102,62 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            local_ped = Hacks.Get_Local_Ped();
-            local_ped_current_vehicle = Ped.Get_Current_Vehicle(local_ped);
-            local_ped_is_in_vehicle = Ped.Is_In_Vehicle(local_ped);
+            float oHealth = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.Health);
+            float oMaxHealth = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.MaxHealth);
+            float oArmor = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.Armor);
 
-            local_ped_health = Ped.Get_Health(local_ped);
-            local_ped_max_health = Ped.Get_Max_Health(local_ped);
-            local_ped_armor = Ped.Get_Armor(local_ped);
+            byte oWanted = Memory.Read<byte>(Globals.WorldPTR, Offsets.Player.Wanted);
+            float oRunSpeed = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.RunSpeed);
+            float oSwimSpeed = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.SwimSpeed);
+            float oStealthSpeed = Memory.Read<float>(Globals.WorldPTR, Offsets.Player.StealthSpeed);
 
-            local_ped_wanted_level = Ped.Get_Wanted_Level(local_ped);
-            local_ped_run_speed = Ped.Get_Run_Speed(local_ped);
-            local_ped_swim_speed = Ped.Get_Swim_Speed(local_ped);
-            local_ped_stealth_speed = Ped.Get_Stealth_Speed(local_ped);
+            byte oInVehicle = Memory.Read<byte>(Globals.WorldPTR, Offsets.InVehicle);
+            byte oCurPassenger = Memory.Read<byte>(Globals.WorldPTR, Offsets.Vehicle.CurPassenger);
 
             ////////////////////////////////
 
-            if (Settings.GodMode == 1) Ped.Set_Proofs_God(local_ped, true);
-            else if (Settings.GodMode == 0) { Ped.Set_Proofs_God(local_ped, false); Settings.GodMode = -1; }
+            if (Settings.Player.GodMode)
+                Player.GodMode(true);
 
-            if (Settings.AntiAFK == 1) Globals.Anti_AFK(true);
-            else if (Settings.AntiAFK == 0) { Globals.Anti_AFK(false); Settings.AntiAFK = -1; }
+            if (Settings.Player.AntiAFK)
+                Player.AntiAFK(true);
 
-            if (Settings.NoRagdoll == 1) Ped.Set_No_Ragdoll(local_ped, true);
-            else if (Settings.NoRagdoll == 0) { Ped.Set_No_Ragdoll(local_ped, false); Settings.NoRagdoll = -1; }
+            if (Settings.Player.NoRagdoll)
+                Player.NoRagdoll(true);
 
-            if (Settings.WaterProof == 1) Ped.Set_Proofs_Water(local_ped, true);
-            else if (Settings.WaterProof == 0) { Ped.Set_Proofs_Water(local_ped, false); Settings.WaterProof = -1; }
+            if (Settings.Player.NoCollision)
+                Memory.Write(Globals.WorldPTR, Offsets.Player.NoCollision, -1.0f);
 
-            if (Settings.Invisible == 1) Ped.Set_Invisible(local_ped, true);
-            else if (Settings.Invisible == 0) { Ped.Set_Invisible(local_ped, false); Settings.Invisible = -1; }
+            if (Settings.Vehicle.VehicleGodMode)
+                Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
 
-            if (Settings.UndeadOffRadar == 1) Ped.Set_Max_Health(local_ped, 0.0f);
-            else if (Settings.UndeadOffRadar == 0) { Ped.Set_Max_Health(local_ped, 328.0f); Settings.UndeadOffRadar = -1; }
+            if (Settings.Vehicle.VehicleSeatbelt)
+                Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.Seatbelt, 0xC9);
 
-            if (Settings.EveryoneIgnore == 1) Ped.Set_Everyone_Ignore(local_ped, true);
-            else if (Settings.EveryoneIgnore == 0) { Ped.Set_Everyone_Ignore(local_ped, false); Settings.EveryoneIgnore = -1; }
-
-            if (Settings.CopsIgnore == 1) Ped.Set_Cops_Ignore(local_ped, true);
-            else if (Settings.CopsIgnore == 0) { Ped.Set_Cops_Ignore(local_ped, false); Settings.CopsIgnore = -1; }
-
-            if (Settings.NoCollision == 1) Ped.Set_No_Collision(local_ped, true);
-            else if (Settings.NoCollision == 0) { Ped.Set_No_Collision(local_ped, false); Settings.NoCollision = -1; }
-
-            if (Settings.AmmoModifier_InfiniteAmmo == 1) Ped.Set_Infinite_Ammo(local_ped, true);
-            else if (Settings.AmmoModifier_InfiniteAmmo == 0) { Ped.Set_Infinite_Ammo(local_ped, false); Settings.AmmoModifier_InfiniteAmmo = -1; }
-
-            if (Settings.AmmoModifier_InfiniteClip == 1) Ped.Set_Infinite_Clip(local_ped, true);
-            else if (Settings.AmmoModifier_InfiniteClip == 0) { Ped.Set_Infinite_Clip(local_ped, false); Settings.AmmoModifier_InfiniteClip = -1; }
-
-            if (Settings.Seatbelt == 1) Ped.Set_Seatbelt(local_ped, true);
-            else if (Settings.Seatbelt == 0) { Ped.Set_Seatbelt(local_ped, false); Settings.Seatbelt = -1; }
-
-            if (Settings.ProofsBullet == 1) Ped.Set_Proofs_Bullet(local_ped, true);
-            else if (Settings.ProofsBullet == 0) { Ped.Set_Proofs_Bullet(local_ped, false); Settings.ProofsBullet = -1; }
-
-            if (Settings.ProofsFire == 1) Ped.Set_Proofs_Fire(local_ped, true);
-            else if (Settings.ProofsFire == 0) { Ped.Set_Proofs_Fire(local_ped, false); Settings.ProofsFire = -1; }
-
-            if (Settings.ProofsCollision == 1) Ped.Set_Proofs_Collision(local_ped, true);
-            else if (Settings.ProofsCollision == 0) { Ped.Set_Proofs_Collision(local_ped, false); Settings.ProofsCollision = -1; }
-
-            if (Settings.ProofsMelee == 1) Ped.Set_Proofs_Melee(local_ped, true);
-            else if (Settings.ProofsMelee == 0) { Ped.Set_Proofs_Melee(local_ped, false); Settings.ProofsMelee = -1; }
-
-            if (Settings.ProofsExplosion == 1) Ped.Set_Proofs_Explosion(local_ped, true);
-            else if (Settings.ProofsExplosion == 0) { Ped.Set_Proofs_Explosion(local_ped, false); Settings.ProofsExplosion = -1; }
-
-            if (Settings.ProofsSteam == 1) Ped.Set_Proofs_Steam(local_ped, true);
-            else if (Settings.ProofsSteam == 0) { Ped.Set_Proofs_Steam(local_ped, false); Settings.ProofsSteam = -1; }
-
-            if (Settings.ProofsDrown == 1) Ped.Set_Proofs_Drown(local_ped, true);
-            else if (Settings.ProofsDrown == 0) { Ped.Set_Proofs_Drown(local_ped, false); Settings.ProofsDrown = -1; }
-
-            if (Settings.VehicleGodMode == 1) Vehicle.Set_Proofs_God(local_ped_current_vehicle, true);
-            else if (Settings.VehicleGodMode == 0) { Vehicle.Set_Proofs_God(local_ped_current_vehicle, false); Settings.VehicleGodMode = -1; }
-
-            if(Settings.RemovePassiveModeCooldown == 1) { Globals.Remove_Passive_Mode_Cooldown(true); }
-            else if (Settings.RemovePassiveModeCooldown == 0) { Globals.Remove_Passive_Mode_Cooldown(false); Settings.RemovePassiveModeCooldown = -1; }
-
-            if (Settings.RemoveSuicideCooldown == 1) { Globals.Remove_Suicide_Cooldown(true); }
-            else if (Settings.RemoveSuicideCooldown == 0) { Globals.Remove_Suicide_Cooldown(false); Settings.RemoveSuicideCooldown = -1; }
-
-            if (Settings.DisableOrbitalCooldown == 1) { Globals.Disable_Orbital_Cooldown(true); }
-            else if (Settings.DisableOrbitalCooldown == 0) { Globals.Disable_Orbital_Cooldown(false); Settings.DisableOrbitalCooldown = -1; }
-
-            if(Settings.OffRadar == 1) { Globals.Off_Radar(true); }
-            else if (Settings.OffRadar == 0) { Globals.Off_Radar(false); Settings.OffRadar = -1; }
-
-            if (Settings.GhostOrganization == 1) { Globals.Ghost_Organization(true); }
-            else if (Settings.GhostOrganization == 0) { Globals.Ghost_Organization(false); Settings.GhostOrganization = -1; }
-
-            if (Settings.BlindCops == 1) { Globals.Blind_Cops(true); }
-            else if (Settings.BlindCops == 0) { Globals.Blind_Cops(false); Settings.BlindCops = -1; }
-
-            if (Settings.BribeCops == 1) { Globals.Bribe_Cops(true); }
-            else if (Settings.BribeCops == 0) { Globals.Bribe_Cops(false); Settings.BribeCops = -1; }
-
-            if (Settings.RevealPlayers == 1) { Globals.Reveal_Players(true); }
-            else if (Settings.RevealPlayers == 0) { Globals.Reveal_Players(false); Settings.RevealPlayers = -1; }
-
-            if (Settings.AllowSellOnNonPublic == 1) { Globals.Allow_Sell_On_Non_Public(true); }
-            else if (Settings.AllowSellOnNonPublic == 0) { Globals.Allow_Sell_On_Non_Public(false); Settings.AllowSellOnNonPublic = -1; }
-
-            if (Settings.OnlineSnow == 1) { Globals.Session_Snow(true); }
-            else if (Settings.OnlineSnow == 0) { Globals.Session_Snow(false); Settings.OnlineSnow = -1; }
             ////////////////////////////////
 
             Dispatcher.BeginInvoke(new Action(delegate
             {
-                if (Slider_Health.Value != local_ped_health)
-                    Slider_Health.Value = local_ped_health;
+                if (Slider_Health.Value != oHealth)
+                    Slider_Health.Value = oHealth;
 
-                if (Slider_MaxHealth.Value != local_ped_max_health)
-                    Slider_MaxHealth.Value = local_ped_max_health;
+                if (Slider_MaxHealth.Value != oMaxHealth)
+                    Slider_MaxHealth.Value = oMaxHealth;
 
-                if (Slider_Armor.Value != local_ped_armor)
-                    Slider_Armor.Value = local_ped_armor;
+                if (Slider_Armor.Value != oArmor)
+                    Slider_Armor.Value = oArmor;
 
-                if (Slider_Wanted.Value != local_ped_wanted_level)
-                    Slider_Wanted.Value = local_ped_wanted_level;
+                if (Slider_Wanted.Value != oWanted)
+                    Slider_Wanted.Value = oWanted;
 
-                if (Slider_RunSpeed.Value != local_ped_run_speed)
-                    Slider_RunSpeed.Value = local_ped_run_speed;
+                if (Slider_RunSpeed.Value != oRunSpeed)
+                    Slider_RunSpeed.Value = oRunSpeed;
 
-                if (Slider_SwimSpeed.Value != local_ped_swim_speed)
-                    Slider_SwimSpeed.Value = local_ped_swim_speed;
+                if (Slider_SwimSpeed.Value != oSwimSpeed)
+                    Slider_SwimSpeed.Value = oSwimSpeed;
 
-                if (Slider_StealthSpeed.Value != local_ped_stealth_speed)
-                    Slider_StealthSpeed.Value = local_ped_stealth_speed;
+                if (Slider_StealthSpeed.Value != oStealthSpeed)
+                    Slider_StealthSpeed.Value = oStealthSpeed;
             }));
 
             Thread.Sleep(1000);
@@ -285,10 +168,18 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            if (Settings.FrameFlagsExplosiveAmmo) Ped.Set_Frame_Flags_Explosiveammo(local_ped, true);
-            if (Settings.FrameFlagsFlamingAmmo) Ped.Set_Frame_Flags_Flamingammo(local_ped, true);
-            if (Settings.FrameFlagsExplosiveFists) Ped.Set_Frame_Flags_Explosivefists(local_ped, true);
-            if (Settings.FrameFlagsSuperJump) Ped.Set_Frame_Flags_Superjump(local_ped, true);
+            switch (FrameFlag)
+            {
+                case 1:
+                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.SuperJump);
+                    break;
+                case 2:
+                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.FireAmmo);
+                    break;
+                case 3:
+                    Memory.Write<int>(Globals.WorldPTR, Offsets.SpecialAmmo, (int)EnumData.FrameFlags.ExplosiveAmmo);
+                    break;
+            }
 
             Thread.Sleep(1);
         }
@@ -298,124 +189,197 @@ public partial class EM01PlayerStateView : UserControl
     {
         while (true)
         {
-            if (Settings.AutoClearWanted)
-                Ped.Set_Wanted_Level(local_ped, 0);
+            if (Settings.Common.AutoClearWanted)
+                Player.WantedLevel(0x00);
 
-            if (Settings.AutoKillNPC)
-                Hacks.Kill_Npcs();
+            if (Settings.Common.AutoKillNPC)
+                World.KillNPC(false);
 
-            if (Settings.AutoKillHostilityNPC)
-                Hacks.Kill_Enemies();
+            if (Settings.Common.AutoKillHostilityNPC)
+                World.KillNPC(true);
 
-            if (Settings.AutoKillPolice)
-                Hacks.Kill_Cops();
+            if (Settings.Common.AutoKillPolice)
+                World.KillPolice();
 
             Thread.Sleep(200);
         }
     }
 
-    private void Slider_Health_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Health(local_ped, (float)Slider_Health.Value); }
-
-    private void Slider_MaxHealth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Max_Health(local_ped, (float)Slider_MaxHealth.Value); }
-
-    private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Armour(local_ped, (float)Slider_Armor.Value); }
-
-    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Wanted_Level(local_ped, (int)Slider_Wanted.Value); }
-
-    private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Run_Speed(local_ped, (float)Slider_RunSpeed.Value); }
-
-    private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Swim_Speed(local_ped, (float)Slider_SwimSpeed.Value); }
-
-    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) { Ped.Set_Stealth_Speed(local_ped, (float)Slider_StealthSpeed.Value); }
-
-    private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e) { Settings.GodMode = CheckBox_PlayerGodMode.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_AntiAFK_Click(object sender, RoutedEventArgs e) { Settings.AntiAFK = CheckBox_AntiAFK.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_WaterProof_Click(object sender, RoutedEventArgs e) { Settings.WaterProof = CheckBox_WaterProof.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_Invisibility_Click(object sender, RoutedEventArgs e) { Settings.Invisible = CheckBox_Invisibility.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_UndeadOffRadar_Click(object sender, RoutedEventArgs e) { Settings.UndeadOffRadar = CheckBox_UndeadOffRadar.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_NoRagdoll_Click(object sender, RoutedEventArgs e) { Settings.NoRagdoll = CheckBox_NoRagdoll.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_NpcsIgnore_Click(object sender, RoutedEventArgs e) { Settings.EveryoneIgnore = CheckBox_NPCIgnore.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_CopsIgnore_Click(object sender, RoutedEventArgs e) { Settings.CopsIgnore = CheckBox_PoliceIgnore.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_AutoClearWanted_Click(object sender, RoutedEventArgs e) { Settings.AutoClearWanted = CheckBox_AutoClearWanted.IsChecked == true; }
-
-    private void CheckBox_AutoKillNPC_Click(object sender, RoutedEventArgs e) { Settings.AutoKillNPC = CheckBox_AutoKillNPC.IsChecked == true; }
-
-    private void CheckBox_AutoKillHostilityNPC_Click(object sender, RoutedEventArgs e) { Settings.AutoKillHostilityNPC = CheckBox_AutoKillHostilityNPC.IsChecked == true; }
-
-    private void CheckBox_AutoKillPolice_Click(object sender, RoutedEventArgs e) { Settings.AutoKillPolice = CheckBox_AutoKillPolice.IsChecked == true; }
-
-    private void CheckBox_FrameFlags_Click(object sender, RoutedEventArgs e)
+    private void Slider_Health_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        //Settings.FrameFlagsExplosiveAmmo  = CheckBox_FrameFlagsExplosiveAmmo.IsChecked == true;
-        //Settings.FrameFlagsFlamingAmmo    = CheckBox_FrameFlagsFlamingAmmo.IsChecked == true;
-        //Settings.FrameFlagsExplosiveFists = CheckBox_FrameFlagsExplosiveFists.IsChecked == true;
-        Settings.FrameFlagsSuperJump      = CheckBox_FrameFlagsSuperJump.IsChecked == true;
+        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.Health, (float)Slider_Health.Value);
     }
 
-    private void CheckBox_NoCollision_Click(object sender, RoutedEventArgs e) { Settings.NoCollision = CheckBox_NoCollision.IsChecked == true ? 1 : 0; }
+    private void Slider_MaxHealth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.MaxHealth, (float)Slider_MaxHealth.Value);
+    }
+
+    private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.Armor, (float)Slider_Armor.Value);
+    }
+
+    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.Wanted, (byte)Slider_Wanted.Value);
+    }
+
+    private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.RunSpeed, (float)Slider_RunSpeed.Value);
+    }
+
+    private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.SwimSpeed, (float)Slider_SwimSpeed.Value);
+    }
+
+    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        Memory.Write<float>(Globals.WorldPTR, Offsets.Player.StealthSpeed, (float)Slider_StealthSpeed.Value);
+    }
+
+    private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)
+    {
+        Player.GodMode(CheckBox_PlayerGodMode.IsChecked == true);
+        Settings.Player.GodMode = CheckBox_PlayerGodMode.IsChecked == true;
+    }
+
+    private void CheckBox_AntiAFK_Click(object sender, RoutedEventArgs e)
+    {
+        Player.AntiAFK(CheckBox_AntiAFK.IsChecked == true);
+        Settings.Player.AntiAFK = CheckBox_AntiAFK.IsChecked == true;
+    }
+
+    private void CheckBox_WaterProof_Click(object sender, RoutedEventArgs e)
+    {
+        Player.WaterProof(CheckBox_WaterProof.IsChecked == true);
+    }
+
+    private void CheckBox_Invisibility_Click(object sender, RoutedEventArgs e)
+    {
+        Player.Invisibility(CheckBox_Invisibility.IsChecked == true);
+    }
+
+    private void CheckBox_UndeadOffRadar_Click(object sender, RoutedEventArgs e)
+    {
+        Player.UndeadOffRadar(CheckBox_UndeadOffRadar.IsChecked == true);
+    }
+
+    private void CheckBox_NoRagdoll_Click(object sender, RoutedEventArgs e)
+    {
+        Player.NoRagdoll(CheckBox_NoRagdoll.IsChecked == true);
+        Settings.Player.NoRagdoll = CheckBox_NoRagdoll.IsChecked == true;
+    }
+
+    private void CheckBox_NPCIgnore_Click(object sender, RoutedEventArgs e)
+    {
+        if (CheckBox_NPCIgnore.IsChecked == true && CheckBox_PoliceIgnore.IsChecked == false)
+        {
+            Memory.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0x04);
+        }
+        else if (CheckBox_NPCIgnore.IsChecked == false && CheckBox_PoliceIgnore.IsChecked == true)
+        {
+            Memory.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0xC3);
+        }
+        else if (CheckBox_NPCIgnore.IsChecked == true && CheckBox_PoliceIgnore.IsChecked == true)
+        {
+            Memory.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0xC7);
+        }
+        else
+        {
+            Memory.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0x00);
+        }
+    }
+
+    private void CheckBox_AutoClearWanted_Click(object sender, RoutedEventArgs e)
+    {
+        Player.WantedLevel(0x00);
+        Settings.Common.AutoClearWanted = CheckBox_AutoClearWanted.IsChecked == true;
+    }
+
+    private void CheckBox_AutoKillNPC_Click(object sender, RoutedEventArgs e)
+    {
+        World.KillNPC(false);
+        Settings.Common.AutoKillNPC = CheckBox_AutoKillNPC.IsChecked == true;
+    }
+
+    private void CheckBox_AutoKillHostilityNPC_Click(object sender, RoutedEventArgs e)
+    {
+        World.KillNPC(true);
+        Settings.Common.AutoKillHostilityNPC = CheckBox_AutoKillHostilityNPC.IsChecked == true;
+    }
+
+    private void CheckBox_AutoKillPolice_Click(object sender, RoutedEventArgs e)
+    {
+        World.KillPolice();
+        Settings.Common.AutoKillPolice = CheckBox_AutoKillPolice.IsChecked == true;
+    }
+
+    private void RadioButton_FrameFlags_Click(object sender, RoutedEventArgs e)
+    {
+        if (RadioButton_FrameFlags_Default.IsChecked == true)
+        {
+            FrameFlag = 0;
+        }
+        else if (RadioButton_FrameFlags_SuperJump.IsChecked == true)
+        {
+            FrameFlag = 1;
+        }
+        else if (RadioButton_FrameFlags_FireAmmo.IsChecked == true)
+        {
+            FrameFlag = 2;
+        }
+        else if (RadioButton_FrameFlags_ExplosiveAmmo.IsChecked == true)
+        {
+            FrameFlag = 3;
+        }
+    }
+
+    private void CheckBox_NoCollision_Click(object sender, RoutedEventArgs e)
+    {
+        Player.NoCollision(CheckBox_NoCollision.IsChecked == true);
+        Settings.Player.NoCollision = CheckBox_NoCollision.IsChecked == true;
+    }
 
     private void Button_ToWaypoint_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.To_Waypoint();
+        Teleport.ToWaypoint();
     }
 
     private void Button_ToObjective_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.To_Objective();
+        Teleport.ToObjective();
     }
 
     private void Button_FillHealthArmor_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.Set_Health(local_ped, 328.0f);
-        Ped.Set_Max_Health(local_ped, 328.0f);
-        Ped.Set_Armour(local_ped, 50.0f);
+        Player.FillHealthArmor();
     }
 
     private void Button_ClearWanted_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.Set_Wanted_Level(local_ped, 0);
+        Player.WantedLevel(0x00);
     }
 
     private void Button_Suicide_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Ped.Set_Health(local_ped, 0.0f);
+        Player.Suicide();
     }
 
     private void Slider_MovingFoward_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        Settings.ForwardDist = (float)Slider_MovingFoward.Value;
+        Settings.Forward = (float)Slider_MovingFoward.Value;
     }
-
-    private void CheckBox_ProofsBullet_Click(object sender, RoutedEventArgs e) { Settings.ProofsBullet = CheckBox_ProofsBullet.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_ProofsFire_Click(object sender, RoutedEventArgs e) { Settings.ProofsFire = CheckBox_ProofsFire.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_ProofsCollision_Click(object sender, RoutedEventArgs e) { Settings.ProofsCollision = CheckBox_ProofsCollision.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_ProofsMelee_Click(object sender, RoutedEventArgs e) { Settings.ProofsMelee = CheckBox_ProofsMelee.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_ProofsExplosion_Click(object sender, RoutedEventArgs e) { Settings.ProofsExplosion = CheckBox_ProofsExplosion.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_ProofsSteam_Click(object sender, RoutedEventArgs e) { Settings.ProofsSteam = CheckBox_ProofsSteam.IsChecked == true ? 1 : 0; }
-
-    private void CheckBox_ProofsDrown_Click(object sender, RoutedEventArgs e) { Settings.ProofsDrown = CheckBox_ProofsDrown.IsChecked == true ? 1 : 0; }
-
 }

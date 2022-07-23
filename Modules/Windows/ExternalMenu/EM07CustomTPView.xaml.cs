@@ -190,14 +190,14 @@ public partial class EM07CustomTPView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.To_Waypoint();
+        Teleport.ToWaypoint();
     }
 
     private void Button_ToObjective_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        Hacks.To_Objective();
+        Teleport.ToObjective();
     }
 
     private void ListBox_TeleportInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -209,7 +209,7 @@ public partial class EM07CustomTPView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Hacks.To_Coords(Hacks.Get_Local_Ped(), TempData.TCode);
+        Teleport.SetTeleportV3Pos(TempData.TCode);
 
         TextBox_Result.Text = $"传送到自定义坐标成功";
     }

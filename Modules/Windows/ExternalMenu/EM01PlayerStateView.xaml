@@ -222,11 +222,11 @@
                             Content="无布娃娃" />
                         <CheckBox
                             x:Name="CheckBox_NPCIgnore"
-                            Click="CheckBox_NpcsIgnore_Click"
+                            Click="CheckBox_NPCIgnore_Click"
                             Content="NPC无视" />
                         <CheckBox
                             x:Name="CheckBox_PoliceIgnore"
-                            Click="CheckBox_CopsIgnore_Click"
+                            Click="CheckBox_NPCIgnore_Click"
                             Content="警察无视" />
                         <TextBlock />
                         <CheckBox
@@ -245,11 +245,27 @@
                             Text="特殊功能" />
                     </Border>
                     <WrapPanel Margin="3,0,3,0">
-                        <CheckBox
-                            x:Name="CheckBox_FrameFlagsSuperJump"
+                        <RadioButton
+                            x:Name="RadioButton_FrameFlags_Default"
                             Margin="5"
-                            Click="CheckBox_FrameFlags_Click"
-                            Content="超级跳跃⚠️" />
+                            Click="RadioButton_FrameFlags_Click"
+                            Content="默认"
+                            IsChecked="True" />
+                        <RadioButton
+                            x:Name="RadioButton_FrameFlags_SuperJump"
+                            Margin="5"
+                            Click="RadioButton_FrameFlags_Click"
+                            Content="超级跳跃" />
+                        <RadioButton
+                            x:Name="RadioButton_FrameFlags_FireAmmo"
+                            Margin="5"
+                            Click="RadioButton_FrameFlags_Click"
+                            Content="燃烧子弹" />
+                        <RadioButton
+                            x:Name="RadioButton_FrameFlags_ExplosiveAmmo"
+                            Margin="5"
+                            Click="RadioButton_FrameFlags_Click"
+                            Content="爆炸子弹" />
                     </WrapPanel>
 
                     <Border Style="{StaticResource BorderTitleStyle}">
@@ -275,18 +291,10 @@
                             x:Name="CheckBox_ClearWanted"
                             Content="[F8] 消除警星"
                             IsChecked="True" />
-                        <CheckBox
-                            x:Name="CheckBox_ThroughTheWall"
-                            Content="[E][按住] 穿墙"
-                            IsChecked="True" />
-                        <CheckBox
-                            x:Name="CheckBox_SpawnVehicle"
-                            Content="[小键盘+] 刷出载具"
-                            IsChecked="True" />
                         <TextBlock />
                         <CheckBox
                             x:Name="CheckBox_FillCurrentAmmo"
-                            Content="[F3] 补满所有武器弹药"
+                            Content="[F3] 补满当前武器弹药"
                             IsChecked="True" />
                         <CheckBox
                             x:Name="CheckBox_MovingFoward"
@@ -374,42 +382,6 @@
                             Margin="5"
                             Click="CheckBox_AutoKillPolice_Click"
                             Content="自动击杀警察" />
-                    </StackPanel>
-                    <Border Style="{StaticResource BorderTitleStyle}">
-                        <TextBlock
-                            Padding="3,0,0,0"
-                            Foreground="White"
-                            Text="Proofs" />
-                    </Border>
-                    <StackPanel Margin="3,0,3,0">
-                        <CheckBox
-                            x:Name="CheckBox_ProofsBullet"
-                            Click="CheckBox_ProofsBullet_Click"
-                            Content="防子弹（防止子弹掉血）" />
-                        <CheckBox
-                            x:Name="CheckBox_ProofsFire"
-                            Click="CheckBox_ProofsFire_Click"
-                            Content="防火烧（防止燃烧掉血）" />
-                        <CheckBox
-                            x:Name="CheckBox_ProofsCollision"
-                            Click="CheckBox_ProofsCollision_Click"
-                            Content="防撞击（防止撞击掉血）" />
-                        <CheckBox
-                            x:Name="CheckBox_ProofsMelee"
-                            Click="CheckBox_ProofsMelee_Click"
-                            Content="防近战（防止近战掉血）" />
-                        <CheckBox
-                            x:Name="CheckBox_ProofsExplosion"
-                            Click="CheckBox_ProofsExplosion_Click"
-                            Content="防爆炸（防止爆炸掉血）" />
-                        <CheckBox
-                            x:Name="CheckBox_ProofsSteam"
-                            Click="CheckBox_ProofsSteam_Click"
-                            Content="防蒸汽（具体场景未知）" />
-                        <CheckBox
-                            x:Name="CheckBox_ProofsDrown"
-                            Click="CheckBox_ProofsDrown_Click"
-                            Content="防溺水（具体场景未知）" />
                     </StackPanel>
                 </StackPanel>
             </Grid>

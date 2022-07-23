@@ -3,28 +3,37 @@
 public static class Outfits
 {
     // -- Outfit Editor Globals from VenomKY
-
-    public const int oWardrobeG = 2359296;
-    public const int oWPointA = 5559;
-    public const int oWPointB = 675;
-    public const int oWComponent = 1333;
-    public const int oWComponentTex = 1607;
-    public const int oWProp = 1881;
-    public const int oWPropTex = 2092;
+    private const int oWardrobeG = 2359296;
+    private const int oWPointA = 5559;
+    private const int oWPointB = 675;
+    private const int oWComponent = 1333;
+    private const int oWComponentTex = 1607;
+    private const int oWProp = 1881;
+    private const int oWPropTex = 2092;
 
     /// <summary>
     /// 范围0~19
     /// </summary>
     public static int OutfitIndex = 0;
 
-    public static string GetOutfitNameByIndex(int index)
+    /// <summary>
+    /// 通过索引获取服装名字
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
+    public static string GetOutfitNameByIndex()
     {
-        return Hacks.ReadGAString(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (index * 13) + 1126 - (index * 5));
+        return Hacks.ReadGAString(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 1126 - (OutfitIndex * 5));
     }
 
-    public static void SetOutfitNameByIndex(int index, string str)
+    /// <summary>
+    /// 通过索引设置服装名字
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="name"></param>
+    public static void SetOutfitNameByIndex(string name)
     {
-        Hacks.WriteGAString(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (index * 13) + 1126 - (index * 5), str);
+        Hacks.WriteGAString(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 1126 - (OutfitIndex * 5), name);
     }
 
     /*********************** TOP ***********************/

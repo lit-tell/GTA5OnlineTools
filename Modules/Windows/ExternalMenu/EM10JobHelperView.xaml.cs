@@ -18,25 +18,25 @@ public partial class EM10JobHelperView : UserControl
 
     private void ExternalMenuView_ClosingDisposeEvent()
     {
-        
+
     }
 
     private void CheckBox_RemoveBunkerSupplyDelay_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Remove_Bunker_Supply_Delay(CheckBox_RemoveBunkerSupplyDelay.IsChecked == true);
+        Online.RemoveBunkerSupplyDelay(CheckBox_RemoveBunkerSupplyDelay.IsChecked == true);
     }
 
     private void CheckBox_UnlockBunkerResearch_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Unlock_Bunker_Research(CheckBox_UnlockBunkerResearch.IsChecked == true);
+        Online.UnlockBunkerResearch(CheckBox_UnlockBunkerResearch.IsChecked == true);
     }
 
     private void Button_TriggerBunkerResearch_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
 
-        int supplycount = Globals.GG<int>(Globals.Get_Business_Index(5) + 2);
-        int progress = Globals.GG<int>(Globals.Get_Business_Index(5) + 12);
+        int supplycount = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(5) + 2);
+        int progress = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(5) + 12);
 
         if (progress == 60)
         {
@@ -48,7 +48,7 @@ public partial class EM10JobHelperView : UserControl
         }
         else
         {
-            Globals.SG<int>(Globals.Get_Business_Index(5) + 13, 0);
+            Hacks.WriteGA<int>(Hacks.GetBusinessIndex(5) + 13, 0);
             TextBox_Result.Text = $"正在触发地堡研究，当前研究进度为 {progress}，原材料数量 {supplycount}";
         }
     }
@@ -57,8 +57,8 @@ public partial class EM10JobHelperView : UserControl
     {
         AudioUtil.ClickSound();
 
-        int supplycount = Globals.GG<int>(Globals.Get_Business_Index(5) + 2);
-        int progress = Globals.GG<int>(Globals.Get_Business_Index(5) + 1);
+        int supplycount = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(5) + 2);
+        int progress = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(5) + 1);
 
         if (progress == 100)
         {
@@ -70,7 +70,7 @@ public partial class EM10JobHelperView : UserControl
         }
         else
         {
-            Globals.SG<int>(Globals.Get_Business_Index(5) + 9, 0);
+            Hacks.WriteGA<int>(Hacks.GetBusinessIndex(5) + 9, 0);
             TextBox_Result.Text = $"正在触发地堡生产，当前生产进度为 {progress}，原材料数量 {supplycount}";
         }
     }
@@ -81,21 +81,21 @@ public partial class EM10JobHelperView : UserControl
 
     //    Memory.Write<int>(Globals.GlobalPTR - 0x128, Offsets.BunkerDelivery_1, 1);
 
-    //    Globals.SG<float>(262145 + 21045, 1.0f);
-    //    Globals.SG<int>(262145 + 21228 + 171, 1);
-    //    Globals.SG<int>(262145 + 21232 + 171, 1);
-    //    Globals.SG<int>(262145 + 21222 + 171, 1);
-    //    Globals.SG<int>(262145 + 21230 + 171, 1);
-    //    Globals.SG<int>(262145 + 21235 + 171, 1);
-    //    Globals.SG<int>(262145 + 21224 + 171, 1);
+    //    Hacks.WriteGA<float>(262145 + 21045, 1.0f);
+    //    Hacks.WriteGA<int>(262145 + 21228 + 171, 1);
+    //    Hacks.WriteGA<int>(262145 + 21232 + 171, 1);
+    //    Hacks.WriteGA<int>(262145 + 21222 + 171, 1);
+    //    Hacks.WriteGA<int>(262145 + 21230 + 171, 1);
+    //    Hacks.WriteGA<int>(262145 + 21235 + 171, 1);
+    //    Hacks.WriteGA<int>(262145 + 21224 + 171, 1);
     //    Thread.Sleep(1000);
-    //    Globals.SG<float>(262145 + 21045, 1.5f);
-    //    Globals.SG<int>(262145 + 21228 + 171, 1800000);
-    //    Globals.SG<int>(262145 + 21232 + 171, 900000);
-    //    Globals.SG<int>(262145 + 21222 + 171, 900000);
-    //    Globals.SG<int>(262145 + 21230 + 171, 900000);
-    //    Globals.SG<int>(262145 + 21235 + 171, 900000);
-    //    Globals.SG<int>(262145 + 2122 + 1714, 900000);
+    //    Hacks.WriteGA<float>(262145 + 21045, 1.5f);
+    //    Hacks.WriteGA<int>(262145 + 21228 + 171, 1800000);
+    //    Hacks.WriteGA<int>(262145 + 21232 + 171, 900000);
+    //    Hacks.WriteGA<int>(262145 + 21222 + 171, 900000);
+    //    Hacks.WriteGA<int>(262145 + 21230 + 171, 900000);
+    //    Hacks.WriteGA<int>(262145 + 21235 + 171, 900000);
+    //    Hacks.WriteGA<int>(262145 + 2122 + 1714, 900000);
 
     //    Button_DeliverBunker.IsEnabled = false;
     //}
@@ -160,17 +160,17 @@ public partial class EM10JobHelperView : UserControl
 
     private void CheckBox_RemoveBuyingCratesCooldown_Click(object sender, RoutedEventArgs e)
     {
-        Globals.CEO_Buying_Crates_Cooldown(CheckBox_CooldownForBuyingCrates.IsChecked == true);
+        Online.CEOBuyingCratesCooldown(CheckBox_CooldownForBuyingCrates.IsChecked == true);
     }
 
     private void CheckBox_RemoveSellingCratesCooldown_Click(object sender, RoutedEventArgs e)
     {
-        Globals.CEO_Selling_Crates_Cooldown(CheckBox_CooldownForSellingCrates.IsChecked == true);
+        Online.CEOSellingCratesCooldown(CheckBox_CooldownForSellingCrates.IsChecked == true);
     }
 
-    private void CheckBox_PricePerCrateAtXCrates_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_PricePerCrateAtCrates_Click(object sender, RoutedEventArgs e)
     {
-        Globals.CEO_Price_Per_Crate_At_Crates(CheckBox_PricePerCrateAtXCrates.IsChecked == true);
+        Online.CEOPricePerCrateAtCrates(CheckBox_PricePerCrateAtCrates.IsChecked == true);
     }
 
     private int CheckBusinessID(int index)
@@ -185,7 +185,7 @@ public partial class EM10JobHelperView : UserControl
 
         for (int i = 0; i < 5; i++)
         {
-            int temp = Globals.GG<int>(Globals.Get_Business_Index(i));
+            int temp = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(i));
 
             if (temp <= 5)
             {
@@ -241,8 +241,8 @@ public partial class EM10JobHelperView : UserControl
     {
         int id = CheckBusinessID(0);
 
-        int supplycount = Globals.GG<int>(Globals.Get_Business_Index(id) + 2);
-        int progress = Globals.GG<int>(Globals.Get_Business_Index(id) + 1);
+        int supplycount = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(id) + 2);
+        int progress = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(id) + 1);
 
         if (progress == 20)
         {
@@ -254,7 +254,7 @@ public partial class EM10JobHelperView : UserControl
         }
         else
         {
-            Globals.SG<int>(Globals.Get_Business_Index(id) + 9, 0);
+            Hacks.WriteGA<int>(Hacks.GetBusinessIndex(id) + 9, 0);
             TextBox_Result.Text = $"正在触发冰毒实验室生产，当前生产进度为 {progress}，原材料数量 {supplycount}";
         }
     }
@@ -263,8 +263,8 @@ public partial class EM10JobHelperView : UserControl
     {
         int id = CheckBusinessID(1);
 
-        int supplycount = Globals.GG<int>(Globals.Get_Business_Index(id) + 2);
-        int progress = Globals.GG<int>(Globals.Get_Business_Index(id) + 1);
+        int supplycount = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(id) + 2);
+        int progress = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(id) + 1);
 
         if (progress == 80)
         {
@@ -276,7 +276,7 @@ public partial class EM10JobHelperView : UserControl
         }
         else
         {
-            Globals.SG<int>(Globals.Get_Business_Index(id) + 9, 0);
+            Hacks.WriteGA<int>(Hacks.GetBusinessIndex(id) + 9, 0);
             TextBox_Result.Text = $"正在触发大麻种植场生产，当前生产进度为 {progress}，原材料数量 {supplycount}";
         }
     }
@@ -285,8 +285,8 @@ public partial class EM10JobHelperView : UserControl
     {
         int id = CheckBusinessID(2);
 
-        int supplycount = Globals.GG<int>(Globals.Get_Business_Index(id) + 2);
-        int progress = Globals.GG<int>(Globals.Get_Business_Index(id) + 1);
+        int supplycount = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(id) + 2);
+        int progress = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(id) + 1);
 
         if (progress == 10)
         {
@@ -298,7 +298,7 @@ public partial class EM10JobHelperView : UserControl
         }
         else
         {
-            Globals.SG<int>(Globals.Get_Business_Index(id) + 9, 0);
+            Hacks.WriteGA<int>(Hacks.GetBusinessIndex(id) + 9, 0);
             TextBox_Result.Text = $"正在触发可卡因工厂生产，当前生产进度为 {progress}，原材料数量 {supplycount}";
         }
     }
@@ -307,8 +307,8 @@ public partial class EM10JobHelperView : UserControl
     {
         int id = CheckBusinessID(3);
 
-        int supplycount = Globals.GG<int>(Globals.Get_Business_Index(id) + 2);
-        int progress = Globals.GG<int>(Globals.Get_Business_Index(id) + 1);
+        int supplycount = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(id) + 2);
+        int progress = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(id) + 1);
 
         if (progress == 40)
         {
@@ -320,7 +320,7 @@ public partial class EM10JobHelperView : UserControl
         }
         else
         {
-            Globals.SG<int>(Globals.Get_Business_Index(id) + 9, 0);
+            Hacks.WriteGA<int>(Hacks.GetBusinessIndex(id) + 9, 0);
             TextBox_Result.Text = $"正在触发假钞工厂生产，当前生产进度为 {progress}，原材料数量 {supplycount}";
         }
     }
@@ -329,8 +329,8 @@ public partial class EM10JobHelperView : UserControl
     {
         int id = CheckBusinessID(4);
 
-        int supplycount = Globals.GG<int>(Globals.Get_Business_Index(id) + 2);
-        int progress = Globals.GG<int>(Globals.Get_Business_Index(id) + 1);
+        int supplycount = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(id) + 2);
+        int progress = Hacks.ReadGA<int>(Hacks.GetBusinessIndex(id) + 1);
 
         if (progress == 60)
         {
@@ -342,14 +342,14 @@ public partial class EM10JobHelperView : UserControl
         }
         else
         {
-            Globals.SG<int>(Globals.Get_Business_Index(id) + 9, 0);
+            Hacks.WriteGA<int>(Hacks.GetBusinessIndex(id) + 9, 0);
             TextBox_Result.Text = $"正在触发伪证件办公室生产，当前生产进度为 {progress}，原材料数量 {supplycount}";
         }
     }
 
     private void CheckBox_RemoveMCSupplyDelay_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Remove_MC_Supply_Delay(CheckBox_RemoveMCSupplyDelay.IsChecked == true);
+        Online.RemoveMCSupplyDelay(CheckBox_RemoveMCSupplyDelay.IsChecked == true);
     }
 
     private void Button_CEOCargos_Click(object sender, RoutedEventArgs e)
@@ -362,82 +362,82 @@ public partial class EM10JobHelperView : UserControl
         if (index != -1)
         {
             // They are in gb_contraband_buy at func_915, for future updates.
-            Globals.CEO_Special_Cargo(false);
+            Online.CEOSpecialCargo(false);
             Thread.Sleep(100);
-            Globals.CEO_Special_Cargo(true);
+            Online.CEOSpecialCargo(true);
             Thread.Sleep(100);
-            Globals.CEO_Cargo_Type(MiscData.CEOCargos[index].ID);
+            Online.CEOCargoType(MiscData.CEOCargos[index].ID);
         }
     }
 
     private void CheckBox_RemoveExportVehicleDelay_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Remove_Export_Vehicle_Delay(CheckBox_RemoveExportVehicleDelay.IsChecked == true);
+        Online.RemoveExportVehicleDelay(CheckBox_RemoveExportVehicleDelay.IsChecked == true);
     }
 
     private void CheckBox_RemoveSmugglerRunInDelay_Click(object sender, RoutedEventArgs e)
     {
-        Globals.RemoveSmuggler_Run_In_Delay(CheckBox_RemoveSmugglerRunInDelay.IsChecked == true);
+        Online.RemoveSmugglerRunInDelay(CheckBox_RemoveSmugglerRunInDelay.IsChecked == true);
     }
 
     private void CheckBox_RemoveSmugglerRunOutDelay_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Remove_Smuggler_Run_Out_Delay(CheckBox_RemoveSmugglerRunOutDelay.IsChecked == true);
+        Online.RemoveSmugglerRunOutDelay(CheckBox_RemoveSmugglerRunOutDelay.IsChecked == true);
     }
 
     private void CheckBox_SetBunkerProduceResearchTime_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Set_Bunker_Produce_Research_Time(Settings.ProduceTime, CheckBox_SetBunkerProduceResearchTime.IsChecked == true);
+        Online.SetBunkerProduceResearchTime(CheckBox_SetBunkerProduceResearchTime.IsChecked == true, 5);
     }
 
     private void CheckBox_SetMCProduceTime_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Set_MC_Produce_Time(Settings.ProduceTime, CheckBox_SetMCProduceTime.IsChecked == true);
+        Online.SetMCProduceTime(CheckBox_SetMCProduceTime.IsChecked == true, 5);
     }
 
     private void CheckBox_SetNightclubProduceTime_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Set_Nightclub_Produce_Time(Settings.ProduceTime, CheckBox_SetNightclubProduceTime.IsChecked == true);
+        Online.SetNightclubProduceTime(CheckBox_SetNightclubProduceTime.IsChecked == true, 5);
     }
 
     private void CheckBox_SetBunkerResupplyCosts_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Set_Bunker_Resupply_Costs(CheckBox_SetBunkerResupplyCosts.IsChecked == true);
+        Online.SetBunkerResupplyCosts(CheckBox_SetBunkerResupplyCosts.IsChecked == true);
     }
 
     private void CheckBox_SetMCResupplyCosts_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Set_MC_Resupply_Costs(CheckBox_SetMCResupplyCosts.IsChecked == true);
+        Online.SetMCResupplyCosts(CheckBox_SetMCResupplyCosts.IsChecked == true);
     }
 
     private void CheckBox_SetBunkerSaleMultipliers_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Set_Bunker_Sale_Multipliers(CheckBox_SetBunkerSaleMultipliers.IsChecked == true);
+        Online.SetBunkerSaleMultipliers(CheckBox_SetBunkerSaleMultipliers.IsChecked == true);
     }
 
     private void CheckBox_SetMCSaleMultipliers_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Set_MC_Sale_Multipliers(CheckBox_SetMCSaleMultipliers.IsChecked == true);
+        Online.SetMCSaleMultipliers(CheckBox_SetMCSaleMultipliers.IsChecked == true);
     }
 
     private void CheckBox_SetBunkerSuppliesPerUnitProduced_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Set_Bunker_Supplies_Per_Unit_Produced(CheckBox_SetBunkerSuppliesPerUnitProduced.IsChecked == true);
+        Online.SetBunkerSuppliesPerUnitProduced(CheckBox_SetBunkerSuppliesPerUnitProduced.IsChecked == true);
     }
 
     private void CheckBox_SetMCSuppliesPerUnitProduced_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Set_MC_Supplies_Per_Unit_Produced(CheckBox_SetMCSuppliesPerUnitProduced.IsChecked == true);
+        Online.SetMCSuppliesPerUnitProduced(CheckBox_SetMCSuppliesPerUnitProduced.IsChecked == true);
     }
 
     private void CheckBox_RemoveNightclubOutDelay_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Remove_Nightclub_Out_Delay(CheckBox_RemoveNightclubOutDelay.IsChecked == true);
+        Online.RemoveNightclubOutDelay(CheckBox_RemoveNightclubOutDelay.IsChecked == true);
     }
 
     private void CheckBox_NightclubNoTonyLaunderingMoney_Click(object sender, RoutedEventArgs e)
     {
-        Globals.Nightclub_No_Tony_Laundering_Money(CheckBox_NightclubNoTonyLaunderingMoney.IsChecked == true);
+        Online.NightclubNoTonyLaundering_Money(CheckBox_NightclubNoTonyLaunderingMoney.IsChecked == true);
     }
 
     private void Slider_ProduceTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

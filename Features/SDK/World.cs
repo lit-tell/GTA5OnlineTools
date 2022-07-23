@@ -1,4 +1,5 @@
 ﻿using GTA5OnlineTools.Features.Core;
+using GTA5OnlineTools.Features.Data;
 
 namespace GTA5OnlineTools.Features.SDK;
 
@@ -42,214 +43,192 @@ public static class World
         Memory.Write(Globals.WeatherPTR + 0x104, weatherID);
     }
 
-    public static void Kill_Npcs()
+    /// <summary>
+    /// 杀死NPC，仅敌对？
+    /// </summary>
+    public static void KillNPC(bool isOnlyHostility)
     {
-        List<long> peds = Replayinterface.Get_Peds();
+        // Ped实体
+        long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
-        for (int i = 0; i < peds.Count; i++)
+        for (int i = 0; i < m_max_peds; i++)
         {
-            long ped = peds[i];
-
-            if (Ped.Is_Player(ped)) 
+            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+            if (!Memory.IsValid(m_ped_list))
                 continue;
 
-            Ped.Set_Health(ped, 0.0f);
-        }
-    }
-
-    public static void Kill_Enemies()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-
-            if (Ped.Is_Player(ped)) 
+            // 跳过玩家
+            long m_player_info = Memory.Read<long>(m_ped_list + 0x10C8);
+            if (Memory.IsValid(m_player_info))
                 continue;
 
-            if (Ped.Is_Enemy(ped)) 
-                Ped.Set_Health(ped, 0.0f);
-        }
-    }
+            if (isOnlyHostility)
+            {
+                byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
 
-    public static void Kill_Cops()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-
-            if (Ped.Is_Player(ped)) 
-                continue;
-
-            uint pedtype = Ped.Get_Pedtype(ped);
-            if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
-                pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) 
-                Ped.Set_Health(ped, 0.0f);
-        }
-    }
-
-    public static void Revive_Vehicle(long vehicle)
-    {
-        Vehicle.Set_State_Is_Destroyed(vehicle, false);
-        Vehicle.Set_Health(vehicle, 1000.0f);
-        Vehicle.Set_Health2(vehicle, 1000.0f);
-        Vehicle.Set_Health3(vehicle, 1000.0f);
-        Vehicle.Set_Engine_Health(vehicle, 1000.0f);
-    }
-
-    public static void Destroy_Vehicle(long vehicle)
-    {
-        Revive_Vehicle(vehicle);
-        //Vehicle.set_health(vehicle, 0.0f);
-        //Vehicle.set_health2(vehicle, 0.0f);
-        Vehicle.Set_Health3(vehicle, -999.9f);//-1000.0f
-        //Vehicle.set_engine_health(vehicle, -3999.0f);//-4000.0f
-    }
-
-    public static void Destroy_Vehs_Of_Npcs()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-
-            if (Ped.Is_Player(ped)) 
-                continue;
-
-            Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
-        }
-    }
-
-    public static void Destroy_Vehs_Of_Enemies()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-
-            if (ped == Hacks.Get_Local_Ped()) 
-                continue;
-
-            if (Ped.Is_Enemy(ped)) 
-                Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
-        }
-    }
-
-    public static void Destroy_Vehs_Of_Cops()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-
-            if (ped == Hacks.Get_Local_Ped()) 
-                continue;
-
-            uint pedtype = Ped.Get_Pedtype(ped);
-            if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
-                pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) 
-                Destroy_Vehicle(Ped.Get_Current_Vehicle(ped));
+                if (oHostility > 0x01)
+                {
+                    Memory.Write<float>(m_ped_list + 0x280, 0.0f);
+                }
+            }
+            else
+            {
+                Memory.Write<float>(m_ped_list + 0x280, 0.0f);
+            }
         }
     }
 
     /// <summary>
-    /// 摧毁附近所有载具
+    /// 杀死警察
     /// </summary>
-    public static void Destroy_All_Vehicles()
+    public static void KillPolice()
     {
-        List<long> vehicles = Replayinterface.Get_Vehicles();
+        // Ped实体
+        long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
-        for (int i = 0; i < vehicles.Count; i++)
+        for (int i = 0; i < m_max_peds; i++)
         {
-            long vehicle = vehicles[i];
-            Destroy_Vehicle(vehicle);
+            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+            if (!Memory.IsValid(m_ped_list))
+                continue;
+
+            // 跳过玩家
+            long m_player_info = Memory.Read<long>(m_ped_list + 0x10C8);
+            if (Memory.IsValid(m_player_info))
+                continue;
+
+            int ped_type = Memory.Read<int>(m_ped_list + 0x10B8);
+            ped_type = ped_type << 11 >> 25;
+
+            if (ped_type == (int)EnumData.PedTypes.COP ||
+                ped_type == (int)EnumData.PedTypes.SWAT ||
+                ped_type == (int)EnumData.PedTypes.ARMY)
+            {
+                Memory.Write<float>(m_ped_list + 0x280, 0.0f);
+            }
         }
     }
 
     /// <summary>
-    /// 复活附近所有载具
+    /// 摧毁NPC载具，仅敌对？
     /// </summary>
-    public static void Revive_All_Vehicles()
+    public static void DestroyNPCVehicles(bool isOnlyHostility)
     {
-        List<long> vehicles = Replayinterface.Get_Vehicles();
+        // Ped实体
+        long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
-        for (int i = 0; i < vehicles.Count; i++)
+        for (int i = 0; i < m_max_peds; i++)
         {
-            long vehicle = vehicles[i];
-            Revive_Vehicle(vehicle);
+            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+            if (!Memory.IsValid(m_ped_list))
+                continue;
+
+            // 跳过玩家
+            long m_player_info = Memory.Read<long>(m_ped_list + 0x10C8);
+            if (Memory.IsValid(m_player_info))
+                continue;
+
+            long m_vehicle = Memory.Read<long>(m_ped_list + 0xD30);
+
+            if (isOnlyHostility)
+            {
+                byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
+
+                if (oHostility > 0x01)
+                {
+                    Memory.Write<float>(m_vehicle + 0x280, -1.0f);
+                    Memory.Write<float>(m_vehicle + 0x840, -1.0f);
+                    Memory.Write<float>(m_vehicle + 0x844, -1.0f);
+                    Memory.Write<float>(m_vehicle + 0x908, -1.0f);
+                }
+            }
+            else
+            {
+                Memory.Write<float>(m_vehicle + 0x280, -1.0f);
+                Memory.Write<float>(m_vehicle + 0x840, -1.0f);
+                Memory.Write<float>(m_vehicle + 0x844, -1.0f);
+                Memory.Write<float>(m_vehicle + 0x908, -1.0f);
+            }
         }
     }
 
-    public static void Tp_Npcs_To_Me()
+    /// <summary>
+    /// 摧毁全部载具，玩家自己的载具也会摧毁
+    /// </summary>
+    public static void DestroyAllVehicles()
     {
-        List<long> peds = Replayinterface.Get_Peds();
+        // Ped实体
+        long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+        long m_vehicle_interface = Memory.Read<long>(m_replay + 0x10);
+        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
-        for (int i = 0; i < peds.Count; i++)
+        for (int i = 0; i < m_max_peds; i++)
         {
-            long ped = peds[i];
-
-            if (Ped.Is_Player(ped))
+            long m_vehicle_list = Memory.Read<long>(m_vehicle_interface + 0x180);
+            m_vehicle_list = Memory.Read<long>(m_vehicle_list + i * 0x10);
+            if (!Memory.IsValid(m_vehicle_list))
                 continue;
 
-            Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
+            Memory.Write<float>(m_vehicle_list + 0x280, -1.0f);     // m_health
+            Memory.Write<float>(m_vehicle_list + 0x840, -1.0f);     // m_body_health
+            Memory.Write<float>(m_vehicle_list + 0x844, -1.0f);     // m_petrol_tank_health
+            Memory.Write<float>(m_vehicle_list + 0x908, -1.0f);     // m_engine_health
         }
     }
 
-    public static void Tp_Enemies_To_Me()
+    /// <summary>
+    /// 传送NPC到我这里，仅敌对？
+    /// </summary>
+    public static void TeleportNPCToMe(bool isOnlyHostility)
     {
-        List<long> peds = Replayinterface.Get_Peds();
+        Vector3 v3MyPos = Memory.Read<Vector3>(Globals.WorldPTR, Offsets.PlayerPositionX);
 
-        for (int i = 0; i < peds.Count; i++)
+        // Ped实体
+        long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
+
+        for (int i = 0; i < m_max_peds; i++)
         {
-            long ped = peds[i];
-
-            if (Ped.Is_Player(ped)) 
+            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+            if (!Memory.IsValid(m_ped_list))
                 continue;
 
-            if (Ped.Is_Enemy(ped)) 
-                Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
-        }
-    }
-
-    public static void Tp_Not_Enemies_To_Me()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-
-            if (Ped.Is_Player(ped)) 
+            // 跳过玩家
+            long m_player_info = Memory.Read<long>(m_ped_list + 0x10C8);
+            if (Memory.IsValid(m_player_info))
                 continue;
 
-            if (!Ped.Is_Enemy(ped)) 
-                Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
-        }
-    }
-
-    public static void Tp_Cops_To_Me()
-    {
-        List<long> peds = Replayinterface.Get_Peds();
-        for (int i = 0; i < peds.Count; i++)
-        {
-            long ped = peds[i];
-
-            if (Ped.Is_Player(ped)) 
+            long m_navigation = Memory.Read<long>(m_ped_list + 0x30);
+            if (!Memory.IsValid(m_navigation))
                 continue;
 
-            uint pedtype = Ped.Get_Pedtype(ped);
-            if (pedtype == (uint)Data.EnumData.PedTypes.COP ||
-                pedtype == (uint)Data.EnumData.PedTypes.SWAT ||
-                pedtype == (uint)Data.EnumData.PedTypes.ARMY) 
-                Ped.Set_Position(ped, Ped.Get_Real_Forward_Position(Get_Local_Ped(), 5.0f));
+            if (isOnlyHostility)
+            {
+                byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
+
+                if (oHostility > 0x01)
+                {
+                    Memory.Write<Vector3>(m_navigation + 0x50, v3MyPos);
+                    Memory.Write<Vector3>(m_ped_list + 0x90, v3MyPos);
+                }
+            }
+            else
+            {
+                Memory.Write<Vector3>(m_navigation + 0x50, v3MyPos);
+                Memory.Write<Vector3>(m_ped_list + 0x90, v3MyPos);
+            }
         }
     }
 }

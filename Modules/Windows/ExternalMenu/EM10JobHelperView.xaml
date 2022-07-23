@@ -65,8 +65,8 @@
                         Click="CheckBox_RemoveSellingCratesCooldown_Click"
                         Content="移除出售板条箱冷却" />
                     <CheckBox
-                        x:Name="CheckBox_PricePerCrateAtXCrates"
-                        Click="CheckBox_PricePerCrateAtXCrates_Click"
+                        x:Name="CheckBox_PricePerCrateAtCrates"
+                        Click="CheckBox_PricePerCrateAtCrates_Click"
                         Content="⚠️ 设置每箱出售单价为2W"
                         Foreground="Red"
                         Visibility="Collapsed" />

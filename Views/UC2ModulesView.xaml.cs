@@ -19,8 +19,6 @@ public partial class UC2ModulesView : UserControl
     private StatAutoScriptsWindow StatAutoScriptsWindow = null;
     private HeistPrepsWindow HeistPrepsWindow = null;
     private BigBaseV2Window BigBaseV2Window = null;
-    private CasinoHackWindow CasinoHackWindow = null;
-    private DeleteMoneyWindow DeleteMoneyWindow = null;
 
     public RelayCommand ExternalMenuClickCommand { get; private set; }
     public RelayCommand GTAHaxClickCommand { get; private set; }
@@ -29,8 +27,6 @@ public partial class UC2ModulesView : UserControl
     public RelayCommand StatAutoScriptsClickCommand { get; private set; }
     public RelayCommand HeistPrepsClickCommand { get; private set; }
     public RelayCommand BigBaseV2ClickCommand { get; private set; }
-    public RelayCommand CasinoHackClickCommand { get; private set; }
-    public RelayCommand DeleteMoneyClickCommand { get; private set; }
 
     private const string HintMsg = "未发现GTA5进程，请先运行GTA5游戏";
 
@@ -47,8 +43,6 @@ public partial class UC2ModulesView : UserControl
         StatAutoScriptsClickCommand = new(StatAutoScriptsClick);
         HeistPrepsClickCommand = new(HeistPrepsClick);
         BigBaseV2ClickCommand = new(BigBaseV2Click);
-        CasinoHackClickCommand = new(CasinoHackClick);
-        DeleteMoneyClickCommand = new(DeleteMoneyClick);
     }
 
     private void ExternalMenuClick()
@@ -284,81 +278,6 @@ public partial class UC2ModulesView : UserControl
                         BigBaseV2Window = null;
                         BigBaseV2Window = new BigBaseV2Window();
                         BigBaseV2Window.Show();
-                    }
-                }
-            });
-        }
-        else
-        {
-            MsgBoxUtil.ErrorMsgBox(HintMsg);
-        }
-    }
-    private void CasinoHackClick()
-    {
-        AudioUtil.ClickSound();
-
-        if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
-        {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                if (CasinoHackWindow == null)
-                {
-                    CasinoHackWindow = new CasinoHackWindow();
-                    CasinoHackWindow.Show();
-                }
-                else
-                {
-                    if (CasinoHackWindow.IsVisible)
-                    {
-                        CasinoHackWindow.Topmost = true;
-                        CasinoHackWindow.Topmost = false;
-                        CasinoHackWindow.WindowState = WindowState.Normal;
-                    }
-                    else
-                    {
-                        CasinoHackWindow = null;
-                        CasinoHackWindow = new CasinoHackWindow();
-                        CasinoHackWindow.Show();
-                    }
-                }
-            });
-        }
-        else
-        {
-            MsgBoxUtil.ErrorMsgBox(HintMsg);
-        }
-    }
-
-    private void DeleteMoneyClick()
-    {
-        AudioUtil.ClickSound();
-
-        if (ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
-        {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                if (DeleteMoneyWindow == null)
-                {
-                    DeleteMoneyWindow = new DeleteMoneyWindow();
-                    DeleteMoneyWindow.Show();
-                }
-                else
-                {
-                    if (DeleteMoneyWindow.IsVisible)
-                    {
-                        if (!DeleteMoneyWindow.Topmost)
-                        {
-                            DeleteMoneyWindow.Topmost = true;
-                            DeleteMoneyWindow.Topmost = false;
-                        }
-
-                        DeleteMoneyWindow.WindowState = WindowState.Normal;
-                    }
-                    else
-                    {
-                        DeleteMoneyWindow = null;
-                        DeleteMoneyWindow = new DeleteMoneyWindow();
-                        DeleteMoneyWindow.Show();
                     }
                 }
             });
