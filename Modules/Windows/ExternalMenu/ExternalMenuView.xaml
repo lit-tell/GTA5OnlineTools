@@ -163,13 +163,13 @@
                     <Button
                         x:Name="Button_TitleMin"
                         Content="&#xe67a;"
-                        Style="{StaticResource ExternalMenuMinButtonStyle}"
+                        Style="{StaticResource ButtonStyle_ExternalMenuMin}"
                         ToolTip="最小化"
                         WindowChrome.IsHitTestVisibleInChrome="True" />
                     <Button
                         x:Name="Button_TitleClose"
                         Content="&#xeaf2;"
-                        Style="{StaticResource ExternalMenuCloseButtonStyle}"
+                        Style="{StaticResource ButtonStyle_ExternalMenuClose}"
                         ToolTip="关闭窗口"
                         WindowChrome.IsHitTestVisibleInChrome="True" />
                 </StackPanel>

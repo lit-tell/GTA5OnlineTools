@@ -46,7 +46,7 @@
                 Click="Button_Inject_Click"
                 Content="  注入DLL  "
                 DockPanel.Dock="Right"
-                Style="{StaticResource ButtonWebStyle}" />
+                Style="{StaticResource ButtonStyle_Web}" />
             <TextBox x:Name="TextBox_DLLPath" MouseDoubleClick="TextBox_DLLPath_MouseDoubleClick" />
 
         </DockPanel>

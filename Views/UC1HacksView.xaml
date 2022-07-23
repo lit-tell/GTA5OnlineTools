@@ -216,7 +216,7 @@
                         Command="{Binding FrameHideClickCommand}"
                         Content="&#xeaf2;"
                         DockPanel.Dock="Right"
-                        Style="{StaticResource FrameButtonStyle}"
+                        Style="{StaticResource ButtonStyle_Frame}"
                         ToolTip="点击关闭使用说明" />
                 </DockPanel>
                 <Frame

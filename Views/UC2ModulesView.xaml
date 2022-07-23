@@ -12,7 +12,7 @@
     <Grid Margin="5">
         <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
             <WrapPanel>
-                <Button Command="{Binding ExternalMenuClickCommand}" Style="{StaticResource ButtonFunctionSelfStyle}">
+                <Button Command="{Binding ExternalMenuClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
                     <Button.Content>
                         <StackPanel Orientation="Vertical">
                             <StackPanel.Resources>
@@ -34,7 +34,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Command="{Binding GTAHaxClickCommand}" Style="{StaticResource ButtonFunctionSelfStyle}">
+                <Button Command="{Binding GTAHaxClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
                     <Button.Content>
                         <StackPanel Orientation="Vertical">
                             <StackPanel.Resources>
@@ -56,7 +56,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Command="{Binding OutfitsClickCommand}" Style="{StaticResource ButtonFunctionSelfStyle}">
+                <Button Command="{Binding OutfitsClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
                     <Button.Content>
                         <StackPanel Orientation="Vertical">
                             <StackPanel.Resources>
@@ -78,7 +78,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Command="{Binding HeistCutClickCommand}" Style="{StaticResource ButtonFunctionSelfStyle}">
+                <Button Command="{Binding HeistCutClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
                     <Button.Content>
                         <StackPanel Orientation="Vertical">
                             <StackPanel.Resources>
@@ -100,7 +100,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Command="{Binding StatAutoScriptsClickCommand}" Style="{StaticResource ButtonFunctionSelfStyle}">
+                <Button Command="{Binding StatAutoScriptsClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
                     <Button.Content>
                         <StackPanel Orientation="Vertical">
                             <StackPanel.Resources>
@@ -122,7 +122,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Command="{Binding HeistPrepsClickCommand}" Style="{StaticResource ButtonFunctionSelfStyle}">
+                <Button Command="{Binding HeistPrepsClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
                     <Button.Content>
                         <StackPanel Orientation="Vertical">
                             <StackPanel.Resources>
@@ -144,7 +144,7 @@
                     </Button.Content>
                 </Button>
 
-                <Button Command="{Binding BigBaseV2ClickCommand}" Style="{StaticResource ButtonFunctionSelfStyle}">
+                <Button Command="{Binding BigBaseV2ClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
                     <Button.Content>
                         <StackPanel Orientation="Vertical">
                             <StackPanel.Resources>

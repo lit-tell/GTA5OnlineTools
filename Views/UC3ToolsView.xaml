@@ -9,7 +9,11 @@
     Style="{StaticResource UserControlStyle_Loading}"
     mc:Ignorable="d">
 
-    <ScrollViewer Margin="5" Style="{StaticResource ScrollViewerStyle_VAHD}">
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource ButtonStyle_Tools}" TargetType="{x:Type Button}" />
+    </UserControl.Resources>
+
+    <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250" />
@@ -22,153 +26,124 @@
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionChsON"
-                    Content="启用Kiddion汉化"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="启用Kiddion汉化" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionChsOFF"
-                    Content="关闭Kiddion汉化"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="关闭Kiddion汉化" />
                 <TextBlock />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionKey87"
-                    Content="启用Kiddion[87键]"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="启用Kiddion[87键]" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionKey104"
-                    Content="启用Kiddion[104键]"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="启用Kiddion[104键]" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="SubVersionKey87"
-                    Content="启用SubVersion[87键]"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="启用SubVersion[87键]" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="SubVersionKey104"
-                    Content="启用SubVersion[104键]"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="启用SubVersion[104键]" />
                 <TextBlock />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditKiddionConfig"
-                    Content="编辑Kiddion配置文件"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="编辑Kiddion配置文件" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditSubVersionSettings"
-                    Content="编辑SubVersion配置文件"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="编辑SubVersion配置文件" />
                 <TextBlock />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditKiddionTP"
-                    Content="编辑Kiddion自定义传送"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="编辑Kiddion自定义传送" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditKiddionVC"
-                    Content="编辑Kiddion自定义载具"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="编辑Kiddion自定义载具" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditGTAHaxStat"
-                    Content="编辑GTAHax导入文件"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="编辑GTAHax导入文件" />
                 <TextBlock />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="GTA5Win2TopMost"
-                    Content="GTA5窗口置顶"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="GTA5窗口置顶" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="GTA5Win2NoTopMost"
-                    Content="GTA5窗口取消置顶"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="GTA5窗口取消置顶" />
             </StackPanel>
 
             <StackPanel Grid.Column="1">
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="RestartApp"
-                    Content="重启程序"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="重启程序" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="InitCPDPath"
-                    Content="初始化配置文件夹"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="初始化配置文件夹" />
                 <TextBlock />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="ReleaseDirectory"
-                    Content="辅助释放目录"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="辅助释放目录" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="CurrentDirectory"
-                    Content="辅助当前目录"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="辅助当前目录" />
                 <TextBlock />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="ReNameAppCN"
-                    Content="重命名小助手中文"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="重命名小助手中文" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="ReNameAppEN"
-                    Content="重命名小助手英文"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="重命名小助手英文" />
                 <TextBlock />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="RefreshDNSCache"
-                    Content="刷新DNS缓存"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="刷新DNS缓存" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditHosts"
-                    Content="编辑Hosts文件"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="编辑Hosts文件" />
             </StackPanel>
 
             <StackPanel Grid.Column="2">
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="DefenderControl"
-                    Content="Win10安全中心设置"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="Win10安全中心设置" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="BaseInjector"
-                    Content="基础DLL注入器"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="基础DLL注入器" />
                 <TextBlock />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="OpenUpdateWindow"
-                    Content="打开更新窗口"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="打开更新窗口" />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="MinimizeToTray"
-                    Content="最小化小助手到系统托盘"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="最小化小助手到系统托盘" />
                 <TextBlock />
                 <Button
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="ManualGC"
-                    Content="GC垃圾回收"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                    Content="GC垃圾回收" />
                 <TextBlock />
-                <Button
-                    Command="{Binding SwitchButtonAudioCommand}"
-                    Content="切换按键音效"
-                    Style="{StaticResource ToolsButtonStyle}" />
+                <Button Command="{Binding SwitchButtonAudioCommand}" Content="切换按键音效" />
             </StackPanel>
 
             <StackPanel Grid.Column="3">
