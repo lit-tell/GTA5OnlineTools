@@ -16,8 +16,6 @@ public partial class UC3ToolsView : UserControl
     public RelayCommand<string> ToolsButtonClickCommand { get; private set; }
     public RelayCommand<string> HyperlinkClickCommand { get; private set; }
 
-    public RelayCommand SwitchButtonAudioCommand { get; private set; }
-
     public UC3ToolsView()
     {
         InitializeComponent();
@@ -26,18 +24,6 @@ public partial class UC3ToolsView : UserControl
 
         ToolsButtonClickCommand = new(ToolsButtonClick);
         HyperlinkClickCommand = new(HyperlinkClick);
-
-        SwitchButtonAudioCommand = new(SwitchButtonAudio);
-    }
-
-    private void SwitchButtonAudio()
-    {
-        if (AudioUtil.ClickSoundIndex < 5)
-            AudioUtil.ClickSoundIndex++;
-        else
-            AudioUtil.ClickSoundIndex = 0;
-
-        AudioUtil.ClickSound();
     }
 
     private void ToolsButtonClick(string obj)
@@ -123,6 +109,9 @@ public partial class UC3ToolsView : UserControl
                 break;
             case "ManualGC":
                 ManualGCClick();
+                break;
+            case "SwitchAudio":
+                SwitchAudioClick();
                 break;
         }
     }
@@ -390,5 +379,15 @@ public partial class UC3ToolsView : UserControl
         MainWindow.MainWindowIns.WindowState = WindowState.Minimized;
         MainWindow.MainWindowIns.ShowInTaskbar = false;
         MainWindow.ShowNoticeInfo("程序已最小化到托盘");
+    }
+
+    private void SwitchAudioClick()
+    {
+        if (AudioUtil.ClickSoundIndex < 5)
+            AudioUtil.ClickSoundIndex++;
+        else
+            AudioUtil.ClickSoundIndex = 0;
+
+        AudioUtil.ClickSound();
     }
 }
