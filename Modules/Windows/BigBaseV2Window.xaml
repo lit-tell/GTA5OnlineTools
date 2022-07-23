@@ -15,13 +15,11 @@
     <TabControl
         Name="TabControl_Main"
         Grid.Row="0"
+        Margin="5"
         Background="White"
-        TabStripPlacement="Left">
+        Style="{StaticResource TabControlStyle_Main}">
         <TabControl.Resources>
-            <Style TargetType="TabItem">
-                <Setter Property="Padding" Value="10,7,10,7" />
-                <Setter Property="Background" Value="#F5F5F6" />
-            </Style>
+            <Style BasedOn="{StaticResource TabItemStyle_Main}" TargetType="{x:Type TabItem}" />
         </TabControl.Resources>
 
         <TabItem Header="主页">
@@ -157,17 +155,19 @@
                                 <TextBlock Margin="5" TextWrapping="Wrap">
                                     提示：注入成功后，按 INSERT 键显示/隐藏菜单。在对应菜单中点击 Unload 按钮退出菜单（请勿关闭对应控制台窗口）
                                 </TextBlock>
-                                <Button
-                                    x:Name="Button_BigBaseV2_Inject"
-                                    Click="Button_BigBaseV2_Inject_Click"
-                                    Content="注入DLL到GTA5进程"
-                                    IsEnabled="True"
-                                    Style="{StaticResource ButtonNormalStyle}" />
-                                <Button
-                                    x:Name="Button_Located_Stats"
-                                    Click="Button_Located_Stats_Click"
-                                    Content="打开BigBaseV2配置文件夹"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <Button
+                                        x:Name="Button_BigBaseV2_Inject"
+                                        Click="Button_BigBaseV2_Inject_Click"
+                                        Content="注入DLL到GTA5进程"
+                                        IsEnabled="True"
+                                        Style="{StaticResource ButtonStyle_Normal}" />
+                                    <Button
+                                        x:Name="Button_Located_Stats"
+                                        Click="Button_Located_Stats_Click"
+                                        Content="打开BigBaseV2配置文件夹"
+                                        Style="{StaticResource ButtonStyle_Normal}" />
+                                </StackPanel>
                                 <TextBlock
                                     Margin="5"
                                     VerticalAlignment="Center"
@@ -1611,7 +1611,7 @@
                             x:Name="Button_Calculate"
                             Click="Button_Calculate_Click"
                             Content="计算"
-                            Style="{StaticResource ButtonNormalStyle}" />
+                            Style="{StaticResource ButtonStyle_Normal}" />
                     </StackPanel>
                 </GroupBox>
 

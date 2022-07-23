@@ -45,36 +45,27 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ButtonNormalStyle" TargetType="{x:Type Button}">
+    <Style x:Key="ButtonStyle_Normal" TargetType="{x:Type Button}">
         <Setter Property="Margin" Value="5" />
-        <Setter Property="Padding" Value="10,5,10,5" />
+        <Setter Property="Padding" Value="10,7,10,7" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Background" Value="#2D6EB9" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid>
-                        <Border
-                            Name="border"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="5">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="5"
-                                    Direction="315 "
-                                    Opacity="0.6"
-                                    ShadowDepth="5"
-                                    Color="{TemplateBinding Background}" />
-                            </Border.Effect>
-                        </Border>
-                        <Border Padding="{TemplateBinding Padding}">
-                            <ContentPresenter
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                TextElement.Foreground="{TemplateBinding Foreground}" />
-                        </Border>
-                    </Grid>
+                    <Border
+                        Name="border"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="5"
+                        SnapsToDevicePixels="True">
+                        <ContentPresenter
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            SnapsToDevicePixels="True"
+                            TextElement.Foreground="{TemplateBinding Foreground}" />
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="border" Property="Background" Value="#51A2E8" />
@@ -91,10 +82,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ButtonWebStyle" TargetType="{x:Type Button}">
+    <Style x:Key="ButtonStyle_Web" TargetType="{x:Type Button}">
         <Setter Property="Margin" Value="5" />
         <Setter Property="Padding" Value="10" />
-        <Setter Property="Background" Value="#0074CF" />
+        <Setter Property="Background" Value="#2D6EB9" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
@@ -103,16 +94,7 @@
                         <Border
                             Name="border"
                             Background="{TemplateBinding Background}"
-                            CornerRadius="10">
-                            <Border.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="5"
-                                    Direction="315 "
-                                    Opacity="0.6"
-                                    ShadowDepth="5"
-                                    Color="{TemplateBinding Background}" />
-                            </Border.Effect>
-                        </Border>
+                            CornerRadius="10" />
                         <Border Padding="{TemplateBinding Padding}">
                             <ContentPresenter
                                 HorizontalAlignment="Center"

@@ -13,8 +13,12 @@
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
+    <Window.Resources>
+        <Style BasedOn="{StaticResource ButtonStyle_Normal}" TargetType="{x:Type Button}" />
+    </Window.Resources>
+
     <Grid>
-        <Grid Margin="5">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.35*" />
                 <ColumnDefinition />
@@ -53,10 +57,10 @@
 
             <TabControl
                 Grid.Column="1"
-                Margin="5"
-                TabStripPlacement="Top">
+                Margin="0,5,5,5"
+                Style="{StaticResource TabControlStyle_Main}">
                 <TabControl.Resources>
-                    <Style TargetType="TabItem">
+                    <Style BasedOn="{StaticResource TabItemStyle_Main}" TargetType="{x:Type TabItem}">
                         <Setter Property="Padding" Value="10" />
                         <Setter Property="Background" Value="#F5F5F6" />
                     </Style>
@@ -86,8 +90,7 @@
                                     x:Name="Button_H3OPT_BITSET1"
                                     Click="Button_H3OPT_BITSET1_Click"
                                     Content="重置面板一"
-                                    Foreground="Red"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Foreground="Red" />
 
                                 <GroupBox
                                     Margin="5"
@@ -97,25 +100,21 @@
                                         <Button
                                             x:Name="Button_H3OPT_ACCESSPOINTS"
                                             Click="Button_H3OPT_ACCESSPOINTS_Click"
-                                            Content="解锁所有侦察点"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="解锁所有侦察点" />
                                         <Button
                                             x:Name="Button_H3OPT_ACCESSPOINTS_0"
                                             Click="Button_H3OPT_ACCESSPOINTS_0_Click"
                                             Content="取消解锁所有侦察点"
-                                            Foreground="Red"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Foreground="Red" />
                                         <Button
                                             x:Name="Button_H3OPT_H3OPT_POI"
                                             Click="Button_H3OPT_H3OPT_POI_Click"
-                                            Content="解锁所有兴趣点"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="解锁所有兴趣点" />
                                         <Button
                                             x:Name="Button_H3OPT_H3OPT_POI_0"
                                             Click="Button_H3OPT_H3OPT_POI_0_Click"
                                             Content="取消解锁所有兴趣点"
-                                            Foreground="Red"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Foreground="Red" />
                                     </WrapPanel>
                                 </GroupBox>
 
@@ -127,18 +126,15 @@
                                         <Button
                                             x:Name="Button_H3OPT_APPROACH_1"
                                             Click="Button_H3OPT_APPROACH_1_Click"
-                                            Content="隐迹潜踪"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="隐迹潜踪" />
                                         <Button
                                             x:Name="Button_H3OPT_APPROACH_2"
                                             Click="Button_H3OPT_APPROACH_2_Click"
-                                            Content="兵不厌诈"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="兵不厌诈" />
                                         <Button
                                             x:Name="Button_H3OPT_APPROACH_3"
                                             Click="Button_H3OPT_APPROACH_3_Click"
-                                            Content="气势汹汹"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="气势汹汹" />
                                     </WrapPanel>
                                 </GroupBox>
 
@@ -150,23 +146,19 @@
                                         <Button
                                             x:Name="Button_H3OPT_TARGET_0"
                                             Click="Button_H3OPT_TARGET_0_Click"
-                                            Content="现金"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="现金" />
                                         <Button
                                             x:Name="Button_H3OPT_TARGET_1"
                                             Click="Button_H3OPT_TARGET_1_Click"
-                                            Content="黄金"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="黄金" />
                                         <Button
                                             x:Name="Button_H3OPT_TARGET_2"
                                             Click="Button_H3OPT_TARGET_2_Click"
-                                            Content="艺术品"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="艺术品" />
                                         <Button
                                             x:Name="Button_H3OPT_TARGET_3"
                                             Click="Button_H3OPT_TARGET_3_Click"
-                                            Content="钻石"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="钻石" />
                                     </WrapPanel>
                                 </GroupBox>
                             </StackPanel>
@@ -182,8 +174,7 @@
                                     x:Name="Button_H3OPT_BITSET0"
                                     Click="Button_H3OPT_BITSET0_Click"
                                     Content="重置面板二"
-                                    Foreground="Red"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Foreground="Red" />
 
                                 <GroupBox
                                     Margin="5"
@@ -193,13 +184,11 @@
                                         <Button
                                             x:Name="Button_H3OPT_DISRUPTSHIP"
                                             Click="Button_H3OPT_DISRUPTSHIP_Click"
-                                            Content="撤走重型武装警卫"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="撤走重型武装警卫" />
                                         <Button
                                             x:Name="Button_H3OPT_KEYLEVELS"
                                             Click="Button_H3OPT_KEYLEVELS_Click"
-                                            Content="获得二级门禁卡"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="获得二级门禁卡" />
                                     </WrapPanel>
                                 </GroupBox>
 
@@ -211,33 +200,27 @@
                                         <Button
                                             x:Name="Button_H3OPT_CREWWEAP_1"
                                             Click="Button_H3OPT_CREWWEAP_1_Click"
-                                            Content="卡尔·阿不拉季 5％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="卡尔·阿不拉季 5％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWWEAP_2"
                                             Click="Button_H3OPT_CREWWEAP_2_Click"
-                                            Content="古斯塔沃·莫塔 9％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="古斯塔沃·莫塔 9％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWWEAP_3"
                                             Click="Button_H3OPT_CREWWEAP_3_Click"
-                                            Content="查理·里德 7％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="查理·里德 7％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWWEAP_4"
                                             Click="Button_H3OPT_CREWWEAP_4_Click"
-                                            Content="切斯特·麦考伊 10％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="切斯特·麦考伊 10％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWWEAP_5"
                                             Click="Button_H3OPT_CREWWEAP_5_Click"
-                                            Content="帕里克·麦克瑞利 8％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="帕里克·麦克瑞利 8％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWWEAP_6"
                                             Click="Button_H3OPT_CREWWEAP_6_Click"
-                                            Content="枪手零分红"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="枪手零分红" />
                                     </WrapPanel>
                                 </GroupBox>
 
@@ -249,33 +232,27 @@
                                         <Button
                                             x:Name="Button_H3OPT_CREWDRIVER_1"
                                             Click="Button_H3OPT_CREWDRIVER_1_Click"
-                                            Content="卡里姆·登茨 5％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="卡里姆·登茨 5％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWDRIVER_2"
                                             Click="Button_H3OPT_CREWDRIVER_2_Click"
-                                            Content="塔丽娜·马丁内斯 7％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="塔丽娜·马丁内斯 7％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWDRIVER_3"
                                             Click="Button_H3OPT_CREWDRIVER_3_Click"
-                                            Content="淘艾迪 9％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="淘艾迪 9％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWDRIVER_4"
                                             Click="Button_H3OPT_CREWDRIVER_4_Click"
-                                            Content="扎克·尼尔森 6％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="扎克·尼尔森 6％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWDRIVER_5"
                                             Click="Button_H3OPT_CREWDRIVER_5_Click"
-                                            Content="切斯特·麦考伊 10％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="切斯特·麦考伊 10％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWDRIVER_6"
                                             Click="Button_H3OPT_CREWDRIVER_6_Click"
-                                            Content="车手零分红"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="车手零分红" />
                                     </WrapPanel>
                                 </GroupBox>
 
@@ -287,33 +264,27 @@
                                         <Button
                                             x:Name="Button_H3OPT_CREWHACKER_1"
                                             Click="Button_H3OPT_CREWHACKER_1_Click"
-                                            Content="里奇·卢肯斯 3％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="里奇·卢肯斯 3％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWHACKER_2"
                                             Click="Button_H3OPT_CREWHACKER_2_Click"
-                                            Content="克里斯汀·费尔兹 7％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="克里斯汀·费尔兹 7％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWHACKER_3"
                                             Click="Button_H3OPT_CREWHACKER_3_Click"
-                                            Content="尤汗·布莱尔 5％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="尤汗·布莱尔 5％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWHACKER_4"
                                             Click="Button_H3OPT_CREWHACKER_4_Click"
-                                            Content="阿维·施瓦茨曼 10％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="阿维·施瓦茨曼 10％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWHACKER_5"
                                             Click="Button_H3OPT_CREWHACKER_5_Click"
-                                            Content="佩奇·哈里斯 9％"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="佩奇·哈里斯 9％" />
                                         <Button
                                             x:Name="Button_H3OPT_CREWHACKER_6"
                                             Click="Button_H3OPT_CREWHACKER_6_Click"
-                                            Content="黑客零分红"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="黑客零分红" />
                                     </WrapPanel>
                                 </GroupBox>
 
@@ -325,28 +296,23 @@
                                         <Button
                                             x:Name="Button_H3OPT_WEAPS_0"
                                             Click="Button_H3OPT_WEAPS_0_Click"
-                                            Content="类型一"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="类型一" />
                                         <Button
                                             x:Name="Button_H3OPT_WEAPS_1"
                                             Click="Button_H3OPT_WEAPS_1_Click"
-                                            Content="类型二"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="类型二" />
                                         <Button
                                             x:Name="Button_H3OPT_WEAPS_2"
                                             Click="Button_H3OPT_WEAPS_2_Click"
-                                            Content="类型三"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="类型三" />
                                         <Button
                                             x:Name="Button_H3OPT_WEAPS_3"
                                             Click="Button_H3OPT_WEAPS_3_Click"
-                                            Content="类型四"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="类型四" />
                                         <Button
                                             x:Name="Button_H3OPT_WEAPS_4"
                                             Click="Button_H3OPT_WEAPS_4_Click"
-                                            Content="类型五"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="类型五" />
                                     </WrapPanel>
                                 </GroupBox>
 
@@ -358,23 +324,19 @@
                                         <Button
                                             x:Name="Button_H3OPT_VEH_0"
                                             Click="Button_H3OPT_VEH_0_Click"
-                                            Content="类型一"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="类型一" />
                                         <Button
                                             x:Name="Button_H3OPT_VEH_1"
                                             Click="Button_H3OPT_VEH_1_Click"
-                                            Content="类型二"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="类型二" />
                                         <Button
                                             x:Name="Button_H3OPT_VEH_2"
                                             Click="Button_H3OPT_VEH_2_Click"
-                                            Content="类型三"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="类型三" />
                                         <Button
                                             x:Name="Button_H3OPT_VEH_3"
                                             Click="Button_H3OPT_VEH_3_Click"
-                                            Content="类型四"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                            Content="类型四" />
                                     </WrapPanel>
                                 </GroupBox>
 
@@ -387,32 +349,17 @@
                                     FontWeight="Bold"
                                     Text="其他" />
 
-                                <Button
-                                    Click="Button_Click"
-                                    Content="游戏厅图标处"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                <Button Click="Button_Click" Content="游戏厅图标处" />
 
                                 <GroupBox
                                     Margin="5"
                                     Header="侦察拍照地点"
                                     Style="{StaticResource GroupBoxWebStyle}">
                                     <WrapPanel Orientation="Horizontal">
-                                        <Button
-                                            Click="Button_FastTeleport_Click"
-                                            Content="赌场门口"
-                                            Style="{StaticResource ButtonNormalStyle}" />
-                                        <Button
-                                            Click="Button_FastTeleport_Click"
-                                            Content="监控和安保人员"
-                                            Style="{StaticResource ButtonNormalStyle}" />
-                                        <Button
-                                            Click="Button_FastTeleport_Click"
-                                            Content="门禁系统"
-                                            Style="{StaticResource ButtonNormalStyle}" />
-                                        <Button
-                                            Click="Button_FastTeleport_Click"
-                                            Content="赌场后门"
-                                            Style="{StaticResource ButtonNormalStyle}" />
+                                        <Button Click="Button_FastTeleport_Click" Content="赌场门口" />
+                                        <Button Click="Button_FastTeleport_Click" Content="监控和安保人员" />
+                                        <Button Click="Button_FastTeleport_Click" Content="门禁系统" />
+                                        <Button Click="Button_FastTeleport_Click" Content="赌场后门" />
                                     </WrapPanel>
                                 </GroupBox>
 
@@ -440,26 +387,22 @@
                                 <Button
                                     x:Name="Button_GANGOPS_FLOW_MISSION_PROG_1"
                                     Click="Button_GANGOPS_FLOW_MISSION_PROG_1_Click"
-                                    Content="跳过末日前置及准备任务"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Content="跳过末日前置及准备任务" />
 
                                 <TextBlock />
 
                                 <Button
                                     x:Name="Button_GANGOPS_FLOW_MISSION_PROG_503"
                                     Click="Button_GANGOPS_FLOW_MISSION_PROG_503_Click"
-                                    Content="进入末日一分红关"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Content="进入末日一分红关" />
                                 <Button
                                     x:Name="Button_GANGOPS_FLOW_MISSION_PROG_240"
                                     Click="Button_GANGOPS_FLOW_MISSION_PROG_240_Click"
-                                    Content="进入末日二分红关"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Content="进入末日二分红关" />
                                 <Button
                                     x:Name="Button_GANGOPS_FLOW_MISSION_PROG_16368"
                                     Click="Button_GANGOPS_FLOW_MISSION_PROG_16368_Click"
-                                    Content="进入末日三分红关"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Content="进入末日三分红关" />
 
                                 <TextBlock
                                     Margin="5"
@@ -484,31 +427,26 @@
                                 <Button
                                     x:Name="Button_GANGOPS_FLOW_NOTIFICATIONS"
                                     Click="Button_GANGOPS_FLOW_NOTIFICATIONS_Click"
-                                    Content="解锁重玩末日豪劫"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Content="解锁重玩末日豪劫" />
                                 <Button
                                     x:Name="Button_GANGOPS_HEIST_STATUS"
                                     Click="Button_GANGOPS_HEIST_STATUS_Click"
-                                    Content="重置末日一二三任务"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Content="重置末日一二三任务" />
 
                                 <TextBlock />
 
                                 <Button
                                     x:Name="Button_HEISTCOOLDOWNTIMER0"
                                     Click="Button_HEISTCOOLDOWNTIMER0_Click"
-                                    Content="重置末日一冷却"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Content="重置末日一冷却" />
                                 <Button
                                     x:Name="Button_HEISTCOOLDOWNTIMER1"
                                     Click="Button_HEISTCOOLDOWNTIMER1_Click"
-                                    Content="重置末日二冷却"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Content="重置末日二冷却" />
                                 <Button
                                     x:Name="Button_HEISTCOOLDOWNTIMER2"
                                     Click="Button_HEISTCOOLDOWNTIMER2_Click"
-                                    Content="重置末日三冷却"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Content="重置末日三冷却" />
 
                             </StackPanel>
                         </Grid>
@@ -534,8 +472,7 @@
                                 <Button
                                     x:Name="Button_HEIST_PLANNING_STAGE"
                                     Click="Button_HEIST_PLANNING_STAGE_Click"
-                                    Content="直接进入分红关"
-                                    Style="{StaticResource ButtonNormalStyle}" />
+                                    Content="直接进入分红关" />
 
                                 <TextBlock
                                     Margin="5"

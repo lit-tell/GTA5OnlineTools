@@ -10,8 +10,6 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-
-
         <Style TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Margin" Value="5" />
@@ -22,7 +20,7 @@
             <Setter Property="Margin" Value="5" />
         </Style>
 
-        <Style BasedOn="{StaticResource ButtonNormalStyle}" TargetType="Button" />
+        <Style BasedOn="{StaticResource ButtonStyle_Normal}" TargetType="Button" />
     </UserControl.Resources>
 
     <Grid>

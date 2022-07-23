@@ -65,14 +65,12 @@
                 x:Name="Button_ExecuteAutoScript"
                 Click="Button_ExecuteAutoScript_Click"
                 Content="执行选中脚本"
-                Style="{StaticResource ButtonNormalStyle}" />
-
-            <TextBlock />
+                Style="{StaticResource ButtonStyle_Normal}" />
             <Button
                 x:Name="Button_LoadSession"
                 Click="Button_LoadSession_Click"
                 Content="如果没有效果请点我切换战局"
-                Style="{StaticResource ButtonNormalStyle}" />
+                Style="{StaticResource ButtonStyle_Normal}" />
             <TextBlock
                 Margin="5"
                 Foreground="Green"

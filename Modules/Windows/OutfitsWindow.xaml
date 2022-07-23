@@ -90,12 +90,12 @@
                     x:Name="Button_Read"
                     Click="Button_Read_Click"
                     Content="读取"
-                    Style="{StaticResource ButtonWebStyle}" />
+                    Style="{StaticResource ButtonStyle_Web}" />
                 <Button
                     x:Name="Button_Write"
                     Click="Button_Write_Click"
                     Content="写入"
-                    Style="{StaticResource ButtonWebStyle}" />
+                    Style="{StaticResource ButtonStyle_Web}" />
             </StackPanel>
         </DockPanel>
 

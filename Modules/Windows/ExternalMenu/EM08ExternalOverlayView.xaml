@@ -243,12 +243,12 @@
                     x:Name="Button_Overaly_Run"
                     Click="Button_Overaly_Run_Click"
                     Content="启动ESP"
-                    Style="{StaticResource ButtonNormalStyle}" />
+                    Style="{StaticResource ButtonStyle_Normal}" />
                 <Button
                     x:Name="Button_Overaly_Exit"
                     Click="Button_Overaly_Exit_Click"
                     Content="关闭ESP"
-                    Style="{StaticResource ButtonNormalStyle}" />
+                    Style="{StaticResource ButtonStyle_Normal}" />
             </StackPanel>
 
             <TextBlock
@@ -303,7 +303,7 @@
                     Click="Button_InjectMenu_Click"
                     Content="启用注入式ESP功能（测试版）"
                     DockPanel.Dock="Right"
-                    Style="{StaticResource ButtonNormalStyle}" />
+                    Style="{StaticResource ButtonStyle_Normal}" />
                 <TextBlock
                     Margin="5"
                     Foreground="Green"

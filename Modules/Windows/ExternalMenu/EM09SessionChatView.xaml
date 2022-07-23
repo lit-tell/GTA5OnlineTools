@@ -46,19 +46,19 @@
                         <Button
                             Click="Button_Translate_Click"
                             Content="中英互译"
-                            Style="{StaticResource ButtonNormalStyle}" />
+                            Style="{StaticResource ButtonStyle_Normal}" />
                         <Button
                             Click="Button_Translate_Click"
                             Content="简转繁"
-                            Style="{StaticResource ButtonNormalStyle}" />
+                            Style="{StaticResource ButtonStyle_Normal}" />
                         <Button
                             Click="Button_Translate_Click"
                             Content="繁转简"
-                            Style="{StaticResource ButtonNormalStyle}" />
+                            Style="{StaticResource ButtonStyle_Normal}" />
                         <Button
                             Click="Button_Translate_Click"
                             Content="转拼音"
-                            Style="{StaticResource ButtonNormalStyle}" />
+                            Style="{StaticResource ButtonStyle_Normal}" />
                     </WrapPanel>
 
                 </GroupBox>
@@ -135,7 +135,7 @@
                     x:Name="Button_SendTextToGTA5"
                     Click="Button_SendTextToGTA5_Click"
                     Content="发送"
-                    Style="{StaticResource ButtonNormalStyle}" />
+                    Style="{StaticResource ButtonStyle_Normal}" />
 
                 <WrapPanel Margin="5">
                     <TextBlock Margin="5" VerticalAlignment="Center">
@@ -286,12 +286,12 @@
                         x:Name="Button_ReadPlayerName"
                         Click="Button_ReadPlayerName_Click"
                         Content="读取"
-                        Style="{StaticResource ButtonNormalStyle}" />
+                        Style="{StaticResource ButtonStyle_Normal}" />
                     <Button
                         x:Name="Button_WritePlayerName"
                         Click="Button_WritePlayerName_Click"
                         Content="写入"
-                        Style="{StaticResource ButtonNormalStyle}" />
+                        Style="{StaticResource ButtonStyle_Normal}" />
                 </StackPanel>
 
                 <TextBlock
