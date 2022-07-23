@@ -3,35 +3,39 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:attached="clr-namespace:GTA5OnlineTools.Assets.Styles.Attached">
 
-    <!--  小助手辅助Button按钮样式  -->
-    <Style x:Key="ButtonStyle_FunctionSelf" TargetType="Button">
-        <Setter Property="Width" Value="150" />
-        <Setter Property="Height" Value="230" />
+    <!--  小助手辅助按钮样式  -->
+    <Style x:Key="ButtonStyle_FunctionSelf" TargetType="{x:Type Button}">
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Background" Value="White" />
-        <Setter Property="BorderBrush" Value="{StaticResource BlueColor}" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Margin" Value="3" />
+        <Setter Property="Margin" Value="3,3,0,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
                     <Border
-                        x:Name="border"
+                        Name="border"
+                        Width="150"
+                        Height="230"
+                        Margin="{TemplateBinding Margin}"
+                        Padding="{TemplateBinding Padding}"
                         Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="Gray"
+                        BorderThickness="1"
+                        CornerRadius="0"
                         SnapsToDevicePixels="True">
-                        <ContentPresenter
-                            x:Name="contentPresenter"
-                            Margin="{TemplateBinding Padding}"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Content}"
-                            ContentStringFormat="{TemplateBinding ContentStringFormat}"
-                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                            Focusable="False"
-                            RecognizesAccessKey="True"
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                FontSize="42"
+                                Foreground="#37aefe"
+                                Style="{StaticResource TextBlockStyle_IconFontBase}"
+                                Text="{TemplateBinding attached:Icon.Value}" />
+                            <TextBlock
+                                Margin="5"
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource TextBlockStyle_IconFontBase}"
+                                Text="{TemplateBinding attached:Text.Value}" />
+                            <ContentPresenter HorizontalAlignment="Center" TextElement.Foreground="{TemplateBinding Foreground}" />
+                        </StackPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -41,6 +45,54 @@
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="border" Property="BorderThickness" Value="5" />
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource BlueColor}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  主菜单工具页面按钮样式  -->
+    <Style x:Key="ButtonStyle_Tools" TargetType="{x:Type Button}">
+        <Setter Property="Margin" Value="0,0,3,3" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#2D6EB9" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        Name="border"
+                        Width="200"
+                        Height="100"
+                        Margin="{TemplateBinding Margin}"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="0"
+                        CornerRadius="0"
+                        SnapsToDevicePixels="True">
+                        <Grid>
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="32"
+                                Style="{StaticResource TextBlockStyle_IconFontBase}"
+                                Text="{TemplateBinding attached:Icon.Value}" />
+                            <ContentPresenter
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                TextElement.Foreground="{TemplateBinding Foreground}" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#51A2E8" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#4298DB" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="#C5C3C3" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -148,53 +200,6 @@
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="ellipse" Property="Fill" Value="Red" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="ButtonStyle_Tools" TargetType="{x:Type Button}">
-        <Setter Property="Margin" Value="3,3,0,0" />
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="Background" Value="#2D6EB9" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border
-                        Name="border"
-                        Width="200"
-                        Height="100"
-                        Margin="{TemplateBinding Margin}"
-                        Padding="{TemplateBinding Padding}"
-                        Background="{TemplateBinding Background}"
-                        BorderThickness="0"
-                        CornerRadius="0"
-                        SnapsToDevicePixels="True">
-                        <Grid>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontSize="32"
-                                Style="{StaticResource TextBlockStyle_IconFontBase}"
-                                Text="{TemplateBinding attached:Icon.Value}" />
-                            <ContentPresenter
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Bottom"
-                                TextElement.Foreground="{TemplateBinding Foreground}" />
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#51A2E8" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#4298DB" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="border" Property="Background" Value="#C5C3C3" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

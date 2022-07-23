@@ -20,8 +20,11 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="0" Style="{StaticResource ScrollViewerStyle_VAHD}">
-            <WrapPanel Margin="0,0,6,6">
+        <ScrollViewer
+            Grid.Row="0"
+            Margin="5,5,0,5"
+            Style="{StaticResource ScrollViewerStyle_VAHD}">
+            <WrapPanel>
                 <Button
                     attached:Icon.Value="&#xed18;"
                     Background="#67C23A"
@@ -169,13 +172,8 @@
         <StackPanel
             Grid.Row="1"
             Margin="5"
+            HorizontalAlignment="Right"
             Orientation="Horizontal">
-            <TextBlock
-                Margin="0,0,10,0"
-                VerticalAlignment="Center"
-                FontSize="20"
-                FontWeight="Black"
-                Text="有用的链接" />
             <UniformGrid Rows="2">
                 <TextBlock
                     Margin="5"

@@ -1,9 +1,9 @@
 ﻿namespace GTA5OnlineTools.Assets.Styles.Attached;
 
 /// <summary>
-/// 附加属性-字体图标
+/// 附加属性-文本
 /// </summary>
-public class Icon
+public class Text
 {
     public static string GetValue(DependencyObject obj)
     {
@@ -16,5 +16,5 @@ public class Icon
     }
 
     public static readonly DependencyProperty ValueProperty =
-        DependencyProperty.RegisterAttached("Value", typeof(string), typeof(Icon), new PropertyMetadata(default));
+        DependencyProperty.RegisterAttached("Value", typeof(string), typeof(Text), new PropertyMetadata(default));
 }

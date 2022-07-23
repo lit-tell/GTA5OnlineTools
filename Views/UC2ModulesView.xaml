@@ -2,6 +2,7 @@
     x:Class="GTA5OnlineTools.Views.UC2ModulesView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:attached="clr-namespace:GTA5OnlineTools.Assets.Styles.Attached"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="720"
@@ -9,165 +10,58 @@
     Style="{StaticResource UserControlStyle_Loading}"
     mc:Ignorable="d">
 
-    <Grid Margin="5">
-        <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
-            <WrapPanel>
-                <Button Command="{Binding ExternalMenuClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
-                    <Button.Content>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="Margin" Value="0,5,0,0" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                FontSize="42"
-                                Foreground="#37aefe"
-                                Style="{StaticResource HomeIcoTextBlock}"
-                                Text="&#xe666;" />
-                            <TextBlock Text="External Menu" />
-                            <TextBlock Text="小助手外置菜单" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+    <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
+        <WrapPanel>
+            <Button
+                attached:Icon.Value="&#xe666;"
+                attached:Text.Value="External Menu"
+                Command="{Binding ExternalMenuClickCommand}"
+                Content="小助手外置菜单"
+                Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
-                <Button Command="{Binding GTAHaxClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
-                    <Button.Content>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="Margin" Value="0,5,0,0" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                FontSize="42"
-                                Foreground="#37aefe"
-                                Style="{StaticResource HomeIcoTextBlock}"
-                                Text="&#xe666;" />
-                            <TextBlock Text="GTAHax Code Edit" />
-                            <TextBlock Text="GTAHax代码导入编辑器" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+            <Button
+                attached:Icon.Value="&#xe666;"
+                attached:Text.Value="GTAHax Code Edit"
+                Command="{Binding GTAHaxClickCommand}"
+                Content="GTAHax代码导入编辑器"
+                Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
-                <Button Command="{Binding OutfitsClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
-                    <Button.Content>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="Margin" Value="0,5,0,0" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                FontSize="42"
-                                Foreground="#37aefe"
-                                Style="{StaticResource HomeIcoTextBlock}"
-                                Text="&#xe666;" />
-                            <TextBlock Text="Outfits Edit" />
-                            <TextBlock Text="角色服装编辑器" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+            <Button
+                attached:Icon.Value="&#xe666;"
+                attached:Text.Value="Outfits Edit"
+                Command="{Binding OutfitsClickCommand}"
+                Content="角色服装编辑器"
+                Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
-                <Button Command="{Binding HeistCutClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
-                    <Button.Content>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="Margin" Value="0,5,0,0" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                FontSize="42"
-                                Foreground="#37aefe"
-                                Style="{StaticResource HomeIcoTextBlock}"
-                                Text="&#xe666;" />
-                            <TextBlock Text="Heist Cut Edit" />
-                            <TextBlock Text="抢劫任务分红编辑器" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+            <Button
+                attached:Icon.Value="&#xe666;"
+                attached:Text.Value="Heist Cut Edit"
+                Command="{Binding HeistCutClickCommand}"
+                Content="抢劫任务分红编辑器"
+                Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
-                <Button Command="{Binding StatAutoScriptsClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
-                    <Button.Content>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="Margin" Value="0,5,0,0" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                FontSize="42"
-                                Foreground="#37aefe"
-                                Style="{StaticResource HomeIcoTextBlock}"
-                                Text="&#xe666;" />
-                            <TextBlock Text="STAT Auto Scripts" />
-                            <TextBlock Text="STAT自动化脚本" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+            <Button
+                attached:Icon.Value="&#xe666;"
+                attached:Text.Value="STAT Auto Scripts"
+                Command="{Binding HeistCutClickCommand}"
+                Content="STAT自动化脚本"
+                Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
-                <Button Command="{Binding HeistPrepsClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
-                    <Button.Content>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="Margin" Value="0,5,0,0" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                FontSize="42"
-                                Foreground="#37aefe"
-                                Style="{StaticResource HomeIcoTextBlock}"
-                                Text="&#xe666;" />
-                            <TextBlock Text="Heist Preps Edit" />
-                            <TextBlock Text="抢劫前置任务编辑器" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+            <Button
+                attached:Icon.Value="&#xe666;"
+                attached:Text.Value="Heist Preps Edit"
+                Command="{Binding HeistPrepsClickCommand}"
+                Content="抢劫前置任务编辑器"
+                Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
-                <Button Command="{Binding BigBaseV2ClickCommand}" Style="{StaticResource ButtonStyle_FunctionSelf}">
-                    <Button.Content>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="HorizontalAlignment" Value="Center" />
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Setter Property="Margin" Value="0,5,0,0" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                FontSize="42"
-                                Foreground="#37aefe"
-                                Style="{StaticResource HomeIcoTextBlock}"
-                                Text="&#xe63b;" />
-                            <TextBlock Text="BigBaseV2" />
-                            <TextBlock Text="STAT编辑/解锁" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
+            <Button
+                attached:Icon.Value="&#xe63b;"
+                attached:Text.Value="BigBaseV2"
+                Command="{Binding BigBaseV2ClickCommand}"
+                Content="STAT编辑/解锁"
+                Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
-            </WrapPanel>
-        </ScrollViewer>
+        </WrapPanel>
+    </ScrollViewer>
 
-    </Grid>
 </UserControl>
