@@ -14,7 +14,7 @@
 
     <!--  关于作者页面字体图标样式  -->
     <Style
-        x:Key="IconFontHVStyle"
+        x:Key="TextBlockStyle_IconFontHCVC"
         BasedOn="{StaticResource TextBlockStyle_IconFontBase}"
         TargetType="{x:Type TextBlock}">
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -28,7 +28,7 @@
 
     <!--  HomeIcoTextBlock样式  -->
     <Style
-        x:Key="HomeIcoTextBlock"
+        x:Key="TextBlockStyle_HomeIcon"
         BasedOn="{StaticResource TextBlockStyle_IconFontBase}"
         TargetType="TextBlock">
         <Setter Property="FontSize" Value="24" />
@@ -38,7 +38,7 @@
 
     <!--  TabItem字体图标样式  -->
     <Style
-        x:Key="IconFontTabItemStyle"
+        x:Key="IconFontStyle_TabItem"
         BasedOn="{StaticResource TextBlockStyle_IconFontBase}"
         TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -48,7 +48,7 @@
 
     <!--  信息提示字体图标样式  -->
     <Style
-        x:Key="IconFontInfoTextBlockStyle"
+        x:Key="TextBlockStyle_IconFontInfo"
         BasedOn="{StaticResource TextBlockStyle_IconFontBase}"
         TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -58,7 +58,7 @@
 
     <!--  ##########################################################  -->
 
-    <Style x:Key="TextBlockTitle000" TargetType="{x:Type TextBlock}">
+    <Style x:Key="TextBlockStyle_Title000" TargetType="{x:Type TextBlock}">
         <Setter Property="Margin" Value="5" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="FontWeight" Value="Bold" />

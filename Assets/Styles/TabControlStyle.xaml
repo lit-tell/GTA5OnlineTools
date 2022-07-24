@@ -110,7 +110,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Margin" Value="0" />
-        <Setter Property="Padding" Value="20,11,20,7" />
+        <Setter Property="Padding" Value="10,10,10,5" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
@@ -173,7 +173,7 @@
                             <Setter TargetName="mainBorder" Property="BorderThickness" Value="1,1,1,0" />
                             <Setter TargetName="secondBorder" Property="Margin" Value="-1" />
                             <Setter TargetName="secondBorder" Property="BorderBrush" Value="#0078d4" />
-                            <Setter TargetName="secondBorder" Property="BorderThickness" Value="0,4,0,0" />
+                            <Setter TargetName="secondBorder" Property="BorderThickness" Value="0,5,0,0" />
                             <Setter TargetName="contentPresenter" Property="TextElement.FontWeight" Value="Bold" />
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>

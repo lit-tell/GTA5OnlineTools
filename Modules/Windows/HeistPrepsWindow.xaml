@@ -90,7 +90,7 @@
                                     x:Name="Button_H3OPT_BITSET1"
                                     Click="Button_H3OPT_BITSET1_Click"
                                     Content="重置面板一"
-                                    Foreground="Red" />
+                                    Foreground="#F56C6C" />
 
                                 <GroupBox
                                     Margin="5"
@@ -105,7 +105,7 @@
                                             x:Name="Button_H3OPT_ACCESSPOINTS_0"
                                             Click="Button_H3OPT_ACCESSPOINTS_0_Click"
                                             Content="取消解锁所有侦察点"
-                                            Foreground="Red" />
+                                            Foreground="#F56C6C" />
                                         <Button
                                             x:Name="Button_H3OPT_H3OPT_POI"
                                             Click="Button_H3OPT_H3OPT_POI_Click"
@@ -114,7 +114,7 @@
                                             x:Name="Button_H3OPT_H3OPT_POI_0"
                                             Click="Button_H3OPT_H3OPT_POI_0_Click"
                                             Content="取消解锁所有兴趣点"
-                                            Foreground="Red" />
+                                            Foreground="#F56C6C" />
                                     </WrapPanel>
                                 </GroupBox>
 
@@ -174,7 +174,7 @@
                                     x:Name="Button_H3OPT_BITSET0"
                                     Click="Button_H3OPT_BITSET0_Click"
                                     Content="重置面板二"
-                                    Foreground="Red" />
+                                    Foreground="#F56C6C" />
 
                                 <GroupBox
                                     Margin="5"

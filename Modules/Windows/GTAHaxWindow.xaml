@@ -34,7 +34,7 @@
                         Orientation="Horizontal">
                         <TextBlock
                             Margin="0,0,5,0"
-                            Style="{StaticResource IconFontInfoTextBlockStyle}"
+                            Style="{StaticResource TextBlockStyle_IconFontInfo}"
                             Text="&#xe624;" />
                         <TextBlock
                             FontSize="18"
@@ -60,19 +60,11 @@
                 Margin="5"
                 Background="White"
                 SelectionChanged="TabControl_Main_SelectionChanged"
-                Style="{StaticResource TabControlStyle}">
-
-                <TabItem Style="{StaticResource TabItemStyle}">
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                FontSize="18"
-                                Style="{StaticResource IconFontTabItemStyle}"
-                                Text="&#xe63b;" />
-                            <TextBlock VerticalAlignment="Center" Text="预设代码" />
-                        </StackPanel>
-                    </TabItem.Header>
-
+                Style="{StaticResource TabControlStyle_Main}">
+                <TabControl.Resources>
+                    <Style BasedOn="{StaticResource TabItemStyle_Main}" TargetType="{x:Type TabItem}" />
+                </TabControl.Resources>
+                <TabItem Header="预设代码">
                     <Grid Margin="3,6,3,3">
                         <Border Style="{StaticResource BorderEffectStyle}" />
                         <ListBox
@@ -137,17 +129,7 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Style="{StaticResource TabItemStyle}">
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                FontSize="18"
-                                Style="{StaticResource IconFontTabItemStyle}"
-                                Text="&#xe60e;" />
-                            <TextBlock VerticalAlignment="Center" Text="名钻假日" />
-                        </StackPanel>
-                    </TabItem.Header>
-
+                <TabItem Header="名钻假日">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -409,17 +391,7 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Style="{StaticResource TabItemStyle}">
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock
-                                FontSize="18"
-                                Style="{StaticResource IconFontTabItemStyle}"
-                                Text="&#xe691;" />
-                            <TextBlock VerticalAlignment="Center" Text="佩里科岛" />
-                        </StackPanel>
-                    </TabItem.Header>
-
+                <TabItem Header="佩里科岛">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />

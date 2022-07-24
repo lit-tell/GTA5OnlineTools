@@ -225,7 +225,7 @@
                     <Button
                         x:Name="Button_TitleMin"
                         Content="&#xe67a;"
-                        Style="{StaticResource ButtonStyle_ExternalMenuClose}"
+                        Style="{StaticResource ButtonStyle_ExternalMenuMin}"
                         ToolTip="最小化"
                         WindowChrome.IsHitTestVisibleInChrome="True" />
                     <Button

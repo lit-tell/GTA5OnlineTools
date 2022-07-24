@@ -50,7 +50,7 @@
                 ToolTip="双击选中项即可快捷传送" />
 
             <StackPanel Grid.Column="2">
-                <TextBlock Style="{StaticResource TextBlockTitle000}" Text="坐标数据" />
+                <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="坐标数据" />
 
                 <StackPanel>
                     <TextBlock VerticalAlignment="Center" Text="X坐标" />

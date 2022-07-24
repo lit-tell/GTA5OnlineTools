@@ -9,115 +9,96 @@
     Style="{StaticResource UserControlStyle_Loading}"
     mc:Ignorable="d">
 
-    <Grid>
-        <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
-            <Grid Margin="10">
-                <StackPanel Orientation="Vertical">
-                    <Image
-                        Width="128"
-                        Height="128"
-                        Margin="10"
-                        Source="/Assets/Images/Favicon.ico" />
-                    <TextBlock
-                        Margin="5"
-                        HorizontalAlignment="Center"
-                        FontSize="36"
-                        Text="GTA5线上小助手" />
-                    <TextBlock
-                        Margin="5"
-                        HorizontalAlignment="Center"
-                        FontSize="14"
-                        Text="Copyright© 2018-2022 DS By CrazyZhang" />
+    <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
+        <Grid Margin="10">
+            <StackPanel Orientation="Vertical">
+                <Image
+                    Width="128"
+                    Height="128"
+                    Margin="10"
+                    Source="/Assets/Images/Favicon.ico" />
+                <TextBlock
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    FontSize="36"
+                    Text="GTA5线上小助手" />
+                <TextBlock
+                    Margin="5"
+                    HorizontalAlignment="Center"
+                    FontSize="14"
+                    Text="Copyright© 2018-2022 DS By CrazyZhang" />
 
-                    <TextBlock Margin="5" HorizontalAlignment="Center">
-                        <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://crazyzhang.cn">
-                            支持作者，帮作者点一点小助手网站上的谷歌广告，感谢大家的支持
+                <TextBlock Margin="5" HorizontalAlignment="Center">
+                    <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://crazyzhang.cn">
+                        支持作者，帮作者点一点小助手网站上的谷歌广告，感谢大家的支持
+                    </Hyperlink>
+                </TextBlock>
+
+                <Expander Margin="5" HorizontalAlignment="Center">
+                    <Expander.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="5"
+                                FontSize="18"
+                                Foreground="#FF80AB"
+                                Style="{StaticResource TextBlockStyle_IconFontHCVC}"
+                                Text="&#xe61b;" />
+                            <TextBlock
+                                Margin="0,5,5,5"
+                                FontSize="14"
+                                Foreground="#FF80AB"
+                                Text="捐赠作者" />
+                        </StackPanel>
+                    </Expander.Header>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock
+                            Margin="10,10,10,5"
+                            HorizontalAlignment="Center"
+                            Foreground="#FF80AB"
+                            TextWrapping="WrapWithOverflow">
+                            如果您觉得这个软件对你有帮助，可以扫描下面的二维码捐赠作者，<LineBreak />
+                            以帮助作者把这个软件做的更好，感谢大家的支持 (*^_^*)</TextBlock>
+                        <Image
+                            MaxWidth="400"
+                            MaxHeight="250"
+                            Margin="5"
+                            RenderOptions.BitmapScalingMode="HighQuality"
+                            RenderOptions.ClearTypeHint="Enabled"
+                            Source="/Assets/Images/Donate.png"
+                            Stretch="Uniform"
+                            UseLayoutRounding="True" />
+                    </StackPanel>
+                </Expander>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style BasedOn="{StaticResource TextBlockStyle_IconFontHCVC}" TargetType="{x:Type TextBlock}">
+                            <Setter Property="Margin" Value="10" />
+                            <Setter Property="FontSize" Value="36" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock ToolTip="项目开源地址">
+                        <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://github.com/CrazyZhang666/GTA5OnlineTools">
+                            &#xe686;
                         </Hyperlink>
                     </TextBlock>
-
-                    <Expander Margin="5" HorizontalAlignment="Center">
-                        <Expander.Header>
-                            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                                <TextBlock
-                                    Margin="5"
-                                    FontSize="18"
-                                    Foreground="#FF80AB"
-                                    Style="{StaticResource IconFontHVStyle}"
-                                    Text="&#xe61b;" />
-                                <TextBlock
-                                    Margin="0,5,5,5"
-                                    FontSize="14"
-                                    Foreground="#FF80AB"
-                                    Text="捐赠作者" />
-                            </StackPanel>
-                        </Expander.Header>
-                        <StackPanel HorizontalAlignment="Center">
-                            <TextBlock
-                                Margin="10,10,10,5"
-                                HorizontalAlignment="Center"
-                                Foreground="#FF80AB"
-                                TextWrapping="WrapWithOverflow">
-                                如果您觉得这个软件对你有帮助，可以扫描下面的二维码捐赠作者，<LineBreak />
-                                以帮助作者把这个软件做的更好，感谢大家的支持 (*^_^*)</TextBlock>
-                            <Image
-                                MaxWidth="400"
-                                MaxHeight="250"
-                                Margin="5"
-                                RenderOptions.BitmapScalingMode="HighQuality"
-                                RenderOptions.ClearTypeHint="Enabled"
-                                Source="/Assets/Images/Donate.png"
-                                Stretch="Uniform"
-                                UseLayoutRounding="True" />
-                        </StackPanel>
-                    </Expander>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <TextBlock
-                            Margin="10"
-                            FontSize="36"
-                            Style="{StaticResource IconFontHVStyle}">
-                            <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://github.com/CrazyZhang666/GTA5OnlineTools">
-                                &#xe686;
-                            </Hyperlink>
-                            <TextBlock.ToolTip>
-                                <TextBlock Text="项目地址" />
-                            </TextBlock.ToolTip>
-                        </TextBlock>
-                        <TextBlock
-                            Margin="10"
-                            FontSize="36"
-                            Style="{StaticResource IconFontHVStyle}">
-                            <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://discord.gg/7GuNzajfhD">
-                                &#xe71d;
-                            </Hyperlink>
-                            <TextBlock.ToolTip>
-                                <TextBlock Text="小助手官方Discord频道" />
-                            </TextBlock.ToolTip>
-                        </TextBlock>
-                        <TextBlock
-                            Margin="10"
-                            FontSize="36"
-                            Style="{StaticResource IconFontHVStyle}">
-                            <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://github.com/CrazyZhang666/GTA5OnlineTools/issues/new">
-                                &#xf495;
-                            </Hyperlink>
-                            <TextBlock.ToolTip>
-                                <TextBlock Text="Bug反馈" />
-                            </TextBlock.ToolTip>
-                        </TextBlock>
-                        <TextBlock
-                            Margin="10"
-                            FontSize="36"
-                            Style="{StaticResource IconFontHVStyle}">
-                            <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://crazyzhang.cn">
-                                &#xe65b;
-                            </Hyperlink>
-                            <TextBlock.ToolTip>
-                                <TextBlock Text="小助手官方网站" />
-                            </TextBlock.ToolTip>
-                        </TextBlock>
-                    </StackPanel>
+                    <TextBlock ToolTip="小助手官方Discord频道">
+                        <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://discord.gg/7GuNzajfhD">
+                            &#xe71d;
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock ToolTip="Bug反馈">
+                        <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://github.com/CrazyZhang666/GTA5OnlineTools/issues/new">
+                            &#xf495;
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock ToolTip="小助手官方网站">
+                        <Hyperlink Command="{Binding HyperlinkClickCommand}" CommandParameter="https://crazyzhang.cn">
+                            &#xe65b;
+                        </Hyperlink>
+                    </TextBlock>
                 </StackPanel>
-            </Grid>
-        </ScrollViewer>
-    </Grid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+
 </UserControl>

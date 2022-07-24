@@ -27,37 +27,31 @@
             <WrapPanel>
                 <Button
                     attached:Icon.Value="&#xed18;"
-                    Background="#67C23A"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionChsON"
                     Content="启用Kiddion汉化" />
                 <Button
                     attached:Icon.Value="&#xed18;"
-                    Background="#F56C6C"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionChsOFF"
                     Content="关闭Kiddion汉化" />
                 <Button
                     attached:Icon.Value="&#xe64b;"
-                    Background="#67C23A"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionKey87"
                     Content="启用Kiddion[87键]" />
                 <Button
                     attached:Icon.Value="&#xe64b;"
-                    Background="#F56C6C"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionKey104"
                     Content="启用Kiddion[104键]" />
                 <Button
                     attached:Icon.Value="&#xed18;"
-                    Background="#67C23A"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="SubVersionKey87"
                     Content="启用SubVersion[87键]" />
                 <Button
                     attached:Icon.Value="&#xed18;"
-                    Background="#F56C6C"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="SubVersionKey104"
                     Content="启用SubVersion[104键]" />

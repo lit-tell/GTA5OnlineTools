@@ -81,7 +81,7 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="分红比例" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="分红比例" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="（房主）玩家1" />
                                 <TextBox x:Name="TextBox_Cayo_Player1" />
@@ -95,7 +95,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="主要目标价值" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="主要目标价值" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="西西米托龙舌兰" />
                                 <TextBox x:Name="TextBox_Cayo_Tequila" />
@@ -122,13 +122,13 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="2" Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="背包大小" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="背包大小" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="背包大小" />
                                 <TextBox x:Name="TextBox_Cayo_LocalBagSize" />
                             </UniformGrid>
 
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="其他费用" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="其他费用" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="倒卖费用" />
                                 <TextBox x:Name="TextBox_Cayo_FencingFee" />
@@ -153,7 +153,7 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="分红比例" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="分红比例" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="（房主）玩家1" />
                                 <TextBox x:Name="TextBox_Casino_Player1" />
@@ -173,7 +173,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="分红金额" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="分红金额" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="现金" />
                                 <TextBox x:Name="TextBox_CasinoPotential_Money" />
@@ -187,7 +187,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="2" Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="AI分红比例 枪手" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="AI分红比例 枪手" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="卡尔·阿不拉季" />
                                 <TextBox x:Name="TextBox_CasinoAI_1" />
@@ -201,7 +201,7 @@
                                 <TextBox x:Name="TextBox_CasinoAI_5" />
                             </UniformGrid>
 
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="AI分红比例 车手" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="AI分红比例 车手" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="卡里姆·登茨" />
                                 <TextBox x:Name="TextBox_CasinoAI_6" />
@@ -218,7 +218,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="3" Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="AI分红比例 黑客" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="AI分红比例 黑客" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="里奇·卢肯斯" />
                                 <TextBox x:Name="TextBox_CasinoAI_11" />
@@ -247,7 +247,7 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="分红比例" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="分红比例" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="（房主）玩家1" />
                                 <TextBox x:Name="TextBox_Doomsday_Player1" />
@@ -262,7 +262,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="分红金额" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="分红金额" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="末日一" />
                                 <TextBox x:Name="TextBox_Doomsday_ActI" />
@@ -288,7 +288,7 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="分红比例" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="分红比例" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="（房主）玩家1" />
                                 <TextBox x:Name="TextBox_Apart_Player1" />
@@ -302,7 +302,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" Margin="5">
-                            <TextBlock Style="{StaticResource TextBlockTitle000}" Text="分红金额" />
+                            <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="分红金额" />
                             <UniformGrid Columns="2">
                                 <TextBlock Text="全福" />
                                 <TextBox x:Name="TextBox_Apart_Fleeca" />

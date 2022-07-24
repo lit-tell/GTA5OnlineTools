@@ -127,7 +127,7 @@
             </StackPanel>
 
             <StackPanel Margin="0,20,0,0" DockPanel.Dock="Top">
-                <TextBlock Style="{StaticResource TextBlockTitle000}" Text="载具自定义" />
+                <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="载具自定义" />
                 <Button
                     x:Name="Button_SpawnOnlineVehicleA"
                     Click="Button_SpawnOnlineVehicle_Click"
