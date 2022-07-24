@@ -25,7 +25,7 @@
                 x:Name="TextBox_Change"
                 Padding="5"
                 DockPanel.Dock="Bottom"
-                Style="{StaticResource TextBoxShowInfoStyle}"
+                Style="{StaticResource TextBoxStyle_ShowInfo}"
                 Text="{Binding UC4UpdateModel.ChangeInfo}"
                 ToolTip="显示小助手更新日志" />
 

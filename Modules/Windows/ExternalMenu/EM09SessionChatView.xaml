@@ -232,20 +232,20 @@
                         <TextBox
                             x:Name="TextBox_OnlineList"
                             MaxLength="20"
-                            Style="{StaticResource TextBoxInputStyle}"
+                            Style="{StaticResource TextBoxStyle_ENInput}"
                             TextChanged="TextBox_OnlineList_TextChanged" />
 
                         <TextBlock Margin="5" Text="聊天名称 " />
                         <TextBox
                             x:Name="TextBox_ChatName"
                             MaxLength="20"
-                            Style="{StaticResource TextBoxInputStyle}" />
+                            Style="{StaticResource TextBoxStyle_ENInput}" />
 
                         <TextBlock Margin="5" Text="对外显示 " />
                         <TextBox
                             x:Name="TextBox_ExternalDisplay"
                             MaxLength="20"
-                            Style="{StaticResource TextBoxInputStyle}" />
+                            Style="{StaticResource TextBoxStyle_ENInput}" />
                     </StackPanel>
                 </GroupBox>
 

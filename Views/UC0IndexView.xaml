@@ -24,7 +24,7 @@
             <TextBox
                 Padding="5"
                 DockPanel.Dock="Bottom"
-                Style="{StaticResource TextBoxShowInfoStyle}"
+                Style="{StaticResource TextBoxStyle_ShowInfo}"
                 Text="{Binding UC0IndexModel.NoticeInfo}"
                 ToolTip="每次打开小助手都会获取最新辅助公告信息" />
         </DockPanel>
