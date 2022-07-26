@@ -50,12 +50,6 @@ public partial class UC3ToolsView : UserControl
             case "KiddionKey104":
                 KiddionKey104Click();
                 break;
-            case "SubVersionKey87":
-                SubVersionKey87Click();
-                break;
-            case "SubVersionKey104":
-                SubVersionKey104Click();
-                break;
             case "ReleaseDirectory":
                 ReleaseDirectoryClick();
                 break;
@@ -64,9 +58,6 @@ public partial class UC3ToolsView : UserControl
                 break;
             case "EditKiddionConfig":
                 EditKiddionConfigClick();
-                break;
-            case "EditSubVersionSettings":
-                EditSubVersionSettingsClick();
                 break;
             case "EditKiddionTP":
                 EditKiddionTPClick();
@@ -311,14 +302,6 @@ public partial class UC3ToolsView : UserControl
     }
 
     /// <summary>
-    /// 编辑SubVersion配置文件
-    /// </summary>
-    private void EditSubVersionSettingsClick()
-    {
-        ProcessUtil.OpenLink("notepad.exe", FileUtil.Kiddion_Path + @"settings.ini");
-    }
-
-    /// <summary>
     /// 编辑Kiddion配置文件
     /// </summary>
     private void EditKiddionConfigClick()
@@ -340,24 +323,6 @@ public partial class UC3ToolsView : UserControl
     private void ReleaseDirectoryClick()
     {
         ProcessUtil.OpenLink(FileUtil.Default_Path);
-    }
-
-    /// <summary>
-    /// 启用SubVersion[87键]
-    /// </summary>
-    private void SubVersionKey87Click()
-    {
-        ProcessUtil.CloseProcess("SubVersion");
-        FileUtil.ExtractResFile(FileUtil.Resource_Path + "Key87.settings.ini", FileUtil.Kiddion_Path + @"settings.ini");
-    }
-
-    /// <summary>
-    /// 启用SubVersion[104键]
-    /// </summary>
-    private void SubVersionKey104Click()
-    {
-        ProcessUtil.CloseProcess("SubVersion");
-        FileUtil.ExtractResFile(FileUtil.Resource_Path + "settings.ini", FileUtil.Kiddion_Path + @"settings.ini");
     }
 
     /// <summary>

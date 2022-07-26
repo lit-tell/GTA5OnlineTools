@@ -15,7 +15,6 @@ public partial class UC1HacksView : UserControl
     public UC1HacksModel UC1HacksModel { get; set; } = new();
 
     public RelayCommand KiddionClickCommand { get; private set; }
-    public RelayCommand SubVersionClickCommand { get; private set; }
     public RelayCommand GTAHaxClickCommand { get; private set; }
     public RelayCommand BincoHaxClickCommand { get; private set; }
     public RelayCommand LSCHaxClickCommand { get; private set; }
@@ -24,7 +23,6 @@ public partial class UC1HacksView : UserControl
     public RelayCommand FrameHideClickCommand { get; private set; }
 
     private KiddionPage KiddionPage = new();
-    private SubVersionPage SubVersionPage = new();
     private GTAHaxPage GTAHaxPage = new();
     private BincoHaxPage BincoHaxPage = new();
     private LSCHaxPage LSCHaxPage = new();
@@ -35,7 +33,6 @@ public partial class UC1HacksView : UserControl
         this.DataContext = this;
 
         KiddionClickCommand = new(KiddionClick);
-        SubVersionClickCommand = new(SubVersionClick);
         GTAHaxClickCommand = new(GTAHaxClick);
         BincoHaxClickCommand = new(BincoHaxClick);
         LSCHaxClickCommand = new(LSCHaxClick);
@@ -57,9 +54,6 @@ public partial class UC1HacksView : UserControl
         {
             // 判断 Kiddion 是否运行
             UC1HacksModel.KiddionIsRun = ProcessUtil.IsAppRun("Kiddion");
-
-            // 判断 SubVersion 是否运行
-            UC1HacksModel.SubVersionIsRun = ProcessUtil.IsAppRun("SubVersion");
 
             // 判断 GTAHax 是否运行
             UC1HacksModel.GTAHaxIsRun = ProcessUtil.IsAppRun("GTAHax");
@@ -154,21 +148,6 @@ public partial class UC1HacksView : UserControl
         });
     }
 
-    private void SubVersionClick()
-    {
-        AudioUtil.ClickSound();
-
-        if (UC1HacksModel.SubVersionIsRun)
-        {
-            if (!ProcessUtil.IsAppRun("SubVersion"))
-                ProcessUtil.OpenProcess("SubVersion", true);
-        }
-        else
-        {
-            ProcessUtil.CloseProcess("SubVersion");
-        }
-    }
-
     private void GTAHaxClick()
     {
         AudioUtil.ClickSound();
@@ -221,10 +200,6 @@ public partial class UC1HacksView : UserControl
             case "KiddionPage":
                 UC1HacksModel.FrameVisibilityState = Visibility.Visible;
                 UC1HacksModel.FrameContent = KiddionPage;
-                break;
-            case "SubVersionPage":
-                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
-                UC1HacksModel.FrameContent = SubVersionPage;
                 break;
             case "GTAHaxPage":
                 UC1HacksModel.FrameVisibilityState = Visibility.Visible;

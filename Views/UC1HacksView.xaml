@@ -46,39 +46,6 @@
                         </UniformGrid>
                     </Grid>
                 </Border>
-                <!--  SubVersion 外置辅助菜单  -->
-                <Border Style="{StaticResource HackBorderStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Image
-                            Source="/Assets/Images/Hacks/SubVersion.png"
-                            Style="{StaticResource ImageHighQualityStyle}"
-                            ToolTip="SubVersion 外置辅助菜单" />
-                        <UniformGrid
-                            Grid.Row="1"
-                            Margin="5"
-                            Columns="2">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="SubVersionPage">
-                                    使用说明
-                                </Hyperlink>
-                                <TextBlock.ToolTip>
-                                    <Image Source="/Assets/Images/Hacks/SubVersion.png" Style="{StaticResource ImageHighQualityStyle}" />
-                                </TextBlock.ToolTip>
-                            </TextBlock>
-                            <CheckBox IsChecked="{Binding UC1HacksModel.SubVersionIsRun}" Style="{StaticResource ONOFFCheckBox}">
-                                <b:Interaction.Triggers>
-                                    <b:EventTrigger EventName="Click">
-                                        <b:InvokeCommandAction Command="{Binding SubVersionClickCommand}" />
-                                    </b:EventTrigger>
-                                </b:Interaction.Triggers>
-                            </CheckBox>
-                        </UniformGrid>
-                    </Grid>
-                </Border>
                 <!--  GTAHax 全局变量修改工具  -->
                 <Border Style="{StaticResource HackBorderStyle}">
                     <Grid>

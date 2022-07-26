@@ -14,16 +14,6 @@ public class UC1HacksModel : ObservableObject
         set => SetProperty(ref _kiddionIsRun, value);
     }
 
-    private bool _subVersionIsRun = false;
-    /// <summary>
-    /// SubVersion运行状态
-    /// </summary>
-    public bool SubVersionIsRun
-    {
-        get => _subVersionIsRun;
-        set => SetProperty(ref _subVersionIsRun, value);
-    }
-
     private bool _gTAHaxIsRun = false;
     /// <summary>
     /// GTAHax运行状态

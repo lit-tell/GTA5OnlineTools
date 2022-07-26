@@ -46,25 +46,10 @@
                     CommandParameter="KiddionKey104"
                     Content="启用Kiddion[104键]" />
                 <Button
-                    attached:Icon.Value="&#xe882;"
-                    Command="{Binding ToolsButtonClickCommand}"
-                    CommandParameter="SubVersionKey87"
-                    Content="启用SubVersion[87键]" />
-                <Button
-                    attached:Icon.Value="&#xe882;"
-                    Command="{Binding ToolsButtonClickCommand}"
-                    CommandParameter="SubVersionKey104"
-                    Content="启用SubVersion[104键]" />
-                <Button
                     attached:Icon.Value="&#xed18;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditKiddionConfig"
                     Content="编辑Kiddion配置文件" />
-                <Button
-                    attached:Icon.Value="&#xed18;"
-                    Command="{Binding ToolsButtonClickCommand}"
-                    CommandParameter="EditSubVersionSettings"
-                    Content="编辑SubVersion配置文件" />
                 <Button
                     attached:Icon.Value="&#xe64b;"
                     Command="{Binding ToolsButtonClickCommand}"

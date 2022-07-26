@@ -123,12 +123,9 @@ public static class ProcessUtil
     {
         CloseProcess("Kiddion");
         CloseProcess("Kiddion_Chs");
-        CloseProcess("SubVersion");
         CloseProcess("GTAHax");
         CloseProcess("BincoHax");
         CloseProcess("LSCHax");
-        CloseProcess("PedDropper");
-        CloseProcess("JobMoney");
         CloseProcess("DefenderControl");
     }
 }

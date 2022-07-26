@@ -30,7 +30,7 @@ public partial class LoadWindow : Window
                 // 释放必要文件
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "Kiddion.exe", FileUtil.Kiddion_Path + "Kiddion.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "Kiddion_Chs.exe", FileUtil.Kiddion_Path + "Kiddion_Chs.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "SubVersion.exe", FileUtil.Kiddion_Path + "SubVersion.exe");
+
                 // 释放前先判断，防止覆盖配置文件
                 if (!File.Exists(FileUtil.Kiddion_Path + "config.json"))
                     FileUtil.ExtractResFile(FileUtil.Resource_Path + "config.json", FileUtil.Kiddion_Path + "config.json");
@@ -38,16 +38,11 @@ public partial class LoadWindow : Window
                     FileUtil.ExtractResFile(FileUtil.Resource_Path + "teleports.json", FileUtil.Kiddion_Path + "teleports.json");
                 if (!File.Exists(FileUtil.Kiddion_Path + "vehicles.json"))
                     FileUtil.ExtractResFile(FileUtil.Resource_Path + "vehicles.json", FileUtil.Kiddion_Path + "vehicles.json");
-                if (!File.Exists(FileUtil.KiddionScripts_Path + "Readme.api"))
-                    FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.Readme.api", FileUtil.KiddionScripts_Path + "Readme.api");
-                if (!File.Exists(FileUtil.Kiddion_Path + "settings.ini"))
-                    FileUtil.ExtractResFile(FileUtil.Resource_Path + "settings.ini", FileUtil.Kiddion_Path + "settings.ini");
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.pre_skip.lua", FileUtil.KiddionScripts_Path + "pre_skip.lua");
-                //if (!File.Exists(FileUtil.KiddionScripts_Path + "scripts.sirius.lua.example"))
-                //FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.sirius.lua.example", FileUtil.KiddionScripts_Path + "sirius.lua.example");
+                // Kiddion Lua脚本
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.Readme.api", FileUtil.KiddionScripts_Path + "Readme.api");
 
-                /*****************************************************************************************************/
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "GTAHax.exe", FileUtil.Cache_Path + "GTAHax.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "stat.txt", FileUtil.Cache_Path + "stat.txt");
@@ -65,6 +60,7 @@ public partial class LoadWindow : Window
             }
             catch (Exception) { }
 
+            // 防止加载窗口一闪而过
             Task.Delay(500).Wait();
 
             this.Dispatcher.Invoke(() =>
