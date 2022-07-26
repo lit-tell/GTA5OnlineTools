@@ -25,7 +25,7 @@ public static class Online
         {
             Memory.SetForegroundWindow();
 
-            Hacks.WriteGA<int>(1575012, sessionId);
+            Hacks.WriteGA<int>(1575015, sessionId);
             Hacks.WriteGA<int>(1574589 + 2, sessionId == -1 ? -1 : 0);
             Hacks.WriteGA<int>(1574589, 1);
         });
