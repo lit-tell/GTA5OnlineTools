@@ -54,7 +54,8 @@ public static class ProcessUtil
                     path = FileUtil.Cache_Path;
 
                 Directory.SetCurrentDirectory(path);
-                Process.Start(new ProcessStartInfo(Path.Combine(path, processName + ".exe"))
+                path = Path.Combine(path, processName + ".exe");
+                Process.Start(new ProcessStartInfo(path)
                 {
                     UseShellExecute = true,
                     Verb = "runas"
@@ -84,17 +85,9 @@ public static class ProcessUtil
             var windowHandle = process.MainWindowHandle;
 
             if (isTopMost)
-            {
                 WinAPI.SetWindowPos(windowHandle, -1, 0, 0, 0, 0, 1 | 2);
-
-                //MessageBox.Show($"将目标进程 {processName} 窗口置顶成功", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
             else
-            {
                 WinAPI.SetWindowPos(windowHandle, -2, 0, 0, 0, 0, 1 | 2);
-
-                //MessageBox.Show($"将目标进程 {processName} 取消窗口置顶成功", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
         }
         catch (Exception ex)
         {
@@ -108,7 +101,7 @@ public static class ProcessUtil
     /// <param name="processName">程序名字，不需要加.exe</param>
     public static void CloseProcess(string processName)
     {
-        Process[] appProcess = Process.GetProcesses();
+        var appProcess = Process.GetProcesses();
         foreach (Process targetPro in appProcess)
         {
             if (targetPro.ProcessName.Equals(processName))

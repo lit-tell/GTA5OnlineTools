@@ -1,14 +1,14 @@
 ﻿namespace GTA5OnlineTools.Common.Utils;
 
-public class CoreUtil
+public static class CoreUtil
 {
     /// <summary>
     /// 主窗口标题
     /// </summary>
-    public const string MainAppWindowName = "GTA5线上小助手 支持1.60 完全免费 v";
+    public const string MainAppWindowName = "GTA5线上小助手 支持1.61 完全免费 v";
 
     /// <summary>
-    /// 目标进程
+    /// 目标进程，默认为GTA5
     /// </summary>
     public const string TargetAppName = "GTA5";
 
@@ -29,7 +29,13 @@ public class CoreUtil
     public const string GTA5OnlineToolsDiscord = "https://crazyzhang.cn/gta5/20210725032256.html";
     public const string GTA5OnlineToolsIssues = "https://github.com/CrazyZhang666/GTA5OnlineTools/issues/new";
 
+    /// <summary>
+    /// 公告内容文本
+    /// </summary>
     public static string NoticeText = string.Empty;
+    /// <summary>
+    /// 更新日志文本
+    /// </summary>
     public static string ChangeText = string.Empty;
 
     /// <summary>

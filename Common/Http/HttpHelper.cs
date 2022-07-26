@@ -2,7 +2,7 @@
 
 public static class HttpHelper
 {
-    private static readonly HttpClient client = new HttpClient();
+    private static readonly HttpClient client = new();
 
     public static async Task<string> HttpClientGET(string url)
     {

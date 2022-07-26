@@ -2,12 +2,18 @@
 
 public static class JsonUtil
 {
+    /// <summary>
+    /// 反序列化z配置
+    /// </summary>
     private static JsonSerializerOptions Options1 = new JsonSerializerOptions()
     {
         IncludeFields = true,
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
     };
 
+    /// <summary>
+    /// 序列化配置
+    /// </summary>
     private static JsonSerializerOptions Options2 = new JsonSerializerOptions()
     {
         WriteIndented = true,
