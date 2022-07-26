@@ -16,41 +16,41 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <RichTextBox Grid.Column="0" Style="{StaticResource PageRichTextBoxStyle}">
+        <RichTextBox Grid.Column="0" Style="{StaticResource RichTextBoxStyle_Page}">
             <FlowDocument>
-                <Paragraph Style="{StaticResource TitleParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                     简介
                 </Paragraph>
-                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                     ● 辅助作者：AmazingPP，博客地址：<Hyperlink NavigateUri="https://www.zhaofupeng.com/" RequestNavigate="Hyperlink_RequestNavigate">
                         https://www.zhaofupeng.com/
                     </Hyperlink>
                 </Paragraph>
-                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                     ● 辅助来源：<Hyperlink NavigateUri="https://github.com/AmazingPP/subVerison_GTAV_Hack" RequestNavigate="Hyperlink_RequestNavigate">
                         https://github.com/AmazingPP/subVerison_GTAV_Hack
                     </Hyperlink>
                 </Paragraph>
 
-                <Paragraph Style="{StaticResource TitleParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                     提示
                 </Paragraph>
-                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                     ● 87/104按键切换功能位置：小助手-工具设置
                 </Paragraph>
-                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                     ● 游戏需窗口化/无边框才可以正常显示辅助菜单
                 </Paragraph>
-                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                     ● 如果快捷键功能失效，请前往小助手菜单栏-工具设置-初始化配置文件夹
                 </Paragraph>
                 <Paragraph
                     FontWeight="Bold"
                     Foreground="#FFF33131"
-                    Style="{StaticResource ContentParagraphStyle}">
+                    Style="{StaticResource ParagraphStyle_Content}">
                     ● 少部分玩家使用subVersion可能会导致gta5游戏无响应或者停止运行，原因未知
                 </Paragraph>
-                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                     ● 详细使用教程请查看小助手帮助<LineBreak />
                     <Hyperlink NavigateUri="https://crazyzhang.cn" RequestNavigate="Hyperlink_RequestNavigate">
                         https://crazyzhang.cn
@@ -59,12 +59,12 @@
             </FlowDocument>
         </RichTextBox>
 
-        <RichTextBox Grid.Column="1" Style="{StaticResource PageRichTextBoxStyle}">
+        <RichTextBox Grid.Column="1" Style="{StaticResource RichTextBoxStyle_Page}">
             <FlowDocument>
-                <Paragraph Style="{StaticResource TitleParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                     快捷键
                 </Paragraph>
-                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                     【F5】传送至导航点<LineBreak />
                     【F6】清除通缉<LineBreak />
                     【F7】满血满防弹衣<LineBreak />
@@ -72,20 +72,20 @@
                     <LineBreak />
                     【F9】保存设置并关闭修改器</Paragraph>
 
-                <Paragraph Style="{StaticResource TitleParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                     104按键
                 </Paragraph>
-                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                     【小键盘-】显示/隐藏菜单<LineBreak />
                     【小键盘8】和【小键盘2】上下选择<LineBreak />
                     【小键盘7】和【小键盘9】左右翻页<LineBreak />
                     【小键盘4】和【小键盘6】左右移动滑块<LineBreak />
                     【小键盘5】确定，【小键盘0】返回</Paragraph>
 
-                <Paragraph Style="{StaticResource TitleParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                     87按键
                 </Paragraph>
-                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                     【P键】显示/隐藏菜单<LineBreak />
                     【I键】和【M键】上下翻页<LineBreak />
                     【U键】和【O键】左右翻页<LineBreak />

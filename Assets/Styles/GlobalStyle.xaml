@@ -20,7 +20,7 @@
     </Style>
 
     <!--  Image高质量显示样式  -->
-    <Style x:Key="ImageHighQualityStyle" TargetType="Image">
+    <Style x:Key="ImageHighQualityStyle" TargetType="{x:Type Image}">
         <Setter Property="Stretch" Value="UniformToFill" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
@@ -28,7 +28,7 @@
     </Style>
 
     <!--  ONOFFCheckBox样式  -->
-    <Style x:Key="ONOFFCheckBox" TargetType="CheckBox">
+    <Style x:Key="ONOFFCheckBox" TargetType="{x:Type CheckBox}">
         <Setter Property="Margin" Value="3,0,3,0" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -45,16 +45,6 @@
                 <Setter Property="Content" Value="未运行" />
             </Trigger>
         </Style.Triggers>
-    </Style>
-
-    <Style x:Key="TitleParagraphStyle" TargetType="Paragraph">
-        <Setter Property="FontSize" Value="18" />
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="LineHeight" Value="10" />
-    </Style>
-
-    <Style x:Key="ContentParagraphStyle" TargetType="Paragraph">
-        <Setter Property="LineHeight" Value="10" />
     </Style>
 
 </ResourceDictionary>

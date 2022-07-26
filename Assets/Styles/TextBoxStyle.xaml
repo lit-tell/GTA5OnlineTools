@@ -77,7 +77,7 @@
     </Style>
 
     <Style
-        x:Key="TextBoxNormalStyle"
+        x:Key="TextBoxStyle_Normal"
         BasedOn="{StaticResource TextBoxStyle_Base}"
         TargetType="{x:Type TextBox}">
         <!--<Setter Property="TextWrapping" Value="WrapWithOverflow"/>-->
@@ -90,7 +90,7 @@
         <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
     </Style>
 
-    <Style x:Key="PageRichTextBoxStyle" TargetType="{x:Type RichTextBox}">
+    <Style x:Key="RichTextBoxStyle_Page" TargetType="{x:Type RichTextBox}">
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Background" Value="White" />
         <Setter Property="IsReadOnly" Value="True" />
@@ -100,6 +100,16 @@
         <Setter Property="Padding" Value="5" />
         <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+    </Style>
+
+    <Style x:Key="ParagraphStyle_Title" TargetType="{x:Type Paragraph}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="LineHeight" Value="10" />
+    </Style>
+
+    <Style x:Key="ParagraphStyle_Content" TargetType="{x:Type Paragraph}">
+        <Setter Property="LineHeight" Value="10" />
     </Style>
 
 </ResourceDictionary>

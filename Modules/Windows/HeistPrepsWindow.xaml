@@ -50,7 +50,7 @@
                         AcceptsReturn="False"
                         BorderBrush="Gray"
                         BorderThickness="0"
-                        Style="{StaticResource TextBoxNormalStyle}"
+                        Style="{StaticResource TextBoxStyle_Normal}"
                         TextWrapping="WrapWithOverflow" />
                 </DockPanel>
             </Grid>

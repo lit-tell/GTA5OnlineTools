@@ -39,21 +39,21 @@
                         Margin="5"
                         Header="功能简介"
                         Style="{StaticResource GroupBoxWebStyle}">
-                        <RichTextBox BorderThickness="0" Style="{StaticResource PageRichTextBoxStyle}">
+                        <RichTextBox BorderThickness="0" Style="{StaticResource RichTextBoxStyle_Page}">
                             <FlowDocument>
-                                <Paragraph Style="{StaticResource TitleParagraphStyle}">
+                                <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                                     简介
                                 </Paragraph>
-                                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                                     有的数据是需要计算的，比如：总收入=现金+银行+分类收入（差事+下注+分成+车辆销售额+拾取金额+其他...）
                                 </Paragraph>
-                                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                                     其它数据也是类似的原理，而不是乱改一气，否则所有可能产生的风险将由玩家自行承担
                                 </Paragraph>
-                                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                                     MP0_这种类型的数据区分角色，如果读不出来，可以尝试把MP0改为MP1
                                 </Paragraph>
-                                <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                                     Social Club 线上角色数据查询<LineBreak />
                                     <Hyperlink NavigateUri="https://socialclub.rockstargames.com/games/gtav/pc/career/overview/gtaonline" RequestNavigate="Hyperlink_RequestNavigate">
                                         https://socialclub.rockstargames.com/games/gtav/pc/career/overview/gtaonline
@@ -107,7 +107,7 @@
                                         AcceptsReturn="False"
                                         BorderBrush="Gray"
                                         BorderThickness="0"
-                                        Style="{StaticResource TextBoxNormalStyle}"
+                                        Style="{StaticResource TextBoxStyle_Normal}"
                                         TextWrapping="WrapWithOverflow" />
                                 </DockPanel>
                             </Grid>

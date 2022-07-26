@@ -46,7 +46,7 @@
                         Margin="5"
                         BorderBrush="Gray"
                         BorderThickness="0"
-                        Style="{StaticResource TextBoxNormalStyle}">
+                        Style="{StaticResource TextBoxStyle_Normal}">
                         <TextBox.ToolTip>
                             <TextBlock Text="把需要导入GTAHax的代码粘贴到这里" />
                         </TextBox.ToolTip>

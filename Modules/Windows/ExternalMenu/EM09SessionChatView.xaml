@@ -32,7 +32,7 @@
                     BorderThickness="0"
                     InputLanguageManager.InputLanguage="zh-CN"
                     KeyUp="TextBox_InputMessage_KeyUp"
-                    Style="{StaticResource TextBoxNormalStyle}"
+                    Style="{StaticResource TextBoxStyle_Normal}"
                     TextWrapping="WrapWithOverflow"
                     ToolTip="提示：输入完成后，按下Enter键自动发送文本到游戏中" />
             </GroupBox>
@@ -172,15 +172,15 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <RichTextBox Style="{StaticResource PageRichTextBoxStyle}" VerticalScrollBarVisibility="Hidden">
+            <RichTextBox Style="{StaticResource RichTextBoxStyle_Page}" VerticalScrollBarVisibility="Hidden">
                 <FlowDocument>
-                    <Paragraph Style="{StaticResource TitleParagraphStyle}">
+                    <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                         提示
                     </Paragraph>
-                    <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                    <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                         添加颜色样式代码只建议修改第一项“在线列表”，剩下两项加了颜色样式代码昵称游戏中也会显示对应代码而不是颜色样式
                     </Paragraph>
-                    <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                    <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                         修改示例：~o~Hello ~b~Kitty<LineBreak />
                         <Image
                             Margin="0,5,0,5"
@@ -195,10 +195,10 @@
                             </Image.ToolTip>
                         </Image>
                     </Paragraph>
-                    <Paragraph Style="{StaticResource TitleParagraphStyle}">
+                    <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                         昵称颜色
                     </Paragraph>
-                    <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                    <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                         ~r~ = 红色<LineBreak />
                         ~b~ = 蓝色<LineBreak />
                         ~x~ = 淡蓝色<LineBreak />
@@ -212,10 +212,10 @@
                         ~m~ = 深灰色<LineBreak />
                         ~u~ = 黑色<LineBreak />
                         ~w~ =  白色</Paragraph>
-                    <Paragraph Style="{StaticResource TitleParagraphStyle}">
+                    <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                         昵称样式
                     </Paragraph>
-                    <Paragraph Style="{StaticResource ContentParagraphStyle}">
+                    <Paragraph Style="{StaticResource ParagraphStyle_Content}">
                         ~bold~ ~h~ = 粗体<LineBreak />
                         ~italic~ = 斜体<LineBreak />
                         ~ws~ = 通缉警星</Paragraph>
