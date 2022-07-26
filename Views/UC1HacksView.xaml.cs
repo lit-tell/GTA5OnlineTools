@@ -84,27 +84,32 @@ public partial class UC1HacksView : UserControl
     {
         AudioUtil.ClickSound();
 
+        bool isRun = false;
+
         Task.Run(() =>
         {
             if (UC1HacksModel.KiddionIsRun)
             {
+                // 先关闭Kiddion汉化程序
                 ProcessUtil.CloseProcess("Kiddion_Chs");
-
+                // 如果Kiddion没有运行则打开Kiddion
                 if (!ProcessUtil.IsAppRun("Kiddion"))
                     ProcessUtil.OpenProcess("Kiddion", true);
 
-                bool isRun = false;
                 do
                 {
+                    // 等待Kiddion启动
                     if (ProcessUtil.IsAppRun("Kiddion"))
                     {
+                        // Kiddion进程启动标志
                         isRun = true;
-
+                        // Kiddion菜单界面显示标志
                         bool isShow = false;
                         do
                         {
+                            // 拿到Kiddion进程
                             var pKiddion = Process.GetProcessesByName("Kiddion").ToList()[0];
-
+                            // 获取Kiddion窗口句柄
                             IntPtr Menu_handle = pKiddion.MainWindowHandle;
                             IntPtr child_handle = WinAPI.FindWindowEx(Menu_handle, IntPtr.Zero, "Static", null);
                             child_handle = WinAPI.FindWindowEx(Menu_handle, child_handle, "Static", null);
@@ -139,6 +144,13 @@ public partial class UC1HacksView : UserControl
                 ProcessUtil.CloseProcess("Kiddion");
                 ProcessUtil.CloseProcess("Kiddion_Chs");
             }
+        });
+
+        Task.Run(() =>
+        {
+            // 模拟任务超时
+            Task.Delay(5000);
+            isRun = true;
         });
     }
 

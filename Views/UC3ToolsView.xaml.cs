@@ -116,91 +116,114 @@ public partial class UC3ToolsView : UserControl
         }
     }
 
+    /// <summary>
+    /// 打开Web链接
+    /// </summary>
+    /// <param name="url"></param>
     private void HyperlinkClick(string url)
     {
         ProcessUtil.OpenLink(url);
     }
 
+    /// <summary>
+    /// GC垃圾回收
+    /// </summary>
     private void ManualGCClick()
     {
         GC.Collect();
         GC.WaitForPendingFinalizers();
+        MainWindow.ShowNoticeInfo("执行GC垃圾回收成功");
     }
 
+    /// <summary>
+    /// 基础DLL注入器
+    /// </summary>
     private void BaseInjectorClick()
     {
-        Application.Current.Dispatcher.Invoke(() =>
+        if (InjectorWindow == null)
         {
-            if (InjectorWindow == null)
+            InjectorWindow = new InjectorWindow();
+            InjectorWindow.Show();
+        }
+        else
+        {
+            if (InjectorWindow.IsVisible)
             {
-                InjectorWindow = new InjectorWindow();
-                InjectorWindow.Show();
+                InjectorWindow.Topmost = true;
+                InjectorWindow.Topmost = false;
+                InjectorWindow.WindowState = WindowState.Normal;
             }
             else
             {
-                if (InjectorWindow.IsVisible)
-                {
-                    InjectorWindow.Topmost = true;
-                    InjectorWindow.Topmost = false;
-                    InjectorWindow.WindowState = WindowState.Normal;
-                }
-                else
-                {
-                    InjectorWindow = null;
-                    InjectorWindow = new InjectorWindow();
-                    InjectorWindow.Show();
-                }
+                InjectorWindow = null;
+                InjectorWindow = new InjectorWindow();
+                InjectorWindow.Show();
             }
-        });
+        }
     }
 
+    /// <summary>
+    /// Win10安全中心设置
+    /// </summary>
     private void DefenderControlClick()
     {
         ProcessUtil.OpenProcess("DefenderControl", false);
     }
 
-    private void GTA5Win2NoTopMostClick()
-    {
-        ProcessUtil.TopMostProcess(CoreUtil.TargetAppName, false);
-    }
-
+    /// <summary>
+    /// GTA5窗口置顶
+    /// </summary>
     private void GTA5Win2TopMostClick()
     {
         ProcessUtil.TopMostProcess(CoreUtil.TargetAppName, true);
     }
 
+    /// <summary>
+    /// GTA5窗口取消置顶
+    /// </summary>
+    private void GTA5Win2NoTopMostClick()
+    {
+        ProcessUtil.TopMostProcess(CoreUtil.TargetAppName, false);
+    }
+
+    /// <summary>
+    /// 打开更新窗口
+    /// </summary>
     private void OpenUpdateWindowClick()
     {
-        Application.Current.Dispatcher.Invoke(() =>
+        if (UpdateWindow == null)
         {
-            if (UpdateWindow == null)
+            UpdateWindow = new UpdateWindow();
+            UpdateWindow.Show();
+        }
+        else
+        {
+            if (UpdateWindow.IsVisible)
             {
-                UpdateWindow = new UpdateWindow();
-                UpdateWindow.Show();
+                UpdateWindow.Topmost = true;
+                UpdateWindow.Topmost = false;
+                UpdateWindow.WindowState = WindowState.Normal;
             }
             else
             {
-                if (UpdateWindow.IsVisible)
-                {
-                    UpdateWindow.Topmost = true;
-                    UpdateWindow.Topmost = false;
-                    UpdateWindow.WindowState = WindowState.Normal;
-                }
-                else
-                {
-                    UpdateWindow = null;
-                    UpdateWindow = new UpdateWindow();
-                    UpdateWindow.Show();
-                }
+                UpdateWindow = null;
+                UpdateWindow = new UpdateWindow();
+                UpdateWindow.Show();
             }
-        });
+        }
     }
 
+    /// <summary>
+    /// 编辑Hosts文件
+    /// </summary>
     private void EditHostsClick()
     {
         ProcessUtil.OpenLink("notepad.exe", @"C:\windows\system32\drivers\etc\hosts");
     }
 
+    /// <summary>
+    /// 刷新DNS缓存
+    /// </summary>
     private void RefreshDNSCacheClick()
     {
         CoreUtil.CMD_Code("ipconfig /flushdns");
@@ -214,7 +237,6 @@ public partial class UC3ToolsView : UserControl
     {
         try
         {
-            // 重命名小助手文件
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(FileUtil.Current_Path);
             if (fileNameWithoutExtension != "GTA5OnlineTools")
             {
@@ -224,7 +246,6 @@ public partial class UC3ToolsView : UserControl
                 App.AppMainMutex.Dispose();
                 ProcessUtil.OpenLink(FileUtil.GetCurrFullPath("GTA5OnlineTools.exe"));
                 Application.Current.Shutdown();
-
             }
             else
             {
@@ -244,7 +265,6 @@ public partial class UC3ToolsView : UserControl
     {
         try
         {
-            // 重命名小助手文件
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(FileUtil.Current_Path);
             if (fileNameWithoutExtension != (CoreUtil.MainAppWindowName + CoreUtil.ClientVersionInfo))
             {
@@ -266,53 +286,83 @@ public partial class UC3ToolsView : UserControl
         }
     }
 
+    /// <summary>
+    /// 编辑GTAHax导入文件
+    /// </summary>
     private void EditGTAHaxStatClick()
     {
         ProcessUtil.OpenLink("notepad.exe", FileUtil.GTAHaxStat_Path);
     }
 
+    /// <summary>
+    /// 编辑Kiddion自定义载具
+    /// </summary>
     private void EditKiddionVCClick()
     {
         ProcessUtil.OpenLink("notepad.exe", FileUtil.Kiddion_Path + @"vehicles.json");
     }
 
+    /// <summary>
+    /// 编辑Kiddion自定义传送
+    /// </summary>
     private void EditKiddionTPClick()
     {
         ProcessUtil.OpenLink("notepad.exe", FileUtil.Kiddion_Path + @"teleports.json");
     }
 
+    /// <summary>
+    /// 编辑SubVersion配置文件
+    /// </summary>
     private void EditSubVersionSettingsClick()
     {
         ProcessUtil.OpenLink("notepad.exe", FileUtil.Kiddion_Path + @"settings.ini");
     }
 
+    /// <summary>
+    /// 编辑Kiddion配置文件
+    /// </summary>
     private void EditKiddionConfigClick()
     {
         ProcessUtil.OpenLink("notepad.exe", FileUtil.Kiddion_Path + @"config.json");
     }
 
+    /// <summary>
+    /// 程序当前目录
+    /// </summary>
     private void CurrentDirectoryClick()
     {
         ProcessUtil.OpenLink(FileUtil.CurrentDirectory_Path);
     }
 
+    /// <summary>
+    /// 程序释放目录
+    /// </summary>
     private void ReleaseDirectoryClick()
     {
         ProcessUtil.OpenLink(FileUtil.Default_Path);
     }
 
+    /// <summary>
+    /// 启用SubVersion[87键]
+    /// </summary>
     private void SubVersionKey87Click()
     {
         ProcessUtil.CloseProcess("SubVersion");
         FileUtil.ExtractResFile(FileUtil.Resource_Path + "Key87.settings.ini", FileUtil.Kiddion_Path + @"settings.ini");
     }
 
+    /// <summary>
+    /// 启用SubVersion[104键]
+    /// </summary>
     private void SubVersionKey104Click()
     {
         ProcessUtil.CloseProcess("SubVersion");
         FileUtil.ExtractResFile(FileUtil.Resource_Path + "settings.ini", FileUtil.Kiddion_Path + @"settings.ini");
     }
 
+    /// <summary>
+    /// 启用Kiddion[87键]
+    /// </summary>
     private void KiddionKey87Click()
     {
         ProcessUtil.CloseProcess("Kiddion");
@@ -320,6 +370,9 @@ public partial class UC3ToolsView : UserControl
         FileUtil.ExtractResFile(FileUtil.Resource_Path + "Key87.config.json", FileUtil.Kiddion_Path + @"config.json");
     }
 
+    /// <summary>
+    /// 启用Kiddion[104键]
+    /// </summary>
     private void KiddionKey104Click()
     {
         ProcessUtil.CloseProcess("Kiddion");
@@ -327,11 +380,17 @@ public partial class UC3ToolsView : UserControl
         FileUtil.ExtractResFile(FileUtil.Resource_Path + "config.json", FileUtil.Kiddion_Path + @"config.json");
     }
 
+    /// <summary>
+    /// 关闭Kiddion汉化
+    /// </summary>
     private void KiddionChsOFFClick()
     {
         ProcessUtil.CloseProcess("Kiddion_Chs");
     }
 
+    /// <summary>
+    /// 启用Kiddion汉化
+    /// </summary>
     private void KiddionChsONClick()
     {
         if (ProcessUtil.IsAppRun("Kiddion"))
@@ -345,6 +404,9 @@ public partial class UC3ToolsView : UserControl
         }
     }
 
+    /// <summary>
+    /// 重启程序
+    /// </summary>
     private void RestartAppClick()
     {
         ProcessUtil.CloseTheseProcess();
@@ -353,6 +415,9 @@ public partial class UC3ToolsView : UserControl
         Application.Current.Shutdown();
     }
 
+    /// <summary>
+    /// 初始化配置文件夹
+    /// </summary>
     private void InitCPDPathClick()
     {
         try
@@ -374,6 +439,9 @@ public partial class UC3ToolsView : UserControl
         }
     }
 
+    /// <summary>
+    /// 最小化程序到系统托盘
+    /// </summary>
     private void MinimizeToTrayClick()
     {
         MainWindow.MainWindowIns.WindowState = WindowState.Minimized;
@@ -381,6 +449,9 @@ public partial class UC3ToolsView : UserControl
         MainWindow.ShowNoticeInfo("程序已最小化到托盘");
     }
 
+    /// <summary>
+    /// 切换按键音效
+    /// </summary>
     private void SwitchAudioClick()
     {
         if (AudioUtil.ClickSoundIndex < 5)

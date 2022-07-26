@@ -181,7 +181,7 @@
 
             </WrapPanel>
         </ScrollViewer>
-
+        <!--  使用说明窗口  -->
         <Grid Visibility="{Binding UC1HacksModel.FrameVisibilityState, FallbackValue=Collapsed}">
             <Border
                 Margin="10"
