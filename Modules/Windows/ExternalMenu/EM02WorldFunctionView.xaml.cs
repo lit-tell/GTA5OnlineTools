@@ -122,9 +122,7 @@ public partial class EM02WorldFunctionView : UserControl
 
         int index = MiscData.RPxNs.FindIndex(t => t.Name == str);
         if (index != -1)
-        {
             Online.RPMultiplier(MiscData.RPxNs[index].ID);
-        }
     }
 
     private void Button_REPxN_Click(object sender, RoutedEventArgs e)
@@ -135,8 +133,6 @@ public partial class EM02WorldFunctionView : UserControl
 
         int index = MiscData.REPxNs.FindIndex(t => t.Name == str);
         if (index != -1)
-        {
-            Online.RPMultiplier(MiscData.REPxNs[index].ID);
-        }
+            Online.REPMultiplier(MiscData.REPxNs[index].ID);
     }
 }

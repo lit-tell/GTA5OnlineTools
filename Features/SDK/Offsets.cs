@@ -28,7 +28,7 @@ public class Offsets
 
     ////////////////////////////////////////////////////////////////////
 
-    public const int InitSession = 1574589;
+    public const int InitSession_State = 1574589;
     public const int InitSession_Cache = 1574589 + 2;
     public const int InitSession_Type = 1575015;
 

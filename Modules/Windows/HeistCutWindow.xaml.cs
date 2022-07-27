@@ -49,10 +49,11 @@ public partial class HeistCutWindow : Window
     {
         try
         {
-            TextBox_Cayo_Player1.Text = Hacks.ReadGA<int>(1973525 + 823 + 56 + 1).ToString();
-            TextBox_Cayo_Player2.Text = Hacks.ReadGA<int>(1973525 + 823 + 56 + 2).ToString();
-            TextBox_Cayo_Player3.Text = Hacks.ReadGA<int>(1973525 + 823 + 56 + 3).ToString();
-            TextBox_Cayo_Player4.Text = Hacks.ReadGA<int>(1973525 + 823 + 56 + 4).ToString();
+            // 佩里克岛抢劫玩家分红比例
+            TextBox_Cayo_Player1.Text = Hacks.ReadGA<int>(1973321 + 823 + 56 + 1).ToString();
+            TextBox_Cayo_Player2.Text = Hacks.ReadGA<int>(1973321 + 823 + 56 + 2).ToString();
+            TextBox_Cayo_Player3.Text = Hacks.ReadGA<int>(1973321 + 823 + 56 + 3).ToString();
+            TextBox_Cayo_Player4.Text = Hacks.ReadGA<int>(1973321 + 823 + 56 + 4).ToString();
 
             TextBox_Cayo_Tequila.Text = Hacks.ReadGA<int>(262145 + 29632).ToString();
             TextBox_Cayo_RubyNecklace.Text = Hacks.ReadGA<int>(262145 + 29633).ToString();
@@ -68,10 +69,11 @@ public partial class HeistCutWindow : Window
 
             //////////////////////////////////////////////////////////////////////////////////
 
-            TextBox_Casino_Player1.Text = Hacks.ReadGA<int>(1966739 + 2325 + 1).ToString();
-            TextBox_Casino_Player2.Text = Hacks.ReadGA<int>(1966739 + 2325 + 2).ToString();
-            TextBox_Casino_Player3.Text = Hacks.ReadGA<int>(1966739 + 2325 + 3).ToString();
-            TextBox_Casino_Player4.Text = Hacks.ReadGA<int>(1966739 + 2325 + 4).ToString();
+            // 赌场抢劫玩家分红比例
+            TextBox_Casino_Player1.Text = Hacks.ReadGA<int>(1966534 + 1497 + 736 + 92 + 1).ToString();
+            TextBox_Casino_Player2.Text = Hacks.ReadGA<int>(1966534 + 1497 + 736 + 92 + 2).ToString();
+            TextBox_Casino_Player3.Text = Hacks.ReadGA<int>(1966534 + 1497 + 736 + 92 + 3).ToString();
+            TextBox_Casino_Player4.Text = Hacks.ReadGA<int>(1966534 + 1497 + 736 + 92 + 4).ToString();
 
             TextBox_Casino_Lester.Text = Hacks.ReadGA<int>(262145 + 28455).ToString();
 
@@ -100,10 +102,11 @@ public partial class HeistCutWindow : Window
 
             //////////////////////////////////////////////////////////////////////////////////
 
-            TextBox_Doomsday_Player1.Text = Hacks.ReadGA<int>(1962763 + 812 + 50 + 1).ToString();
-            TextBox_Doomsday_Player2.Text = Hacks.ReadGA<int>(1962763 + 812 + 50 + 2).ToString();
-            TextBox_Doomsday_Player3.Text = Hacks.ReadGA<int>(1962763 + 812 + 50 + 3).ToString();
-            TextBox_Doomsday_Player4.Text = Hacks.ReadGA<int>(1962763 + 812 + 50 + 4).ToString();
+            // 末日抢劫玩家分红比例
+            TextBox_Doomsday_Player1.Text = Hacks.ReadGA<int>(1962546 + 812 + 50 + 1).ToString();
+            TextBox_Doomsday_Player2.Text = Hacks.ReadGA<int>(1962546 + 812 + 50 + 2).ToString();
+            TextBox_Doomsday_Player3.Text = Hacks.ReadGA<int>(1962546 + 812 + 50 + 3).ToString();
+            TextBox_Doomsday_Player4.Text = Hacks.ReadGA<int>(1962546 + 812 + 50 + 4).ToString();
 
             TextBox_Doomsday_ActI.Text = Hacks.ReadGA<int>(262145 + 8925).ToString();
             TextBox_Doomsday_ActII.Text = Hacks.ReadGA<int>(262145 + 8926).ToString();
@@ -111,10 +114,11 @@ public partial class HeistCutWindow : Window
 
             //////////////////////////////////////////////////////////////////////////////////
 
-            TextBox_Apart_Player1.Text = Hacks.ReadGA<int>(1934636 + 3008 + 1).ToString();
-            TextBox_Apart_Player2.Text = Hacks.ReadGA<int>(1934636 + 3008 + 2).ToString();
-            TextBox_Apart_Player3.Text = Hacks.ReadGA<int>(1934636 + 3008 + 3).ToString();
-            TextBox_Apart_Player4.Text = Hacks.ReadGA<int>(1934636 + 3008 + 4).ToString();
+            // 公寓抢劫玩家分红比例
+            TextBox_Apart_Player1.Text = Hacks.ReadGA<int>(1933908 + 3008 + 1).ToString();
+            TextBox_Apart_Player2.Text = Hacks.ReadGA<int>(1933908 + 3008 + 2).ToString();
+            TextBox_Apart_Player3.Text = Hacks.ReadGA<int>(1933908 + 3008 + 3).ToString();
+            TextBox_Apart_Player4.Text = Hacks.ReadGA<int>(1933908 + 3008 + 4).ToString();
 
             TextBox_Apart_Fleeca.Text = Hacks.ReadGA<int>(262145 + 8920).ToString();
             TextBox_Apart_PrisonBreak.Text = Hacks.ReadGA<int>(262145 + 8921).ToString();
@@ -208,10 +212,11 @@ public partial class HeistCutWindow : Window
                 TextBox_Apart_SeriesA.Text != "" &&
                 TextBox_Apart_PacificStandard.Text != "")
             {
-                Hacks.WriteGA<int>(1973525 + 823 + 56 + 1, Convert.ToInt32(TextBox_Cayo_Player1.Text));
-                Hacks.WriteGA<int>(1973525 + 823 + 56 + 2, Convert.ToInt32(TextBox_Cayo_Player2.Text));
-                Hacks.WriteGA<int>(1973525 + 823 + 56 + 3, Convert.ToInt32(TextBox_Cayo_Player3.Text));
-                Hacks.WriteGA<int>(1973525 + 823 + 56 + 4, Convert.ToInt32(TextBox_Cayo_Player4.Text));
+                // 佩里克岛抢劫玩家分红比例
+                Hacks.WriteGA<int>(1973321 + 823 + 56 + 1, Convert.ToInt32(TextBox_Cayo_Player1.Text));
+                Hacks.WriteGA<int>(1973321 + 823 + 56 + 2, Convert.ToInt32(TextBox_Cayo_Player2.Text));
+                Hacks.WriteGA<int>(1973321 + 823 + 56 + 3, Convert.ToInt32(TextBox_Cayo_Player3.Text));
+                Hacks.WriteGA<int>(1973321 + 823 + 56 + 4, Convert.ToInt32(TextBox_Cayo_Player4.Text));
 
                 Hacks.WriteGA<int>(262145 + 29632, Convert.ToInt32(TextBox_Cayo_Tequila.Text));
                 Hacks.WriteGA<int>(262145 + 29633, Convert.ToInt32(TextBox_Cayo_RubyNecklace.Text));
@@ -227,10 +232,11 @@ public partial class HeistCutWindow : Window
 
                 //////////////////////////////////////////////////////////////////////////////////
 
-                Hacks.WriteGA<int>(1966739 + 2325 + 1, Convert.ToInt32(TextBox_Casino_Player1.Text));
-                Hacks.WriteGA<int>(1966739 + 2325 + 2, Convert.ToInt32(TextBox_Casino_Player2.Text));
-                Hacks.WriteGA<int>(1966739 + 2325 + 3, Convert.ToInt32(TextBox_Casino_Player3.Text));
-                Hacks.WriteGA<int>(1966739 + 2325 + 4, Convert.ToInt32(TextBox_Casino_Player4.Text));
+                // 赌场抢劫玩家分红比例
+                Hacks.WriteGA<int>(1966534 + 1497 + 736 + 92 + 1, Convert.ToInt32(TextBox_Casino_Player1.Text));
+                Hacks.WriteGA<int>(1966534 + 1497 + 736 + 92 + 2, Convert.ToInt32(TextBox_Casino_Player2.Text));
+                Hacks.WriteGA<int>(1966534 + 1497 + 736 + 92 + 3, Convert.ToInt32(TextBox_Casino_Player3.Text));
+                Hacks.WriteGA<int>(1966534 + 1497 + 736 + 92 + 4, Convert.ToInt32(TextBox_Casino_Player4.Text));
 
                 Hacks.WriteGA<int>(262145 + 28455, Convert.ToInt32(TextBox_Casino_Lester.Text));
 
@@ -259,10 +265,11 @@ public partial class HeistCutWindow : Window
 
                 //////////////////////////////////////////////////////////////////////////////////
 
-                Hacks.WriteGA<int>(1962763 + 812 + 50 + 1, Convert.ToInt32(TextBox_Doomsday_Player1.Text));
-                Hacks.WriteGA<int>(1962763 + 812 + 50 + 2, Convert.ToInt32(TextBox_Doomsday_Player2.Text));
-                Hacks.WriteGA<int>(1962763 + 812 + 50 + 3, Convert.ToInt32(TextBox_Doomsday_Player3.Text));
-                Hacks.WriteGA<int>(1962763 + 812 + 50 + 4, Convert.ToInt32(TextBox_Doomsday_Player4.Text));
+                // 末日抢劫玩家分红比例
+                Hacks.WriteGA<int>(1962546 + 812 + 50 + 1, Convert.ToInt32(TextBox_Doomsday_Player1.Text));
+                Hacks.WriteGA<int>(1962546 + 812 + 50 + 2, Convert.ToInt32(TextBox_Doomsday_Player2.Text));
+                Hacks.WriteGA<int>(1962546 + 812 + 50 + 3, Convert.ToInt32(TextBox_Doomsday_Player3.Text));
+                Hacks.WriteGA<int>(1962546 + 812 + 50 + 4, Convert.ToInt32(TextBox_Doomsday_Player4.Text));
 
                 Hacks.WriteGA<int>(262145 + 8925, Convert.ToInt32(TextBox_Doomsday_ActI.Text));
                 Hacks.WriteGA<int>(262145 + 8926, Convert.ToInt32(TextBox_Doomsday_ActII.Text));
@@ -270,10 +277,11 @@ public partial class HeistCutWindow : Window
 
                 //////////////////////////////////////////////////////////////////////////////////
 
-                Hacks.WriteGA<int>(1934636 + 3008 + 1, Convert.ToInt32(TextBox_Apart_Player1.Text));
-                Hacks.WriteGA<int>(1934636 + 3008 + 2, Convert.ToInt32(TextBox_Apart_Player2.Text));
-                Hacks.WriteGA<int>(1934636 + 3008 + 3, Convert.ToInt32(TextBox_Apart_Player3.Text));
-                Hacks.WriteGA<int>(1934636 + 3008 + 4, Convert.ToInt32(TextBox_Apart_Player4.Text));
+                // 公寓抢劫玩家分红比例
+                Hacks.WriteGA<int>(1933908 + 3008 + 1, Convert.ToInt32(TextBox_Apart_Player1.Text));
+                Hacks.WriteGA<int>(1933908 + 3008 + 2, Convert.ToInt32(TextBox_Apart_Player2.Text));
+                Hacks.WriteGA<int>(1933908 + 3008 + 3, Convert.ToInt32(TextBox_Apart_Player3.Text));
+                Hacks.WriteGA<int>(1933908 + 3008 + 4, Convert.ToInt32(TextBox_Apart_Player4.Text));
 
                 Hacks.WriteGA<int>(262145 + 8920, Convert.ToInt32(TextBox_Apart_Fleeca.Text));
                 Hacks.WriteGA<int>(262145 + 8921, Convert.ToInt32(TextBox_Apart_PrisonBreak.Text));
