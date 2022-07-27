@@ -3,19 +3,16 @@
 namespace GTA5OnlineTools.Features.SDK;
 
 public static class Player
-{    /// <summary>
-     /// 无敌模式
-     /// </summary>
+{
+    /// <summary>
+    /// 无敌模式
+    /// </summary>
     public static void GodMode(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.GodMode, 0x01);
-        }
         else
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.GodMode, 0x00);
-        }
     }
 
     /// <summary>
@@ -63,13 +60,9 @@ public static class Player
     public static void NoRagdoll(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.NoRagdoll, 0x01);
-        }
         else
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.NoRagdoll, 0x20);
-        }
     }
 
     /// <summary>
@@ -78,13 +71,9 @@ public static class Player
     public static void NoCollision(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write(Globals.WorldPTR, Offsets.Player.NoCollision, -1.0f);
-        }
         else
-        {
             Memory.Write(Globals.WorldPTR, Offsets.Player.NoCollision, 0.25f);
-        }
     }
 
     /// <summary>
@@ -96,13 +85,9 @@ public static class Player
         waterProof %= 0x1000000;
 
         if (isEnable)
-        {
             Memory.Write<long>(Globals.WorldPTR, Offsets.PlayerWaterProof, waterProof + 0x1000000);
-        }
         else
-        {
             Memory.Write<long>(Globals.WorldPTR, Offsets.PlayerWaterProof, waterProof);
-        }
     }
 
     /// <summary>
@@ -111,13 +96,9 @@ public static class Player
     public static void Invisibility(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.Invisibility, 0x01);
-        }
         else
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.Invisibility, 0x27);
-        }
     }
 
     /// <summary>
@@ -144,13 +125,9 @@ public static class Player
     public static void UndeadOffRadar(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write<float>(Globals.WorldPTR, Offsets.Player.MaxHealth, 0.0f);
-        }
         else
-        {
             Memory.Write<float>(Globals.WorldPTR, Offsets.Player.MaxHealth, 328.0f);
-        }
     }
 
     /// <summary>
@@ -159,12 +136,8 @@ public static class Player
     public static void WantedCanChange(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write<float>(Globals.WorldPTR, Offsets.WantedCanChange, 1.0f);
-        }
         else
-        {
             Memory.Write<float>(Globals.WorldPTR, Offsets.WantedCanChange, 0.0f);
-        }
     }
 }

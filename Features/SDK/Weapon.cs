@@ -140,12 +140,8 @@ public static class Weapon
     public static void ReloadMult(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.ReloadMult, 4.0f);
-        }
         else
-        {
             Memory.Write<float>(Globals.WorldPTR, Offsets.Weapon.ReloadMult, 1.0f);
-        }
     }
 }

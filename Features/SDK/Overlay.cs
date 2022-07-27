@@ -156,13 +156,9 @@ public class Overlay : IDisposable
             {
                 // 当玩家按住右键准心对准敌人，准心变成粉红色，否则为绿色
                 if (isAimPed && Convert.ToBoolean(WinAPI.GetKeyState((int)WinVK.RBUTTON) & WinAPI.KEY_PRESSED))
-                {
                     DrawCrosshair(gfx, _brushes["deepPink"], 7.0f, 1.5f);
-                }
                 else
-                {
                     DrawCrosshair(gfx, _brushes["green"], 7.0f, 1.5f);
-                }
             }
 
             ///////////////////////////////////////////////////////
@@ -194,21 +190,13 @@ public class Overlay : IDisposable
 
                 // 绘制玩家
                 if (!Settings.Overlay.ESP_Player)
-                {
                     if (pedName != "")
-                    {
                         continue;
-                    }
-                }
 
                 // 绘制Ped
                 if (!Settings.Overlay.ESP_NPC)
-                {
                     if (pedName == "")
-                    {
                         continue;
-                    }
-                }
 
                 long m_navigation = Memory.Read<long>(m_ped_list + 0x30);
                 if (!Memory.IsValid(m_navigation))
@@ -755,9 +743,7 @@ public class Overlay : IDisposable
         Vector2 v2Bone1 = WorldToScreen(GetBonePosition(offset, bone1));
 
         if (!IsNullVector2(v2Bone0) && !IsNullVector2(v2Bone1))
-        {
             gfx.DrawLine(_brushes["white"], v2Bone0.X, v2Bone0.Y, v2Bone1.X, v2Bone1.Y, 1);
-        }
     }
 
     private Vector3 GetBonePosition(long offset, int BoneID)

@@ -10,13 +10,9 @@ public static class Vehicle
     public static void GodMode(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
-        }
         else
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.GodMode, 0x00);
-        }
     }
 
     /// <summary>
@@ -25,13 +21,9 @@ public static class Vehicle
     public static void Seatbelt(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.Seatbelt, 0xC9);
-        }
         else
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Player.Seatbelt, 0xC8);
-        }
     }
 
     /// <summary>
@@ -40,13 +32,9 @@ public static class Vehicle
     public static void Invisibility(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.Invisibility, 0x01);
-        }
         else
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.Invisibility, 0x27);
-        }
     }
 
     /// <summary>
@@ -63,13 +51,9 @@ public static class Vehicle
     public static void Parachute(bool isEnable)
     {
         if (isEnable)
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.Parachute, 1);
-        }
         else
-        {
             Memory.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.Parachute, 0);
-        }
     }
 
     /// <summary>
@@ -298,6 +282,12 @@ public static class Vehicle
         Hacks.WriteGA<int>(Offsets.SpawnPersonalVehicleIndex2, 1);
     }
 
+    /// <summary>
+    /// 查找载具显示名称
+    /// </summary>
+    /// <param name="hash"></param>
+    /// <param name="isDisplay"></param>
+    /// <returns></returns>
     public static string FindVehicleDisplayName(long hash, bool isDisplay)
     {
         foreach (var item in Data.VehicleData.VehicleClassData)

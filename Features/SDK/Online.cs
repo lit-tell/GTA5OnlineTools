@@ -291,7 +291,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void CEOPricePerCrateAtCrates(bool isEnable)
     {
-        // tuneable_processing.c    -1445480509   Global_262145.f_15843
+        // tuneable_processing.c    -1445480509   Global_262145.f_15843         // tuneables_processing.c
         Hacks.WriteGA<int>(262145 + 15843, isEnable ? 20000 : 10000);           // 1        specialCargo1CratesPrice
         Hacks.WriteGA<int>(262145 + 15843 + 1, isEnable ? 20000 : 11000);       // 2        specialCargo2CratesPrice
         Hacks.WriteGA<int>(262145 + 15843 + 2, isEnable ? 20000 : 12000);       // 3        specialCargo3CratesPrice                                                
@@ -331,15 +331,15 @@ public static class Online
     /// <param name="produce_time"></param>
     public static void SetBunkerProduceResearchTime(bool isEnable, int produce_time)
     {
-        // Base Time to Produce
-        Hacks.WriteGA<int>(262145 + 21324, isEnable ? produce_time : 600000);     // Product                  215868155 
-        Hacks.WriteGA<int>(262145 + 21340, isEnable ? produce_time : 300000);     // Research                 -676414773
+        // Base Time to Produce                                                     // tuneables_processing.c
+        Hacks.WriteGA<int>(262145 + 21576, isEnable ? produce_time : 600000);       // Product                  215868155 
+        Hacks.WriteGA<int>(262145 + 21592, isEnable ? produce_time : 300000);       // Research                 -676414773
 
         // Time to Produce Reductions
-        Hacks.WriteGA<int>(262145 + 21325, isEnable ? produce_time : 90000);      // Production Equipment     631477612
-        Hacks.WriteGA<int>(262145 + 21326, isEnable ? produce_time : 90000);      // Production Staff         818645907
-        Hacks.WriteGA<int>(262145 + 21341, isEnable ? produce_time : 45000);      // Research Equipment       -1148432846
-        Hacks.WriteGA<int>(262145 + 21342, isEnable ? produce_time : 45000);      // Research Staff           510883248
+        Hacks.WriteGA<int>(262145 + 21577, isEnable ? produce_time : 90000);        // Production Equipment     631477612
+        Hacks.WriteGA<int>(262145 + 21578, isEnable ? produce_time : 90000);        // Production Staff         818645907
+        Hacks.WriteGA<int>(262145 + 21593, isEnable ? produce_time : 45000);        // Research Equipment       -1148432846
+        Hacks.WriteGA<int>(262145 + 21594, isEnable ? produce_time : 45000);        // Research Staff           510883248
     }
 
     /// <summary>
@@ -358,9 +358,9 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void SetBunkerSaleMultipliers(bool isEnable)
     {
-        // Sale Multipliers
-        Hacks.WriteGA<float>(262145 + 21303, isEnable ? 2.0f : 1.0f);     // Near         1865029244
-        Hacks.WriteGA<float>(262145 + 21304, isEnable ? 3.0f : 1.5f);     // Far          1021567941
+        // Sale Multipliers                                                 // tuneables_processing.c
+        Hacks.WriteGA<float>(262145 + 21553, isEnable ? 2.0f : 1.0f);       // Near         1865029244
+        Hacks.WriteGA<float>(262145 + 21554, isEnable ? 3.0f : 1.5f);       // Far          1021567941
     }
 
     /// <summary>
@@ -369,9 +369,9 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void SetMCSaleMultipliers(bool isEnable)
     {
-        // Sale Multipliers
-        Hacks.WriteGA<float>(262145 + 18861, isEnable ? 2.0f : 1.0f);     // Near         -823848572
-        Hacks.WriteGA<float>(262145 + 18862, isEnable ? 3.0f : 1.5f);     // Far          1763638426
+        // Sale Multipliers                                                 // tuneables_processing.c
+        Hacks.WriteGA<float>(262145 + 19111, isEnable ? 2.0f : 1.0f);       // Near         -823848572
+        Hacks.WriteGA<float>(262145 + 19112, isEnable ? 3.0f : 1.5f);       // Far          1763638426
     }
 
     /// <summary>
@@ -380,11 +380,11 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void SetBunkerSuppliesPerUnitProduced(bool isEnable)
     {
-        // Supplies Per Unit Produced
-        Hacks.WriteGA<int>(262145 + 21327, isEnable ? 1 : 10);        // Product Base              -1652502760
-        Hacks.WriteGA<int>(262145 + 21328, isEnable ? 1 : 5);         // Product Upgraded          1647327744
-        Hacks.WriteGA<int>(262145 + 21343, isEnable ? 1 : 2);         // Research Base             1485279815
-        Hacks.WriteGA<int>(262145 + 21344, isEnable ? 1 : 1);         // Research Upgraded         2041812011
+        // Supplies Per Unit Produced                                   // tuneables_processing.c
+        Hacks.WriteGA<int>(262145 + 21579, isEnable ? 1 : 10);          // Product Base              -1652502760
+        Hacks.WriteGA<int>(262145 + 21580, isEnable ? 1 : 5);           // Product Upgraded          1647327744
+        Hacks.WriteGA<int>(262145 + 21595, isEnable ? 1 : 2);           // Research Base             1485279815
+        Hacks.WriteGA<int>(262145 + 21596, isEnable ? 1 : 1);           // Research Upgraded         2041812011
     }
 
     /// <summary>
@@ -393,17 +393,17 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void SetMCSuppliesPerUnitProduced(bool isEnable)
     {
-        // Supplies Per Unit Produced
-        Hacks.WriteGA<int>(262145 + 17213, isEnable ? 1 : 4);         // Documents Base            -1839004359
-        Hacks.WriteGA<int>(262145 + 17214, isEnable ? 1 : 10);        // Cash Base
-        Hacks.WriteGA<int>(262145 + 17215, isEnable ? 1 : 50);        // Cocaine Base
-        Hacks.WriteGA<int>(262145 + 17216, isEnable ? 1 : 24);        // Meth Base
-        Hacks.WriteGA<int>(262145 + 17217, isEnable ? 1 : 4);         // Weed Base
-        Hacks.WriteGA<int>(262145 + 17218, isEnable ? 1 : 2);         // Documents Upgraded
-        Hacks.WriteGA<int>(262145 + 17219, isEnable ? 1 : 5);         // Cash Upgraded
-        Hacks.WriteGA<int>(262145 + 17220, isEnable ? 1 : 25);        // Cocaine Upgraded
-        Hacks.WriteGA<int>(262145 + 17221, isEnable ? 1 : 12);        // Meth Upgraded
-        Hacks.WriteGA<int>(262145 + 17222, isEnable ? 1 : 2);         // Weed Upgraded
+        // Supplies Per Unit Produced                                   // tuneables_processing.c
+        Hacks.WriteGA<int>(262145 + 17461, isEnable ? 1 : 4);           // Documents Base            -1839004359
+        Hacks.WriteGA<int>(262145 + 17462, isEnable ? 1 : 10);          // Cash Base
+        Hacks.WriteGA<int>(262145 + 17463, isEnable ? 1 : 50);          // Cocaine Base
+        Hacks.WriteGA<int>(262145 + 17464, isEnable ? 1 : 24);          // Meth Base
+        Hacks.WriteGA<int>(262145 + 17465, isEnable ? 1 : 4);           // Weed Base
+        Hacks.WriteGA<int>(262145 + 17466, isEnable ? 1 : 2);           // Documents Upgraded
+        Hacks.WriteGA<int>(262145 + 17467, isEnable ? 1 : 5);           // Cash Upgraded
+        Hacks.WriteGA<int>(262145 + 17468, isEnable ? 1 : 25);          // Cocaine Upgraded
+        Hacks.WriteGA<int>(262145 + 17469, isEnable ? 1 : 12);          // Meth Upgraded
+        Hacks.WriteGA<int>(262145 + 17470, isEnable ? 1 : 2);           // Weed Upgraded
     }
 
     /// <summary>
@@ -412,7 +412,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void UnlockBunkerResearch(bool isEnable)
     {
-        Hacks.WriteGA<int>(262145 + 21477, isEnable ? 1 : 0);         // 886070202
+        Hacks.WriteGA<int>(262145 + 21729, isEnable ? 1 : 0);         // 886070202
     }
 
     /// <summary>
@@ -422,14 +422,14 @@ public static class Online
     /// <param name="produce_time"></param>
     public static void SetNightclubProduceTime(bool isEnable, int produce_time)
     {
-        // Time to Produce
-        Hacks.WriteGA<int>(262145 + 24135, isEnable ? produce_time : 4800000);    // Sporting Goods               -147565853
-        Hacks.WriteGA<int>(262145 + 24136, isEnable ? produce_time : 14400000);   // South American Imports
-        Hacks.WriteGA<int>(262145 + 24137, isEnable ? produce_time : 7200000);    // Pharmaceutical Research
-        Hacks.WriteGA<int>(262145 + 24138, isEnable ? produce_time : 2400000);    // Organic Produce
-        Hacks.WriteGA<int>(262145 + 24139, isEnable ? produce_time : 1800000);    // Printing and Copying
-        Hacks.WriteGA<int>(262145 + 24140, isEnable ? produce_time : 3600000);    // Cash Creation
-        Hacks.WriteGA<int>(262145 + 24141, isEnable ? produce_time : 8400000);    // Cargo and Shipments
+        // Time to Produce                                                          // tuneables_processing.c
+        Hacks.WriteGA<int>(262145 + 24394, isEnable ? produce_time : 4800000);      // Sporting Goods               -147565853
+        Hacks.WriteGA<int>(262145 + 24395, isEnable ? produce_time : 14400000);     // South American Imports
+        Hacks.WriteGA<int>(262145 + 24396, isEnable ? produce_time : 7200000);      // Pharmaceutical Research
+        Hacks.WriteGA<int>(262145 + 24397, isEnable ? produce_time : 2400000);      // Organic Produce
+        Hacks.WriteGA<int>(262145 + 24398, isEnable ? produce_time : 1800000);      // Printing and Copying
+        Hacks.WriteGA<int>(262145 + 24399, isEnable ? produce_time : 3600000);      // Cash Creation
+        Hacks.WriteGA<int>(262145 + 24400, isEnable ? produce_time : 8400000);      // Cargo and Shipments          1607981264
     }
 
     /// <summary>
@@ -439,24 +439,24 @@ public static class Online
     /// <param name="produce_time"></param>
     public static void SetMCProduceTime(bool isEnable, int produce_time)
     {
-        // Base Time to Produce
-        Hacks.WriteGA<int>(262145 + 17198, isEnable ? produce_time : 360000);     // Weed         -635596193
-        Hacks.WriteGA<int>(262145 + 17199, isEnable ? produce_time : 1800000);    // Meth
-        Hacks.WriteGA<int>(262145 + 17200, isEnable ? produce_time : 3000000);    // Cocaine
-        Hacks.WriteGA<int>(262145 + 17201, isEnable ? produce_time : 300000);     // Documents
-        Hacks.WriteGA<int>(262145 + 17202, isEnable ? produce_time : 720000);     // Cash
+        // Base Time to Produce                                                     // tuneables_processing.c
+        Hacks.WriteGA<int>(262145 + 17446, isEnable ? produce_time : 360000);       // Weed                     -635596193
+        Hacks.WriteGA<int>(262145 + 17447, isEnable ? produce_time : 1800000);      // Meth
+        Hacks.WriteGA<int>(262145 + 17448, isEnable ? produce_time : 3000000);      // Cocaine
+        Hacks.WriteGA<int>(262145 + 17449, isEnable ? produce_time : 300000);       // Documents
+        Hacks.WriteGA<int>(262145 + 17450, isEnable ? produce_time : 720000);       // Cash                     1310272402
 
         // Time to Produce Reductions
-        Hacks.WriteGA<int>(262145 + 17203, isEnable ? 1 : 60000);     // Documents Equipment
-        Hacks.WriteGA<int>(262145 + 17204, isEnable ? 1 : 120000);    // Cash Equipment
-        Hacks.WriteGA<int>(262145 + 17205, isEnable ? 1 : 600000);    // Cocaine Equipment
-        Hacks.WriteGA<int>(262145 + 17206, isEnable ? 1 : 360000);    // Meth Equipment
-        Hacks.WriteGA<int>(262145 + 17207, isEnable ? 1 : 60000);     // Weed Equipment
-        Hacks.WriteGA<int>(262145 + 17208, isEnable ? 1 : 60000);     // Documents Staff
-        Hacks.WriteGA<int>(262145 + 17209, isEnable ? 1 : 120000);    // Cash Staff
-        Hacks.WriteGA<int>(262145 + 17210, isEnable ? 1 : 600000);    // Cocaine Staff
-        Hacks.WriteGA<int>(262145 + 17211, isEnable ? 1 : 360000);    // Meth Staff
-        Hacks.WriteGA<int>(262145 + 17212, isEnable ? 1 : 60000);     // Weed Staff
+        Hacks.WriteGA<int>(262145 + 17451, isEnable ? 1 : 60000);                   // Documents Equipment      1672482518
+        Hacks.WriteGA<int>(262145 + 17452, isEnable ? 1 : 120000);                  // Cash Equipment
+        Hacks.WriteGA<int>(262145 + 17453, isEnable ? 1 : 600000);                  // Cocaine Equipment
+        Hacks.WriteGA<int>(262145 + 17454, isEnable ? 1 : 360000);                  // Meth Equipment
+        Hacks.WriteGA<int>(262145 + 17455, isEnable ? 1 : 60000);                   // Weed Equipment
+        Hacks.WriteGA<int>(262145 + 17456, isEnable ? 1 : 60000);                   // Documents Staff
+        Hacks.WriteGA<int>(262145 + 17457, isEnable ? 1 : 120000);                  // Cash Staff
+        Hacks.WriteGA<int>(262145 + 17458, isEnable ? 1 : 600000);                  // Cocaine Staff
+        Hacks.WriteGA<int>(262145 + 17459, isEnable ? 1 : 360000);                  // Meth Staff
+        Hacks.WriteGA<int>(262145 + 17460, isEnable ? 1 : 60000);                   // Weed Staff               1575359233
     }
 
     /// <summary>
@@ -465,7 +465,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void RemoveMCSupplyDelay(bool isEnable)
     {
-        Hacks.WriteGA<int>(262145 + 18749, isEnable ? 0 : 600);           // 728170457
+        Hacks.WriteGA<int>(262145 + 18999, isEnable ? 0 : 600);           // 728170457  tuneables_processing.c
     }
 
     /// <summary>
@@ -492,10 +492,10 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void RemoveExportVehicleDelay(bool isEnable)
     {
-        Hacks.WriteGA<int>(262145 + 19477, isEnable ? 0 : 1200000);          // 1001423248
-        Hacks.WriteGA<int>(262145 + 19478, isEnable ? 0 : 1680000);
-        Hacks.WriteGA<int>(262145 + 19479, isEnable ? 0 : 2340000);
-        Hacks.WriteGA<int>(262145 + 19480, isEnable ? 0 : 2880000);
+        Hacks.WriteGA<int>(262145 + 19727, isEnable ? 0 : 1200000);         // 1001423248  tuneables_processing.c
+        Hacks.WriteGA<int>(262145 + 19728, isEnable ? 0 : 1680000);
+        Hacks.WriteGA<int>(262145 + 19729, isEnable ? 0 : 2340000);
+        Hacks.WriteGA<int>(262145 + 19730, isEnable ? 0 : 2880000);         // -824005590
     }
 
     /// <summary>
@@ -514,10 +514,10 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void RemoveSmugglerRunInDelay(bool isEnable)
     {
-        Hacks.WriteGA<int>(262145 + 22522, isEnable ? 0 : 120000);          // 1278611667
-        Hacks.WriteGA<int>(262145 + 22523, isEnable ? 0 : 180000);
-        Hacks.WriteGA<int>(262145 + 22524, isEnable ? 0 : 240000);
-        Hacks.WriteGA<int>(262145 + 22525, isEnable ? 0 : 60000);
+        Hacks.WriteGA<int>(262145 + 22779, isEnable ? 0 : 120000);          // 1278611667  tuneables_processing.c
+        Hacks.WriteGA<int>(262145 + 22780, isEnable ? 0 : 180000);
+        Hacks.WriteGA<int>(262145 + 22781, isEnable ? 0 : 240000);
+        Hacks.WriteGA<int>(262145 + 22782, isEnable ? 0 : 60000);
     }
 
     /// <summary>
@@ -526,7 +526,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void RemoveSmugglerRunOutDelay(bool isEnable)
     {
-        Hacks.WriteGA<int>(262145 + 22561, isEnable ? 0 : 180000);          // -1525481945
+        Hacks.WriteGA<int>(262145 + 22820, isEnable ? 0 : 180000);          // -1525481945  tuneables_processing.c
     }
 
     /// <summary>
@@ -535,9 +535,9 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void RemoveNightclubOutDelay(bool isEnable)
     {
-        Hacks.WriteGA<int>(262145 + 24216, isEnable ? 0 : 300000);          // 1763921019
-        Hacks.WriteGA<int>(262145 + 24251, isEnable ? 0 : 300000);          // -1004589438
-        Hacks.WriteGA<int>(262145 + 24252, isEnable ? 0 : 300000);
+        Hacks.WriteGA<int>(262145 + 24475, isEnable ? 0 : 300000);          // 1763921019  tuneables_processing.c
+        Hacks.WriteGA<int>(262145 + 24517, isEnable ? 0 : 300000);          // -1004589438
+        Hacks.WriteGA<int>(262145 + 24518, isEnable ? 0 : 300000);
     }
 
     /// <summary>
@@ -546,10 +546,13 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void NightclubNoTonyLaundering_Money(bool isEnable)
     {
-        // 托尼分红 GA(262145+24162) 默认10000
-        Hacks.WriteGA<float>(262145 + 24258, isEnable ? 0.000001f : 0.1f);        // -1002770353
+        Hacks.WriteGA<float>(262145 + 24524, isEnable ? 0.000001f : 0.1f);        // -1002770353  tuneables_processing.c
     }
 
+    /// <summary>
+    /// 未知功能
+    /// </summary>
+    /// <param name="index"></param>
     public static void DeliverPersonalVehicle(int index)
     {
         Hacks.WriteGA<int>(Offsets.oVMYCar + 965, index);
