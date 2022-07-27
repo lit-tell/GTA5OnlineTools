@@ -44,9 +44,9 @@ public class Offsets
     public const int oVMSlots = 1585853;       // Get vehicle slots.
 
     // Some Player / Network times associated Globals
-    public const int oPlayerGA = 2703660;
+    public const int oPlayerGA = 2703735;
     public const int oPlayerIDHelp = 2689224;
-    public const int oNETTimeHelp = 2703660;
+    public const int oNETTimeHelp = 2703735;
 
     ////////////////////////////////////////////////////////////////////
 

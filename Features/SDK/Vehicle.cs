@@ -63,7 +63,7 @@ public static class Vehicle
     {
         Task.Run(() =>
         {
-            Memory.Write<int>(Globals.GlobalPTR + 0x08 * 0x0A, new int[] { 0x1735F8 }, 1);
+            Memory.Write<int>(Globals.GlobalPTR + 0x08 * 0x0A, new int[] { 0x17BE28 }, 1);
             Memory.Write<float>(Globals.WorldPTR, new int[] { 0x08, 0xD30, 0x280 }, 999.0f);
 
             Task.Delay(300).Wait();
@@ -104,15 +104,7 @@ public static class Vehicle
                 }
             }
 
-            Task.Delay(500).Wait();
-
-            int BST = Memory.Read<int>(Globals.GlobalPTR + 0x08 * 0x0A, new int[] { 0xA7920 });
-            if (BST != 0)
-            {
-                Memory.Write<int>(Globals.GlobalPTR + 0x08 * 0x0A, new int[] { 0xA7920 }, -1);
-            }
-
-            Task.Delay(50).Wait();
+            Task.Delay(550).Wait();
 
             Online.InstantBullShark(false);
         });
