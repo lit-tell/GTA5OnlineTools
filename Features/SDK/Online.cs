@@ -228,7 +228,14 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void InstantBullShark(bool isEnable)
     {
-        Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 3576, isEnable ? 1 : 5);
+        if(isEnable) 
+            Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 3576, 1);
+        else
+        {
+            int temp = Hacks.ReadGA<int>(Offsets.oNETTimeHelp + 3576);
+            if(temp != 0)
+                Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 3576, 5);
+        }
     }
 
     /// <summary>
