@@ -40,7 +40,7 @@ public class Offsets
 
     // Vehicle Menus Globals
     public const int oVMCreate = 2725439;      // Create any vehicle.
-    public const int oVMYCar = 2810701;        // Get my car.
+    public const int oVMYCar = 2815059;        // Get my car.
     public const int oVGETIn = 2671449;        // Spawn into vehicle.
     public const int oVMSlots = 1585853;       // Get vehicle slots.
 

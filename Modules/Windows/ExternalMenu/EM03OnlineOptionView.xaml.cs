@@ -132,14 +132,14 @@ public partial class EM03OnlineOptionView : UserControl
 
         Task.Run(() =>
         {
-            int max_slots = ReadGA<int>(1585853);
+            int max_slots = ReadGA<int>(1585857);
             for (int i = 0; i < max_slots; i++)
             {
-                long hash = ReadGA<long>(1585853 + 1 + (i * 142) + 66);
+                long hash = ReadGA<long>(1585857 + 1 + (i * 142) + 66);
                 if (hash == 0)
                     continue;
 
-                string plate = ReadGAString(1585853 + 1 + (i * 142) + 1);
+                string plate = ReadGAString(1585857 + 1 + (i * 142) + 1);
 
                 pVInfos.Add(new PVInfo()
                 {
