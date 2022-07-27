@@ -29,18 +29,17 @@ public static class Online
             {
                 // 离开线上模式需要特殊处理
                 Hacks.WriteGA<int>(Offsets.InitSession_Cache, -1);
-                Hacks.WriteGA<int>(Offsets.InitSession_State, 1);
-                Task.Delay(200).Wait();
-                Hacks.WriteGA<int>(Offsets.InitSession_State, 0);
             }
             else
             {
-                // 正常切换战局，修改战局类型，然后切换战局状态
+                // 正常切换战局，修改战局类型
                 Hacks.WriteGA<int>(Offsets.InitSession_Type, sessionID);
-                Hacks.WriteGA<int>(Offsets.InitSession_State, 1);
-                Task.Delay(200).Wait();
-                Hacks.WriteGA<int>(Offsets.InitSession_State, 0);
             }
+
+            // 切换战局状态
+            Hacks.WriteGA<int>(Offsets.InitSession_State, 1);
+            Task.Delay(200).Wait();
+            Hacks.WriteGA<int>(Offsets.InitSession_State, 0);
         });
     }
 
