@@ -8,7 +8,7 @@ public static class MiscData
         public int ID;
     }
 
-    public static List<Blip> Blips=new List<Blip>()
+    public static List<Blip> Blips = new()
     {
         new Blip(){ Name="游艇", ID=455 },
         new Blip(){ Name="CEO办公室", ID=475 },
@@ -33,7 +33,7 @@ public static class MiscData
         public int ID;
     }
 
-    public static List<Session> Sessions=new List<Session>()
+    public static List<Session> Sessions = new()
     {
         new Session(){ Name="离开线上模式", ID=-1 },
         new Session(){ Name="公共战局", ID=0 },
@@ -53,7 +53,7 @@ public static class MiscData
         public float ID;
     }
 
-    public static List<RPxN> RPxNs=new List<RPxN>()
+    public static List<RPxN> RPxNs = new()
     {
         new RPxN(){ Name="RPx1", ID=1.0f },
         new RPxN(){ Name="RPx2", ID=2.0f },
@@ -72,7 +72,7 @@ public static class MiscData
         public float ID;
     }
 
-    public static List<REPxN> REPxNs=new List<REPxN>()
+    public static List<REPxN> REPxNs = new()
     {
         new REPxN(){ Name="REPx1", ID=1.0f },
         new REPxN(){ Name="REPx2", ID=2.0f },
@@ -95,7 +95,7 @@ public static class MiscData
     // Set Global_1946637 to one of these: 2, 4, 6, 7, 8, 9.
     // Now you'll see the unique cargo in your terrorbyte.
 
-    public static List<CEOCargo> CEOCargos=new List<CEOCargo>()
+    public static List<CEOCargo> CEOCargos = new()
     {
         new CEOCargo(){ Name="医疗用品", ID=0 },
         new CEOCargo(){ Name="烟酒", ID=1 },
@@ -110,19 +110,19 @@ public static class MiscData
         new CEOCargo(){ Name="银块", ID=10 },
     };
 
-    public struct MerryweatherService
+    public struct MerryWeatherService
     {
         public string Name;
         public int ID;
     }
 
-    public static List<MerryweatherService> MerryweatherServices=new List<MerryweatherService>()
+    public static List<MerryWeatherService> MerryWeatherServices = new()
     {
-        new MerryweatherService(){ Name="请求弹药空投", ID=874 },
-        new MerryweatherService(){ Name="请求重型防弹装甲", ID=884 },
-        new MerryweatherService(){ Name="请求牛鲨睾酮", ID=882 },
-        new MerryweatherService(){ Name="请求船只接送", ID=875 },
-        new MerryweatherService(){ Name="请求直升机接送", ID=876 },
+        new MerryWeatherService(){ Name="请求弹药空投", ID=874 },
+        new MerryWeatherService(){ Name="请求重型防弹装甲", ID=884 },
+        new MerryWeatherService(){ Name="请求牛鲨睾酮", ID=882 },
+        new MerryWeatherService(){ Name="请求船只接送", ID=875 },
+        new MerryWeatherService(){ Name="请求直升机接送", ID=876 },
     };
 
     public struct LocalWeather
@@ -131,7 +131,7 @@ public static class MiscData
         public int ID;
     }
 
-    public static List<LocalWeather> LocalWeathers=new List<LocalWeather>()
+    public static List<LocalWeather> LocalWeathers = new()
     {
         new LocalWeather(){ Name="默认", ID=-1 },
         new LocalWeather(){ Name="格外晴朗", ID=0 },
@@ -157,7 +157,7 @@ public static class MiscData
         public int ID;
     }
 
-    public static List<ImpactExplosion> ImpactExplosions=new List<ImpactExplosion>()
+    public static List<ImpactExplosion> ImpactExplosions = new()
     {
         new ImpactExplosion(){ Name="默认", ID=-1 },
         new ImpactExplosion(){ Name="手榴弹", ID=0 },

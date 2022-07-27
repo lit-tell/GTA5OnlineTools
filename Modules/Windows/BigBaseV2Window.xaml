@@ -1013,7 +1013,7 @@
                         <UniformGrid Columns="2">
                             <RadioButton
                                 x:Name="RadioButton_ToMS"
-                                Margin="5"
+                                Margin="0,5,5,5"
                                 Content="时间转毫秒"
                                 IsChecked="True" />
                             <RadioButton
@@ -1023,6 +1023,7 @@
                         </UniformGrid>
                         <Button
                             x:Name="Button_Calculate"
+                            Margin="0,5,5,0"
                             Click="Button_Calculate_Click"
                             Content="计算"
                             Style="{StaticResource ButtonStyle_Normal}" />

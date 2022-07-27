@@ -12,22 +12,34 @@ public static class Online
     ///  1, 创建公共战局
     ///  2, 私人帮会战局
     ///  3, 帮会战局
-    ///  9, 加入好友
     ///  6, 私人好友战局
+    ///  9, 加入好友
     ///  10 单人战局
     ///  11 仅限邀请战局
     ///  12 加入帮会伙伴
+    ///  13 SCTV
     /// </summary>
     /// <param name="sessionID">战局ID</param>
-    public static void LoadSession(int sessionId)
+    public static void LoadSession(int sessionID)
     {
         Task.Run(() =>
         {
             Memory.SetForegroundWindow();
 
-            Hacks.WriteGA<int>(1575015, sessionId);
-            Hacks.WriteGA<int>(1574589 + 2, sessionId == -1 ? -1 : 0);
-            Hacks.WriteGA<int>(1574589, 1);
+            if (sessionID == -1)
+            {
+                Hacks.WriteGA<int>(Offsets.InitSession_Cache, -1);
+                Hacks.WriteGA<int>(Offsets.InitSession, 1);
+                Task.Delay(200).Wait();
+                Hacks.WriteGA<int>(Offsets.InitSession, 0);
+            }
+            else
+            {
+                Hacks.WriteGA<int>(Offsets.InitSession_Type, sessionID);
+                Hacks.WriteGA<int>(Offsets.InitSession, 1);
+                Task.Delay(200).Wait();
+                Hacks.WriteGA<int>(Offsets.InitSession, 0);
+            }
         });
     }
 
@@ -42,6 +54,18 @@ public static class Online
             Task.Delay(10000).Wait();
             ProcessMgr.ResumeProcess(Memory.GetProcessID());
         });
+    }
+
+    /// <summary>
+    /// 模型变更
+    /// </summary>
+    /// <param name="hash"></param>
+    public static void ModelChanger(long hash)
+    {
+        Hacks.WriteGA<int>(Offsets.oVGETIn + 59, 1);
+        Hacks.WriteGA<long>(Offsets.oVGETIn + 46, hash);
+        Thread.Sleep(10);
+        Hacks.WriteGA<int>(Offsets.oVGETIn + 59, 0);
     }
 
     /// <summary>

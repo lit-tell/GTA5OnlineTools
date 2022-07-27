@@ -101,10 +101,10 @@ public partial class EM03OnlineOptionView : UserControl
 
         var str = (e.OriginalSource as Button).Content.ToString();
 
-        int index = MiscData.MerryweatherServices.FindIndex(t => t.Name == str);
+        int index = MiscData.MerryWeatherServices.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Online.MerryWeatherServices(MiscData.MerryweatherServices[index].ID);
+            Online.MerryWeatherServices(MiscData.MerryWeatherServices[index].ID);
         }
     }
 

@@ -18,7 +18,7 @@ public partial class EM02WorldFunctionView : UserControl
 
     private void ExternalMenuView_ClosingDisposeEvent()
     {
-        
+
     }
 
     private void Button_Sessions_Click(object sender, RoutedEventArgs e)
@@ -29,9 +29,7 @@ public partial class EM02WorldFunctionView : UserControl
 
         int index = MiscData.Sessions.FindIndex(t => t.Name == str);
         if (index != -1)
-        {
             Online.LoadSession(MiscData.Sessions[index].ID);
-        }
     }
 
     private void Button_Disconnect_Click(object sender, RoutedEventArgs e)

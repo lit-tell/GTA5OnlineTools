@@ -26,122 +26,122 @@
             Style="{StaticResource ScrollViewerStyle_VAHD}">
             <WrapPanel>
                 <Button
-                    attached:Icon.Value="&#xed18;"
+                    attached:Icon.Value="&#xe882;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionChsON"
                     Content="启用Kiddion汉化" />
                 <Button
-                    attached:Icon.Value="&#xed18;"
+                    attached:Icon.Value="&#xe882;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionChsOFF"
                     Content="关闭Kiddion汉化" />
                 <Button
-                    attached:Icon.Value="&#xe64b;"
+                    attached:Icon.Value="&#xe64e;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionKey87"
                     Content="启用Kiddion[87键]" />
                 <Button
-                    attached:Icon.Value="&#xe64b;"
+                    attached:Icon.Value="&#xe64e;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="KiddionKey104"
                     Content="启用Kiddion[104键]" />
                 <Button
-                    attached:Icon.Value="&#xed18;"
+                    attached:Icon.Value="&#xe602;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditKiddionConfig"
                     Content="编辑Kiddion配置文件" />
                 <Button
-                    attached:Icon.Value="&#xe64b;"
+                    attached:Icon.Value="&#xe602;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditKiddionTP"
                     Content="编辑Kiddion自定义传送" />
                 <Button
-                    attached:Icon.Value="&#xe64b;"
+                    attached:Icon.Value="&#xe602;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditKiddionVC"
                     Content="编辑Kiddion自定义载具" />
                 <Button
-                    attached:Icon.Value="&#xe882;"
+                    attached:Icon.Value="&#xe602;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditGTAHaxStat"
                     Content="编辑GTAHax导入文件" />
                 <Button
-                    attached:Icon.Value="&#xe882;"
+                    attached:Icon.Value="&#xe68b;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="GTA5Win2TopMost"
                     Content="GTA5窗口置顶" />
                 <Button
-                    attached:Icon.Value="&#xed18;"
+                    attached:Icon.Value="&#xe68b;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="GTA5Win2NoTopMost"
                     Content="GTA5窗口取消置顶" />
                 <Button
-                    attached:Icon.Value="&#xed18;"
+                    attached:Icon.Value="&#xe653;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="RestartApp"
                     Content="重启程序" />
                 <Button
-                    attached:Icon.Value="&#xe64b;"
+                    attached:Icon.Value="&#xe619;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="InitCPDPath"
                     Content="初始化配置文件夹" />
                 <Button
-                    attached:Icon.Value="&#xe64b;"
+                    attached:Icon.Value="&#xec17;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="ReleaseDirectory"
                     Content="程序释放目录" />
                 <Button
-                    attached:Icon.Value="&#xe882;"
+                    attached:Icon.Value="&#xec17;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="CurrentDirectory"
                     Content="程序当前目录" />
                 <Button
-                    attached:Icon.Value="&#xe882;"
+                    attached:Icon.Value="&#xe667;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="ReNameAppCN"
                     Content="重命名小助手中文" />
                 <Button
-                    attached:Icon.Value="&#xed18;"
+                    attached:Icon.Value="&#xe667;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="ReNameAppEN"
                     Content="重命名小助手英文" />
                 <Button
-                    attached:Icon.Value="&#xed18;"
+                    attached:Icon.Value="&#xe62c;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="RefreshDNSCache"
                     Content="刷新DNS缓存" />
                 <Button
-                    attached:Icon.Value="&#xe64b;"
+                    attached:Icon.Value="&#xe675;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="EditHosts"
                     Content="编辑Hosts文件" />
                 <Button
-                    attached:Icon.Value="&#xe64b;"
+                    attached:Icon.Value="&#xec4d;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="DefenderControl"
                     Content="Win10安全中心设置" />
                 <Button
-                    attached:Icon.Value="&#xe882;"
+                    attached:Icon.Value="&#xe63d;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="BaseInjector"
                     Content="基础DLL注入器" />
                 <Button
-                    attached:Icon.Value="&#xe882;"
+                    attached:Icon.Value="&#xe652;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="OpenUpdateWindow"
                     Content="打开更新窗口" />
                 <Button
-                    attached:Icon.Value="&#xed18;"
+                    attached:Icon.Value="&#xe60e;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="MinimizeToTray"
                     Content="最小化程序到系统托盘" />
                 <Button
-                    attached:Icon.Value="&#xed18;"
+                    attached:Icon.Value="&#xe651;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="ManualGC"
                     Content="GC垃圾回收" />
                 <Button
-                    attached:Icon.Value="&#xe64b;"
+                    attached:Icon.Value="&#xe62a;"
                     Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="SwitchAudio"
                     Content="切换按键音效" />

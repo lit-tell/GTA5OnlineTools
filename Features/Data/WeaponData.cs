@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Features.Data;
 
-public class WeaponData
+public static class WeaponData
 {
     public struct WeaponClass
     {
@@ -15,7 +15,7 @@ public class WeaponData
         public long Hash;
     }
 
-    public static List<WeaponInfo> Melee = new List<WeaponInfo>()
+    public static List<WeaponInfo> Melee = new()
     {
         new WeaponInfo(){ Name="weapon_dagger", DisplayName="古董骑兵匕首", Hash=0x92A27487 },
         new WeaponInfo(){ Name="weapon_bat", DisplayName="球棒", Hash=0x958A4A8F },
@@ -37,7 +37,7 @@ public class WeaponData
         new WeaponInfo(){ Name="weapon_stone_hatchet", DisplayName="石斧", Hash=0x3813FC08 },
     };
 
-    public static List<WeaponInfo> Handguns = new List<WeaponInfo>()
+    public static List<WeaponInfo> Handguns = new()
     {
         new WeaponInfo(){ Name="weapon_pistol", DisplayName="手枪", Hash=0x1B06D571 },
         new WeaponInfo(){ Name="weapon_pistol_mk2", DisplayName="MK 2 手枪", Hash=0xBFE256D4 },
@@ -61,7 +61,7 @@ public class WeaponData
         new WeaponInfo(){ Name="weapon_stungun_mp", DisplayName="电击枪（多人）", Hash=0x45CD9CF3 },
     };
 
-    public static List<WeaponInfo> SubmachineGuns = new List<WeaponInfo>()
+    public static List<WeaponInfo> SubmachineGuns = new()
     {
         new WeaponInfo(){ Name="weapon_microsmg", DisplayName="微型冲锋枪", Hash=0x13532244 },
         new WeaponInfo(){ Name="weapon_smg", DisplayName="冲锋枪", Hash=0x2BE6766B },
@@ -73,7 +73,7 @@ public class WeaponData
         new WeaponInfo(){ Name="weapon_gusenberg", DisplayName="古森柏冲锋枪", Hash=0x61012683 },
     };
 
-    public static List<WeaponInfo> Shotguns = new List<WeaponInfo>()
+    public static List<WeaponInfo> Shotguns = new()
     {
         new WeaponInfo(){ Name="weapon_pumpshotgun", DisplayName="泵动式霰弹枪", Hash=0x1D073A89 },
         new WeaponInfo(){ Name="weapon_pumpshotgun_mk2", DisplayName="MK 2 泵动式霰弹枪", Hash=0x555AF99A },
@@ -87,7 +87,7 @@ public class WeaponData
         new WeaponInfo(){ Name="weapon_combatshotgun", DisplayName="战斗霰弹枪", Hash=0x5A96BA4 },
     };
 
-    public static List<WeaponInfo> AssaultRifles = new List<WeaponInfo>()
+    public static List<WeaponInfo> AssaultRifles = new()
     {
         new WeaponInfo(){ Name="weapon_assaultrifle", DisplayName="突击步枪", Hash=0xBFEFFF6D },
         new WeaponInfo(){ Name="weapon_assaultrifle_mk2", DisplayName="MK 2 突击步枪", Hash=0x394F415C },
@@ -103,7 +103,7 @@ public class WeaponData
         new WeaponInfo(){ Name="weapon_heavyrifle", DisplayName="重型步枪", Hash=0xC78D71B4 },
     };
 
-    public static List<WeaponInfo> LightMachineGuns = new List<WeaponInfo>()
+    public static List<WeaponInfo> LightMachineGuns = new()
     {
         new WeaponInfo(){ Name="weapon_mg", DisplayName="机枪", Hash=0x9D07F764 },
         new WeaponInfo(){ Name="weapon_combatmg", DisplayName="战斗机枪", Hash=0x7FD62962 },
@@ -111,7 +111,7 @@ public class WeaponData
         new WeaponInfo(){ Name="weapon_raycarbine", DisplayName="邪恶冥王", Hash=0x476BF155 },
     };
 
-    public static List<WeaponInfo> SniperRifles = new List<WeaponInfo>()
+    public static List<WeaponInfo> SniperRifles = new()
     {
         new WeaponInfo(){ Name="weapon_sniperrifle", DisplayName="狙击步枪", Hash=0x05FC3C11 },
         new WeaponInfo(){ Name="weapon_heavysniper", DisplayName="重型狙击步枪", Hash=0x0C472FE2 },
@@ -120,7 +120,7 @@ public class WeaponData
         new WeaponInfo(){ Name="weapon_marksmanrifle_mk2", DisplayName="MK 2 射手步枪", Hash=0x6A6C02E0 },
     };
 
-    public static List<WeaponInfo> HeavyWeapons = new List<WeaponInfo>()
+    public static List<WeaponInfo> HeavyWeapons = new()
     {
         new WeaponInfo(){ Name="weapon_rpg", DisplayName="火箭炮", Hash=0xB1CA77B1 },
         new WeaponInfo(){ Name="weapon_grenadelauncher", DisplayName="榴弹发射器", Hash=0xA284510B },
@@ -134,7 +134,7 @@ public class WeaponData
         new WeaponInfo(){ Name="weapon_emplauncher", DisplayName="紧凑电磁脉冲发射器", Hash=0xDB26713A },
     };
 
-    public static List<WeaponInfo> Throwables = new List<WeaponInfo>()
+    public static List<WeaponInfo> Throwables = new()
     {
         new WeaponInfo(){ Name="weapon_grenade", DisplayName="手榴弹", Hash=0x93E220BD },
         new WeaponInfo(){ Name="weapon_bzgas", DisplayName="毒气手榴弹", Hash=0xA0973D5E },
@@ -148,7 +148,7 @@ public class WeaponData
         new WeaponInfo(){ Name="weapon_flare", DisplayName="信号弹", Hash=0x497FACC3 },
     };
 
-    public static List<WeaponInfo> Miscellaneous = new List<WeaponInfo>()
+    public static List<WeaponInfo> Miscellaneous = new()
     {
         new WeaponInfo(){ Name="weapon_petrolcan", DisplayName="油桶", Hash=0x34A67B97 },
         new WeaponInfo(){ Name="gadget_parachute", DisplayName="降落伞", Hash=0xFBAB5776 },
@@ -157,7 +157,7 @@ public class WeaponData
         new WeaponInfo(){ Name="weapon_weapon_fertilizercan", DisplayName="肥料罐", Hash=0x184140A1 },
     };
 
-    public static List<WeaponClass> WeaponDataClass = new List<WeaponClass>()
+    public static List<WeaponClass> WeaponDataClass = new()
     {
         new WeaponClass(){ ClassName="近战", WeaponInfo=Melee },
         new WeaponClass(){ ClassName="手枪", WeaponInfo=Handguns },

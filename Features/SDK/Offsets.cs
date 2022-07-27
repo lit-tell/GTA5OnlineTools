@@ -30,7 +30,7 @@ public class Offsets
 
     public const int InitSession = 1574589;
     public const int InitSession_Cache = 1574589 + 2;
-    public const int InitSession_Type = 1575012;
+    public const int InitSession_Type = 1575015;
 
     public const int PlayerNameDisPlay_Epic = 0x2C36104;
     public const int PlayerNameDisPlay_Steam = 0x2C3AC94;
@@ -43,7 +43,7 @@ public class Offsets
     // Vehicle Menus Globals
     public const int oVMCreate = 2725439;      // Create any vehicle.
     public const int oVMYCar = 2810701;        // Get my car.
-    public const int oVGETIn = 2671447;        // Spawn into vehicle.
+    public const int oVGETIn = 2671449;        // Spawn into vehicle.
     public const int oVMSlots = 1585853;       // Get vehicle slots.
 
     // Some Player / Network times associated Globals
