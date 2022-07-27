@@ -22,12 +22,29 @@
     <Grid>
         <DockPanel LastChildFill="True">
             <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
-                <TextBlock
-                    VerticalAlignment="Center"
-                    DockPanel.Dock="Left"
-                    Style="{StaticResource TextBlockUpdate}">
-                    <Hyperlink NavigateUri="https://github.com/CrazyZhang666/GTA5OnlineTools/releases" RequestNavigate="Hyperlink_RequestNavigate">[推荐] 手动下载最新版本</Hyperlink>
-                </TextBlock>
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                    <TextBlock
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Text="手动下载更新" />
+                    <TextBlock VerticalAlignment="Center" Style="{StaticResource TextBlockUpdate}">
+                        <Hyperlink NavigateUri="https://github.com/CrazyZhang666/GTA5OnlineTools/releases" RequestNavigate="Hyperlink_RequestNavigate">
+                            GitHub
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock VerticalAlignment="Center" Style="{StaticResource TextBlockUpdate}">
+                        <Hyperlink NavigateUri="https://crazyzhang.lanzouf.com/b04md71ve" RequestNavigate="Hyperlink_RequestNavigate">
+                            蓝奏云盘[荐]
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock VerticalAlignment="Center" Style="{StaticResource TextBlockUpdate}">
+                        <Hyperlink NavigateUri="https://www.123pan.com/s/QEorVv-Bfzv3" RequestNavigate="Hyperlink_RequestNavigate">
+                            123云盘[荐]
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
                 <Button
                     x:Name="Button_CancelUpdate"
                     Click="Button_CancelUpdate_Click"
