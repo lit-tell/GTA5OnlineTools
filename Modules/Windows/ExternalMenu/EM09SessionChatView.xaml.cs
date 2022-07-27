@@ -1,10 +1,9 @@
-﻿using Chinese;
-
-using GTA5OnlineTools.Common.Utils;
+﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Http;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 
+using Chinese;
 using Forms = System.Windows.Forms;
 
 namespace GTA5OnlineTools.Modules.Windows.ExternalMenu;
@@ -206,13 +205,11 @@ public partial class EM09SessionChatView : UserControl
                 Memory.WriteString(Memory.baseAddress + Offsets.PlayerNameDisPlay_Steam, null, TextBox_ExternalDisplay.Text + "\0");
             }
 
-            MessageBox.Show("写入成功，请切换战局生效",
-                "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+            MsgBoxUtil.InformationMsgBox("写入成功，请切换战局生效");
         }
         else
         {
-            MessageBox.Show("内容不能为空",
-                "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MsgBoxUtil.WarningMsgBox("内容不能为空");
         }
     }
 
@@ -238,16 +235,16 @@ public partial class EM09SessionChatView : UserControl
     }
 }
 
-public class TranslateResultItemItem
-{
-    public string src { get; set; }
-    public string tgt { get; set; }
-}
-
 public class ReceiveObj
 {
     public string type { get; set; }
     public int errorCode { get; set; }
     public int elapsedTime { get; set; }
     public List<List<TranslateResultItemItem>> translateResult { get; set; }
+}
+
+public class TranslateResultItemItem
+{
+    public string src { get; set; }
+    public string tgt { get; set; }
 }

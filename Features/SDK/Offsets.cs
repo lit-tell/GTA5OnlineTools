@@ -35,9 +35,6 @@ public class Offsets
     public const int PlayerNameDisPlay_Epic = 0x2C36104;
     public const int PlayerNameDisPlay_Steam = 0x2C3AC94;
 
-    //public const int BunkerValue_Epic = 0x26471A0;
-    //public const int BunkerValue_Steam = 0x264C780;
-
     ////////////////////////////////////////////////////////////////////
 
     // Vehicle Menus Globals
