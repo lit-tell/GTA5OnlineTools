@@ -72,18 +72,18 @@ public static class Hacks
     {
         if (hash.IndexOf("_") == 0)
         {
-            int Stat_MP = ReadGA<int>(1574915);
+            int Stat_MP = ReadGA<int>(1574918);
             hash = $"MP{Stat_MP}{hash}";
         }
 
         uint Stat_ResotreHash = ReadGA<uint>(1655453 + 4);
         int Stat_ResotreValue = ReadGA<int>(1020252 + 5526);
 
-        WriteGA<uint>(1655453 + 4, Joaat(hash));
+        WriteGA<uint>(1659575 + 4, Joaat(hash));
         WriteGA<int>(1020252 + 5526, value);
-        WriteGA<int>(1644218 + 1139, -1);
+        WriteGA<int>(1648034 + 1139, -1);
         Thread.Sleep(1000);
-        WriteGA<uint>(1655453 + 4, Stat_ResotreHash);
+        WriteGA<uint>(1659575 + 4, Stat_ResotreHash);
         WriteGA<int>(1020252 + 5526, Stat_ResotreValue);
     }
 
