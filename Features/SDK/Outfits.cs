@@ -4,12 +4,12 @@ public static class Outfits
 {
     // -- Outfit Editor Globals from VenomKY
     private const int oWardrobeG = 2359296;
-    private const int oWPointA = 5559;
-    private const int oWPointB = 675;
-    private const int oWComponent = 1333;
-    private const int oWComponentTex = 1607;
-    private const int oWProp = 1881;
-    private const int oWPropTex = 2092;
+    private const int oWPointA = 5567;
+    private const int oWPointB = 681;
+    private const int oWComponent = 1335;
+    private const int oWComponentTex = 1609;
+    private const int oWProp = 1883;
+    private const int oWPropTex = 2094;
 
     /// <summary>
     /// 范围0~19
