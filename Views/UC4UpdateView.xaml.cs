@@ -13,7 +13,6 @@ public partial class UC4UpdateView : UserControl
     public UC4UpdateView()
     {
         InitializeComponent();
-
         this.DataContext = this;
 
         UC4UpdateModel = new();

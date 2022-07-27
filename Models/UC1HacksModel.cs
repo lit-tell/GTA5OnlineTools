@@ -65,7 +65,9 @@ public class UC1HacksModel : ObservableObject
     }
 
     private object _frameContent;
-
+    /// <summary>
+    /// Frame的呈现内容
+    /// </summary>
     public object FrameContent
     {
         get => _frameContent;

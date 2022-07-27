@@ -19,7 +19,6 @@ public partial class UC3ToolsView : UserControl
     public UC3ToolsView()
     {
         InitializeComponent();
-
         this.DataContext = this;
 
         ToolsButtonClickCommand = new(ToolsButtonClick);
