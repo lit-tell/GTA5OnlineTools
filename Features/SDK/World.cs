@@ -7,28 +7,26 @@ public static class World
 {
     /// <summary>
     /// 设置本地天气
+    /// 
+    /// -1, Default
+    ///  0, Extra Sunny
+    ///  1, Clear
+    ///  2, Clouds
+    ///  3, Smog
+    ///  4, Foggy
+    ///  5, Overcast
+    ///  6, Rain
+    ///  7, Thunder
+    ///  8, Light Rain
+    ///  9, Smoggy Light Rain
+    /// 10, Very Light Snow
+    /// 11, Windy Snow
+    /// 12, Light Snow
+    /// 14, Halloween
     /// </summary>
     /// <param name="weatherID">天气ID</param>
     public static void Set_Local_Weather(int weatherID)
     {
-        /*
-         -1:Default
-         0:Extra Sunny
-         1:Clear
-         2:Clouds
-         3:Smog
-         4:Foggy
-         5:Overcast
-         6:Rain
-         7:Thunder
-         8:Light Rain
-         9:Smoggy Light Rain
-         10:Very Light Snow
-         11:Windy Snow
-         12:Light Snow
-         14:Halloween
-         */
-
         if (weatherID == -1)
         {
             Memory.Write(Globals.WeatherPTR + 0x24, -1);

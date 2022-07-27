@@ -78,7 +78,7 @@ public class Offsets
     public static int[] SpecialAmmo = new int[] { 0x08, 0x10C8, 0x218 };
     public static int[] NeverWanted = new int[] { 0x08, 0x10C8, 0x73C };
     public static int[] WantedCanChange = new int[] { 0x08, 0x10c8, 0x73C };
-    public static int[] NPCIgnore = new int[] { 0x08, 0x10c8, 0x872 };      // 00 04 C3 C7
+    public static int[] NPCIgnore = new int[] { 0x08, 0x10c8, 0x872 };          // 00 04 C3 C7
 
     public static int[] RpMultiplier = new int[] { 0x10 };
     public static int[] ApMultiplier = new int[] { 0x3188 };

@@ -15,49 +15,56 @@
             <Button
                 attached:Icon.Value="&#xe666;"
                 attached:Text.Value="External Menu"
-                Command="{Binding ExternalMenuClickCommand}"
+                Command="{Binding ModelsClickCommand}"
+                CommandParameter="ExternalMenu"
                 Content="小助手外置菜单"
                 Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
             <Button
                 attached:Icon.Value="&#xe666;"
                 attached:Text.Value="GTAHax Code Edit"
-                Command="{Binding GTAHaxClickCommand}"
+                Command="{Binding ModelsClickCommand}"
+                CommandParameter="GTAHax"
                 Content="GTAHax代码导入编辑器"
                 Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
             <Button
                 attached:Icon.Value="&#xe666;"
                 attached:Text.Value="Outfits Edit"
-                Command="{Binding OutfitsClickCommand}"
+                Command="{Binding ModelsClickCommand}"
+                CommandParameter="Outfits"
                 Content="角色服装编辑器"
                 Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
             <Button
                 attached:Icon.Value="&#xe666;"
                 attached:Text.Value="Heist Cut Edit"
-                Command="{Binding HeistCutClickCommand}"
+                Command="{Binding ModelsClickCommand}"
+                CommandParameter="HeistCut"
                 Content="抢劫任务分红编辑器"
                 Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
             <Button
                 attached:Icon.Value="&#xe666;"
                 attached:Text.Value="STAT Auto Scripts"
-                Command="{Binding HeistCutClickCommand}"
+                Command="{Binding ModelsClickCommand}"
+                CommandParameter="StatAutoScripts"
                 Content="STAT自动化脚本"
                 Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
             <Button
                 attached:Icon.Value="&#xe666;"
                 attached:Text.Value="Heist Preps Edit"
-                Command="{Binding HeistPrepsClickCommand}"
+                Command="{Binding ModelsClickCommand}"
+                CommandParameter="HeistPreps"
                 Content="抢劫前置任务编辑器"
                 Style="{StaticResource ButtonStyle_FunctionSelf}" />
 
             <Button
                 attached:Icon.Value="&#xe63b;"
                 attached:Text.Value="BigBaseV2"
-                Command="{Binding BigBaseV2ClickCommand}"
+                Command="{Binding ModelsClickCommand}"
+                CommandParameter="BigBaseV2"
                 Content="STAT编辑/解锁"
                 Style="{StaticResource ButtonStyle_FunctionSelf}" />
 

@@ -24,10 +24,11 @@ public static class Globals
 
     public static long LocalScriptsPTR;
 
-    public static long InfiniteAmmoADDR;
     // 41 2B D1 E8 ?? ?? ?? ?? 
     // 90 90 90 E8 ?? ?? ?? ?? 
-    public static long NoReloadADDR;
+    public static long InfiniteAmmoADDR;
     // 41 2B C9 3B C8 0F 4D C8 
     // 90 90 90 3B C8 
+    public static long NoReloadADDR;
+
 }

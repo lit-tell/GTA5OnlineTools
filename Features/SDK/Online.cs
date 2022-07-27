@@ -14,9 +14,9 @@ public static class Online
     ///  3, 帮会战局
     ///  6, 私人好友战局
     ///  9, 加入好友
-    ///  10 单人战局
-    ///  11 仅限邀请战局
-    ///  12 加入帮会伙伴
+    /// 10, 单人战局
+    /// 11, 仅限邀请战局
+    /// 12, 加入帮会伙伴
     /// </summary>
     /// <param name="sessionID">战局ID</param>
     public static void LoadSession(int sessionID)
