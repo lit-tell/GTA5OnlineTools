@@ -249,23 +249,6 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox
-                    Margin="5"
-                    Header="请选择游戏版本"
-                    Style="{StaticResource GroupBoxWebStyle}">
-                    <WrapPanel Margin="5">
-                        <RadioButton
-                            x:Name="RadioButton_PlayerName_Epic"
-                            Margin="5"
-                            Content="Epic版本"
-                            IsChecked="True" />
-                        <RadioButton
-                            x:Name="RadioButton_PlayerName_Steam"
-                            Margin="5"
-                            Content="Steam版本" />
-                    </WrapPanel>
-                </GroupBox>
-
                 <StackPanel
                     Margin="5"
                     HorizontalAlignment="Right"

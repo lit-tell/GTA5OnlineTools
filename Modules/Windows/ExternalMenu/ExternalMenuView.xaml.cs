@@ -85,6 +85,9 @@ public partial class ExternalMenuView : Window
             Globals.TempPTR = Memory.FindPattern(Offsets.Mask.PlayerchatterNameMask);
             Globals.PlayerChatterNamePTR = Memory.Rip_37(Globals.TempPTR);
 
+            Globals.TempPTR = Memory.FindPattern(Offsets.Mask.PlayerExternalDisplayNameMask);
+            Globals.PlayerExternalDisplayNamePTR = Memory.Rip_37(Globals.TempPTR);
+
             Globals.TempPTR = Memory.FindPattern(Offsets.Mask.NetworkPlayerMgrMask);
             Globals.NetworkPlayerMgrPTR = Memory.Rip_37(Globals.TempPTR);
 

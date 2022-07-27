@@ -21,6 +21,7 @@ public static class Globals
     public static long PickupDataPTR;
 
     public static long PlayerChatterNamePTR;
+    public static long PlayerExternalDisplayNamePTR;
 
     public static long LocalScriptsPTR;
 

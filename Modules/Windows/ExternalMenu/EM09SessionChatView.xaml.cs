@@ -195,15 +195,7 @@ public partial class EM09SessionChatView : UserControl
         {
             Memory.WriteString(Globals.WorldPTR, Offsets.OnlineListPlayerName, TextBox_OnlineList.Text + "\0");
             Memory.WriteString(Globals.PlayerChatterNamePTR + 0x84, null, TextBox_ChatName.Text + "\0");
-
-            if (RadioButton_PlayerName_Epic.IsChecked == true)
-            {
-                Memory.WriteString(Memory.baseAddress + Offsets.PlayerNameDisPlay_Epic, null, TextBox_ExternalDisplay.Text + "\0");
-            }
-            else
-            {
-                Memory.WriteString(Memory.baseAddress + Offsets.PlayerNameDisPlay_Steam, null, TextBox_ExternalDisplay.Text + "\0");
-            }
+            Memory.WriteString(Globals.PlayerExternalDisplayNamePTR + 0x84, null, TextBox_ExternalDisplay.Text + "\0");
 
             MsgBoxUtil.InformationMsgBox("写入成功，请切换战局生效");
         }
@@ -217,15 +209,7 @@ public partial class EM09SessionChatView : UserControl
     {
         TextBox_OnlineList.Text = Memory.ReadString(Globals.WorldPTR, Offsets.OnlineListPlayerName, 20);
         TextBox_ChatName.Text = Memory.ReadString(Globals.PlayerChatterNamePTR + 0x84, null, 20);
-
-        if (RadioButton_PlayerName_Epic.IsChecked == true)
-        {
-            TextBox_ExternalDisplay.Text = Memory.ReadString(Memory.baseAddress + Offsets.PlayerNameDisPlay_Epic, null, 20);
-        }
-        else
-        {
-            TextBox_ExternalDisplay.Text = Memory.ReadString(Memory.baseAddress + Offsets.PlayerNameDisPlay_Steam, null, 20);
-        }
+        TextBox_ExternalDisplay.Text = Memory.ReadString(Globals.PlayerExternalDisplayNamePTR + 0x84, null, 20);
     }
 
     private void TextBox_OnlineList_TextChanged(object sender, TextChangedEventArgs e)
