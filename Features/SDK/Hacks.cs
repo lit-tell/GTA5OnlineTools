@@ -99,13 +99,13 @@ public static class Hacks
         float y = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
         float z = Memory.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
 
-        WriteGA<float>(2783345 + 3, x);
-        WriteGA<float>(2783345 + 4, y);
-        WriteGA<float>(2783345 + 5, z + 3.0f);
-        WriteGA<int>(2783345 + 1, 9999);    // 9999
+        WriteGA<float>(2787534 + 3, x);
+        WriteGA<float>(2787534 + 4, y);
+        WriteGA<float>(2787534 + 5, z + 3.0f);
+        WriteGA<int>(2787534 + 1, 9999);    // 9999
 
-        WriteGA<int>(4528329 + 1 + (ReadGA<int>(2783345) * 85) + 66 + 2, 2);
-        WriteGA<int>(2783345 + 6, 1);
+        WriteGA<int>(4534105 + 1 + (ReadGA<int>(2787534) * 85) + 66 + 2, 2);
+        WriteGA<int>(2787534 + 6, 1);
 
         Thread.Sleep(150);
 
