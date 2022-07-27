@@ -2,6 +2,10 @@
 
 一个完全免费的GTA5线上模式辅助工具
 
+### 最新版本
+
+[版本发布地址](https://github.com/CrazyZhang666/GTA5OnlineTools/releases)  
+
 ### 编译
 
 * Windows 10 专业版 21H2 x64  
@@ -28,10 +32,6 @@
 
 * FastGithub
 > https://github.com/dotnetcore/FastGithub/releases
-
-### 最新版本
-
-[版本发布地址](https://github.com/CrazyZhang666/GTA5OnlineTools/releases)  
 
 ### 预览
 
