@@ -42,11 +42,11 @@ public class Offsets
     public const int oVMCreate = 2725439;      // Create any vehicle.
     public const int oVMYCar = 2815059;        // Get my car.
     public const int oVGETIn = 2671449;        // Spawn into vehicle.
-    public const int oVMSlots = 1585853;       // Get vehicle slots.
+    public const int oVMSlots = 1585857;       // Get vehicle slots.
 
     // Some Player / Network times associated Globals
     public const int oPlayerGA = 2703735;
-    public const int oPlayerIDHelp = 2689224;
+    public const int oPlayerIDHelp = 2689235;
     public const int oNETTimeHelp = 2703735;
 
     ////////////////////////////////////////////////////////////////////
