@@ -194,7 +194,7 @@ public partial class EM09SessionChatView : UserControl
             TextBox_ExternalDisplay.Text != "")
         {
             Memory.WriteString(Globals.WorldPTR, Offsets.OnlineListPlayerName, TextBox_OnlineList.Text + "\0");
-            Memory.WriteString(Globals.PlayerChatterNamePTR + 0x84, null, TextBox_ChatName.Text + "\0");
+            Memory.WriteString(Globals.PlayerChatterNamePTR, new int[]{ 0xA0, 0x30C }, TextBox_ChatName.Text + "\0");
             Memory.WriteString(Globals.PlayerExternalDisplayNamePTR + 0x84, null, TextBox_ExternalDisplay.Text + "\0");
 
             MsgBoxUtil.InformationMsgBox("写入成功，请切换战局生效");
@@ -208,7 +208,7 @@ public partial class EM09SessionChatView : UserControl
     private void ReadPlayerName()
     {
         TextBox_OnlineList.Text = Memory.ReadString(Globals.WorldPTR, Offsets.OnlineListPlayerName, 20);
-        TextBox_ChatName.Text = Memory.ReadString(Globals.PlayerChatterNamePTR + 0x84, null, 20);
+        TextBox_ChatName.Text = Memory.ReadString(Globals.PlayerChatterNamePTR, new int[] { 0xA0, 0x30C }, 20);
         TextBox_ExternalDisplay.Text = Memory.ReadString(Globals.PlayerExternalDisplayNamePTR + 0x84, null, 20);
     }
 
