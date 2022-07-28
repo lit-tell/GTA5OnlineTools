@@ -30,7 +30,7 @@ public partial class EM08ExternalOverlayView : UserControl
         Settings.Overlay.FPS = 300;
 
         InjectInfo = new InjectInfo();
-        InjectInfo.DLLPath = FileUtil.Cache_Path + "MyInjectMenu.dll";
+        InjectInfo.DLLPath = FileUtil.Cache_Path + "MyMenu.dll";
 
         Process process = Process.GetProcessesByName("GTA5")[0];
         InjectInfo.PID = process.Id;

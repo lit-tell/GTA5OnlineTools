@@ -23,7 +23,7 @@
                             Margin="5,5,0,5"
                             DockPanel.Dock="Left"
                             Style="{StaticResource BorderStyle_ImageNormal}">
-                            <Image Source="/Assets/Images/Hacks/Kiddion.png" Style="{StaticResource ImageHighQualityStyle}">
+                            <Image Source="/Assets/Images/Hacks/Kiddion.png" Style="{StaticResource ImageStyle_HighQuality}">
                                 <Image.ToolTip>
                                     <Image Source="/Assets/Images/Hacks/Kiddion.png" />
                                 </Image.ToolTip>
@@ -51,7 +51,7 @@
                                     <ToggleButton IsChecked="{Binding UC1HacksModel.KiddionIsRun}" Style="{StaticResource ToggleButtonStyle_Normal}">
                                         <b:Interaction.Triggers>
                                             <b:EventTrigger EventName="Click">
-                                                <b:InvokeCommandAction Command="{Binding KiddionClickCommand}" />
+                                                <b:InvokeCommandAction Command="{Binding HacksClickCommand}" CommandParameter="Kiddion" />
                                             </b:EventTrigger>
                                         </b:Interaction.Triggers>
                                     </ToggleButton>
@@ -81,7 +81,7 @@
                             Margin="5,5,0,5"
                             DockPanel.Dock="Left"
                             Style="{StaticResource BorderStyle_ImageNormal}">
-                            <Image Source="/Assets/Images/Hacks/GTAHax.png" Style="{StaticResource ImageHighQualityStyle}">
+                            <Image Source="/Assets/Images/Hacks/GTAHax.png" Style="{StaticResource ImageStyle_HighQuality}">
                                 <Image.ToolTip>
                                     <Image Source="/Assets/Images/Hacks/GTAHax.png" />
                                 </Image.ToolTip>
@@ -109,7 +109,7 @@
                                     <ToggleButton IsChecked="{Binding UC1HacksModel.GTAHaxIsRun}" Style="{StaticResource ToggleButtonStyle_Normal}">
                                         <b:Interaction.Triggers>
                                             <b:EventTrigger EventName="Click">
-                                                <b:InvokeCommandAction Command="{Binding GTAHaxClickCommand}" />
+                                                <b:InvokeCommandAction Command="{Binding HacksClickCommand}" CommandParameter="GTAHax" />
                                             </b:EventTrigger>
                                         </b:Interaction.Triggers>
                                     </ToggleButton>
@@ -139,7 +139,7 @@
                             Margin="5,5,0,5"
                             DockPanel.Dock="Left"
                             Style="{StaticResource BorderStyle_ImageNormal}">
-                            <Image Source="/Assets/Images/Hacks/BincoHax.png" Style="{StaticResource ImageHighQualityStyle}">
+                            <Image Source="/Assets/Images/Hacks/BincoHax.png" Style="{StaticResource ImageStyle_HighQuality}">
                                 <Image.ToolTip>
                                     <Image Source="/Assets/Images/Hacks/BincoHax.png" />
                                 </Image.ToolTip>
@@ -167,7 +167,7 @@
                                     <ToggleButton IsChecked="{Binding UC1HacksModel.BincoHaxIsRun}" Style="{StaticResource ToggleButtonStyle_Normal}">
                                         <b:Interaction.Triggers>
                                             <b:EventTrigger EventName="Click">
-                                                <b:InvokeCommandAction Command="{Binding BincoHaxClickCommand}" />
+                                                <b:InvokeCommandAction Command="{Binding HacksClickCommand}" CommandParameter="BincoHax" />
                                             </b:EventTrigger>
                                         </b:Interaction.Triggers>
                                     </ToggleButton>
@@ -197,7 +197,7 @@
                             Margin="5,5,0,5"
                             DockPanel.Dock="Left"
                             Style="{StaticResource BorderStyle_ImageNormal}">
-                            <Image Source="/Assets/Images/Hacks/LSCHax.png" Style="{StaticResource ImageHighQualityStyle}">
+                            <Image Source="/Assets/Images/Hacks/LSCHax.png" Style="{StaticResource ImageStyle_HighQuality}">
                                 <Image.ToolTip>
                                     <Image Source="/Assets/Images/Hacks/LSCHax.png" />
                                 </Image.ToolTip>
@@ -225,7 +225,7 @@
                                     <ToggleButton IsChecked="{Binding UC1HacksModel.LSCHaxIsRun}" Style="{StaticResource ToggleButtonStyle_Normal}">
                                         <b:Interaction.Triggers>
                                             <b:EventTrigger EventName="Click">
-                                                <b:InvokeCommandAction Command="{Binding LSCHaxClickCommand}" />
+                                                <b:InvokeCommandAction Command="{Binding HacksClickCommand}" CommandParameter="LSCHax" />
                                             </b:EventTrigger>
                                         </b:Interaction.Triggers>
                                     </ToggleButton>
@@ -241,6 +241,63 @@
                                 <TextBlock Margin="5" TextWrapping="Wrap">
                                     一款国外UnKnoWnCheaTs论坛polivilas大佬制作的免费GTA5载具改装编辑器。<LineBreak /><LineBreak />
                                     主要用来改装载具，使用频率较少，目前尚未汉化</TextBlock>
+                            </StackPanel>
+                        </DockPanel>
+                    </DockPanel>
+                </Border>
+
+                <!--  YimMenu 注入式菜单  -->
+                <Border Style="{StaticResource BorderStyle_Hacks}">
+                    <DockPanel LastChildFill="True">
+                        <!--  预览图片  -->
+                        <Border
+                            Width="150"
+                            Margin="5,5,0,5"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource BorderStyle_ImageNormal}">
+                            <Image Source="/Assets/Images/Hacks/YimMenu.png" Style="{StaticResource ImageStyle_HighQuality}">
+                                <Image.ToolTip>
+                                    <Image Source="/Assets/Images/Hacks/YimMenu.png" />
+                                </Image.ToolTip>
+                            </Image>
+                        </Border>
+                        <!--  简介和功能  -->
+                        <DockPanel
+                            Margin="5"
+                            DockPanel.Dock="Right"
+                            LastChildFill="True">
+                            <!--  简介  -->
+                            <DockPanel
+                                Margin="5"
+                                DockPanel.Dock="Bottom"
+                                LastChildFill="True">
+                                <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
+                                    <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="YimMenuPage">
+                                        使用说明
+                                    </Hyperlink>
+                                </TextBlock>
+                                <StackPanel
+                                    HorizontalAlignment="Right"
+                                    DockPanel.Dock="Right"
+                                    Orientation="Horizontal">
+                                    <Button
+                                        Command="{Binding HacksClickCommand}"
+                                        CommandParameter="YimMenu"
+                                        Content="启动"
+                                        Style="{StaticResource ButtonStyle_Normal}" />
+                                </StackPanel>
+                            </DockPanel>
+                            <!--  功能  -->
+                            <StackPanel DockPanel.Dock="Top">
+                                <TextBlock
+                                    Margin="5"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Text="YimMenu 注入式菜单" />
+                                <TextBlock Margin="5" TextWrapping="Wrap">
+                                    一款GitHub开源项目Yimura大佬制作的免费GTA5注入式菜单，旨在防止崩溃（目前并非全部）并改善整体体验。<LineBreak /><LineBreak />
+                                    项目地址：https://github.com/YimMenu/YimMenu<LineBreak />
+                                    PS：当前尚未汉化，下次更新完善汉化</TextBlock>
                             </StackPanel>
                         </DockPanel>
                     </DockPanel>

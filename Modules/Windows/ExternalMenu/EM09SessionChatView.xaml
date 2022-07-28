@@ -186,12 +186,12 @@
                             Margin="0,5,0,5"
                             Source="/Assets/Images/Tips/PlayerName.png"
                             Stretch="Uniform"
-                            Style="{StaticResource ImageHighQualityStyle}">
+                            Style="{StaticResource ImageStyle_HighQuality}">
                             <Image.ToolTip>
                                 <Image
                                     Source="/Assets/Images/Tips/PlayerName.png"
                                     Stretch="Uniform"
-                                    Style="{StaticResource ImageHighQualityStyle}" />
+                                    Style="{StaticResource ImageStyle_HighQuality}" />
                             </Image.ToolTip>
                         </Image>
                     </Paragraph>

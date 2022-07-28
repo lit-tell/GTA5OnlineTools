@@ -23,6 +23,7 @@
     <None Remove="Assets\Images\Hacks\GTAHax.png" />
     <None Remove="Assets\Images\Hacks\Kiddion.png" />
     <None Remove="Assets\Images\Hacks\LSCHax.png" />
+    <None Remove="Assets\Images\Hacks\YimMenu.png" />
     <None Remove="Assets\Images\Launch.png" />
     <None Remove="Assets\Images\Tips\Bread.png" />
     <None Remove="Assets\Images\Tips\Bread_Chs.png" />
@@ -44,12 +45,13 @@
     <None Remove="Features\Files\Kiddion.exe" />
     <None Remove="Features\Files\Kiddion_Chs.exe" />
     <None Remove="Features\Files\LSCHax.exe" />
-    <None Remove="Features\Files\MyInjectMenu.dll" />
+    <None Remove="Features\Files\MyMenu.dll" />
     <None Remove="Features\Files\PackedStatEditor.dll" />
     <None Remove="Features\Files\scripts\Readme.api" />
     <None Remove="Features\Files\stat.txt" />
     <None Remove="Features\Files\teleports.json" />
     <None Remove="Features\Files\vehicles.json" />
+    <None Remove="Features\Files\YimMenu.dll" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,7 +61,7 @@
     <EmbeddedResource Include="Features\Files\config.json" />
     <EmbeddedResource Include="Features\Files\DefenderControl.exe" />
     <EmbeddedResource Include="Features\Files\DefenderControl.ini" />
-    <EmbeddedResource Include="Features\Files\MyInjectMenu.dll" />
+    <EmbeddedResource Include="Features\Files\MyMenu.dll" />
     <EmbeddedResource Include="Features\Files\GTAHax.exe" />
     <EmbeddedResource Include="Features\Files\Key87\config.json" />
     <EmbeddedResource Include="Features\Files\Kiddion.exe" />
@@ -70,6 +72,7 @@
     <EmbeddedResource Include="Features\Files\stat.txt" />
     <EmbeddedResource Include="Features\Files\teleports.json" />
     <EmbeddedResource Include="Features\Files\vehicles.json" />
+    <EmbeddedResource Include="Features\Files\YimMenu.dll" />
   </ItemGroup>
 
   <ItemGroup>
@@ -90,6 +93,7 @@
     <Resource Include="Assets\Images\Hacks\GTAHax.png" />
     <Resource Include="Assets\Images\Hacks\Kiddion.png" />
     <Resource Include="Assets\Images\Hacks\LSCHax.png" />
+    <Resource Include="Assets\Images\Hacks\YimMenu.png" />
     <Resource Include="Assets\Images\Launch.png" />
     <Resource Include="Assets\Images\Tips\Bread.png" />
     <Resource Include="Assets\Images\Tips\Bread_Chs.png" />

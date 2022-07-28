@@ -14,34 +14,31 @@ public partial class UC1HacksView : UserControl
 {
     public UC1HacksModel UC1HacksModel { get; set; } = new();
 
-    public RelayCommand KiddionClickCommand { get; private set; }
-    public RelayCommand GTAHaxClickCommand { get; private set; }
-    public RelayCommand BincoHaxClickCommand { get; private set; }
-    public RelayCommand LSCHaxClickCommand { get; private set; }
-
+    public RelayCommand<string> HacksClickCommand { get; private set; }
     public RelayCommand<string> ReadMeClickCommand { get; private set; }
+
     public RelayCommand FrameHideClickCommand { get; private set; }
 
     private KiddionPage KiddionPage = new();
     private GTAHaxPage GTAHaxPage = new();
     private BincoHaxPage BincoHaxPage = new();
     private LSCHaxPage LSCHaxPage = new();
+    private YimMenuPage YimMenuPage = new();
 
     public UC1HacksView()
     {
         InitializeComponent();
         this.DataContext = this;
 
-        KiddionClickCommand = new(KiddionClick);
-        GTAHaxClickCommand = new(GTAHaxClick);
-        BincoHaxClickCommand = new(BincoHaxClick);
-        LSCHaxClickCommand = new(LSCHaxClick);
-
+        HacksClickCommand = new(HacksClick);
         ReadMeClickCommand = new(ReadMeClick);
+
         FrameHideClickCommand = new(FrameHideClick);
 
-        var thread = new Thread(MainThread);
-        thread.IsBackground = true;
+        var thread = new Thread(MainThread)
+        {
+            IsBackground = true
+        };
         thread.Start();
     }
 
@@ -54,30 +51,70 @@ public partial class UC1HacksView : UserControl
         {
             // 判断 Kiddion 是否运行
             UC1HacksModel.KiddionIsRun = ProcessUtil.IsAppRun("Kiddion");
-
             // 判断 GTAHax 是否运行
             UC1HacksModel.GTAHaxIsRun = ProcessUtil.IsAppRun("GTAHax");
-
             // 判断 BincoHax 是否运行
             UC1HacksModel.BincoHaxIsRun = ProcessUtil.IsAppRun("BincoHax");
-
             // 判断 LSCHax 是否运行
             UC1HacksModel.LSCHaxIsRun = ProcessUtil.IsAppRun("LSCHax");
-
-            // 判断 PedDropper 是否运行
-            UC1HacksModel.PedDropperIsRun = ProcessUtil.IsAppRun("PedDropper");
-
-            // 判断 JobMoney 是否运行
-            UC1HacksModel.JobMoneyIsRun = ProcessUtil.IsAppRun("JobMoney");
 
             Thread.Sleep(1000);
         }
     }
 
-    private void KiddionClick()
+    private void HacksClick(string hackName)
     {
         AudioUtil.ClickSound();
 
+        switch (hackName)
+        {
+            case "Kiddion":
+                KiddionClick();
+                break;
+            case "GTAHax":
+                GTAHaxClick();
+                break;
+            case "BincoHax":
+                BincoHaxClick();
+                break;
+            case "LSCHax":
+                LSCHaxClick();
+                break;
+            case "YimMenu":
+                YimMenuClick();
+                break;
+        }
+    }
+
+    private void ReadMeClick(string pageName)
+    {
+        switch (pageName)
+        {
+            case "KiddionPage":
+                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
+                UC1HacksModel.FrameContent = KiddionPage;
+                break;
+            case "GTAHaxPage":
+                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
+                UC1HacksModel.FrameContent = GTAHaxPage;
+                break;
+            case "BincoHaxPage":
+                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
+                UC1HacksModel.FrameContent = BincoHaxPage;
+                break;
+            case "LSCHaxPage":
+                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
+                UC1HacksModel.FrameContent = LSCHaxPage;
+                break;
+            case "YimMenuPage":
+                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
+                UC1HacksModel.FrameContent = YimMenuPage;
+                break;
+        }
+    }
+
+    private void KiddionClick()
+    {
         bool isRun = false;
 
         Task.Run(() =>
@@ -150,8 +187,6 @@ public partial class UC1HacksView : UserControl
 
     private void GTAHaxClick()
     {
-        AudioUtil.ClickSound();
-
         if (UC1HacksModel.GTAHaxIsRun)
         {
             if (!ProcessUtil.IsAppRun("GTAHax"))
@@ -165,8 +200,6 @@ public partial class UC1HacksView : UserControl
 
     private void BincoHaxClick()
     {
-        AudioUtil.ClickSound();
-
         if (UC1HacksModel.BincoHaxIsRun)
         {
             if (!ProcessUtil.IsAppRun("BincoHax"))
@@ -180,8 +213,6 @@ public partial class UC1HacksView : UserControl
 
     private void LSCHaxClick()
     {
-        AudioUtil.ClickSound();
-
         if (UC1HacksModel.LSCHaxIsRun)
         {
             if (!ProcessUtil.IsAppRun("LSCHax"))
@@ -193,26 +224,46 @@ public partial class UC1HacksView : UserControl
         }
     }
 
-    private void ReadMeClick(string pageName)
+    private void YimMenuClick()
     {
-        switch (pageName)
+        var InjectInfo = new InjectInfo();
+
+        InjectInfo.DLLPath = FileUtil.Cache_Path + "YimMenu.dll";
+
+        var process = Process.GetProcessesByName("GTA5")[0];
+        InjectInfo.PID = process.Id;
+        InjectInfo.PName = process.ProcessName;
+        InjectInfo.MWindowHandle = process.MainWindowHandle;
+
+        if (InjectInfo.PID == 0)
         {
-            case "KiddionPage":
-                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
-                UC1HacksModel.FrameContent = KiddionPage;
-                break;
-            case "GTAHaxPage":
-                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
-                UC1HacksModel.FrameContent = GTAHaxPage;
-                break;
-            case "BincoHaxPage":
-                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
-                UC1HacksModel.FrameContent = BincoHaxPage;
-                break;
-            case "LSCHaxPage":
-                UC1HacksModel.FrameVisibilityState = Visibility.Visible;
-                UC1HacksModel.FrameContent = LSCHaxPage;
-                break;
+            MsgBoxUtil.WarningMsgBox("未找到GTA5进程，请先启动GTA5游戏");
+            return;
+        }
+        else if (string.IsNullOrEmpty(InjectInfo.DLLPath))
+        {
+            MsgBoxUtil.WarningMsgBox("发生异常，DLL路径为空");
+            return;
+        }
+
+        foreach (ProcessModule module in Process.GetProcessById(InjectInfo.PID).Modules)
+        {
+            if (module.FileName == InjectInfo.DLLPath)
+            {
+                MsgBoxUtil.WarningMsgBox("该DLL已经被注入过了，请勿重复注入，游戏中按 Ins 键显示菜单");
+                return;
+            }
+        }
+
+        try
+        {
+            BaseInjector.SetForegroundWindow(InjectInfo.MWindowHandle);
+            BaseInjector.DLLInjector(InjectInfo.PID, InjectInfo.DLLPath);
+            //MsgBoxUtil.InformationMsgBox($"DLL注入到进程 {InjectInfo.PName} 成功，请前往游戏查看");
+        }
+        catch (Exception ex)
+        {
+            MsgBoxUtil.ExceptionMsgBox(ex);
         }
     }
 

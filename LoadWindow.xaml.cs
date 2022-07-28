@@ -48,6 +48,7 @@ public partial class LoadWindow : Window
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "stat.txt", FileUtil.Cache_Path + "stat.txt");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "BincoHax.exe", FileUtil.Cache_Path + "BincoHax.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "LSCHax.exe", FileUtil.Cache_Path + "LSCHax.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "YimMenu.dll", FileUtil.Cache_Path + "YimMenu.dll");
 
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "Bread.dll", FileUtil.Cache_Path + "Bread.dll");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "Bread_Chs.dll", FileUtil.Cache_Path + "Bread_Chs.dll");
@@ -56,7 +57,7 @@ public partial class LoadWindow : Window
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.exe", FileUtil.Cache_Path + "DefenderControl.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.ini", FileUtil.Cache_Path + "DefenderControl.ini");
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "MyInjectMenu.dll", FileUtil.Cache_Path + "MyInjectMenu.dll");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "MyMenu.dll", FileUtil.Cache_Path + "MyMenu.dll");
             }
             catch (Exception) { }
 

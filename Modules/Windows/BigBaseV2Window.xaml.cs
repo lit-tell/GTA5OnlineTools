@@ -8,7 +8,7 @@ namespace GTA5OnlineTools.Modules.Windows;
 /// </summary>
 public partial class BigBaseV2Window : Window
 {
-    private InjectInfo InjectInfo { get; set; }
+    private InjectInfo InjectInfo { get; set; } = new();
 
     public BigBaseV2Window()
     {
@@ -19,11 +19,9 @@ public partial class BigBaseV2Window : Window
     {
         Task.Run(() =>
         {
-            InjectInfo = new InjectInfo();
-
             InjectInfo.DLLPath = FileUtil.Cache_Path + "PackedStatEditor.dll";
 
-            Process process = Process.GetProcessesByName("GTA5")[0];
+            var process = Process.GetProcessesByName("GTA5")[0];
             InjectInfo.PID = process.Id;
             InjectInfo.PName = process.ProcessName;
             InjectInfo.MWindowHandle = process.MainWindowHandle;

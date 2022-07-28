@@ -33,16 +33,15 @@
         </ControlTemplate>
     </Window.Template>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+    <DockPanel LastChildFill="True">
         <!--  左侧图片  -->
-        <Image Grid.Column="0" Source="/Assets/Images/Launch.png" />
+        <Image DockPanel.Dock="Left" Source="/Assets/Images/Launch.png" />
         <!--  右侧初始化内容  -->
-        <StackPanel Grid.Column="1" Margin="10">
-            <StackPanel Orientation="Horizontal">
+        <DockPanel
+            Margin="10"
+            DockPanel.Dock="Right"
+            LastChildFill="True">
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
                 <Image
                     Width="48"
                     Height="48"
@@ -55,8 +54,24 @@
                     FontWeight="Bold"
                     Text="GTA5线上小助手" />
             </StackPanel>
-            <TextBlock Margin="5" Text="正在初始化程序，请稍后..." />
+            <TextBlock
+                Margin="5"
+                HorizontalAlignment="Right"
+                DockPanel.Dock="Bottom"
+                Text="DS By CrazyZhang And Aure" />
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                DockPanel.Dock="Top">
 
-        </StackPanel>
-    </Grid>
+                <TextBlock
+                    Margin="5"
+                    FontSize="14"
+                    Text="正在初始化程序，请稍后..." />
+
+            </StackPanel>
+
+        </DockPanel>
+    </DockPanel>
+
 </Window>

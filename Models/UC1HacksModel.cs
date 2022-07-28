@@ -44,24 +44,14 @@ public class UC1HacksModel : ObservableObject
         set => SetProperty(ref _lSCHaxIsRun, value);
     }
 
-    private bool _pedDropperIsRun = false;
+    private bool _yimMenuIsRun = false;
     /// <summary>
-    /// PedDropper运行状态
+    /// YimMenu运行状态
     /// </summary>
-    public bool PedDropperIsRun
+    public bool YimMenuIsRun
     {
-        get => _pedDropperIsRun;
-        set => SetProperty(ref _pedDropperIsRun, value);
-    }
-
-    private bool _jobMoneyIsRun = false;
-    /// <summary>
-    /// JobMoney运行状态
-    /// </summary>
-    public bool JobMoneyIsRun
-    {
-        get => _jobMoneyIsRun;
-        set => SetProperty(ref _jobMoneyIsRun, value);
+        get => _yimMenuIsRun;
+        set => SetProperty(ref _yimMenuIsRun, value);
     }
 
     private object _frameContent;

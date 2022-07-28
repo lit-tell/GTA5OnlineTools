@@ -195,20 +195,6 @@
                     </Hyperlink>
                 </TextBlock>
             </UniformGrid>
-            <UniformGrid Rows="2">
-                <TextBlock
-                    Margin="5"
-                    FontWeight="Black"
-                    Text="免费游戏加速器" />
-                <TextBlock Margin="5">
-                    <Hyperlink
-                        Command="{Binding HyperlinkClickCommand}"
-                        CommandParameter="https://www.nn.com"
-                        ToolTip="https://www.nn.com">
-                        NN加速器
-                    </Hyperlink>
-                </TextBlock>
-            </UniformGrid>
 
         </StackPanel>
     </Grid>

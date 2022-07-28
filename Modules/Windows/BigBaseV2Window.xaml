@@ -125,7 +125,7 @@
                                             Content="Bread"
                                             IsChecked="False">
                                             <RadioButton.ToolTip>
-                                                <Image Source="/Assets/Images/Tips/Bread.png" Style="{StaticResource ImageHighQualityStyle}" />
+                                                <Image Source="/Assets/Images/Tips/Bread.png" Style="{StaticResource ImageStyle_HighQuality}" />
                                             </RadioButton.ToolTip>
                                         </RadioButton>
                                         <RadioButton
@@ -134,7 +134,7 @@
                                             Click="RadioButton_InjectDLL_Bread_Click"
                                             Content="Bread汉化版">
                                             <RadioButton.ToolTip>
-                                                <Image Source="/Assets/Images/Tips/Bread_Chs.png" Style="{StaticResource ImageHighQualityStyle}" />
+                                                <Image Source="/Assets/Images/Tips/Bread_Chs.png" Style="{StaticResource ImageStyle_HighQuality}" />
                                             </RadioButton.ToolTip>
                                         </RadioButton>
                                         <RadioButton
@@ -144,7 +144,7 @@
                                             Content="Packed Stat Editor"
                                             IsChecked="True">
                                             <RadioButton.ToolTip>
-                                                <Image Source="/Assets/Images/Tips/PackedStatEditor.png" Style="{StaticResource ImageHighQualityStyle}" />
+                                                <Image Source="/Assets/Images/Tips/PackedStatEditor.png" Style="{StaticResource ImageStyle_HighQuality}" />
                                             </RadioButton.ToolTip>
                                         </RadioButton>
                                     </WrapPanel>
