@@ -211,25 +211,25 @@ public partial class UC1HacksView : UserControl
 
     private void YimMenuClick()
     {
-        var InjectInfo = new InjectInfo();
+        if (!ProcessUtil.IsAppRun(CoreUtil.TargetAppName))
+        {
+            MsgBoxUtil.WarningMsgBox("未发现GTA5进程，请先运行GTA5游戏");
+            return;
+        }
 
+        var InjectInfo = new InjectInfo();
         InjectInfo.DLLPath = FileUtil.Cache_Path + "YimMenu.dll";
+
+        if (string.IsNullOrEmpty(InjectInfo.DLLPath))
+        {
+            MsgBoxUtil.WarningMsgBox("发生异常，DLL路径为空");
+            return;
+        }
 
         var process = Process.GetProcessesByName("GTA5")[0];
         InjectInfo.PID = process.Id;
         InjectInfo.PName = process.ProcessName;
         InjectInfo.MWindowHandle = process.MainWindowHandle;
-
-        if (InjectInfo.PID == 0)
-        {
-            MsgBoxUtil.WarningMsgBox("未找到GTA5进程，请先启动GTA5游戏");
-            return;
-        }
-        else if (string.IsNullOrEmpty(InjectInfo.DLLPath))
-        {
-            MsgBoxUtil.WarningMsgBox("发生异常，DLL路径为空");
-            return;
-        }
 
         foreach (ProcessModule module in Process.GetProcessById(InjectInfo.PID).Modules)
         {
