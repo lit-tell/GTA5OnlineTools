@@ -21,14 +21,17 @@
         <Setter Property="Width" Value="500" />
         <Setter Property="Height" Value="200" />
         <Setter Property="Margin" Value="3" />
+        <Setter Property="Padding" Value="2" />
         <Setter Property="Background" Value="White" />
         <Setter Property="BorderBrush" Value="Gray" />
         <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="BorderThickness" Value="3" />
                 <Setter Property="BorderBrush" Value="{StaticResource BlueColor}" />
+                <Setter Property="Padding" Value="0" />
             </Trigger>
         </Style.Triggers>
     </Style>
