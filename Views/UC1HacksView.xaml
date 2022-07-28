@@ -2,6 +2,7 @@
     x:Class="GTA5OnlineTools.Views.UC1HacksView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:attached="clr-namespace:GTA5OnlineTools.Assets.Styles.Attached"
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
@@ -281,10 +282,11 @@
                                     DockPanel.Dock="Right"
                                     Orientation="Horizontal">
                                     <Button
+                                        attached:Icon.Value="💉"
                                         Command="{Binding HacksClickCommand}"
                                         CommandParameter="YimMenu"
-                                        Content="启动"
-                                        Style="{StaticResource ButtonStyle_Normal}" />
+                                        Content="注入"
+                                        Style="{StaticResource ButtonStyle_Icon}" />
                                 </StackPanel>
                             </DockPanel>
                             <!--  功能  -->

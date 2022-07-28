@@ -167,7 +167,7 @@ public partial class UC1HacksView : UserControl
                         isRun = false;
                     }
 
-                    Task.Delay(100).Wait();
+                    Task.Delay(250).Wait();
                 } while (!isRun);
             }
             else
@@ -188,40 +188,25 @@ public partial class UC1HacksView : UserControl
     private void GTAHaxClick()
     {
         if (UC1HacksModel.GTAHaxIsRun)
-        {
-            if (!ProcessUtil.IsAppRun("GTAHax"))
-                ProcessUtil.OpenProcess("GTAHax", false);
-        }
+            ProcessUtil.OpenProcess("GTAHax", false);
         else
-        {
             ProcessUtil.CloseProcess("GTAHax");
-        }
     }
 
     private void BincoHaxClick()
     {
         if (UC1HacksModel.BincoHaxIsRun)
-        {
-            if (!ProcessUtil.IsAppRun("BincoHax"))
-                ProcessUtil.OpenProcess("BincoHax", false);
-        }
+            ProcessUtil.OpenProcess("BincoHax", false);
         else
-        {
             ProcessUtil.CloseProcess("BincoHax");
-        }
     }
 
     private void LSCHaxClick()
     {
         if (UC1HacksModel.LSCHaxIsRun)
-        {
-            if (!ProcessUtil.IsAppRun("LSCHax"))
-                ProcessUtil.OpenProcess("LSCHax", false);
-        }
+            ProcessUtil.OpenProcess("LSCHax", false);
         else
-        {
             ProcessUtil.CloseProcess("LSCHax");
-        }
     }
 
     private void YimMenuClick()
