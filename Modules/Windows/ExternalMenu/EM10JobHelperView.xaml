@@ -39,7 +39,7 @@
             <StackPanel Margin="5,0,5,5">
                 <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="CEO" />
                 <StackPanel>
-                    <WrapPanel>
+                    <WrapPanel Margin="0,0,0,5">
                         <Button Click="Button_CEOCargos_Click" Content="医疗用品" />
                         <Button Click="Button_CEOCargos_Click" Content="烟酒" />
                         <Button Click="Button_CEOCargos_Click" Content="古董艺术品（华丽彩蛋）" />
@@ -73,7 +73,7 @@
                 <TextBlock
                     Margin="5"
                     Foreground="Green"
-                    Text="提示：需要退出CEOD电脑重新进入生效。特殊货物貌似没有效果"
+                    Text="提示：需要退出CEOD电脑重新进入生效"
                     TextWrapping="Wrap" />
             </StackPanel>
 
@@ -88,19 +88,9 @@
                     Click="CheckBox_SetBunkerResupplyCosts_Click"
                     Content="最低地堡补给价格" />
                 <CheckBox
-                    x:Name="CheckBox_SetBunkerProduceResearchTime"
-                    Click="CheckBox_SetBunkerProduceResearchTime_Click"
-                    Content="最低地堡生产和研究时间 ★" />
-                <CheckBox
                     x:Name="CheckBox_SetBunkerSuppliesPerUnitProduced"
                     Click="CheckBox_SetBunkerSuppliesPerUnitProduced_Click"
                     Content="最低地堡原材料消耗量" />
-                <CheckBox
-                    x:Name="CheckBox_SetBunkerSaleMultipliers"
-                    Click="CheckBox_SetBunkerSaleMultipliers_Click"
-                    Content="⚠️ 地堡出货双倍利润"
-                    Foreground="Red"
-                    Visibility="Collapsed" />
                 <CheckBox
                     x:Name="CheckBox_UnlockBunkerResearch"
                     Click="CheckBox_UnlockBunkerResearch_Click"
@@ -125,10 +115,6 @@
                     x:Name="CheckBox_SetMCResupplyCosts"
                     Click="CheckBox_SetMCResupplyCosts_Click"
                     Content="最低摩托帮补给价格" />
-                <CheckBox
-                    x:Name="CheckBox_SetMCProduceTime"
-                    Click="CheckBox_SetMCProduceTime_Click"
-                    Content="最低摩托帮生产时间 ★" />
                 <CheckBox
                     x:Name="CheckBox_SetMCSuppliesPerUnitProduced"
                     Click="CheckBox_SetMCSuppliesPerUnitProduced_Click"
@@ -171,10 +157,6 @@
                     Click="CheckBox_RemoveNightclubOutDelay_Click"
                     Content="移除夜总会出货延迟" />
                 <CheckBox
-                    x:Name="CheckBox_SetNightclubProduceTime"
-                    Click="CheckBox_SetNightclubProduceTime_Click"
-                    Content="最低夜总会生产时间 ★" />
-                <CheckBox
                     x:Name="CheckBox_NightclubNoTonyLaunderingMoney"
                     Click="CheckBox_NightclubNoTonyLaunderingMoney_Click"
                     Content="最低托尼洗钱费用" />
@@ -195,92 +177,6 @@
                     Click="CheckBox_RemoveSmugglerRunOutDelay_Click"
                     Content="移除机库出货延迟" />
 
-                <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="高级 ★" />
-                <DockPanel LastChildFill="True">
-                    <TextBlock
-                        Margin="5,5,0,5"
-                        DockPanel.Dock="Left"
-                        Text="最低生产时间调整" />
-                    <TextBlock
-                        Margin="5"
-                        DockPanel.Dock="Left"
-                        Text="{Binding ElementName=Slider_ProduceTime, Path=Value, StringFormat=: {0:0.0 秒}}" />
-                    <Slider
-                        Name="Slider_ProduceTime"
-                        VerticalAlignment="Center"
-                        DockPanel.Dock="Right"
-                        IsSnapToTickEnabled="True"
-                        Maximum="10"
-                        Minimum="1"
-                        TickFrequency="1"
-                        ValueChanged="Slider_ProduceTime_ValueChanged"
-                        Value="5" />
-                </DockPanel>
-                <TextBlock
-                    Margin="5"
-                    Foreground="Green"
-                    Text="提示：调整后需要重新勾选最低生产时间（★代表调整的是该项时间）"
-                    TextWrapping="Wrap" />
-
-                <!--<TextBlock
-                        HorizontalAlignment="Center"
-                        FontSize="24"
-                        FontWeight="Bold"
-                        Text="地堡出货数量修改" />
-                    <TextBlock
-                        Margin="5,0,5,0"
-                        HorizontalAlignment="Center"
-                        Foreground="Red"
-                        Text="提示：可能会有风险，请慎重使用" />
-                    <UniformGrid Columns="2">
-                        <TextBlock Text="地堡出货价值" />
-                        <TextBox x:Name="TextBox_BunkerValue" MaxLength="10" />
-                        <TextBlock VerticalAlignment="Center" Text="地堡出货数量" />
-                        <TextBox x:Name="TextBox_BunkerCargo" MaxLength="3" />
-                        <TextBlock
-                            Foreground="Gray"
-                            IsEnabled="False"
-                            Text="实际已交付的货物数量" />
-                        <TextBlock
-                            x:Name="TextBlock_BunkerDeliveryCount"
-                            HorizontalAlignment="Left"
-                            Foreground="Gray"
-                            IsEnabled="False"
-                            Text="0" />
-                        <TextBlock Text="选择最终获取金额" />
-                        <ComboBox
-                            x:Name="ComboBox_BunkerMoney"
-                            VerticalContentAlignment="Center"
-                            SelectedIndex="0">
-                            <ComboBox.Resources>
-                                <Style TargetType="ComboBoxItem">
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                    <Setter Property="Padding" Value="5" />
-                                </Style>
-                            </ComboBox.Resources>
-                            <ComboBoxItem Content="210W" />
-                            <ComboBoxItem Content="170W" />
-                            <ComboBoxItem Content="140W" />
-                            <ComboBoxItem Content="105W" />
-                            <ComboBoxItem Content="70W" />
-                        </ComboBox>
-                    </UniformGrid>
-                    <WrapPanel>
-                        <Button
-                            x:Name="Button_ReadBunkerData"
-                            Click="Button_ReadBunkerData_Click"
-                            Content="读取地堡数据" />
-                        <Button
-                            x:Name="Button_WriteBunkerData"
-                            Click="Button_WriteBunkerData_Click"
-                            Content="写入地堡数据" />
-                        <Button
-                            x:Name="Button_DeliverBunker"
-                            Click="Button_DeliverBunker_Click"
-                            Content="直接交付货物"
-                            IsEnabled="False" />
-
-                    </WrapPanel>-->
             </StackPanel>
         </Grid>
 

@@ -7,7 +7,6 @@ using GTA5OnlineTools.Common.Utils;
 
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Messaging;
-
 using Hardcodet.Wpf.TaskbarNotification;
 
 namespace GTA5OnlineTools;
@@ -288,17 +287,19 @@ public partial class MainWindow : Window
     /// </summary>
     private static void OpenUpateWindow()
     {
-        if (MessageBox.Show($"检测到新版本已发布，是否立即前往更新？\n\n{GlobalData.ServerData.Latest.Date}\n{GlobalData.ServerData.Latest.Change}\n\n强烈建议大家使用最新版本呢！",
-            "发现新版本", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+        Application.Current.Dispatcher.Invoke(() =>
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            if (MessageBox.Show($"检测到新版本已发布，是否立即前往更新？\n\n{GlobalData.ServerData.Latest.Date}\n{GlobalData.ServerData.Latest.Change}\n\n强烈建议大家使用最新版本呢！",
+                "发现新版本", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
             {
-                var UpdateWindow = new UpdateWindow();
-                // 设置父窗口
-                UpdateWindow.Owner = MainWindowIns;
+                var UpdateWindow = new UpdateWindow
+                {
+                    // 设置父窗口
+                    Owner = MainWindowIns
+                };
                 // 以对话框形式显示更新窗口
                 UpdateWindow.ShowDialog();
-            });
-        }
+            }
+        });
     }
 }

@@ -75,89 +75,6 @@ public partial class EM10JobHelperView : UserControl
         }
     }
 
-    //private void Button_DeliverBunker_Click(object sender, RoutedEventArgs e)
-    //{
-    //    CoreUtils.ClickSound();
-
-    //    Memory.Write<int>(Globals.GlobalPTR - 0x128, Offsets.BunkerDelivery_1, 1);
-
-    //    Hacks.WriteGA<float>(262145 + 21045, 1.0f);
-    //    Hacks.WriteGA<int>(262145 + 21228 + 171, 1);
-    //    Hacks.WriteGA<int>(262145 + 21232 + 171, 1);
-    //    Hacks.WriteGA<int>(262145 + 21222 + 171, 1);
-    //    Hacks.WriteGA<int>(262145 + 21230 + 171, 1);
-    //    Hacks.WriteGA<int>(262145 + 21235 + 171, 1);
-    //    Hacks.WriteGA<int>(262145 + 21224 + 171, 1);
-    //    Thread.Sleep(1000);
-    //    Hacks.WriteGA<float>(262145 + 21045, 1.5f);
-    //    Hacks.WriteGA<int>(262145 + 21228 + 171, 1800000);
-    //    Hacks.WriteGA<int>(262145 + 21232 + 171, 900000);
-    //    Hacks.WriteGA<int>(262145 + 21222 + 171, 900000);
-    //    Hacks.WriteGA<int>(262145 + 21230 + 171, 900000);
-    //    Hacks.WriteGA<int>(262145 + 21235 + 171, 900000);
-    //    Hacks.WriteGA<int>(262145 + 2122 + 1714, 900000);
-
-    //    Button_DeliverBunker.IsEnabled = false;
-    //}
-
-    //private void Button_ReadBunkerData_Click(object sender, RoutedEventArgs e)
-    //{
-    //    CoreUtils.ClickSound();
-
-    //    TextBox_BunkerValue.Text = "0";
-    //    TextBox_BunkerCargo.Text = $"{Memory.Read<int>(Globals.GlobalPTR - 0x128, Offsets.BunkerCargo)}";
-    //    TextBlock_BunkerDeliveryCount.Text = $"{Memory.Read<int>(Globals.GlobalPTR - 0x128, Offsets.BunkerDelivery)}";
-    //}
-
-    //private void Button_WriteBunkerData_Click(object sender, RoutedEventArgs e)
-    //{
-    //    CoreUtils.ClickSound();
-
-    //    if (TextBox_BunkerValue.Text != "" &&
-    //        TextBox_BunkerCargo.Text != "" &&
-    //        Convert.ToInt32(TextBox_BunkerValue.Text) > 0 &&
-    //        Convert.ToInt32(TextBox_BunkerCargo.Text) < 100 &&
-    //        (Convert.ToInt32(TextBox_BunkerValue.Text) / Convert.ToInt32(TextBox_BunkerCargo.Text)) != 0)
-    //    {
-    //        int BunkerMoney = 2100000;
-
-    //        if (ComboBox_BunkerMoney.SelectedIndex == 0)
-    //        {
-    //            BunkerMoney = 2100000;
-    //        }
-    //        else if (ComboBox_BunkerMoney.SelectedIndex == 1)
-    //        {
-    //            BunkerMoney = 1700000;
-    //        }
-    //        else if (ComboBox_BunkerMoney.SelectedIndex == 2)
-    //        {
-    //            BunkerMoney = 1400000;
-    //        }
-    //        else if (ComboBox_BunkerMoney.SelectedIndex == 3)
-    //        {
-    //            BunkerMoney = 1050000;
-    //        }
-    //        else if (ComboBox_BunkerMoney.SelectedIndex == 4)
-    //        {
-    //            BunkerMoney = 700000;
-    //        }
-
-    //        Memory.Write<int>(Globals.GlobalPTR - 0x128, Offsets.BunkerDelivery, BunkerMoney / (Convert.ToInt32(TextBox_BunkerValue.Text) / Convert.ToInt32(TextBox_BunkerCargo.Text)));
-
-    //        TextBlock_BunkerDeliveryCount.Text = $"{Memory.Read<int>(Globals.GlobalPTR - 0x128, Offsets.BunkerDelivery)}";
-
-    //        MessageBox.Show("写入成功，请返回游戏正常出货或者摧毁货车",
-    //            "提示", MessageBoxButton.OK, MessageBoxImage.Information);
-
-    //        Button_DeliverBunker.IsEnabled = true;
-    //    }
-    //    else
-    //    {
-    //        MessageBox.Show("<地堡出货价值>或<地堡出货数量>值不合法，请检查后再重新写入",
-    //            "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
-    //    }
-    //}
-
     private void CheckBox_RemoveBuyingCratesCooldown_Click(object sender, RoutedEventArgs e)
     {
         Online.CEOBuyingCratesCooldown(CheckBox_CooldownForBuyingCrates.IsChecked == true);
@@ -385,21 +302,6 @@ public partial class EM10JobHelperView : UserControl
         Online.RemoveSmugglerRunOutDelay(CheckBox_RemoveSmugglerRunOutDelay.IsChecked == true);
     }
 
-    private void CheckBox_SetBunkerProduceResearchTime_Click(object sender, RoutedEventArgs e)
-    {
-        Online.SetBunkerProduceResearchTime(CheckBox_SetBunkerProduceResearchTime.IsChecked == true, 5);
-    }
-
-    private void CheckBox_SetMCProduceTime_Click(object sender, RoutedEventArgs e)
-    {
-        Online.SetMCProduceTime(CheckBox_SetMCProduceTime.IsChecked == true, 5);
-    }
-
-    private void CheckBox_SetNightclubProduceTime_Click(object sender, RoutedEventArgs e)
-    {
-        Online.SetNightclubProduceTime(CheckBox_SetNightclubProduceTime.IsChecked == true, 5);
-    }
-
     private void CheckBox_SetBunkerResupplyCosts_Click(object sender, RoutedEventArgs e)
     {
         Online.SetBunkerResupplyCosts(CheckBox_SetBunkerResupplyCosts.IsChecked == true);
@@ -408,11 +310,6 @@ public partial class EM10JobHelperView : UserControl
     private void CheckBox_SetMCResupplyCosts_Click(object sender, RoutedEventArgs e)
     {
         Online.SetMCResupplyCosts(CheckBox_SetMCResupplyCosts.IsChecked == true);
-    }
-
-    private void CheckBox_SetBunkerSaleMultipliers_Click(object sender, RoutedEventArgs e)
-    {
-        Online.SetBunkerSaleMultipliers(CheckBox_SetBunkerSaleMultipliers.IsChecked == true);
     }
 
     private void CheckBox_SetMCSaleMultipliers_Click(object sender, RoutedEventArgs e)
@@ -437,11 +334,6 @@ public partial class EM10JobHelperView : UserControl
 
     private void CheckBox_NightclubNoTonyLaunderingMoney_Click(object sender, RoutedEventArgs e)
     {
-        Online.NightclubNoTonyLaundering_Money(CheckBox_NightclubNoTonyLaunderingMoney.IsChecked == true);
-    }
-
-    private void Slider_ProduceTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-        Settings.ProduceTime = (int)Slider_ProduceTime.Value;
+        Online.NightclubNoTonyLaunderingMoney(CheckBox_NightclubNoTonyLaunderingMoney.IsChecked == true);
     }
 }

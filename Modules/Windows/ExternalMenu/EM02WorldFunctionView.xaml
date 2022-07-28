@@ -172,11 +172,6 @@
                         <Button Click="Button_REPxN_Click" Content="REPx1000" />
 
                     </WrapPanel>
-                    <TextBlock
-                        Margin="5"
-                        Foreground="Green"
-                        Text="提示：穿车友会衣服时经验倍数可能无效"
-                        TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>
         </ScrollViewer>

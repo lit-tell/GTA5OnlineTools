@@ -148,7 +148,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void OffRadar(bool isEnable)
     {
-        Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PlayerID() * 451 + 207, isEnable ? 1 : 0);
+        Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.GetPlayerID() * 451 + 207, isEnable ? 1 : 0);
         if (isEnable)
             Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 56, Hacks.GetNetworkTime() + 3600000);
         Hacks.WriteGA<int>(Offsets.oVMYCar + 4630, isEnable ? 3 : 0);
@@ -160,7 +160,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void GhostOrganization(bool isEnable)
     {
-        Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PlayerID() * 451 + 207, isEnable ? 1 : 0);
+        Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.GetPlayerID() * 451 + 207, isEnable ? 1 : 0);
         if (isEnable)
             Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 56, Hacks.GetNetworkTime() + 3600000);
         Hacks.WriteGA<int>(Offsets.oVMYCar + 4630, isEnable ? 4 : 0);
@@ -194,7 +194,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void RevealPlayers(bool isEnable)
     {
-        Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.PlayerID() * 451 + 210, isEnable ? 1 : 0);
+        Hacks.WriteGA<int>(Offsets.oPlayerIDHelp + 1 + Hacks.GetPlayerID() * 451 + 210, isEnable ? 1 : 0);
         Hacks.WriteGA<int>(Offsets.oNETTimeHelp + 57, isEnable ? Hacks.GetNetworkTime() + 3600000 : 0);
     }
 
@@ -213,12 +213,14 @@ public static class Online
     /// <param name="multiplier"></param>
     public static void REPMultiplier(float multiplier)
     {
-        Hacks.WriteGA<float>(262145 + 31299, multiplier);        // car meet         汽车见面会       1819417801
-        Hacks.WriteGA<float>(262145 + 31300, multiplier);        // Test Track
-        Hacks.WriteGA<float>(262145 + 31297, multiplier);        // Head_2_Head      头对头
-        Hacks.WriteGA<float>(262145 + 31296, multiplier);        // Scramble         攀登
-        Hacks.WriteGA<float>(262145 + 31295, multiplier);        // Pursuit Race     追逐赛
-        Hacks.WriteGA<float>(262145 + 31294, multiplier);        // Street Race      街头比赛
+        Hacks.WriteGA<float>(262145 + 31636, multiplier);        // Street Race         街头比赛        -147149995
+        Hacks.WriteGA<float>(262145 + 31637, multiplier);        // Pursuit Race        追逐赛
+        Hacks.WriteGA<float>(262145 + 31638, multiplier);        // Scramble            攀登
+        Hacks.WriteGA<float>(262145 + 31639, multiplier);        // Head 2 Head         头对头          1434998920
+
+        Hacks.WriteGA<float>(262145 + 31641, multiplier);        // LS Car Meet         汽车见面会       1819417801
+        Hacks.WriteGA<float>(262145 + 31642, multiplier);        // LS Car Meet Track
+        Hacks.WriteGA<float>(262145 + 31643, multiplier);        // LS Car Meet Cloth Shop
     }
 
     /// <summary>
@@ -550,7 +552,7 @@ public static class Online
     /// 夜总会托尼洗钱费用
     /// </summary>
     /// <param name="isEnable"></param>
-    public static void NightclubNoTonyLaundering_Money(bool isEnable)
+    public static void NightclubNoTonyLaunderingMoney(bool isEnable)
     {
         Hacks.WriteGA<float>(262145 + 24524, isEnable ? 0.000001f : 0.1f);        // -1002770353  tuneables_processing.c
     }

@@ -4,26 +4,53 @@ namespace GTA5OnlineTools.Features.SDK;
 
 public static class Hacks
 {
+    /// <summary>
+    /// 全局地址
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
     public static long GlobalAddress(int index)
     {
         return Memory.Read<long>(Globals.GlobalPTR + 0x8 * ((index >> 0x12) & 0x3F)) + 8 * (index & 0x3FFFF);
     }
 
+    /// <summary>
+    /// 泛型读取全局地址
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="index"></param>
+    /// <returns></returns>
     public static T ReadGA<T>(int index) where T : struct
     {
         return Memory.Read<T>(GlobalAddress(index));
     }
 
+    /// <summary>
+    /// 泛型写入全局地址
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="index"></param>
+    /// <param name="vaule"></param>
     public static void WriteGA<T>(int index, T vaule) where T : struct
     {
         Memory.Write<T>(GlobalAddress(index), vaule);
     }
 
+    /// <summary>
+    /// 读取全局地址字符串
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
     public static string ReadGAString(int index)
     {
         return Memory.ReadString(GlobalAddress(index), null, 20);
     }
 
+    /// <summary>
+    /// 写入全局地址字符串
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="str"></param>
     public static void WriteGAString(int index, string str)
     {
         Memory.WriteString(GlobalAddress(index), null, str);
@@ -31,24 +58,41 @@ public static class Hacks
 
     /////////////////////////////////////////////////////
 
+    /// <summary>
+    /// 获取网络时间
+    /// </summary>
+    /// <returns></returns>
     public static int GetNetworkTime()
     {
         return ReadGA<int>(1574755 + 11);
     }
 
-    public static int PlayerID()
+    /// <summary>
+    /// 获取玩家ID
+    /// </summary>
+    /// <returns></returns>
+    public static int GetPlayerID()
     {
         return ReadGA<int>(Offsets.oPlayerGA);
     }
 
+    /// <summary>
+    /// 获取游戏内生意索引
+    /// </summary>
+    /// <param name="ID">范围：0~5</param>
+    /// <returns></returns>
     public static int GetBusinessIndex(int ID)
     {
-        // ID 0-5
-        return 1853131 + 1 + (PlayerID() * 888) + 267 + 187 + 1 + (ID * 13);
+        return 1853131 + 1 + (GetPlayerID() * 888) + 267 + 187 + 1 + (ID * 13);
     }
 
     /////////////////////////////////////////
 
+    /// <summary>
+    /// 字符串转Hash值
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public static uint Joaat(string input)
     {
         uint num1 = 0U;

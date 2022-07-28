@@ -10,7 +10,6 @@ namespace GTA5OnlineTools.Views;
 /// </summary>
 public partial class UC3ToolsView : UserControl
 {
-    private UpdateWindow UpdateWindow = null;
     private InjectorWindow InjectorWindow = null;
 
     public RelayCommand<string> ToolsButtonClickCommand { get; private set; }
@@ -181,26 +180,12 @@ public partial class UC3ToolsView : UserControl
     /// </summary>
     private void OpenUpdateWindowClick()
     {
-        if (UpdateWindow == null)
+        // 更新窗口要以对话框形式处理
+        var UpdateWindow = new UpdateWindow
         {
-            UpdateWindow = new UpdateWindow();
-            UpdateWindow.Show();
-        }
-        else
-        {
-            if (UpdateWindow.IsVisible)
-            {
-                UpdateWindow.Topmost = true;
-                UpdateWindow.Topmost = false;
-                UpdateWindow.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                UpdateWindow = null;
-                UpdateWindow = new UpdateWindow();
-                UpdateWindow.Show();
-            }
-        }
+            Owner = MainWindow.MainWindowIns
+        };
+        UpdateWindow.ShowDialog();
     }
 
     /// <summary>

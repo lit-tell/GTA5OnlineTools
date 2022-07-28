@@ -9,11 +9,11 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Style TargetType="CheckBox">
+        <Style TargetType="{x:Type CheckBox}">
             <Setter Property="Margin" Value="5" />
         </Style>
 
-        <Style BasedOn="{StaticResource ButtonStyle_Normal}" TargetType="Button" />
+        <Style BasedOn="{StaticResource ButtonStyle_Normal}" TargetType="{x:Type Button}" />
     </UserControl.Resources>
 
     <Grid Margin="5">

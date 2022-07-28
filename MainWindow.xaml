@@ -66,6 +66,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Window.Resources>
 
     <Border
@@ -153,6 +154,7 @@
                     </DockPanel>
                 </Border>
             </Grid>
+
             <Grid Grid.Column="1">
                 <ContentControl x:Name="ContentControl_Main" />
             </Grid>

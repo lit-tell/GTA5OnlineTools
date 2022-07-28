@@ -1,7 +1,7 @@
-﻿using Downloader;
-
+﻿using GTA5OnlineTools.Common.Data;
 using GTA5OnlineTools.Common.Utils;
-using GTA5OnlineTools.Common.Data;
+
+using Downloader;
 
 namespace GTA5OnlineTools.Modules.Kits;
 
@@ -10,21 +10,24 @@ namespace GTA5OnlineTools.Modules.Kits;
 /// </summary>
 public partial class UpdateWindow : Window
 {
-    private DownloadService downloader;
+    private readonly DownloadService downloader = new();
 
     public UpdateWindow()
     {
         InitializeComponent();
     }
 
+    /// <summary>
+    /// 更新窗口加载事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Window_Update_Loaded(object sender, RoutedEventArgs e)
     {
         try
         {
             if (CoreUtil.ServerVersionInfo != CoreUtil.ClientVersionInfo)
                 AudioUtil.SP_GTA5_Job.Play();
-
-            downloader = new DownloadService();
 
             if (GlobalData.ServerData != null)
             {
@@ -43,6 +46,11 @@ public partial class UpdateWindow : Window
         }
     }
 
+    /// <summary>
+    /// 更新窗口关闭事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Window_Update_Closing(object sender, CancelEventArgs e)
     {
         downloader.CancelAsync();
@@ -50,12 +58,22 @@ public partial class UpdateWindow : Window
         downloader.Dispose();
     }
 
+    /// <summary>
+    /// 超链接请求导航事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
     {
         ProcessUtil.OpenLink(e.Uri.OriginalString);
         e.Handled = true;
     }
 
+    /// <summary>
+    /// 开始更新按钮点击事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Button_Update_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
@@ -85,6 +103,11 @@ public partial class UpdateWindow : Window
         downloader.DownloadFileTaskAsync(CoreUtil.UpdateAddress, OldPath);
     }
 
+    /// <summary>
+    /// 取消更新按钮点击事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void Button_CancelUpdate_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.ClickSound();
@@ -105,9 +128,14 @@ public partial class UpdateWindow : Window
         TextBlock_Percentage.Text = "0KB / 0MB";
     }
 
+    /// <summary>
+    /// 下载进度变更事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void DownloadProgressChanged(object sender, Downloader.DownloadProgressChangedEventArgs e)
     {
-        Dispatcher.BeginInvoke(new Action(delegate
+        this.Dispatcher.BeginInvoke(new Action(delegate
         {
             ProgressBar_Update.Minimum = 0;
             ProgressBar_Update.Maximum = e.TotalBytesToReceive;
@@ -121,6 +149,11 @@ public partial class UpdateWindow : Window
         }));
     }
 
+    /// <summary>
+    /// 下载文件完成事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
     {
         Dispatcher.BeginInvoke(new Action(delegate
@@ -171,17 +204,18 @@ public partial class UpdateWindow : Window
         }));
     }
 
+    /// <summary>
+    /// 文件大小转换
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
     private string LongToString(long num)
     {
         float kb = num / 1024.0f;
 
         if (kb > 1024)
-        {
             return $"{kb / 1024:0.0}MB";
-        }
         else
-        {
             return $"{kb:0.0}KB";
-        }
     }
 }

@@ -93,11 +93,18 @@
                     </DockPanel>
                 </Grid>
 
-                <TextBlock
-                    x:Name="TextBlock_Info"
-                    Grid.Row="1"
-                    Margin="5"
-                    Text="下载信息" />
+                <DockPanel Grid.Row="1" LastChildFill="True">
+                    <TextBlock
+                        Margin="5"
+                        DockPanel.Dock="Right"
+                        Foreground="Green"
+                        Text="提示：上述节点选择任意一个下载更新即可" />
+                    <TextBlock
+                        x:Name="TextBlock_Info"
+                        Margin="5"
+                        DockPanel.Dock="Left"
+                        Text="下载信息" />
+                </DockPanel>
 
                 <Grid Grid.Row="2">
                     <ProgressBar
