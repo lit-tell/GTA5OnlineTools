@@ -1,8 +1,8 @@
 ﻿namespace GTA5OnlineTools.Features.SDK;
 
-public class Offsets
+public static class Offsets
 {
-    public class Mask
+    public static class Mask
     {
         public const string WorldMask = "48 8B 05 ?? ?? ?? ?? 45 ?? ?? ?? ?? 48 8B 48 08 48 85 C9 74 07";
         public const string BlipMask = "4C 8D 05 ?? ?? ?? ?? 0F B7 C1";
@@ -33,28 +33,25 @@ public class Offsets
     public const int InitSession_Cache = 1574589 + 2;
     public const int InitSession_Type = 1575015;
 
-    public const int PlayerNameDisPlay_Epic = 0x2C36104;
-    public const int PlayerNameDisPlay_Steam = 0x2C3AC94;
-
     ////////////////////////////////////////////////////////////////////
 
     // Vehicle Menus Globals
-    public const int oVMCreate = 2725439;      // Create any vehicle.
-    public const int oVMYCar = 2815059;        // Get my car.
-    public const int oVGETIn = 2671449;        // Spawn into vehicle.
-    public const int oVMSlots = 1585857;       // Get vehicle slots.
+    public const int oVMCreate = 2725439;       // Create any vehicle.
+    public const int oVMYCar = 2815059;         // Get my car.
+    public const int oVGETIn = 2671449;         // Spawn into vehicle.
+    public const int oVMSlots = 1585857;        // Get vehicle slots.
 
     // Some Player / Network times associated Globals
-    public const int oPlayerGA = 2703735;
-    public const int oPlayerIDHelp = 2689235;
     public const int oNETTimeHelp = 2703735;
+    public const int oPlayerIDHelp = 2689235;
+    public const int oPlayerGA = 2703735;
 
     ////////////////////////////////////////////////////////////////////
 
     public const int SpawnPersonalVehicleIndex1 = oVMYCar + 965;
     public const int SpawnPersonalVehicleIndex2 = oVMYCar + 962;
 
-    public class Player
+    public static class Player
     {
         public static int[] Health = new int[] { 0x08, 0x280 };
         public static int[] MaxHealth = new int[] { 0x08, 0x2A0 };
@@ -89,7 +86,7 @@ public class Offsets
 
     public static int[] RID = new int[] { 0x08, 0x10C8, 0x90 };
 
-    public class Vehicle
+    public static class Vehicle
     {
         public static int[] GodMode = new int[] { 0x08, 0xD30, 0x189 };
         public static int[] CurPassenger = new int[] { 0x08, 0xD30, 0xC62 };
@@ -111,7 +108,7 @@ public class Offsets
         public static int[] Parachute = new int[] { 0x08, 0xD30, 0x20, 0x58C };
     }
 
-    public class Weapon
+    public static class Weapon
     {
         public static int[] AmmoInfo = new int[] { 0x08, 0x10D8, 0x20, 0x60 };
         public static int[] AmmoModifier = new int[] { 0x08, 0x10D0, 0x78 };

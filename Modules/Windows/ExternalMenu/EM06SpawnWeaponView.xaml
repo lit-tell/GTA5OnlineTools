@@ -39,7 +39,7 @@
             Style="{StaticResource ListBoxStyle}" />
 
         <StackPanel Grid.Column="2">
-            <Border Style="{StaticResource BorderTitleStyle}">
+            <Border Style="{StaticResource BorderStyle_Title}">
                 <TextBlock
                     Padding="3,0,0,0"
                     Foreground="White"
@@ -69,7 +69,7 @@
                     Content="无限弹药和弹夹" />
             </WrapPanel>
 
-            <Border Style="{StaticResource BorderTitleStyle}">
+            <Border Style="{StaticResource BorderStyle_Title}">
                 <TextBlock
                     Padding="3,0,0,0"
                     Foreground="White"
@@ -104,7 +104,7 @@
                     Content="提升射程" />
             </WrapPanel>
 
-            <Border Style="{StaticResource BorderTitleStyle}">
+            <Border Style="{StaticResource BorderStyle_Title}">
                 <TextBlock
                     Padding="3,0,0,0"
                     Foreground="White"
@@ -131,7 +131,7 @@
                 </ComboBox>
             </StackPanel>
 
-            <Border Style="{StaticResource BorderTitleStyle}">
+            <Border Style="{StaticResource BorderStyle_Title}">
                 <TextBlock
                     Padding="3,0,0,0"
                     Foreground="White"

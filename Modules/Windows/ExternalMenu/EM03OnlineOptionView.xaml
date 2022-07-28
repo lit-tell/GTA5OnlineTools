@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Orientation="Vertical">
-            <Border Style="{StaticResource BorderTitleStyle}">
+            <Border Style="{StaticResource BorderStyle_Title}">
                 <TextBlock
                     Padding="3,0,0,0"
                     Foreground="White"
@@ -45,7 +45,7 @@
                     Content="移除天基炮冷却" />
             </StackPanel>
 
-            <Border Style="{StaticResource BorderTitleStyle}">
+            <Border Style="{StaticResource BorderStyle_Title}">
                 <TextBlock
                     Padding="3,0,0,0"
                     Foreground="White"
@@ -77,7 +77,7 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Orientation="Vertical">
-            <Border Style="{StaticResource BorderTitleStyle}">
+            <Border Style="{StaticResource BorderStyle_Title}">
                 <TextBlock
                     Padding="3,0,0,0"
                     Foreground="White"
@@ -94,7 +94,7 @@
                     Content="战局雪天 (自己可见)" />
             </StackPanel>
 
-            <Border Style="{StaticResource BorderTitleStyle}">
+            <Border Style="{StaticResource BorderStyle_Title}">
                 <TextBlock
                     Padding="3,0,0,0"
                     Foreground="White"
@@ -119,7 +119,7 @@
 
             </WrapPanel>
 
-            <Border Style="{StaticResource BorderTitleStyle}">
+            <Border Style="{StaticResource BorderStyle_Title}">
                 <TextBlock
                     Padding="3,0,0,0"
                     Foreground="White"

@@ -7,16 +7,11 @@
     Title="KiddionPage"
     d:DesignHeight="720"
     d:DesignWidth="1280"
-    Style="{StaticResource PageStyle}"
+    Style="{StaticResource PageStyle_Loaded}"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <RichTextBox Grid.Column="0" Style="{StaticResource RichTextBoxStyle_Page}">
+    <UniformGrid Columns="2">
+        <RichTextBox Margin="5,5,2.5,5" Style="{StaticResource RichTextBoxStyle_Page}">
             <FlowDocument>
                 <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                     简介
@@ -60,7 +55,7 @@
             </FlowDocument>
         </RichTextBox>
 
-        <RichTextBox Grid.Column="1" Style="{StaticResource RichTextBoxStyle_Page}">
+        <RichTextBox Margin="2.5,5,5,5" Style="{StaticResource RichTextBoxStyle_Page}">
             <FlowDocument>
                 <Paragraph Style="{StaticResource ParagraphStyle_Title}">
                     快捷键
@@ -90,6 +85,6 @@
                     【U键】确定，【O键】返回</Paragraph>
             </FlowDocument>
         </RichTextBox>
-    </Grid>
+    </UniformGrid>
 
 </Page>

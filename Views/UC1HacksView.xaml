@@ -4,162 +4,255 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="720"
     d:DesignWidth="1280"
-    Style="{StaticResource UserControlStyle_Loading}"
+    Style="{StaticResource UserControlStyle_Loaded}"
     mc:Ignorable="d">
 
-    <Grid Margin="5">
+    <Grid>
         <ScrollViewer Style="{StaticResource ScrollViewerStyle_VAHD}">
-            <WrapPanel>
+            <WrapPanel Margin="3,3,0,0">
                 <!--  Kiddion 外置辅助菜单  -->
-                <Border Style="{StaticResource HackBorderStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Image
-                            Source="/Assets/Images/Hacks/Kiddion.png"
-                            Style="{StaticResource ImageHighQualityStyle}"
-                            ToolTip="Kiddion 外置辅助菜单" />
-                        <UniformGrid
-                            Grid.Row="1"
+                <Border Style="{StaticResource BorderStyle_Hacks}">
+                    <DockPanel LastChildFill="True">
+                        <!--  预览图片  -->
+                        <Border
+                            Width="150"
+                            Margin="5,5,0,5"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource BorderStyle_ImageNormal}">
+                            <Image Source="/Assets/Images/Hacks/Kiddion.png" Style="{StaticResource ImageHighQualityStyle}">
+                                <Image.ToolTip>
+                                    <Image Source="/Assets/Images/Hacks/Kiddion.png" />
+                                </Image.ToolTip>
+                            </Image>
+                        </Border>
+                        <!--  简介和功能  -->
+                        <DockPanel
                             Margin="5"
-                            Columns="2">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="KiddionPage">
-                                    使用说明
-                                </Hyperlink>
-                                <TextBlock.ToolTip>
-                                    <Image Source="/Assets/Images/Hacks/Kiddion.png" Style="{StaticResource ImageHighQualityStyle}" />
-                                </TextBlock.ToolTip>
-                            </TextBlock>
-                            <CheckBox IsChecked="{Binding UC1HacksModel.KiddionIsRun}" Style="{StaticResource ONOFFCheckBox}">
-                                <b:Interaction.Triggers>
-                                    <b:EventTrigger EventName="Click">
-                                        <b:InvokeCommandAction Command="{Binding KiddionClickCommand}" />
-                                    </b:EventTrigger>
-                                </b:Interaction.Triggers>
-                            </CheckBox>
-                        </UniformGrid>
-                    </Grid>
+                            DockPanel.Dock="Right"
+                            LastChildFill="True">
+                            <!--  简介  -->
+                            <DockPanel
+                                Margin="5"
+                                DockPanel.Dock="Bottom"
+                                LastChildFill="True">
+                                <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
+                                    <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="KiddionPage">
+                                        使用说明
+                                    </Hyperlink>
+                                </TextBlock>
+                                <StackPanel
+                                    HorizontalAlignment="Right"
+                                    DockPanel.Dock="Right"
+                                    Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding UC1HacksModel.KiddionIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                        <b:Interaction.Triggers>
+                                            <b:EventTrigger EventName="Click">
+                                                <b:InvokeCommandAction Command="{Binding KiddionClickCommand}" />
+                                            </b:EventTrigger>
+                                        </b:Interaction.Triggers>
+                                    </CheckBox>
+                                </StackPanel>
+                            </DockPanel>
+                            <!--  功能  -->
+                            <StackPanel DockPanel.Dock="Top">
+                                <TextBlock
+                                    Margin="5"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Text="Kiddion 外置辅助菜单" />
+                                <TextBlock Margin="5" Text="描述描述描述描述描述描述描述描述描述描述描述描述" />
+                            </StackPanel>
+                        </DockPanel>
+                    </DockPanel>
                 </Border>
+
                 <!--  GTAHax 全局变量修改工具  -->
-                <Border Style="{StaticResource HackBorderStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Image
-                            Source="/Assets/Images/Hacks/GTAHax.png"
-                            Style="{StaticResource ImageHighQualityStyle}"
-                            ToolTip="GTAHax 全局变量修改工具" />
-                        <UniformGrid
-                            Grid.Row="1"
+                <Border Style="{StaticResource BorderStyle_Hacks}">
+                    <DockPanel LastChildFill="True">
+                        <!--  预览图片  -->
+                        <Border
+                            Width="150"
+                            Margin="5,5,0,5"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource BorderStyle_ImageNormal}">
+                            <Image Source="/Assets/Images/Hacks/GTAHax.png" Style="{StaticResource ImageHighQualityStyle}">
+                                <Image.ToolTip>
+                                    <Image Source="/Assets/Images/Hacks/GTAHax.png" />
+                                </Image.ToolTip>
+                            </Image>
+                        </Border>
+                        <!--  简介和功能  -->
+                        <DockPanel
                             Margin="5"
-                            Columns="2">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="GTAHaxPage">
-                                    使用说明
-                                </Hyperlink>
-                                <TextBlock.ToolTip>
-                                    <Image Source="/Assets/Images/Hacks/GTAHax.png" Style="{StaticResource ImageHighQualityStyle}" />
-                                </TextBlock.ToolTip>
-                            </TextBlock>
-                            <CheckBox IsChecked="{Binding UC1HacksModel.GTAHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
-                                <b:Interaction.Triggers>
-                                    <b:EventTrigger EventName="Click">
-                                        <b:InvokeCommandAction Command="{Binding GTAHaxClickCommand}" />
-                                    </b:EventTrigger>
-                                </b:Interaction.Triggers>
-                            </CheckBox>
-                        </UniformGrid>
-                    </Grid>
+                            DockPanel.Dock="Right"
+                            LastChildFill="True">
+                            <!--  简介  -->
+                            <DockPanel
+                                Margin="5"
+                                DockPanel.Dock="Bottom"
+                                LastChildFill="True">
+                                <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
+                                    <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="GTAHaxPage">
+                                        使用说明
+                                    </Hyperlink>
+                                </TextBlock>
+                                <StackPanel
+                                    HorizontalAlignment="Right"
+                                    DockPanel.Dock="Right"
+                                    Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding UC1HacksModel.GTAHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                        <b:Interaction.Triggers>
+                                            <b:EventTrigger EventName="Click">
+                                                <b:InvokeCommandAction Command="{Binding GTAHaxClickCommand}" />
+                                            </b:EventTrigger>
+                                        </b:Interaction.Triggers>
+                                    </CheckBox>
+                                </StackPanel>
+                            </DockPanel>
+                            <!--  功能  -->
+                            <StackPanel DockPanel.Dock="Top">
+                                <TextBlock
+                                    Margin="5"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Text="GTAHax 全局变量修改工具" />
+                                <TextBlock Margin="5" Text="描述描述描述描述描述描述描述描述描述描述描述描述" />
+                            </StackPanel>
+                        </DockPanel>
+                    </DockPanel>
                 </Border>
+
                 <!--  BincoHax 角色服装修改工具  -->
-                <Border Style="{StaticResource HackBorderStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Image
-                            Source="/Assets/Images/Hacks/BincoHax.png"
-                            Style="{StaticResource ImageHighQualityStyle}"
-                            ToolTip="BincoHax 角色服装修改工具" />
-                        <UniformGrid
-                            Grid.Row="1"
+                <Border Style="{StaticResource BorderStyle_Hacks}">
+                    <DockPanel LastChildFill="True">
+                        <!--  预览图片  -->
+                        <Border
+                            Width="150"
+                            Margin="5,5,0,5"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource BorderStyle_ImageNormal}">
+                            <Image Source="/Assets/Images/Hacks/BincoHax.png" Style="{StaticResource ImageHighQualityStyle}">
+                                <Image.ToolTip>
+                                    <Image Source="/Assets/Images/Hacks/BincoHax.png" />
+                                </Image.ToolTip>
+                            </Image>
+                        </Border>
+                        <!--  简介和功能  -->
+                        <DockPanel
                             Margin="5"
-                            Columns="2">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="BincoHaxPage">
-                                    使用说明
-                                </Hyperlink>
-                                <TextBlock.ToolTip>
-                                    <Image Source="/Assets/Images/Hacks/BincoHax.png" Style="{StaticResource ImageHighQualityStyle}" />
-                                </TextBlock.ToolTip>
-                            </TextBlock>
-                            <CheckBox IsChecked="{Binding UC1HacksModel.BincoHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
-                                <b:Interaction.Triggers>
-                                    <b:EventTrigger EventName="Click">
-                                        <b:InvokeCommandAction Command="{Binding BincoHaxClickCommand}" />
-                                    </b:EventTrigger>
-                                </b:Interaction.Triggers>
-                            </CheckBox>
-                        </UniformGrid>
-                    </Grid>
+                            DockPanel.Dock="Right"
+                            LastChildFill="True">
+                            <!--  简介  -->
+                            <DockPanel
+                                Margin="5"
+                                DockPanel.Dock="Bottom"
+                                LastChildFill="True">
+                                <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
+                                    <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="BincoHaxPage">
+                                        使用说明
+                                    </Hyperlink>
+                                </TextBlock>
+                                <StackPanel
+                                    HorizontalAlignment="Right"
+                                    DockPanel.Dock="Right"
+                                    Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding UC1HacksModel.BincoHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                        <b:Interaction.Triggers>
+                                            <b:EventTrigger EventName="Click">
+                                                <b:InvokeCommandAction Command="{Binding BincoHaxClickCommand}" />
+                                            </b:EventTrigger>
+                                        </b:Interaction.Triggers>
+                                    </CheckBox>
+                                </StackPanel>
+                            </DockPanel>
+                            <!--  功能  -->
+                            <StackPanel DockPanel.Dock="Top">
+                                <TextBlock
+                                    Margin="5"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Text="BincoHax 角色服装修改工具" />
+                                <TextBlock Margin="5" Text="描述描述描述描述描述描述描述描述描述描述描述描述" />
+                            </StackPanel>
+                        </DockPanel>
+                    </DockPanel>
                 </Border>
+
                 <!--  LSCHax 载具改装编辑器  -->
-                <Border Style="{StaticResource HackBorderStyle}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Image
-                            Source="/Assets/Images/Hacks/LSCHax.png"
-                            Style="{StaticResource ImageHighQualityStyle}"
-                            ToolTip="LSCHax 载具改装编辑器" />
-                        <UniformGrid
-                            Grid.Row="1"
+                <Border Style="{StaticResource BorderStyle_Hacks}">
+                    <DockPanel LastChildFill="True">
+                        <!--  预览图片  -->
+                        <Border
+                            Width="150"
+                            Margin="5,5,0,5"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource BorderStyle_ImageNormal}">
+                            <Image Source="/Assets/Images/Hacks/LSCHax.png" Style="{StaticResource ImageHighQualityStyle}">
+                                <Image.ToolTip>
+                                    <Image Source="/Assets/Images/Hacks/LSCHax.png" />
+                                </Image.ToolTip>
+                            </Image>
+                        </Border>
+                        <!--  简介和功能  -->
+                        <DockPanel
                             Margin="5"
-                            Columns="2">
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="LSCHaxPage">
-                                    使用说明
-                                </Hyperlink>
-                                <TextBlock.ToolTip>
-                                    <Image Source="/Assets/Images/Hacks/LSCHax.png" Style="{StaticResource ImageHighQualityStyle}" />
-                                </TextBlock.ToolTip>
-                            </TextBlock>
-                            <CheckBox IsChecked="{Binding UC1HacksModel.LSCHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
-                                <b:Interaction.Triggers>
-                                    <b:EventTrigger EventName="Click">
-                                        <b:InvokeCommandAction Command="{Binding LSCHaxClickCommand}" />
-                                    </b:EventTrigger>
-                                </b:Interaction.Triggers>
-                            </CheckBox>
-                        </UniformGrid>
-                    </Grid>
+                            DockPanel.Dock="Right"
+                            LastChildFill="True">
+                            <!--  简介  -->
+                            <DockPanel
+                                Margin="5"
+                                DockPanel.Dock="Bottom"
+                                LastChildFill="True">
+                                <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
+                                    <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="LSCHaxPage">
+                                        使用说明
+                                    </Hyperlink>
+                                </TextBlock>
+                                <StackPanel
+                                    HorizontalAlignment="Right"
+                                    DockPanel.Dock="Right"
+                                    Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding UC1HacksModel.LSCHaxIsRun}" Style="{StaticResource ONOFFCheckBox}">
+                                        <b:Interaction.Triggers>
+                                            <b:EventTrigger EventName="Click">
+                                                <b:InvokeCommandAction Command="{Binding LSCHaxClickCommand}" />
+                                            </b:EventTrigger>
+                                        </b:Interaction.Triggers>
+                                    </CheckBox>
+                                </StackPanel>
+                            </DockPanel>
+                            <!--  功能  -->
+                            <StackPanel DockPanel.Dock="Top">
+                                <TextBlock
+                                    Margin="5"
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Text="LSCHax 载具改装编辑器" />
+                                <TextBlock Margin="5" Text="描述描述描述描述描述描述描述描述描述描述描述描述" />
+                            </StackPanel>
+                        </DockPanel>
+                    </DockPanel>
                 </Border>
 
             </WrapPanel>
         </ScrollViewer>
+
         <!--  使用说明窗口  -->
         <Grid Visibility="{Binding UC1HacksModel.FrameVisibilityState, FallbackValue=Collapsed}">
             <Border
                 Margin="10"
                 Background="White"
                 BorderBrush="Gray"
-                BorderThickness="0.6">
+                BorderThickness="2">
                 <Border.Effect>
                     <DropShadowEffect
                         BlurRadius="10"
                         Direction="0"
-                        Opacity="0.6"
+                        Opacity="0.8"
                         ShadowDepth="0"
                         Color="Black" />
                 </Border.Effect>
@@ -170,20 +263,20 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <DockPanel Margin="10,10,10,0" LastChildFill="False">
-                    <TextBlock
+                    <emoji:TextBlock
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="18"
                         FontWeight="Bold"
                         Foreground="#37AEFE"
-                        Text="使用说明" />
+                        Text="📖 详细使用说明" />
                     <Button
                         Padding="10,5,10,5"
                         Command="{Binding FrameHideClickCommand}"
                         Content="&#xeaf2;"
                         DockPanel.Dock="Right"
-                        Style="{StaticResource ButtonStyle_Frame}"
+                        Style="{StaticResource ButtonStyle_FrameHide}"
                         ToolTip="点击关闭使用说明" />
                 </DockPanel>
                 <Frame

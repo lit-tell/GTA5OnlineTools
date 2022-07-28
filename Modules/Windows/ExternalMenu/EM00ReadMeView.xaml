@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <Style x:Key="Main" TargetType="{x:Type RichTextBox}">
+        <Style x:Key="RichTextBoxStyle_ReadMe" TargetType="{x:Type RichTextBox}">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Background" Value="White" />
             <Setter Property="IsReadOnly" Value="True" />
@@ -40,17 +40,8 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Margin="3">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <RichTextBox
-            Grid.Column="0"
-            BorderBrush="Gray"
-            BorderThickness="0,0,1,0"
-            Style="{StaticResource Main}">
+    <UniformGrid Margin="3" Columns="2">
+        <RichTextBox Style="{StaticResource RichTextBoxStyle_ReadMe}">
             <FlowDocument>
                 <Paragraph Style="{StaticResource Title}">
                     传送说明
@@ -89,7 +80,7 @@
             </FlowDocument>
         </RichTextBox>
 
-        <RichTextBox Grid.Column="1" Style="{StaticResource Main}">
+        <RichTextBox Style="{StaticResource RichTextBoxStyle_ReadMe}">
             <FlowDocument>
                 <Paragraph Style="{StaticResource Title}">
                     功能说明
@@ -106,6 +97,6 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
+    </UniformGrid>
 
-    </Grid>
 </UserControl>

@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:GTA5OnlineTools.Modules.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="Window_GTAHax"
     Title="GTAHax代码导入编辑器"
@@ -26,7 +25,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid Margin="8,8,3,8">
-                <Border Style="{StaticResource BorderEffectStyle}" />
+                <Border Style="{StaticResource BorderStyle_DropShadowEffect}" />
                 <DockPanel LastChildFill="True">
                     <StackPanel
                         Margin="10,10,0,0"
@@ -66,7 +65,7 @@
                 </TabControl.Resources>
                 <TabItem Header="预设代码">
                     <Grid Margin="3,6,3,3">
-                        <Border Style="{StaticResource BorderEffectStyle}" />
+                        <Border Style="{StaticResource BorderStyle_DropShadowEffect}" />
                         <ListBox
                             x:Name="ListBox_GTAHaxCode_FuncList"
                             BorderBrush="Gray"
@@ -233,7 +232,7 @@
                                         <TextBlock Margin="5,0,5,0" />
                                         <Expander Header="高级" IsExpanded="True">
                                             <Grid Margin="5">
-                                                <Border Style="{StaticResource BorderEffectStyle}" />
+                                                <Border Style="{StaticResource BorderStyle_DropShadowEffect}" />
                                                 <StackPanel Margin="5">
                                                     <CheckBox
                                                         x:Name="CheckBox_H3_COMPLETEDPOSIX"
@@ -581,7 +580,7 @@
                                             Header="干扰"
                                             IsExpanded="False">
                                             <Grid Margin="5">
-                                                <Border Style="{StaticResource BorderEffectStyle}" />
+                                                <Border Style="{StaticResource BorderStyle_DropShadowEffect}" />
                                                 <StackPanel>
                                                     <CheckBox
                                                         x:Name="CheckBox_H4CNF_WEP_DISRP"
@@ -604,7 +603,7 @@
                                             Header="其他"
                                             IsExpanded="False">
                                             <Grid Margin="5">
-                                                <Border Style="{StaticResource BorderEffectStyle}" />
+                                                <Border Style="{StaticResource BorderStyle_DropShadowEffect}" />
                                                 <StackPanel>
                                                     <CheckBox
                                                         x:Name="CheckBox_H4CNF_GRAPPEL"

@@ -21,7 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Margin="5">
-            <Border Style="{StaticResource BorderEffectStyle}" />
+            <Border Style="{StaticResource BorderStyle_DropShadowEffect}" />
             <DockPanel LastChildFill="True">
                 <StackPanel
                     Margin="10,10,0,0"

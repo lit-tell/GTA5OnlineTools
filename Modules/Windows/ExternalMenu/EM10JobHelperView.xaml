@@ -181,7 +181,7 @@
         </Grid>
 
         <Grid Grid.Row="1" Margin="5">
-            <Border Style="{StaticResource BorderEffectStyle}" />
+            <Border Style="{StaticResource BorderStyle_DropShadowEffect}" />
             <TextBox
                 x:Name="TextBox_Result"
                 Height="50"

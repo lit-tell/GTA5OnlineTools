@@ -173,7 +173,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ButtonStyle_Frame" TargetType="{x:Type Button}">
+    <Style x:Key="ButtonStyle_FrameHide" TargetType="{x:Type Button}">
         <Setter Property="FontSize" Value="18" />
         <Setter Property="Foreground" Value="#37AEFE" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -199,7 +199,7 @@
                             <Setter TargetName="ellipse" Property="StrokeThickness" Value="1" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="ellipse" Property="Fill" Value="Red" />
+                            <Setter TargetName="ellipse" Property="Fill" Value="#E81224" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

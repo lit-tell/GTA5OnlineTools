@@ -77,7 +77,7 @@ public static class Hacks
     }
 
     /// <summary>
-    /// 获取游戏内生意索引
+    /// 获取游戏内产业索引
     /// </summary>
     /// <param name="ID">范围：0~5</param>
     /// <returns></returns>
