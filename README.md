@@ -2,9 +2,9 @@
 
 一个完全免费的GTA5线上模式辅助工具
 
-### 最新版本
+### 下载
 
-[版本发布地址](https://github.com/CrazyZhang666/GTA5OnlineTools/releases)  
+[最新版本发布地址](https://github.com/CrazyZhang666/GTA5OnlineTools/releases)  
 
 ### 编译
 
@@ -25,7 +25,7 @@
 * CSharp
 * MVVM
 
-### Github加速器
+### Github加速
 
 * Steam++（推荐）
 > https://steampp.net/
