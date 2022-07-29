@@ -12,6 +12,7 @@ public static class FileUtil
     public static string CustomTPList_Path = Config_Path + "CustomTPList.json";
 
     public const string Resource_Path = "GTA5OnlineTools.Features.Files.";
+    public const string Resource_Kiddion_Path = "GTA5OnlineTools.Features.Files.Kiddion.";
 
     /// <summary>
     /// 获取当前运行文件完整路径

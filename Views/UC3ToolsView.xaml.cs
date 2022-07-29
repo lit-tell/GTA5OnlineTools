@@ -48,11 +48,14 @@ public partial class UC3ToolsView : UserControl
             case "KiddionKey104":
                 KiddionKey104Click();
                 break;
+            case "CurrentDirectory":
+                CurrentDirectoryClick();
+                break;
             case "ReleaseDirectory":
                 ReleaseDirectoryClick();
                 break;
-            case "CurrentDirectory":
-                CurrentDirectoryClick();
+            case "BigBaseV2Directory":
+                BigBaseV2DirectoryClick();
                 break;
             case "EditKiddionConfig":
                 EditKiddionConfigClick();
@@ -310,13 +313,28 @@ public partial class UC3ToolsView : UserControl
     }
 
     /// <summary>
+    /// BigBaseV2配置目录
+    /// </summary>
+    private void BigBaseV2DirectoryClick()
+    {
+        try
+        {
+            ProcessUtil.OpenLink(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/BigBaseV2/");
+        }
+        catch (Exception ex)
+        {
+            MsgBoxUtil.ExceptionMsgBox(ex);
+        }
+    }
+
+    /// <summary>
     /// 启用Kiddion[87键]
     /// </summary>
     private void KiddionKey87Click()
     {
         ProcessUtil.CloseProcess("Kiddion");
         ProcessUtil.CloseProcess("Kiddion_Chs");
-        FileUtil.ExtractResFile(FileUtil.Resource_Path + "Key87.config.json", FileUtil.Kiddion_Path + @"config.json");
+        FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "key87.config.json", FileUtil.Kiddion_Path + @"config.json");
     }
 
     /// <summary>
@@ -326,7 +344,7 @@ public partial class UC3ToolsView : UserControl
     {
         ProcessUtil.CloseProcess("Kiddion");
         ProcessUtil.CloseProcess("Kiddion_Chs");
-        FileUtil.ExtractResFile(FileUtil.Resource_Path + "config.json", FileUtil.Kiddion_Path + @"config.json");
+        FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "config.json", FileUtil.Kiddion_Path + @"config.json");
     }
 
     /// <summary>

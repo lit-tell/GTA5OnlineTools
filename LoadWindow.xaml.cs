@@ -28,19 +28,19 @@ public partial class LoadWindow : Window
                 Directory.CreateDirectory(FileUtil.KiddionScripts_Path);
 
                 // 释放必要文件
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "Kiddion.exe", FileUtil.Kiddion_Path + "Kiddion.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "Kiddion_Chs.exe", FileUtil.Kiddion_Path + "Kiddion_Chs.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion.exe", FileUtil.Kiddion_Path + "Kiddion.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion_Chs.exe", FileUtil.Kiddion_Path + "Kiddion_Chs.exe");
 
                 // 释放前先判断，防止覆盖配置文件
                 if (!File.Exists(FileUtil.Kiddion_Path + "config.json"))
-                    FileUtil.ExtractResFile(FileUtil.Resource_Path + "config.json", FileUtil.Kiddion_Path + "config.json");
+                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "config.json", FileUtil.Kiddion_Path + "config.json");
                 if (!File.Exists(FileUtil.Kiddion_Path + "teleports.json"))
-                    FileUtil.ExtractResFile(FileUtil.Resource_Path + "teleports.json", FileUtil.Kiddion_Path + "teleports.json");
+                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "teleports.json", FileUtil.Kiddion_Path + "teleports.json");
                 if (!File.Exists(FileUtil.Kiddion_Path + "vehicles.json"))
-                    FileUtil.ExtractResFile(FileUtil.Resource_Path + "vehicles.json", FileUtil.Kiddion_Path + "vehicles.json");
+                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "vehicles.json", FileUtil.Kiddion_Path + "vehicles.json");
 
                 // Kiddion Lua脚本
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "scripts.Readme.api", FileUtil.KiddionScripts_Path + "Readme.api");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "scripts.Readme.api", FileUtil.KiddionScripts_Path + "Readme.api");
 
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -50,8 +50,8 @@ public partial class LoadWindow : Window
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "LSCHax.exe", FileUtil.Cache_Path + "LSCHax.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "YimMenu.dll", FileUtil.Cache_Path + "YimMenu.dll");
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.exe", FileUtil.Cache_Path + "DefenderControl.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.ini", FileUtil.Cache_Path + "DefenderControl.ini");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "dControl.exe", FileUtil.Cache_Path + "dControl.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "dControl.ini", FileUtil.Cache_Path + "dControl.ini");
 
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "MyMenu.dll", FileUtil.Cache_Path + "MyMenu.dll");
             }

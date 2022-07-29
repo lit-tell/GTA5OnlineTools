@@ -33,15 +33,15 @@
     <None Remove="Assets\Images\Tips\PlayerName.png" />
     <None Remove="Features\Files\BincoHax.exe" />
     <None Remove="Features\Files\config.json" />
-    <None Remove="Features\Files\DefenderControl.exe" />
-    <None Remove="Features\Files\DefenderControl.ini" />
+    <None Remove="Features\Files\dControl.exe" />
+    <None Remove="Features\Files\dControl.ini" />
     <None Remove="Features\Files\GTAHax.exe" />
-    <None Remove="Features\Files\Key87\config.json" />
+    <None Remove="Features\Files\Kiddion\key87\config.json" />
     <None Remove="Features\Files\Kiddion.exe" />
     <None Remove="Features\Files\Kiddion_Chs.exe" />
     <None Remove="Features\Files\LSCHax.exe" />
     <None Remove="Features\Files\MyMenu.dll" />
-    <None Remove="Features\Files\scripts\Readme.api" />
+    <None Remove="Features\Files\Kiddion\scripts\Readme.api" />
     <None Remove="Features\Files\stat.txt" />
     <None Remove="Features\Files\teleports.json" />
     <None Remove="Features\Files\vehicles.json" />
@@ -50,19 +50,19 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Features\Files\BincoHax.exe" />
-    <EmbeddedResource Include="Features\Files\config.json" />
-    <EmbeddedResource Include="Features\Files\DefenderControl.exe" />
-    <EmbeddedResource Include="Features\Files\DefenderControl.ini" />
+    <EmbeddedResource Include="Features\Files\Kiddion\config.json" />
+    <EmbeddedResource Include="Features\Files\dControl.exe" />
+    <EmbeddedResource Include="Features\Files\dControl.ini" />
     <EmbeddedResource Include="Features\Files\MyMenu.dll" />
     <EmbeddedResource Include="Features\Files\GTAHax.exe" />
-    <EmbeddedResource Include="Features\Files\Key87\config.json" />
-    <EmbeddedResource Include="Features\Files\Kiddion.exe" />
-    <EmbeddedResource Include="Features\Files\Kiddion_Chs.exe" />
+    <EmbeddedResource Include="Features\Files\Kiddion\key87\config.json" />
+    <EmbeddedResource Include="Features\Files\Kiddion\Kiddion.exe" />
+    <EmbeddedResource Include="Features\Files\Kiddion\Kiddion_Chs.exe" />
     <EmbeddedResource Include="Features\Files\LSCHax.exe" />
-    <EmbeddedResource Include="Features\Files\scripts\Readme.api" />
+    <EmbeddedResource Include="Features\Files\Kiddion\scripts\Readme.api" />
     <EmbeddedResource Include="Features\Files\stat.txt" />
-    <EmbeddedResource Include="Features\Files\teleports.json" />
-    <EmbeddedResource Include="Features\Files\vehicles.json" />
+    <EmbeddedResource Include="Features\Files\Kiddion\teleports.json" />
+    <EmbeddedResource Include="Features\Files\Kiddion\vehicles.json" />
     <EmbeddedResource Include="Features\Files\YimMenu.dll" />
   </ItemGroup>
 

@@ -88,13 +88,18 @@
                 <Button
                     attached:Icon.Value="&#xec17;"
                     Command="{Binding ToolsButtonClickCommand}"
+                    CommandParameter="CurrentDirectory"
+                    Content="程序当前目录" />
+                <Button
+                    attached:Icon.Value="&#xec17;"
+                    Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="ReleaseDirectory"
                     Content="程序释放目录" />
                 <Button
                     attached:Icon.Value="&#xec17;"
                     Command="{Binding ToolsButtonClickCommand}"
-                    CommandParameter="CurrentDirectory"
-                    Content="程序当前目录" />
+                    CommandParameter="BigBaseV2Directory"
+                    Content="BigBaseV2配置目录" />
                 <Button
                     attached:Icon.Value="&#xe667;"
                     Command="{Binding ToolsButtonClickCommand}"

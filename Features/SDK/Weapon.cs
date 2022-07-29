@@ -24,9 +24,7 @@ public static class Weapon
             my_offset_1 = Memory.Read<long>(my_offset_0 + 0x00);
 
             if (my_offset_0 == 0 || my_offset_1 == 0)
-            {
                 return;
-            }
 
             ammo_type = Memory.Read<byte>(my_offset_1 + 0x0C);
 

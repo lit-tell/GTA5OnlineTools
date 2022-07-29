@@ -17,6 +17,9 @@ public partial class ExternalMenuView : Window
     public RelayCommand<MenuBar> NavigateCommand { get; private set; }
 
     public delegate void ClosingDispose();
+    /// <summary>
+    /// 关闭窗口释放资源委托
+    /// </summary>
     public static event ClosingDispose ClosingDisposeEvent;
 
     // 程序自身的窗口句柄
@@ -24,6 +27,9 @@ public partial class ExternalMenuView : Window
     private POINT EMPOINT;
 
     public delegate void IsShowWindow();
+    /// <summary>
+    /// 是否线上窗口委托
+    /// </summary>
     public static IsShowWindow IsShowWindowDelegate;
 
     // 用户控件
@@ -113,8 +119,10 @@ public partial class ExternalMenuView : Window
             Globals.CCameraPTR = Memory.Rip_37(Globals.TempPTR);
         });
 
-        var thread = new Thread(InitThread);
-        thread.IsBackground = true;
+        var thread = new Thread(InitThread)
+        {
+            IsBackground = true
+        };
         thread.Start();
     }
 
