@@ -25,9 +25,9 @@
 * CSharp
 * MVVM
 
-### Github加速器（推荐）
+### Github加速器
 
-* Steam++
+* Steam++（推荐）
 > https://steampp.net/
 
 * FastGithub
@@ -35,4 +35,4 @@
 
 ### 预览
 
-![](https://s3.bmp.ovh/imgs/2022/01/ffe9219d3af8805f.png)
+![Snipaste_2022-07-29_11-24-19.png](https://pic.rmb.bdstatic.com/bjh/3d863eae48c37132143fe0a7f9a317d9.png)
