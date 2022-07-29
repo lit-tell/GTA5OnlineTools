@@ -25,18 +25,13 @@
     <None Remove="Assets\Images\Hacks\LSCHax.png" />
     <None Remove="Assets\Images\Hacks\YimMenu.png" />
     <None Remove="Assets\Images\Launch.png" />
-    <None Remove="Assets\Images\Tips\Bread.png" />
-    <None Remove="Assets\Images\Tips\Bread_Chs.png" />
     <None Remove="Assets\Images\Tips\Cayo01.png" />
     <None Remove="Assets\Images\Tips\Cayo02.png" />
     <None Remove="Assets\Images\Tips\InputENG.png" />
-    <None Remove="Assets\Images\Tips\PackedStatEditor.png" />
     <None Remove="Assets\Images\Tips\PericoHeist01.png" />
     <None Remove="Assets\Images\Tips\PericoHeist02.png" />
     <None Remove="Assets\Images\Tips\PlayerName.png" />
     <None Remove="Features\Files\BincoHax.exe" />
-    <None Remove="Features\Files\Bread.dll" />
-    <None Remove="Features\Files\Bread_Chs.dll" />
     <None Remove="Features\Files\config.json" />
     <None Remove="Features\Files\DefenderControl.exe" />
     <None Remove="Features\Files\DefenderControl.ini" />
@@ -46,7 +41,6 @@
     <None Remove="Features\Files\Kiddion_Chs.exe" />
     <None Remove="Features\Files\LSCHax.exe" />
     <None Remove="Features\Files\MyMenu.dll" />
-    <None Remove="Features\Files\PackedStatEditor.dll" />
     <None Remove="Features\Files\scripts\Readme.api" />
     <None Remove="Features\Files\stat.txt" />
     <None Remove="Features\Files\teleports.json" />
@@ -56,8 +50,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Features\Files\BincoHax.exe" />
-    <EmbeddedResource Include="Features\Files\Bread.dll" />
-    <EmbeddedResource Include="Features\Files\Bread_Chs.dll" />
     <EmbeddedResource Include="Features\Files\config.json" />
     <EmbeddedResource Include="Features\Files\DefenderControl.exe" />
     <EmbeddedResource Include="Features\Files\DefenderControl.ini" />
@@ -67,7 +59,6 @@
     <EmbeddedResource Include="Features\Files\Kiddion.exe" />
     <EmbeddedResource Include="Features\Files\Kiddion_Chs.exe" />
     <EmbeddedResource Include="Features\Files\LSCHax.exe" />
-    <EmbeddedResource Include="Features\Files\PackedStatEditor.dll" />
     <EmbeddedResource Include="Features\Files\scripts\Readme.api" />
     <EmbeddedResource Include="Features\Files\stat.txt" />
     <EmbeddedResource Include="Features\Files\teleports.json" />
@@ -95,12 +86,9 @@
     <Resource Include="Assets\Images\Hacks\LSCHax.png" />
     <Resource Include="Assets\Images\Hacks\YimMenu.png" />
     <Resource Include="Assets\Images\Launch.png" />
-    <Resource Include="Assets\Images\Tips\Bread.png" />
-    <Resource Include="Assets\Images\Tips\Bread_Chs.png" />
     <Resource Include="Assets\Images\Tips\Cayo01.png" />
     <Resource Include="Assets\Images\Tips\Cayo02.png" />
     <Resource Include="Assets\Images\Tips\InputENG.png" />
-    <Resource Include="Assets\Images\Tips\PackedStatEditor.png" />
     <Resource Include="Assets\Images\Tips\PericoHeist01.png" />
     <Resource Include="Assets\Images\Tips\PericoHeist02.png" />
     <Resource Include="Assets\Images\Tips\PlayerName.png" />

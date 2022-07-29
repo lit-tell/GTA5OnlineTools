@@ -84,69 +84,15 @@
                     Click="CheckBox_RemoveBunkerSupplyDelay_Click"
                     Content="移除地堡进货延迟" />
                 <CheckBox
-                    x:Name="CheckBox_SetBunkerResupplyCosts"
-                    Click="CheckBox_SetBunkerResupplyCosts_Click"
-                    Content="最低地堡补给价格" />
-                <CheckBox
-                    x:Name="CheckBox_SetBunkerSuppliesPerUnitProduced"
-                    Click="CheckBox_SetBunkerSuppliesPerUnitProduced_Click"
-                    Content="最低地堡原材料消耗量" />
-                <CheckBox
                     x:Name="CheckBox_UnlockBunkerResearch"
                     Click="CheckBox_UnlockBunkerResearch_Click"
                     Content="解锁地堡所有研究 (临时)" />
-                <WrapPanel>
-                    <Button
-                        x:Name="Button_TriggerBunkerProduction"
-                        Click="Button_TriggerBunkerProduction_Click"
-                        Content="触发地堡生产" />
-                    <Button
-                        x:Name="Button_TriggerBunkerResearch"
-                        Click="Button_TriggerBunkerResearch_Click"
-                        Content="触发地堡研究" />
-                </WrapPanel>
 
                 <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="摩托帮" />
                 <CheckBox
                     x:Name="CheckBox_RemoveMCSupplyDelay"
                     Click="CheckBox_RemoveMCSupplyDelay_Click"
                     Content="移除摩托帮进货延迟" />
-                <CheckBox
-                    x:Name="CheckBox_SetMCResupplyCosts"
-                    Click="CheckBox_SetMCResupplyCosts_Click"
-                    Content="最低摩托帮补给价格" />
-                <CheckBox
-                    x:Name="CheckBox_SetMCSuppliesPerUnitProduced"
-                    Click="CheckBox_SetMCSuppliesPerUnitProduced_Click"
-                    Content="最低摩托帮原材料消耗量" />
-                <CheckBox
-                    x:Name="CheckBox_SetMCSaleMultipliers"
-                    Click="CheckBox_SetMCSaleMultipliers_Click"
-                    Content="⚠️ 摩托帮出货双倍利润"
-                    Foreground="Red"
-                    Visibility="Collapsed" />
-                <WrapPanel>
-                    <Button
-                        x:Name="CheckBox_TriggerMethProduction"
-                        Click="CheckBox_TriggerMethProduction_Click"
-                        Content="触发冰毒实验室生产" />
-                    <Button
-                        x:Name="CheckBox_TriggerWeedProduction"
-                        Click="CheckBox_TriggerWeedProduction_Click"
-                        Content="触发大麻种植场生产" />
-                    <Button
-                        x:Name="CheckBox_TriggerCocaineProduction"
-                        Click="CheckBox_TriggerCocaineProduction_Click"
-                        Content="触发可卡因工厂生产" />
-                    <Button
-                        x:Name="CheckBox_TriggerCashProduction"
-                        Click="CheckBox_TriggerCashProduction_Click"
-                        Content="触发假钞工厂生产" />
-                    <Button
-                        x:Name="CheckBox_TriggerDocumentsProduction"
-                        Click="CheckBox_TriggerDocumentsProduction_Click"
-                        Content="触发伪证件办公室生产" />
-                </WrapPanel>
 
             </StackPanel>
 
@@ -156,10 +102,6 @@
                     x:Name="CheckBox_RemoveNightclubOutDelay"
                     Click="CheckBox_RemoveNightclubOutDelay_Click"
                     Content="移除夜总会出货延迟" />
-                <CheckBox
-                    x:Name="CheckBox_NightclubNoTonyLaunderingMoney"
-                    Click="CheckBox_NightclubNoTonyLaunderingMoney_Click"
-                    Content="最低托尼洗钱费用" />
 
                 <TextBlock Style="{StaticResource TextBlockStyle_Title000}" Text="进出口大亨" />
                 <CheckBox

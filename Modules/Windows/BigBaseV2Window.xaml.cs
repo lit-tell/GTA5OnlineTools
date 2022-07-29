@@ -43,21 +43,11 @@ public partial class BigBaseV2Window : Window
 
     private void RadioButton_InjectDLL_Bread_Click(object sender, RoutedEventArgs e)
     {
-        if (RadioButton_InjectDLL_Bread.IsChecked == true)
-        {
-            InjectInfo.DLLPath = FileUtil.Cache_Path + "Bread.dll";
-            Button_BigBaseV2_Inject.IsEnabled = false;
-        }
-        else if (RadioButton_InjectDLL_Bread_Chs.IsChecked == true)
-        {
-            InjectInfo.DLLPath = FileUtil.Cache_Path + "Bread_Chs.dll";
-            Button_BigBaseV2_Inject.IsEnabled = false;
-        }
-        else if (RadioButton_InjectDLL_PackedStatEditor.IsChecked == true)
-        {
-            InjectInfo.DLLPath = FileUtil.Cache_Path + "PackedStatEditor.dll";
-            Button_BigBaseV2_Inject.IsEnabled = true;
-        }
+        //if (RadioButton_InjectDLL_Bread.IsChecked == true)
+        //{
+        //    InjectInfo.DLLPath = FileUtil.Cache_Path + "Bread.dll";
+        //    Button_BigBaseV2_Inject.IsEnabled = false;
+        //}
     }
 
     private void Button_BigBaseV2_Inject_Click(object sender, RoutedEventArgs e)

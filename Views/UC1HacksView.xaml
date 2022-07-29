@@ -40,15 +40,22 @@
                                 Margin="5"
                                 DockPanel.Dock="Bottom"
                                 LastChildFill="True">
-                                <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
+                                <emoji:TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
                                     <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="KiddionPage">
-                                        使用说明
+                                        📘 帮助
                                     </Hyperlink>
-                                </TextBlock>
+                                </emoji:TextBlock>
                                 <StackPanel
                                     HorizontalAlignment="Right"
                                     DockPanel.Dock="Right"
                                     Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0,0,5,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Foreground="Red"
+                                        Text="已过期" />
                                     <ToggleButton IsChecked="{Binding UC1HacksModel.KiddionIsRun}" Style="{StaticResource ToggleButtonStyle_Normal}">
                                         <b:Interaction.Triggers>
                                             <b:EventTrigger EventName="Click">
@@ -100,13 +107,20 @@
                                 LastChildFill="True">
                                 <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
                                     <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="GTAHaxPage">
-                                        使用说明
+                                        📘 帮助
                                     </Hyperlink>
                                 </TextBlock>
                                 <StackPanel
                                     HorizontalAlignment="Right"
                                     DockPanel.Dock="Right"
                                     Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0,0,5,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Foreground="Red"
+                                        Text="已过期" />
                                     <ToggleButton IsChecked="{Binding UC1HacksModel.GTAHaxIsRun}" Style="{StaticResource ToggleButtonStyle_Normal}">
                                         <b:Interaction.Triggers>
                                             <b:EventTrigger EventName="Click">
@@ -158,13 +172,20 @@
                                 LastChildFill="True">
                                 <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
                                     <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="BincoHaxPage">
-                                        使用说明
+                                        📘 帮助
                                     </Hyperlink>
                                 </TextBlock>
                                 <StackPanel
                                     HorizontalAlignment="Right"
                                     DockPanel.Dock="Right"
                                     Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0,0,5,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Foreground="Red"
+                                        Text="已过期" />
                                     <ToggleButton IsChecked="{Binding UC1HacksModel.BincoHaxIsRun}" Style="{StaticResource ToggleButtonStyle_Normal}">
                                         <b:Interaction.Triggers>
                                             <b:EventTrigger EventName="Click">
@@ -216,13 +237,20 @@
                                 LastChildFill="True">
                                 <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
                                     <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="LSCHaxPage">
-                                        使用说明
+                                        📘 帮助
                                     </Hyperlink>
                                 </TextBlock>
                                 <StackPanel
                                     HorizontalAlignment="Right"
                                     DockPanel.Dock="Right"
                                     Orientation="Horizontal">
+                                    <TextBlock
+                                        Margin="0,0,5,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="14"
+                                        FontWeight="Bold"
+                                        Foreground="Red"
+                                        Text="已过期" />
                                     <ToggleButton IsChecked="{Binding UC1HacksModel.LSCHaxIsRun}" Style="{StaticResource ToggleButtonStyle_Normal}">
                                         <b:Interaction.Triggers>
                                             <b:EventTrigger EventName="Click">
@@ -274,7 +302,7 @@
                                 LastChildFill="True">
                                 <TextBlock VerticalAlignment="Center" DockPanel.Dock="Left">
                                     <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="YimMenuPage">
-                                        使用说明
+                                        📘 帮助
                                     </Hyperlink>
                                 </TextBlock>
                                 <StackPanel
@@ -297,9 +325,9 @@
                                     FontWeight="Bold"
                                     Text="YimMenu 注入式菜单" />
                                 <TextBlock Margin="5" TextWrapping="Wrap">
-                                    一款GitHub开源项目Yimura大佬制作的免费GTA5注入式菜单，旨在防止崩溃（目前并非全部）并改善整体体验。<LineBreak /><LineBreak />
+                                    一款GitHub开源项目Yimura大佬制作的免费GTA5注入式菜单，旨在防止崩溃（目前并非全部）并改善整体体验<LineBreak /><LineBreak />
                                     项目地址：https://github.com/YimMenu/YimMenu<LineBreak />
-                                    PS：当前尚未汉化，下次更新完善汉化</TextBlock>
+                                    PS：注入成功后按Ins键显示/隐藏菜单，点击左上角卸载注入</TextBlock>
                             </StackPanel>
                         </DockPanel>
                     </DockPanel>

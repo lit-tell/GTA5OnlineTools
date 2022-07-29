@@ -100,7 +100,7 @@
                     Foreground="White"
                     Text="线上资产传送" />
             </Border>
-            <WrapPanel Margin="3,0,3,0">
+            <WrapPanel Margin="3,0,3,3">
                 <Button Click="Button_Blips_Click" Content="游艇" />
                 <Button Click="Button_Blips_Click" Content="CEO办公室" />
                 <Button Click="Button_Blips_Click" Content="摩托帮会所" />
@@ -125,7 +125,7 @@
                     Foreground="White"
                     Text="梅利威瑟" />
             </Border>
-            <WrapPanel Margin="3,0,3,0">
+            <WrapPanel Margin="3,0,3,3">
                 <Button Click="Button_MerryweatherServices_Click" Content="请求弹药空投" />
                 <Button Click="Button_MerryweatherServices_Click" Content="请求重型防弹装甲" />
                 <Button Click="Button_MerryweatherServices_Click" Content="请求牛鲨睾酮" />

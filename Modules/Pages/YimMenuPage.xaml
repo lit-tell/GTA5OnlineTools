@@ -18,7 +18,10 @@
                     简介
                 </Paragraph>
                 <Paragraph Style="{StaticResource ParagraphStyle_Content}">
-                    待添加...
+                    一款GitHub开源项目Yimura大佬制作的免费GTA5注入式菜单，旨在防止崩溃（目前并非全部）并改善整体体验。汉化 By Aure
+                </Paragraph>
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
+                    项目地址：https://github.com/YimMenu/YimMenu
                 </Paragraph>
 
             </FlowDocument>
@@ -30,7 +33,13 @@
                     说明
                 </Paragraph>
                 <Paragraph Style="{StaticResource ParagraphStyle_Content}">
-                    待添加...
+                    建议大家进入故事模式后再注入游戏，不要直接在线上模式注入，注入成功后再进入线上模式
+                </Paragraph>
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
+                    如果要使用防护功能，建议大家在线下开启后再进入线上模式，直接在线上开启防护可能会导致防护失效
+                </Paragraph>
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
+                    注入成功后，会出现一个YimMenu的控制台窗口，这个不要关闭，否则游戏会跟着一起关闭，如果要卸载注入，点击菜单左上角的卸载按钮即可
                 </Paragraph>
 
             </FlowDocument>

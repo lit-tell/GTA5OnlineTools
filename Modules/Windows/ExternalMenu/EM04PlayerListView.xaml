@@ -41,12 +41,12 @@
         <StackPanel Grid.Column="2">
             <Button
                 x:Name="Button_RefreshPlayerList"
-                Margin="5"
+                Margin="5,5,5,0"
                 Click="Button_RefreshPlayerList_Click"
                 Content="刷新玩家列表" />
             <Button
                 x:Name="Button_TeleportSelectedPlayer"
-                Margin="5"
+                Margin="5,5,5,0"
                 Click="Button_TeleportSelectedPlayer_Click"
                 Content="传送到选中玩家" />
         </StackPanel>

@@ -50,10 +50,6 @@ public partial class LoadWindow : Window
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "LSCHax.exe", FileUtil.Cache_Path + "LSCHax.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "YimMenu.dll", FileUtil.Cache_Path + "YimMenu.dll");
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "Bread.dll", FileUtil.Cache_Path + "Bread.dll");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "Bread_Chs.dll", FileUtil.Cache_Path + "Bread_Chs.dll");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "PackedStatEditor.dll", FileUtil.Cache_Path + "PackedStatEditor.dll");
-
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.exe", FileUtil.Cache_Path + "DefenderControl.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "DefenderControl.ini", FileUtil.Cache_Path + "DefenderControl.ini");
 
