@@ -120,6 +120,14 @@ public partial class MainWindow : Window
     /// <param name="e"></param>
     private void Window_Main_Closing(object sender, CancelEventArgs e)
     {
+		e.Cancel = true;
+
+        ShowInTaskbar = false;
+        this.Visibility = Visibility.Hidden;
+	}
+
+	private void RealClose()
+    {
         // 关闭第三方进程
         ProcessUtil.CloseTheseProcess();
         // 释放状态栏图标
@@ -142,6 +150,7 @@ public partial class MainWindow : Window
         Topmost = false;
         ShowInTaskbar = true;
         WindowState = WindowState.Normal;
+        this.Visibility = Visibility.Visible;
     }
 
     /// <summary>
@@ -151,7 +160,8 @@ public partial class MainWindow : Window
     /// <param name="e"></param>
     private void TaskbarIcon_MenuItem_Exit_Click(object sender, RoutedEventArgs e)
     {
-        Close();
+        //Close();
+        RealClose();
     }
 
     /// <summary>
@@ -161,10 +171,19 @@ public partial class MainWindow : Window
     /// <param name="e"></param>
     private void TaskbarIcon_Main_TrayMouseDoubleClick(object sender, RoutedEventArgs e)
     {
-        Topmost = true;
-        Topmost = false;
-        ShowInTaskbar = true;
-        WindowState = WindowState.Normal;
+        if (this.Visibility == Visibility.Visible)
+        {
+            ShowInTaskbar = false;
+            this.Visibility = Visibility.Hidden;
+        }
+        else
+        {
+            Topmost = true;
+            Topmost = false;
+            ShowInTaskbar = true;
+            WindowState = WindowState.Normal;
+            this.Visibility = Visibility.Visible;
+        }
     }
 
     /// <summary>
