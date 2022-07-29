@@ -74,14 +74,16 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void AntiAFK(bool isEnable)
     {
+        // joaat("weapon_minigun");
         Hacks.WriteGA<int>(262145 + 87, isEnable ? 99999999 : 120000);        // 120000 
         Hacks.WriteGA<int>(262145 + 88, isEnable ? 99999999 : 300000);        // 300000 
         Hacks.WriteGA<int>(262145 + 89, isEnable ? 99999999 : 600000);        // 600000 
         Hacks.WriteGA<int>(262145 + 90, isEnable ? 99999999 : 900000);        // 900000 
-        Hacks.WriteGA<int>(262145 + 8041, isEnable ? 2000000000 : 30000);     // 30000  
-        Hacks.WriteGA<int>(262145 + 8042, isEnable ? 2000000000 : 60000);     // 60000  
-        Hacks.WriteGA<int>(262145 + 8043, isEnable ? 2000000000 : 90000);     // 90000  
-        Hacks.WriteGA<int>(262145 + 8044, isEnable ? 2000000000 : 120000);    // 120000 
+        // 742014
+        Hacks.WriteGA<int>(262145 + 8248, isEnable ? 2000000000 : 30000);     // 30000  
+        Hacks.WriteGA<int>(262145 + 8249, isEnable ? 2000000000 : 60000);     // 60000  
+        Hacks.WriteGA<int>(262145 + 8250, isEnable ? 2000000000 : 90000);     // 90000  
+        Hacks.WriteGA<int>(262145 + 8251, isEnable ? 2000000000 : 120000);    // 120000 
     }
 
     /// <summary>
@@ -263,7 +265,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void CEOSpecialCargo(bool isEnable)
     {
-        Hacks.WriteGA<int>(1946798, isEnable ? 1 : 0);
+        Hacks.WriteGA<int>(1946111, isEnable ? 1 : 0);
     }
 
     /// <summary>
@@ -272,7 +274,7 @@ public static class Online
     /// <param name="cargoID"></param>
     public static void CEOCargoType(int cargoID)
     {
-        Hacks.WriteGA<int>(1946644, cargoID);
+        Hacks.WriteGA<int>(1945957, cargoID);
     }
 
     /// <summary>
