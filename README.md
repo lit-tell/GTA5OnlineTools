@@ -35,4 +35,4 @@
 
 ### 预览
 
-![Snipaste_2022-07-29_11-24-19.png](https://pic.rmb.bdstatic.com/bjh/3d863eae48c37132143fe0a7f9a317d9.png)
+![](https://pic.rmb.bdstatic.com/bjh/3d863eae48c37132143fe0a7f9a317d9.png)
