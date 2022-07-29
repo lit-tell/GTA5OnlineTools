@@ -92,16 +92,6 @@ public partial class EM06SpawnWeaponView : UserControl
         }
     }
 
-    private void CheckBox_InfiniteAmmo_Click(object sender, RoutedEventArgs e)
-    {
-        Weapon.InfiniteAmmo(CheckBox_InfiniteAmmo.IsChecked == true);
-    }
-
-    private void CheckBox_NoReload_Click(object sender, RoutedEventArgs e)
-    {
-        Weapon.NoReload(CheckBox_NoReload.IsChecked == true);
-    }
-
     private void CheckBox_ReloadMult_Click(object sender, RoutedEventArgs e)
     {
         Weapon.ReloadMult(CheckBox_ReloadMult.IsChecked == true);

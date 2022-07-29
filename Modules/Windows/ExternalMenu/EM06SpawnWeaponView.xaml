@@ -77,14 +77,6 @@
             </Border>
             <StackPanel Margin="3,0,3,0">
                 <CheckBox
-                    x:Name="CheckBox_InfiniteAmmo"
-                    Click="CheckBox_InfiniteAmmo_Click"
-                    Content="无限弹药" />
-                <CheckBox
-                    x:Name="CheckBox_NoReload"
-                    Click="CheckBox_NoReload_Click"
-                    Content="无需换弹" />
-                <CheckBox
                     x:Name="CheckBox_ReloadMult"
                     Click="CheckBox_ReloadMult_Click"
                     Content="快速换弹" />

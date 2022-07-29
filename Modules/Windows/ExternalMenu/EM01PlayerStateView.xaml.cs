@@ -327,14 +327,14 @@ public partial class EM01PlayerStateView : UserControl
         {
             FrameFlag = 1;
         }
-        else if (RadioButton_FrameFlags_FireAmmo.IsChecked == true)
-        {
-            FrameFlag = 2;
-        }
-        else if (RadioButton_FrameFlags_ExplosiveAmmo.IsChecked == true)
-        {
-            FrameFlag = 3;
-        }
+        //else if (RadioButton_FrameFlags_FireAmmo.IsChecked == true)
+        //{
+        //    FrameFlag = 2;
+        //}
+        //else if (RadioButton_FrameFlags_ExplosiveAmmo.IsChecked == true)
+        //{
+        //    FrameFlag = 3;
+        //}
     }
 
     private void CheckBox_NoCollision_Click(object sender, RoutedEventArgs e)

@@ -256,7 +256,7 @@
                             Margin="5"
                             Click="RadioButton_FrameFlags_Click"
                             Content="超级跳跃" />
-                        <RadioButton
+                        <!--<RadioButton
                             x:Name="RadioButton_FrameFlags_FireAmmo"
                             Margin="5"
                             Click="RadioButton_FrameFlags_Click"
@@ -265,7 +265,7 @@
                             x:Name="RadioButton_FrameFlags_ExplosiveAmmo"
                             Margin="5"
                             Click="RadioButton_FrameFlags_Click"
-                            Content="爆炸子弹" />
+                            Content="爆炸子弹" />-->
                     </WrapPanel>
 
                     <Border Style="{StaticResource BorderStyle_Title}">

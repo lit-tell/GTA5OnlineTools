@@ -220,6 +220,7 @@ public partial class MainWindow : Window
                 break;
         }
     }
+
     /// <summary>
     /// 计时器独立线程
     /// </summary>
@@ -229,7 +230,6 @@ public partial class MainWindow : Window
     {
         // 获取软件运行时间
         MainModel.AppRunTime = "运行时间 : " + CoreUtil.ExecDateDiff(Origin_DateTime, DateTime.Now);
-
         // 判断 GTA5 是否运行
         MainModel.GTA5IsRun = ProcessUtil.IsAppRun("GTA5") ? "GTA5 : ON" : "GTA5 : OFF";
     }
